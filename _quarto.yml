@@ -5,14 +5,28 @@ book:
   title: "FLIM Playground"
   author: "Wenxuan Zhao"
   date: "6/30/2025"
+  repo-url: https://github.com/skalalab/flim_playground_doc
+  repo-actions: [edit, issue]
   chapters:
     - index.qmd
     - part: "Data Extraction"
       chapters:
         - data_extraction.qmd
         - image_metadata.qmd
-    - visualization.qmd
-    - classification.qmd
+        - numerical_feature_extraction.qmd
+        - categorical_feature_extraction.qmd
+    - part: "Downstream Analysis"
+      chapters:
+        - shared_widgets.qmd
+    - part: "Visualization"
+      chapters:
+        - visualization.qmd
+        - univariate_analysis.qmd
+        - bivariate_analysis.qmd
+        - multivariate_analysis.qmd
+    - part: "Classification"
+      chapters:
+        - classification.qmd
     - references.qmd
 
 bibliography: references.bib
@@ -20,8 +34,8 @@ bibliography: references.bib
 format:
   html:
     theme:
-      - cosmo
-      - brand
+      light: [flatly, brand]
+      dark: [darkly, brand]
     number-sections: false
   pdf:
     documentclass: scrreprt

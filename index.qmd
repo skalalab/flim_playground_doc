@@ -1,5 +1,12 @@
-# Preface {.unnumbered}
+<style>
+.quarto-title-block {
+  display: none;
+}
+.quarto-title {
+  display: none;
+}
+</style>
 
-This is a Quarto book.
+![](logo.gif){width=300px fig-align="center"}
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+# Introduction
