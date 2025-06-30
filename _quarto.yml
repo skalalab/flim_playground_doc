@@ -1,0 +1,30 @@
+project:
+  type: book
+
+book:
+  title: "FLIM Playground"
+  author: "Wenxuan Zhao"
+  date: "6/30/2025"
+  chapters:
+    - index.qmd
+    - part: "Data Extraction"
+      chapters:
+        - data_extraction.qmd
+        - image_metadata.qmd
+    - visualization.qmd
+    - classification.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    number-sections: false
+  pdf:
+    documentclass: scrreprt
+
+
+
