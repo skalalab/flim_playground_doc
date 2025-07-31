@@ -1,0 +1,7 @@
+# Dimension Reduction
+
+## UMAP
+
+## PCA
+
+## t-SNE

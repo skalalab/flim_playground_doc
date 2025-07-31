@@ -1,0 +1,24 @@
+# Feature Histogram
+
+## Gaussian Mixture Model
+### Step 1: Fit Gaussian Mixture Models and choose the best one
+- Fit Gaussian Mixture Models on a selected variable (e.g. NADH tau mean) up to 3 components, each of which has its component weights ($\pi$), means ($\mu$) and variances ($\sigma^2$). In this case, area is computed for each cell, in terms of number of pixels in the images, and selected for modeling using GMM. 
+- Keep only the "valid" models that contain components that have at least 0.1 weights (the weights of all components add to 1)
+- Choose the best one with the lowest BIC score that penalizes the model complexity to avoid overfitting
+
+### Step 2: Calculate the hetergeneity index for the best GMM 
+To quantify the subpopulation structure, it computes an “H‑index”[@biomedical2022] for each group as a weighted entropy‑distance: each component contributes according to its weight’s uncertainty ($-w_i \log w_i$) scaled by how far its mean $\mu_i$ sits from the overall mixture mean $\bar\mu = \sum_{i=1}^k w_i\,\mu_i$.  
+$$
+H = \sum_{i=1}^k \bigl(-w_i \log w_i\bigr)\,\bigl|\mu_i - \bar\mu\bigr|.
+$$
+
+### Step 3: Classification
+- Once the GMM is estimated, hard classification thresholds are obtained by locating the intersection points of adjacent component densities:
+                        $$
+                        \pi_1\,\mathcal{N}(x;\mu_1,\sigma_1^2)
+                        \;=\;
+                        \pi_2\,\mathcal{N}(x;\mu_2,\sigma_2^2)
+                        $$
+where $\pi_1, \mu_1, \sigma_1$ are the mixture weight, mean, and standard deviation of the first Gaussian component, respectively, and $\pi_2, \mu_2, \sigma_2$ those of the second component.
+- The above equation can be formed as a quadratic equation and be solved for the unique root lying between $\mu_1$ and $\mu_2$. In practice, we bracket this interval and apply a robust one‐dimensional root-finding routine (e.g. Brent’s method) to compute each threshold. Cells are then assigned to the class corresponding to the interval in which they fall.
+- As a result, 2 components are identified, and we assume the component with the smaller as representing neutrophil cells, and the component with larger expected area as endothelial cells.
