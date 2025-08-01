@@ -1,3 +1,72 @@
 # Overview
+We are not done yet 😱! FLIM Playground provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](data_extraction.qmd) module or in user's own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassel-free exploration of their data with, hopefully, fun 😎. It will be continuously updated with new methods and features. 
 
-# Configuration
+# Methods
+- Divided into 3 parts, each includes a set of methods that can be expanded with new ones: 
+    - Univariate Analysis
+        - [Feature Comparison](feature_comparison.qmd)
+        - [Feature Histogram](feature_histogram.qmd)
+        - [Field of View Comparison](fov_comparison.qmd)
+    - Bivariate Analysis
+        - [2D Feature Distribution](feature_distribution.qmd)
+        - [Phasor Analysis](phasor_analysis.qmd)
+    - Multivariate Analysis
+        - [Dimension Reduction](dimension_reduction.qmd)
+        - [Classification](classification.qmd)
+
+::: {.columns}
+::: {.column width="33%"}
+![](analysis_ui_shots/method_selection_uni.png){width=100%}
+:::
+::: {.column width="33%"}
+![](analysis_ui_shots/method_selection_bi.png){width=100%}
+:::
+::: {.column width="33%"}
+![](analysis_ui_shots/method_selection_mul.png){width=100%}
+:::
+:::
+
+# Input
+User can upload the dataset outputted from the [Data Extraction](data_extraction.qmd) directly or *their own datasets* in csv format after finishing the [interactive configuration](data_anlaysis_config.qmd) setup. 
+
+::: {.columns}
+::: {.column width="5%"}
+:::
+::: {.column width="45%"}
+![](analysis_ui_shots/data_extraction_check.png){width=100%}
+:::
+::: {.column width="45%"}
+![](analysis_ui_shots/data_extraction_uncheck.png){width=100%}
+:::
+::: {.column width="5%"}
+:::
+:::
+
+In both cases, the dataset should have:
+
+- a column that uniquely identifies each row
+- an (optional) field of view identifier column  
+- a set of numerical features
+- zero or more categorical features (e.g. treatment, day, patient id, etc.)
+
+The unique row id and field of view id are used to help user identify the row (e.g. a single cell) and field of view (e.g. a single image) in the dataset through the built in hover-based interaction in visualizations. Numerical and categorical features are used to render widgets introduced below. 
+
+# Shared Interactive Widgets
+All the [methods](#methods) offered in the data analysis module share a set of interactive widgets that operate on features in the uploaded dataset. 
+
+## Numerical Feature Widgets 
+One selection widget will be rendered for each numerical feature group. The Data Extraction module groups numerical features based on the [feature extractor type](data_extraction.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features will be grouped based on the [user-specified configuration](data_anlaysis_config.qmd). Ungrouped numerical features will be grouped into a group called `Uncategorized Features`.
+
+Depending on the selected method, the selection widget can be used to select one feature or multiple features. 
+
+
+## Categorical Feature Widgets
+
+### Filter Widgets
+For big datasets that collected span multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget will be rendered for each categorical feature so that user has the flexibility to filter the data based on combinations of categorical features. 
+
+### Visual Channels Widgets
+Human vision is wired for rapid, parallel pattern and trend detection; good visual encodings (how to map data to visual elements such as color, shape, opacity, etc.) harness this to surface insights that raw numbers or text obscure. [@cleveland1984] FLIM Playground provides `color`, `opacity`, and `shape` channels for the visualizations. 
+
+## Plotting Configuration Widgets
+User can interactively configure the following plot parameters: 

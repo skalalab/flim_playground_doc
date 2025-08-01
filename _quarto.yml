@@ -22,7 +22,7 @@ book:
     - part: "Data Analysis"
       chapters:
         - data_analysis.qmd
-        - shared_widgets.qmd
+        - data_anlaysis_config.qmd
     - part: "Univariate Analysis"
       chapters:
         - feature_comparison.qmd
@@ -37,8 +37,6 @@ book:
         - dimension_reduction.qmd
         - classification.qmd
 
-    - references.qmd
-
 bibliography: references.bib
 csl: https://www.zotero.org/styles/nature
 
@@ -50,6 +48,8 @@ format:
     number-sections: false
     citations-hover: true
     footnotes-hover: true
+    include-after-body: giscus.html
+    reference-location: document
   pdf:
     documentclass: scrreprt
 

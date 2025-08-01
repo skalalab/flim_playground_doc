@@ -1,0 +1,30 @@
+# Configuration
+FLIM Playground provides an interactive configuration setup to help user specify the features to fulfill the [requirements](data_analysis.qmd#input) for the datasets. The following sections use the iris dataset as an example. I got it from [here](https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/0e7a9b0a5d22642a06d3d5b9bcbad9890c8ee534/iris.csv), and I added a column called `flower_id` to uniquely identify each row (i.e. a single flower). The other columns are: a categorical feature `species`, and a set of numerical features `sepal_length`, `sepal_width`, `petal_length`, and `petal_width`.
+
+## Identifiers Config
+
+![](analysis_ui_shots/config_id.png){width=50%}
+
+This dataset does not have a field of view column, so we leave it blank.  
+
+## Categorical Feature Config
+
+![](analysis_ui_shots/config_cat.png){width=20%}
+
+The default categorical feature list does not include `species`, so we add it manually. 
+
+## Numerical Feature Config
+
+![](analysis_ui_shots/config_num.png){width=70%}
+
+User can copy the numerical features from excel or any text editor that opens your csv file. The features can be separated by `,`, `;`, or whitespaces including newlines. 
+
+After hitting the `ctrl/cmd + enter` key, the numerical features will be parsed and added to `Available Features`. User can add/delete groups and drag features from the `Available Features` to groups just created. Any ungrouped features will be added automatically to a group called `Uncategorized Features`.
+
+![](analysis_ui_shots/config_num_group.png){width=100%}
+
+## Save
+After the user finishes the configuration and clicks the `Save Configuration` button, FLIM Playground saves the configuration to a toml file for processing current and future datasets.
+
+## Reset
+User can reset the configuration to the default settings, which are configured in the [configuration step](data_extraction_config.qmd) in the Data Extraction module.

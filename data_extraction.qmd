@@ -1,3 +1,4 @@
 # Overview
+Music (XT) or CXT, where X is the frequency and amplitude (for simplicity) of a certain sound. Painting (XY) ot CXY, movie (XYT) and later CXYT 
 
-
+## Feature Extractor

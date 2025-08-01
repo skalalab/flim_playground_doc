@@ -7,7 +7,7 @@
 - Choose the best one with the lowest BIC score that penalizes the model complexity to avoid overfitting
 
 ### Step 2: Calculate the hetergeneity index for the best GMM 
-To quantify the subpopulation structure, it computes an “H‑index”[@biomedical2022] for each group as a weighted entropy‑distance: each component contributes according to its weight’s uncertainty ($-w_i \log w_i$) scaled by how far its mean $\mu_i$ sits from the overall mixture mean $\bar\mu = \sum_{i=1}^k w_i\,\mu_i$.  
+To quantify the subpopulation structure, it computes an “H‑index” for each group as a weighted entropy‑distance: each component contributes according to its weight’s uncertainty ($-w_i \log w_i$) scaled by how far its mean $\mu_i$ sits from the overall mixture mean $\bar\mu = \sum_{i=1}^k w_i\,\mu_i$.  
 $$
 H = \sum_{i=1}^k \bigl(-w_i \log w_i\bigr)\,\bigl|\mu_i - \bar\mu\bigr|.
 $$
