@@ -3,13 +3,13 @@ FLIM Playground provides an interactive configuration setup to help user specify
 
 ## Identifiers Config
 
-![](analysis_ui_shots/config_id.png){width=50%}
+![](analysis_ui_shots/config_id.png){width=50% fig-align=center}
 
-This dataset does not have a field of view column, so we leave it blank.  
+The dataset needs to have a unique identifier column to identify each row. In this case, `flower_id` is the unique identifier column. This dataset does not have a field of view column, so we leave it blank.  
 
 ## Categorical Feature Config
 
-![](analysis_ui_shots/config_cat.png){width=20%}
+![](analysis_ui_shots/config_cat.png){width=20% }
 
 The default categorical feature list does not include `species`, so we add it manually. 
 
@@ -21,7 +21,9 @@ User can copy the numerical features from excel or any text editor that opens yo
 
 After hitting the `ctrl/cmd + enter` key, the numerical features will be parsed and added to `Available Features`. User can add/delete groups and drag features from the `Available Features` to groups just created. Any ungrouped features will be added automatically to a group called `Uncategorized Features`.
 
-![](analysis_ui_shots/config_num_group.png){width=100%}
+### Example
+
+![](analysis_ui_shots/config_num_group.png){width=90% fig-align=center}
 
 ## Save
 After the user finishes the configuration and clicks the `Save Configuration` button, FLIM Playground saves the configuration to a toml file for processing current and future datasets.

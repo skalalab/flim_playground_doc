@@ -1,8 +1,8 @@
 # Overview
-We are not done yet 😱! FLIM Playground provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](data_extraction.qmd) module or in user's own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassel-free exploration of their data with, hopefully, fun 😎. It will be continuously updated with new methods and features. 
+We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](data_extraction.qmd) module or in user's own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassel-free exploration of their data with, hopefully, fun 😎. The modularized design makes it easy to add new methods and features in the future. 
 
 # Methods
-- Divided into 3 parts, each includes a set of methods that can be expanded with new ones: 
+- Depending on the number of numerical features in the analysis, the methods are categorized into 3 groups: 
     - Univariate Analysis
         - [Feature Comparison](feature_comparison.qmd)
         - [Feature Histogram](feature_histogram.qmd)
@@ -13,6 +13,8 @@ We are not done yet 😱! FLIM Playground provides a suite of methods to analyze
     - Multivariate Analysis
         - [Dimension Reduction](dimension_reduction.qmd)
         - [Classification](classification.qmd)
+
+All the methods [share a set of interactive widgets](#shared-interactive-widgets) and have their own analysis-specific widgets. 
 
 ::: {.columns}
 ::: {.column width="33%"}
@@ -49,24 +51,65 @@ In both cases, the dataset should have:
 - a set of numerical features
 - zero or more categorical features (e.g. treatment, day, patient id, etc.)
 
-The unique row id and field of view id are used to help user identify the row (e.g. a single cell) and field of view (e.g. a single image) in the dataset through the built in hover-based interaction in visualizations. Numerical and categorical features are used to render widgets introduced below. 
+The unique row id and field of view id are used to help user identify the row (e.g. a single cell) and field of view (e.g. a single image) in the dataset through the built in hover-based interaction in visualizations. Numerical and categorical features are used to render widgets introduced [below](#shared-interactive-widgets). Internally, FLIM Playground will check whether the dataset fulfills the requirements and output meaningful warning or error messages (warning message will not prevent the analysis but error message will). 
+
+## Warnings Messages
+- `Empty columns`: will be dropped.
+- `Duplicated columns`: Only the first occurrence of the duplicated column will be kept. Other occurrences will be dropped.
+- `Duplicated rows based on the unique row id`: Only the first occurrence of the duplicated row will be kept. Other occurrences will be dropped.
+- `Columns with NaN values`: won't be dropped, just a warning message. 
+    - The analysis will be performed on the rows that are not NaN in the [selected numerical features](#numerical-feature-widgets). 
+
+## Errors Messages
+- Missing a column that uniquely identifies each row
+- Cannot indentify any numerical feature column
+    - it uses `pd.api.types.is_numeric_dtype` to check if a column is numerical. 
 
 # Shared Interactive Widgets
-All the [methods](#methods) offered in the data analysis module share a set of interactive widgets that operate on features in the uploaded dataset. 
 
 ## Numerical Feature Widgets 
-One selection widget will be rendered for each numerical feature group. The Data Extraction module groups numerical features based on the [feature extractor type](data_extraction.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features will be grouped based on the [user-specified configuration](data_anlaysis_config.qmd). Ungrouped numerical features will be grouped into a group called `Uncategorized Features`.
+The Data Extraction module groups numerical features based on the [feature extractor type](data_extraction.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features will be grouped based on the [user-specified configuration](data_anlaysis_config.qmd). Ungrouped numerical features will be grouped into a group called `Uncategorized Features`. One selection widget will be rendered for each numerical feature group. 
 
-Depending on the selected method, the selection widget can be used to select one feature or multiple features. 
+In univariate analyses, the selection widgets can be used to select one feature from all feature groups. Therefore, if one feature from a feature group is selected, all the other features groups will be resetted to the value `Select`. 
 
+![](analysis_ui_shots/uni_select.png){width=40%}
+
+In bivariate analyses, two sets of selection widgets are rendered to allow maximum flexibility (the two features can be from the same or different feature groups). Each set of selection widgets behaves like the selection widgets in the univariate analysis. The first selected feature will be hidden in the second set of selection widgets. 
+
+![](analysis_ui_shots/bi_select.png){width=40%}
+
+In multivariate analyses, the selection widgets can be used to select multiple features from all feature groups. A special value `All` is introduced so that the user can conveniently select all features under the feature group. If user selects `All`, all the other options will be cleared, and vice versa. 
+
+![](analysis_ui_shots/multi_select.png){width=40%}
 
 ## Categorical Feature Widgets
 
 ### Filter Widgets
-For big datasets that collected span multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget will be rendered for each categorical feature so that user has the flexibility to filter the data based on combinations of categorical features. 
+![](analysis_ui_shots/filter.png){width=95%}
+
+For complex datasets that are collected over multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget will be rendered for each categorical feature so that user has the flexibility to filter the data based on combinations of categorical features. `All` is a special option that will include all categories of the selected categorical feature. Once it is selected, all the other options will be cleared, and vice versa. 
+
 
 ### Visual Channels Widgets
-Human vision is wired for rapid, parallel pattern and trend detection; good visual encodings (how to map data to visual elements such as color, shape, opacity, etc.) harness this to surface insights that raw numbers or text obscure. [@cleveland1984] FLIM Playground provides `color`, `opacity`, and `shape` channels for the visualizations. 
+![](analysis_ui_shots/vis_channels.png){width=100%}
+
+Human vision is wired for rapid, parallel pattern and trend detection; good visual encodings (how to map data to visual elements such as color, shape, opacity, etc.) harness this to surface insights that raw numbers or text obscure [@cleveland1984]. FLIM Playground provides `color`, `opacity`, and `shape` channels for visualizations that support them: 
+
+- Color is supported in all methods except [FOV Comparison](fov_comparison.qmd) and [Classification](classification.qmd). In `Color by`, the user can select multiple categorical features, and each unique combination of available categories (determined by the filters in the [Filter Widgets](#filter-widgets)) under the selected features will be assigned a distinct color.
+
+![](analysis_ui_shots/color_by.png){width=30%}
+
+- Opacity and shape is supported in all point-based visualizations (e.g. [Feature Comparison](feature_comparison.qmd), [2D Feature Distribution](feature_distribution.qmd), [Phasor Analysis](phasor_analysis.qmd), [Dimension Reduction](dimension_reduction.qmd)). In `Opacity by` and `Shape by`, the user can select one categorical feature, and each unique category will be assigned a distinct opacity or shape. 
+
 
 ## Plotting Configuration Widgets
+![](analysis_ui_shots/style.png){width=100%}
+
 User can interactively configure the following plot parameters: 
+
+- point size (if point-based)
+- axis label size
+- legend size
+- the colormap used to color different groups
+    - `colorblind`, `tab10`, `tab20`, `Set1`, `Set2`, `Set3`, `Pastel1`, `Pastel2`, `Accent`, `viridis`, `plasma`, `inferno`, `magma`, `cividis`
+
