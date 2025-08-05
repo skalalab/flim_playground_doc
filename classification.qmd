@@ -1,2 +1,67 @@
 # Classification
+This method provides a extendible set of machine learning classfiers and a set of interactive widgets to help user perform classification. 
 
+# Components
+
+## Shared Components
+- Select numerical features for the classifier: it shares the numerical [selection widgets](data_analysis.qmd#multivariate-analysis) that allows user to select multiple features from each feature group. 
+- Subset the data: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
+
+
+## Classification-specific Components
+- Choose the classifier and train-test split:
+![](analysis_ui_shots/classfier_config.png){width=60% fig-align=center}
+
+- `Classify by`: The `Color by` from the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) is renamed to `Classify by` and it is used to form classes based on (combination of) selected categorical features. Other visual channels are not supported in this method. 
+
+![](analysis_ui_shots/classify_by.png){width=90% fig-align=center}
+
+- Choose the classes to be classified: classes are formed based on the combinations of categories of the selected categorical features. In general, it supports from binary classification to n-way classification where n is the number of classes. If one categorical feature is selected and after filtering has 3 categories, then all possible ways to classify are produced including the three-way classification. Additionally, the `class x vs the rest` option is provided for each class. 
+
+![](analysis_ui_shots/classifier_options.png){width=30% fig-align=center}
+
+- Sampling methods: 
+    - `None`: stratified random sampling of the data on classifcation classes, regardless of the class size. It is implemented using `train_test_split` from `sklearn.model_selection`. 
+    - `Undersampling`: All classes are downsampled to the size of the smallest class. It is implemented using `RandomUnderSampler` from `imbalanced-learn`. 
+    - `Oversampling`: All classes are upsampled to the size of the largest class by ramdomly duplicating samples from minority classes. It is implemented using `RandomOverSampler` from `imbalanced-learn`. 
+
+![](analysis_ui_shots/sampling.png){width=20% fig-align=center}
+
+### Performance Metrics
+To evaluate the performance of the classifiers, performace metrics visualizations are provided. 
+
+#### Confusion Matrix
+We evaluated our trained classifier on the held-out test set and summarized its predictions with `sklearn.metrics.confusion_matrix`. In the binary case, it is represented as: 
+
+|                     | Predicted Positive                     | Predicted Negative                          |
+| ------------------- | -------------------------------------- | ------------------------------------------- |
+| **Actual Positive** | **True Positive (TP)** – correct hits  | **False Negative (FN)** – missed positives  |
+| **Actual Negative** | **False Positive (FP)** – false alarms | **True Negative (TN)** – correct rejections |
+
+Other metrics are calculated based on the confusion matrix:
+
+- Accuracy: (TP + TN)/(TP + FP + TN + FN)
+- Precision: TP/(TP + FP)
+- Recall (Sensitivity): TP/(TP + FN)
+- F1 Score: 2 * (Precision * Recall) / (Precision + Recall)
+
+![](analysis_ui_shots/classfier_performance.png){width=90% fig-align=center}
+
+#### ROC Curve
+Another way to look at the performance of the classifier is to plot the Receiver Operating Characteristic (ROC) curve and its Area Under the Curve (AUC). 
+
+A classifier usually outputs a score for each sample, to turn scores into hard labels you must choose a decision threshold. Confusion matrix looks at the performance of the classifier at a single threshold (in the binary case, the threshold is 0.5), while ROC curve looks at the performance of the classifier at all thresholds (from 1 to 0). 
+
+At the origin (0, 0), the threshold is 1, so the classifier predicts all samples as negative, making the false positive rate $\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}} = 0$ and the true positive rate $\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}} = 0$, i.e. the origin. At the point (1, 1), the threshold is 0, so the classifier predicts all samples as positive, making the false positive rate 1 and the true positive rate 1, i.e. the point (1, 1). 
+
+AUC summarizes the ROC curve by intergrating it from 0 to 1, and it is threshold-free and has a nice interpretation: it is the probability that the classifier assigns a higher score to a randomly chosen positive sample $X^+$ than to a randomly chosen negative sample $X^-$. 
+
+To generalize to the $K$-class cases ($K > 2$), FLIM Playground chooses the One-vs-Rest (OvR) strategy. For each class $i$, it trains a binary classifier to predict the class $i$ against all other classes. The ROC curve is then computed and plotted for each class. 
+
+![](analysis_ui_shots/threeway_classifier.png){width=90% fig-align=center}
+
+
+#### Feature Importance
+`Random Forest` and `Gradient Boosting` classifiers provide feature importance scores. 
+
+![](analysis_ui_shots/feature_importance.png){width=90% fig-align=center}

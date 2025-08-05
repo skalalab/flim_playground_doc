@@ -70,17 +70,20 @@ The unique row id and field of view id are used to help user identify the row (e
 ## Numerical Feature Widgets 
 The Data Extraction module groups numerical features based on the [feature extractor type](data_extraction.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features will be grouped based on the [user-specified configuration](data_anlaysis_config.qmd). Ungrouped numerical features will be grouped into a group called `Uncategorized Features`. One selection widget will be rendered for each numerical feature group. 
 
-In univariate analyses, the selection widgets can be used to select one feature from all feature groups. Therefore, if one feature from a feature group is selected, all the other features groups will be resetted to the value `Select`. 
+### Univariate Analysis
+One set of selection widgets, each can select one feature from a feature group, is rendered. If one feature from a feature group is selected, all the other features groups will be reset to the value `Select`. 
 
-![](analysis_ui_shots/uni_select.png){width=40%}
+![](analysis_ui_shots/uni_select.png){width=40% fig-align=center}
 
-In bivariate analyses, two sets of selection widgets are rendered to allow maximum flexibility (the two features can be from the same or different feature groups). Each set of selection widgets behaves like the selection widgets in the univariate analysis. The first selected feature will be hidden in the second set of selection widgets. 
+### Bivariate Analysis
+Two sets of selection widgets are rendered to allow maximum flexibility (the two features can be from the same or different feature groups). Each set of selection widgets behaves like the selection widgets in the univariate analysis. The first selected feature will be hidden in the second set of selection widgets. 
 
-![](analysis_ui_shots/bi_select.png){width=40%}
+![](analysis_ui_shots/bi_select.png){width=40% fig-align=center}
 
-In multivariate analyses, the selection widgets can be used to select multiple features from all feature groups. A special value `All` is introduced so that the user can conveniently select all features under the feature group. If user selects `All`, all the other options will be cleared, and vice versa. 
+### Multivariate Analysis
+One set of selection widgets, each can select multiple features from a feature group, is rendered. A special value `All` is introduced so that the user can conveniently select all features under the feature group. If user selects `All`, all the other options will be cleared, and vice versa. 
 
-![](analysis_ui_shots/multi_select.png){width=40%}
+![](analysis_ui_shots/multi_select.png){width=40% fig-align=center}
 
 ## Categorical Feature Widgets
 
@@ -97,7 +100,7 @@ Human vision is wired for rapid, parallel pattern and trend detection; good visu
 
 - Color is supported in all methods except [FOV Comparison](fov_comparison.qmd) and [Classification](classification.qmd). In `Color by`, the user can select multiple categorical features, and each unique combination of available categories (determined by the filters in the [Filter Widgets](#filter-widgets)) under the selected features will be assigned a distinct color.
 
-![](analysis_ui_shots/color_by.png){width=30%}
+![](analysis_ui_shots/color_by.png){width=30% fig-align=center}
 
 - Opacity and shape is supported in all point-based visualizations (e.g. [Feature Comparison](feature_comparison.qmd), [2D Feature Distribution](feature_distribution.qmd), [Phasor Analysis](phasor_analysis.qmd), [Dimension Reduction](dimension_reduction.qmd)). In `Opacity by` and `Shape by`, the user can select one categorical feature, and each unique category will be assigned a distinct opacity or shape. 
 
