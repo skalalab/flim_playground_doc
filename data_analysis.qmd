@@ -14,7 +14,7 @@ We are not done yet 😱! FLIM Playground also provides a suite of methods to an
         - [Dimension Reduction](dimension_reduction.qmd)
         - [Classification](classification.qmd)
 
-All the methods [share a set of interactive widgets](#shared-interactive-widgets) and have their own analysis-specific widgets. 
+All the methods [share a set of interactive widgets](#shared-interactive-widgets) and have their own analysis-specific widgets, the descriptions of which are provided in the corresponding method pages. 
 
 ::: {.columns}
 ::: {.column width="33%"}
@@ -92,7 +92,6 @@ One set of selection widgets, each can select multiple features from a feature g
 
 For complex datasets that are collected over multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget will be rendered for each categorical feature so that user has the flexibility to filter the data based on combinations of categorical features. `All` is a special option that will include all categories of the selected categorical feature. Once it is selected, all the other options will be cleared, and vice versa. 
 
-
 ### Visual Channels Widgets
 ![](analysis_ui_shots/vis_channels.png){width=100%}
 
@@ -104,6 +103,10 @@ Human vision is wired for rapid, parallel pattern and trend detection; good visu
 
 - Opacity and shape is supported in all point-based visualizations (e.g. [Feature Comparison](feature_comparison.qmd), [2D Feature Distribution](feature_distribution.qmd), [Phasor Analysis](phasor_analysis.qmd), [Dimension Reduction](dimension_reduction.qmd)). In `Opacity by` and `Shape by`, the user can select one categorical feature, and each unique category will be assigned a distinct opacity or shape. 
 
+## Unique ID Hover
+- In all point-based visualizations, when hovering over a point, the unique id of the point will be shown. 
+
+![](analysis_ui_shots/hover.png){width=90% fig-align=center}
 
 ## Plotting Configuration Widgets
 ![](analysis_ui_shots/style.png){width=100%}

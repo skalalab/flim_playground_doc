@@ -1,12 +1,14 @@
 # Classification
-This method provides a extendible set of machine learning classfiers and a set of interactive widgets to help user perform classification. 
+This method provides a extendible set of machine learning classfiers and interactive widgets to help user perform classification. All the classifiers are implemented using `scikit-learn` and the performance metrics are calculated using `sklearn.metrics`. A fixed random seed (42) is used for all the classifiers to ensure reproducibility. 
 
 # Components
+
+![](analysis_ui_shots/classification.png){width=100% fig-align=center}
+The performance metrics plots are cut off in the screenshot. See the [performance metrics section](#performance-metrics) for the complete view. 
 
 ## Shared Components
 - Select numerical features for the classifier: it shares the numerical [selection widgets](data_analysis.qmd#multivariate-analysis) that allows user to select multiple features from each feature group. 
 - Subset the data: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
-
 
 ## Classification-specific Components
 - Choose the classifier and train-test split:
@@ -38,12 +40,12 @@ We evaluated our trained classifier on the held-out test set and summarized its 
 | **Actual Positive** | **True Positive (TP)** – correct hits  | **False Negative (FN)** – missed positives  |
 | **Actual Negative** | **False Positive (FP)** – false alarms | **True Negative (TN)** – correct rejections |
 
-Other metrics are calculated based on the confusion matrix:
+Other metrics can be calculated based on the confusion matrix:
 
-- Accuracy: (TP + TN)/(TP + FP + TN + FN)
-- Precision: TP/(TP + FP)
-- Recall (Sensitivity): TP/(TP + FN)
-- F1 Score: 2 * (Precision * Recall) / (Precision + Recall)
+- Accuracy: $\frac{TP + TN}{TP + FP + TN + FN}$
+- Precision: $\frac{TP}{TP + FP}$
+- Recall (Sensitivity): $\frac{TP}{TP + FN}$
+- F1 Score: $\frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$
 
 ![](analysis_ui_shots/classfier_performance.png){width=90% fig-align=center}
 
@@ -54,7 +56,7 @@ A classifier usually outputs a score for each sample, to turn scores into hard l
 
 At the origin (0, 0), the threshold is 1, so the classifier predicts all samples as negative, making the false positive rate $\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}} = 0$ and the true positive rate $\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}} = 0$, i.e. the origin. At the point (1, 1), the threshold is 0, so the classifier predicts all samples as positive, making the false positive rate 1 and the true positive rate 1, i.e. the point (1, 1). 
 
-AUC summarizes the ROC curve by intergrating it from 0 to 1, and it is threshold-free and has a nice interpretation: it is the probability that the classifier assigns a higher score to a randomly chosen positive sample $X^+$ than to a randomly chosen negative sample $X^-$. 
+AUC summarizes the ROC curve by intergrating it from 0 to 1, so it is threshold-free and has a nice interpretation: it is the probability that the classifier assigns a higher score to a randomly chosen positive sample $X^+$ than to a randomly chosen negative sample $X^-$. 
 
 To generalize to the $K$-class cases ($K > 2$), FLIM Playground chooses the One-vs-Rest (OvR) strategy. For each class $i$, it trains a binary classifier to predict the class $i$ against all other classes. The ROC curve is then computed and plotted for each class. 
 

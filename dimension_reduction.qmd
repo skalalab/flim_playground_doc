@@ -1,7 +1,45 @@
 # Dimension Reduction
 
-## UMAP
+To visualize and represent high-dimensional data in a meaningful way so that we could understand it, dimension reduction methods are used to project the data into a lower-dimensional space. Three popular dimension reduction methods are often used: UMAP, PCA, and t-SNE. 
 
-## PCA
+Principal Component Analysis (PCA) is a linear dimension reduction method that projects the data onto the directions of the largest variance. It is fast, deterministic, and easier to interpret (PCA loadings are provided), but it is limited by the linear nature of the projection. For a detailed discussion of PCA, please refer to [this post](https://github.com/skalalab/dimension_reduction/blob/main/pca.ipynb). 
 
-## t-SNE
+Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochastic Neighbor Embedding (t-SNE) are non-linear dimension reduction methods that can capture more complex patterns in the data. They are more flexible and can handle non-linear relationships between features, but they are more computationally expensive, less interpretable, not deterministics (FLIM Playground uses a fixed random seed (42) to ensure reproducibility), and dependent on the hyperparameters. Here is a [post](https://pair-code.github.io/understanding-umap/) that explains how UMAP and t-SNE work at a high level and the meaning of some of the hyperparameters. 
+
+# Components
+
+![](analysis_ui_shots/dimension_reduction.png){width=100% fig-align=center}
+
+## Shared Components
+- Select numerical features for the dimension reduction: it shares the numerical [selection widgets](data_analysis.qmd#multivariate-analysis) that allows user to select multiple features from each feature group. 
+- Subset the data: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
+- Visual channels: it shares the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows user to `Color by`, `Opacity by`, and `Shape by` categorical features. 
+- Hover: it shares the [unique id hover](data_analysis.qmd#unique-id-hover) that allows user to hover over a point and see its unique id. 
+- Plot Styling: it shares the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets) that allows user to change the plot style. 
+
+## Dimension Reduction-specific Components
+
+### Hyperparameters
+Hyperparameters really matter. So we provide a set of interactive widgets to help users to change the hyperparameters and see their effects on the dimension reduction in real time. 
+
+#### UMAP
+FLIM Playground uses the `umap-learn` implementation of UMAP. It chooses to expose `n_neighbors` and `min_dist`for the user to tweak. Other hyperparameters are set to default values. See [here](https://umap-learn.readthedocs.io/en/latest/parameters.html) for the default values.
+
+#### t-SNE
+FLIM Playground uses the `sklearn.manifold.TSNE` implementation of t-SNE. It chooses to expose `perplexity` and `early_exaggeration` for the user to tweak. Other hyperparameters are set to default values. See [here](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html) for the default values.
+
+
+
+::: {.columns}
+::: {.column width="33%"}
+![](analysis_ui_shots/umap.png){width=100%}
+:::
+::: {.column width="33%"}
+![](analysis_ui_shots/pca.png){width=100%}
+:::
+::: {.column width="33%"}
+![](analysis_ui_shots/t_sne.png){width=100%}
+:::
+:::
+
+
