@@ -1,2 +1,102 @@
 # Feature Comparison
+This method allows user to compare the distributions of one numerical feature across different groups. It can help user spot overarching trends between distributions, identify within distribution shape-related characteristics such as skewness or bimodality that might signal sub-populations, diagnose for potential outliers. 
 
+# Components
+
+![](analysis_ui_shots/feature_comparison.png)
+
+## Shared Components 
+
+- Select the numerical feature to be compared: it shares the numerical [selection widgets](data_analysis.qmd#univariate-analysis) that allows user to select exactly one feature from all feature groups. 
+- Subset the data: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
+- Visual channels: it shares the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows user to `Color by`, `Opacity by`, and `Shape by` categorical features. 
+- Hover: it shares the [unique id hover](data_analysis.qmd#unique-id-hover) that allows user to hover over a point and see its unique id. 
+- Plot Styling: it shares the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets) that allows user to change the plot style. 
+
+## Method-specific Components
+
+### Separate by
+![](analysis_ui_shots/separate_by_widget.png)
+
+`Separate by` takes effect before [`Color by`](data_analysis.qmd#color-by). `Separate by` divides the plot into sections separated by a dashed line, with each section labeled by one of the available categories of the selected categorical feature after [filtering](data_analysis.qmd#filter-widgets). The selected feature of `Separate by` will be automatically removed from available features in `Color by`. The section order is determined by the order of the categories which are sorted [numer-alphatically](data_analysis.qmd#nte-order). 
+
+Then, visual channels (color, shape, opacity) and effect size annotation will be applied within each section. For example, the visualization below is separated by `cell_line`, with each section labelled by the bold text of a cell line. Within each section, the x-axis renders the `Color by` categories (`treatments`) so colors are consistent across sections. [Effect size](#effect-size) calculation and annotation (only effect size $> 0.5$ is shown) will only be preformed within each section. 
+
+![](analysis_ui_shots/separate_by.png)
+
+If selecting no feature in `Separate by` and selecting both `cell_line` and `treatment` in `Color by`, then colors will be assigned to each cell line and treatment combination, and effect size will be calculated across all combinations of group pairs (only effect size $> 0.5$ is shown). 
+
+![](analysis_ui_shots/no_separate_by.png)
+
+### Effect Size 
+Orthogonal to parametric tests (is there any difference?) are effect size metrics (how big is the difference?). A p-value that is significant can come from a trivial difference in a huge dataset (e.g. large single-cell datasets), whereas effect size can be more meaningful and can enable cross-study comparison. Flim Playground offers two effect size calculation methods (significance tests maybe added later), Glass's Delta and Cohen's D, each can be in mean or median form. 
+
+![](analysis_ui_shots/effect_size.png){width=40% fig-align=center}
+
+#### Glass's Delta
+
+Mean ($\bar{X}$) form:
+$$
+\Delta_G
+  = \frac{\bar{X}_{\text{treatment}} - \bar{X}_{\text{control}}}
+         {s_{\text{control}}},\qquad
+s_{\text{control}}
+  = \sqrt{\frac{1}{\,n_c-1\,}\sum_{i=1}^{n_c}
+           \bigl(X_{ci}-\bar{X}_{\text{control}}\bigr)^{2}}
+$$
+
+Median ($\tilde{X}$) form:
+$$
+\widetilde{\Delta}_G
+  = \frac{\tilde{X}_{\text{treatment}} - \tilde{X}_{\text{control}}}
+         {\operatorname{MAD}_{\text{control}}},\qquad
+\operatorname{MAD}_{\text{control}}
+  = 1.4826 \times
+    \operatorname{median}\!\bigl\lvert
+      X_{ci}-\tilde{X}_{\text{control}}
+    \bigr\rvert
+$$
+
+:::{.callout-note}
+$\operatorname{MAD}$ stands for median absolute deviation, a robust measure of the variability of a univariate sample. In order to make $\operatorname{MAD}$ asymptotically consistent with the standard deviation under normality, it uses $C = 1 / \Phi^{-1}(0.75) \approx 1.4826$. Implementation-wise, it uses `median_abs_deviation` from `scipy.stats`, and `scale` option is set to `"normal"` to account for the constant multiplier $C$. 
+:::
+
+::: {.callout-important}
+Who is treatment and who is control matters! From the formula of $\Delta_G$, fliping the order will not only flip the sign of the result, but also will change the denominator, which is ${s_{\text{control}}}$, the standard deviation of the *control*. Currently, FLIM Playground will treat the group on the left as treatment and the group on the right as control (the negative $\Delta_G$ below implies this). In the future, it may support user-customizable x-axis order so that user can arrange the groups to make sure the treatment group is on the left. For a more balanced effect size method, you can use [Cohen's D](#cohens-d) that does not assume the treatment-control structure.
+
+![](analysis_ui_shots/glass_d.png){width=40% fig-align=center}
+:::
+
+
+#### Cohen's D
+Mean ($\bar{X}$) form:
+
+$$
+d
+  = \frac{\bar{X}_{1}-\bar{X}_{2}}
+         {s_p},\qquad
+s_p
+  = \sqrt{\frac{(n_1-1)s_1^{2} + (n_2-1)s_2^{2}}
+                 {n_1 + n_2 - 2}}
+$$
+
+Median ($\tilde{X}$) form:
+
+$$
+\tilde{d}
+  = \frac{\tilde{X}_{1}-\tilde{X}_{2}}
+         {s_{\tilde{p}}},\qquad
+s_{\tilde{p}}
+  = \sqrt{\frac{(n_1-1)\operatorname{MAD}_{1}^{2}
+             + (n_2-1)\operatorname{MAD}_{2}^{2}}
+                 {n_1 + n_2 - 2}}
+$$
+
+#### Effect Size Widgets 
+
+It requires pairs of groups to calculate effect sizes. Flim Playground uses the groups on the x-axis populated by [Color by](data_analysis.qmd#color-by) to create comparison groups, starting from the leftmost group. For example, if there are 5 groups, then $\binom{5}{2} = 10$ comparisons will be created. The number of groups can get combinatorially large and many of the comparisons are not meaningful. Therefore, two widgets are provided to filter the comparison groups: 
+
+- A selection widget that shows all possible comparisons by default and the user can deselect groups they do not need.
+- A threshold by effect size widget that filters out comparisons below the threshold. 
+
+![](analysis_ui_shots/effect_size_widgets.png)

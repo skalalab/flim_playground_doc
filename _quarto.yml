@@ -12,6 +12,7 @@ book:
     - part: "Data Extraction"
       chapters:
         - data_extraction.qmd
+        - data_extraction_config.qmd
         - fov_metadata.qmd
         - numerical_feature_extraction.qmd
         - lifetime_fit.qmd

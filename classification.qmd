@@ -10,7 +10,7 @@ The performance metrics plots are cut off in the screenshot. See the [performanc
 - Select numerical features for the classifier: it shares the numerical [selection widgets](data_analysis.qmd#multivariate-analysis) that allows user to select multiple features from each feature group. 
 - Subset the data: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
 
-## Classification-specific Components
+## Method-specific Components
 - Choose the classifier and train-test split:
 ![](analysis_ui_shots/classfier_config.png){width=60% fig-align=center}
 

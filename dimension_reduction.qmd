@@ -17,7 +17,7 @@ Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochasti
 - Hover: it shares the [unique id hover](data_analysis.qmd#unique-id-hover) that allows user to hover over a point and see its unique id. 
 - Plot Styling: it shares the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets) that allows user to change the plot style. 
 
-## Dimension Reduction-specific Components
+## Method-specific Components
 
 ### Hyperparameters
 Hyperparameters really matter. So we provide a set of interactive widgets to help users to change the hyperparameters and see their effects on the dimension reduction in real time. 

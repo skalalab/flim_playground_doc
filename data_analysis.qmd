@@ -14,7 +14,7 @@ We are not done yet 😱! FLIM Playground also provides a suite of methods to an
         - [Dimension Reduction](dimension_reduction.qmd)
         - [Classification](classification.qmd)
 
-All the methods [share a set of interactive widgets](#shared-interactive-widgets) and have their own analysis-specific widgets, the descriptions of which are provided in the corresponding method pages. 
+All the methods [share a set of interactive widgets](#shared-interactive-widgets) to support the [general workflow](#general-workflow). They also have their own method-specific widgets, the descriptions of which are provided in the corresponding method pages. 
 
 ::: {.columns}
 ::: {.column width="33%"}
@@ -29,7 +29,7 @@ All the methods [share a set of interactive widgets](#shared-interactive-widgets
 :::
 
 # Input
-User can upload the dataset outputted from the [Data Extraction](data_extraction.qmd) directly or *their own datasets* in csv format after finishing the [interactive configuration](data_anlaysis_config.qmd) setup. 
+User can upload the dataset outputted from the [Data Extraction](data_extraction.qmd) directly or *their own datasets* in **csv** (Comma Separated Values) format after finishing the [interactive configuration](data_anlaysis_config.qmd) setup. 
 
 ::: {.columns}
 ::: {.column width="5%"}
@@ -44,14 +44,24 @@ User can upload the dataset outputted from the [Data Extraction](data_extraction
 :::
 :::
 
-In both cases, the dataset should have:
+## Requirements
+::: {.callout-important}
+
+In either case, the dataset should have:
 
 - a column that uniquely identifies each row
 - an (optional) field of view identifier column  
 - a set of numerical features
 - zero or more categorical features (e.g. treatment, day, patient id, etc.)
 
-The unique row id and field of view id are used to help user identify the row (e.g. a single cell) and field of view (e.g. a single image) in the dataset through the built in hover-based interaction in visualizations. Numerical and categorical features are used to render widgets introduced [below](#shared-interactive-widgets). Internally, FLIM Playground will check whether the dataset fulfills the requirements and output meaningful warning or error messages (warning message will not prevent the analysis but error message will). 
+:::
+
+The unique row id and field of view id are used to help user identify the row (e.g. a single cell) and field of view (e.g. a single image) of data of interest through the built-in [hover-based interaction](#unique-id-hover). Numerical and categorical features are used to render [shared widgets](#shared-interactive-widgets). Internally, FLIM Playground will check whether the dataset fulfills the requirements and output meaningful warning or error messages 
+
+::: {.callout-note}
+Warning messages will not prevent the analysis but error messages will. 
+:::
+
 
 ## Warnings Messages
 - `Empty columns`: will be dropped.
@@ -66,6 +76,18 @@ The unique row id and field of view id are used to help user identify the row (e
     - it uses `pd.api.types.is_numeric_dtype` to check if a column is numerical. 
 
 # Shared Interactive Widgets
+
+A list of shared widgets are provided to support the general workflow in analysis. 
+
+## General Workflow
+
+- select [numerical feature(s)](#numerical-feature-widgets) on the left
+- [subset the data](#filter-widgets) to find data of interest on the top 
+- use [visual channels widgets](#visual-channels-widgets) to look at the data in different ways
+- change the plot [style](#plotting-configuration-widgets)
+- [hover](#unique-id-hover) to find data points of interest
+
+The visualization and analysis results will be updated in real time to reflect user's interactactions with any of the above widgets. 
 
 ## Numerical Feature Widgets 
 The Data Extraction module groups numerical features based on the [feature extractor type](data_extraction.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features will be grouped based on the [user-specified configuration](data_anlaysis_config.qmd). Ungrouped numerical features will be grouped into a group called `Uncategorized Features`. One selection widget will be rendered for each numerical feature group. 
@@ -97,11 +119,27 @@ For complex datasets that are collected over multiple days, experiments, treatme
 
 Human vision is wired for rapid, parallel pattern and trend detection; good visual encodings (how to map data to visual elements such as color, shape, opacity, etc.) harness this to surface insights that raw numbers or text obscure [@cleveland1984]. FLIM Playground provides `color`, `opacity`, and `shape` channels for visualizations that support them: 
 
-- Color is supported in all methods except [FOV Comparison](fov_comparison.qmd) and [Classification](classification.qmd). In `Color by`, the user can select multiple categorical features, and each unique combination of available categories (determined by the filters in the [Filter Widgets](#filter-widgets)) under the selected features will be assigned a distinct color.
+#### Color by
+Color is supported in all methods except [FOV Comparison](fov_comparison.qmd) and [Classification](classification.qmd). In `Color by`, the user can select multiple categorical features, and each unique combination of available categories (determined by the filters in the [Filter Widgets](#filter-widgets)) in selected features will be assigned a distinct color. Groups created by `Color by` will show up in the x-axis (if multiple features, categories from each feature will be delimited by `::`).
 
-![](analysis_ui_shots/color_by.png){width=30% fig-align=center}
+::: {#nte-order .callout-note}
+## How to order the groups
+The order of the groups in x-axis and in the legend is determined by:
 
-- Opacity and shape is supported in all point-based visualizations (e.g. [Feature Comparison](feature_comparison.qmd), [2D Feature Distribution](feature_distribution.qmd), [Phasor Analysis](phasor_analysis.qmd), [Dimension Reduction](dimension_reduction.qmd)). In `Opacity by` and `Shape by`, the user can select one categorical feature, and each unique category will be assigned a distinct opacity or shape. 
+- the order of the selected features: categories of the first feature appears before those of the second, so on so forth. For example, the two treatments of `Panc1` are togther, because it is sorted first on the cell lines, then on treatments. If you want the treatments to be together, in `Color by` you can select `treatment` then `cell_line`. 
+
+- *Numer-alphatical sort*: within each feature, the category order is determined by the number inside (e.g. `1` in `Panc1`), then the alphabetical order of the category name. Therefore, although `P` is after `M` alphabetically, the `1` is before `7` numerically, making `Panc1` appears before `MCF7`. This maybe helpful when you have data from different days or hours. The default string sort will put `Day 100` before `Day 30`, and this is not what we want.
+
+::: 
+
+
+![](analysis_ui_shots/color_by.png){width=90% fig-align=center}
+
+
+#### Opacity and Shape by
+- Opacity and shape is supported in all point-based visualizations (e.g. [Feature Comparison](feature_comparison.qmd), [2D Feature Distribution](feature_distribution.qmd), [Phasor Analysis](phasor_analysis.qmd), [Dimension Reduction](dimension_reduction.qmd)). In `Opacity by` and `Shape by`, the user can select one categorical feature, and each unique category will be assigned a distinct opacity or shape. The order of the shape and opacity is also sorted [numer-alphatically](#nte-order). 
+
+![](analysis_ui_shots/opacity_shape_by.png){width=90% fig-align=center}
 
 ## Unique ID Hover
 - In all point-based visualizations, when hovering over a point, the unique id of the point will be shown. 
@@ -118,4 +156,3 @@ User can interactively configure the following plot parameters:
 - legend size
 - the colormap used to color different groups
     - `colorblind`, `tab10`, `tab20`, `Set1`, `Set2`, `Set3`, `Pastel1`, `Pastel2`, `Accent`, `viridis`, `plasma`, `inferno`, `magma`, `cividis`
-

@@ -1,5 +1,5 @@
 # Configuration
-FLIM Playground provides an interactive configuration setup to help user specify the features to fulfill the [requirements](data_analysis.qmd#input) for the datasets. The following sections use the iris dataset as an example. I got it from [here](https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/0e7a9b0a5d22642a06d3d5b9bcbad9890c8ee534/iris.csv), and I added a column called `flower_id` to uniquely identify each row (i.e. a single flower). The other columns are: a categorical feature `species`, and a set of numerical features `sepal_length`, `sepal_width`, `petal_length`, and `petal_width`.
+FLIM Playground provides an interactive configuration workflow to help user prepare their datasets that are not extracted by [Data Extraction](data_extraction.qmd) so that they fulfill the [requirements](data_analysis.qmd#requirements). The following sections use the iris dataset as an example. I got it from [here](https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/0e7a9b0a5d22642a06d3d5b9bcbad9890c8ee534/iris.csv), and I added a column called `flower_id` to uniquely identify each row (i.e. a single flower). The other columns are: a categorical feature `species`, and a set of numerical features `sepal_length`, `sepal_width`, `petal_length`, and `petal_width`.
 
 ## Identifiers Config
 
