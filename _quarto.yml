@@ -23,7 +23,7 @@ book:
     - part: "Data Analysis"
       chapters:
         - data_analysis.qmd
-        - data_anlaysis_config.qmd
+        - data_analysis_config.qmd
     - part: "Univariate Analysis"
       chapters:
         - feature_comparison.qmd

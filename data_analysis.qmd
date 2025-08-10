@@ -120,7 +120,7 @@ For complex datasets that are collected over multiple days, experiments, treatme
 Human vision is wired for rapid, parallel pattern and trend detection; good visual encodings (how to map data to visual elements such as color, shape, opacity, etc.) harness this to surface insights that raw numbers or text obscure [@cleveland1984]. FLIM Playground provides `color`, `opacity`, and `shape` channels for visualizations that support them: 
 
 #### Color by
-Color is supported in all methods except [FOV Comparison](fov_comparison.qmd) and [Classification](classification.qmd). In `Color by`, the user can select multiple categorical features, and each unique combination of available categories (determined by the filters in the [Filter Widgets](#filter-widgets)) in selected features will be assigned a distinct color. Groups created by `Color by` will show up in the x-axis (if multiple features, categories from each feature will be delimited by `::`).
+Color is supported in all methods except for [Classification](classification.qmd). In `Color by`, the user can select multiple categorical features, and each unique combination of available categories (determined by the filters in the [Filter Widgets](#filter-widgets)) in selected features will be assigned a distinct color. Groups created by `Color by` will show up in the x-axis (if multiple features, categories from each feature will be delimited by `::`).
 
 ::: {#nte-order .callout-note}
 ## How to order the groups
@@ -129,12 +129,9 @@ The order of the groups in x-axis and in the legend is determined by:
 - the order of the selected features: categories of the first feature appears before those of the second, so on so forth. For example, the two treatments of `Panc1` are togther, because it is sorted first on the cell lines, then on treatments. If you want the treatments to be together, in `Color by` you can select `treatment` then `cell_line`. 
 
 - *Numer-alphatical sort*: within each feature, the category order is determined by the number inside (e.g. `1` in `Panc1`), then the alphabetical order of the category name. Therefore, although `P` is after `M` alphabetically, the `1` is before `7` numerically, making `Panc1` appears before `MCF7`. This maybe helpful when you have data from different days or hours. The default string sort will put `Day 100` before `Day 30`, and this is not what we want.
-
 ::: 
 
-
 ![](analysis_ui_shots/color_by.png){width=90% fig-align=center}
-
 
 #### Opacity and Shape by
 - Opacity and shape is supported in all point-based visualizations (e.g. [Feature Comparison](feature_comparison.qmd), [2D Feature Distribution](feature_distribution.qmd), [Phasor Analysis](phasor_analysis.qmd), [Dimension Reduction](dimension_reduction.qmd)). In `Opacity by` and `Shape by`, the user can select one categorical feature, and each unique category will be assigned a distinct opacity or shape. The order of the shape and opacity is also sorted [numer-alphatically](#nte-order). 

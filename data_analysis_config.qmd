@@ -3,7 +3,7 @@ FLIM Playground provides an interactive configuration workflow to help user prep
 
 ## Identifiers Config
 
-![](analysis_ui_shots/config_id.png){width=50% fig-align=center}
+![](analysis_ui_shots/config_id.png){#id-config width=50% fig-align=center}
 
 The dataset needs to have a unique identifier column to identify each row. In this case, `flower_id` is the unique identifier column. This dataset does not have a field of view column, so we leave it blank.  
 
