@@ -1,24 +1,91 @@
 # Feature Histogram
+Feature histograms give an instant read-out of each group’s center, spread, skew and any multi-peaked shape that raw tables hide. Flim playground plots a histogram for each group based on the selected numerical feature, and the [Gaussian Mixture Model](#gaussian-mixture-model) mode can help find subcomponents of each histogram in an unsupervised way. To quantify the distribution hetergenity, normalized [H-index](#hetergeneity-index) is calculated for each group. 
 
-## Gaussian Mixture Model
-### Step 1: Fit Gaussian Mixture Models and choose the best one
-- Fit Gaussian Mixture Models on a selected variable (e.g. NADH tau mean) up to 3 components, each of which has its component weights ($\pi$), means ($\mu$) and variances ($\sigma^2$). In this case, area is computed for each cell, in terms of number of pixels in the images, and selected for modeling using GMM. 
-- Keep only the "valid" models that contain components that have at least 0.1 weights (the weights of all components add to 1)
-- Choose the best one with the lowest BIC score that penalizes the model complexity to avoid overfitting
+# Components
+![](analysis_ui_shots/feature_histogram.png){#feature-histogram-img fig-cap="Histogram Mode" fig-align=center}
 
-### Step 2: Calculate the hetergeneity index for the best GMM 
-To quantify the subpopulation structure, it computes an “H‑index” for each group as a weighted entropy‑distance: each component contributes according to its weight’s uncertainty ($-w_i \log w_i$) scaled by how far its mean $\mu_i$ sits from the overall mixture mean $\bar\mu = \sum_{i=1}^k w_i\,\mu_i$.  
+## Shared Components
+- Select the numerical feature to see the histogram/GMM distribution: it shares the numerical [selection widgets](data_analysis.qmd#univariate-analysis) that allows user to select exactly one feature from all feature groups. 
+- Subset the data: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
+- Visual channels: it shares the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows user to `Color by` categorical features. `Opacity by`and `Shape by` are *not* supported because there are no points in the histogram/GMM plot.
+- Plot Styling: it shares the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets) that allows user to change the plot style. 
+
+## Histogram Mode
+With a single click, the user can switch between the [histogram mode](#histogram-mode) and the [Gaussian Mixture Model mode](#gaussian-mixture-model-mode). When the checkbox is unchecked, the histogram mode is selected.
+
+![](analysis_ui_shots/gmm_switch.png){width=60% fig-align=center}
+
+The histogram mode plots a histogram of the selected numerical feature for each group, the bin width of which is user-controlable. The default bin width is determined automatically as the minimum bin width between the ‘sturges’ and ‘fd’ estimators (see [here](https://numpy.org/devdocs/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges) for more details). The maximum number of bins is set to $1/3$ the range of the data. The step size is set of $1/50$ of the range. 
+
+![](analysis_ui_shots/feature_histogram_mode.png){width=95% fig-align=center}
+
+Additionally, the skewness of the distribution is computed and displayed. A rule of thumb categorization of skewness is as follows:
+
+- Strongly left-skewed: < -1
+- Moderately left-skewed: -1 to -0.5
+- Approximately symmetric: -0.5 to -0.25 and 0.25 to 0.5
+- Almost symmetric: -0.25 to 0.25
+- Moderately right-skewed: 0.5 to 1
+- Strongly right-skewed: > 1
+
+However, the skewness is just one way to quantify the distribution shape. In the example above, the <span style="color: orange;">orange</span> distribution is clearly bimodal, but the skewness alone cannot capture this. In applications where the distribution is multi-modal, and each mode can represent certain subpopulations (e.g. a cell type, a cell state, a cell cycle phase, etc.), the user can use the [Gaussian Mixture Model mode](#gaussian-mixture-model-mode) to find subcomponents of each distribution in an unsupervised way. 
+
+## Gaussian Mixture Model Mode
+
+![](analysis_ui_shots/gmm.png){width=80% fig-align=center}
+
+### Fit Gaussian Mixture Models
+![Gaussian Mixture Model Configuration](analysis_ui_shots/gmm_config.png){width=95% fig-align=center}
+
+- Fit Gaussian Mixture Models on the selected numerical feature up to `Max Components` components, each of which has its component weights ($w_i$), means ($\mu_i$) and variances ($\sigma_i^2$). 
+- Keep only the *valid* models that contain components that have at least `Min Weight Threshold` weights (the weights of all components add to 1)
+- Choose the valid model with the lowest BIC score that penalizes the model complexity to avoid overfitting
+
+### Hetergeneity index 
+To quantify the subpopulation structure, it computes an “H‑index” for each group as a weighted entropy‑distance: each component contributes according to its weight’s uncertainty ($-w_i \log w_i$) [@shannon1948] scaled by how far its mean $\mu_i$ sits from the overall mixture mean $\bar\mu = \sum_{i=1}^k w_i\,\mu_i$, normalized by the standard deviation of $\mu_i$s.  
 $$
-H = \sum_{i=1}^k \bigl(-w_i \log w_i\bigr)\,\bigl|\mu_i - \bar\mu\bigr|.
+H =\sum_{i=1}^{k}\bigl(-w_i \log w_i\bigr)\,d_i, \qquad d_i \;=\;
+\frac{\lvert\mu_i - \bar{\mu}\rvert}{\sigma}
 $$
 
-### Step 3: Classification
-- Once the GMM is estimated, hard classification thresholds are obtained by locating the intersection points of adjacent component densities:
+### Classification
+- The user can choose to perform [intersection thresholding](#intersection-thresholding) or [hard assignment](#hard-assignment) to determine the which GMM component each data point belongs to. It will create a new categorical feature column called `GMM_Group` to the filtered dataset, the values of which are `{color_group}_1`, `{color_group}_2`, etc. In the example above, the color groups are <span style="color: blue;">0.5hr</span> and <span style="color: orange;">4.5hr</span> because the user colors the data by `hour`.
+
+#### Intersection thresholding
+- Once the GMM is estimated, thresholds can be obtained by locating the intersection points of adjacent component densities:
                         $$
                         \pi_1\,\mathcal{N}(x;\mu_1,\sigma_1^2)
                         \;=\;
                         \pi_2\,\mathcal{N}(x;\mu_2,\sigma_2^2)
                         $$
-where $\pi_1, \mu_1, \sigma_1$ are the mixture weight, mean, and standard deviation of the first Gaussian component, respectively, and $\pi_2, \mu_2, \sigma_2$ those of the second component.
-- The above equation can be formed as a quadratic equation and be solved for the unique root lying between $\mu_1$ and $\mu_2$. In practice, we bracket this interval and apply a robust one‐dimensional root-finding routine (e.g. Brent’s method) to compute each threshold. Cells are then assigned to the class corresponding to the interval in which they fall.
-- As a result, 2 components are identified, and we assume the component with the smaller as representing neutrophil cells, and the component with larger expected area as endothelial cells.
+where $w_1, \mu_1, \sigma_1$ are the mixture weight, mean, and standard deviation of the first Gaussian component, respectively, and $w_2, \mu_2, \sigma_2$ those of the second component.
+- The above equation can be formed as a quadratic equation and be solved for the unique root lying between $\mu_1$ and $\mu_2$. In practice, we bracket this interval and apply a robust one‐dimensional root-finding routine (e.g. Brent’s method) to compute intersection points. Data points are then assigned to the class corresponding to the interval in which they fall. 
+
+::: {.callout-important}
+In rare cases when there are more than one intersection point, then intersection thresholding is not performed and the data point is assigned using hard assignment. 
+:::
+
+#### Hard assignment
+- For each data point, it computes the posterior probability (responsibility) of each component, and assign the data point to the component with the highest responsibility. 
+
+$$\text{label}(x) = \arg\max_{i} \gamma_i(x)$$
+
+$$\text{where} \quad \gamma_i(x) = \frac{w_i \; \mathcal{N}\bigl(x \mid \mu_i, \sigma_i^2\bigr)}{\sum_{j=1}^K w_j \; \mathcal{N}\bigl(x \mid \mu_j, \sigma_j^2\bigr)}$$
+
+### Example 
+In Dan et al paper, they used GMM with hard thresholding as the gating values of NAD(P)H $a_1$ and optical redox ratio, and used them to define metabolically stressed and fit cells in their study of the impact of cryopreservation on T cell metabolism. 
+
+::: {.columns}
+::: {.column width="50%"}
+![](analysis_ui_shots/gmm_hard1.svg){width=100%}
+:::
+::: {.column width="50%"}
+![](analysis_ui_shots/gmm_hard2.svg){width=100%}
+:::
+:::
+
+They compared the GMM-derived gate with cell viability by Trypan blue staining: 
+
+![](analysis_ui_shots/gmm_example.png){width=100% fig-align=center}
+
+suggesting that optical metabolic imaging (OMI) could serve as an early, non-destructive indicator of T cell recovery potential post-thaw.

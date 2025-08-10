@@ -1,5 +1,5 @@
 # Feature Comparison
-This method allows user to compare the distributions of one numerical feature across different groups. It can help user spot overarching trends between distributions, identify within distribution shape-related characteristics such as skewness or bimodality that might signal sub-populations, diagnose for potential outliers. 
+This method allows user to compare the distributions of one numerical feature across different groups. It can help user spot overarching trends between distributions, identify within distribution shape-related characteristics such as skewness or bimodality that might signal sub-populations, and diagnose for potential outliers. 
 
 # Components
 
@@ -62,11 +62,14 @@ $\operatorname{MAD}$ stands for median absolute deviation, a robust measure of t
 :::
 
 ::: {.callout-important}
-Who is treatment and who is control matters! From the formula of $\Delta_G$, fliping the order will not only flip the sign of the result, but also will change the denominator, which is ${s_{\text{control}}}$, the standard deviation of the *control*. Currently, FLIM Playground will treat the group on the left as treatment and the group on the right as control (the negative $\Delta_G$ below implies this). In the future, it may support user-customizable x-axis order so that user can arrange the groups to make sure the treatment group is on the left. For a more balanced effect size method, you can use [Cohen's D](#cohens-d) that does not assume the treatment-control structure.
+Who is treatment and who is control matters! From the formula of $\Delta_G$, fliping the order will not only flip the sign of the result, but also will change the denominator, which is ${s_{\text{control}}}$, the standard deviation of the *control*. Currently, FLIM Playground will treat the group on the left as treatment and the group on the right as control (the negative $\Delta_G$ below implies this). In the future, it may support user-customizable x-axis order so that user can arrange the groups to make sure the treatment group is on the left. Or you can use [Cohen's D](#cohens-d) that does not assume the treatment-control structure.
 
 ![](analysis_ui_shots/glass_d.png){width=40% fig-align=center}
 :::
 
+:::{.callout-note}
+To keep the point-based visulization style that supports [interactive hover](data_analysis.qmd#unique-id-hover) while show the violin plot like distribution, [Sino plot](https://en.wikipedia.org/wiki/Sina_plot) is used: it uses `gaussian_kde` from `scikit-learn` to make sure the width of the point distribution is proportional to the kernel density. 
+:::
 
 #### Cohen's D
 Mean ($\bar{X}$) form:
