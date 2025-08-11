@@ -1,1 +1,81 @@
 # Feature Distribution
+
+This method extends the univariate [Feature Histogram](feature_histogram.qmd) method to visualize the distribution of two numerical features on a scatter plot. It helps reveal patterns such as correlations, clusters, trends, or outliers. 
+
+# Components
+
+![](analysis_ui_shots/feature_distribution.png){width=100% fig-align=center}
+
+## Shared Components
+
+- On the left, user can select the two numerical features in the x-axis and y-axis: it shares the numerical [selection widgets](data_analysis.qmd#bivariate-analysis) that allows user to select exactly two features from all feature groups. 
+- On the top right, user can subset the data to find the groups of interest: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
+- Below the filters, user can select the visual channels: it shares the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows user to `Color by`, `Opacity by`, and `Shape by` categorical features. 
+- On the bottom right, user can change the plot style: it shares the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets) that allows user to change the plot style. 
+
+## Method-specific Components
+
+All the components below will be rendered for each color group, which is created by user-chosen categorical features in [`Color by`](data_analysis.qmd#color-by).
+
+![](analysis_ui_shots/feature_distribution_components.png){width=100% fig-align=center}
+
+::: {.callout-tip}
+User can click on a legend group to hide/show the data points in that group. In the above example, to avoid cluttering the plot, the <span style="color: orange;">orange</span> group is hidden. 
+:::
+
+### Marginal Distribution
+
+Marginal distributions (distribution of a single feature) are plotted on the top and right of the scatter plot. User can choose the plot type from the dropdown menu. 
+
+![](analysis_ui_shots/marginal_distribution.png){width=40% fig-align=center}
+
+`gaussian fit`: provides kernel-density estimate using Gaussian kernels. It uses `gaussian_kde` from `scipy.stats` with default values to all options. 
+
+### 2D Gaussian Mixture Model
+
+Using the same method as fitting a 1D [Gaussian Mixture Model](feature_histogram.qmd#fit-gaussian-mixture-models), the user can fit a 2D GMM by specifying `Max Components` and `Min Weight Threshold` on each color group.  
+
+Ellipses that capture approximately 95% of the points in each subcomponent are drawn. The color of the ellipses is determined by the color group that the subcomponent belongs to. 
+
+::: {.callout-note collapse="true"}
+# How ellipses are drawn
+
+Each ellipse represents a subcomponent of the GMM. 
+
+- Center of the ellipse is the mean of the subcomponent ($\mu_x, \mu_y$).
+
+- The ellipse is rotated by $\theta = \arctan2\!\left(v_{1y}, v_{1x} \right)$, where $\mathbf{v}_1 = \begin{bmatrix} v_{1x} \\ v_{1y} \end{bmatrix}$ is the first eigenvector of the covariance matrix, so that the major axis of the ellipse is aligned with the eigenvector corresponding to the largest eigenvalue. 
+
+- Axis lengths represent the variances along the major and minor axes of the ellipse. They are the eigenvalues of the covariance matrix scaled by $r = \sqrt{\chi^2_{\,\mathrm{df}=2,\,p=0.95}}$ (Mahalanobis distance) that captures approximately 95% of the points in the subcomponent. 
+
+:::
+
+Tables of subcomponents' means, standard deviations, and weights are reported on the side.
+
+![](analysis_ui_shots/2d_gmm_table.png){width=50% fig-align=center}
+
+The classification result can be saved by clicking: 
+
+![](analysis_ui_shots/2d_gmm_download.png){width=20% fig-align=center}
+
+The classification is done by [hard assignment](feature_histogram.qmd#hard-assignment) to determine the which GMM component each data point belongs to. It will create a new categorical feature column called `2D_GMM_group` to the filtered dataset, the values of which are `{color_group}_group1`, `{color_group}_group2`, etc.
+
+### Regression line
+
+A linear regression line is fitted to the data points in each color group. The key statistics are reported on the side. 
+
+![](analysis_ui_shots/regression.png){width=50% fig-align=center}
+
+$R^{2}$ tells how much of the variability in $y$ is captured by the model, compared to just predicting the $\bar{y}$. 
+
+::: {.callout-note collapse="true"}
+# $R^{2}$
+
+- $R^{2} = 1$ → perfect prediction.
+- $R^{2} = 0$ → model predicts no better than the mean.
+:::
+
+
+
+
+

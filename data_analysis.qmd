@@ -1,5 +1,14 @@
 # Overview
-We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](data_extraction.qmd) module or in user's own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassel-free exploration of their data with, hopefully, fun 😎. The modularized design makes it easy to add new methods and features in the future. 
+We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](data_extraction.qmd) module or in user's own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassel-free exploration of their data with, hopefully, fun 😎. 
+
+# Design
+Columns of any tabular data can be categorized into three sets:
+
+- identifiers: unique row identifier and (optional) field of view identifier
+- categorical features: group the rows 
+- numerical features: to quantify the differences between data groups
+
+The [Data Extraction](data_extraction.qmd) module is designed to extract data in this fashion so that the [Data Analysis](data_analysis.qmd) module can take advantage of: it designs an [architectural blueprint](#shared-interactive-widgets) that all analysis methods can build on based on the above categorization. Therefore, the design of FLIM Playground is modularized so that new methods and features can be added in the future.  
 
 # Methods
 - Depending on the number of numerical features in the analysis, the methods are categorized into 3 groups: 
@@ -29,7 +38,7 @@ All the methods [share a set of interactive widgets](#shared-interactive-widgets
 :::
 
 # Input
-User can upload the dataset outputted from the [Data Extraction](data_extraction.qmd) directly or *their own datasets* in **csv** (Comma Separated Values) format after finishing the [interactive configuration](data_anlaysis_config.qmd) setup. 
+User can upload the dataset outputted from the [Data Extraction](data_extraction.qmd) directly or *their own datasets* in **csv** (Comma Separated Values) format after finishing the [interactive configuration](data_analysis_config.qmd) setup. 
 
 ::: {.columns}
 ::: {.column width="5%"}
@@ -90,7 +99,7 @@ A list of shared widgets are provided to support the general workflow in analysi
 The visualization and analysis results will be updated in real time to reflect user's interactactions with any of the above widgets. 
 
 ## Numerical Feature Widgets 
-The Data Extraction module groups numerical features based on the [feature extractor type](data_extraction.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features will be grouped based on the [user-specified configuration](data_anlaysis_config.qmd). Ungrouped numerical features will be grouped into a group called `Uncategorized Features`. One selection widget will be rendered for each numerical feature group. 
+The Data Extraction module groups numerical features based on the [feature extractor type](data_extraction.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features will be grouped based on the [user-specified configuration](data_analysis_config.qmd). Ungrouped numerical features will be grouped into a group called `Uncategorized Features`. One selection widget will be rendered for each numerical feature group. 
 
 ### Univariate Analysis
 One set of selection widgets, each can select one feature from a feature group, is rendered. If one feature from a feature group is selected, all the other features groups will be reset to the value `Select`. 

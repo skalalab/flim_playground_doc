@@ -52,7 +52,9 @@ H =\sum_{i=1}^{k}\bigl(-w_i \log w_i\bigr)\,d_i, \qquad d_i \;=\;
 $$
 
 ### Classification
-- The user can choose to perform [intersection thresholding](#intersection-thresholding) or [hard assignment](#hard-assignment) to determine the which GMM component each data point belongs to. It will create a new categorical feature column called `GMM_Group` to the filtered dataset, the values of which are `{color_group}_1`, `{color_group}_2`, etc. In the example above, the color groups are <span style="color: blue;">0.5hr</span> and <span style="color: orange;">4.5hr</span> because the user colors the data by `hour`.
+- The user can choose to perform [intersection thresholding](#intersection-thresholding) or [hard assignment](#hard-assignment) to determine the which GMM component each data point belongs to. It will create a new categorical feature column called `GMM_Group` to the filtered dataset, the values of which are `{color_group}_1`, `{color_group}_2`, etc. In the example above, the color groups are <span style="color: blue;">0.5hr</span> and <span style="color: orange;">4.5hr</span> because the user colors the data by `hour`. The classification result can be saved by clicking: 
+
+![](analysis_ui_shots/gmm_download.png){width=30% fig-align=center}
 
 #### Intersection thresholding
 - Once the GMM is estimated, thresholds can be obtained by locating the intersection points of adjacent component densities:
