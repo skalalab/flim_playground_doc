@@ -5,8 +5,8 @@ We are not done yet 😱! FLIM Playground also provides a suite of methods to an
 Columns of any tabular data can be categorized into three sets:
 
 - identifiers: unique row identifier and (optional) field of view identifier
-- categorical features: group the rows 
-- numerical features: to quantify the differences between data groups
+- categorical features: conceptually help us group the rows (e.g. the catetegorical feature `treatment` will group the rows into different treatment groups)
+- numerical features: quantify the differences between data groups
 
 The [Data Extraction](data_extraction.qmd) module is designed to extract data in this fashion so that the [Data Analysis](data_analysis.qmd) module can take advantage of: it designs an [architectural blueprint](#shared-interactive-widgets) that all analysis methods can build on based on the above categorization. Therefore, the design of FLIM Playground is modularized so that new methods and features can be added in the future.  
 
@@ -56,7 +56,7 @@ User can upload the dataset outputted from the [Data Extraction](data_extraction
 ## Requirements
 ::: {.callout-important}
 
-In either case, the dataset should have:
+In either case, following the [design](#design), the dataset should have:
 
 - a column that uniquely identifies each row
 - an (optional) field of view identifier column  

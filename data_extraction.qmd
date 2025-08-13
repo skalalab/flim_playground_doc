@@ -1,4 +1,28 @@
 # Overview
-Music (XT) or CXT, where X is the frequency and amplitude (for simplicity) of a certain sound. Painting (XY) ot CXY, movie (XYT) and later CXYT 
 
-## Feature Extractor
+The Data Extraction 
+# Channel-centric framework
+
+
+
+
+
+
+# Input Types 
+
+## 2D Decay
+
+In the system developed by Samimi et al. [@Samimi24], single cells are flowing through and decay curve is acquired for each cell by aggregating all the photon arrival time delays deemed to be from the same cell. In exchange of spatial distribution, the acquisition speed is increased enormously. The output of the system is a tabular data sheet with each row representing a cell and each column representing a time bin. FLIM Playground currently supports CSV files with 2D decay. 
+
+## 3D/4D Decay
+
+In TSCPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g. `.sdt`, `.ptu`). In addition to the spatial dimensions and the time dimension (`XYT`), the channel dimension may also be present, making it 4 dimensional (`CXYT`). Some systems can also record a time stack, making it has at most 5 dimensions. FLIM Playground currently supports both `.sdt` and `.ptu` files up to 4 dimensions. 
+
+## 3D/4D pixel-prefitted
+
+## Calibration File
+
+For each channel from the same field of view (FOV), the user needs to provide a calibration file to convert the time delay into the actual fluorescence lifetime. 
+
+## ROI Mask 
+
