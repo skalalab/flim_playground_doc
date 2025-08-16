@@ -8,7 +8,7 @@ It is consisted of the following steps:
 2. [FOV Metadata Organization](fov_metadata.qmd): each experiment sitting consists of multiple field of views (FOVs). This steps helps user organize the metadata of the FOVs. 
 3. [Calibration](calibration.qmd): it provides [IRF shift-based calibration](calibration.qmd#irf-shift-calibration) and [reference dye-based calibration](calibration.qmd#reference-dye-calibration). 
 4. Single cell numerical feature extraction including, per channel:
-    - [Lifetime fitting features](lifetime_fit.qmd): fit an exponential decay curve to the measured decay and extract lifetime features. 
+    - [Lifetime fitting features](lifetime_fit.qmd): fit an exponential decay curve to the measured decay and extract lifetime features. It also accepts prefitted pixel-level lifetime features from [SPCImage](https://www.becker-hickl.com/products/spcimage/) and aggregates pixel-level lifetime features to cell-level lifetime features. 
     - [Phasor features](lifetime_fit_free.qmd): calculate the phasor features such as the phasor coordinates. 
     - [Morphology features](intensity_morphology.qmd): calculate morphology features based on the ROI mask. 
     - [Texture features](intensity_texture.qmd): calculate texture features based on the intensity image and the ROI mask. 

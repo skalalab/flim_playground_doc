@@ -68,10 +68,10 @@ Heterogeneity stems from the diverse though fragmented set of tools, each of whi
 
 - [Metadata organization](fov_metadata.qmd): <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
 - Numerical Feature Extraction
-  - [Calibration](calibration.qmd): <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
+  - [Calibration](calibration.qmd): <span style="color: #1f77b4;">■</span> <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
     - [Time-domain](calibration.qmd#irf-shift-calibration)
     - [Frequency-domain](calibration.qmd#reference-dye-calibration)
-  - Lifetime extraction:<span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
+  - Lifetime extraction:<span style="color: #1f77b4;">■</span> <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
     - [Fitting](lifetime_fit.qmd)
     - [Phasor](lifetime_fit_free.qmd)
   - Intensity-based feature extraction: <span style="color: #1f77b4;">■</span> <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
@@ -90,10 +90,10 @@ Heterogeneity stems from the diverse though fragmented set of tools, each of whi
     - [Classification](classification.qmd)
 
 # Solution
-FLIM Playground can be divided into two independent sections:
+FLIM Playground divides the workflow into two independent sections:
 
 - [Data Extraction](data_extraction.qmd) that extracts features from the raw data
-- [Data Analysis](data_analysis.qmd) that analyzes the extracted features from the Data Extraction section or uses your own data using visualizations and statistical modeling.
+- [Data Analysis](data_analysis.qmd) that analyzes the extracted features from the Data Extraction section or data extracted by other means using visualizations and statistical modeling.
 
 Data Extraction addresses the heterogeneity in data types and extraction methods by adopting a channel-centric framework that offers flexibility without incurring too much overhead for the user. The framework is facilitated by the [data extraction configuration](data_extraction_config.qmd) module: after filling out the configuration once, the user can extract features from their own raw data.
 

@@ -14,5 +14,8 @@ Semantically, higher granularity at smaller scales implies higher fragmentation.
 Each cell intensity image is separated into $4$ concentric rings, and the intensity is calculated for each ring, and the intensity fraction over the total intensity for each ring is calculated.
 
 ## Mass Displacement
-It is the displacement, in Euclidean distance of pixels, of the intensity-weighted cell ROI centroid from the geometric centroid of the cell ROI.  
+It is the displacement, in Euclidean distance of pixels, of the intensity-weighted cell ROI centroid from the geometric centroid of the cell ROI. 
+
+## Intensity 
+The sum of the intensity of the cell intensity image. 
 
