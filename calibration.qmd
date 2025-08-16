@@ -1,5 +1,3 @@
-# Single-Cell Numerical Features
-
 # Calibration
 
 ## IRF Shift Calibration

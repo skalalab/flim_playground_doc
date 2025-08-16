@@ -11,7 +11,11 @@
 
 # Quick Start
 
-Welcome to the FLIM Playground 🥳🎉🥂! To quickly try out different analysis methods, read [How to config](data_analysis_config.qmd) and try the [online demo](flim-playground.streamlit.app/) that allows you to upload your own data. It can also extract features from  FLIM raw data (not available in the demo). Read on to learn more about the system.
+Welcome to the FLIM Playground 🥳🎉🥂! It is an interactive graphical user interface (GUI) that allows you to extract single cell features from FLIM raw data and analyze extracted features or datasets extracted yourself using a built-in reportoire of methods. 
+
+To quickly try out different analysis methods, download this [sample dataset] and try the [online demo](flim-playground.streamlit.app/). If you prefer to use your own data, read [data analysis configuration](data_analysis_config.qmd) to learn how to configure the system. 
+
+Due to the online limitation, extracting features from raw data is not available in the demo. Read on to learn more about the system, including how to [download](#download) and use the desktop app, starting from processing raw decay data and ending with gaining insights.
 
 # Introduction
 
@@ -29,20 +33,18 @@ Due to the [heterigenity](#heterogeneity) arised from the [multi-level](#levels-
 
 **FLIM Playground** removes these hurdles with an interactive code free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and built-in repertoire of analytical methods with interactive widgets that encourage hypothesis driven, iterative exploration of large datasets. A modular architecture also enables incorporation of new algorithms as tools evolve.
 
-
-
-::: {.callout-important collapse="true"}
-# Input Scope of FLIM Playground
-It currently supports TCSPC-based FLIM only. It can also be extended to support other time-domain acquisition methods such as the Gating method. 
+::: {.callout-important}
+# Scope of FLIM Playground
+It currently supports TCSPC-based FLIM only. It can also be extended to support other time-domain acquisition methods such as the Gating method.  
 :::
 
 # Heterogeneity
 INSERT FIGURE HERE (FIGURE 1)
 
-The flexibility of the FLIM workflow allows researchers to acquire data in different formats and extract data and insights using different methods, but it also introduces heterogeneity and fragmentation, 
+The flexibility of the FLIM workflow allows researchers to acquire data in different formats and extract data and insights using different methods, but it also introduces heterogeneity and fragmentation across the workflow. 
 
 ## Levels of Data
-At each level (bullets), heterogeneity stems from the diverse input types (sub-bullets).
+At each level (•), heterogeneity stems from the diverse input types (◦).
 
 - <span style="color: #1f77b4;">**Pixel**</span>
 - <span style="color: #ff7f0e;">**Region of Interest (ROI)**</span>
@@ -62,13 +64,13 @@ At each level (bullets), heterogeneity stems from the diverse input types (sub-b
 
 
 ## Stages of Workflow
-At each stage (bullets), heterogeneity stems from the different methods (sub-bullets) and the different levels of data to focus on (in matching color swatches). 
+Heterogeneity stems from the diverse though fragmented set of tools, each of which solves the problem at a particular stage (•) using a subset of available methods (▪). To integrate all the stages require frameworks that take into account all the [data levels](#levels-of-data) (<span style="color: #1f77b4;">■</span> <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> <span style="color: #9467bd;">■</span>) each stage focuses on. 
 
 - [Metadata organization](fov_metadata.qmd): <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
-- [Numerical Feature Extraction](numerical_feature_extraction.qmd)
-  - Calibration: <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
-    - [Time-domain](numerical_feature_extraction.qmd#irf-shift-calibration)
-    - [Frequency-domain](numerical_feature_extraction.qmd#reference-dye-calibration)
+- Numerical Feature Extraction
+  - [Calibration](calibration.qmd): <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
+    - [Time-domain](calibration.qmd#irf-shift-calibration)
+    - [Frequency-domain](calibration.qmd#reference-dye-calibration)
   - Lifetime extraction:<span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
     - [Fitting](lifetime_fit.qmd)
     - [Phasor](lifetime_fit_free.qmd)
@@ -78,8 +80,14 @@ At each stage (bullets), heterogeneity stems from the different methods (sub-bul
 - [Categorical feature extraction](categorical_feature_extraction.qmd): <span style="color: #ff7f0e;">■</span> <span style="color: #9467bd;">■</span> 
 - [Data Analysis](data_analysis.qmd) (Visualization + Statistical Modeling): <span style="color: #ff7f0e;">■</span> <span style="color: #d62728;">■</span>  <span style="color: #9467bd;">■</span>
   - [Univariate analysis](data_analysis.qmd#univariate-analysis)
+    - [Feature Comparison](feature_comparison.qmd)
+    - [Feature Histogram](feature_histogram.qmd)
+    - [Field of View Comparison](fov_comparison.qmd)
   - [Bivariate analysis](data_analysis.qmd#bivariate-analysis)
+    - [Feature Distribution](feature_distribution.qmd)
   - [Multivariate analysis](data_analysis.qmd#multivariate-analysis)
+    - [Dimension Reduction](dimension_reduction.qmd)
+    - [Classification](classification.qmd)
 
 # Solution
 FLIM Playground can be divided into two independent sections:
@@ -87,13 +95,26 @@ FLIM Playground can be divided into two independent sections:
 - [Data Extraction](data_extraction.qmd) that extracts features from the raw data
 - [Data Analysis](data_analysis.qmd) that analyzes the extracted features from the Data Extraction section or uses your own data using visualizations and statistical modeling.
 
-Data Extraction addresses the heterogeneity in data types and extraction methods by adopting a channel-centric [framework](data_extraction.qmd#channel-centric-framework) that offers flexibility without incurring too much overhead for the user. The framework is enforced by the [data extraction configuration](data_extraction_config.qmd) module.
+Data Extraction addresses the heterogeneity in data types and extraction methods by adopting a channel-centric framework that offers flexibility without incurring too much overhead for the user. The framework is facilitated by the [data extraction configuration](data_extraction_config.qmd) module: after filling out the configuration once, the user can extract features from their own raw data.
 
 Data Analysis addresses the heterogeneity in analysis methods and level to focus on by adopting a [design](data_analysis.qmd#design) that allows all analysis methods to share the same interactive and frictionless exploration experience. 
-The design is enforced by the [data analysis configuration](data_analysis_config.qmd) module if the user wants to use their own data, otherwise the design requirements are automatically met. 
+The design is facilitated by the [data analysis configuration](data_analysis_config.qmd) module: it will make sure user's own datasets can utilize the analysis methods provided by FLIM Playground. If user uses the Data Extraction to extract features, the analysis methods will be automatically configured. 
 
 INSERT FIGURE HERE (FIGURE 2)
 
 ## Deployment
 
-The system is built entirely in Python and is open-source. It can be installed by downloading the desktop app from [GitHub](https://github.com/skalalab/flim_playground) or by cloning the repository and building it yourself.
+The system is built entirely in Python and is open-source. 
+
+### Download
+Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground) and double click it to run. Releases are available for Windows 11 and Mac OS 15. If your operating system is not either of these, you can build it yourself by following the instructions below.
+
+### Build it yourself
+1. Clone the repo and navigate into the repository once cloned.
+
+2. Install the python environment
+    - Install uv if not yet installed
+    - run `uv sync`
+3. Build the app
+    - run `pyinstaller Flim-Playground.spec --clean`
+

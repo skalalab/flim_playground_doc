@@ -14,7 +14,7 @@ book:
         - data_extraction.qmd
         - data_extraction_config.qmd
         - fov_metadata.qmd
-        - numerical_feature_extraction.qmd
+        - calibration.qmd
         - lifetime_fit.qmd
         - lifetime_fit_free.qmd
         - intensity_morphology.qmd

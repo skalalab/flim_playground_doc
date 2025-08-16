@@ -1,1 +1,18 @@
 # Textural Features
+FLIM Playground extracts single-cell texture features based on the intensity image and the ROI mask of each *channel*. For an example application, see this [paper](https://pubmed.ncbi.nlm.nih.gov/31081599/) that used cellprofiler to extract those texture features. 
+
+The first step is to create a single cell intensity image for each cell based on the ROI mask and the intensity image. Then a list of texture features (it can be extended in the future) is calculated:  
+
+## Granularity
+$Granularity_n$ is the percentage of intensity removed when bright objects of $n$ pixels in diameter are removed. A disk of radius $n$ is created, and a morphological opening is performed on the cell intensity image, the difference between the original image and the opened image is the bright objects to be removed. A 0-1 value is calculated by dividing the removed intensity by the total intensity. 
+
+$n = 1, 3, 5, 7, 9$ are calculated. 
+
+Semantically, higher granularity at smaller scales implies higher fragmentation. 
+
+## Radial Distribution
+Each cell intensity image is separated into $4$ concentric rings, and the intensity is calculated for each ring, and the intensity fraction over the total intensity for each ring is calculated.
+
+## Mass Displacement
+It is the displacement, in Euclidean distance of pixels, of the intensity-weighted cell ROI centroid from the geometric centroid of the cell ROI.  
+

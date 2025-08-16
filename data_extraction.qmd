@@ -1,28 +1,17 @@
 # Overview
 
-The Data Extraction 
-# Channel-centric framework
+FLIM Playground transforms raw FLIM data into single-cell numerical and categorical features, ensuring smooth integration with [downstream analysis](data_analysis.qmd). All steps are seamlessly connected through interactive widgets, with built-in error checking and reporting to ensure correctness.
 
+It is consisted of the following steps:
 
+1. [Configuration](data_extraction_config.qmd): user can configure the system once and apply it to future data. It facilitates the channel-centric framework that balances flexibility and usability. 
+2. [FOV Metadata Organization](fov_metadata.qmd): each experiment sitting consists of multiple field of views (FOVs). This steps helps user organize the metadata of the FOVs. 
+3. [Calibration](calibration.qmd): it provides [IRF shift-based calibration](calibration.qmd#irf-shift-calibration) and [reference dye-based calibration](calibration.qmd#reference-dye-calibration). 
+4. Single cell numerical feature extraction including, per channel:
+    - [Lifetime fitting features](lifetime_fit.qmd): fit an exponential decay curve to the measured decay and extract lifetime features. 
+    - [Phasor features](lifetime_fit_free.qmd): calculate the phasor features such as the phasor coordinates. 
+    - [Morphology features](intensity_morphology.qmd): calculate morphology features based on the ROI mask. 
+    - [Texture features](intensity_texture.qmd): calculate texture features based on the intensity image and the ROI mask. 
+5. [Categorical feature extraction](categorical_feature_extraction.qmd): based on the FOV name, extract the categorical features such as the treatment, time point, etc. 
 
-
-
-
-# Input Types 
-
-## 2D Decay
-
-In the system developed by Samimi et al. [@Samimi24], single cells are flowing through and decay curve is acquired for each cell by aggregating all the photon arrival time delays deemed to be from the same cell. In exchange of spatial distribution, the acquisition speed is increased enormously. The output of the system is a tabular data sheet with each row representing a cell and each column representing a time bin. FLIM Playground currently supports CSV files with 2D decay. 
-
-## 3D/4D Decay
-
-In TSCPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g. `.sdt`, `.ptu`). In addition to the spatial dimensions and the time dimension (`XYT`), the channel dimension may also be present, making it 4 dimensional (`CXYT`). Some systems can also record a time stack, making it has at most 5 dimensions. FLIM Playground currently supports both `.sdt` and `.ptu` files up to 4 dimensions. 
-
-## 3D/4D pixel-prefitted
-
-## Calibration File
-
-For each channel from the same field of view (FOV), the user needs to provide a calibration file to convert the time delay into the actual fluorescence lifetime. 
-
-## ROI Mask 
-
+INSERT FIGURE HERE (FIGURE 3)
