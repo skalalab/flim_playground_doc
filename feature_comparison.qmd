@@ -102,3 +102,7 @@ It requires pairs of groups to calculate effect sizes. Flim Playground uses the 
 - A threshold by effect size widget that filters out comparisons below the threshold. 
 
 ![](analysis_ui_shots/effect_size_widgets.png)
+
+#### Effect size annotation
+
+For each selected pair of groups that exceeds the effect size threshold, the effect size will be annotated on the plot. It will select the lowest eligible position (over all points in both groups and over exising annotations) to annotate the effect size.  

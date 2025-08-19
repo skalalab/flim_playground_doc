@@ -1,5 +1,5 @@
 # Morphological Features
-FLIM Playground extracts single-cell morphological features based on the cell ROI mask of each *channel*. By inputting the ROI mask to `skimage.measure.regionprops`, the following features are extracted:
+FLIM Playground extracts single-cell morphological features based on the cell ROI mask of each *channel*. By inputting the ROI mask to []`skimage.measure.regionprops`](https://scikit-image.org/docs/stable/api/skimage.measure.html#skimage.measure.regionprops), the following features are extracted:
 
 - `area`: the number of pixels in the ROI. 
 - `perimeter`: length of the ROI boundary in pixels.
