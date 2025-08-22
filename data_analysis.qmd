@@ -118,6 +118,8 @@ One set of selection widgets, each can select multiple features from a feature g
 
 ## Categorical Feature Widgets
 
+FLIM Playground will recognize the categorical features in the uploaded dataset based on the [user-specified configuration](data_analysis_config.qmd) if the dataset is not extracted by [Data Extraction](data_extraction.qmd). Otherwise, it will recognize categorical features specified in the [Data Extraction configuration](data_extraction_config.qmd#categorical-features). 
+
 ### Filter Widgets
 ![](analysis_ui_shots/filter.png){width=95%}
 

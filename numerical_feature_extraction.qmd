@@ -1,5 +1,7 @@
-# Calibration
+# Numerical Feature Extraction
+In this step, each imaging experiment produces one dataset, which is saved as a single file. We recommend one dataset per experiment since calibration is performed on a per-experiment basis.
 
+## Calibration
 ## IRF Shift Calibration
 
 ## Reference Dye Calibration

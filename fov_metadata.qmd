@@ -50,6 +50,10 @@ User can edit the file suffixes here.
 
 ## Reference Dye
 
+If the selected fit free calibration method is [reference dye](data_extraction_config.qmd#calibration-method), the user can specify the reference dye file path and the refernce dye lifetime here, the default of those are copied from the reference dye config. 
+
+![](extraction_ui_shots/fov_reference_dye.png){width=50% fig-align=center}
+
 ## Folder Path
 Finally, the user can specify the folder path that contains all the required input files. 
 
@@ -94,7 +98,16 @@ If the decay type is [3D/4D decay](data_extraction.qmd#3d4d-decay), FLIM Playgro
 
 ### Channel Number
 
-If the decay file asscoiated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channal number for that channel. For each channel name, it will list all non-empty channels as potential channel to be assigned. If there is only one, the assignment is automatic. If there are multiple, the user needs to select the channel intended.
+If the decay file asscoiated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channal number for that channel. For each channel name, it will list all non-empty channels as potential channel to be assigned. If there is only one, the assignment is automatic. If there are multiple, the user needs to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there is any. 
+
+### Reference Dye
+
+If the [reference dye file path](#reference-dye) is specified, FLIM Playground will try to look for and read the file. It expexts a `tiff` or `tif` file that contains a 3D array, with one of them as the time dimension. It will try to match the time dimension with the time dimension of the decay file. If it cannot find the matching time dimension, it will complain. 
+
+![](extraction_ui_shots/fov_rd_not_found.png){width=90% fig-align=center}
+![](extraction_ui_shots/fov_rd_not_match.png){width=90% fig-align=center}
+
+Once the time axis is matched, the reference dye file path, the reference dye lifetime, and the time axis will be recorded. 
 
 # Export
 

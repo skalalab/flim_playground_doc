@@ -1,1 +1,40 @@
 # Categorical Feature Extraction
+
+Based on the datasets extracted in the [numerical feature extraction](numerical_feature_extraction.qmd) step, FLIM Playground will:
+
+- merge the datasets into a single dataset. 
+- assign categorical features to each cell in the merged dataset. 
+
+![](extraction_ui_shots/cat.png){width=100% fig-align=center}
+
+## Merging Datasets
+
+It will scan the specified folder path and find all csv files. It will use the [cell identifier column](data_extraction_config.qmd#cell-identifier) to check for duplicates both within each dataset and across all datasets. It will also check for the eligibility of [categorical feature assignment](#assigning-categorical-features) using the [fov identifier column](data_extraction_config.qmd#fov-identifier). 
+
+:::{.callout-important #fov-id-categorical}
+**It assumes that the FOV identifier includes all information necessary to extract the categorical features, by including fields seperated by some delimiter. Categorical features will be assigned from individual or combined fields.** 
+:::
+
+So it checks if all field of view names include the same number of fields. 
+
+![](extraction_ui_shots/cat_merge.png){width=50% fig-align=center}
+
+It will merge the datasets that pass the checks by finding common columns and vertically concatenating them. 
+
+![](extraction_ui_shots/cat_merge_result.png){width=50% fig-align=center}
+
+## Assigning Categorical Features
+
+Available categorical features to be assigned are drawn from the [user-specified configuration](data_extraction_config.qmd#categorical-features). 
+
+![](extraction_ui_shots/cat_features.png){width=25% fig-align=center}
+
+Based on the [assumptions](#fov-id-categorical), it will break down the FOV identifier into individual fields and faciliate the assignment. 
+
+![](extraction_ui_shots/cat_slots.png){width=50% fig-align=center}
+
+A live preview of the assignment is shown. 
+
+![](extraction_ui_shots/cat_slot_assign.png){width=100% fig-align=center}
+
+And the merged dataset with categorical features is available for download. 
