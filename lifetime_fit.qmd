@@ -1,4 +1,7 @@
 # Lifetime Features (Fit)
+After [calibration for IRF shift](numerical_feature_extraction.qmd#fit-calibration),
+
+## Preprocessing 
 
 
-# Reconvolution fitting
+FLIM Playground extracts cell-level lifetime fitting features by summing up all the pixel decays belonging to the same cell ROI [@samimi25] labeled by the ROI [mask](data_extraction.qmd#mask) as one decay curve. 

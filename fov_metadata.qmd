@@ -1,7 +1,7 @@
 # Field of View Metadata
 It is the first step in the [Data Extraction](data_extraction.qmd) workflow. It organizes the metadata of each field of view (FOV), including the file paths of all required input files and decay information, into a single CSV file used in the numerical feature extraction step and user's own bookkeeping and potential troubleshooting. 
 
-![](extraction_ui_shots/fov.png){width=100% fig-align=center}
+![](extraction_ui_shots/fov.png){width=100% fig-align=center #fov-metadata}
 
 It is divided into two sections: 
 

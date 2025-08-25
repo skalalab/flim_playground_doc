@@ -113,10 +113,6 @@ After constructing the objective metric, the fitting mode is used to determine t
 - `Local`: It uses the `leastsq` (Levenberg-Marquardt) algorithm if the chosen metric is `LS`, otherwise it uses the `nelder` (Nelder-Mead) algorithm.  
 - `Hybrid`: the most time-consuming but combines the best of both worlds. It uses the `differential evolution` to find a good initial guess to all the parameters, and then uses the `Local` to drill in. 
 
-
-
-
-
 ## Fit Free Calibration
 
 User get to choose between the following two methods to calibrate the IRF shift in the [configuration step](data_extraction_config.qmd#calibration-method). 
@@ -138,3 +134,31 @@ Finally, the signals of the shifted IRF are deconvolved from the offset-subtract
 Because the reference dye is measured in the same system as the decay curves and we know the its lifetime, there is no need to account for the IRF shift and the offset. Therefore
 
 `phasorpy`'s [`lifetime.phasor_calibrate`](https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate) function will be used to calibrate all the decay curves behind the scene when calculating the phasor coordinates. 
+
+## Confirm Calibration
+
+Once the user is satisfied with the calibration settings ([fitting options](#fitting-options) and shift values), they can click the `Confirm Calibration` button at the bottom of the [page](#irf-shift). 
+
+![](extraction_ui_shots/calibration_confirm.png){width=60% fig-align=center}
+
+Once confirmed, on the left, it will ask the user either they want to proceed to apply the calibration settings to the downstream extractors, or they want to go back. They can also save the settings to the metadata file.  
+
+![](extraction_ui_shots/calibration_done.png){width=60% fig-align=center #calibration-done}
+
+# Feature Extraction
+
+Either the selected feature extractors do not require IRF shift calibration, or the user [finishes the calibration](#calibration-done), they can proceed to the feature extraction step by clicking the `Confirm and Start Analysis` button. 
+
+Similar to the [fov metadata extraction](fov_metadata.qmd#fov-metadata) step, FLIM Playground will extract the features and display the extraction status for field of view. 
+
+![](extraction_ui_shots/numerical_feature_extraction.png){width=100% fig-align=center}
+
+A progress bar will be rendered to show the feature extraction progress for each FOV (bottom right).
+
+Warnings will be displayed if cells have `NaN` or `"--"` values for some features. They will *not* be excluded from the final csv file. 
+
+# Save Results
+
+Once the feature extraction is finished, the user can save the results to a csv file by clicking the `Download` button at the bottom of the page.
+
+![](extraction_ui_shots/feature_export.png){width=100% fig-align=center}
