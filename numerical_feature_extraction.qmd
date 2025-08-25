@@ -1,7 +1,140 @@
 # Numerical Feature Extraction
-In this step, each imaging experiment produces one dataset, which is saved as a single file. We recommend one dataset per experiment since calibration is performed on a per-experiment basis.
+In this step, FLIM Playground extracts *single cell* numerical features from the raw data in a folder. For each channel, the features to be extracted are specified in the [user-selected feature extractors](data_extraction_config.qmd#feature-extractor). The available feature extractors are:
 
-## Calibration
-## IRF Shift Calibration
+- [Lifetime fit](lifetime_fit.qmd): fit exponential models to decay curves to estimate lifetimes and per-exponential fractions by minimizing a objective function. 
+- [Lifetime fit free](lifetime_fit_free.qmd): transform decay curves to phasor space using Fourier transform to obtain phasor coordinates. 
+- [Intensity Morphology](intensity_morphology.qmd): morphological features of single cell ROI masks
+- [Intensity Texture](intensity_texture.qmd): texture features of single cell ROI intensity images
 
-## Reference Dye Calibration
+# Input 
+
+A csv extracted in the [fov metadata extraction](fov_metadata.qmd) step that contains the metadata of the FOVs including: 
+
+- [required files' paths](fov_metadata.qmd#fov-file-paths)
+- [decay type](fov_metadata.qmd#decay-type)
+- [decay info](fov_metadata.qmd#decay-info)
+- [selected feature extractors](fov_metadata.qmd#feature-extractor) for each channel
+- [fit free calibration method](data_extraction_config.qmd#calibration-method)(if fit free calibration is required)
+
+User can either upload a previously extracted metadata file (left), or use the cached metadata file just extracted in the [fov metadata extraction](fov_metadata.qmd) step (right). 
+
+::: {layout-ncol=2}
+
+![](extraction_ui_shots/metadata_upload.png)
+
+![](extraction_ui_shots/metadata_cache.png)
+
+:::
+
+For `Lifetime fit` and `Lifetime fit free` feature extractors, the first step is always [calibration](#calibration). 
+
+# Calibration
+
+Calibration in FLIM is essential because raw decays are convolved with the instrument response function (IRF), so without correcting these, fitted lifetimes and phasor positions are biased and not comparable across days, samples, or instruments. 
+
+## Fit Calibration
+
+During different experiments the IRF may shift differently with respect to the measured decay. Before applying reconvolution fitting, the IRF shift needs to be estimated for each channel if the the `Lifetime fit` feature extractor is selected for the channel. 
+
+It is performed in two steps: 
+
+1. Gather the high signal-to-noise ratio (SNR) decay curves 
+2. For each curve, perform reconvolution fitting and set shift value as the free parameter to be optimized/fitted. 
+
+The distribution of the the shift values will be displayed as an interactive scatter plot. When clicking on a point, the corresponding decay curve with the fitted curve and the key statistics will be displayed for diagnostics. Based on the distribution or using certain prior knowledge, the user can specify the shift value applied to all fields of view (if `Fix the Shift` is selected, see [fitting options](#fitting-options)), or use the fov-specific shift value found by the fitting (if `Fix the Shift` is deselected). 
+
+![](extraction_ui_shots/irf_shift.png){#irf-shift}
+
+### Gather High SNR Decay Curves
+
+The high SNR decay curves are constructed automatically based on the [decay type](data_extraction_config.qmd#decay-types). If it is in [2D format](data_extraction_config.qmd#2d-decay), a total of the brightest 30 curves that are below `100000` photons will be selected, evenly distributed across all field of views (one csv file will be considered as one FOV). If it is in [3D/4D format](data_extraction_config.qmd#3d4d-decay), the field of views are images, and one curve will be constructed for each image that includes all the non-zero pixels within the [ROI mask](data_extraction.qmd#mask). 
+
+### Reconvolution Fitting
+
+Fitting is essentially a optimization problem: it minimizes the difference between the fitted curve and the measured curve. The fitted curve is modeled by a $n^{th}$ component exponential function convolved with the shifted IRF, and the difference is modeled mathmatically as a objective metric. Therefore, user is provide with controls over two parts of the fitting process through the [fitting options panel](#fitting-options): 
+
+1. How to construct the objective metric
+2. How to perform the optimization
+
+Implementation-wise, FLIM Playground uses the `lmfit` package that takes generic objectives to perform the optimization process that is flexible enough to handle the reconvolution fitting.
+
+If at least one channel has `Lifetime fit` feature extractor selected, the fitting options panel will be displayed. 
+
+![](extraction_ui_shots/fitting_option.png){width=50% fig-align=center #fitting-options}
+
+Let's break down the fitting options one by one. 
+
+#### Number of Components
+
+The number $n$ in the $n^{th}$ component exponential function: 
+$$% Generic (non-normalized) n-exponential decay
+I(\mathbf{t})=\sum_{i=1}^{n} A_i\, e^{-\mathbf{t}/\tau_i}, \qquad \tau_i>0
+$$
+
+Therefore, $n$ determines the parameters to be fitted: the amplitudes $A_i$ and the lifetimes $\tau_i$. $\mathbf{t}$ is the time axis of the decay curve create by the `duration` and `time bins` from the [decay info](fov_metadata.qmd#decay-info): 
+$$\mathbf{t}=\bigl[0,\ \Delta t,\ 2\Delta t,\ \ldots,\ (N-1)\Delta t\bigr],
+\quad \text{where }\Delta t=\frac{T}{N}.
+$$
+
+It supports $n=1,2,3$ components. 
+
+Additionally, the `offset` is also a parameter to be fitted. 
+
+#### Time Gates
+Due to the deadtime of the system certain time bins from the head and/or tail of the decay curve are not reliable. The T1 (head) and T2 (tail) gates are used to select the time range of the decay curve to be fitted. User can inspect the decay curve by clicking the full screen mode button of the plot on the right of the [shift result](#irf-shift). Hover-based interaction is implemented so user can see the time bin numbers to have a better sense of the time range. 
+
+![](extraction_ui_shots/time_gate_choose.png){width=100% fig-align=center}
+
+![](extraction_ui_shots/time_gate.png){width=60% fig-align=center}
+
+Mathmatically, only the time bins within the T1 and T2 gates will be used to calculate cost metric. 
+
+#### Metric
+![](extraction_ui_shots/metric.png){width=20% fig-align=center}
+
+Maximum Likelihood Estimation (`MLE`): it estimates the parameters by maximizing the likelihood function, which is the probability of the measured data given the model parameters. A mathematical convenient way to do this is to minimize the negative log-likelihood function: 
+
+$$
+\text{NLL}(\theta; t_s,t_e)
+= -\sum_{k=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_k)\,\bigl[y_k \log m_\theta(t_k) - m_\theta(t_k)\bigr].
+$$
+
+$\mathbf{1}_{[t_s,t_e]}$ is the indicator function that is 1 if $t_k$ is within the [time gates](#time-gates)$[t_s, t_e]$, and 0 otherwise. $y_k$ is the observed count at time $t_k$, and $m_\theta(t_k)$ is the model prediction at $t_k$.
+
+Least Squares (`LS`): it estimates the parameters by minimizing the sum of the squared differences between the measured curve and the model prediction. 
+
+#### Fitting Mode
+
+![](extraction_ui_shots/fitting_mode.png){width=20% fig-align=center}
+
+After constructing the objective metric, the fitting mode is used to determine the optimization algorithm. It is a trade-off between the speed and the effort to avoid local minima. 
+
+- `Global`: It uses the `differential evolution` algorithm, a derivative-free, population-based but slow global optimizer. 
+- `Local`: It uses the `leastsq` (Levenberg-Marquardt) algorithm if the chosen metric is `LS`, otherwise it uses the `nelder` (Nelder-Mead) algorithm.  
+- `Hybrid`: the most time-consuming but combines the best of both worlds. It uses the `differential evolution` to find a good initial guess to all the parameters, and then uses the `Local` to drill in. 
+
+
+
+
+
+## Fit Free Calibration
+
+User get to choose between the following two methods to calibrate the IRF shift in the [configuration step](data_extraction_config.qmd#calibration-method). 
+
+### IRF Shift
+
+It is performed similarly to the [fit calibration](#fit-calibration) steps, but in the second step, the shift will not be optimized(fitted). It shares the [same interface](#irf-shift) as the [fit calibration](#fit-calibration) step, where a scatter plot of the shift values will be displayed for each channel, only that the plot is not interactive to show the fit. Instead, it will output the shift that maximizes the cross-correlation between the IRF and the decay. If `Fix the Shift` is selected, user can specify the shift value that will be applied to all fields of view. Otherwise, the shift value is chosen to be the one that maximizes the cross-correlation between the IRF and the decay.
+
+::: {.callout-note}
+If both the `Lifetime fit` and `Lifetime fit free` feature extractors are selected for this channel, the IRF shift will be calibrated using [fit](#fit-calibration) and reuse the shift value for the `Lifetime fit free` feature extractor. 
+:::
+
+In addition to shift the IRF based on the chosen shift values, each decay curve will be sutracted an offset value and clip to 0 if the time bin is negative after the subtraction. The offset is chosen to be the minimum of the two values: the median of the first 20th percentile of the decay curve (head), and the median of the last 10th percentile of the decay curve (tail). 
+
+Finally, the signals of the shifted IRF are deconvolved from the offset-subtracted decay curves using [`phasor.phasor_divide`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_divide) from the `phasorpy` package. 
+
+### Reference Dye 
+
+Because the reference dye is measured in the same system as the decay curves and we know the its lifetime, there is no need to account for the IRF shift and the offset. Therefore
+
+`phasorpy`'s [`lifetime.phasor_calibrate`](https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate) function will be used to calibrate all the decay curves behind the scene when calculating the phasor coordinates. 

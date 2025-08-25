@@ -2,8 +2,8 @@
 
 Based on the datasets extracted in the [numerical feature extraction](numerical_feature_extraction.qmd) step, FLIM Playground will:
 
-- merge the datasets into a single dataset. 
-- assign categorical features to each cell in the merged dataset. 
+- [merge the datasets](#merging-datasets) into a single dataset
+- [assign categorical features](#assigning-categorical-features) to each cell in the merged dataset
 
 ![](extraction_ui_shots/cat.png){width=100% fig-align=center}
 

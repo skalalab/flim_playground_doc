@@ -96,7 +96,7 @@ Field of Views with ✅ are loaded successfully 🎆. FOVs with ❌ (if any) wil
 
 If the decay type is [3D/4D decay](data_extraction.qmd#3d4d-decay), FLIM Playground will try to infer the `duration` and the number of `time bins` per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files if there is any. 
 
-### Channel Number
+### Channel Assignment
 
 If the decay file asscoiated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channal number for that channel. For each channel name, it will list all non-empty channels as potential channel to be assigned. If there is only one, the assignment is automatic. If there are multiple, the user needs to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there is any. 
 
@@ -113,7 +113,7 @@ Once the time axis is matched, the reference dye file path, the reference dye li
 
 ### Result preview
 
-If there is non-zero number of FOVs with ✅, a preview of the metadata data sheet will be shown for the user to check. 
+If there is non-zero number of FOVs with ✅ and channel assignment and reference dye checks (if applicable) are passed, a preview of the metadata data sheet will be shown for the user to check. 
 
 ![](extraction_ui_shots/fov_export.png){width=100% fig-align=center}
 
@@ -121,7 +121,7 @@ As an example, the following metadata are extracted:
 
 - `image_name`: The `image_name` column is the name of each FOV, which is specified in the [fov identifier config](data_extraction_config.qmd#fov-identifier). 
 - `nadh_Mask`, `nadh_Decay`, `nadh_IRF`, `fad_Mask`, `fad_Decay`, `fad_IRF`: the [file paths](#fov-file-paths) of the mask, decay, and IRF files for the `nadh` and `fad` channels. 
-- `nadh_input_type`, `nadh_imaging_modality`, `fad_input_type`, `fad_imaging_modality`: the [decay type](#decay-type) for each channel. If they share the same imaging modality, the decay types should be the same. 
+- `nadh_input_type`, `nadh_imaging_modality`, `fad_input_type`, `fad_imaging_modality`: the [decay type](#decay-type) for each channel. If they share the same imaging modality, the input types should be the same. The only imaging modality supported by FLIM Playground is `FLIM`, therefore the input_type for all channels should be from one of the [decay types](data_extraction_config.qmd#decay-types). 
 - `nadh_Lifetime fit free`, `nadh_Intensity morphology`, `nadh_Lifetime fit`,`fad_Intensity morphology`, `fad_Intensity texture`, `fad_Lifetime fit`: [feature extractors](#feature-extractors) for each channel. 
 - `nadh_channel`,`duration`, `fad_channel`, `time_bins`, `laser_rate`: the [decay info](#decay-info) for each channel and info shared by all channels. 
 
