@@ -141,7 +141,7 @@ Once the user is satisfied with the calibration settings ([fitting options](#fit
 
 ![](extraction_ui_shots/calibration_confirm.png){width=60% fig-align=center}
 
-Once confirmed, on the left, it will ask the user either they want to proceed to apply the calibration settings to the downstream extractors, or they want to go back. They can also save the settings to the metadata file.  
+Once confirmed, on the left, it will ask the user either they want to proceed to apply the calibration settings to the downstream extractors, or they want to go back. They can also save the updated settings (fitting options and shift values) to the metadata file.  
 
 ![](extraction_ui_shots/calibration_done.png){width=60% fig-align=center #calibration-done}
 

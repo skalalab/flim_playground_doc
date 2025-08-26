@@ -59,8 +59,8 @@ Since the [2D decay](#2d-decay) file does not provide the `duration` and the num
 
 It supports two calibration methods for phasor analysis:
 
-- [IRF shift-based calibration](numerical_feature_extraction.qmd#irf-shift-calibration)
-- [Reference dye-based calibration](numerical_feature_extraction.qmd#reference-dye-calibration)
+- [IRF shift-based calibration](numerical_feature_extraction.qmd#irf-shift)
+- [Reference dye-based calibration](numerical_feature_extraction.qmd#reference-dye)
 
 Since instrumental response function (IRF) is channel-specific, it is set in the [per-channel settings](#per-channel-settings). The reference dye-based calibration is channel-agnostic. 
 

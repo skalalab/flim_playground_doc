@@ -48,7 +48,7 @@ IRF must be a 1D array. Currently, the supported formats are (extendable to more
 If the decay type is [3D/4D pixel-prefitted](data_extraction_config.qmd#3d4d-pixel-prefitted), the user can provide pixel-prefitted lifetime feature files. 
 
 - `.asc`: a 2D array in spatial dimensions, with each (row, column) has the value of the lifetime feature (e.g. `a1`: the fraction of the lifetime component 1) of that pixel, output from [SPCImage](https://www.becker-hickl.com/products/spcimage/). 
-- The other pixel-prefitted features are inferred from the `a1` file, by replaing `a1[%]` in the file name with `a2[%]`, `a3[%]`, `t1`, etc. 
+- Depending on your chosen number of lifetime components, the other pixel-prefitted features files will be included and their names are inferred from the `a1` file, by replacing `a1[%]` in the file name with `a2[%]`, `a3[%]`, `t1`, etc. 
 
 ## Reference Dye
 If the reference dye-based calibration is chosen, the user should provide the reference dye file. 

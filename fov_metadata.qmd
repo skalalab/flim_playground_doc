@@ -33,7 +33,7 @@ See [feature extractor config](data_extraction_config.qmd#feature-extractor) for
 
 See [decay info config](data_extraction_config.qmd#decay-info) for more details. The decay info are editable here. 
 
-![](extraction_ui_shots/fov_decay.png){width=60% fig-align=center}
+![](extraction_ui_shots/fov_decay.png){width=60% fig-align=center #laser-frequency}
 
 ### 2D Decay-specific
 

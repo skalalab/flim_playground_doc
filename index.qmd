@@ -19,6 +19,22 @@ To quickly try out different analysis methods, download this [sample dataset] an
 
 Due to the online limitation, extracting features from raw data is not available in the demo. Read on to learn more about the system, including how to [download](#download) and use the desktop app, starting from processing raw decay data and ending with gaining insights.
 
+# Installation
+
+The system is built entirely in Python and is open-source. 
+
+## Download
+Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground) and double click it to run. Releases are available for Windows 11 and Mac OS 15. If your operating system is not either of these, you can build it yourself by following the instructions below.
+
+## Build it yourself
+1. Clone the repo and navigate into the repository once cloned.
+
+2. Install the python environment
+    - Install uv if not yet installed
+    - run `uv sync`
+3. Build the app
+    - run `pyinstaller Flim-Playground.spec --clean`
+
 # Introduction
 
 Fluorescence lifetime imaging microscopy (FLIM) measures the time it takes for a fluorescent molecule from being excited by a pulse of light (entering excited state) to emitting light (returning to the ground state). It is sensitive to changes in fluorophore microenvironment including conformational changes with protein binding and the presence of quenchers. Coupled with modern automated cell-segmentation methods [@stringer2021], FLIM enables single-cell analyses that reveal biological heterogeneity.
@@ -106,20 +122,3 @@ Data Analysis addresses the fragmentation among analysis methods by adopting a [
 The design is facilitated by the [data analysis configuration](data_analysis_config.qmd) module: it will make sure user's own datasets can utilize the analysis methods provided by FLIM Playground. If user uses the Data Extraction to extract features, the analysis methods will be automatically configured. 
 
 INSERT FIGURE HERE (FIGURE 2)
-
-## Deployment
-
-The system is built entirely in Python and is open-source. 
-
-### Download
-Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground) and double click it to run. Releases are available for Windows 11 and Mac OS 15. If your operating system is not either of these, you can build it yourself by following the instructions below.
-
-### Build it yourself
-1. Clone the repo and navigate into the repository once cloned.
-
-2. Install the python environment
-    - Install uv if not yet installed
-    - run `uv sync`
-3. Build the app
-    - run `pyinstaller Flim-Playground.spec --clean`
-
