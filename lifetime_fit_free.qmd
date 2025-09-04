@@ -14,9 +14,37 @@ If the chosen [calibration method](data_extraction_config.qmd#calibration-method
 
 ### Phasor coordinates
 
-FLIM Playground uses the `phasor_from_signal` function from the [phasorpy](https://www.phasorpy.org/) package to calculate the uncalibrated phasor coordinates `G_raw` and `S_raw`, `G_raw_2nd` and `S_raw_2nd`, the first and second harmonics' real and imaginary parts, from the cell decay curve.
+FLIM Playground uses the [`phasor_from_signal`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal) function from the [phasorpy](https://www.phasorpy.org/) package to calculate the uncalibrated phasor coordinates `G_raw` and `S_raw`, `G_raw_2nd` and `S_raw_2nd`, the first and second harmonics' real and imaginary parts, from the cell decay curve.
 
-Either `G_irf`, `S_irf`, `G_irf_2nd`, and `S_irf_2nd` from the IRF, or `ref_mean`, `ref_real`, `ref_imag` from the reference dye, depending on the chosen [calibration method](data_extraction_config.qmd#calibration-method), are calculated using the same function.  
+Either `G_irf`, `S_irf`, `G_irf_2nd`, and `S_irf_2nd` from the IRF, or `ref_mean`, `ref_real`, `ref_imag` from the reference dye, depending on the chosen [calibration method](data_extraction_config.qmd#calibration-method), are calculated using the same function.
+
+Mathmatically, the raw phasor coordinates are calculated as (copied from the [phasorpy](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal) documentation):
+
+$$
+F_{\mathrm{DC}}=\frac{1}{K}\sum_{k=0}^{K-1}F_k,\quad
+G=\frac{1}{F_{\mathrm{DC}}}\frac{1}{K}\sum_{k=0}^{K-1}F_k\cos\!\left(2\pi h \frac{k}{K}\right),\quad
+S=\frac{1}{F_{\mathrm{DC}}}\frac{1}{K}\sum_{k=0}^{K-1}F_k\sin\!\left(2\pi h \frac{k}{K}\right)
+$$
+where $K$ is the number of time bins, $F_k$ is the decay curve, and $h$ is the harmonic number. It is frequency ($f$) and time ($T$) independent because it assumes the time curve comes from one period and time bins are evenly spaced. 
+
+But there are cases when the decay curve is truncated due to the deadtime of the system. For example, when $f = 0.08 GHz$, instead of $T = 12.5 ns$, the time curve is truncated to $T = 10 ns$. In this case, the phasor coordinates of IRF and the decay curves of both harmonics are calculated as:
+
+$$
+\begin{aligned}
+t_k = k\,(T/K)\;\;(k=0,\ldots,K-1),\quad
+&\omega = 2\pi f, \quad
+g_{\mathrm{raw}}
+=\frac{\sum_{k=0}^{K-1} F_k \cos\!\big(h\,\omega\, t_k\big)}
+        {\sum_{k=0}^{K-1} F_k},\qquad
+s_{\mathrm{raw}}
+=\frac{\sum_{k=0}^{K-1} F_k \sin\!\big(h\,\omega\, t_k\big)}
+        {\sum_{k=0}^{K-1} F_k}
+\end{aligned}
+$$
+
+The two formulas are equivalent when $fT = 1$.
+
+### Calibration
 
 To get the calibrated phasor coordinates `G`, `S`, `G_2nd`, and `S_2nd`, FLIM Playground uses either
 ```python
