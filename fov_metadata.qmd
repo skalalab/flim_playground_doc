@@ -5,7 +5,7 @@ It is the first step in the [Data Extraction](data_extraction.qmd) workflow. It 
 
 It is divided into two sections: 
 
-- The left 1/3 of the screen is the [metadata of FOVs](#metadata), inherited from the [Data Extraction Configuration](data_extraction_config.qmd) step. 
+- The left 1/3 of the screen is the metadata configuration panel, inherited from the [Data Extraction Configuration](data_extraction_config.qmd) step. 
 - The right 2/3 shows the extraction status for all FOVs. 
 
 # Metadata 

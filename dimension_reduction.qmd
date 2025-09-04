@@ -22,10 +22,10 @@ Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochasti
 Hyperparameters really matter. So we provide a set of interactive widgets to help users to change the hyperparameters and see their effects on the dimension reduction in real time. 
 
 #### UMAP
-FLIM Playground uses the `umap-learn` implementation of UMAP. It chooses to expose `n_neighbors` and `min_dist`for the user to tweak. Other hyperparameters are set to default values. See [here](https://umap-learn.readthedocs.io/en/latest/parameters.html) for the default values.
+FLIM Playground uses the `umap-learn` implementation of UMAP. It chooses to expose `n_neighbors` and `min_dist`for the user to tweak. Other hyperparameters are set to [default values](https://umap-learn.readthedocs.io/en/latest/parameters.html).
 
 #### t-SNE
-FLIM Playground uses the `sklearn.manifold.TSNE` implementation of t-SNE. It chooses to expose `perplexity` and `early_exaggeration` for the user to tweak. Other hyperparameters are set to default values. See [here](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html) for the default values.
+FLIM Playground uses the `sklearn.manifold.TSNE` implementation of t-SNE. It chooses to expose `perplexity` and `early_exaggeration` for the user to tweak. Other hyperparameters are set to [default values](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html).
 
 
 

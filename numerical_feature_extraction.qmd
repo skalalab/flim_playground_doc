@@ -119,7 +119,7 @@ User get to choose between the following two methods to calibrate the IRF shift 
 
 ### IRF Shift
 
-It is performed similarly to the [fit calibration](#fit-calibration) steps, but in the second step, the shift will not be optimized(fitted). It shares the [same interface](#irf-shift) as the [fit calibration](#fit-calibration) step, where a scatter plot of the shift values will be displayed for each channel, only that the plot is not interactive to show the fit. Instead, it will output the shift that maximizes the cross-correlation between the IRF and the decay. If `Fix the Shift` is selected, user can specify the shift value that will be applied to all fields of view. Otherwise, the shift value is chosen to be the one that maximizes the cross-correlation between the IRF and the decay.
+It is performed similarly to the [fit calibration](#fit-calibration) steps, but in the second step, the shift will not be optimized(fitted). It shares the [same interface](#irf-shift) as the [fit calibration](#fit-calibration) step, where a scatter plot of the shift values will be displayed for each channel, only that the plot is not interactive to show the fit. Instead, it will output the shift that maximizes the cross-correlation between the IRF and each decay. If `Fix the Shift` is selected, user can specify the shift value that will be applied to all fields of view. Otherwise, the shift value is chosen to be the one that maximizes the cross-correlation between the IRF and the decay.
 
 ::: {.callout-note}
 If both the `Lifetime fit` and `Lifetime fit free` feature extractors are selected for this channel, the IRF shift will be calibrated using [fit](#fit-calibration) and reuse the shift value for the `Lifetime fit free` feature extractor. 
