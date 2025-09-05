@@ -1,5 +1,5 @@
 # Morphological Features
-FLIM Playground extracts single-cell morphological features based on the cell ROI mask of each *channel*. By inputting the ROI mask to []`skimage.measure.regionprops`](https://scikit-image.org/docs/stable/api/skimage.measure.html#skimage.measure.regionprops), the following features are extracted:
+FLIM Playground extracts single-cell morphological features based on the cell ROI mask of each *channel*. By inputting the ROI mask to [`skimage.measure.regionprops`](https://scikit-image.org/docs/stable/api/skimage.measure.html#skimage.measure.regionprops), the following features are extracted:
 
 - `area`: the number of pixels in the ROI. 
 - `perimeter`: length of the ROI boundary in pixels.
@@ -14,7 +14,7 @@ $e = \frac{c}{a}, \quad e \in [0,1)$, where $a$ is the semi-major axis length, $
 - `circularity`: describes how close the ROI is to a perfect circle. It is defined as $\text{circularity} = \frac{4 \pi A_{\text{ROI}}}{P_{\text{ROI}}^2}, \quad \text{circularity} \in (0,1]$, where $A_{\text{ROI}}$ is the area of the region and $P_{\text{ROI}}$ is its perimeter. A value of $1$ corresponds to a perfect circle.
 
 
-Features names in the final dataset will have the prefix set to be the combination of the feature extractor name (i.e. `Intensity morphology`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Intensity morphology_nadh: area` means the area of each cell in the NAD(P)H channel. 
+Feature names in the final dataset will have the prefix set to be the combination of the feature extractor name (i.e. `Intensity morphology`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Intensity morphology_nadh: area` means the area of each cell in the NAD(P)H channel. 
 
 
 

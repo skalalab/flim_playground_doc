@@ -10,7 +10,7 @@ It is divided into two sections:
 
 # Metadata 
 
-Metadata are configured earlier in the [Data Extraction Configuration](data_extraction_config.qmd) step and copied here. Some fields remain editable for flexibility, while others are fixed to ensure usability. Non-editable fields can be modified in the Data Extraction Configuration step. After save the modification and go back to here and refresh the page, the changes will be reflected. 
+Metadata are configured earlier in the [Data Extraction Configuration](data_extraction_config.qmd) step and copied here. Some fields remain editable for flexibility, while others are fixed to ensure usability. Non-editable fields can be modified in the Data Extraction Configuration step. After saving your modifications, return to this page and refresh it to see the changes. 
 
 ## Decay Type
 
@@ -29,9 +29,9 @@ See [feature extractor config](data_extraction_config.qmd#feature-extractor) for
 
 ![](extraction_ui_shots/fov_feature_extractor.png){width=60% fig-align=center}
 
-## Decay info
+## Decay Info
 
-See [decay info config](data_extraction_config.qmd#decay-info) for more details. The decay info are editable here. 
+See [decay info config](data_extraction_config.qmd#decay-info) for more details. The decay information is editable here. 
 
 ![](extraction_ui_shots/fov_decay.png){width=60% fig-align=center #laser-frequency}
 
@@ -50,7 +50,7 @@ User can edit the file suffixes here.
 
 ## Reference Dye
 
-If the selected fit free calibration method is [reference dye](data_extraction_config.qmd#calibration-method), the user can specify the reference dye file path and the refernce dye lifetime here, the default of those are copied from the reference dye config. 
+If the selected fit free calibration method is [reference dye](data_extraction_config.qmd#calibration-method), the user can specify the reference dye file path and the reference dye lifetime here, the default of those are copied from the reference dye config. 
 
 ![](extraction_ui_shots/fov_reference_dye.png){width=50% fig-align=center}
 
@@ -98,11 +98,11 @@ If the decay type is [3D/4D decay](data_extraction.qmd#3d4d-decay), FLIM Playgro
 
 ### Channel Assignment
 
-If the decay file asscoiated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channal number for that channel. For each channel name, it will list all non-empty channels as potential channel to be assigned. If there is only one, the assignment is automatic. If there are multiple, the user needs to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there is any. 
+If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channel to be assigned. If there is only one, the assignment is automatic. If there are multiple, the user needs to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there is any. 
 
 ### Reference Dye
 
-If the [reference dye file path](#reference-dye) is specified, FLIM Playground will try to look for and read the file. It expexts a `tiff` or `tif` file that contains a 3D array, with one of them as the time dimension. It will try to match the time dimension with the time dimension of the decay file. If it cannot find the matching time dimension, it will complain. 
+If the [reference dye file path](#reference-dye) is specified, FLIM Playground will try to look for and read the file. It expects a `tiff` or `tif` file that contains a 3D array, with one of them as the time dimension. It will try to match the time dimension with the time dimension of the decay file. If it cannot find the matching time dimension, it will complain. 
 
 ![](extraction_ui_shots/fov_rd_not_found.png){width=90% fig-align=center}
 ![](extraction_ui_shots/fov_rd_not_match.png){width=90% fig-align=center}

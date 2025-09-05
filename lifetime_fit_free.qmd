@@ -2,13 +2,13 @@
 
 Phasor analysis provides a fast, model-free view of lifetimes. Mono-exponential decays fall on the universal semicircle while mixtures lie inside as linear combinations, so clusters reveal distinct species and their fractional contributions. FLIM Playground currently extracts cell-level phasor features: `G`, `S`, `Tau_phase`, `Tau_m`, `G_2nd` (2nd harmonic), and `S_2nd`. 
 
-Fit-free features names in the final dataset will have the prefix set to be the combination of the feature extractor name (i.e. `Lifetime fit`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Lifetime fit free_nadh: G` means the $G$ coordinate for this cell in the NAD(P)H channel. The [Phasor analysis](phasor_analysis.qmd) method can take in the final dataset and plot cells in the phasor space for harmonic of choice.  
+Fit-free features in the final dataset will have the prefix set to be the combination of the feature extractor name (i.e. `Lifetime fit`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Lifetime fit free_nadh: G` means the $G$ coordinate for this cell in the NAD(P)H channel. The [Phasor analysis](phasor_analysis.qmd) method can take in the final dataset and plot cells in the phasor space for harmonic of choice.  
 
 ## Preprocessing
 
 It sums up all the pixel decays belonging to the same cell ROI labeled by the ROI [mask](data_extraction.qmd#mask) as one decay curve [@samimi25]. The phasor features will be calculated from the summed decay curve. 
 
-If the chosen [calibration method](data_extraction_config.qmd#calibration-method) is IRF shift Calibration, FLIM Playground will shift the IRF using the the shift values and subtract the estimated offset as described in the [IRF shift Calibration step](numerical_feature_extraction.qmd#irf-shift). 
+If the chosen [calibration method](data_extraction_config.qmd#calibration-method) is IRF shift Calibration, FLIM Playground will shift the IRF using the shift values and subtract the estimated offset as described in the [IRF shift Calibration step](numerical_feature_extraction.qmd#irf-shift). 
 
 ## Phasor features
 
@@ -22,7 +22,7 @@ It uses the [`phasor_from_signal`](https://www.phasorpy.org/docs/stable/api/phas
 
 Either `G_irf`, `S_irf`, `G_irf_2nd`, and `S_irf_2nd` from the IRF, or `ref_mean`, `ref_real`, `ref_imag` from the reference dye, depending on the chosen [calibration method](data_extraction_config.qmd#calibration-method), are calculated using the same function.
 
-Mathmatically, the raw phasor coordinates are calculated as (copied from the [phasorpy](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal) documentation):
+Mathematically, the raw phasor coordinates are calculated as (copied from the [phasorpy](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal) documentation):
 
 $$
 F_{\mathrm{DC}}=\frac{1}{K}\sum_{k=0}^{K-1}F_k,\quad

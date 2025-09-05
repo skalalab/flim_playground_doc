@@ -1,7 +1,7 @@
 # Numerical Feature Extraction
 In this step, FLIM Playground extracts *single cell* numerical features from the raw data in a folder. For each channel, the features to be extracted are specified in the [user-selected feature extractors](data_extraction_config.qmd#feature-extractor). The available feature extractors are:
 
-- [Lifetime fit](lifetime_fit.qmd): fit exponential models to decay curves to estimate lifetimes and per-exponential fractions by minimizing a objective function. 
+- [Lifetime fit](lifetime_fit.qmd): fit exponential models to decay curves to estimate lifetimes and per-exponential fractions by minimizing an objective function. 
 - [Lifetime fit free](lifetime_fit_free.qmd): transform decay curves to phasor space using Fourier transform to obtain phasor coordinates. 
 - [Intensity Morphology](intensity_morphology.qmd): morphological features of single cell ROI masks
 - [Intensity Texture](intensity_texture.qmd): texture features of single cell ROI intensity images
@@ -34,14 +34,14 @@ Calibration in FLIM is essential because raw decays are convolved with the instr
 
 ## Fit Calibration
 
-During different experiments the IRF may shift differently with respect to the measured decay. Before applying reconvolution fitting, the IRF shift needs to be estimated for each channel if the the `Lifetime fit` feature extractor is selected for the channel. 
+During different experiments the IRF may shift differently with respect to the measured decay. Before applying reconvolution fitting, the IRF shift needs to be estimated for each channel if the `Lifetime fit` feature extractor is selected for the channel. 
 
 It is performed in two steps: 
 
 1. Gather the high signal-to-noise ratio (SNR) decay curves 
 2. For each curve, perform reconvolution fitting and set shift value as the free parameter to be optimized/fitted. 
 
-The distribution of the the shift values will be displayed as an interactive scatter plot. When clicking on a point, the corresponding decay curve with the fitted curve and the key statistics will be displayed for diagnostics. Based on the distribution or using certain prior knowledge, the user can specify the shift value applied to all fields of view (if `Fix the Shift` is selected, see [fitting options](#fitting-options)), or use the fov-specific shift value found by the fitting (if `Fix the Shift` is deselected). 
+The distribution of the shift values will be displayed as an interactive scatter plot. When clicking on a point, the corresponding decay curve with the fitted curve and the key statistics will be displayed for diagnostics. Based on the distribution or using certain prior knowledge, the user can specify the shift value applied to all field of views (if `Fix the Shift` is selected, see [fitting options](#fitting-options)), or use the fov-specific shift value found by the fitting (if `Fix the Shift` is deselected). 
 
 ![](extraction_ui_shots/irf_shift.png){#irf-shift}
 
@@ -51,7 +51,7 @@ The high SNR decay curves are constructed automatically based on the [decay type
 
 ### Reconvolution Fitting
 
-Fitting is essentially a optimization problem: it minimizes the difference between the fitted curve and the measured curve. The fitted curve is modeled by a $n^{th}$ component exponential function convolved with the shifted IRF, and the difference is modeled mathmatically as a objective metric. Therefore, user is provide with controls over two parts of the fitting process through the [fitting options panel](#fitting-options): 
+Fitting is essentially an optimization problem: it minimizes the difference between the fitted curve and the measured curve. The fitted curve is modeled by a $n^{th}$ component exponential function convolved with the shifted IRF, and the difference is modeled mathmatically as a objective metric. Therefore, user is provide with controls over two parts of the fitting process through the [fitting options panel](#fitting-options): 
 
 1. How to construct the objective metric
 2. How to perform the optimization
@@ -92,7 +92,7 @@ Mathmatically, only the time bins within the T1 and T2 gates will be used to cal
 #### Metric
 ![](extraction_ui_shots/metric.png){width=20% fig-align=center}
 
-Maximum Likelihood Estimation (`MLE`): it estimates the parameters by maximizing the likelihood function, which is the probability of the measured data given the model parameters. A mathematical convenient way to do this is to minimize the negative log-likelihood function: 
+Maximum Likelihood Estimation (`MLE`): it estimates the parameters by maximizing the likelihood function, which is the probability of the measured data given the model parameters. A mathematically convenient way to do this is to minimize the negative log-likelihood function: 
 
 $$
 \text{NLL}(\theta; t_s,t_e)
@@ -115,17 +115,17 @@ After constructing the objective metric, the fitting mode is used to determine t
 
 ## Fit Free Calibration
 
-User get to choose between the following two methods to calibrate the IRF shift in the [configuration step](data_extraction_config.qmd#calibration-method). 
+Users get to choose between the following two methods to calibrate the IRF shift in the [configuration step](data_extraction_config.qmd#calibration-method). 
 
 ### IRF Shift
 
-It is performed similarly to the [fit calibration](#fit-calibration) steps, but in the second step, the shift will not be optimized(fitted). It shares the [same interface](#irf-shift) as the [fit calibration](#fit-calibration) step, where a scatter plot of the shift values will be displayed for each channel, only that the plot is not interactive to show the fit. Instead, it will output the shift that maximizes the cross-correlation between the IRF and each decay. If `Fix the Shift` is selected, user can specify the shift value that will be applied to all fields of view. Otherwise, the shift value is chosen to be the one that maximizes the cross-correlation between the IRF and the decay.
+It is performed similarly to the [fit calibration](#fit-calibration) steps, but in the second step, the shift will not be optimized (fitted). It shares the [same interface](#irf-shift) as the [fit calibration](#fit-calibration) step, where a scatter plot of the shift values will be displayed for each channel, only that the plot is not interactive to show the fit. Instead, it will output the shift that maximizes the cross-correlation between the IRF and each decay. If `Fix the Shift` is selected, user can specify the shift value that will be applied to all field of views. Otherwise, the shift value is chosen to be the one that maximizes the cross-correlation between the IRF and the decay.
 
 ::: {.callout-note}
 If both the `Lifetime fit` and `Lifetime fit free` feature extractors are selected for this channel, the IRF shift will be calibrated using [fit](#fit-calibration) and reuse the shift value for the `Lifetime fit free` feature extractor. 
 :::
 
-In addition to shift the IRF based on the chosen shift values, each decay curve will be sutracted an offset value and clip to 0 if the time bin is negative after the subtraction. The offset is chosen to be the minimum of the two values: the median of the first 20th percentile of the decay curve (head), and the median of the last 10th percentile of the decay curve (tail). 
+In addition to shift the IRF based on the chosen shift values, each decay curve will be subtracted an offset value and clip to 0 if the time bin is negative after the subtraction. The offset is chosen to be the minimum of the two values: the median of the first 20th percentile of the decay curve (head), and the median of the last 10th percentile of the decay curve (tail). 
 
 Finally, the signals of the shifted IRF are deconvolved from the offset-subtracted decay curves using [`phasor.phasor_divide`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_divide) from the `phasorpy` package. 
 
@@ -141,7 +141,7 @@ Once the user is satisfied with the calibration settings ([fitting options](#fit
 
 ![](extraction_ui_shots/calibration_confirm.png){width=60% fig-align=center}
 
-Once confirmed, on the left, it will ask the user either they want to proceed to apply the calibration settings to the downstream extractors, or they want to go back. They can also save the updated settings (fitting options and shift values) to the metadata file.  
+Once confirmed, the left panel prompts the user to either apply the calibration settings to the downstream extractors or calibrate again. They can also save the updated settings (fitting options and shift values) to the metadata file.  
 
 ![](extraction_ui_shots/calibration_done.png){width=60% fig-align=center #calibration-done}
 

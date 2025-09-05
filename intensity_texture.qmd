@@ -1,5 +1,5 @@
 # Textural Features
-FLIM Playground extracts single-cell texture features based on the intensity image and the ROI mask of each *channel*. For an example application, see this [paper](https://pubmed.ncbi.nlm.nih.gov/31081599/) that used cellprofiler to extract those texture features. 
+FLIM Playground extracts single-cell texture features based on the intensity image and the ROI mask of each *channel*. For an example application, see this [paper](https://pubmed.ncbi.nlm.nih.gov/31081599/) that used CellProfiler to extract those texture features. 
 
 The first step is to create a single cell intensity image for each cell based on the ROI mask and the intensity image. Then a list of texture features (it can be extended in the future) is calculated:  
 
@@ -19,4 +19,4 @@ It is the displacement, in Euclidean distance of pixels, of the intensity-weight
 ## Intensity 
 The sum of the intensity of the cell intensity image. 
 
-Features names in the final dataset will have the prefix set to be the combination of the feature extractor name (i.e. `Intensity texture`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Intensity texture_nadh: granularity_1` means the percentage of intensity removed when bright objects of 1 pixel in diameter are removed for the NAD(P)H channel. 
+Feature names in the final dataset will have the prefix set to be the combination of the feature extractor name (i.e. `Intensity texture`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Intensity texture_nadh: granularity_1` means the percentage of intensity removed when bright objects of 1 pixel in diameter are removed for the NAD(P)H channel. 

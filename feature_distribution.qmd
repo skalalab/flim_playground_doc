@@ -58,7 +58,7 @@ The classification result can be saved by clicking:
 
 ![](analysis_ui_shots/2d_gmm_download.png){width=20% fig-align=center}
 
-The classification is done by [hard assignment](feature_histogram.qmd#hard-assignment) to determine the which GMM component each data point belongs to. It will create a new categorical feature column called `2D_GMM_group` to the filtered dataset, the values of which are `{color_group}_group1`, `{color_group}_group2`, etc. The downloaded dataset will keep all the features plus the new categorical feature column, which will be recognized by any methods in Data Analysis as a categorical feature like others, and rows that pass the [filters](data_analysis.qmd#filter-widgets).
+The classification is done by [hard assignment](feature_histogram.qmd#hard-assignment) to determine which GMM component each data point belongs to. It will create a new categorical feature column called `2D_GMM_group` to the filtered dataset, the values of which are `{color_group}_group1`, `{color_group}_group2`, etc. The downloaded dataset will keep all the features plus the new categorical feature column, which will be recognized by any methods in Data Analysis as a categorical feature like others, and rows that pass the [filters](data_analysis.qmd#filter-widgets).
 
 ### Regression line
 

@@ -4,7 +4,7 @@ To visualize and represent high-dimensional data in a meaningful way so that we 
 
 Principal Component Analysis (PCA) is a linear dimension reduction method that projects the data onto the directions of the largest variance. It is fast, deterministic, and easier to interpret (PCA loadings are provided), but it is limited by the linear nature of the projection. For a detailed discussion of PCA, please refer to [this post](https://github.com/skalalab/dimension_reduction/blob/main/pca.ipynb). 
 
-Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochastic Neighbor Embedding (t-SNE) are non-linear dimension reduction methods that can capture more complex patterns in the data. They are more flexible and can handle non-linear relationships between features, but they are more computationally expensive, less interpretable, not deterministics (FLIM Playground uses a fixed random seed (42) to ensure reproducibility), and dependent on the hyperparameters. Here is a [post](https://pair-code.github.io/understanding-umap/) that explains how UMAP and t-SNE work at a high level and the meaning of some of the hyperparameters. 
+Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochastic Neighbor Embedding (t-SNE) are non-linear dimension reduction methods that can capture more complex patterns in the data. They are more flexible and can handle non-linear relationships between features, but they are more computationally expensive, less interpretable, not deterministic (FLIM Playground uses a fixed random seed (42) to ensure reproducibility), and dependent on the hyperparameters. Here is a [post](https://pair-code.github.io/understanding-umap/) that explains how UMAP and t-SNE work at a high level and the meaning of some of the hyperparameters. 
 
 # Components
 
@@ -22,7 +22,7 @@ Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochasti
 Hyperparameters really matter. So we provide a set of interactive widgets to help users to change the hyperparameters and see their effects on the dimension reduction in real time. 
 
 #### UMAP
-FLIM Playground uses the `umap-learn` implementation of UMAP. It chooses to expose `n_neighbors` and `min_dist`for the user to tweak. Other hyperparameters are set to [default values](https://umap-learn.readthedocs.io/en/latest/parameters.html).
+FLIM Playground uses the `umap-learn` implementation of UMAP. It chooses to expose `n_neighbors` and `min_dist` for the user to tweak. Other hyperparameters are set to [default values](https://umap-learn.readthedocs.io/en/latest/parameters.html).
 
 #### t-SNE
 FLIM Playground uses the `sklearn.manifold.TSNE` implementation of t-SNE. It chooses to expose `perplexity` and `early_exaggeration` for the user to tweak. Other hyperparameters are set to [default values](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html).

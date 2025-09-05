@@ -1,24 +1,26 @@
 # Lifetime Features (Fit)
 
-FLIM Playground extracts cell-level lifetime fitting features in this feature extractor, including the fraction of each lifetime component ($\alpha_i$) and their lifetime ($\tau_i$), and mean lifetime ($\tau_{mean}$). 
+FLIM Playground extracts cell-level lifetime fitting features in this feature extractor, including the fraction of each lifetime component ($\alpha_i$), their lifetime ($\tau_i$), and mean lifetime ($\tau_{mean}$). 
+
+$$I(t) = \sum_i \alpha_i \, e^{-t/\tau_i}$$
 
 ## Fitting 
 
-If the decays have not been pre-fitted, FLIM Playground will use the finalized [fitting options](#fitting-options) and the same [reconvolution fitting process](numerical_feature_extraction.qmd#reconvolution-fitting) as the [irf shift calibration step](numerical_feature_extraction.qmd#fit-calibration) to fit the decay curves, with the only difference that the IRF shift is no longer a free variable to be optimized.
+If the decays have not been pre-fitted, FLIM Playground will use the finalized [fitting options](#fitting-options) and the same [reconvolution fitting process](numerical_feature_extraction.qmd#reconvolution-fitting) as the [irf shift calibration step](numerical_feature_extraction.qmd#fit-calibration) to fit the decay curves, with the only difference being that the IRF shift is no longer a free variable to be optimized.
 
 [Otherwise](#pixel-prefitted), FLIM Playground will use the [pre-fitted values](data_extraction.qmd#a1) to calculate the fitting features. 
 
-Fitting features names in the final dataset will have the prefix set to be the combination of the feature extractor name (i.e. `Lifetime fit`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Lifetime fit_nadh: a1` means the fraction of the first lifetime component for the NAD(P)H channel. 
+Fitting features in the final dataset will have the prefix set to be the combination of the feature extractor name (i.e. `Lifetime fit`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Lifetime fit_nadh: a1` means the fraction of the first lifetime component for the NAD(P)H channel. 
 
 ### Preprocessing 
 
 It sums up all the pixel decays belonging to the same cell ROI labeled by the ROI [mask](data_extraction.qmd#mask) as one decay curve [@samimi25]. The ROI summing reduces variability and bias and allows for short integration times at acquisition in exchange for sub-cellular granularity. Also, it makes FLIM Playground, a single thread Python app running on CPU, possible to fit curves in a reasonable time. 
 
-It also shifts the IRF using the the shift values from the [IRF shift Calibration](numerical_feature_extraction.qmd#fit-calibration). To shift an IRF, FLIM Playground upsamples the IRF 10 times and uses linear interpolation to fill the gaps. Then it shifts the IRF by the shift values $\times 10$ and downsamples the IRF back to the original size. 
+It also shifts the IRF using the shift values from the [IRF shift Calibration](numerical_feature_extraction.qmd#fit-calibration) step. To shift an IRF, FLIM Playground upsamples the IRF 10 times and uses linear interpolation to fill the gaps. Then it shifts the IRF by the shift values $\times 10$ and downsamples the IRF back to the original size. 
 
 ### Fraction of components
 
-In addition to the absolution amplitudes of each component directly from the fitting result, FLIM Playground calculates the fraction of each component, $\alpha_i$, as the amplitude of the component divided by the sum of all amplitudes. This normalization allows lifetime to be independent of the absolute intensity of the signal. 
+In addition to the absolute amplitudes of each component directly from the fitting result, FLIM Playground calculates the fraction of each component, $\alpha_i$, as the amplitude of the component divided by the sum of all amplitudes. This normalization allows lifetime to be independent of the absolute intensity of the signal. 
 
 ### Mean lifetime
 

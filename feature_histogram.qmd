@@ -1,5 +1,5 @@
 # Feature Histogram
-Feature histograms give an instant read-out of each group’s center, spread, skew and any multi-peaked shape that raw tables hide. Flim playground plots a histogram for each group based on the selected numerical feature, and the [Gaussian Mixture Model](#gaussian-mixture-model) mode can help find subcomponents of each histogram in an unsupervised way. To quantify the distribution hetergenity, normalized [H-index](#hetergeneity-index) is calculated for each group. 
+Feature histograms give an instant read-out of each group’s center, spread, skew and any multi-peaked shape that raw tables hide. FLIM Playground plots a histogram for each group based on the selected numerical feature, and the [Gaussian Mixture Model](#gaussian-mixture-model) mode can help find subcomponents of each histogram in an unsupervised way. To quantify the distribution heterogeneity, normalized [H-index](#heterogeneity-index) is calculated for each group. 
 
 # Components
 ![](analysis_ui_shots/feature_histogram.png){#feature-histogram-img fig-cap="Histogram Mode" fig-align=center}
@@ -44,15 +44,15 @@ A Gaussian Mixture Model (GMM) represents a dataset as a weighted sum of multipl
 - Keep only the *valid* models that contain components that have at least `Min Weight Threshold` weights (the weights of all components add to 1)
 - Choose the valid model with the lowest BIC score that penalizes the model complexity to avoid overfitting
 
-### Hetergeneity index 
-To quantify the subpopulation structure, based on the GMM fit, Flim playground computes an “H‑index” for each group as a weighted entropy‑distance: each component contributes according to its weight’s uncertainty ($-w_i \log w_i$) [@shannon1948] scaled by how far its mean $\mu_i$ sits from the overall mixture mean $\bar\mu = \sum_{i=1}^k w_i\,\mu_i$, normalized by the standard deviation of $\mu_i$s.  
+### Heterogeneity index 
+To quantify the subpopulation structure, based on the GMM fit, FLIM Playground computes an “H‑index” for each group as a weighted entropy‑distance: each component contributes according to its weight’s uncertainty ($-w_i \log w_i$) [@shannon1948] scaled by how far its mean $\mu_i$ sits from the overall mixture mean $\bar\mu = \sum_{i=1}^k w_i\,\mu_i$, normalized by the standard deviation of $\mu_i$s.  
 $$
 H =\sum_{i=1}^{k}\bigl(-w_i \log w_i\bigr)\,d_i, \qquad d_i \;=\;
 \frac{\lvert\mu_i - \bar{\mu}\rvert}{\sigma}
 $$
 
 ### Classification
-- The user can choose to perform [intersection thresholding](#intersection-thresholding) or [hard assignment](#hard-assignment) to determine the which GMM component each data point belongs to. It will create a new categorical feature column called `GMM_Group` (will be recognized by any methods in Data Analysis as a categorical feature like others) to the filtered dataset, the values of which are `{color_group}_1`, `{color_group}_2`, etc. The In the example above, the color groups are <span style="color: blue;">0.5hr</span> and <span style="color: orange;">4.5hr</span> because the user colors the data by `hour`. The classification result can be saved by clicking: 
+- The user can choose to perform [intersection thresholding](#intersection-thresholding) or [hard assignment](#hard-assignment) to determine the which GMM component each data point belongs to. It will create a new categorical feature column called `GMM_Group` (recognizable by methods in Data Analysis as a categorical feature) to the filtered dataset, the values of which are `{color_group}_1`, `{color_group}_2`, etc. In the example above, the color groups are <span style="color: blue;">0.5hr</span> and <span style="color: orange;">4.5hr</span> because the user colors the data by `hour`. The classification result can be saved by clicking: 
 
 ![](analysis_ui_shots/gmm_download.png){width=30% fig-align=center}
 
@@ -67,7 +67,7 @@ where $w_1, \mu_1, \sigma_1$ are the mixture weight, mean, and standard deviatio
 - The above equation can be formed as a quadratic equation and be solved for the unique root lying between $\mu_1$ and $\mu_2$. In practice, we bracket this interval and apply a robust one‐dimensional root-finding routine (e.g. Brent’s method) to compute intersection points. Data points are then assigned to the class corresponding to the interval in which they fall. 
 
 ::: {.callout-important}
-In rare cases when there are more than one intersection point, then intersection thresholding is not performed and the data point is assigned using hard assignment. 
+In rare cases when there is more than one intersection point, then intersection thresholding is not performed and the data point is assigned using hard assignment. 
 :::
 
 #### Hard assignment

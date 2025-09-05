@@ -26,7 +26,7 @@ Phasor coordinates of single cell ROIs from the selected channel and harmonic wi
 
 ![](analysis_ui_shots/kmeans_config.png){width=60% fig-align=center}
 
-K-means clustering will be performed given the number of clusters specified for each color group. Mathmatically, k-means clustering is an iterative algorithm that finds the best cluster assignment: what cluster with what centroid each point belongs to. The *best* is defined as the one that minimizes the sum of the squared distances between each point and the center of the cluster it belongs to. 
+K-means clustering will be performed given the number of clusters specified for each color group. Mathematically, k-means clustering is an iterative algorithm that finds the best cluster assignment: what cluster with what centroid each point belongs to. The *best* is defined as the one that minimizes the sum of the squared distances between each point and the center of the cluster it belongs to. 
 
 $$
 \min_{\{C_k\}_{k=1}^K}\;\sum_{k=1}^K\sum_{x_i\in C_k}\bigl\lVert x_i-\mu(C_k)\bigr\rVert_2^2,

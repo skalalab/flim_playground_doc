@@ -1,5 +1,5 @@
 # Classification
-This method provides a extendible set of machine learning classfiers and interactive widgets to help user perform classification. All the classifiers are implemented using `scikit-learn` and the performance metrics are calculated using `sklearn.metrics`. A fixed random seed (42) is used for all the classifiers to ensure reproducibility. 
+This method provides an extendible set of machine learning classfiers and interactive widgets to help user perform classification. All the classifiers are implemented using `scikit-learn` and the performance metrics are calculated using `sklearn.metrics`. A fixed random seed (42) is used for all the classifiers to ensure reproducibility. 
 
 # Components
 
@@ -26,16 +26,16 @@ The performance metrics plots are cut off in the screenshot. See the [performanc
 - Sampling methods: 
     - `None`: stratified random sampling of the data on classifcation classes, regardless of the class size. It is implemented using `train_test_split` from `sklearn.model_selection`. 
     - `Undersampling`: All classes are downsampled to the size of the smallest class. It is implemented using `RandomUnderSampler` from `imbalanced-learn`. 
-    - `Oversampling`: All classes are upsampled to the size of the largest class by ramdomly duplicating samples from minority classes. It is implemented using `RandomOverSampler` from `imbalanced-learn`. 
+    - `Oversampling`: All classes are upsampled to the size of the largest class by randomly duplicating samples from minority classes. It is implemented using `RandomOverSampler` from `imbalanced-learn`. 
 
 ![](analysis_ui_shots/sampling.png){width=20% fig-align=center}
 
 ::: {.callout-note}
-FLIM Playground applies a unit normalization (i.e. z-score) to the features before training if the chosen classifier is `SVM` or `Logistic Regression`, becuase they are sensitive to feature magnitudes, while `Random Forest` and `Gradient Boosting` are not. 
+FLIM Playground applies a unit normalization (i.e. z-score) to the features before training if the chosen classifier is `SVM` or `Logistic Regression`, because they are sensitive to feature magnitudes, while `Random Forest` and `Gradient Boosting` are not. 
 :::
 
 ### Performance Metrics
-To evaluate the performance of the classifiers, performace metrics visualizations are provided. 
+To evaluate the performance of the classifiers, performance metrics visualizations are provided. 
 
 #### Confusion Matrix
 We evaluated our trained classifier on the held-out test set and summarized its predictions with `sklearn.metrics.confusion_matrix`. In the binary case, it is represented as: 
@@ -61,7 +61,7 @@ A classifier usually outputs a score for each sample, to turn scores into hard l
 
 At the origin (0, 0), the threshold is 1, so the classifier predicts all samples as negative, making the false positive rate $\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}} = 0$ and the true positive rate $\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}} = 0$, i.e. the origin. At the point (1, 1), the threshold is 0, so the classifier predicts all samples as positive, making the false positive rate 1 and the true positive rate 1, i.e. the point (1, 1). 
 
-AUC summarizes the ROC curve by intergrating it from 0 to 1, so it is threshold-free and has a nice interpretation: it is the probability that the classifier assigns a higher score to a randomly chosen positive sample $X^+$ than to a randomly chosen negative sample $X^-$. 
+AUC summarizes the ROC curve by integrating it from 0 to 1, so it is threshold-free and has a nice interpretation: it is the probability that the classifier assigns a higher score to a randomly chosen positive sample $X^+$ than to a randomly chosen negative sample $X^-$. 
 
 To generalize to the $K$-class cases ($K > 2$), FLIM Playground chooses the One-vs-Rest (OvR) strategy. For each class $i$, it trains a binary classifier to predict the class $i$ against all other classes. The ROC curve is then computed and plotted for each class. 
 

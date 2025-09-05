@@ -11,13 +11,13 @@
 
 # Quick Start
 
-Welcome to the FLIM Playground 🥳🎉🥂! It is an interactive graphical user interface (GUI) that allows you to extract single cell features from FLIM raw data ([Data Extraction](data_extraction.qmd)) and analyze extracted features or datasets extracted yourself using a built-in reportoire of methods ([Data Analysis](data_analysis.qmd)). 
+Welcome to the FLIM Playground 🥳🎉🥂! It is an interactive graphical user interface (GUI) that allows you to extract single cell features from FLIM raw data ([Data Extraction](data_extraction.qmd)) and analyze extracted features or datasets extracted yourself using a built-in repertoire of methods ([Data Analysis](data_analysis.qmd)). 
 
 To quickly try out different analysis methods, download this [sample dataset] and try the [online demo](flim-playground.streamlit.app/). If you prefer to use your own data, read [data analysis configuration](data_analysis_config.qmd) to learn how to configure the system.
 
 ![](analysis_ui_shots/feature_comparison.png){width=100% fig-align=center}
 
-Due to the online limitation, extracting features from raw data is not available in the demo. Read on to learn more about the system, including how to [download](#download) and use the desktop app, starting from processing raw decay data and ending with gaining insights.
+Due to the online limitation, extracting features from raw data is not available in the demo. Read on to learn more about the system, including how to [download](#download) and use the desktop app, from processing raw decay data to gaining insights.
 
 # Installation
 
@@ -42,13 +42,13 @@ Fluorescence lifetime imaging microscopy (FLIM) measures the time it takes for a
 ::: {.callout-note collapse="true"}
 # Instrumentation
 
-To acquire FLIM data, a light source—typically a pulsed laser for time-domain methods or a modulated continuous-wave source for frequency-domain methods—is used to excite the fluorophore. The emission is detected using instrumentation capable of resolving fluorescence decay, such as time-correlated single-photon counting (TCSPC), time-gated detectors, or phase/modulation-based detection. In time-domain FLIM, the delay between excitation and photon arrival is measured, and often a histogram is built, with x-axis being the delay time and y-axis being the number of photons falling into each time bin. Similar to film (e.g. 24 frames per second) versus photo, FLIM has an additional dimension of time (e.g. 256 time bins per 12.5 nanoseconds) compared to intensity images. 
+To acquire FLIM data, a light source—typically a pulsed laser for time-domain methods or a modulated continuous-wave source for frequency-domain methods—is used to excite the fluorophore. The emission is detected using instrumentation capable of resolving fluorescence decay, such as time-correlated single-photon counting (TCSPC), time-gated detectors, or phase/modulation-based detection. In time-domain FLIM, the delay between excitation and photon arrival is measured, and often a histogram is built, with x-axis being the delay time and y-axis being the number of photons falling into each time bin. Similar to film (e.g., 24 frames per second) versus photo, FLIM has an additional dimension of time (e.g., 256 time bins per 12.5 nanoseconds) compared to intensity images. 
 
 In frequency-domain FLIM, the phase shift and modulation depth of the emission relative to the excitation are determined. 
 :::
 Because the FLIM workflow is [fragmented](#challenges) across [multiple levels](#levels-of-data) and [stages](#stages-of-workflow), researchers often rely on a patchwork of ad hoc scripts and specialized software. However, switching between methods or transitioning between stages usually requires coding expertise, introduces errors, and slows discovery. 
 
-**FLIM Playground** removes these hurdles with an interactive code free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and built-in repertoire of analytical methods with interactive widgets that encourage hypothesis driven, iterative exploration of large datasets. A modular architecture also enables incorporation of new algorithms as tools evolve.
+**FLIM Playground** removes these hurdles with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and built-in repertoire of analytical methods with interactive widgets that encourage hypothesis driven, iterative exploration of large datasets. A modular architecture also enables incorporation of new algorithms as tools evolve.
 
 ::: {.callout-important}
 # Scope of FLIM Playground
@@ -74,8 +74,8 @@ At each level (•), fragmentation stems from the diverse input types (◦).
   - Different calibration files
   - Different ROI masks
 - <span style="color: #d62728;">**Field of View (FOV)**</span>
-  - different file formats from different vendors (e.g. `.sdt`, `.ptu`)
-  - different dimensions (e.g. `XYT`, `CXYT`)
+  - different file formats from different vendors (e.g., `.sdt`, `.ptu`)
+  - different dimensions (e.g., `XYT`, `CXYT`)
 - <span style="color: #9467bd;">**Experiment**</span>
   - different treatment, different time points, different conditions, etc.
 
@@ -116,9 +116,20 @@ FLIM Playground divides the workflow into two independent sections:
 - [Data Extraction](data_extraction.qmd) that extracts features from the raw data
 - [Data Analysis](data_analysis.qmd) that analyzes the extracted features from the Data Extraction section or data extracted by other means using visualizations and statistical modeling.
 
-Data Extraction addresses the fragmentation among data types and extraction methods by adopting a channel-centric framework that offers flexibility without incurring too much overhead for the user. The framework is facilitated by the [data extraction configuration](data_extraction_config.qmd) module: after filling out the configuration once, the user can extract features from their own raw data.
+Data Extraction addresses the fragmentation among data types and extraction methods by adopting a [channel-centric framework](#data_extraction_config.qmd#channel-centric-framework) that offers flexibility without incurring too much overhead for the user. 
 
-Data Analysis addresses the fragmentation among analysis methods by adopting a [design](data_analysis.qmd#design) that allows all analysis methods to share the same interactive and frictionless exploration experience. 
-The design is facilitated by the [data analysis configuration](data_analysis_config.qmd) module: it will make sure user's own datasets can utilize the analysis methods provided by FLIM Playground. If user uses the Data Extraction to extract features, the analysis methods will be automatically configured. 
+Data Analysis addresses the fragmentation among analysis methods by deploying a [shared framework](#data_analysis.qmd#shared-interactive-widgets) across all analysis methods, enabling the same interactive and frictionless exploration experience. 
 
 INSERT FIGURE HERE (FIGURE 2)
+
+# Design
+
+Columns of any tabular data can be categorized into three sets:
+
+- identifiers: unique row identifier and (optional) field of view identifier
+- categorical features: conceptually help us group the rows (e.g. the categorical feature `treatment` will group the rows into different treatment groups)
+- numerical features: quantify the differences between data groups
+
+**Science, from the data perspective, is about closing the conceptual categorical gaps with quantitative measurements.**
+
+[Data Extraction](data_extraction.qmd) and [Data Analysis](data_analysis.qmd) are designed with the above categorization in mind. 

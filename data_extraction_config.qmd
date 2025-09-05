@@ -14,7 +14,7 @@ Constructing a framework that balances flexibility and usability is about choosi
 
 ![](extraction_ui_shots/config_cat.png){width=80% fig-align=center}
 
-Categorical features are useful to orangize the data into groups of interest, and will be used extensively in the [Data Analysis](data_analysis.qmd) module. The user can specify the potental categorical feature names to be extracted in the [Categorical Feature Extraction](categorical_feature_extraction.qmd) step. 
+Categorical features are useful to organize the data into groups of interest, and will be used extensively in the [Data Analysis](data_analysis.qmd) module. The user can specify the potential categorical feature names to be extracted in the [Categorical Feature Extraction](categorical_feature_extraction.qmd) step. 
 
 ### Decay Types 
 
@@ -26,11 +26,11 @@ In the system developed by Samimi et al. [@Samimi24], single cells are flowing t
 
 #### 3D/4D Decay {#3d4d-decay}
 
-In TSCPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g. `.sdt`, `.ptu`). In addition to the spatial dimensions and the time dimension (`XYT`), the channel dimension may also be present, making it 4 dimensional (`CXYT`). Some systems can also record a time stack, making it has at most 5 dimensions. **FLIM Playground currently supports both `.sdt` and `.ptu` files up to 4 dimensions.** It reads the `duration` and the number of `time bins` from decay file metadata.
+In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g. `.sdt`, `.ptu`). In addition to the spatial dimensions and the time dimension (`XYT`), the channel dimension may also be present, making it 4 dimensional (`CXYT`). Some systems can also record a time stack, making it has at most 5 dimensions. **FLIM Playground currently supports both `.sdt` and `.ptu` files up to 4 dimensions.** It reads the `duration` and the number of `time bins` from decay file metadata.
 
 #### 3D/4D pixel-prefitted {#3d4d-pixel-prefitted}
 
-Since FLIM Playground currently does **not** support pixel-fitting, the user has the option to provide a pixel-prefitted outputs from [SPCImage](https://www.becker-hickl.com/products/spcimage/) in the format of `.asc`. 
+Since FLIM Playground currently does **not** support pixel-fitting, the user has the option to provide pixel-prefitted outputs from [SPCImage](https://www.becker-hickl.com/products/spcimage/) in the format of `.asc`. 
 
 ### Identifiers
 
@@ -82,7 +82,7 @@ The user can customize the channel name based on, for example, the name of the f
 
 The user can specify the imaging modality for each channel. Currently, two modalities are supported: 
 
-- `FLIM`: The signal is time resolved, i.e., has a time dimension. They are expected to be in one of the [decay types](data_extraction_config.qmd#decay-types).
+- `FLIM`: The signal is time resolved, i.e., has a time dimension, and expected to be from one of the [decay types](data_extraction_config.qmd#decay-types).
 - `Intensity-only`: The signal is a spatial map of intensity values (2 spatial dimensions), i.e., has no time dimension. **Currently, the only supported signal type is a 2D intensity .`tiff/.tif` image.**
 
 ![](extraction_ui_shots/config_modality.png){width=20% fig-align=center}
@@ -126,9 +126,9 @@ The [FOV Metadata Organization](fov_metadata.qmd) step will look for associated 
 
 ![](extraction_ui_shots/config_file_suffix.png){width=100% fig-align=center}
 
-In the example above, channel `nadh` and `fad` gets asked to provide an IRF file, while channel `cd8` does not, because `Lifetime fit` is selected for the former two channels and not for the latter. The file suffixes of the IRF files are different for each of the two channels, but they share the same ROI mask file suffix because they use the same ROI mask. The `cd8` channel uses a different ROI mask than the other two channels, indicated by the mask file suffix. 
+In the example above, channels `nadh` and `fad` get asked to provide an IRF file, while channel `cd8` does not, because `Lifetime fit` is selected for the former two channels and not for the latter. The file suffixes of the IRF files are different for each of the two channels, but they share the same ROI mask file suffix because they use the same ROI mask. The `cd8` channel uses a different ROI mask than the other two channels, indicated by the mask file suffix. 
 
-For detailed information on file types (Mask, IRF, etc.), see [input file types](data_extraction.qmd#input-file-types). 
+For detailed information on what file formats are supported for each file type (Mask, IRF, etc.), see [input file types](data_extraction.qmd#input-file-types). 
 
 For detailed information on how the file suffixes are used, and what each file type (e.g. `IRF`, `Mask`, etc.) is, see the [FOV Metadata Organization](fov_metadata.qmd) page. 
 

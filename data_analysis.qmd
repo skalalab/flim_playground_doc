@@ -1,14 +1,5 @@
 # Overview
-We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](data_extraction.qmd) module or in user's own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassel-free exploration of their data with, hopefully, fun 😎. 
-
-# Design
-Columns of any tabular data can be categorized into three sets:
-
-- identifiers: unique row identifier and (optional) field of view identifier
-- categorical features: conceptually help us group the rows (e.g. the catetegorical feature `treatment` will group the rows into different treatment groups)
-- numerical features: quantify the differences between data groups
-
-The [Data Extraction](data_extraction.qmd) module is designed to extract data in this fashion so that the [Data Analysis](data_analysis.qmd) module can take advantage of: it designs an [architectural blueprint](#shared-interactive-widgets) that all analysis methods can build on based on the above categorization. Therefore, the design of FLIM Playground is modularized so that new methods and features can be added in the future.  
+We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](data_extraction.qmd) module or in user's own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data [categorization](index.qmd#design) as [Data Extraction](data_extraction.qmd) does, the [Data Analysis](data_analysis.qmd) module designs an [architectural blueprint](#shared-interactive-widgets) that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.  
 
 # Methods
 - Depending on the number of numerical features in the analysis, the methods are categorized into 3 groups: 
@@ -56,7 +47,7 @@ User can upload the dataset outputted from the [Data Extraction](data_extraction
 ## Requirements
 ::: {.callout-important}
 
-In either case, following the [design](#design), the dataset should have:
+In either case, following the [design](#index.qmd#design), the dataset should have:
 
 - a column that uniquely identifies each row
 - an (optional) field of view identifier column  
@@ -72,21 +63,21 @@ Warning messages will not prevent the analysis but error messages will.
 :::
 
 
-## Warnings Messages
+## Warning Messages
 - `Empty columns`: will be dropped.
 - `Duplicated columns`: Only the first occurrence of the duplicated column will be kept. Other occurrences will be dropped.
 - `Duplicated rows based on the unique row id`: Only the first occurrence of the duplicated row will be kept. Other occurrences will be dropped.
 - `Columns with NaN values`: won't be dropped, just a warning message. 
     - The analysis will be performed on the rows that are not NaN in the [selected numerical features](#numerical-feature-widgets). 
 
-## Errors Messages
+## Error Messages
 - Missing a column that uniquely identifies each row
-- Cannot indentify any numerical feature column
+- Cannot identify any numerical feature column
     - it uses `pd.api.types.is_numeric_dtype` to check if a column is numerical. 
 
 # Shared Interactive Widgets
 
-A list of shared widgets are provided to support the general workflow in analysis. 
+A list of shared widgets is provided to support the general workflow in analysis. 
 
 ## General Workflow
 
@@ -96,7 +87,7 @@ A list of shared widgets are provided to support the general workflow in analysi
 - change the plot [style](#plotting-configuration-widgets)
 - [hover](#unique-id-hover) to find data points of interest
 
-The visualization and analysis results will be updated in real time to reflect user's interactactions with any of the above widgets. 
+The visualization and analysis results will be updated in real time to reflect user's interactions with any of the above widgets. 
 
 ## Numerical Feature Widgets 
 The Data Extraction module groups numerical features based on the [feature extractor type](data_extraction.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features will be grouped based on the [user-specified configuration](data_analysis_config.qmd). Ungrouped numerical features will be grouped into a group called `Uncategorized Features`. One selection widget will be rendered for each numerical feature group. 
@@ -145,7 +136,7 @@ The order of the groups in x-axis and in the legend is determined by:
 ![](analysis_ui_shots/color_by.png){width=90% fig-align=center}
 
 #### Opacity and Shape by
-- Opacity and shape is supported in all point-based visualizations (e.g. [Feature Comparison](feature_comparison.qmd), [2D Feature Distribution](feature_distribution.qmd), [Phasor Analysis](phasor_analysis.qmd), [Dimension Reduction](dimension_reduction.qmd)). In `Opacity by` and `Shape by`, the user can select one categorical feature, and each unique category will be assigned a distinct opacity or shape. The order of the shape and opacity is also sorted [numer-alphatically](#nte-order). 
+- Opacity and shape are supported in all point-based visualizations (e.g. [Feature Comparison](feature_comparison.qmd), [2D Feature Distribution](feature_distribution.qmd), [Phasor Analysis](phasor_analysis.qmd), [Dimension Reduction](dimension_reduction.qmd)). In `Opacity by` and `Shape by`, the user can select one categorical feature, and each unique category will be assigned a distinct opacity or shape. The order of the shape and opacity is also sorted [numer-alphatically](#nte-order). 
 
 ![](analysis_ui_shots/opacity_shape_by.png){width=90% fig-align=center}
 

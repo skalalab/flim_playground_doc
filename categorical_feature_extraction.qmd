@@ -12,7 +12,7 @@ Based on the datasets extracted in the [numerical feature extraction](numerical_
 It will scan the specified folder path and find all csv files. It will use the [cell identifier column](data_extraction_config.qmd#cell-identifier) to check for duplicates both within each dataset and across all datasets. It will also check for the eligibility of [categorical feature assignment](#assigning-categorical-features) using the [fov identifier column](data_extraction_config.qmd#fov-identifier). 
 
 :::{.callout-important #fov-id-categorical}
-**It assumes that the FOV identifier includes all information necessary to extract the categorical features, by including fields seperated by some delimiter. Categorical features will be assigned from individual or combined fields.** 
+**It assumes that the FOV identifier includes all information necessary to extract the categorical features, by including fields separated by some delimiter. Categorical features will be assigned from individual or combined fields.** 
 :::
 
 So it checks if all field of view names include the same number of fields. 
@@ -29,7 +29,7 @@ Available categorical features to be assigned are drawn from the [user-specified
 
 ![](extraction_ui_shots/cat_features.png){width=25% fig-align=center}
 
-Based on the [assumptions](#fov-id-categorical), it will break down the FOV identifier into individual fields and faciliate the assignment. 
+Based on the [assumptions](#fov-id-categorical), it will break down the FOV identifier into individual fields and facilitate the assignment. 
 
 ![](extraction_ui_shots/cat_slots.png){width=50% fig-align=center}
 

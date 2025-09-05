@@ -2,11 +2,11 @@
 
 FLIM Playground transforms raw FLIM data into single-cell numerical and categorical features, ensuring smooth integration with [downstream analysis](data_analysis.qmd). All steps are seamlessly connected through interactive widgets, with built-in error checking and reporting to ensure correctness.
 
-The user can [configure](data_extraction_config.qmd) the system once and apply it to future data. After configuration, the user can extract features from raw data using the following steps:
+The user can [configure](data_extraction_config.qmd) the system once and apply it to future data. After configuration, the user can extract features from raw data using the following steps, inspired by the [design](#index.qmd#design):
 
 ![](extraction_ui_shots/extraction_steps.png){width=30% fig-align=center}
 
-1. [FOV Metadata Organization](fov_metadata.qmd): each experiment sitting consists of multiple field of views (FOVs). This steps helps user organize the metadata of the FOVs. 
+1. [FOV Metadata Organization](fov_metadata.qmd): each experiment session consists of multiple field of views (FOVs). This steps helps user organize the metadata of the FOVs. 
 2. [Numerical feature extraction](numerical_feature_extraction.qmd): 
     - [Calibration](numerical_feature_extraction.qmd#calibration): it provides [IRF shift-based calibration](numerical_feature_extraction.qmd#irf-shift-calibration) and [reference dye-based calibration](numerical_feature_extraction.qmd#reference-dye-calibration). 
     - Single cell numerical feature extraction including, per channel:
@@ -14,8 +14,9 @@ The user can [configure](data_extraction_config.qmd) the system once and apply i
         - [Phasor features](lifetime_fit_free.qmd): calculate the phasor features such as the phasor coordinates. It also provides [phasor analysis](phasor_analysis.qmd). 
         - [Morphology features](intensity_morphology.qmd): calculate morphology features based on the ROI mask. 
         - [Texture features](intensity_texture.qmd): calculate texture features based on the intensity image and the ROI mask. 
-3. [Categorical feature extraction](categorical_feature_extraction.qmd): based on the FOV name, extract the categorical features such as the treatment, time point, etc. 
-4. [Data Analysis](data_analysis.qmd): visualize and analyze the extracted features. 
+3. [Categorical feature extraction](categorical_feature_extraction.qmd): based on the FOV name, extract the categorical features such as the treatment, time point, etc.
+
+- User then can upload the extracted datasets to perform[Data Analysis](data_analysis.qmd). 
 
 INSERT FIGURE HERE (FIGURE 3)
 
@@ -29,7 +30,7 @@ See [decay types](data_extraction_config.qmd#decay-types) for more details.
     - `.csv`: a tabular data sheet with each row representing a cell and each column representing a time bin. 
 - 3D/4D decay: besides the spatial dimensions and the time dimension, the extra dimension in the 4D array should be channel.
     - `.sdt`: Becker & Hickl
-    - `.ptu: PicoQuant
+    - `.ptu`: PicoQuant
 
 ## Mask
 
@@ -53,6 +54,14 @@ If the decay type is [3D/4D pixel-prefitted](data_extraction_config.qmd#3d4d-pix
 ## Reference Dye
 If the reference dye-based calibration is chosen, the user should provide the reference dye file. 
 
+- `.tiff`/`.tif`: a 3D array, with one of them as the time dimension. 
+
+## Intensity (2D)
+
+If the channel's [imaging modality](#imaging-modality) is `Intensity-only`, the user should provide a 2D intensity image in:
+
+- `.tiff`/`.tif`: a 2D array. 
+
 # Limitation
 
-- To simplify the workflow and due to the framework chosen, FLIM Playground does not support pixel-level <span style="color: #1f77b4;">■</span> fitting and fit free analysis, and there are many other open-source tools that can do so (for a comprehensive list, see [here](https://www.phasorpy.org/docs/stable/phasor_approach/#software)). Instead, it does cell-level fitting and fit free (phasor) feature extraction by summing up all the decays belonging to the same cell ROI to get one cell-level decay as a preprocessing step [@samimi25]. It also accepts prefitted pixel-level lifetime features from [SPCImage](https://www.becker-hickl.com/products/spcimage/) and aggregates pixel-level lifetime features to cell-level lifetime features. 
+- To simplify the workflow and due to the framework chosen, FLIM Playground does not support pixel-level fitting and fit free analysis, and there are many other open-source tools that can do so (for a comprehensive list, see [here](https://www.phasorpy.org/docs/stable/phasor_approach/#software)). Instead, it does cell-level fitting and fit free (phasor) feature extraction by summing up all the decays belonging to the same cell ROI to get one cell-level decay as a preprocessing step [@samimi25]. It also accepts prefitted pixel-level lifetime features from [SPCImage](https://www.becker-hickl.com/products/spcimage/) and aggregates pixel-level lifetime features to cell-level lifetime features. 
