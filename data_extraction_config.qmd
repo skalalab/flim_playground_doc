@@ -1,6 +1,6 @@
 # Configuration
 
-The user can configure the system once and once the configuration is saved it will be applied to future data. 
+The user can configure the system once and it will be applied to future data. 
 
 # Channel-centric Framework
 
@@ -86,6 +86,10 @@ The user can specify the imaging modality for each channel. Currently, two modal
 - `Intensity-only`: The signal is a spatial map of intensity values (2 spatial dimensions), i.e., has no time dimension. **Currently, the only supported signal type is a 2D intensity .`tiff/.tif` image.**
 
 ![](extraction_ui_shots/config_modality.png){width=20% fig-align=center}
+
+::: {.callout-tip}
+This setup allows the user to image some channels in FLIM mode, and others in non-FLIM mode. It also allows the user to extract and analyze their data if they image in non-FLIM microscopic systems such as epifluorescence, confocal, brightfield, etc. by selecting `Intensity-only` for all channels.
+:::
 
 ::: {.callout-note}
 If the decay type is [2D decay](#2d-decay), the [imaging modality](#imaging-modality) for all channels will be restricted to be `FLIM`.

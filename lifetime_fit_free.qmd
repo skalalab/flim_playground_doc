@@ -12,9 +12,13 @@ If the chosen [calibration method](data_extraction_config.qmd#calibration-method
 
 ## Phasor features
 
-### Phasor coordinates
+### Step 1: raw phasor coordinates
 
-FLIM Playground uses the [`phasor_from_signal`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal) function from the [phasorpy](https://www.phasorpy.org/) package to calculate the uncalibrated phasor coordinates `G_raw` and `S_raw`, `G_raw_2nd` and `S_raw_2nd`, the first and second harmonics' real and imaginary parts, from the cell decay curve.
+The reference implementation from [phasorpy](https://www.phasorpy.org/) assumes the decay curve comes from one period and time bins are evenly spaced (Untruncated). So their calculation is frequency ($f$) and time ($T$) independent. But there are cases when the decay curve is truncated due to the deadtime of the system. For example, when the laser frequency is $f = 0.08$ GHz, the theoretical period is $T = 12.5$ ns, but in practice the time window is truncated to $T = 10$ ns. FLIM Playground applies custom implementation to the truncated decay curve. (the `sample_phase` option can be used to account for the truncation but it does not handle the second or above harmonics)
+
+#### Untruncated decay curve
+
+It uses the [`phasor_from_signal`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal) function from the [phasorpy](https://www.phasorpy.org/) package to calculate the uncalibrated phasor coordinates `G_raw` and `S_raw`, `G_raw_2nd` and `S_raw_2nd`, the first and second harmonics' real and imaginary parts, from the cell decay curve.
 
 Either `G_irf`, `S_irf`, `G_irf_2nd`, and `S_irf_2nd` from the IRF, or `ref_mean`, `ref_real`, `ref_imag` from the reference dye, depending on the chosen [calibration method](data_extraction_config.qmd#calibration-method), are calculated using the same function.
 
@@ -25,10 +29,11 @@ F_{\mathrm{DC}}=\frac{1}{K}\sum_{k=0}^{K-1}F_k,\quad
 G=\frac{1}{F_{\mathrm{DC}}}\frac{1}{K}\sum_{k=0}^{K-1}F_k\cos\!\left(2\pi h \frac{k}{K}\right),\quad
 S=\frac{1}{F_{\mathrm{DC}}}\frac{1}{K}\sum_{k=0}^{K-1}F_k\sin\!\left(2\pi h \frac{k}{K}\right)
 $$
-where $K$ is the number of time bins, $F_k$ is the decay curve, and $h$ is the harmonic number. It is frequency ($f$) and time ($T$) independent because it assumes the time curve comes from one period and time bins are evenly spaced. 
+where $K$ is the number of time bins, $F_k$ is the decay curve, and $h$ is the harmonic number.
 
-But there are cases when the decay curve is truncated due to the deadtime of the system. For example, when the laser frequency is $f = 0.08$ GHz, the theoretical period is
-$T = 12.5$ ns, but in practice the time window is truncated to $T = 10$ ns. In this case, the phasor coordinates of IRF and the decay curves of both harmonics are calculated using time axis $t_k = k\,(T/K)\;\;(k=0,\ldots,K-1)$ and angular frequency $\omega = 2\pi\,hf$:
+#### Truncated decay curve
+
+The phasor coordinates of IRF and the decay curves of both harmonics are calculated using time axis $t_k = k\,(T/K)\;\;(k=0,\ldots,K-1)$ and angular frequency $\omega = 2\pi\,hf$:
 
 $$
 g_{\mathrm{raw}}
@@ -39,9 +44,11 @@ s_{\mathrm{raw}}
         {\sum_{k=0}^{K-1} F_k}
 $$
 
-The two formulas are equivalent when $fT = 1$.
+This formula is equivalent to the untruncated formula when $fT = 1$.
 
-### Calibration
+For reference dye, the phasor coordinates are calculated using `phasorpy`'s `phasor_from_signal` and `sample_phase` option is set to $\omega t_k$.
+
+### Step 2: calibrated phasor coordinates
 
 To get the calibrated phasor coordinates `G`, `S`, `G_2nd`, and `S_2nd`, FLIM Playground uses either
 ```python
@@ -58,7 +65,7 @@ G_2nd, S_2nd = lifetime.phasor_calibrate(g_raw_2nd, s_raw_2nd, ref_mean, ref_rea
 
 The `laser_rate` is specified during the [fov metadata extraction](fov_metadata.qmd#laser-frequency) and [config](data_extraction_config.qmd#laser-frequency). 
 
-### Phasor-derived lifetime
+### Step 3: phasor-derived lifetime
 
 `Tau_phase` and `Tau_m` are calculated using the first harmonic's phasor coordinates `G` and `S`. 
 
