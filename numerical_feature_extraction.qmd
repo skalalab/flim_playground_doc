@@ -51,7 +51,7 @@ The high SNR decay curves are constructed automatically based on the [decay type
 
 ### Reconvolution Fitting
 
-Fitting is essentially an optimization problem: it minimizes the difference between the fitted curve and the measured curve. The fitted curve is modeled by a $n^{th}$ component exponential function convolved with the shifted IRF, and the difference is modeled mathmatically as a objective metric. Therefore, user is provide with controls over two parts of the fitting process through the [fitting options panel](#fitting-options): 
+Fitting is essentially an optimization problem: it minimizes the difference between the fitted curve and the measured curve. The fitted curve is modeled by a $n^{th}$ component exponential function convolved with the shifted IRF, and the difference is modeled as an objective metric. Therefore, user is provide with controls over two parts of the fitting process through the [fitting options panel](#fitting-options): 
 
 1. How to construct the objective metric
 2. How to perform the optimization
@@ -87,7 +87,7 @@ Due to the deadtime of the system certain time bins from the head and/or tail of
 
 ![](extraction_ui_shots/time_gate.png){width=60% fig-align=center}
 
-Mathmatically, only the time bins within the T1 and T2 gates will be used to calculate cost metric. 
+Only the time bins within the T1 and T2 gates will be used to calculate cost metric. 
 
 #### Metric
 ![](extraction_ui_shots/metric.png){width=20% fig-align=center}
