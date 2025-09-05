@@ -26,8 +26,8 @@ Mathmatically, the raw phasor coordinates are calculated as (copied from the [ph
 
 $$
 F_{\mathrm{DC}}=\frac{1}{K}\sum_{k=0}^{K-1}F_k,\quad
-G=\frac{1}{F_{\mathrm{DC}}}\frac{1}{K}\sum_{k=0}^{K-1}F_k\cos\!\left(2\pi h \frac{k}{K}\right),\quad
-S=\frac{1}{F_{\mathrm{DC}}}\frac{1}{K}\sum_{k=0}^{K-1}F_k\sin\!\left(2\pi h \frac{k}{K}\right)
+g_{\mathrm{raw}}=\frac{1}{F_{\mathrm{DC}}}\frac{1}{K}\sum_{k=0}^{K-1}F_k\cos\!\left(2\pi h \frac{k}{K}\right),\quad
+s_{\mathrm{raw}}=\frac{1}{F_{\mathrm{DC}}}\frac{1}{K}\sum_{k=0}^{K-1}F_k\sin\!\left(2\pi h \frac{k}{K}\right)
 $$
 where $K$ is the number of time bins, $F_k$ is the decay curve, and $h$ is the harmonic number.
 
