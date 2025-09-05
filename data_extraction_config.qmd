@@ -4,11 +4,11 @@ The user can configure the system once and once the configuration is saved it wi
 
 # Channel-centric Framework
 
-Constructing a framework that balances flexibility and usability is about choosing the right abstraction level. FLIM Playground chooses *channel* from [data levels](index.qmd#levels-of-data) as the focus. Settings are divided into two categories: [channel shared settings](#shared-settings) and [per-channel settings](#per-channel-settings).
+Constructing a framework that balances flexibility and usability is about choosing the right abstraction level. FLIM Playground chooses *channel* from [data levels](index.qmd#levels-of-data) as the focus. Settings are divided into two categories: [across-channel settings](#across-channel-settings) and [per-channel settings](#per-channel-settings).
 
 ![](extraction_ui_shots/config.png){width=100% fig-align=center}
 
-## Shared Settings
+## Across-Channel Settings
 
 ### Categorical Features
 
@@ -78,16 +78,37 @@ The user can customize the channel name based on, for example, the name of the f
 
 ![](extraction_ui_shots/config_channel_name.png){width=100% fig-align=center}
 
+### Imaging Modality
+
+The user can specify the imaging modality for each channel. Currently, two modalities are supported: 
+
+- `FLIM`: The signal is time resolved, i.e., has a time dimension. They are expected to be in one of the [decay types](data_extraction_config.qmd#decay-types).
+- `Intensity-only`: The signal is a spatial map of intensity values (2 spatial dimensions), i.e., has no time dimension. **Currently, the only supported signal type is a 2D intensity .`tiff/.tif` image.**
+
+![](extraction_ui_shots/config_modality.png){width=20% fig-align=center}
+
+::: {.callout-note}
+If the decay type is [2D decay](#2d-decay), the [imaging modality](#imaging-modality) for all channels will be restricted to be `FLIM`.
+:::
+
 ### Feature Extractor
 
-Four types of feature extractors are available:
+Four types of feature extractors are available if the [imaging modality](#imaging-modality) is `FLIM`:
 
 - [Lifetime fit](lifetime_fit.qmd)
 - [Lifetime fit free](lifetime_fit_free.qmd)
 - [Intensity Morphology](intensity_morphology.qmd)
 - [Intensity Texture](intensity_texture.qmd)
 
-![](extraction_ui_shots/config_feature_extractor.png){width=100% fig-align=center}
+![](extraction_ui_shots/config_feature_extractor.png){width=80% fig-align=center}
+
+::: {.callout-note}
+If the decay type is [2D decay](#2d-decay), the [Intensity Morphology](intensity_morphology.qmd) and [Intensity Texture](intensity_texture.qmd) feature extractors are **not** applicable.
+:::
+
+The [Intensity Morphology](intensity_morphology.qmd) and [Intensity Texture](intensity_texture.qmd) feature extractors are available if the [imaging modality](#imaging-modality) is `Intensity-only`.
+
+![](extraction_ui_shots/config_intensity_feature_extractor.png){width=40% fig-align=center}
 
 Each channel can select their own set of feature extractors. For example, if you do not intend to do lifetime extraction, you can de-select the `Lifetime fit` and `Lifetime fit free` options. 
 

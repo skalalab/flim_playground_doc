@@ -27,19 +27,16 @@ S=\frac{1}{F_{\mathrm{DC}}}\frac{1}{K}\sum_{k=0}^{K-1}F_k\sin\!\left(2\pi h \fra
 $$
 where $K$ is the number of time bins, $F_k$ is the decay curve, and $h$ is the harmonic number. It is frequency ($f$) and time ($T$) independent because it assumes the time curve comes from one period and time bins are evenly spaced. 
 
-But there are cases when the decay curve is truncated due to the deadtime of the system. For example, when $f = 0.08 GHz$, instead of $T = 12.5 ns$, the time curve is truncated to $T = 10 ns$. In this case, the phasor coordinates of IRF and the decay curves of both harmonics are calculated as:
+But there are cases when the decay curve is truncated due to the deadtime of the system. For example, when the laser frequency is $f = 0.08$ GHz, the theoretical period is
+$T = 12.5$ ns, but in practice the time window is truncated to $T = 10$ ns. In this case, the phasor coordinates of IRF and the decay curves of both harmonics are calculated using time axis $t_k = k\,(T/K)\;\;(k=0,\ldots,K-1)$ and angular frequency $\omega = 2\pi\,hf$:
 
 $$
-\begin{aligned}
-t_k = k\,(T/K)\;\;(k=0,\ldots,K-1),\quad
-&\omega = 2\pi f, \quad
 g_{\mathrm{raw}}
-=\frac{\sum_{k=0}^{K-1} F_k \cos\!\big(h\,\omega\, t_k\big)}
-        {\sum_{k=0}^{K-1} F_k},\qquad
+=\frac{\sum_{k=0}^{K-1} F_k \cos\!\big(\omega\, t_k\big)}
+        {\sum_{k=0}^{K-1} F_k},\quad
 s_{\mathrm{raw}}
-=\frac{\sum_{k=0}^{K-1} F_k \sin\!\big(h\,\omega\, t_k\big)}
+=\frac{\sum_{k=0}^{K-1} F_k \sin\!\big(\omega\, t_k\big)}
         {\sum_{k=0}^{K-1} F_k}
-\end{aligned}
 $$
 
 The two formulas are equivalent when $fT = 1$.
@@ -75,5 +72,5 @@ tau_m = 1/w * np.sqrt(1/m**2 - 1)
 ```
 
 $$
-\omega = 2\pi\,h\,f_{\mathrm{rep}} (h = 1), \phi = \operatorname{atan2}(S,\,G), m = \sqrt{G^{2}+S^{2}}, \tau_{\phi} = \frac{\tan \phi}{\omega}, \tau_{M} = \frac{1}{\omega}\sqrt{\frac{1}{m^{2}}-1}
+\phi = \operatorname{atan2}(S,\,G), m = \sqrt{G^{2}+S^{2}}, \tau_{\phi} = \frac{\tan \phi}{\omega}, \tau_{M} = \frac{1}{\omega}\sqrt{\frac{1}{m^{2}}-1}
 $$
