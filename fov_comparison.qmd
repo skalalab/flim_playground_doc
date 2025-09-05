@@ -18,7 +18,7 @@ If found:
 
 - On the left, user can select the numerical feature to see the boxplot of each FOV: it shares the numerical [selection widgets](data_analysis.qmd#univariate-analysis) that allows user to select exactly one feature from all feature groups. 
 - On the top right, user can subset the data to find the groups of interest: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
-- Below the filters, user can select the visual channels: it shares the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows user to `Color by` categorical features. `Opacity by`and `Shape by` are *not* supported because there are no points in the boxplot.
+- Below the filters, user can select the visual channels: it shares the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows user to `Color by` categorical features. `Opacity by` and `Shape by` are *not* supported because there are no points in the boxplot.
 - On the bottom right, user can change the plot style: it shares the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets) that allows user to change the plot style. 
 
 Besides the shared components, this module does not have any method-specific components. 

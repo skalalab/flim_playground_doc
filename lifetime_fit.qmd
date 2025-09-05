@@ -1,12 +1,14 @@
 # Lifetime Features (Fit)
 
-FLIM Playground extracts cell-level lifetime fitting features in this feature extractor, including the fraction of each lifetime component ($\alpha_i$), their lifetime ($\tau_i$), and mean lifetime ($\tau_{mean}$). 
+Biological samples often contain mixtures of fluorescent species, each with its own characteristic lifetime. By modeling the decay as a sum of exponentials, the analysis can separate and quantify these different contributions. For example, NADH in cells exists in both free (short lifetime, ~0.4 ns) and protein-bound (longer lifetime, ~2–3 ns) states; by fitting the fluorescence decay with a bi-exponential model, one can estimate the fraction of each state, which provides direct insight into cellular metabolism and energy production pathways. 
+
+FLIM Playground extracts cell-level lifetime fitting features in this feature extractor, including the fraction of each lifetime component ($\alpha_i$), their lifetimes ($\tau_i$), and mean lifetime ($\tau_{mean}$). 
 
 $$I(t) = \sum_i \alpha_i \, e^{-t/\tau_i}$$
 
 ## Fitting 
 
-If the decays have not been pre-fitted, FLIM Playground will use the finalized [fitting options](#fitting-options) and the same [reconvolution fitting process](numerical_feature_extraction.qmd#reconvolution-fitting) as the [irf shift calibration step](numerical_feature_extraction.qmd#fit-calibration) to fit the decay curves, with the only difference being that the IRF shift is no longer a free variable to be optimized.
+If the decays have not been pre-fitted, FLIM Playground will use the confirmed fitting options ([number of components](numerical_feature_extraction.qmd#number-of-components), [time gates](numerical_feature_extraction.qmd#time-gates), [metric](numerical_feature_extraction.qmd#metric), and [fitting mode](numerical_feature_extraction.qmd#fitting-mode)) and the same [reconvolution fitting process](numerical_feature_extraction.qmd#reconvolution-fitting) as the [irf shift calibration step](numerical_feature_extraction.qmd#fit-calibration) to fit the decay curves, with the only difference being that the IRF shift is no longer a free variable to be optimized. To recap, the reconvolution fitting takes into account of the IRF, and minimizing the custom objective function will fit the decay curve with a multi-exponential model. 
 
 [Otherwise](#pixel-prefitted), FLIM Playground will use the [pre-fitted values](data_extraction.qmd#a1) to calculate the fitting features. 
 
@@ -29,6 +31,6 @@ The mean lifetime, $\tau_{mean}$, is calculated as the weighted average of the l
 $$\tau_{mean} = \sum_{i=1}^n \alpha_i \tau_i$$
 
 ## Pixel-prefitted
-Currently, FLIM Playground supports pixel-prefitted lifetime features from [SPCImage](https://www.becker-hickl.com/products/spcimage/). The pixel-level lifetime fitting features are stored in 2D arrays in spatial dimensions, with each (row, column) has the value of a lifetime feature outputted from SPCImage. SPCImage will output `0` for pixels that are not fitted (e.g. thresholded out). To avoid those pixels that bias the results, FLIM Playground uses `np.ma.masked_array` to mask the pixels that are not fitted. 
+Currently, FLIM Playground supports pixel-prefitted lifetime features from [SPCImage](https://www.becker-hickl.com/products/spcimage/). The pixel-level lifetime fitting features are expected to be stored in [2D arrays](data_extraction.qmd#a1) in spatial dimensions, with each row and column has the value of a lifetime feature outputted from SPCImage. SPCImage will output `0` for pixels that are not fitted (e.g. thresholded out). To avoid those pixels that bias the results, FLIM Playground uses `np.ma.masked_array` to mask the pixels that are not fitted. 
 
 Then it uses the ROI [mask](data_extraction.qmd#mask) to calculate the cell-level lifetime features by averaging the pixel-level features within each ROI. 

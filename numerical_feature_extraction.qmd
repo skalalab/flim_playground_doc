@@ -30,7 +30,7 @@ For `Lifetime fit` and `Lifetime fit free` feature extractors, the first step is
 
 # Calibration
 
-Calibration in FLIM is essential because raw decays are convolved with the instrument response function (IRF), so without correcting these, fitted lifetimes and phasor positions are biased and not comparable across days, samples, or instruments. 
+Calibration in FLIM is essential because raw decays are convolved with the instrument response function (IRF)—the timing profile of the detection system’s response to an ultrashort light pulse that broadens and shifts the measured decay—, so without correcting these, fitted lifetimes and phasor positions are biased and not comparable across days, samples, or instruments. 
 
 ## Fit Calibration
 
@@ -71,9 +71,9 @@ $$% Generic (non-normalized) n-exponential decay
 I(\mathbf{t})=\sum_{i=1}^{n} A_i\, e^{-\mathbf{t}/\tau_i}, \qquad \tau_i>0
 $$
 
-Therefore, $n$ determines the parameters to be fitted: the amplitudes $A_i$ and the lifetimes $\tau_i$. $\mathbf{t}$ is the time axis of the decay curve create by the `duration` and `time bins` from the [decay info](fov_metadata.qmd#decay-info): 
+Therefore, $n$ determines the parameters to be fitted: the amplitudes $A_i$ and the lifetimes $\tau_i$. $\mathbf{t}$ is the time axis of the decay curve calculated by the `duration` and `time bins` from the [decay info](fov_metadata.qmd#decay-info): 
 $$\mathbf{t}=\bigl[0,\ \Delta t,\ 2\Delta t,\ \ldots,\ (N-1)\Delta t\bigr],
-\quad \text{where }\Delta t=\frac{T}{N}.
+\quad \text{where }\Delta t=\frac{T}{K}.
 $$
 
 It supports $n=1,2,3$ components. 
@@ -117,7 +117,7 @@ After constructing the objective metric, the fitting mode is used to determine t
 
 Users get to choose between the following two methods to calibrate the IRF shift in the [configuration step](data_extraction_config.qmd#calibration-method). 
 
-### IRF Shift
+### Shift IRF
 
 It is performed similarly to the [fit calibration](#fit-calibration) steps, but in the second step, the shift will not be optimized (fitted). It shares the [same interface](#irf-shift) as the [fit calibration](#fit-calibration) step, where a scatter plot of the shift values will be displayed for each channel, only that the plot is not interactive to show the fit. Instead, it will output the shift that maximizes the cross-correlation between the IRF and each decay. If `Fix the Shift` is selected, user can specify the shift value that will be applied to all field of views. Otherwise, the shift value is chosen to be the one that maximizes the cross-correlation between the IRF and the decay.
 
@@ -125,13 +125,13 @@ It is performed similarly to the [fit calibration](#fit-calibration) steps, but 
 If both the `Lifetime fit` and `Lifetime fit free` feature extractors are selected for this channel, the IRF shift will be calibrated using [fit](#fit-calibration) and reuse the shift value for the `Lifetime fit free` feature extractor. 
 :::
 
-In addition to shift the IRF based on the chosen shift values, each decay curve will be subtracted an offset value and clip to 0 if the time bin is negative after the subtraction. The offset is chosen to be the minimum of the two values: the median of the first 20th percentile of the decay curve (head), and the median of the last 10th percentile of the decay curve (tail). 
+In addition to shifting the IRF based on the chosen shift values, each decay curve will be subtracted an offset value and clip to 0 if the time bin is negative after the subtraction. The offset is chosen to be the minimum of the two values: the median of the first 20th percentile of the decay curve (head), and the median of the last 10th percentile of the decay curve (tail). 
 
 Finally, the signals of the shifted IRF are deconvolved from the offset-subtracted decay curves using [`phasor.phasor_divide`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_divide) from the `phasorpy` package. 
 
 ### Reference Dye 
 
-Because the reference dye is measured in the same system as the decay curves and we know the its lifetime, there is no need to account for the IRF shift and the offset. Therefore
+Because the reference dye is measured in the same system as the decay curves and we know its lifetime, there is no need to account for the IRF shift and the offset. Therefore
 
 `phasorpy`'s [`lifetime.phasor_calibrate`](https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate) function will be used to calibrate all the decay curves behind the scene when calculating the phasor coordinates. 
 

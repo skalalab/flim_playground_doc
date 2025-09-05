@@ -1,8 +1,8 @@
 # Lifetime Features (Fit-Free)
 
-Phasor analysis provides a fast, model-free view of lifetimes. Mono-exponential decays fall on the universal semicircle while mixtures lie inside as linear combinations, so clusters reveal distinct species and their fractional contributions. FLIM Playground currently extracts cell-level phasor features: `G`, `S`, `Tau_phase`, `Tau_m`, `G_2nd` (2nd harmonic), and `S_2nd`. 
+Phasor analysis provides a fast, model-free view of lifetimes by transforming fluorescence decays into phasor coordinates through a Fourier transform. This approach is considered “fit-free” because it does not require iterative curve fitting or predefined decay models—each decay is mapped directly to a point on the [phasor plot](phasor_analysis.qmd). It has the nice property that mono-exponential decays fall on the universal semicircle while mixtures lie inside as linear combinations, so clusters reveal distinct species and their fractional contributions. FLIM Playground currently extracts cell-level phasor features: `G`, `S`, `Tau_phase`, `Tau_m`, `G_2nd` (2nd harmonic), and `S_2nd`. 
 
-Fit-free features in the final dataset will have the prefix set to be the combination of the feature extractor name (i.e. `Lifetime fit`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Lifetime fit free_nadh: G` means the $G$ coordinate for this cell in the NAD(P)H channel. The [Phasor analysis](phasor_analysis.qmd) method can take in the final dataset and plot cells in the phasor space for harmonic of choice.  
+Fit-free features in the final dataset will have the prefix set to be the combination of the feature extractor name (i.e. `Lifetime fit free`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Lifetime fit free_nadh: G` means the $G$ coordinate for this cell in the NAD(P)H channel. 
 
 ## Preprocessing
 

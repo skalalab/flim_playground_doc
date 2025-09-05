@@ -16,7 +16,7 @@ With a single click, the user can switch between the [histogram mode](#histogram
 
 ![](analysis_ui_shots/gmm_switch.png){width=60% fig-align=center}
 
-The histogram mode plots a histogram of the selected numerical feature for each group, the bin width of which is user-controlable. The default bin width is determined automatically as the minimum bin width between the ‘sturges’ and ‘fd’ estimators (see [here](https://numpy.org/devdocs/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges) for more details). The maximum number of bins is set to $1/3$ the range of the data. The step size is set of $1/50$ of the range. 
+The histogram mode plots a histogram of the selected numerical feature for each group, the bin width of which is user-controllable. The default bin width is determined automatically as the minimum bin width between the ‘sturges’ and ‘fd’ estimators (see [here](https://numpy.org/devdocs/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges) for more details). The maximum number of bins is set to $1/3$ the range of the data. The step size is set of $1/50$ of the range. 
 
 ![](analysis_ui_shots/feature_histogram_mode.png){width=95% fig-align=center}
 

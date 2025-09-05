@@ -1,16 +1,16 @@
 # Morphological Features
-FLIM Playground extracts single-cell morphological features based on the cell ROI mask of each *channel*. By inputting the ROI mask to [`skimage.measure.regionprops`](https://scikit-image.org/docs/stable/api/skimage.measure.html#skimage.measure.regionprops), the following features are extracted:
+FLIM Playground extracts single-cell morphological features based on the cell region of interest (ROI) mask of each *channel*. By inputting the ROI mask to [`skimage.measure.regionprops`](https://scikit-image.org/docs/stable/api/skimage.measure.html#skimage.measure.regionprops), the following features are extracted:
 
 - `area`: the number of pixels in the ROI. 
 - `perimeter`: length of the ROI boundary in pixels.
 
-- `solidity`: $\text{Solidity} = \frac{\text{\# ROI pixels}}{\text{\# convex hull pixels}}$, where the convex hull is the smallest convex polygon that contains the ROI. 
+- `solidity`: $\text{Solidity} = \frac{\text{\# ROI pixels}}{\text{\# convex hull pixels}}$, where the convex hull is the smallest convex polygon that contains the ROI. A value close to 1 means the shape has few concavities (more solid), while lower values indicate more irregular boundaries.
 
-- `eccentricity`: the eccentricity of the ellipse that has the same second moments as the region. It is given by the ratio of the focal distance (the distance between the foci) to the length of the major axis:
-$e = \frac{c}{a}, \quad e \in [0,1)$, where $a$ is the semi-major axis length, $b$ is the semi-minor axis length, and $c = \sqrt{a^2 - b^2}$ is the focal distance. When $e=0$, the ellipse reduces to a circle.
+- `eccentricity`: equals to the eccentricity of the ellipse that has the same second moments as the region. It is given by the ratio of the focal distance (the distance between the foci) to the length of the major axis:
+$e = \frac{c}{a}, \quad e \in [0,1)$, where $a$ is the semi-major axis length, $b$ is the semi-minor axis length, and $c = \sqrt{a^2 - b^2}$ is the focal distance. When $e=0$, the ellipse reduces to a circle. It quantifies how elongated the ROI is, with 0 being a perfect circle and 1 being a line.
 
-- `major_axis_length`: the length of the major axis of the ellipse that has the same second moments as the region: $2a$. 
-- `minor_axis_length`: the length of the minor axis of the ellipse that has the same second moments as the region: $2b$. 
+- `major_axis_length`: the length of the major axis of the ellipse that has the same second moments as the region: $2a$. It represents the longest dimension of the ellipse that approximates the region’s shape, essentially describing its maximum elongation.
+- `minor_axis_length`: the length of the minor axis of the ellipse that has the same second moments as the region: $2b$. It represents the shortest dimension of that ellipse, capturing the region’s minimum elongation.
 - `circularity`: describes how close the ROI is to a perfect circle. It is defined as $\text{circularity} = \frac{4 \pi A_{\text{ROI}}}{P_{\text{ROI}}^2}, \quad \text{circularity} \in (0,1]$, where $A_{\text{ROI}}$ is the area of the region and $P_{\text{ROI}}$ is its perimeter. A value of $1$ corresponds to a perfect circle.
 
 

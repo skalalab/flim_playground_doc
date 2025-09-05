@@ -11,7 +11,7 @@ $n = 1, 3, 5, 7, 9$ are calculated.
 Semantically, higher granularity at smaller scales implies higher fragmentation. 
 
 ## Radial Distribution
-Each cell intensity image is separated into $4$ concentric rings, and the intensity is calculated for each ring, and the intensity fraction over the total intensity for each ring is calculated.
+Each cell intensity image is partitioned into $4$ concentric rings, and the intensity fraction over the total intensity for each ring is calculated. For example, higher fraction at ring 1 implies signals are more concentrated at the center of the cell, whereas higher fraction at ring 4 implies signals are more concentrated at the cell edge.
 
 ## Mass Displacement
 It is the displacement, in Euclidean distance of pixels, of the intensity-weighted cell ROI centroid from the geometric centroid of the cell ROI. 

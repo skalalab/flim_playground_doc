@@ -128,9 +128,9 @@ Color is supported in all methods except for [Classification](classification.qmd
 ## How to order the groups
 The order of the groups in x-axis and in the legend is determined by:
 
-- the order of the selected features: categories of the first feature appears before those of the second, so on so forth. For example, the two treatments of `Panc1` are togther, because it is sorted first on the cell lines, then on treatments. If you want the treatments to be together, in `Color by` you can select `treatment` then `cell_line`. 
+- the order of the selected features: categories of the first feature appear before those of the second, so on so forth. For example, the two treatments of `Panc1` are together, because it is sorted first on the cell lines, then on treatments. If you want the treatments to be together, in `Color by` you can select `treatment` then `cell_line`. 
 
-- *Numer-alphatical sort*: within each feature, the category order is determined by the number inside (e.g. `1` in `Panc1`), then the alphabetical order of the category name. Therefore, although `P` is after `M` alphabetically, the `1` is before `7` numerically, making `Panc1` appears before `MCF7`. This maybe helpful when you have data from different days or hours. The default string sort will put `Day 100` before `Day 30`, and this is not what we want.
+- *Numer-alphatical sort*: within each feature, the category order is determined by the number inside (e.g. `1` in `Panc1`) first, then the alphabetical order of the category name. Therefore, although `P` is after `M` alphabetically, the `1` is before `7` numerically, making `Panc1` appears before `MCF7`. This may be helpful when you have data from different days or hours. The default string sort will put `Day 100` before `Day 30`, and this is not what we want.
 ::: 
 
 ![](analysis_ui_shots/color_by.png){width=90% fig-align=center}

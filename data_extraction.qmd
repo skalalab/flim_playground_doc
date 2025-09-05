@@ -6,17 +6,21 @@ The user can [configure](data_extraction_config.qmd) the system once and apply i
 
 ![](extraction_ui_shots/extraction_steps.png){width=30% fig-align=center}
 
-1. [FOV Metadata Organization](fov_metadata.qmd): each experiment session consists of multiple field of views (FOVs). This steps helps user organize the metadata of the FOVs. 
-2. [Numerical feature extraction](numerical_feature_extraction.qmd): 
-    - [Calibration](numerical_feature_extraction.qmd#calibration): it provides [IRF shift-based calibration](numerical_feature_extraction.qmd#irf-shift-calibration) and [reference dye-based calibration](numerical_feature_extraction.qmd#reference-dye-calibration). 
-    - Single cell numerical feature extraction including, per channel:
+1. [FOV Metadata Organization](fov_metadata.qmd): each experiment session consists of multiple field of views (FOVs). This steps helps users organize the metadata of the FOVs. 
+2. [Numerical feature extraction](numerical_feature_extraction.qmd): it calibrates and then extracts single cell numerical features. 
+    - [Calibration](numerical_feature_extraction.qmd#calibration)
+        - [Fit Calibration](numerical_feature_extraction.qmd#fit-calibration)
+        - [Fit Free Calibration](numerical_feature_extraction.qmd#fit-free-calibration)
+            - [IRF Shift](numerical_feature_extraction.qmd#shift-irf)
+            - [Reference Dye](numerical_feature_extraction.qmd#reference-dye)
+    - per channel feature extraction including:
         - [Lifetime fitting features](lifetime_fit.qmd): fit an exponential decay curve to the measured decay and extract lifetime features per cell ROI. 
         - [Phasor features](lifetime_fit_free.qmd): calculate the phasor features such as the phasor coordinates. It also provides [phasor analysis](phasor_analysis.qmd). 
         - [Morphology features](intensity_morphology.qmd): calculate morphology features based on the ROI mask. 
         - [Texture features](intensity_texture.qmd): calculate texture features based on the intensity image and the ROI mask. 
 3. [Categorical feature extraction](categorical_feature_extraction.qmd): based on the FOV name, extract the categorical features such as the treatment, time point, etc.
 
-- User then can upload the extracted datasets to perform[Data Analysis](data_analysis.qmd). 
+- User then can upload the extracted datasets to perform [Data Analysis](data_analysis.qmd). 
 
 INSERT FIGURE HERE (FIGURE 3)
 

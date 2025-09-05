@@ -1,10 +1,10 @@
 # Dimension Reduction
 
-To visualize and represent high-dimensional data in a meaningful way so that we could understand it, dimension reduction methods are used to project the data into a lower-dimensional space. Three popular dimension reduction methods are often used: UMAP, PCA, and t-SNE. 
+To represent and visualize high-dimensional data in a meaningful way and helps users interpret the data, dimension reduction methods are used to project the data into a lower-dimensional space. Three popular dimension reduction methods are often used: UMAP, PCA, and t-SNE. 
 
 Principal Component Analysis (PCA) is a linear dimension reduction method that projects the data onto the directions of the largest variance. It is fast, deterministic, and easier to interpret (PCA loadings are provided), but it is limited by the linear nature of the projection. For a detailed discussion of PCA, please refer to [this post](https://github.com/skalalab/dimension_reduction/blob/main/pca.ipynb). 
 
-Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochastic Neighbor Embedding (t-SNE) are non-linear dimension reduction methods that can capture more complex patterns in the data. They are more flexible and can handle non-linear relationships between features, but they are more computationally expensive, less interpretable, not deterministic (FLIM Playground uses a fixed random seed (42) to ensure reproducibility), and dependent on the hyperparameters. Here is a [post](https://pair-code.github.io/understanding-umap/) that explains how UMAP and t-SNE work at a high level and the meaning of some of the hyperparameters. 
+Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochastic Neighbor Embedding (t-SNE) are non-linear dimension reduction methods that can capture more complex patterns in the data. They are more flexible and can handle non-linear relationships between features, but they are more computationally expensive, less interpretable, not deterministic (FLIM Playground uses the random seed `42` to ensure reproducibility), and dependent on the hyperparameters. Here is a [post](https://pair-code.github.io/understanding-umap/) that explains how UMAP and t-SNE work at a high level and the meaning of some of the hyperparameters. 
 
 # Components
 

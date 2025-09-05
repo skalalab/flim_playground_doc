@@ -13,7 +13,7 @@
 
 Welcome to the FLIM Playground 🥳🎉🥂! It is an interactive graphical user interface (GUI) that allows you to extract single cell features from FLIM raw data ([Data Extraction](data_extraction.qmd)) and analyze extracted features or datasets extracted yourself using a built-in repertoire of methods ([Data Analysis](data_analysis.qmd)). 
 
-To quickly try out different analysis methods, download this [sample dataset] and try the [online demo](flim-playground.streamlit.app/). If you prefer to use your own data, read [data analysis configuration](data_analysis_config.qmd) to learn how to configure the system.
+To quickly try out different analysis methods, download this [sample dataset] and try the [online demo](https://flim-playground.streamlit.app/). If you prefer to use your own data, read [data analysis configuration](data_analysis_config.qmd) to learn how to configure the system.
 
 ![](analysis_ui_shots/feature_comparison.png){width=100% fig-align=center}
 
@@ -90,8 +90,10 @@ To integrate all the stages require frameworks that take into account all the st
 - [Metadata organization](fov_metadata.qmd): <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
 - [Numerical Feature Extraction](numerical_feature_extraction.qmd)
   - [Calibration](numerical_feature_extraction.qmd#calibration): <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
-    - [Time-domain](numerical_feature_extraction.qmd#irf-shift-calibration)
-    - [Frequency-domain](numerical_feature_extraction.qmd#reference-dye-calibration)
+    - [Fit Calibration](numerical_feature_extraction.qmd#fit-calibration)
+    - [Fit Free Calibration](numerical_feature_extraction.qmd#fit-free-calibration)
+      - [IRF Shift](numerical_feature_extraction.qmd#shift-irf)
+      - [Reference Dye](numerical_feature_extraction.qmd#reference-dye)
   - Lifetime extraction: <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span>
     - [Fitting](lifetime_fit.qmd)
     - [Phasor](lifetime_fit_free.qmd)

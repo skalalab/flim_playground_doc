@@ -19,7 +19,7 @@ This method allows the user to compare the distributions of a single numerical f
 
 `Separate by` takes effect before [`Color by`](data_analysis.qmd#color-by). `Separate by` divides the plot into sections separated by a dashed line, with each section labeled by one of the available categories of the selected categorical feature after [filtering](data_analysis.qmd#filter-widgets). The selected feature of `Separate by` will be automatically removed from available features in `Color by`. The section order is determined by the order of the categories which are sorted [numer-alphatically](data_analysis.qmd#nte-order). 
 
-Then, visual channels (color, shape, opacity) and effect size annotation will be applied within each section. For example, the visualization below is separated by `cell_line`, with each section labelled by the bold text of a cell line. Within each section, the x-axis renders the `Color by` categories (`treatments`) so colors are consistent across sections. [Effect size](#effect-size) calculation and annotation (only effect size $> 0.5$ is shown) will only be preformed within each section. 
+Then, visual channels (color, shape, opacity) and effect size annotation will be applied within each section. For example, the visualization below is separated by `cell_line`, with each section labelled by the bold text of a cell line. Within each section, the x-axis renders the `Color by` categories (`treatments`) so colors are consistent across sections. [Effect size](#effect-size) calculation and annotation (only effect size $> 0.5$ is shown) will only be performed within each section. 
 
 ![](analysis_ui_shots/separate_by.png)
 

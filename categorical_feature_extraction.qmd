@@ -9,19 +9,19 @@ Based on the datasets extracted in the [numerical feature extraction](numerical_
 
 ## Merging Datasets
 
-It will scan the specified folder path and find all csv files. It will use the [cell identifier column](data_extraction_config.qmd#cell-identifier) to check for duplicates both within each dataset and across all datasets. It will also check for the eligibility of [categorical feature assignment](#assigning-categorical-features) using the [fov identifier column](data_extraction_config.qmd#fov-identifier). 
+It will scan the specified folder path and find all csv files. It will use the [cell identifier column](data_extraction_config.qmd#cell-identifier) to check for duplicates both within each dataset and across all datasets. 
 
 :::{.callout-important #fov-id-categorical}
-**It assumes that the FOV identifier includes all information necessary to extract the categorical features, by including fields separated by some delimiter. Categorical features will be assigned from individual or combined fields.** 
+**The FOV identifier uniquely identifies a field of view and is assumed to contain all information necessary to extract the categorical features (e.g., treatment, time point, etc.), by including segments separated by a certain delimiter (e.g., `_`). Categorical features will be assigned from individual or combined segments.** 
 :::
 
-So it checks if all field of view names include the same number of fields. 
+Therefore, it checks if all field of view names include the same number of segments to determine the eligibility of [categorical feature assignment](#assigning-categorical-features). 
 
-![](extraction_ui_shots/cat_merge.png){width=50% fig-align=center}
+![](extraction_ui_shots/cat_merge.png){width=60% fig-align=center}
 
 It will merge the datasets that pass the checks by finding common columns and vertically concatenating them. 
 
-![](extraction_ui_shots/cat_merge_result.png){width=50% fig-align=center}
+![](extraction_ui_shots/cat_merge_result.png){width=60% fig-align=center}
 
 ## Assigning Categorical Features
 
