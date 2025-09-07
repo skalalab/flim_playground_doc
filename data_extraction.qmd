@@ -44,6 +44,8 @@ The cell-level mask can focus on different parts of the cell region, such as the
 
 For an example, see [here](data_extraction_config.qmd#file-suffix). 
 
+- `.tiff`/`.tif`: a 2D array with background labeled as `0` and each cell ROI region labeled as a unique positive integer. That integer will be part of the [unique cell identifier](data_extraction_config.qmd#cell-identifier).
+
 ## IRF 
 IRF must be a 1D array. Currently, the supported formats are (extendable to more formats in the future):
 

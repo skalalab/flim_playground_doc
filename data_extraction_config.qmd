@@ -38,7 +38,7 @@ Since FLIM Playground currently does **not** support pixel-fitting, the user has
 
 #### Cell Identifier
 
-The user can specify the column name for the unique identifier of the cell to be stored in the output dataset. 
+The user can specify the column name for the unique identifier of the cell to be stored in the output dataset. The cell identifier will be constructed as `{FOV Identifier}_{cell_label}`, where the `cell_label` is the unique integer label in the mask or the row number if the decay type is [2D decay](#2d-decay).
 
 #### FOV Identifier
 
