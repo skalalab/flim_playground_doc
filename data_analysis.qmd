@@ -90,7 +90,11 @@ A list of shared widgets is provided to support the general workflow in analysis
 The visualization and analysis results will be updated in real time to reflect user's interactions with any of the above widgets. 
 
 ## Numerical Feature Widgets 
-The Data Extraction module groups numerical features based on the [feature extractor type](data_extraction.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features will be grouped based on the [user-specified configuration](data_analysis_config.qmd). Ungrouped numerical features will be grouped into a group called `Uncategorized Features`. One selection widget will be rendered for each numerical feature group. 
+The Data Extraction recognizes numerical features using `pd.api.types.is_numeric_dtype` internally.  Then it groups numerical features based on the [feature extractor type](data_extraction.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features will be grouped based on the [user-specified configuration](data_analysis_config.qmd). Ungrouped numerical features will be grouped into a group called `Uncategorized Features`. One selection widget will be rendered for each numerical feature group. 
+
+::: {.callout-tip}
+If you cannot find numerical features in the widgets including `Uncategorized Features`, it is likely that the numerical features are not recognized. Please inspect the dataset using for example Excel filters and look for non-numeric values in those columns. One non-numeric value (e.g., "--") will prevent it from being recognized. 
+:::
 
 ### Univariate Analysis
 One set of selection widgets, each can select one feature from a feature group, is rendered. If one feature from a feature group is selected, all the other features groups will be reset to the value `Select`. 
