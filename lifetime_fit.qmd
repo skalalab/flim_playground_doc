@@ -31,6 +31,6 @@ The mean lifetime, $\tau_{mean}$, is calculated as the weighted average of the l
 $$\tau_{mean} = \sum_{i=1}^n \alpha_i \tau_i$$
 
 ## Pixel-prefitted
-Currently, FLIM Playground supports pixel-prefitted lifetime features from [SPCImage](https://www.becker-hickl.com/products/spcimage/). The pixel-level lifetime fitting features are expected to be stored in [2D arrays](data_extraction.qmd#spcimage-t1) in spatial dimensions, with each row and column has the value of a lifetime feature outputted from SPCImage. SPCImage will output `0` for pixels that are not fitted (e.g. thresholded out). To avoid those pixels that bias the results, FLIM Playground uses `np.ma.masked_array` to mask the pixels that are not fitted. 
+Currently, FLIM Playground supports pixel-prefitted lifetime features from [SPCImage](https://www.becker-hickl.com/products/spcimage/). The pixel-level lifetime fitting features are expected to be stored in [2D arrays](data_extraction.qmd#spcimage-t1) in spatial dimensions, with each row and column has the value of a lifetime feature outputted from SPCImage. SPCImage will output `0` for pixels that are not fitted (e.g. thresholded out). To avoid them biasing the results, FLIM Playground uses `np.ma.masked_array` to create a masked array and disregards them when calculating the averages using `np.ma.average`.  
 
 Then it uses the ROI [mask](data_extraction.qmd#mask) to calculate the cell-level lifetime features by averaging the pixel-level features within each ROI. 
