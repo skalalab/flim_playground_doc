@@ -15,7 +15,7 @@ The dataset needs to have a unique identifier column to identify each row. In th
 
 Add categorical columns you want FLIM Playground to recognize here. Those columns will be converted to strings internally.
 
-![](analysis_ui_shots/config_cat.png){width=20% }
+![](analysis_ui_shots/config_cat.png){width=20%}
 
 The default categorical feature list does not include `species`, so we add it manually. 
 

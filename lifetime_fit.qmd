@@ -10,7 +10,7 @@ $$I(t) = \sum_i \alpha_i \, e^{-t/\tau_i}$$
 
 If the decays have not been pre-fitted, FLIM Playground will use the confirmed fitting options ([number of components](numerical_feature_extraction.qmd#number-of-components), [time gates](numerical_feature_extraction.qmd#time-gates), [metric](numerical_feature_extraction.qmd#metric), and [fitting mode](numerical_feature_extraction.qmd#fitting-mode)) and the same [reconvolution fitting process](numerical_feature_extraction.qmd#reconvolution-fitting) as the [irf shift calibration step](numerical_feature_extraction.qmd#fit-calibration) to fit the decay curves, with the only difference being that the IRF shift is no longer a free variable to be optimized. To recap, the reconvolution fitting takes into account of the IRF, and minimizing the custom objective function will fit the decay curve with a multi-exponential model. 
 
-[Otherwise](#pixel-prefitted), FLIM Playground will use the [pre-fitted values](data_extraction.qmd#a1) to calculate the fitting features. 
+[Otherwise](#pixel-prefitted), FLIM Playground will use the [pre-fitted values](data_extraction.qmd#spcimage-t1) to calculate the fitting features. 
 
 Fitting features in the final dataset will have the prefix set to be the combination of the feature extractor name (i.e. `Lifetime fit`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Lifetime fit_nadh: a1` means the fraction of the first lifetime component for the NAD(P)H channel. 
 
@@ -31,6 +31,6 @@ The mean lifetime, $\tau_{mean}$, is calculated as the weighted average of the l
 $$\tau_{mean} = \sum_{i=1}^n \alpha_i \tau_i$$
 
 ## Pixel-prefitted
-Currently, FLIM Playground supports pixel-prefitted lifetime features from [SPCImage](https://www.becker-hickl.com/products/spcimage/). The pixel-level lifetime fitting features are expected to be stored in [2D arrays](data_extraction.qmd#a1) in spatial dimensions, with each row and column has the value of a lifetime feature outputted from SPCImage. SPCImage will output `0` for pixels that are not fitted (e.g. thresholded out). To avoid those pixels that bias the results, FLIM Playground uses `np.ma.masked_array` to mask the pixels that are not fitted. 
+Currently, FLIM Playground supports pixel-prefitted lifetime features from [SPCImage](https://www.becker-hickl.com/products/spcimage/). The pixel-level lifetime fitting features are expected to be stored in [2D arrays](data_extraction.qmd#spcimage-t1) in spatial dimensions, with each row and column has the value of a lifetime feature outputted from SPCImage. SPCImage will output `0` for pixels that are not fitted (e.g. thresholded out). To avoid those pixels that bias the results, FLIM Playground uses `np.ma.masked_array` to mask the pixels that are not fitted. 
 
 Then it uses the ROI [mask](data_extraction.qmd#mask) to calculate the cell-level lifetime features by averaging the pixel-level features within each ROI. 
