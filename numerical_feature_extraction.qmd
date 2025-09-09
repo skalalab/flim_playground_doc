@@ -155,7 +155,7 @@ Similar to the [fov metadata extraction](fov_metadata.qmd#fov-metadata) step, FL
 
 A progress bar will be rendered to show the feature extraction progress for each FOV (bottom right).
 
-Warnings will be displayed if cells have `NaN` or `"--"` values for some features. They will *not* be excluded from the final csv file. 
+Warnings will be displayed if cells have `NaN` values for some features. They will *not* be excluded from the final csv file. 
 
 # Save Results
 

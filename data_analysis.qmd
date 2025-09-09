@@ -1,5 +1,5 @@
 # Overview
-We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](data_extraction.qmd) module or in user's own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data [categorization](index.qmd#design) as [Data Extraction](data_extraction.qmd) does, the [Data Analysis](data_analysis.qmd) module designs an [architectural blueprint](#shared-interactive-widgets) that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.  
+We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](data_extraction.qmd) module or in user's own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data [categorization](index.qmd#abstraction-level) as [Data Extraction](data_extraction.qmd) does, the [Data Analysis](data_analysis.qmd) module designs an [architectural blueprint](#shared-interactive-widgets) that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.  
 
 # Methods
 - Depending on the number of numerical features in the analysis, the methods are categorized into 3 groups: 
@@ -47,7 +47,7 @@ User can upload the dataset outputted from the [Data Extraction](data_extraction
 ## Requirements
 ::: {.callout-important}
 
-In either case, following the [design](#index.qmd#design), the dataset should have:
+In either case, following the [categorization](#index.qmd#abstraction-level), the dataset should have:
 
 - a column that uniquely identifies each row
 - an (optional) field of view identifier column  

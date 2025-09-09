@@ -2,7 +2,7 @@
 
 FLIM Playground transforms raw FLIM data into single-cell numerical and categorical features, ensuring smooth integration with [downstream analysis](data_analysis.qmd). All steps are seamlessly connected through interactive widgets, with built-in error checking and reporting to ensure correctness.
 
-The user can [configure](data_extraction_config.qmd) the system once and apply it to future data. After configuration, the user can extract features from raw data using the following steps, inspired by the [design](#index.qmd#design):
+The user can [configure](data_extraction_config.qmd) the system once and apply it to future data. After configuration, the user can extract features from raw data using the following steps, inspired by the [categorization](#index.qmd#abstraction-level):
 
 ![](extraction_ui_shots/extraction_steps.png){width=30% fig-align=center}
 

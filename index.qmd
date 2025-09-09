@@ -46,22 +46,15 @@ To acquire FLIM data, a light source—typically a pulsed laser for time-domain 
 
 In frequency-domain FLIM, the phase shift and modulation depth of the emission relative to the excitation are determined. 
 :::
-Because the FLIM workflow is [fragmented](#challenges) across [multiple levels](#levels-of-data) and [stages](#stages-of-workflow), researchers often rely on a patchwork of ad hoc scripts and specialized software. However, switching between methods or transitioning between stages usually requires coding expertise, introduces errors, and slows discovery. 
 
-**FLIM Playground** removes these hurdles with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and built-in repertoire of analytical methods with interactive widgets that encourage hypothesis driven, iterative exploration of large datasets. A modular architecture also enables incorporation of new algorithms as tools evolve.
-
-::: {.callout-important}
-# Scope of FLIM Playground
-It currently supports TCSPC-based FLIM only. It can also be extended to support other time-domain acquisition methods such as the Gating method.  
-:::
+However, due to the [challenges](#challenges), researchers often rely on a patchwork of ad hoc scripts and specialized software. However, switching between methods or transitioning between stages usually requires coding expertise, introduces errors, and slows discovery. 
 
 # Challenges
-INSERT FIGURE HERE (FIGURE 1)
+A diverse set of [tools](https://www.phasorpy.org/docs/stable/phasor_approach/#software) — both open-source and commercial, ranging from libraries to code-free graphical user interfaces (GUIs) — are available to extract and analyze FLIM data, providing alternative methods and therefore flexibility. For example, [PhasorPy](https://www.phasorpy.org/) [@phasorpy25] is a Python library that provides a set of functions to extract pixel-level phasor features and to analyze fluorescence lifetime using the phasor approach. [SPCImage](https://www.becker-hickl.com/products/spcimage/) is a commercial software that provides an user interface to extract pixel-level fitted and phasor features. 
 
-The flexibility of the FLIM workflow allows researchers to acquire data in different formats and extract data and insights using different methods, but it also introduces fragmentation across the workflow. 
+However, the user needs to write custom code to either (1) use the tools, or (2) perform <span style="color: #ff7f0e;">cell-level</span>, <span style="color: #2ca02c;">channel-level</span> , <span style="color: #d62728;">field-of-view-level</span>, or <span style="color: #9467bd;">experiment-level</span> extraction and analysis from the <span style="color: #1f77b4;">pixel-level</span> outputs of such tools. 
 
 ## Levels of Data
-At each level (•), fragmentation stems from the diverse input types (◦).
 
 - <span style="color: #1f77b4;">**Pixel**</span>
 - <span style="color: #ff7f0e;">**Region of Interest (ROI)**</span>
@@ -74,64 +67,70 @@ At each level (•), fragmentation stems from the diverse input types (◦).
   - Different calibration files
   - Different ROI masks
 - <span style="color: #d62728;">**Field of View (FOV)**</span>
-  - different file formats from different vendors (e.g., `.sdt`, `.ptu`)
-  - different dimensions (e.g., `XYT`, `CXYT`)
+  - different file formats from various vendors (e.g., `.sdt`, `.ptu`)
+  - different dimensions (e.g., `YT`, `YXT`, `CYXT`)
 - <span style="color: #9467bd;">**Experiment**</span>
-  - different treatment, different time points, different conditions, etc.
+  - different treatment, different time points, different conditions, etc., and combinations thereof
 
+An integrated framework should take into account all data levels <span style="color: #1f77b4;">■</span> <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> <span style="color: #9467bd;">■</span> (•) while maintaining the flexibility to handle the various input types (◦) available. **It should provide a level of abstraction to address fragmentation from input types**.
 
-## Stages of Workflow
-A diverse set of [tools](https://www.phasorpy.org/docs/stable/phasor_approach/#software) are available, though each of them solves the problem at a particular stage (•) using a subset of available methods (▪).
+Also, FLIM is a rapidly evolving field, and new methods are being developed all the time. An integrated framework should provide allow users to choose among alternative methods seemlessly and be ready to incorporate new methods: **a level of abstraction to address fragmentation from extraction and analysis methods**. 
 
-To integrate all the stages require frameworks that take into account all the stages and all [data levels](#levels-of-data) (<span style="color: #1f77b4;">■</span> <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> <span style="color: #9467bd;">■</span>) 
-
-
-- [Data Extraction Configuration](data_extraction_config.qmd): <span style="color: #2ca02c;">■</span> 
-- [Metadata organization](fov_metadata.qmd): <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
-- [Numerical Feature Extraction](numerical_feature_extraction.qmd)
-  - [Calibration](numerical_feature_extraction.qmd#calibration): <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> 
-    - [Fit Calibration](numerical_feature_extraction.qmd#fit-calibration)
-    - [Fit Free Calibration](numerical_feature_extraction.qmd#fit-free-calibration)
-      - [IRF Shift](numerical_feature_extraction.qmd#shift-irf)
-      - [Reference Dye](numerical_feature_extraction.qmd#reference-dye)
-  - Lifetime extraction: <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span>
-    - [Fitting](lifetime_fit.qmd)
-    - [Phasor](lifetime_fit_free.qmd)
-  - Intensity-based feature extraction: <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span>
-    - [Morphology](intensity_morphology.qmd)
-    - [Texture](intensity_texture.qmd)
-- [Categorical feature extraction](categorical_feature_extraction.qmd): <span style="color: #ff7f0e;">■</span> <span style="color: #9467bd;">■</span> 
-- [Data Analysis](data_analysis.qmd) (Visualization + Statistical Modeling): <span style="color: #ff7f0e;">■</span> <span style="color: #d62728;">■</span>  <span style="color: #9467bd;">■</span>
-  - [Univariate analysis](data_analysis.qmd#univariate-analysis)
-    - [Feature Comparison](feature_comparison.qmd)
-    - [Feature Histogram](feature_histogram.qmd)
-    - [Field of View Comparison](fov_comparison.qmd)
-  - [Bivariate analysis](data_analysis.qmd#bivariate-analysis)
-    - [Feature Distribution](feature_distribution.qmd)
-  - [Multivariate analysis](data_analysis.qmd#multivariate-analysis)
-    - [Dimension Reduction](dimension_reduction.qmd)
-    - [Classification](classification.qmd)
+Finally, many of the tools especially GUI softwares are not cross-platform, which limits the accessibility of the tools. The [Installation](#installation) addresses this last challenge.
 
 # Solution
-FLIM Playground divides the workflow into two independent sections:
 
-- [Data Extraction](data_extraction.qmd) that extracts features from the raw data
-- [Data Analysis](data_analysis.qmd) that analyzes the extracted features from the Data Extraction section or data extracted by other means using visualizations and statistical modeling.
+## Abstraction Level
 
-Data Extraction addresses the fragmentation among data types and extraction methods by adopting a [channel-centric framework](#data_extraction_config.qmd#channel-centric-framework) that offers flexibility without incurring too much overhead for the user. 
+Inspired by the [data levels](#levels-of-data), tabular data columns can be categorized into three sets:
 
-Data Analysis addresses the fragmentation among analysis methods by deploying a [shared framework](#data_analysis.qmd#shared-interactive-widgets) across all analysis methods, enabling the same interactive and frictionless exploration experience. 
-
-INSERT FIGURE HERE (FIGURE 2)
-
-# Design
-
-Columns of any tabular data can be categorized into three sets:
-
-- identifiers: unique row identifier and (optional) field of view identifier
-- categorical features: conceptually help us group the rows (e.g. the categorical feature `treatment` will group the rows into different treatment groups)
-- numerical features: quantify the differences between data groups
+- identifiers: unique row identifier (<span style="color: #ff7f0e;">■</span>) and (optional) field of view identifier (<span style="color: #d62728;">■</span>)
+- categorical features: conceptually help us group the rows (e.g., `treatment` will group the rows into different treatment groups) (<span style="color: #ff7f0e;">■</span> <span style="color: #9467bd;">■</span>)
+- numerical features: quantify the differences/similarities between data groups (<span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span>)
 
 **Science, from the data perspective, is about closing the conceptual categorical gaps with quantitative measurements.**
 
-[Data Extraction](data_extraction.qmd) and [Data Analysis](data_analysis.qmd) are designed with the above categorization in mind. 
+## Design
+FLIM Playground has two independent sections:
+
+INSERT FIGURE HERE (FIGURE 2)
+
+### Data Extraction
+
+[Data Extraction](data_extraction.qmd) extracts single-cell features from the raw data. It adopts a [framework](#data_extraction_config.qmd#channel-centric-framework) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for the user. Following the above categorization, it is divided into the following steps:
+
+- [Data Extraction Configuration](data_extraction_config.qmd): allows users to choose among alternative input types and extraction methods (extractors).
+- [Metadata organization](fov_metadata.qmd): extracts the field of view identifiers and their configurations
+- [Numerical Feature Extraction](numerical_feature_extraction.qmd): extracts single-cell numerical features by user-selected extractors. More extractors can be integrated in the future.
+  - [Calibration](numerical_feature_extraction.qmd#calibration): calibrate for IRF shift or use reference dye
+  - alternative lifetime extractors: 
+    - [Fitting](lifetime_fit.qmd)
+    - [Phasor](lifetime_fit_free.qmd)
+  - alternative intensity-based extractors:
+    - [Morphology](intensity_morphology.qmd)
+    - [Texture](intensity_texture.qmd)
+- [Categorical feature extraction](categorical_feature_extraction.qmd): extracts single-cell categorical features and combines experiment-level datasets.
+
+### Data Analysis
+
+[Data Analysis](data_analysis.qmd) analyzes features—whether extracted through Data Extraction or by other methods—using visualizations and statistical modeling. It deploys a [shared framework](#data_analysis.qmd#shared-interactive-widgets) built to handle the [three sets of features](#abstraction-level) across all analysis methods, enabling the same interactive and frictionless exploration experience. 
+
+- [Data Analysis](data_analysis.qmd) goes in-depth in how FLIM Playground handles the three sets of features and [Data Analysis Config](data_analysis_config.qmd) goes through how users can configure FLIM Playground to analyze datasets that are not extracted by [Data Extraction](data_extraction.qmd). 
+
+Here is the list of analysis methods, grouped by the number of numerical features they take as input:
+
+- [Univariate analysis](data_analysis.qmd#univariate-analysis)
+  - [Feature Comparison](feature_comparison.qmd)
+  - [Feature Histogram](feature_histogram.qmd)
+  - [Field of View Comparison](fov_comparison.qmd)
+- [Bivariate analysis](data_analysis.qmd#bivariate-analysis)
+  - [Feature Distribution](feature_distribution.qmd)
+- [Multivariate analysis](data_analysis.qmd#multivariate-analysis)
+  - [Dimension Reduction](dimension_reduction.qmd)
+  - [Classification](classification.qmd)
+
+New methods can be integrated in the future easily, building on the [shared framework](#data_analysis.qmd#shared-interactive-widgets).
+
+## Summary
+
+**FLIM Playground** removes these hurdles with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and built-in repertoire of analytical methods with interactive widgets that encourage hypothesis driven, iterative exploration of large datasets. A modular architecture also enables incorporation of new algorithms.
