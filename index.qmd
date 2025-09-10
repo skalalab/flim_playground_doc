@@ -48,22 +48,19 @@ In frequency-domain FLIM, the phase shift and modulation depth of the emission r
 :::
 
 # Challenges
-A diverse set of [tools](https://www.phasorpy.org/docs/stable/phasor_approach/#software) — both open-source and commercial, ranging from libraries to code-free graphical user interfaces (GUIs) — are available to extract and analyze FLIM data, providing alternative methods and therefore flexibility to FLIM researchers. Examples include [PhasorPy](https://www.phasorpy.org/) [@phasorpy25], an open-source library for analyzing fluorescence lifetime using the phasor approach; [FLUTE](https://github.com/LaboratoryOpticsBiosciences/FLUTE) [@flute23], an open-source GUI for interactive phasor analysis;  [SPCImage](https://www.becker-hickl.com/products/spcimage/) [@becker2021] a commercial software for fitting and phasor features; and [Prism](https://www.graphpad.com/prism/) a commercial statistical and visualization software.
+A diverse set of [tools](https://www.phasorpy.org/docs/stable/phasor_approach/#software) — both open-source and commercial, ranging from libraries to code-free graphical user interfaces (GUIs) — are available to extract and analyze FLIM data, providing alternative methods and therefore flexibility to FLIM researchers. Examples include [PhasorPy](https://www.phasorpy.org/) [@phasorpy25], an open-source library for analyzing fluorescence lifetime using the phasor approach; [FLUTE](https://github.com/LaboratoryOpticsBiosciences/FLUTE) [@flute23], an open-source GUI for interactive phasor analysis; [FLIMPA](https://github.com/SofiaKapsiani/FLIMPA) [@flimpa2025], a open-source phasor analysis GUI offering batch processing, ROI-based quantification, and experiment-level comparison through manual assignment; [FLIMLib](https://flimlib.github.io/), an open-source generic curve fitting library that can be used to fit fluorescence lifetime decay data; [SPCImage](https://www.becker-hickl.com/products/spcimage/) [@becker2021] a commercial software for fitting and phasor features; and [Prism](https://www.graphpad.com/prism/) a commercial statistical and visualization software.
 
 However, while some tools offer code-free interfaces, users still need to write custom code—either to prepare data in the proper format as input, or to further process their outputs for downstream analysis. The fragmentation between tools arises because each focuses on only a subset of data levels: <span style="color: #1f77b4;">pixel</span>, <span style="color: #ff7f0e;">cell ROI</span>, <span style="color: #2ca02c;">channel</span> , <span style="color: #d62728;">field of view</span>, and <span style="color: #9467bd;">experiment</span>. 
 
 ## Levels of Data
-
-- <span style="color: #1f77b4;">**Pixel**</span>
+- <span style="color: #1f77b4;">**Pixel**</span>: a single decay curve
 - <span style="color: #ff7f0e;">**Region of Interest (ROI)**</span>
-  - Whole cell mask
-  - Cytoplasm mask
-  - Nucleus mask
-  - Stain mask, etc. 
+  - mask with ROI labels: whole cell, cytoplasm, nucleus, stain, etc.
 - <span style="color: #2ca02c;">**Channel**</span>
   - Different fluorophores
   - Different calibration files
   - Different ROI masks
+  - Different feature extraction methods (fitting, phasor, morphology, texture)
 - <span style="color: #d62728;">**Field of View (FOV)**</span>
   - different file formats from various vendors (e.g., `.sdt`, `.ptu`)
   - different dimensions (e.g., `YT`, `YXT`, `CYXT`)
