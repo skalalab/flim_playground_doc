@@ -11,17 +11,17 @@
 
 # Quick Start
 
-Welcome to the FLIM Playground 🥳🎉🥂! It is an interactive graphical user interface (GUI) that allows you to extract single cell features from FLIM raw data ([Data Extraction](data_extraction.qmd)) and analyze extracted features or datasets extracted yourself using a built-in repertoire of methods ([Data Analysis](data_analysis.qmd)). 
+Welcome to the FLIM Playground 🥳🎉🥂! It is an interactive graphical user interface (GUI) that allows you to extract single cell features from FLIM raw data ([Data Extraction](data_extraction.qmd)) and analyze extracted features or datasets extracted via other methods using a built-in repertoire of methods ([Data Analysis](data_analysis.qmd)). 
 
 To quickly try out different analysis methods, download this [sample dataset] and try the [online demo](https://flim-playground.streamlit.app/). If you prefer to use your own data, read [data analysis configuration](data_analysis_config.qmd) to learn how to configure the system.
 
 ![](analysis_ui_shots/feature_comparison.png){width=100% fig-align=center}
 
-Due to the online limitation, extracting features from raw data is not available in the demo. Read on to learn more about the system, including how to [download](#download) and use the desktop app, from processing raw decay data to gaining insights.
+Due to the online demo's limitation in local file system access, extracting features from raw data is not available in the demo. Read on to learn more about FLIM Playground from processing raw decay data to gaining insights.
 
 # Installation
 
-The system is built entirely in Python and is open-source. 
+FLIM Playground is built entirely in Python and is open-source. 
 
 ## Download
 Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground) and double click it to run. Releases are available for Windows 11 and Mac OS 15. If your operating system is not either of these, you can build it yourself by following the instructions below.
@@ -47,12 +47,10 @@ To acquire FLIM data, a light source—typically a pulsed laser for time-domain 
 In frequency-domain FLIM, the phase shift and modulation depth of the emission relative to the excitation are determined. 
 :::
 
-However, due to the [challenges](#challenges), researchers often rely on a patchwork of ad hoc scripts and specialized software. However, switching between methods or transitioning between stages usually requires coding expertise, introduces errors, and slows discovery. 
-
 # Challenges
-A diverse set of [tools](https://www.phasorpy.org/docs/stable/phasor_approach/#software) — both open-source and commercial, ranging from libraries to code-free graphical user interfaces (GUIs) — are available to extract and analyze FLIM data, providing alternative methods and therefore flexibility. For example, [PhasorPy](https://www.phasorpy.org/) [@phasorpy25] is a Python library that provides a set of functions to extract pixel-level phasor features and to analyze fluorescence lifetime using the phasor approach. [SPCImage](https://www.becker-hickl.com/products/spcimage/) is a commercial software that provides an user interface to extract pixel-level fitted and phasor features. 
+A diverse set of [tools](https://www.phasorpy.org/docs/stable/phasor_approach/#software) — both open-source and commercial, ranging from libraries to code-free graphical user interfaces (GUIs) — are available to extract and analyze FLIM data, providing alternative methods and therefore flexibility to FLIM researchers. For example, [PhasorPy](https://www.phasorpy.org/) [@phasorpy25] is a Python library that provides a set of functions that extract pixel-level phasor features and analyze fluorescence lifetime using the phasor approach. [SPCImage](https://www.becker-hickl.com/products/spcimage/) is a commercial software that provides a user interface to extract pixel-level fitted and phasor features. [Prism](https://www.graphpad.com/prism/) is a commercial software that allows users to visualize and perform statistical analysis. 
 
-However, the user needs to write custom code to either (1) use the tools, or (2) perform <span style="color: #ff7f0e;">cell-level</span>, <span style="color: #2ca02c;">channel-level</span> , <span style="color: #d62728;">field-of-view-level</span>, or <span style="color: #9467bd;">experiment-level</span> extraction and analysis from the <span style="color: #1f77b4;">pixel-level</span> outputs of such tools. 
+However, while some tools offer code-free interfaces, users still need to write custom code—either to prepare data in the proper format as input, or to further process their outputs for downstream analysis. The fragmentation between tools arises from their focus on only a subset of data levels: <span style="color: #1f77b4;">pixel</span>, <span style="color: #ff7f0e;">cell ROI</span>, <span style="color: #2ca02c;">channel</span> , <span style="color: #d62728;">field of view</span>, and <span style="color: #9467bd;">experiment</span>. 
 
 ## Levels of Data
 
@@ -72,12 +70,14 @@ However, the user needs to write custom code to either (1) use the tools, or (2)
 - <span style="color: #9467bd;">**Experiment**</span>
   - different treatment, different time points, different conditions, etc., and combinations thereof
 
-An integrated framework should take into account all data levels <span style="color: #1f77b4;">■</span> <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> <span style="color: #9467bd;">■</span> (•) while maintaining the flexibility to handle the various input types (◦) available. **It should provide a level of abstraction to address fragmentation from input types**.
+An integrated framework should take into account all data levels <span style="color: #1f77b4;">■</span> <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> <span style="color: #9467bd;">■</span> (•) while maintaining the flexibility to handle various input types (◦). **It should provide a level of abstraction to address fragmentation from data levels and input types**.
 
-Also, FLIM is a rapidly evolving field, and new methods are being developed all the time. An integrated framework should provide allow users to choose among alternative methods seemlessly and be ready to incorporate new methods: **a level of abstraction to address fragmentation from extraction and analysis methods**. 
+Also, FLIM is a rapidly evolving field, and new methods are being developed all the time. An integrated framework should allow users to choose among alternative methods seemlessly, the backbone of iterative explorations integral to research, and be ready to incorporate new methods: **The provided level of abstraction should address fragmentation from extraction and analysis methods**. 
 
 Finally, many of the tools especially GUI softwares are not cross-platform, which limits the accessibility of the tools. The [Installation](#installation) addresses this last challenge.
 
+A closer parallel to FLIM Playground's integrated approach is the combination of [CellProfiler](https://cellprofiler.org/) [@cellprofiler4],which extracts per-object morphological and texture features, and [CellProfiler Analyst](https://cellprofileranalyst.org/) [@cpa21], which ingests these outputs or other feature tables for visualization and statistical analysis. However, FLIM Playground can extract lifetime features from time-resolved data, alongside morphological and texture features from intensity images. Its general data analysis module incorporates FLIM-specific methods (e.g., [phasor analysis](lifetime_fit_free.qmd)) and, beyond training machine learning classifiers, provides statistical models that address additional analysis aspects such as data heterogeneity.
+ 
 # Solution
 
 ## Abstraction Level
@@ -97,7 +97,7 @@ INSERT FIGURE HERE (FIGURE 2)
 
 ### Data Extraction
 
-[Data Extraction](data_extraction.qmd) extracts single-cell features from the raw data. It adopts a [framework](#data_extraction_config.qmd#channel-centric-framework) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for the user. Following the above categorization, it is divided into the following steps:
+[Data Extraction](data_extraction.qmd) extracts single-cell features from the raw data. It adopts a [framework](#data_extraction_config.qmd#channel-centric-framework) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for the user. Following the above [categorization](#abstraction-level), it is divided into the following steps:
 
 - [Data Extraction Configuration](data_extraction_config.qmd): allows users to choose among alternative input types and extraction methods (extractors).
 - [Metadata organization](fov_metadata.qmd): extracts the field of view identifiers and their configurations
@@ -133,4 +133,4 @@ New methods can be integrated in the future easily, building on the [shared fram
 
 ## Summary
 
-**FLIM Playground** removes these hurdles with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and built-in repertoire of analytical methods with interactive widgets that encourage hypothesis driven, iterative exploration of large datasets. A modular architecture also enables incorporation of new algorithms.
+**FLIM Playground** resolves these [challenges](#challenges) with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and built-in repertoire of analytical methods with interactive widgets that encourage hypothesis driven, iterative exploration of large datasets. A modular architecture also enables incorporation of new algorithms.
