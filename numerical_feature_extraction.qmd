@@ -125,7 +125,7 @@ It is performed similarly to the [fit calibration](#fit-calibration) steps, but 
 If both the `Lifetime fit` and `Lifetime fit free` feature extractors are selected for this channel, the IRF shift will be calibrated using [fit](#fit-calibration) and reuse the shift value for the `Lifetime fit free` feature extractor. 
 :::
 
-In addition to shifting the IRF based on the chosen shift values, each decay curve will be subtracted an offset value and clip to 0 if the time bin is negative after the subtraction. The offset is chosen to be the minimum of the two values: the median of the first 20th percentile of the decay curve (head), and the median of the last 10th percentile of the decay curve (tail). 
+In addition to shifting the IRF based on the chosen shift values, each decay curve will be subtracted an offset value and clip to 0 if the time bin is negative after the subtraction. The offset is chosen to be the mean of the last 10th percentile of the decay curve (tail). 
 
 Finally, the signals of the shifted IRF are deconvolved from the offset-subtracted decay curves using [`phasor.phasor_divide`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_divide) from the `phasorpy` package. 
 
