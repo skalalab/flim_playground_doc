@@ -50,9 +50,7 @@ User can edit the file suffixes here.
 
 ## Reference Dye
 
-If the selected fit free calibration method is [reference dye](data_extraction_config.qmd#calibration-method), the user can specify the reference dye file path and the reference dye lifetime here, the default of those are copied from the reference dye config. 
-
-![](extraction_ui_shots/fov_reference_dye.png){width=50% fig-align=center}
+If the selected fit free calibration method is [reference dye](data_extraction_config.qmd#calibration-method), the user is asked to specify the reference dye file path for each channel and the reference dye lifetime, the default of those are copied from the reference dye config. 
 
 ## Folder Path
 Finally, the user can specify the folder path that contains all the required input files. 

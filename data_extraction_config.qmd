@@ -62,7 +62,7 @@ It supports two calibration methods for phasor analysis:
 - [IRF shift-based calibration](numerical_feature_extraction.qmd#irf-shift)
 - [Reference dye-based calibration](numerical_feature_extraction.qmd#reference-dye)
 
-Since instrumental response function (IRF) is channel-specific, it is set in the [per-channel settings](#per-channel-settings). The reference dye-based calibration is channel-agnostic. 
+Since instrumental response function (IRF) or the reference dye are measured for each channel, they are set in the [per-channel settings](#per-channel-settings). The reference dye's lifetime is channel-agnostic. 
 
 ![](extraction_ui_shots/config_calibration.png){width=100% fig-align=center}
 
