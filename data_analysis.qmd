@@ -47,7 +47,7 @@ User can upload the dataset outputted from the [Data Extraction](data_extraction
 ### Requirements
 ::: {.callout-important}
 
-In either case, following the [categorization](index.qmd#abstraction-level), the dataset should have:
+In either case, following the [categorization](index.qmd#data-semantics), the dataset should have:
 
 - a column that uniquely identifies each row
 - an (optional) field of view identifier column  

@@ -19,7 +19,7 @@
 
 Welcome to the FLIM Playground 🥳🎉🥂! It is an interactive graphical user interface (GUI) that allows you to extract single cell features from FLIM raw data ([Data Extraction](data_extraction.qmd)) and analyze extracted features or datasets extracted via other methods using a built-in repertoire of methods ([Data Analysis](data_analysis.qmd)). 
 
-To quickly try out different analysis methods, download this [sample dataset] and try the [online demo](https://flim-playground.streamlit.app/). If you prefer to use your own data, read [data analysis configuration](data_analysis_config.qmd) to learn how to configure the system.
+To quickly try out different analysis methods, download this [sample dataset, will be provided soon] and try the [online demo](https://flim-playground.streamlit.app/). If you prefer to use your own data, read [data analysis configuration](data_analysis_config.qmd) to learn how to configure the system.
 
 ![](analysis_ui_shots/feature_comparison.png){width=100% fig-align=center}
 
@@ -98,7 +98,7 @@ FLIM Playground has two independent sections:
 
 #### Data Extraction
 
-[Data Extraction](data_extraction.qmd) extracts single-cell features from the raw data. It adopts a [framework](#data_extraction_config.qmd#channel-centric-framework) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for the user. Following the above [categorization](#data-semantics), it is divided into the following steps:
+[Data Extraction](data_extraction.qmd) extracts single-cell features from the raw data. It adopts a [framework](data_extraction_config.qmd#channel-centric-framework) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for the user. Following the above [categorization](#data-semantics), it is divided into the following steps:
 
 - [Data Extraction Configuration](data_extraction_config.qmd): allows users to choose among alternative input types and extraction methods (extractors).
 - [Metadata organization](fov_metadata.qmd): extracts the field of view identifiers and their configurations
@@ -114,7 +114,7 @@ FLIM Playground has two independent sections:
 
 #### Data Analysis
 
-[Data Analysis](data_analysis.qmd) analyzes features—whether extracted through Data Extraction or by other methods—using visualizations and statistical modeling. It deploys a [shared framework](#data_analysis.qmd#shared-interactive-widgets) built to handle the [three sets of features](#data-semantics) across all analysis methods, enabling the same interactive and frictionless exploration experience. 
+[Data Analysis](data_analysis.qmd) analyzes features—whether extracted through Data Extraction or by other methods—using visualizations and statistical modeling. It deploys a [shared framework](data_analysis.qmd#shared-interactive-widgets) built to handle the [three sets of features](#data-semantics) across all analysis methods, enabling the same interactive and frictionless exploration experience. 
 
 - [Data Analysis](data_analysis.qmd) goes in-depth in how FLIM Playground handles the three sets of features and [Data Analysis Config](data_analysis_config.qmd) goes through how users can configure FLIM Playground to analyze datasets that are not extracted by [Data Extraction](data_extraction.qmd). 
 
@@ -130,7 +130,7 @@ Here is the list of analysis methods, grouped by the number of numerical feature
   - [Dimension Reduction](dimension_reduction.qmd)
   - [Classification](classification.qmd)
 
-New methods can be integrated in the future easily, building on the [shared framework](#data_analysis.qmd#shared-interactive-widgets).
+New methods can be integrated in the future easily, building on the [shared framework](data_analysis.qmd#shared-interactive-widgets).
 
 ### Summary
 
