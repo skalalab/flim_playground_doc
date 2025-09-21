@@ -6,19 +6,17 @@ Principal Component Analysis (PCA) is a linear dimension reduction method that p
 
 Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochastic Neighbor Embedding (t-SNE) are non-linear dimension reduction methods that can capture more complex patterns in the data. They are more flexible and can handle non-linear relationships between features, but they are more computationally expensive, less interpretable, not deterministic (FLIM Playground uses the random seed `42` to ensure reproducibility), and dependent on the hyperparameters. Here is a [post](https://pair-code.github.io/understanding-umap/) that explains how UMAP and t-SNE work at a high level and the meaning of some of the hyperparameters. 
 
-# Components
+## Components
 
 ![](analysis_ui_shots/dimension_reduction.png){width=100% fig-align=center}
 
-## Shared Components
+### Shared Components
 - On the left, user can select the numerical features for the dimension reduction: it shares the numerical [selection widgets](data_analysis.qmd#multivariate-analysis) that allows user to select multiple features from each feature group. 
 - On the top right, user can subset the data to find the groups of interest: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
 - Below the filters, user can select the visual channels: it shares the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows user to `Color by`, `Opacity by`, and `Shape by` categorical features. 
 - On the bottom right, user can change the plot style: it shares the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets) that allows user to change the plot style. 
 
-## Method-specific Components
-
-### Hyperparameters
+### Hyperparameter
 Hyperparameters really matter. So we provide a set of interactive widgets to help users to change the hyperparameters and see their effects on the dimension reduction in real time. 
 
 #### UMAP
@@ -26,8 +24,6 @@ FLIM Playground uses the `umap-learn` implementation of UMAP. It chooses to expo
 
 #### t-SNE
 FLIM Playground uses the `sklearn.manifold.TSNE` implementation of t-SNE. It chooses to expose `perplexity` and `early_exaggeration` for the user to tweak. Other hyperparameters are set to [default values](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html).
-
-
 
 ::: {.columns}
 ::: {.column width="33%"}

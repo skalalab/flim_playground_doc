@@ -1,7 +1,7 @@
 # Overview
 We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](data_extraction.qmd) module or in user's own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data [categorization](index.qmd#abstraction-level) as [Data Extraction](data_extraction.qmd) does, the [Data Analysis](data_analysis.qmd) module designs an [architectural blueprint](#shared-interactive-widgets) that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.  
 
-# Methods
+## Methods
 - Depending on the number of numerical features in the analysis, the methods are categorized into 3 groups: 
     - Univariate Analysis
         - [Feature Comparison](feature_comparison.qmd)
@@ -28,7 +28,7 @@ All the methods [share a set of interactive widgets](#shared-interactive-widgets
 :::
 :::
 
-# Input
+## Input
 User can upload the dataset outputted from the [Data Extraction](data_extraction.qmd) directly or *their own datasets* in **csv** (Comma Separated Values) format after finishing the [interactive configuration](data_analysis_config.qmd) setup. 
 
 ::: {.columns}
@@ -44,7 +44,7 @@ User can upload the dataset outputted from the [Data Extraction](data_extraction
 :::
 :::
 
-## Requirements
+### Requirements
 ::: {.callout-important}
 
 In either case, following the [categorization](#index.qmd#abstraction-level), the dataset should have:
@@ -62,24 +62,23 @@ The unique row id and field of view id are used to help user identify the row (e
 Warning messages will not prevent the analysis but error messages will. 
 :::
 
-
-## Warning Messages
+### Warning Messages
 - `Empty columns`: will be dropped.
 - `Duplicated columns`: Only the first occurrence of the duplicated column will be kept. Other occurrences will be dropped.
 - `Duplicated rows based on the unique row id`: Only the first occurrence of the duplicated row will be kept. Other occurrences will be dropped.
 - `Columns with NaN values`: won't be dropped, just a warning message. 
     - The analysis will be performed on the rows that are not NaN in the [selected numerical features](#numerical-feature-widgets). 
 
-## Error Messages
+### Error Messages
 - Missing a column that uniquely identifies each row
 - Cannot identify any numerical feature column
     - it uses `pd.api.types.is_numeric_dtype` to check if a column is numerical. 
 
-# Shared Interactive Widgets
+## Shared Interactive Widgets
 
 A list of shared widgets is provided to support the general workflow in analysis. 
 
-## General Workflow
+### General Workflow
 
 - select [numerical feature(s)](#numerical-feature-widgets) on the left
 - [subset the data](#filter-widgets) to find data of interest on the top 
@@ -89,43 +88,43 @@ A list of shared widgets is provided to support the general workflow in analysis
 
 The visualization and analysis results will be updated in real time to reflect user's interactions with any of the above widgets. 
 
-## Numerical Feature Widgets 
+### Numerical Feature Widgets 
 The Data Extraction recognizes numerical features using `pd.api.types.is_numeric_dtype` internally.  Then it groups numerical features based on the [feature extractor type](data_extraction.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features will be grouped based on the [user-specified configuration](data_analysis_config.qmd). Ungrouped numerical features will be grouped into a group called `Uncategorized Features`. One selection widget will be rendered for each numerical feature group. 
 
 ::: {.callout-tip}
 If you cannot find a certain numerical feature under any numerical widgets including `Uncategorized Features`, please inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. One non-numeric value (e.g., "--") will prevent it from being recognized. 
 :::
 
-### Univariate Analysis
+#### Univariate Analysis
 One set of selection widgets, each can select one feature from a feature group, is rendered. If one feature from a feature group is selected, all the other features groups will be reset to the value `Select`. 
 
 ![](analysis_ui_shots/uni_select.png){width=40% fig-align=center}
 
-### Bivariate Analysis
+#### Bivariate Analysis
 Two sets of selection widgets are rendered to allow maximum flexibility (the two features can be from the same or different feature groups). Each set of selection widgets behaves like the selection widgets in the univariate analysis. The first selected feature will be hidden in the second set of selection widgets. 
 
 ![](analysis_ui_shots/bi_select.png){width=40% fig-align=center}
 
-### Multivariate Analysis
+#### Multivariate Analysis
 One set of selection widgets, each can select multiple features from a feature group, is rendered. A special value `All` is introduced so that the user can conveniently select all features under the feature group. If user selects `All`, all the other options will be cleared, and vice versa. 
 
 ![](analysis_ui_shots/multi_select.png){width=40% fig-align=center}
 
-## Categorical Feature Widgets
+### Categorical Feature Widgets
 
 FLIM Playground will recognize the categorical features in the uploaded dataset based on the [user-specified configuration](data_analysis_config.qmd) if the dataset is not extracted by [Data Extraction](data_extraction.qmd). Otherwise, it will recognize categorical features specified in the [Data Extraction configuration](data_extraction_config.qmd#categorical-features). 
 
-### Filter Widgets
+#### Filter Widgets
 ![](analysis_ui_shots/filter.png){width=95%}
 
 For complex datasets that are collected over multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget will be rendered for each categorical feature so that user has the flexibility to filter the data based on combinations of categorical features. `All` is a special option that will include all categories of the selected categorical feature. Once it is selected, all the other options will be cleared, and vice versa. 
 
-### Visual Channels Widgets
+#### Visual Channels Widgets
 ![](analysis_ui_shots/vis_channels.png){width=100%}
 
 Human vision is wired for rapid, parallel pattern and trend detection; good visual encodings (how to map data to visual elements such as color, shape, opacity, etc.) harness this to surface insights that raw numbers or text obscure [@cleveland1984]. FLIM Playground provides `color`, `opacity`, and `shape` channels for visualizations that support them: 
 
-#### Color by
+##### Color by
 Color is supported in all methods except for [Classification](classification.qmd). In `Color by`, the user can select multiple categorical features, and each unique combination of available categories (determined by the filters in the [Filter Widgets](#filter-widgets)) in selected features will be assigned a distinct color. Groups created by `Color by` will show up in the x-axis (if multiple features, categories from each feature will be delimited by `::`).
 
 ::: {#nte-order .callout-note}
@@ -139,17 +138,17 @@ The order of the groups in x-axis and in the legend is determined by:
 
 ![](analysis_ui_shots/color_by.png){width=90% fig-align=center}
 
-#### Opacity and Shape by
+##### Opacity and Shape by
 - Opacity and shape are supported in all point-based visualizations (e.g. [Feature Comparison](feature_comparison.qmd), [2D Feature Distribution](feature_distribution.qmd), [Phasor Analysis](phasor_analysis.qmd), [Dimension Reduction](dimension_reduction.qmd)). In `Opacity by` and `Shape by`, the user can select one categorical feature, and each unique category will be assigned a distinct opacity or shape. The order of the shape and opacity is also sorted [numer-alphatically](#nte-order). 
 
 ![](analysis_ui_shots/opacity_shape_by.png){width=90% fig-align=center}
 
-## Unique ID Hover
+### Unique ID Hover
 - In all point-based visualizations, when hovering over a point, the unique id of the point will be shown. 
 
 ![](analysis_ui_shots/hover.png){width=90% fig-align=center}
 
-## Plotting Configuration Widgets
+### Plotting Configuration Widgets
 ![](analysis_ui_shots/style.png){width=100%}
 
 User can interactively configure the following plot parameters: 

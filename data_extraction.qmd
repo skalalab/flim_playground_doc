@@ -22,11 +22,10 @@ The user can [configure](data_extraction_config.qmd) the system once and apply i
 
 - User then can upload the extracted datasets to perform [Data Analysis](data_analysis.qmd). 
 
-INSERT FIGURE HERE (FIGURE 3)
 
-# Input File Types
+## Input File Types
 
-## Decay
+### Decay
 
 See [decay types](data_extraction_config.qmd#decay-types) for more details. 
 
@@ -36,7 +35,7 @@ See [decay types](data_extraction_config.qmd#decay-types) for more details.
     - `.sdt`: Becker & Hickl
     - `.ptu`: PicoQuant
 
-## Mask
+### Mask
 
 Because of the single-cell focus of FLIM Playground, cell-level masks are needed for each channel. Channels can share the same mask, or use different masks (when they use different masks, the mask ID for each cell should match across masks). 
 
@@ -46,28 +45,28 @@ For an example, see [here](data_extraction_config.qmd#file-suffix).
 
 - `.tiff`/`.tif`: a 2D array with background labeled as `0` and each cell ROI region labeled as a unique positive integer. That integer will be part of the [unique cell identifier](data_extraction_config.qmd#cell-identifier).
 
-## IRF 
+### IRF 
 IRF must be a 1D array. Currently, the supported formats are (extendable to more formats in the future):
 
 - `.txt`: it uses `np.loadtxt` to parse a txt file. It will return a 1D array if the IRF numbers are in one row or in one column.  
 
-## SPCImage t1
+### SPCImage t1
 If the decay type is [3D/4D pixel-prefitted](data_extraction_config.qmd#3d4d-pixel-prefitted), the user can provide pixel-prefitted lifetime feature files. 
 
 - `.asc`: a 2D array in spatial dimensions, with each (row, column) has the value of the lifetime feature (e.g. `t1`: the first component's lifetime) of that pixel, output from [SPCImage](https://www.becker-hickl.com/products/spcimage/). 
 - Depending on your chosen number of lifetime components, the other pixel-prefitted features files will be included and their names are inferred from the `t1` file, by replacing `t1` in the file name with `t2`, `t3`, `a1[%]`, etc. 
 
-## Reference Dye
+### Reference Dye
 If the reference dye-based calibration is chosen, the user should provide the reference dye file. 
 
 - `.tiff`/`.tif`: a 3D array, with one of them as the time dimension. 
 
-## Intensity (2D)
+### Intensity (2D)
 
 If the channel's [imaging modality](#imaging-modality) is `Intensity-only`, the user should provide a 2D intensity image in:
 
 - `.tiff`/`.tif`: a 2D array. 
 
-# Limitation
+## Limitation
 
 - To simplify the workflow and due to the framework chosen, FLIM Playground does not support pixel-level fitting and fit free analysis, and there are many other open-source tools that can do so (for a comprehensive list, see [here](https://www.phasorpy.org/docs/stable/phasor_approach/#software)). Instead, it does cell-level fitting and fit free (phasor) feature extraction by summing up all the decays belonging to the same cell ROI to get one cell-level decay as a preprocessing step [@samimi25]. It also accepts prefitted pixel-level lifetime features from [SPCImage](https://www.becker-hickl.com/products/spcimage/) and aggregates pixel-level lifetime features to cell-level lifetime features. 

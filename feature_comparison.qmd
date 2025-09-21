@@ -1,18 +1,16 @@
 # Feature Comparison
 This method allows the user to compare the distributions of a single numerical feature across groups. It can help user spot overarching trends between distributions, identify within distribution shape-related characteristics such as skewness or bimodality that might signal sub-populations, and diagnose for potential outliers. 
 
-# Components
+## Components
 
 ![](analysis_ui_shots/feature_comparison.png)
 
-## Shared Components 
+### Shared Components 
 
 - On the left, user can select the numerical feature to be compared: it shares the numerical [selection widgets](data_analysis.qmd#univariate-analysis) that allows user to select exactly one feature from all feature groups. 
 - On the top right, user can subset the data to find the groups of interest: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
 - Below the filters, user can select the visual channels: it shares the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows user to `Color by`, `Opacity by`, and `Shape by` categorical features. 
 - On the bottom right, user can change the plot style: it shares the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets) that allows user to change the plot style. 
-
-## Method-specific Components
 
 ### Separate by
 ![](analysis_ui_shots/separate_by_widget.png)

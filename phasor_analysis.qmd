@@ -2,17 +2,15 @@
 
 This method focuses on visualizing the distribution of the phasor coordinates (1st harmonic or 2nd harmonic), extracted by the [Lifetime fit free](lifetime_fit_free.qmd) extractor, and performs optional clustering to highlight subpopulations or structural patterns.
 
-# Components
+## Components
 
 ![](analysis_ui_shots/phasor_analysis.png){width=100% fig-align=center}
 
-## Shared Components
+### Shared Components
 
 - On the top right, user can subset the data to find the groups of interest: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
 - Below the filters, user can select the visual channels: it shares the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows user to `Color by`, `Opacity by`, and `Shape by` categorical features. 
 - On the bottom right, user can change the plot style: it shares the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets) that allows user to change the plot style. 
-
-## Method-specific Components
 
 ### Select Phasor Coordinate 
 
@@ -42,7 +40,7 @@ To visualize the clustering result, FLIM Playground draws a polygon (convex hull
 
 ![](analysis_ui_shots/phasor_plot.png){width=80% fig-align=center}
 
-#### Export Clustered Dataset
+### Export Clustered Dataset
 
 User can download the clustered dataset by clicking: 
 

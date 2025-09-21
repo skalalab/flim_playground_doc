@@ -46,13 +46,16 @@ format:
     theme:
       light: [flatly, brand]
       dark: [darkly, brand]
-    number-sections: false
+    number-sections: true
+    number-depth: 3
     citations-hover: true
     footnotes-hover: true
     include-after-body: giscus.html
     reference-location: document
   pdf:
     documentclass: scrreprt
+    top-level-division: chapter
+    shift-headings: -1
 
 
 
