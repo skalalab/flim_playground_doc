@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: c7356e46-38d4-4962-ba73-c2bf2cb2836f
+      url: https://allanware.quarto.pub/flim-playground-doc

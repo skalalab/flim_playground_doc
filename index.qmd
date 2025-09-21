@@ -83,7 +83,7 @@ A closer parallel to FLIM Playground's integrated approach is the combination of
  
 ## Method
 
-### Abstraction Level
+### Data Semantics
 
 Tabular data columns can be categorized into three semantic sets:
 
@@ -98,7 +98,7 @@ FLIM Playground has two independent sections:
 
 #### Data Extraction
 
-[Data Extraction](data_extraction.qmd) extracts single-cell features from the raw data. It adopts a [framework](#data_extraction_config.qmd#channel-centric-framework) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for the user. Following the above [categorization](#abstraction-level), it is divided into the following steps:
+[Data Extraction](data_extraction.qmd) extracts single-cell features from the raw data. It adopts a [framework](#data_extraction_config.qmd#channel-centric-framework) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for the user. Following the above [categorization](#data-semantics), it is divided into the following steps:
 
 - [Data Extraction Configuration](data_extraction_config.qmd): allows users to choose among alternative input types and extraction methods (extractors).
 - [Metadata organization](fov_metadata.qmd): extracts the field of view identifiers and their configurations
@@ -114,7 +114,7 @@ FLIM Playground has two independent sections:
 
 #### Data Analysis
 
-[Data Analysis](data_analysis.qmd) analyzes features—whether extracted through Data Extraction or by other methods—using visualizations and statistical modeling. It deploys a [shared framework](#data_analysis.qmd#shared-interactive-widgets) built to handle the [three sets of features](#abstraction-level) across all analysis methods, enabling the same interactive and frictionless exploration experience. 
+[Data Analysis](data_analysis.qmd) analyzes features—whether extracted through Data Extraction or by other methods—using visualizations and statistical modeling. It deploys a [shared framework](#data_analysis.qmd#shared-interactive-widgets) built to handle the [three sets of features](#data-semantics) across all analysis methods, enabling the same interactive and frictionless exploration experience. 
 
 - [Data Analysis](data_analysis.qmd) goes in-depth in how FLIM Playground handles the three sets of features and [Data Analysis Config](data_analysis_config.qmd) goes through how users can configure FLIM Playground to analyze datasets that are not extracted by [Data Extraction](data_extraction.qmd). 
 
