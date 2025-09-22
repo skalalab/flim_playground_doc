@@ -126,6 +126,7 @@ Here is the list of analysis methods, grouped by the number of numerical feature
   - [Field of View Comparison](fov_comparison.qmd)
 - [Bivariate analysis](data_analysis.qmd#bivariate-analysis)
   - [Feature Distribution](feature_distribution.qmd)
+  - [Phasor Analysis](phasor_analysis.qmd)
 - [Multivariate analysis](data_analysis.qmd#multivariate-analysis)
   - [Dimension Reduction](dimension_reduction.qmd)
   - [Classification](classification.qmd)
