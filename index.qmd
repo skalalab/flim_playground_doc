@@ -61,17 +61,17 @@ However, while some tools offer code-free interfaces, users still need to write 
 ### Levels of Data
 - <span style="color: #1f77b4;">**Pixel**</span>: a single decay curve
 - <span style="color: #ff7f0e;">**Region of Interest (ROI)**</span>
-  - mask with ROI labels: whole cell, cytoplasm, nucleus, stain, etc.
+  - mask with cell labels
 - <span style="color: #2ca02c;">**Channel**</span>
   - Different fluorophores
-  - Different calibration files
-  - Different ROI masks
+  - fluorophore-specific calibration files
+  - masks focusing on different parts of the cell (e.g., whole cell, cytoplasm, nucleus, stain, etc.)
   - Different feature extraction methods (fitting, phasor, morphology, texture)
 - <span style="color: #d62728;">**Field of View (FOV)**</span>
-  - different file formats from various vendors (e.g., `.sdt`, `.ptu`)
-  - different dimensions (e.g., `YT`, `YXT`, `CYXT`)
+  - vendor-specific file formats (e.g., Becker & Hickl, PicoQuant, etc.)
+  - input decay types (e.g., [2D](data_extraction_config.qmd#2d-decay), [3/4D](data_extraction_config.qmd#3d4d-decay))
 - <span style="color: #9467bd;">**Experiment**</span>
-  - different treatment, different time points, different conditions, etc., and combinations thereof
+  - different treatments, time points, cell lines, etc., and combinations thereof
 
 An integrated framework should take into account all data levels <span style="color: #1f77b4;">■</span> <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> <span style="color: #9467bd;">■</span> (•) while maintaining the flexibility to handle various input types (◦). **It should provide a level of abstraction to address fragmentation from data levels and input types**.
 
