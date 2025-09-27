@@ -9,3 +9,7 @@ _book/
 *.out
 *.gz
 **/*.quarto_ipynb
+*.docx
+*.pdf
+*.svg
+*.tex

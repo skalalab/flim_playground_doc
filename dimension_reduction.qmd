@@ -6,6 +6,8 @@ Principal Component Analysis (PCA) is a linear dimension reduction method that p
 
 Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochastic Neighbor Embedding (t-SNE) are non-linear dimension reduction methods that can capture more complex patterns in the data. They are more flexible and can handle non-linear relationships between features, but they are more computationally expensive, less interpretable, not deterministic (FLIM Playground uses the random seed `42` to ensure reproducibility), and dependent on the hyperparameters. Here is a [post](https://pair-code.github.io/understanding-umap/) that explains how UMAP and t-SNE work at a high level and the meaning of some of the hyperparameters. 
 
+The numerical features will be standardized before the dimension reduction. 
+
 ## Components
 
 ![](analysis_ui_shots/dimension_reduction.png){width=100% fig-align=center}

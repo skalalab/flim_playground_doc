@@ -4,7 +4,7 @@ Biological samples often contain mixtures of fluorescent species, each with its 
 
 FLIM Playground extracts cell-level lifetime fitting features in this feature extractor, including the fraction of each lifetime component ($\alpha_i$), their lifetimes ($\tau_i$), and mean lifetime ($\tau_{mean}$). 
 
-$$I(t) = \sum_{i=1}^n \alpha_i \, e^{-t/\tau_i}$$
+$$I(t) = \sum_{i=1}^n A_i \, e^{-t/\tau_i}$$
 
 ## Fitting 
 
