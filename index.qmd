@@ -19,7 +19,7 @@
 
 Welcome to the FLIM Playground 🥳🎉🥂! It is an interactive graphical user interface (GUI) that allows you to extract single cell features from FLIM raw data ([Data Extraction](data_extraction.qmd)) and analyze extracted features or datasets extracted via other methods using a built-in repertoire of methods ([Data Analysis](data_analysis.qmd)). 
 
-To quickly try out different analysis methods, download this [sample dataset, will be provided soon] and try the [online demo](https://flim-playground.streamlit.app/). If you prefer to use your own data, read [data analysis configuration](data_analysis_config.qmd) to learn how to configure the system.
+To quickly try out different analysis methods, download this [sample dataset](https://github.com/skalalab/flim_playground_bioarchive/blob/main/inhibitors.csv) and try the [online demo](https://flim-playground.streamlit.app/). If you prefer to use your own data, read [data analysis configuration](data_analysis_config.qmd) to learn how to configure the system.
 
 ![](analysis_ui_shots/feature_comparison.png){width=100% fig-align=center}
 
@@ -30,7 +30,7 @@ Due to the online demo's limitation in local file system access, extracting feat
 FLIM Playground is built entirely in Python and is open-source. 
 
 ### Download
-Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground) and double click it to run. Releases are available for Windows 11 and Mac OS 15. If your operating system is not either of these, you can build it yourself by following the instructions below.
+Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground_bioarchive) and double click it to run. Releases are available for Windows 11 and Mac OS 15. If your operating system is not either of these, you can build it yourself by following the instructions below. Code will be open-sourced after publication.
 
 ### Build it yourself
 1. Clone the repo and navigate into the repository once cloned.

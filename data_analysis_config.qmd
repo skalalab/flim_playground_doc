@@ -32,7 +32,7 @@ After hitting the `ctrl/cmd + enter` key, the numerical features will be parsed 
 ![](analysis_ui_shots/config_num_group.png){width=90% fig-align=center}
 
 ## Save
-After the user finishes the configuration and clicks the `Save Configuration` button, FLIM Playground saves the configuration to a toml file for processing current and future datasets.
+After the user finishes the configuration and clicks the `Save Configuration` button, FLIM Playground saves the configuration for processing current and future datasets.
 
 ## Reset
 User can reset the configuration to the default settings, which are configured in the [configuration step](data_extraction_config.qmd) in the Data Extraction module.
