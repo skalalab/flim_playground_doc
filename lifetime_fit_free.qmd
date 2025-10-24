@@ -8,7 +8,7 @@ Fit-free features in the final dataset are prefixed by the combination of the fe
 
 It sums up all the pixel decays belonging to the same cell ROI labeled by the ROI [mask](data_extraction.qmd#mask) as one decay curve [@Samimi2025]. The phasor features are calculated from the summed decay curve. 
 
-If the chosen [calibration method](data_extraction_config.qmd#calibration-method) is IRF shift Calibration, FLIM Playground shifts the IRF using the shift values and subtracts the estimated offset as described in the [IRF shift Calibration step](numerical_feature_extraction.qmd#irf-shift). 
+If the chosen [calibration method](data_extraction_config.qmd#calibration-method) is IRF shift calibration, FLIM Playground shifts the IRF using the shift values and subtracts the estimated offset as described in the [IRF shift calibration step](numerical_feature_extraction.qmd#irf-shift). 
 
 ## Phasor features
 

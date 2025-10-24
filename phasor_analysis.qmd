@@ -9,7 +9,7 @@ This method focuses on visualizing the distribution of the 1st harmonic or 2nd h
 ### Shared Components
 
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
-- Below the filters, users can select the visual channels using the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
+- Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allow users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 ### Select Phasor Coordinate 
@@ -20,7 +20,7 @@ Instead of using the [bivariate selection widgets](data_analysis.qmd#bivariate-a
 
 ### K-means Clustering
 
-Phasor coordinates of single cell ROIs from the selected channel and harmonic are plotted in the phasor space. K-means clustering can be performed for each color group (created by [`Color by`](data_analysis.qmd#color-by)). If `Perform K-means Clustering` is checked, users can specify the number of clusters to be created based on their prior knowledge. In the future, automatic tuning for this parameter, akin to selecting the number of components of [GMM](feature_histogram.qmd#fit-gaussian-mixture-models), using silhouette analysis will be added.
+Phasor coordinates of single-cell ROIs from the selected channel and harmonic are plotted in the phasor space. K-means clustering can be performed for each color group (created by [`Color by`](data_analysis.qmd#color-by)). If `Perform K-means Clustering` is checked, users can specify the number of clusters to be created based on their prior knowledge. In the future, automatic tuning for this parameter, akin to selecting the number of components of [GMM](feature_histogram.qmd#fit-gaussian-mixture-models), using silhouette analysis will be added.
 
 ![](analysis_ui_shots/kmeans_config.png){width=60% fig-align=center}
 
@@ -46,4 +46,4 @@ Users can download the clustered dataset by clicking:
 
 ![](analysis_ui_shots/k_means_download.png){width=35% fig-align=center}
 
-The downloaded dataset keeps all the features plus the new categorical feature column (`k_means_cluster`), which is recognized by any methods in Data Analysis as a categorical feature like others, and rows that pass the [filters](data_analysis.qmd#filter-widgets).
+The downloaded dataset keeps all the features plus the new categorical feature column (`k_means_cluster`), which is recognized by any method in Data Analysis as a categorical feature like others, and rows that pass the [filters](data_analysis.qmd#filter-widgets).

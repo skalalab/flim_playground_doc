@@ -9,19 +9,19 @@ This method allows users to compare the distributions of a single numerical feat
 
 - On the left, users can use the [selection widgets](data_analysis.qmd#univariate-analysis) to select the numerical feature to be compared. Exactly one feature can be selected from all feature groups. 
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
-- Below the filters, users can select the visual channels using the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
+- Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allow users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 ### Separate by
 ![](analysis_ui_shots/separate_by_widget.png)
 
-`Separate by` takes effect before [`Color by`](data_analysis.qmd#color-by). `Separate by` divides the plot into sections separated by a dashed line, with each section labeled by one of the available categories of the selected categorical feature after [filtering](data_analysis.qmd#filter-widgets). The selected feature of `Separate by` is automatically removed from available features in `Color by`. The section order is determined by the order of the categories which are sorted [numer-alphatically](data_analysis.qmd#nte-order). 
+`Separate by` takes effect before [`Color by`](data_analysis.qmd#color-by). `Separate by` divides the plot into sections separated by a dashed line, with each section labeled by one of the available categories of the selected categorical feature after [filtering](data_analysis.qmd#filter-widgets). The selected feature of `Separate by` is automatically removed from available features in `Color by`. The section order is determined by the order of the categories which are sorted [numeric-alphabetically](data_analysis.qmd#nte-order). 
 
 Then, visual channels (color, shape, opacity) and effect size annotation are applied within each section. For example, the visualization below was separated by `cell_line`, with each section labelled by the bold text of a cell line. Within each section, the x-axis rendered the `Color by` categories (`treatments`) so colors were consistent across sections. [Effect size](#effect-size) calculation and annotation (only effect size $> 0.5$ is shown) were performed within each section. 
 
 ![](analysis_ui_shots/separate_by.png)
 
-If selecting no feature in `Separate by` and selecting both `cell_line` and `treatment` in `Color by`, then colors are assigned to each cell line and treatment combination, and effect sizes are calculated across all combinations of group pairs (only effect size $> 0.5$ is shown). 
+If `Separate by` is left blank and both `cell_line` and `treatment` are selected in `Color by`, then colors are assigned to each cell line and treatment combination, and effect sizes are calculated across all combinations of group pairs (only pairs with effect size $> 0.5$ are shown). 
 
 ![](analysis_ui_shots/no_separate_by.png)
 
@@ -65,7 +65,7 @@ Who is treatment and who is control matters! From the formula of $\Delta_G$, swi
 :::
 
 :::{.callout-note}
-To keep the point-based visulization style that supports [interactive hover](data_analysis.qmd#unique-id-hover) while showing the violin plot like distribution, [Sina plot](https://en.wikipedia.org/wiki/Sina_plot) is used: it uses `gaussian_kde` from `scikit-learn` to make sure the width of the point distribution is proportional to the kernel density. 
+To keep the point-based visualization style that supports [interactive hover](data_analysis.qmd#unique-id-hover) while showing the violin plot like distribution, [Sina plot](https://en.wikipedia.org/wiki/Sina_plot) is used: it uses `gaussian_kde` from `scikit-learn` to make sure the width of the point distribution is proportional to the kernel density. 
 :::
 
 #### Cohen's d

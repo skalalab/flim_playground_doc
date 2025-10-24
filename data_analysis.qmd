@@ -29,7 +29,7 @@ All the methods [share a set of interactive widgets](#shared-interactive-widgets
 :::
 
 ## Input
-User can upload the dataset outputted from the [Data Extraction](data_extraction.qmd) directly or *their own datasets* in **csv** (Comma Separated Values) format after finishing the [interactive configuration](data_analysis_config.qmd) setup. 
+Users can upload the dataset outputted from the [Data Extraction](data_extraction.qmd) directly or *their own datasets* in **csv** (Comma Separated Values) format after finishing the [interactive configuration](data_analysis_config.qmd) setup. 
 
 ::: {.columns}
 ::: {.column width="5%"}
@@ -89,7 +89,7 @@ A list of shared widgets is provided to support the general workflow in analysis
 The visualization and analysis results are updated in real time to reflect users' interactions with any of the above widgets. 
 
 ### Numerical Feature Widgets 
-The Data Extraction recognizes numerical features using `pd.api.types.is_numeric_dtype` internally.  Then it groups numerical features based on the [feature extractor type](data_extraction.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features are grouped based on the [user-specified configuration](data_analysis_config.qmd). Ungrouped numerical features are grouped into a group called `Uncategorized Features`. One selection widget is rendered for each numerical feature group. 
+The Data Extraction recognizes numerical features using `pd.api.types.is_numeric_dtype` internally.  Then it groups numerical features based on the [feature extractor type](data_extraction_config.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features are grouped based on the [user-specified configuration](data_analysis_config.qmd). Ungrouped numerical features are grouped into a group called `Uncategorized Features`. One selection widget is rendered for each numerical feature group. 
 
 ::: {.callout-tip}
 If you cannot find a certain numerical feature under any numerical widgets including `Uncategorized Features`, please inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. One non-numeric value (e.g., "--") will prevent it from being recognized. 
@@ -133,7 +133,7 @@ The order of the groups in x-axis and in the legend is determined by:
 
 - the order of the selected features: categories of the first feature appear before those of the second, so on so forth. For example, the two treatments of `Panc1` are together, because it is sorted first on the cell lines, then on treatments. If you want the treatments to be together, in `Color by` you can select `treatment` then `cell_line`. 
 
-- *Numer-alphatical sort*: within each feature, the category order is determined by the number inside (e.g. `1` in `Panc1`) first, then the alphabetical order of the category name. Therefore, although `P` is after `M` alphabetically, the `1` is before `7` numerically, making `Panc1` appears before `MCF7`. This may be helpful when you have data from different days or hours. The default string sort will put `Day 100` before `Day 30`, and this is not what we want.
+- *Numeric-alphabetical sort*: within each feature, the category order is determined by the number inside (e.g. `1` in `Panc1`) first, then the alphabetical order of the category name. Therefore, although `P` is after `M` alphabetically, the `1` is before `7` numerically, making `Panc1` appears before `MCF7`. This may be helpful when you have data from different days or hours. The default string sort will put `Day 100` before `Day 30`, and this is not what we want.
 ::: 
 
 ![](analysis_ui_shots/color_by.png){width=90% fig-align=center}

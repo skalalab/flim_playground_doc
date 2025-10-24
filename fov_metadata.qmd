@@ -37,7 +37,7 @@ See [decay info config](data_extraction_config.qmd#decay-info) for more details.
 
 #### 2D Decay-specific
 
-Since the [2D decay](#2d-decay) file does not provide the `duration` and the number of `time bins` per laser pulse interval, users need to specify them. 
+Since the [2D decay](data_extraction_config.qmd#2d-decay) file does not provide the `duration` and the number of `time bins` per laser pulse interval, users need to specify them. 
 
 ![](extraction_ui_shots/fov_decay_2d.png){width=60% fig-align=center}
 
@@ -60,7 +60,7 @@ Finally, users can specify the folder path that contains all the required input 
 ## Metadata Extraction
 ### FOV File Paths
 
-The first step is to find the field of views:
+The first step is to find the fields of view:
 
 - it finds all the files recursively in the folder path that ends with the 1st file suffix of the 1st channel.
 - the prefix of all the matched files are considered to be the field of view name. 
@@ -70,7 +70,7 @@ Then, it uses the found FOV names to find all other files:
 
 - file name to search = FOV name + other file suffixes for each file suffix
 
-The only exception is the calibration file, because it is not FOV-specific. They will be searched for based on the their file suffixes only. 
+The only exception is the calibration file, because it is not FOV-specific. They will be searched for based on their file suffixes only. 
 
 #### Success
 
@@ -88,7 +88,7 @@ Because the calibration file is not FOV-specific, it will be searched based on t
 
 ![](extraction_ui_shots/fov_duplicate.png){width=60% fig-align=center}
 
-Field of Views with ✅ are loaded successfully 🎆. FOVs with ❌ (if any) will not be recorded.
+Fields of view with ✅ are loaded successfully 🎆. FOVs with ❌ (if any) will not be recorded.
 
 ::: {.callout-tip}
 If after changing the file names that conform with the prefix assumption, and the problem persists, users can try killing the app and restarting it to clear the cache internally maintained by FLIM Playground.
@@ -96,7 +96,7 @@ If after changing the file names that conform with the prefix assumption, and th
 
 ### Decay Info
 
-If the decay type is [3D/4D decay](data_extraction.qmd#3d4d-decay), FLIM Playground will try to infer the `duration` and the number of `time bins` per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files if there is any. 
+If the decay type is [3D/4D decay](data_extraction.qmd#3d4d-decay), FLIM Playground will try to infer the `duration` and the number of `time bins` per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files. 
 
 #### Channel Assignment
 
@@ -113,7 +113,7 @@ Once the time axis is matched, the reference dye file path, the reference dye li
 
 ### Result Preview and Export
 
-If there is non-zero number of FOVs with ✅ and channel assignment and reference dye checks (if applicable) are passed, a preview of the metadata data sheet will be shown for users to check. 
+If there is a non-zero number of FOVs with ✅ and channel assignment and reference dye checks (if applicable) are passed, a preview of the metadata data sheet will be shown for users to check. 
 
 ![](extraction_ui_shots/fov_export.png){width=100% fig-align=center}
 

@@ -8,7 +8,7 @@ Feature histograms give an instant read-out of each group’s center, spread, sk
 
 - On the left, users can use the [selection widgets](data_analysis.qmd#univariate-analysis) to select the numerical feature to see the histogram/GMM distribution. Exactly one feature can be selected from all feature groups. 
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
-- Below the filters, users can select the visual channels using the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows users to `Color by` categorical features. `Opacity by`and `Shape by` are *not* supported because there are no points in the histogram/GMM plot.
+- Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allow users to `Color by` categorical features. `Opacity by` and `Shape by` are *not* supported because there are no points in the histogram/GMM plot.
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 ## Histogram Mode
@@ -20,7 +20,7 @@ Histogram mode plots a histogram of the selected numerical feature for each grou
 
 ![](analysis_ui_shots/feature_histogram_mode.png){width=95% fig-align=center}
 
-Additionally, the skewness of the distribution is computed and displayed[@scipy2020]. 
+Additionally, the skewness of the distribution is computed and displayed [@scipy2020]. 
 
 A rule of thumb categorization of skewness is as follows:
 
@@ -54,7 +54,7 @@ H =\sum_{i=1}^{k}\bigl(-w_i \log w_i\bigr)\,d_i, \qquad d_i \;=\;
 $$
 
 ### Classification
-- Users can choose to perform [intersection thresholding](#intersection-thresholding) or [hard assignment](#hard-assignment) to determine the which GMM component each data point belongs to. It will append a new categorical feature column called `GMM_Group` (recognizable by methods in Data Analysis as a categorical feature) to the filtered dataset, the values of which are `{color_group}_1`, `{color_group}_2`, etc. In the example above, the color groups were created by <span style="color: blue;">0.5hr</span> and <span style="color: orange;">4.5hr</span> because the user colored the data by `hour`. The classification result can be saved by clicking: 
+- Users can choose to perform [intersection thresholding](#intersection-thresholding) or [hard assignment](#hard-assignment) to determine which GMM component each data point belongs to. It appends a new categorical feature column called `GMM_Group` (recognizable by methods in Data Analysis as a categorical feature) to the filtered dataset, the values of which are `{color_group}_1`, `{color_group}_2`, etc. In the example above, the color groups were created by <span style="color: blue;">0.5hr</span> and <span style="color: orange;">4.5hr</span> because the user colored the data by `hour`. The classification result can be saved by clicking: 
 
 ![](analysis_ui_shots/gmm_download.png){width=30% fig-align=center}
 
@@ -73,7 +73,7 @@ In rare cases when there is more than one intersection point, the data point is 
 :::
 
 #### Hard assignment
-- For each data point, it computes the posterior probability (responsibility) of each component, and assign the data point to the component with the highest responsibility. 
+- For each data point, it computes the posterior probability (responsibility) of each component, and assigns the data point to the component with the highest responsibility. 
 
 $$\text{label}(x) = \arg\max_{i} \gamma_i(x)$$
 

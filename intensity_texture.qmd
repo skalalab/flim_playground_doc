@@ -4,7 +4,7 @@ FLIM Playground extracts single-cell texture features based on the intensity ima
 The first step is to create a single cell intensity image for each cell based on the ROI mask and the intensity image. Then a list of texture features (the list may be extended in the future) is calculated:  
 
 ## Granularity
-$Granularity_n$ is the percentage of intensity removed when bright objects of $n$ pixels in diameter are removed. A disk of radius $n$ is created, and a morphological opening is performed on the cell intensity image. The difference between the original and the opened image is the bright objects to be removed. The granularity value, ranging from 0 to 1, is calculated as the ratio of the removed intensity to total intensity. 
+$Granularity_n$ is the percentage of intensity removed when bright objects of $n$ pixels in diameter are removed. A disk of radius $n$ is created, and a morphological opening is performed on the single-cell intensity image. The difference between the original and the opened image is the bright objects to be removed. The granularity value, ranging from 0 to 1, is calculated as the ratio of the removed intensity to the total intensity. 
 
 $n = 1, 3, 5, 7, 9$ are calculated. 
 

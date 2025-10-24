@@ -1,6 +1,6 @@
 # Dimension Reduction
 
-To represent and visualize high-dimensional data in a meaningful way and helps users interpret the data, dimension reduction methods are used to project the data into a lower-dimensional space. Three popular dimension reduction methods are often used: UMAP, PCA, and t-SNE. 
+To represent and visualize high-dimensional data in a meaningful way and help users interpret the data, dimension reduction methods project the data into a lower-dimensional space. Three popular dimension reduction methods are often used: UMAP, PCA, and t-SNE. 
 
 Principal Component Analysis (PCA) is a linear dimension reduction method that projects the data onto the directions of the largest variance. It is fast, deterministic, and easier to interpret (PCA loadings are provided), but it is limited by the linear nature of the projection. For a detailed discussion of PCA, please refer to [this post](https://github.com/skalalab/dimension_reduction/blob/main/pca.ipynb). 
 
@@ -13,9 +13,9 @@ The numerical features are standardized before the dimension reduction.
 ![](analysis_ui_shots/dimension_reduction.png){width=100% fig-align=center}
 
 ### Shared Components
-- On the left, users can use the [selection widgets](data_analysis.qmd#multivariate-analysis) to select numerical features for the classifier. Multiple features can be selected from each feature group.  
+- On the left, users can use the [selection widgets](data_analysis.qmd#multivariate-analysis) to select multiple numerical features from each feature group.  
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
-- Below the filters, users can select the visual channels using the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
+- Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 ### Hyperparameter
