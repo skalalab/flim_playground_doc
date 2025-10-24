@@ -1,6 +1,6 @@
 # Intro
 
-It is the accompanying [documentation website](https://allanware.quarto.pub/flim-playground-doc/) for [FLIM Playground](https://github.com/skalalab/flim_playground). 
+It is the accompanying [documentation website](http://skalalab.github.io/flim_playground_doc/) for [FLIM Playground](https://github.com/skalalab/flim_playground) (will be opened soon). 
 
 ![](logo.gif)
 
