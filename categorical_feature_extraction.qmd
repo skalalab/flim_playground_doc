@@ -1,25 +1,25 @@
 # Categorical Feature Extraction
 
-Based on the datasets extracted in the [numerical feature extraction](numerical_feature_extraction.qmd) step, FLIM Playground will:
+Based on the datasets extracted in the [numerical feature extraction](numerical_feature_extraction.qmd) step, FLIM Playground:
 
-- [merge the datasets](#merging-datasets) into a single dataset
-- [assign categorical features](#assigning-categorical-features) to each cell in the merged dataset
+- [merges the datasets](#merging-datasets) into a single dataset
+- [assigns categorical features](#assigning-categorical-features) to each cell in the merged dataset
 
 ![](extraction_ui_shots/cat.png){width=100% fig-align=center}
 
 ## Merging Datasets
 
-It will scan the specified folder path and find all csv files. It will use the [cell identifier column](data_extraction_config.qmd#cell-identifier) to check for duplicates both within each dataset and across all datasets. 
+It scans the specified folder path and finds all csv files. It uses the [cell identifier column](data_extraction_config.qmd#cell-identifier) to check for duplicates both within each dataset and across all datasets. 
 
 :::{.callout-important #fov-id-categorical}
-**The FOV identifier uniquely identifies a field of view and is assumed to contain all information necessary to extract the categorical features (e.g., treatment, time point, etc.), by including segments separated by a certain delimiter (e.g., `_`). Categorical features will be assigned from individual or combined segments.** 
+**The FOV identifier uniquely identifies a field of view and is assumed to contain all information necessary to extract the categorical features (e.g., treatment, time point, etc.), by including segments separated by a certain delimiter (e.g., `_`). Categorical features are assigned from individual or combinations of segments.** 
 :::
 
 Therefore, it checks if all field of view names include the same number of segments to determine the eligibility of [categorical feature assignment](#assigning-categorical-features). 
 
 ![](extraction_ui_shots/cat_merge.png){width=60% fig-align=center}
 
-It will merge the datasets that pass the checks by finding common columns and vertically concatenating them. 
+It merges the datasets that pass the checks by finding common columns and vertically concatenating them. 
 
 ![](extraction_ui_shots/cat_merge_result.png){width=60% fig-align=center}
 
@@ -29,11 +29,11 @@ Available categorical features to be assigned are drawn from the [user-specified
 
 ![](extraction_ui_shots/cat_features.png){width=25% fig-align=center}
 
-Based on the [assumptions](#fov-id-categorical), it will break down the FOV identifier into individual fields and facilitate the assignment. 
+Based on the [assumptions](#fov-id-categorical), it breaks down the FOV identifier into individual fields and facilitates the assignment. 
 
 ![](extraction_ui_shots/cat_slots.png){width=50% fig-align=center}
 
-A live preview of the assignment is shown. 
+A live preview of the assignment is displayed. 
 
 ![](extraction_ui_shots/cat_slot_assign.png){width=100% fig-align=center}
 

@@ -1,7 +1,7 @@
 # Numerical Feature Extraction
 In this step, FLIM Playground extracts *single cell* numerical features from the raw data in a folder. For each channel, the features to be extracted are specified in the [user-selected feature extractors](data_extraction_config.qmd#feature-extractor). The available feature extractors are:
 
-- [Lifetime fit](lifetime_fit.qmd): fit exponential models to decay curves to estimate lifetimes and per-exponential fractions by minimizing an objective function. 
+- [Lifetime fit](lifetime_fit.qmd): fit exponential models to decay curves to estimate lifetimes and their fractional contributions by minimizing an objective function. 
 - [Lifetime fit free](lifetime_fit_free.qmd): transform decay curves to phasor space using Fourier transform to obtain phasor coordinates. 
 - [Intensity Morphology](intensity_morphology.qmd): morphological features of single cell ROI masks
 - [Intensity Texture](intensity_texture.qmd): texture features of single cell ROI intensity images
@@ -10,13 +10,13 @@ In this step, FLIM Playground extracts *single cell* numerical features from the
 
 A csv extracted in the [fov metadata extraction](fov_metadata.qmd) step that contains the metadata of the FOVs including: 
 
-- [required files' paths](fov_metadata.qmd#fov-file-paths)
+- [required file paths](fov_metadata.qmd#fov-file-paths)
 - [decay type](fov_metadata.qmd#decay-type)
 - [decay info](fov_metadata.qmd#decay-info)
 - [selected feature extractors](fov_metadata.qmd#feature-extractor) for each channel
 - [fit free calibration method](data_extraction_config.qmd#calibration-method)(if fit free calibration is required)
 
-User can either upload a previously extracted metadata file (left), or use the cached metadata file just extracted in the [fov metadata extraction](fov_metadata.qmd) step (right). 
+Users can either upload a previously extracted metadata file (left), or use the cached metadata file just extracted in the [fov metadata extraction](fov_metadata.qmd) step (right). 
 
 ::: {layout-ncol=2}
 
@@ -30,35 +30,35 @@ For `Lifetime fit` and `Lifetime fit free` feature extractors, the first step is
 
 ## Calibration
 
-Calibration in FLIM is essential because raw decays are convolved with the instrument response function (IRF)—the timing profile of the detection system’s response to an ultrashort light pulse that broadens and shifts the measured decay—, so without correcting these, fitted lifetimes and phasor positions are biased and not comparable across days, samples, or instruments. 
+Calibration in FLIM is essential because raw decays are convolved with the instrument response function (IRF)—the timing profile of the detection system’s response to an ultrashort light pulse that broadens and shifts the measured decay—so without correcting for these, fitted lifetimes and phasor positions are biased and not comparable across days, samples, or instruments. 
 
 ### Fit Calibration
 
-During different experiments the IRF may shift differently with respect to the measured decay. Before applying reconvolution fitting, the IRF shift needs to be estimated for each channel if the `Lifetime fit` feature extractor is selected for the channel. 
+During different experiments, the IRF may shift differently with respect to the measured decay. Before applying reconvolution fitting, the IRF shift needs to be estimated for each channel if the `Lifetime fit` feature extractor is selected for the channel. 
 
 It is performed in two steps: 
 
 1. Gather the high signal-to-noise ratio (SNR) decay curves 
 2. For each curve, perform reconvolution fitting and set shift value as the free parameter to be optimized/fitted. 
 
-The distribution of the shift values will be displayed as an interactive scatter plot. When clicking on a point, the corresponding decay curve with the fitted curve and the key statistics will be displayed for diagnostics. Based on the distribution or using certain prior knowledge, the user can specify the shift value applied to all field of views (if `Fix the Shift` is selected, see [fitting options](#fitting-options)), or use the fov-specific shift value found by the fitting (if `Fix the Shift` is deselected). 
+The distribution of the shift values is displayed as an interactive scatter plot. When clicking on a point, the corresponding decay curve with the fitted curve and the key statistics are displayed for diagnostics. Based on the distribution or using certain prior knowledge, users can specify the shift value applied to all field of views (if `Fix the Shift` is selected, see [fitting options](#fitting-options)), or use the fov-specific shift value found by the fitting (if `Fix the Shift` is deselected). 
 
 ![](extraction_ui_shots/irf_shift.png){#irf-shift}
 
 #### Gather High SNR Decay Curves
 
-The high SNR decay curves are constructed automatically based on the [decay type](data_extraction_config.qmd#decay-types). If it is in [2D format](data_extraction_config.qmd#2d-decay), a total of the brightest 30 curves that are below `100000` photons will be selected, evenly distributed across all field of views (one csv file will be considered as one FOV). If it is in [3D/4D format](data_extraction_config.qmd#3d4d-decay), the field of views are images, and one curve will be constructed for each image that includes all the non-zero pixels within the [ROI mask](data_extraction.qmd#mask). 
+The high SNR decay curves are constructed automatically based on the [decay type](data_extraction_config.qmd#decay-types). If it is in [2D format](data_extraction_config.qmd#2d-decay), a total of the brightest 30 curves that are below `100000` photons are selected and evenly distributed across all field of views (one csv file is considered as one FOV). If it is in [3D/4D format](data_extraction_config.qmd#3d4d-decay), the field of views are images, and one curve is constructed for each image that includes all the non-zero pixels within the [ROI mask](data_extraction.qmd#mask). 
 
 #### Reconvolution Fitting
 
-Fitting is essentially an optimization problem: it minimizes the difference between the fitted curve and the measured curve. The fitted curve is modeled by a $n^{th}$ component exponential function convolved with the shifted IRF, and the difference is modeled as an objective metric. Therefore, user is provide with controls over two parts of the fitting process through the [fitting options panel](#fitting-options): 
+Fitting is essentially an optimization problem: it minimizes the difference between the fitted curve and the measured curve. The fitted curve is modeled by a $n^{th}$ component exponential function convolved with the shifted IRF, and the difference is modeled as an objective metric. Therefore, users are provided with controls over two parts of the fitting process through the [fitting options panel](#fitting-options): 
 
 1. How to construct the objective metric
 2. How to perform the optimization
 
 Implementation-wise, FLIM Playground uses the `lmfit` package that takes generic objectives to perform the optimization process that is flexible enough to handle the reconvolution fitting.
 
-If at least one channel has `Lifetime fit` feature extractor selected, the fitting options panel will be displayed. 
+If at least one channel has `Lifetime fit` feature extractor selected, the fitting options panel is displayed. 
 
 ![](extraction_ui_shots/fitting_option.png){width=50% fig-align=center #fitting-options}
 
@@ -78,16 +78,16 @@ $$
 
 It supports $n=1,2,3$ components. 
 
-Additionally, the `offset` is also a parameter to be fitted. 
+Additionally, the `offset` is a parameter to be fitted. 
 
 ##### Time Gates
-Due to the deadtime of the system certain time bins from the head and/or tail of the decay curve are not reliable. The T1 (head) and T2 (tail) gates are used to select the time range of the decay curve to be fitted. User can inspect the decay curve by clicking the full screen mode button of the plot on the right of the [shift result](#irf-shift). Hover-based interaction is implemented so user can see the time bin numbers to have a better sense of the time range. 
+Due to the deadtime of the system certain time bins from the head and/or tail of the decay curve are not reliable. The T1 (head) and T2 (tail) gates are used to select the time range of the decay curve to be fitted. Users can inspect the decay curve by clicking the full screen mode button of the plot on the right of the [shift result](#irf-shift). Hover-based interaction is implemented so users can see the time bin numbers to have a better sense of the time range. 
 
 ![](extraction_ui_shots/time_gate_choose.png){width=100% fig-align=center}
 
 ![](extraction_ui_shots/time_gate.png){width=60% fig-align=center}
 
-Only the time bins within the T1 and T2 gates will be used to calculate cost metric. 
+Only the time bins within the T1 and T2 gates are used to calculate the cost metric. 
 
 ##### Metric
 ![](extraction_ui_shots/metric.png){width=20% fig-align=center}
@@ -110,8 +110,8 @@ Least Squares (`LS`): it estimates the parameters by minimizing the sum of the s
 After constructing the objective metric, the fitting mode is used to determine the optimization algorithm. It is a trade-off between the speed and the effort to avoid local minima. 
 
 - `Global`: It uses the `differential evolution` algorithm, a derivative-free, population-based but slow global optimizer. 
-- `Local`: It uses the `leastsq` (Levenberg-Marquardt) algorithm if the chosen metric is `LS`, otherwise it uses the `nelder` (Nelder-Mead) algorithm.  
-- `Hybrid`: the most time-consuming but combines the best of both worlds. It uses the `differential evolution` to find a good initial guess to all the parameters, and then uses the `Local` to drill in. 
+- `Local`: It uses the `leastsq` (least squares with Levenberg-Marquardt) algorithm if the chosen metric is `LS`, otherwise it uses the `nelder` (Nelder-Mead) algorithm.  
+- `Hybrid`: The most time-consuming option but combines the best of both worlds. It uses the `differential evolution` to find a good initial guess to all the parameters, and then uses the `Local` to drill in. 
 
 ### Fit Free Calibration
 
@@ -119,13 +119,13 @@ Users get to choose between the following two methods to calibrate the IRF shift
 
 #### Shift IRF
 
-It is performed similarly to the [fit calibration](#fit-calibration) steps, but in the second step, the shift will not be optimized (fitted). It shares the [same interface](#irf-shift) as the [fit calibration](#fit-calibration) step, where a scatter plot of the shift values will be displayed for each channel, only that the plot is not interactive to show the fit. Instead, it will output the shift that maximizes the cross-correlation between the IRF and each decay. If `Fix the Shift` is selected, user can specify the shift value that will be applied to all field of views. Otherwise, the shift value is chosen to be the one that maximizes the cross-correlation between the IRF and the decay.
+It is performed similarly to the [fit calibration](#fit-calibration) steps, but in the second step, the shift is not optimized (fitted). It shares the [same interface](#irf-shift) as the [fit calibration](#fit-calibration) step, where a scatter plot of the shift values is displayed for each channel, only that the plot is not interactive to show the fit. Instead, it outputs the shift that maximizes the cross-correlation between the IRF and each decay. If `Fix the Shift` is selected, users can specify the shift value that will be applied to all field of views. Otherwise, the shift value is chosen to be the one that maximizes the cross-correlation between the IRF and the decay.
 
 ::: {.callout-note}
-If both the `Lifetime fit` and `Lifetime fit free` feature extractors are selected for this channel, the IRF shift will be calibrated using [fit](#fit-calibration) and reuse the shift value for the `Lifetime fit free` feature extractor. 
+If both the `Lifetime fit` and `Lifetime fit free` feature extractors are selected for this channel, the optimized IRF shift derived from [the fit calibration](#fit-calibration) step is reused for the `Lifetime fit free` feature extractor. 
 :::
 
-In addition to shifting the IRF based on the chosen shift values, each decay curve will be subtracted an offset value and clip to 0 if the time bin is negative after the subtraction. The offset is chosen to be the mean of the last 10th percentile of the decay curve (tail). 
+In addition to shifting the IRF based on the chosen shift values, each decay curve is subtracted an offset value and clipped to 0 if the time bin is negative after the subtraction. The offset is chosen to be the mean of the last 10th percentile of the decay curve (tail). 
 
 Finally, the signals of the shifted IRF are deconvolved from the offset-subtracted decay curves using [`phasor.phasor_divide`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_divide) from the `phasorpy` package. 
 
@@ -133,32 +133,32 @@ Finally, the signals of the shifted IRF are deconvolved from the offset-subtract
 
 Because the reference dye is measured in the same system as the decay curves and we know its lifetime, there is no need to account for the IRF shift and the offset. Therefore
 
-`phasorpy`'s [`lifetime.phasor_calibrate`](https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate) function will be used to calibrate all the decay curves behind the scene when calculating the phasor coordinates. 
+`phasorpy`'s [`lifetime.phasor_calibrate`](https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate) function is used to calibrate all the decay curves behind the scene when calculating the phasor coordinates. 
 
 ### Confirm Calibration
 
-Once the user is satisfied with the calibration settings ([fitting options](#fitting-options) and shift values), they can click the `Confirm Calibration` button at the bottom of the [page](#irf-shift). 
+Once users are satisfied with the calibration settings ([fitting options](#fitting-options) and shift values), they can click the `Confirm Calibration` button at the bottom of the [page](#irf-shift). 
 
 ![](extraction_ui_shots/calibration_confirm.png){width=60% fig-align=center}
 
-Once confirmed, the left panel prompts the user to either apply the calibration settings to the downstream extractors or calibrate again. They can also save the updated settings (fitting options and shift values) to the metadata file.  
+Once confirmed, the left panel prompts users to either apply the calibration settings to the downstream extractors or calibrate again. Users can also save the updated settings (fitting options and shift values) to the metadata file.  
 
 ![](extraction_ui_shots/calibration_done.png){width=60% fig-align=center #calibration-done}
 
 ## Feature Extraction
 
-Either the selected feature extractors do not require IRF shift calibration, or the user [finishes the calibration](#calibration-done), they can proceed to the feature extraction step by clicking the `Confirm and Start Analysis` button. 
+If the selected feature extractors do not require IRF shift calibration, or users have [finished the calibration](#calibration-done), they can proceed to the feature extraction step by clicking the `Confirm and Start Analysis` button. 
 
-Similar to the [fov metadata extraction](fov_metadata.qmd#fov-metadata) step, FLIM Playground will extract the features and display the extraction status for field of view. 
+Similar to the [fov metadata extraction](fov_metadata.qmd#fov-metadata) step, FLIM Playground extracts the features and displays the extraction status for field of view. 
 
 ![](extraction_ui_shots/numerical_feature_extraction.png){width=100% fig-align=center}
 
-A progress bar will be rendered to show the feature extraction progress for each FOV (bottom right).
+A progress bar is rendered to show the feature extraction progress for each FOV (bottom right).
 
-Warnings will be displayed if cells have `NaN` values for some features. They will *not* be excluded from the final csv file. 
+Warnings are displayed if cells have `NaN` values for some features. They are *not* excluded from the final csv file. 
 
 ## Save Results
 
-Once the feature extraction is finished, the user can save the results to a csv file by clicking the `Download` button at the bottom of the page.
+Once the feature extraction is finished, users can save the results to a csv file by clicking the `Download` button at the bottom of the page.
 
 ![](extraction_ui_shots/feature_export.png){width=100% fig-align=center}

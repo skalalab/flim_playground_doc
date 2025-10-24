@@ -12,4 +12,7 @@ _book/
 *.docx
 *.pdf
 *.svg
+!Fig1.svg
+!Fig2.svg
+!table1.svg
 *.tex

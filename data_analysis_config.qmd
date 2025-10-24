@@ -13,7 +13,7 @@ The dataset needs to have a unique identifier column to identify each row. In th
 
 ## Categorical Feature Config
 
-Add categorical columns you want FLIM Playground to recognize here. Those columns will be converted to strings internally.
+Add categorical columns you want FLIM Playground to recognize here. Those columns are converted to strings internally.
 
 ![](analysis_ui_shots/config_cat.png){width=20%}
 
@@ -23,16 +23,16 @@ The default categorical feature list does not include `species`, so we add it ma
 
 ![](analysis_ui_shots/config_num.png){width=70%}
 
-User can copy the numerical features from Excel or any text editor that opens their csv files. The features can be separated by `,`, `;`, or whitespaces including newlines. 
+Users can copy the numerical features from Excel or any text editor that opens their csv files. The features can be separated by `,`, `;`, or whitespaces including newlines. 
 
-After hitting the `ctrl/cmd + enter` key, the numerical features will be parsed and added to `Available Features`. User can add/delete groups and drag features from the `Available Features` to groups just created. Any ungrouped features will be added to a group called `Uncategorized Features`.
+After hitting the `ctrl/cmd + enter` key, the numerical features are parsed and added to `Available Features`. Users can add/delete groups and drag features from the `Available Features` to groups just created. Any ungrouped features are added to a group called `Uncategorized Features`.
 
 ### Example
 
 ![](analysis_ui_shots/config_num_group.png){width=90% fig-align=center}
 
 ## Save
-After the user finishes the configuration and clicks the `Save Configuration` button, FLIM Playground saves the configuration for processing current and future datasets.
+After users finish the configuration and click the `Save Configuration` button, FLIM Playground saves the configuration for processing current and future datasets.
 
 ## Reset
-User can reset the configuration to the default settings, which are configured in the [configuration step](data_extraction_config.qmd) in the Data Extraction module.
+Users can reset the configuration to the default settings, which are configured in the [configuration step](data_extraction_config.qmd) in the Data Extraction module.

@@ -2,20 +2,20 @@
 
 This method extends the univariate [Feature Histogram](feature_histogram.qmd) method to visualize the distribution of two numerical features on a scatter plot. It helps reveal patterns such as correlations, clusters, trends, or outliers. 
 
-## Components
+## Interface Components
 
 ![](analysis_ui_shots/feature_distribution.png){width=100% fig-align=center}
 
 ### Shared Components
 
-- On the left, user can select the two numerical features in the x-axis and y-axis: it shares the numerical [selection widgets](data_analysis.qmd#bivariate-analysis) that allows user to select exactly two features from all feature groups. 
-- On the top right, user can subset the data to find the groups of interest: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
-- Below the filters, user can select the visual channels: it shares the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows user to `Color by`, `Opacity by`, and `Shape by` categorical features. 
-- On the bottom right, user can change the plot style: it shares the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets) that allows user to change the plot style. 
+- On the left, users can use the [selection widgets](data_analysis.qmd#bivariate-analysis) to select the two numerical features in the x-axis and y-axis. 
+- On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
+- Below the filters, users can select the visual channels using the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
+- On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 ### Marginal Distribution
 
-Marginal distributions (distribution of a single feature) are plotted on the top and right of the scatter plot. User can choose the plot type from the dropdown menu. 
+Marginal distributions (distribution of a single feature) are plotted on the top and right of the scatter plot. Users can choose the plot type from the dropdown menu. 
 
 ![](analysis_ui_shots/marginal_distribution.png){width=40% fig-align=center}
 
@@ -23,7 +23,7 @@ Marginal distributions (distribution of a single feature) are plotted on the top
 
 ### 2D Gaussian Mixture Model
 
-Using the same method as fitting a 1D [Gaussian Mixture Model](feature_histogram.qmd#fit-gaussian-mixture-models), the user can fit a 2D GMM by specifying `Max Components` and `Min Weight Threshold` on each color group.  
+Using the same method as fitting a 1D [Gaussian Mixture Model](feature_histogram.qmd#fit-gaussian-mixture-models), users can fit a 2D GMM by specifying `Max Components` and `Min Weight Threshold` on each color group.  
 
 Ellipses that capture approximately 95% of the points in each subcomponent are drawn. The color of the ellipses is determined by the color group that the subcomponent belongs to. 
 
@@ -44,7 +44,7 @@ All the components below will be rendered for each color group, which is created
 ![](analysis_ui_shots/feature_distribution_components.png){width=100% fig-align=center}
 
 ::: {.callout-tip}
-User can click on a legend group to hide/show the data points in that group. In the above example, to avoid cluttering the plot, the <span style="color: orange;">orange</span> group is hidden. 
+Users can click on a legend group to hide/show the data points in that group. In the above example, to avoid cluttering the plot, the <span style="color: orange;">orange</span> group is hidden. 
 :::
 
 Tables of subcomponents' means, standard deviations, and weights are reported on the side.

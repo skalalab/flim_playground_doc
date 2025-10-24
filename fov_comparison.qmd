@@ -2,7 +2,7 @@
 
 In imaging datasets like FLIM data, field of view (FOV) is an important categorical feature that documents where a certain set of rows (e.g. cells) originates. Visualizing each FOV side by side on a numerical feature can help identify potential FOV-level outliers. 
 
-## Components 
+## Interface Components 
 
 FLIM Playground finds the FOV identifier column from the dataset using the `FOV column name` field in [data analysis config](data_analysis_config.qmd#id-config) (dataset not extracted by [data extraction](data_extraction.qmd)) or [data extraction config](data_extraction_config.qmd#configuration) (dataset extracted by [data extraction](data_extraction.qmd)). 
 
@@ -16,14 +16,14 @@ If found:
 
 ### Shared Components
 
-- On the left, user can select the numerical feature to see the boxplot of each FOV: it shares the numerical [selection widgets](data_analysis.qmd#univariate-analysis) that allows user to select exactly one feature from all feature groups. 
-- On the top right, user can subset the data to find the groups of interest: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
-- Below the filters, user can select the visual channels: it shares the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows user to `Color by` categorical features. `Opacity by` and `Shape by` are *not* supported because there are no points in the boxplot.
-- On the bottom right, user can change the plot style: it shares the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets) that allows user to change the plot style. 
+- On the left, users can use the [selection widgets](data_analysis.qmd#univariate-analysis) to select the numerical feature to see the boxplot of each FOV. Exactly one feature can be selected from all feature groups. 
+- On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
+- Below the filters, users can select the visual channels using the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows users to `Color by` categorical features. `Opacity by` and `Shape by` are *not* supported because there are no points in the boxplot.
+- On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 Besides the shared components, this module does not have any method-specific components. 
 
 ## Example
-Sometimes, the FOV-level boxplots may show consistent divergence across different imaging days, which may suggest the experimental or data extraction inconsistency (e.g. shifts are not optimized correctly for one day versus the others). Below is an example that, despite the same conditions, systematically diverges across days, but consistent within the same day. 
+Sometimes, the FOV-level boxplots may show consistent divergence across different imaging days, which may suggest the experimental or data extraction inconsistency (e.g. shifts are not optimized correctly for one day versus the others). Below is an example that, despite the same conditions, systematically diverged across days, but was consistent within the same day. 
 
 ![](analysis_ui_shots/fov_example.png){width=100% fig-align=center}

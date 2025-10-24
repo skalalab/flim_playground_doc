@@ -1,16 +1,16 @@
 # Phasor Analysis
 
-This method focuses on visualizing the distribution of the phasor coordinates (1st harmonic or 2nd harmonic), extracted by the [Lifetime fit free](lifetime_fit_free.qmd) extractor, and performs optional clustering to highlight subpopulations or structural patterns.
+This method focuses on visualizing the distribution of the 1st harmonic or 2nd harmonic phasor coordinates, extracted by the [Lifetime fit free](lifetime_fit_free.qmd) extractor, and performs optional clustering to highlight subpopulations or structural patterns.
 
-## Components
+## Interface Components
 
 ![](analysis_ui_shots/phasor_analysis.png){width=100% fig-align=center}
 
 ### Shared Components
 
-- On the top right, user can subset the data to find the groups of interest: it shares the [filters](data_analysis.qmd#filter-widgets) that allows user to filter the data based on combinations of categorical features. 
-- Below the filters, user can select the visual channels: it shares the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows user to `Color by`, `Opacity by`, and `Shape by` categorical features. 
-- On the bottom right, user can change the plot style: it shares the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets) that allows user to change the plot style. 
+- On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
+- Below the filters, users can select the visual channels using the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
+- On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 ### Select Phasor Coordinate 
 
@@ -20,11 +20,11 @@ Instead of using the [bivariate selection widgets](data_analysis.qmd#bivariate-a
 
 ### K-means Clustering
 
-Phasor coordinates of single cell ROIs from the selected channel and harmonic will be plotted in the phasor space. K-means clustering can be performed for each color group (created by [`Color by`](data_analysis.qmd#color-by)). If `Perform K-means Clustering` is checked, user can specify the number of clusters to be created based on their prior knowledge. In the future, we may add automatic tuning for this parameter, akin to selecting the number of components of [GMM](feature_histogram.qmd#fit-gaussian-mixture-models), using silhouette analysis.
+Phasor coordinates of single cell ROIs from the selected channel and harmonic are plotted in the phasor space. K-means clustering can be performed for each color group (created by [`Color by`](data_analysis.qmd#color-by)). If `Perform K-means Clustering` is checked, users can specify the number of clusters to be created based on their prior knowledge. In the future, automatic tuning for this parameter, akin to selecting the number of components of [GMM](feature_histogram.qmd#fit-gaussian-mixture-models), using silhouette analysis will be added.
 
 ![](analysis_ui_shots/kmeans_config.png){width=60% fig-align=center}
 
-K-means clustering will be performed given the number of clusters specified for each color group. Mathematically, it is an iterative algorithm that finds the best cluster assignment: what cluster with what centroid each point belongs to. The *best* is defined as the one that minimizes the sum of the squared distances between each point and the center of the cluster it belongs to. 
+K-means clustering is performed given the number of clusters specified for each color group. Mathematically, it is an iterative algorithm that finds the best cluster assignment: what cluster with what centroid each point belongs to. The *best* is defined as the one that minimizes the sum of the squared distances between each point and the center of the cluster it belongs to. 
 
 $$
 \min_{\{C_k\}_{k=1}^K}\;\sum_{k=1}^K\sum_{x_i\in C_k}\bigl\lVert x_i-\mu(C_k)\bigr\rVert_2^2,
@@ -32,18 +32,18 @@ $$
 \mu(C_k)=\frac{1}{|C_k|}\sum_{x_i\in C_k} x_i.
 $$
 
-First, FLIM Playground will standardize the phasor coordinates because G (real part) and S (imaginary) are not necessarily on the same scale.
+First, FLIM Playground standardizes the phasor coordinates because $g$ (real part) and $s$ (imaginary) are not necessarily on the same scale.
 
-Then, it will perform k-means clustering using the `sklearn.cluster.KMeans` function. All the other hyperparameters control the optimization process (e.g. `init` controls the initialization of the centroids), and they are set to their [default values](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html). `42` is used as the random seed to ensure reproducibility. 
+Then, it performs k-means clustering using the `sklearn.cluster.KMeans` function. All the other hyperparameters control the optimization process (e.g. `init` controls the initialization of the centroids), and they are set to their [default values](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html). `42` is used as the random seed to ensure reproducibility. 
 
-To visualize the clustering result, FLIM Playground draws a polygon (convex hull) that contains all the points of each cluster, the color of which is determined by the color group the cluster belongs to. It uses the [`scipy.spatial.ConvexHull`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.ConvexHull.html) function to calculate the convex hull. The center of each cluster is marked as a black bordered cross and user can hover over it to see its coordinates. 
+To visualize the result of clustering, FLIM Playground draws a polygon (convex hull) that contains all the points of each cluster, the color of which is determined by the color group the cluster belongs to. It uses the [`scipy.spatial.ConvexHull`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.ConvexHull.html) function to calculate the convex hull. The center of each cluster is marked as a black bordered cross and users can hover over it to see its coordinates. 
 
 ![](analysis_ui_shots/phasor_plot.png){width=80% fig-align=center}
 
 ### Export Clustered Dataset
 
-User can download the clustered dataset by clicking: 
+Users can download the clustered dataset by clicking: 
 
 ![](analysis_ui_shots/k_means_download.png){width=35% fig-align=center}
 
-The downloaded dataset will keep all the features plus the new categorical feature column (`k_means_cluster`), which will be recognized by any methods in Data Analysis as a categorical feature like others, and rows that pass the [filters](data_analysis.qmd#filter-widgets).
+The downloaded dataset keeps all the features plus the new categorical feature column (`k_means_cluster`), which is recognized by any methods in Data Analysis as a categorical feature like others, and rows that pass the [filters](data_analysis.qmd#filter-widgets).

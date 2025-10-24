@@ -1,10 +1,10 @@
 # Configuration
 
-The user can configure the system once and it will be applied to future data. 
+Users can configure the system once and it will be applied to future data. 
 
 ## Channel-centric Framework
 
-Constructing a framework that balances flexibility and usability is about choosing the right abstraction level. FLIM Playground chooses *channel* from [data levels](index.qmd#levels-of-data) as the focus. Settings are divided into two categories: [across-channel settings](#across-channel-settings) and [per-channel settings](#per-channel-settings).
+Constructing a framework that balances flexibility and usability is about choosing the right abstraction level. FLIM Playground chooses *channel* from [data levels](index.qmd#data-levels) as the focus. Settings are divided into two categories: [across-channel settings](#across-channel-settings) and [per-channel settings](#per-channel-settings).
 
 ![](extraction_ui_shots/config.png){width=100% fig-align=center}
 
@@ -14,15 +14,15 @@ Constructing a framework that balances flexibility and usability is about choosi
 
 ![](extraction_ui_shots/config_cat.png){width=80% fig-align=center}
 
-Categorical features are useful to organize the data into groups of interest, and will be used extensively in the [Data Analysis](data_analysis.qmd) module. The user can specify the potential categorical feature names to be extracted in the [Categorical Feature Extraction](categorical_feature_extraction.qmd) step. 
+Categorical features are useful to organize the data into groups of interest, and will be used extensively in the [Data Analysis](data_analysis.qmd) module. Users can specify the potential categorical feature names to be extracted in the [Categorical Feature Extraction](categorical_feature_extraction.qmd) step. 
 
 #### Decay Types 
 
-FLIM Playground supports different decay types, including 2D decay, 3D/4D decay, and 3D/4D pixel-prefitted decay, through user specification. 
+FLIM Playground supports different decay types, including 2D decay, 3D/4D decay, and 3D/4D pixel-prefitted decay, through users' specification. 
 
 ##### 2D Decay
 
-In the system developed by Samimi et al. [@Samimi24], single cells are flowing through and decay curve is acquired for each cell by aggregating all the photon arrival time delays deemed to be from the same cell. In exchange of spatial distribution, the acquisition speed is increased enormously. The output of the system is a tabular data sheet with each row representing a cell and each column representing a time bin. **FLIM Playground currently supports 2D decay in the CSV format.** 
+In the system developed by Samimi et al. [@Samimi2024], single cells are flowing through and decay curve is acquired for each cell by aggregating all the photon arrival time delays deemed to be from the same cell. In exchange of spatial distribution, the acquisition speed is increased enormously. The output of the system is a tabular data sheet with each row representing a cell and each column representing a time bin. **FLIM Playground currently supports 2D decay in the CSV format.** 
 
 ##### 3D/4D Decay {#3d4d-decay}
 
@@ -30,7 +30,7 @@ In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (
 
 ##### 3D/4D pixel-prefitted {#3d4d-pixel-prefitted}
 
-Since FLIM Playground currently does **not** support pixel-fitting, the user has the option to provide pixel-prefitted outputs from [SPCImage](https://www.becker-hickl.com/products/spcimage/) in the format of `.asc`. 
+Since FLIM Playground currently does **not** support pixel-fitting, users have the option to provide pixel-prefitted outputs from [SPCImage](https://www.becker-hickl.com/products/spcimage/) in the format of `.asc`. 
 
 #### Identifiers
 
@@ -38,20 +38,20 @@ Since FLIM Playground currently does **not** support pixel-fitting, the user has
 
 ##### Cell Identifier
 
-The user can specify the column name for the unique identifier of the cell to be stored in the output dataset. The cell identifier will be constructed as `{FOV Identifier}_{cell_label}`, where the `cell_label` is the unique integer label in the mask or the row number if the decay type is [2D decay](#2d-decay).
+Users can specify the column name for the unique identifier of the cell to be stored in the output dataset. The cell identifier is constructed as `{FOV Identifier}_{cell_label}`, where the `cell_label` is the unique integer label in the mask or the row number if the decay type is [2D decay](#2d-decay). 
 
 ##### FOV Identifier
 
-The user can specify the column name for the field of view identifier. If the decay type is [2D decay](#2d-decay), the user may want to specify the column name as `exp_name`, because the FOV is not image but an experiment. 
+Users can specify the column name for the field of view identifier. If the decay type is [2D decay](#2d-decay), users may want to specify the column name as `exp_name`, because the FOV is not image but an experiment. 
 
 #### Decay Info
 
 ##### Laser frequency
 
-The user can specify the laser frequency in GHz. For example, 0.8 GHz equals to 80 MHz. It will be used in the [phasor analysis](lifetime_fit_free.qmd). If you do not intend to use the phasor analysis, you can fill in any number. 
+Users can specify the laser frequency in GHz. For example, 0.8 GHz equals to 80 MHz. It will be used in the [phasor analysis](lifetime_fit_free.qmd). If you do not intend to use the phasor analysis, you can fill in any number. 
 
 ##### 2D Decay-specific
-Since the [2D decay](#2d-decay) file does not provide the `duration` and the number of `time bins` per laser pulse interval, the user needs to specify them. 
+Since the [2D decay](#2d-decay) file does not provide the `duration` and the number of `time bins` per laser pulse interval, users need to specify them. 
 
 ![](extraction_ui_shots/config_2d_setting.png){width=100% fig-align=center}
 
@@ -74,13 +74,13 @@ Each FOV is assumed to have the same number of channels. The configuration will 
 
 #### Channel Name
 
-The user can customize the channel name based on, for example, the name of the fluorophore. 
+Users can customize the channel name based on, for example, the name of the fluorophore. 
 
 ![](extraction_ui_shots/config_channel_name.png){width=100% fig-align=center}
 
 #### Imaging Modality
 
-The user can specify the imaging modality for each channel. Currently, two modalities are supported: 
+Users can specify the imaging modality for each channel. Currently, two modalities are supported: 
 
 - `FLIM`: The signal is time resolved, i.e., has a time dimension, and expected to be from one of the [decay types](data_extraction_config.qmd#decay-types).
 - `Intensity-only`: The signal is a spatial map of intensity values (2 spatial dimensions), i.e., has no time dimension. **Currently, the only supported signal type is a 2D intensity .`tiff/.tif` image.**
@@ -88,11 +88,11 @@ The user can specify the imaging modality for each channel. Currently, two modal
 ![](extraction_ui_shots/config_modality.png){width=20% fig-align=center}
 
 ::: {.callout-tip}
-This setup allows the user to image some channels in FLIM mode, and others in non-FLIM mode. It also allows the user to extract and analyze their data if they image in non-FLIM microscopic systems such as epifluorescence, confocal, brightfield, etc. by selecting `Intensity-only` for all channels.
+This setup allows users to image some channels in FLIM mode, and others in non-FLIM mode. It also allows users to extract and analyze their data if they image in non-FLIM microscopic systems such as epifluorescence, confocal, brightfield, etc. by selecting `Intensity-only` for all channels.
 :::
 
 ::: {.callout-note}
-If the decay type is [2D decay](#2d-decay), the [imaging modality](#imaging-modality) for all channels will be restricted to be `FLIM`.
+If the decay type is [2D decay](#2d-decay), the [imaging modality](#imaging-modality) for all channels is restricted to `FLIM`.
 :::
 
 #### Feature Extractor
@@ -114,23 +114,23 @@ The [Intensity Morphology](intensity_morphology.qmd) and [Intensity Texture](int
 
 ![](extraction_ui_shots/config_intensity_feature_extractor.png){width=40% fig-align=center}
 
-Each channel can select their own set of feature extractors. For example, if you do not intend to do lifetime extraction, you can de-select the `Lifetime fit` and `Lifetime fit free` options. 
+Each channel can select their own set of feature extractors. For example, if users do not intend to do lifetime extraction, they can de-select the `Lifetime fit` and `Lifetime fit free` options. 
 
 ##### Number of Components
 
-If the user selects the `Lifetime fit` under this channel, they can specify the number of components to fit. 
+If users select the `Lifetime fit` under this channel, they can specify the number of components to fit. 
 
 #### File Suffix
 
-The [FOV Metadata Organization](fov_metadata.qmd) step will look for associated input files for all channels of a given FOV using file suffixes. Based on the [decay type](#decay-types), [calibration method](#calibration-method), and the selected [feature extractors](#feature-extractor), the system will automatically generate the file suffixes for required input files. 
+The [FOV Metadata Organization](fov_metadata.qmd) step looks for associated input files for all channels of a given FOV using file suffixes. Based on the [decay type](#decay-types), [calibration method](#calibration-method), and the selected [feature extractors](#feature-extractor), the system automatically generates the file suffixes for required input files. 
 
 ![](extraction_ui_shots/config_file_suffix.png){width=100% fig-align=center}
 
-In the example above, channels `nadh` and `fad` get asked to provide an IRF file, while channel `cd8` does not, because `Lifetime fit` is selected for the former two channels and not for the latter. The file suffixes of the IRF files are different for each of the two channels, but they share the same ROI mask file suffix because they use the same ROI mask. The `cd8` channel uses a different ROI mask than the other two channels, indicated by the mask file suffix. 
+In the example above, channels `nadh` and `fad` were asked to provide an IRF file, while channel `cd8` did not, because `Lifetime fit` was selected for the former two channels and not for the latter. The file suffixes of the IRF files were different for each of the two channels, but they shared the same ROI mask file suffix because they used the same ROI mask. The `cd8` channel used a different ROI mask than the other two channels, indicated by the mask file suffix. 
 
 For detailed information on what file formats are supported for each file type (Mask, IRF, etc.), see [input file types](data_extraction.qmd#input-file-types). 
 
 For detailed information on how the file suffixes are used, and what each file type (e.g. `IRF`, `Mask`, etc.) is, see the [FOV Metadata Organization](fov_metadata.qmd) page. 
 
 ### Save
-Finally, the user can save the configuration for future use by clicking the `Update Configuration` button. 
+Finally, users can save the configuration for future use by clicking the `Update Configuration` button. 

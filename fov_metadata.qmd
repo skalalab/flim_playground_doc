@@ -1,5 +1,5 @@
 # Field of View Metadata
-It is the first step in the [Data Extraction](data_extraction.qmd) workflow. It organizes the metadata of each field of view (FOV)—including file paths for all required inputs and decay information—into a single metadata file. This file is then used for [numerical feature extraction](numerical_feature_extraction.qmd), as well as for the user’s own bookkeeping and troubleshooting.
+It is the first step in the [Data Extraction](data_extraction.qmd) workflow. It organizes the metadata of each field of view (FOV)—including file paths for all required inputs and decay information—into a single metadata file. This file is then used for [numerical feature extraction](numerical_feature_extraction.qmd), as well as for users’ own bookkeeping and troubleshooting.
 
 ![](extraction_ui_shots/fov.png){width=100% fig-align=center #fov-metadata}
 
@@ -19,7 +19,7 @@ See [decay types](data_extraction_config.qmd#decay-types) for more details. The 
 ![](extraction_ui_shots/fov_decay_type.png){width=30% fig-align=center}
 
 ### Channel Names 
-See [channel name config](data_extraction_config.qmd#channel-name) for more details. The names are not editable here, though the user can choose which channel to include. 
+See [channel name config](data_extraction_config.qmd#channel-name) for more details. The names are not editable here, though users can choose which channel to include. 
 
 ![](extraction_ui_shots/fov_channel.png){width=60% fig-align=center}
 
@@ -37,23 +37,23 @@ See [decay info config](data_extraction_config.qmd#decay-info) for more details.
 
 #### 2D Decay-specific
 
-Since the [2D decay](#2d-decay) file does not provide the `duration` and the number of `time bins` per laser pulse interval, the user needs to specify them. 
+Since the [2D decay](#2d-decay) file does not provide the `duration` and the number of `time bins` per laser pulse interval, users need to specify them. 
 
 ![](extraction_ui_shots/fov_decay_2d.png){width=60% fig-align=center}
 
 ### File Suffix
 
 Copied from the [file suffix config](data_extraction_config.qmd#file-suffix). 
-User can edit the file suffixes here. 
+Users can edit the file suffixes here. 
 
 ![](extraction_ui_shots/fov_file_suffix.png){width=60% fig-align=center}
 
 ### Reference Dye
 
-If the selected fit free calibration method is [reference dye](data_extraction_config.qmd#calibration-method), the user is asked to specify the reference dye file path for each channel and the reference dye lifetime, the default of those are copied from the reference dye config. 
+If the selected fit free calibration method is [reference dye](data_extraction_config.qmd#calibration-method), users are asked to specify the reference dye file path for each channel and the reference dye lifetime, the default of those are copied from the reference dye config. 
 
 ### Folder Path
-Finally, the user can specify the folder path that contains all the required input files. 
+Finally, users can specify the folder path that contains all the required input files. 
 
 ![](extraction_ui_shots/fov_folder.png){width=60% fig-align=center}
 
@@ -90,13 +90,17 @@ Because the calibration file is not FOV-specific, it will be searched based on t
 
 Field of Views with ✅ are loaded successfully 🎆. FOVs with ❌ (if any) will not be recorded.
 
+::: {.callout-tip}
+If after changing the file names that conform with the prefix assumption, and the problem persists, users can try killing the app and restarting it to clear the cache internally maintained by FLIM Playground.
+:::
+
 ### Decay Info
 
 If the decay type is [3D/4D decay](data_extraction.qmd#3d4d-decay), FLIM Playground will try to infer the `duration` and the number of `time bins` per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files if there is any. 
 
 #### Channel Assignment
 
-If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channel to be assigned. If there is only one, the assignment is automatic. If there are multiple, the user needs to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there is any. 
+If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channel to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there is any. 
 
 #### Reference Dye
 
@@ -109,7 +113,7 @@ Once the time axis is matched, the reference dye file path, the reference dye li
 
 ### Result Preview and Export
 
-If there is non-zero number of FOVs with ✅ and channel assignment and reference dye checks (if applicable) are passed, a preview of the metadata data sheet will be shown for the user to check. 
+If there is non-zero number of FOVs with ✅ and channel assignment and reference dye checks (if applicable) are passed, a preview of the metadata data sheet will be shown for users to check. 
 
 ![](extraction_ui_shots/fov_export.png){width=100% fig-align=center}
 

@@ -17,20 +17,20 @@
 
 # Quick Start
 
-Welcome to the FLIM Playground 🥳🎉🥂! It is an interactive graphical user interface (GUI) that allows you to extract single cell features from FLIM raw data ([Data Extraction](data_extraction.qmd)) and analyze extracted features or datasets extracted via other methods using a built-in repertoire of methods ([Data Analysis](data_analysis.qmd)). 
+Welcome to the FLIM Playground 🥳🎉🥂! This is an interactive graphical user interface (GUI) that allows you to extract single cell features from fluorescence lifetime imaging microscopy (FLIM) raw data ([Data Extraction](data_extraction.qmd)) and analyze extracted features or datasets extracted via other methods using a built-in repertoire of methods ([Data Analysis](data_analysis.qmd)). 
 
 To quickly try out different analysis methods, download this [sample dataset](https://github.com/skalalab/flim_playground_bioarchive/blob/main/inhibitors.csv) and try the [online demo](https://flim-playground.streamlit.app/). If you prefer to use your own data, read [data analysis configuration](data_analysis_config.qmd) to learn how to configure the system.
 
 ![](analysis_ui_shots/feature_comparison.png){width=100% fig-align=center}
 
-Due to the online demo's limitation in local file system access, extracting features from raw data is not available in the demo. Read on to learn more about FLIM Playground from processing raw decay data to gaining insights.
+Due to the online demo's limitation in local file system access, extracting features from raw data is not available in the online demo. Read on to learn more about FLIM Playground from processing raw decay data to gaining insights.
 
 ## Installation
 
 FLIM Playground is built entirely in Python and is open-source. 
 
 ### Download
-Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground_bioarchive) and double click it to run. Releases are available for Windows 11 and Mac OS 15. If your operating system is not either of these, you can build it yourself by following the instructions below. Code will be open-sourced after publication.
+Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground_bioarchive) and double click it to run. Releases are currently available for Windows 11 and Mac OS 26. If your operating system is not either of these, you can build it yourself by following the instructions below. Code will be open-sourced after publication.
 
 ### Build it yourself
 1. Clone the repo and navigate into the repository once cloned.
@@ -43,82 +43,87 @@ Download the desktop app from [GitHub](https://github.com/skalalab/flim_playgrou
 
 ## Introduction
 
-Fluorescence lifetime imaging microscopy (FLIM) measures the time it takes for a fluorescent molecule from being excited by a pulse of light (entering excited state) to emitting light (returning to the ground state). It is sensitive to changes in fluorophore microenvironment including conformational changes with protein binding and the presence of quenchers. Coupled with modern automated cell-segmentation methods [@stringer2021], FLIM enables single-cell analyses that reveal biological heterogeneity.
+Fluorescence lifetime imaging microscopy (FLIM) measures the time it takes for a fluorescent molecule to emit light (return to the ground state) after being excited by a pulse of light (enter excited state). It is sensitive to changes in fluorophore microenvironment including, pH, temperature, and conformational changes due to protein-binding and the presence of quenchers [@datta2020]. Coupled with modern automated cell-segmentation methods [@stringer2021], FLIM enables single-cell analyses that can reveal biological heterogeneity.
 
 ::: {.callout-note collapse="true"}
 # Instrumentation
 
-To acquire FLIM data, a light source—typically a pulsed laser for time-domain methods or a modulated continuous-wave source for frequency-domain methods—is used to excite the fluorophore. The emission is detected using instrumentation capable of resolving fluorescence decay, such as time-correlated single-photon counting (TCSPC), time-gated detectors, or phase/modulation-based detection. In time-domain FLIM, the delay between excitation and photon arrival is measured, and often a histogram is built, with x-axis being the delay time and y-axis being the number of photons falling into each time bin. Similar to film (e.g., 24 frames per second) versus photo, FLIM has an additional dimension of time (e.g., 256 time bins per 12.5 nanoseconds) compared to intensity images. 
+To acquire FLIM data, a light source—typically a pulsed laser for time-domain methods or a modulated continuous-wave source for frequency-domain methods—is used to excite the fluorophore of interest. The emission is detected using instrumentation capable of resolving fluorescence decay, such as time-correlated single-photon counting (TCSPC), time-gated, or phase/modulation-based detection. In time-domain FLIM, the delay between excitation and photon arrival is measured, and often a histogram is built, with x-axis being the delay time and y-axis being the number of photons falling into each time bin. Compared to intensity images, FLIM has an additional dimension of time (e.g., 256 time bins per 12.5 nanoseconds). 
 
 In frequency-domain FLIM, the phase shift and modulation depth of the emission relative to the excitation are determined. 
 :::
 
 ## Challenges
-A diverse set of [tools](https://www.phasorpy.org/docs/stable/phasor_approach/#software) — both open-source and commercial, ranging from libraries to code-free graphical user interfaces (GUIs) — are available to extract and analyze FLIM data, providing alternative methods and therefore flexibility to FLIM researchers. Examples include [PhasorPy](https://www.phasorpy.org/) [@phasorpy25], an open-source library for analyzing fluorescence lifetime using the phasor approach; [FLUTE](https://github.com/LaboratoryOpticsBiosciences/FLUTE) [@flute23], an open-source GUI for interactive phasor analysis; [FLIMPA](https://github.com/SofiaKapsiani/FLIMPA) [@flimpa2025], an open-source phasor analysis GUI offering batch processing, ROI-based quantification, and experiment-level comparison through manual assignment; [FLIMLib](https://flimlib.github.io/), an open-source generic curve fitting library that can be used to fit fluorescence lifetime decay data; [SPCImage](https://www.becker-hickl.com/products/spcimage/) [@becker2021] a commercial software for fitting and phasor features; and [Prism](https://www.graphpad.com/prism/) a commercial statistical and visualization software.
+A diverse set of [tools](https://www.phasorpy.org/docs/stable/phasor_approach/#software) — both open-source and commercial, ranging from libraries to code-free graphical user interfaces (GUIs) — are available to extract and analyze FLIM data, providing alternative methods and therefore flexibility to FLIM researchers. Examples include [PhasorPy](https://www.phasorpy.org/) [@phasorpy25], an open-source library for analyzing fluorescence lifetime using the phasor approach; [FLUTE](https://github.com/LaboratoryOpticsBiosciences/FLUTE) [@flute23], an open-source GUI for interactive phasor analysis; [FLIMPA](https://github.com/SofiaKapsiani/FLIMPA) [@flimpa2025], an open-source phasor analysis GUI enabling batch processing, ROI-based quantification, and experiment-level comparison through manual assignment; [FLIMLib](https://flimlib.github.io/), an open-source generic curve fitting library that can be used to fit fluorescence lifetime decay data; [SPCImage](https://www.becker-hickl.com/products/spcimage/) [@becker2021] a commercial software for fitting and phasor features.
 
-However, while some tools offer code-free interfaces, users still need to write custom code—either to prepare data in the proper format as input, or to further process their outputs for downstream analysis. The fragmentation between tools arises because each focuses on only a subset of data levels: <span style="color: #1f77b4;">pixel</span>, <span style="color: #ff7f0e;">cell ROI</span>, <span style="color: #2ca02c;">channel</span> , <span style="color: #d62728;">field of view</span>, and <span style="color: #9467bd;">experiment</span>. 
+However, while some tools offer code-free interfaces, users still need to write custom code—either to prepare data in the proper format as input, or to further process their outputs for downstream analysis. The fragmentation between tools arises because each focuses on only a subset of data levels: pixel, cell ROI, channel, field of view, and experiment. 
 
-### Levels of Data
-- <span style="color: #1f77b4;">**Pixel**</span>: a single decay curve
+### Data Levels
+- <span style="color: #1f77b4;">**Pixel**</span>: a single decay curve encoded in vendor-specific file formats (e.g., Becker & Hickl, PicoQuant, etc.)
 - <span style="color: #ff7f0e;">**Region of Interest (ROI)**</span>
-  - mask with cell labels
+  - Mask with cell labels
 - <span style="color: #2ca02c;">**Channel**</span>
   - Different fluorophores
-  - fluorophore-specific calibration files
-  - masks focusing on different parts of the cell (e.g., whole cell, cytoplasm, nucleus, stain, etc.)
+  - Fluorophore-specific calibration files
+  - Masks focusing on different parts of the cell (e.g., whole cell, cytoplasm, nucleus, stain, etc.)
   - Different feature extraction methods (fitting, phasor, morphology, texture)
 - <span style="color: #d62728;">**Field of View (FOV)**</span>
-  - vendor-specific file formats (e.g., Becker & Hickl, PicoQuant, etc.)
-  - input decay types (e.g., [2D](data_extraction_config.qmd#2d-decay), [3/4D](data_extraction_config.qmd#3d4d-decay))
+  - Input decay types (e.g., [2D](data_extraction_config.qmd#2d-decay), [3/4D](data_extraction_config.qmd#3d4d-decay))
 - <span style="color: #9467bd;">**Experiment**</span>
-  - different treatments, time points, cell lines, etc., and combinations thereof
+  - Different treatments, time points, cell lines, etc., and combinations thereof
 
 An integrated framework should take into account all data levels <span style="color: #1f77b4;">■</span> <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> <span style="color: #9467bd;">■</span> (•) while maintaining the flexibility to handle various input types (◦). **It should provide a level of abstraction to address fragmentation from data levels and input types**.
 
-Also, FLIM is a rapidly evolving field, and new methods are being developed all the time. An integrated framework should allow users to choose among alternative methods seemlessly, the backbone of iterative explorations integral to research, and be ready to incorporate new methods: **The provided level of abstraction should address fragmentation from extraction and analysis methods**. 
+Additionally, the use of FLIM is rapidly evolving, and new methods are being developed all the time. An integrated framework should allow users to choose among alternative methods seamlessly, be the backbone of iterative explorations integral to research, and be ready to incorporate new methods: **The provided level of abstraction should address fragmentation from extraction and analysis methods**. 
 
-Finally, many of the tools especially GUI softwares are not cross-platform, which limits the accessibility of the tools. The [Installation](#installation) addresses this last challenge.
+Finally, many of the existing tools especially GUI based softwares are not cross-platform, which limits their accessibility. The [Installation](#installation) addresses this last challenge.
 
-A closer parallel to FLIM Playground's integrated approach is the combination of [CellProfiler](https://cellprofiler.org/) [@cellprofiler4], which extracts per-object morphological and texture features, and [CellProfiler Analyst](https://cellprofileranalyst.org/) [@cpa21], which ingests these outputs or other feature tables for visualization and statistical analysis. However, FLIM Playground can extract lifetime features from time-resolved data, alongside morphological and texture features from intensity images. Its general data analysis module incorporates FLIM-specific methods (e.g., [phasor analysis](lifetime_fit_free.qmd)) and, beyond training machine learning classifiers, provides statistical models that address additional analysis aspects such as data heterogeneity.
+A closer parallel to FLIM Playground's integrated approach is the combination of [CellProfiler](https://cellprofiler.org/) [@cellprofiler4], which extracts per-object morphological and texture features, and [CellProfiler Analyst](https://cellprofileranalyst.org/) [@cpa21], which ingests these outputs or other feature tables for visualization and statistical analysis. However, FLIM Playground stands apart in that it can extract lifetime features from time-resolved data, alongside morphological and texture features from intensity images. Its general data analysis module incorporates FLIM-specific methods (e.g., [phasor analysis](lifetime_fit_free.qmd)) and provides statistical models that address additional analysis aspects such as data heterogeneity, in addition to training machine learning classifiers.
  
 ## Method
 
-### Data Semantics
+### Feature Classes
 
-Tabular data columns can be categorized into three semantic sets:
+Tabular data columns can be categorized into three feature classes:
 
-- identifiers: unique row identifier (<span style="color: #ff7f0e;">■</span>) and (optional) field of view identifier (<span style="color: #d62728;">■</span>) that allow us to investigate the biological heterogeneity at the single-cell level
-- categorical features: conceptually help us group the rows (e.g., `treatment` will group the rows into different treatment groups) (<span style="color: #ff7f0e;">■</span> <span style="color: #9467bd;">■</span>)
-- numerical features: quantify the differences/similarities between data groups (<span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span>)
+- <span style="color: #C94146;">Identifiers</span>: unique row identifier and (optional) field of view identifier that allow us to investigate the biological heterogeneity at the single-cell level
+- <span style="color: #4880D4;">Categorical features</span>: conceptually help us group the rows (e.g., `treatment` will group the rows into different treatment groups)
+- <span style="color: #D3AE4A;">Numerical features</span>: quantify the differences/similarities between data groups
 
 **Science, from the data perspective, is about closing the conceptual categorical gaps with quantitative measurements.**
+
+At [data levels](index.qmd#data-levels), the data are processed to extract the feature classes in [Data Extraction](data_extraction.qmd), and the classes are used in the [Data Analysis](data_analysis.qmd) modules.
+
+![](table1.svg){width=100% fig-align=center}
 
 ### Design
 FLIM Playground has two independent sections:
 
+![](Fig1.svg){width=100% fig-align=center}
+
 #### Data Extraction
 
-[Data Extraction](data_extraction.qmd) extracts single-cell features from the raw data. It adopts a [framework](data_extraction_config.qmd#channel-centric-framework) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for the user. Following the above [categorization](#data-semantics), it is divided into the following steps:
+[Data Extraction](data_extraction.qmd) extracts single-cell features from the raw data. It adopts a [framework](data_extraction_config.qmd#channel-centric-framework) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for users. Following the above [categorization](#feature-classes), it is divided into the following steps:
 
-- [Data Extraction Configuration](data_extraction_config.qmd): allows users to choose among alternative input types and extraction methods (extractors).
-- [Metadata organization](fov_metadata.qmd): extracts the field of view identifiers and their configurations
-- [Numerical Feature Extraction](numerical_feature_extraction.qmd): extracts single-cell numerical features by user-selected extractors. More extractors can be integrated in the future.
-  - [Calibration](numerical_feature_extraction.qmd#calibration): calibrate for IRF shift or use reference dye
-  - alternative lifetime extractors: 
+- [Data Extraction Configuration (A)](data_extraction_config.qmd): allows users to choose among alternative input types and extraction methods (extractors).
+- [Metadata organization (B)](fov_metadata.qmd): extracts the field of view <span style="color: #C94146;">identifiers</span> and their configurations
+- [Numerical Feature Extraction](numerical_feature_extraction.qmd): extracts single-cell <span style="color: #D3AE4A;">numerical features</span> based on user-selected extractors. More extractors can be integrated in the future.
+  - [Calibration (C)](numerical_feature_extraction.qmd#calibration): calibrate for IRF shift or use reference dye
+  - Alternative lifetime extractors (D): 
     - [Fitting](lifetime_fit.qmd)
     - [Phasor](lifetime_fit_free.qmd)
-  - alternative intensity-based extractors:
+  - Alternative intensity-based extractors (D):
     - [Morphology](intensity_morphology.qmd)
     - [Texture](intensity_texture.qmd)
-- [Categorical feature extraction](categorical_feature_extraction.qmd): extracts single-cell categorical features and combines experiment-level datasets.
+- [Categorical feature extraction (E)](categorical_feature_extraction.qmd): extracts single-cell <span style="color: #4880D4;">categorical features</span> and combines experiment-level datasets.
 
 #### Data Analysis
 
-[Data Analysis](data_analysis.qmd) analyzes features—whether extracted through Data Extraction or by other methods—using visualizations and statistical modeling. It deploys a [shared framework](data_analysis.qmd#shared-interactive-widgets) built to handle the [three sets of features](#data-semantics) across all analysis methods, enabling the same interactive and frictionless exploration experience. 
+[Data Analysis](data_analysis.qmd) analyzes features—whether extracted through Data Extraction or by other methods—using visualizations and statistical modeling. It deploys a [shared framework (F)](data_analysis.qmd#shared-interactive-widgets) built to handle the [feature classes](#feature-classes) across all analysis methods, enabling the same interactive and frictionless exploration experience and allowing new methods to be integrated in the future easily.
 
-- [Data Analysis](data_analysis.qmd) goes in-depth in how FLIM Playground handles the three sets of features and [Data Analysis Config](data_analysis_config.qmd) goes through how users can configure FLIM Playground to analyze datasets that are not extracted by [Data Extraction](data_extraction.qmd). 
+- [Data Analysis (G)](data_analysis.qmd) goes in-depth into how FLIM Playground handles the feature classes and [Data Analysis Config](data_analysis_config.qmd) goes through how users can configure FLIM Playground to analyze datasets that are not extracted by [Data Extraction](data_extraction.qmd). 
 
-Here is the list of analysis methods, grouped by the number of numerical features they take as input:
+Here is the list of analysis methods incorporated into FLIM Playground, grouped by the number of numerical features they take as inputs:
 
 - [Univariate analysis](data_analysis.qmd#univariate-analysis)
   - [Feature Comparison](feature_comparison.qmd)
@@ -131,8 +136,8 @@ Here is the list of analysis methods, grouped by the number of numerical feature
   - [Dimension Reduction](dimension_reduction.qmd)
   - [Classification](classification.qmd)
 
-New methods can be integrated in the future easily, building on the [shared framework](data_analysis.qmd#shared-interactive-widgets).
+Both sections are built in Python and built as self-contained executables ready to be ran on major operating systems and in browsers (**H**).
 
 ### Summary
 
-**FLIM Playground** resolves these [challenges](#challenges) with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and built-in repertoire of analytical methods with interactive widgets that encourage hypothesis driven, iterative exploration of large datasets. A modular architecture also enables incorporation of new algorithms.
+**FLIM Playground** resolves these [challenges](#challenges) with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and has a built-in repertoire of analytical methods with interactive widgets that encourage hypothesis driven, iterative exploration of large datasets. It is built on a modular architecture that enables incorporation of new algorithms in the future.
