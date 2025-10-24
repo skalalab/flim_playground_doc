@@ -9,6 +9,3 @@ It is the accompanying [documentation website](https://allanware.quarto.pub/flim
 Feel free to add your comments in the comment section at the bottom of every page.
 
 ![](comment.png)
-
-# Deployment
-use `quarto publish gh-pages` to publish this doc once this repo is public
