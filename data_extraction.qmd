@@ -1,31 +1,31 @@
 # Overview {#sec-data-extraction}
 
-FLIM Playground transforms raw FLIM data into single-cell numerical and categorical features, ensuring smooth integration with [downstream analysis](data_analysis.qmd). All steps are seamlessly connected through interactive widgets, with built-in error checking and reporting to ensure correctness.
+FLIM Playground transforms raw FLIM data into single-cell numerical and categorical features, ensuring smooth integration with [downstream analysis](#sec-data-analysis). All steps are seamlessly connected through interactive widgets, with built-in error checking and reporting to ensure correctness.
 
 A high-level overview of the data extraction process is shown below.
 ![](Fig2.svg){width=100% fig-align=center}
 
 ## Stages 
 
-Users can [configure](data_extraction_config.qmd) the system once and apply it to future data. After configuration, users can extract features from raw data using the following steps, inspired by the [categorization](index.qmd#feature-classes):
+Users can [configure](#sec-data-extraction-config) the system once and apply it to future data. After configuration, users can extract features from raw data using the following steps, inspired by the [categorization](index.qmd#feature-classes):
 
 ![](extraction_ui_shots/extraction_steps.png){width=30% fig-align=center}
 
-1. [FOV Metadata Organization (A)](fov_metadata.qmd): each experiment session consists of multiple fields of view (FOVs). This step helps users organize the metadata of the FOVs. 
-2. [Numerical feature extraction (B)](numerical_feature_extraction.qmd): it calibrates and then extracts single cell numerical features. 
+1. [FOV Metadata Organization (A)](#sec-fov-metadata): each experiment session consists of multiple fields of view (FOVs). This step helps users organize the metadata of the FOVs. 
+2. [Numerical feature extraction (B)](#sec-numerical-feature-extraction): it calibrates and then extracts single cell numerical features. 
     - [Calibration](numerical_feature_extraction.qmd#calibration)
         - [Fit Calibration](numerical_feature_extraction.qmd#fit-calibration)
         - [Fit Free Calibration](numerical_feature_extraction.qmd#fit-free-calibration)
             - [IRF Shift](numerical_feature_extraction.qmd#shift-irf)
             - [Reference Dye](numerical_feature_extraction.qmd#reference-dye)
     - Per-channel feature extraction includes:
-        - [Lifetime fitting features](lifetime_fit.qmd): fit an exponential decay curve to the measured decay and extract lifetime features per cell ROI. 
-        - [Phasor features](lifetime_fit_free.qmd): calculate the phasor features such as the phasor coordinates. It also provides [phasor analysis](phasor_analysis.qmd). 
-        - [Morphology features](intensity_morphology.qmd): calculate morphology features based on the ROI mask. 
-        - [Texture features](intensity_texture.qmd): calculate texture features based on the intensity image and the ROI mask. 
-3. [Categorical feature extraction (C)](categorical_feature_extraction.qmd): extract the categorical features such as the treatment, time point, etc based on the FOV name.
+        - [Lifetime fitting features](#sec-lifetime-fit): fit an exponential decay curve to the measured decay and extract lifetime features per cell ROI. 
+        - [Phasor features](#sec-lifetime-fit-free): calculate the phasor features such as the phasor coordinates. It also provides [phasor analysis](#sec-phasor-analysis). 
+        - [Morphology features](#sec-intensity-morphology): calculate morphology features based on the ROI mask. 
+        - [Texture features](#sec-intensity-texture): calculate texture features based on the intensity image and the ROI mask. 
+3. [Categorical feature extraction (C)](#sec-categorical-feature-extraction): extract the categorical features such as the treatment, time point, etc based on the FOV name.
 
-- Users can then upload the extracted datasets to perform [Data Analysis](data_analysis.qmd). 
+- Users can then upload the extracted datasets to perform [Data Analysis](#sec-data-analysis). 
 
 
 ## Input File Types
@@ -56,7 +56,7 @@ IRF must be a 1D array. Currently, the supported formats are (extendable to more
 - `.txt`: it uses `np.loadtxt` to parse a txt file. It returns a 1D array if the IRF numbers are in one row or in one column.  
 
 ### SPCImage t1
-If the decay type is [3D/4D pixel-prefitted](data_extraction_config.qmd#3d4d-pixel-prefitted), users can provide pixel-prefitted lifetime feature files. 
+If the decay type is [3D/4D pixel-prefitted](data_extraction_config.qmd#d4d-pixel-prefitted), users can provide pixel-prefitted lifetime feature files. 
 
 - `.asc`: a 2D array in spatial dimensions outputted by [SPCImage](https://www.becker-hickl.com/products/spcimage/), with each (row, column) containing the value of the lifetime feature (e.g. `t1`: the first component's lifetime) of that pixel.
 - Depending on the chosen number of lifetime components, the other pixel-prefitted feature files are included and their names are inferred from the `t1` file, by replacing `t1` in the file name with `t2`, `t3`, `a1[%]`, etc. 

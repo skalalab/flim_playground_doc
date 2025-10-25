@@ -12,7 +12,7 @@ If the decays have not been pre-fitted, FLIM Playground applies the confirmed fi
 
 [Otherwise](#pixel-prefitted), FLIM Playground uses the [pre-fitted values](data_extraction.qmd#spcimage-t1) to calculate the fitting features. 
 
-In the final dataset, fitting features are prefixed by the combination of the feature extractor name (i.e. `Lifetime fit`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Lifetime fit_nadh: a1` means the fraction of the first lifetime component for the NAD(P)H channel. 
+In the final dataset, fitting features are prefixed by the combination of the feature extractor name (i.e. `Lifetime fit`) and the channel name, allowing [Data Analysis](#sec-data-analysis) to group the features. For example, `Lifetime fit_nadh: a1` means the fraction of the first lifetime component for the NAD(P)H channel. 
 
 ### Preprocessing 
 

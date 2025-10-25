@@ -4,7 +4,7 @@ In imaging datasets like FLIM data, field of view (FOV) is an important categori
 
 ## Interface Components 
 
-FLIM Playground finds the FOV identifier column from the dataset using the `FOV column name` field in [data analysis config](data_analysis_config.qmd#id-config) (dataset not extracted by [data extraction](data_extraction.qmd)) or [data extraction config](data_extraction_config.qmd#configuration) (dataset extracted by [data extraction](data_extraction.qmd)). 
+FLIM Playground finds the FOV identifier column from the dataset using the `FOV column name` field in [data analysis config](data_analysis_config.qmd#id-config) (dataset not extracted by Data Extraction) or [data extraction config](data_extraction_config.qmd#configuration) (dataset extracted by [Data Extraction](#sec-data-extraction)). 
 
 If the FOV identifier column is not found in the dataset, then a warning message will be shown:
 

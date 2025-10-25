@@ -1,18 +1,18 @@
 # Overview {#sec-data-analysis}
-We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](data_extraction.qmd) module or in users' own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data [categorization](index.qmd#feature-classes) as [Data Extraction](data_extraction.qmd) does, the [Data Analysis](data_analysis.qmd) module designs an [architectural blueprint](#shared-interactive-widgets) that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.  
+We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](#sec-data-extraction) module or in users' own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data [categorization](index.qmd#feature-classes) as [Data Extraction](#sec-data-extraction) does, the [Data Analysis](#sec-data-analysis) module designs an [architectural blueprint](#shared-interactive-widgets) that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.  
 
 ## Methods
 - Depending on the number of numerical features in the analysis, the methods are categorized into 3 groups: 
     - Univariate Analysis
-        - [Feature Comparison](feature_comparison.qmd)
-        - [Feature Histogram](feature_histogram.qmd)
-        - [Field of View Comparison](fov_comparison.qmd)
+        - [Feature Comparison](#sec-feature-comparison)
+        - [Feature Histogram](#sec-feature-histogram)
+        - [Field of View Comparison](#sec-fov-comparison)
     - Bivariate Analysis
-        - [2D Feature Distribution](feature_distribution.qmd)
-        - [Phasor Analysis](phasor_analysis.qmd)
+        - [2D Feature Distribution](#sec-feature-distribution)
+        - [Phasor Analysis](#sec-phasor-analysis)
     - Multivariate Analysis
-        - [Dimension Reduction](dimension_reduction.qmd)
-        - [Classification](classification.qmd)
+        - [Dimension Reduction](#sec-dimension-reduction)
+        - [Classification](#sec-classification)
 
 All the methods [share a set of interactive widgets](#shared-interactive-widgets) to support the [general workflow](#general-workflow). They also have their own method-specific widgets, the descriptions of which are provided in the corresponding method pages. 
 
@@ -29,7 +29,7 @@ All the methods [share a set of interactive widgets](#shared-interactive-widgets
 :::
 
 ## Input
-Users can upload the dataset outputted from the [Data Extraction](data_extraction.qmd) directly or *their own datasets* in **csv** (Comma Separated Values) format after finishing the [interactive configuration](data_analysis_config.qmd) setup. 
+Users can upload the dataset outputted from the [Data Extraction](#sec-data-extraction) directly or *their own datasets* in **csv** (Comma Separated Values) format after finishing the [interactive configuration](#sec-data-analysis-config) setup. 
 
 ::: {.columns}
 ::: {.column width="5%"}
@@ -112,7 +112,7 @@ One set of selection widgets, each can select multiple features from a feature g
 
 ### Categorical Feature Widgets
 
-FLIM Playground recognizes the categorical features in the uploaded dataset based on the [user-specified configuration](data_analysis_config.qmd) if the dataset is not extracted by [Data Extraction](data_extraction.qmd). Otherwise, it recognizes categorical features specified in the [Data Extraction configuration](data_extraction_config.qmd#categorical-features). 
+FLIM Playground recognizes the categorical features in the uploaded dataset based on the [user-specified configuration](#sec-data-analysis-config) if the dataset is not extracted by [Data Extraction](#sec-data-extraction). Otherwise, it recognizes categorical features specified in the [Data Extraction configuration](data_extraction_config.qmd#categorical-features). 
 
 #### Filter Widgets
 ![](analysis_ui_shots/filter.png){width=95%}
@@ -125,7 +125,7 @@ For complex datasets that are collected over multiple days, experiments, treatme
 Human vision is wired for rapid, parallel pattern and trend detection; good visual encodings (how to map data to visual elements such as color, shape, opacity, etc.) harness this to surface insights that raw numbers or text obscure [@cleveland1984]. FLIM Playground provides `color`, `opacity`, and `shape` channels for visualizations that support them: 
 
 ##### Color by
-Color is supported in all methods except for [Classification](classification.qmd). In `Color by`, users can select multiple categorical features, and each unique combination of available categories (determined by the filters in the [Filter Widgets](#filter-widgets)) in selected features are assigned a distinct color. Groups created by `Color by` show up in the x-axis (if multiple features, categories from each feature are delimited by `::`).
+Color is supported in all methods except for [Classification](#sec-classification). In `Color by`, users can select multiple categorical features, and each unique combination of available categories (determined by the filters in the [Filter Widgets](#filter-widgets)) in selected features are assigned a distinct color. Groups created by `Color by` show up in the x-axis (if multiple features, categories from each feature are delimited by `::`).
 
 ::: {#nte-order .callout-note}
 ## How to order the groups
@@ -139,7 +139,7 @@ The order of the groups in x-axis and in the legend is determined by:
 ![](analysis_ui_shots/color_by.png){width=90% fig-align=center}
 
 ##### Opacity and Shape by
-- Opacity and shape are supported in all point-based visualizations (e.g. [Feature Comparison](feature_comparison.qmd), [2D Feature Distribution](feature_distribution.qmd), [Phasor Analysis](phasor_analysis.qmd), [Dimension Reduction](dimension_reduction.qmd)). In `Opacity by` and `Shape by`, users can select one categorical feature, and each unique category is assigned a distinct opacity or shape. The order of the shape and opacity is also sorted [numer-alphatically](#nte-order). 
+- Opacity and shape are supported in all point-based visualizations (e.g. [Feature Comparison](#sec-feature-comparison), [2D Feature Distribution](#sec-feature-distribution), [Phasor Analysis](#sec-phasor-analysis), [Dimension Reduction](#sec-dimension-reduction)). In `Opacity by` and `Shape by`, users can select one categorical feature, and each unique category is assigned a distinct opacity or shape. The order of the shape and opacity is also sorted [numer-alphatically](#nte-order). 
 
 ![](analysis_ui_shots/opacity_shape_by.png){width=90% fig-align=center}
 

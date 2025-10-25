@@ -1,6 +1,6 @@
 # Categorical Feature Extraction {#sec-categorical-feature-extraction}
 
-Based on the datasets extracted in the [numerical feature extraction](numerical_feature_extraction.qmd) step, FLIM Playground:
+Based on the datasets extracted in the [numerical feature extraction](#sec-numerical-feature-extraction) step, FLIM Playground:
 
 - [merges the datasets](#merging-datasets) into a single dataset
 - [assigns categorical features](#assigning-categorical-features) to each cell in the merged dataset

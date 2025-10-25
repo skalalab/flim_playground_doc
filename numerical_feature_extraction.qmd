@@ -1,14 +1,14 @@
 # Numerical Feature Extraction {#sec-numerical-feature-extraction}
 In this step, FLIM Playground extracts *single-cell* numerical features from the raw data in a folder. For each channel, the features to be extracted are specified in the [user-selected feature extractors](data_extraction_config.qmd#feature-extractor). The available feature extractors are:
 
-- [Lifetime fit](lifetime_fit.qmd): fit exponential models to decay curves to estimate lifetimes and their fractional contributions by minimizing an objective function. 
-- [Lifetime fit free](lifetime_fit_free.qmd): transform decay curves to phasor space using Fourier transform to obtain phasor coordinates. 
-- [Intensity Morphology](intensity_morphology.qmd): morphological features of single cell ROI masks
-- [Intensity Texture](intensity_texture.qmd): texture features of single cell ROI intensity images
+- [Lifetime fit](#sec-lifetime-fit): fit exponential models to decay curves to estimate lifetimes and their fractional contributions by minimizing an objective function. 
+- [Lifetime fit free](#sec-lifetime-fit-free): transform decay curves to phasor space using Fourier transform to obtain phasor coordinates. 
+- [Intensity Morphology](#sec-intensity-morphology): morphological features of single cell ROI masks
+- [Intensity Texture](#sec-intensity-texture): texture features of single cell ROI intensity images
 
 ## Input 
 
-A csv extracted in the [fov metadata extraction](fov_metadata.qmd) step that contains the metadata of the FOVs including: 
+A csv extracted in the [fov metadata extraction](#sec-fov-metadata) step that contains the metadata of the FOVs including: 
 
 - [required file paths](fov_metadata.qmd#fov-file-paths)
 - [decay type](fov_metadata.qmd#decay-type)
@@ -16,7 +16,7 @@ A csv extracted in the [fov metadata extraction](fov_metadata.qmd) step that con
 - [selected feature extractors](fov_metadata.qmd#feature-extractors) for each channel
 - [fit free calibration method](data_extraction_config.qmd#calibration-method)(if fit free calibration is required)
 
-Users can either upload a previously extracted metadata file (left), or use the cached metadata file just extracted in the [fov metadata extraction](fov_metadata.qmd) step (right). 
+Users can either upload a previously extracted metadata file (left), or use the cached metadata file just extracted in the [fov metadata extraction](#sec-fov-metadata) step (right). 
 
 ::: {layout-ncol=2}
 
@@ -149,7 +149,7 @@ Once confirmed, the left panel prompts users to either apply the calibration set
 
 If the selected feature extractors do not require IRF shift calibration, or users have [finished the calibration](#calibration-done), they can proceed to the feature extraction step by clicking the `Confirm and Start Analysis` button. 
 
-Similar to the [fov metadata extraction](fov_metadata.qmd#fov-metadata) step, FLIM Playground extracts the features and displays the extraction status for each field of view. 
+Similar to the [fov metadata extraction](#sec-fov-metadata) step, FLIM Playground extracts the features and displays the extraction status for each field of view. 
 
 ![](extraction_ui_shots/numerical_feature_extraction.png){width=100% fig-align=center}
 
