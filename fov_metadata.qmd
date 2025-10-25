@@ -48,9 +48,9 @@ Users can edit the file suffixes here.
 
 ![](extraction_ui_shots/fov_file_suffix.png){width=60% fig-align=center}
 
-### Reference Dye
+### fluorescence lifetime standard
 
-If the selected fit free calibration method is [reference dye](data_extraction_config.qmd#calibration-method), users are asked to specify the reference dye file path for each channel and the reference dye lifetime, the default of those are copied from the reference dye config. 
+If the selected fit free calibration method is [fluorescence lifetime standard](data_extraction_config.qmd#fluorescence-lifetime-standard), users are asked to specify the fluorescence lifetime standard file path for each channel and the fluorescence lifetime standard's lifetime, the default of those are copied from the data extraction configuration. 
 
 ### Folder Path
 Finally, users can specify the folder path that contains all the required input files. 
@@ -102,18 +102,18 @@ If the decay type is [3D/4D decay](data_extraction.qmd#3d4d-decay), FLIM Playgro
 
 If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channel to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there is any. 
 
-#### Reference Dye
+#### fluorescence lifetime standard
 
-If the [reference dye file path](#reference-dye) is specified, FLIM Playground will try to look for and read the file. It expects a `tiff` or `tif` file that contains a 3D array, with one of them as the time dimension. It will try to match the time dimension with the time dimension of the decay file. If it cannot find the matching time dimension, it will complain. 
+If the file path to the [fluorescence lifetime standard](#fluorescence-lifetime-standard) is specified, FLIM Playground will try to look for and read the file. It expects a `tiff` or `tif` file that contains a 3D array, with one of them as the time dimension. It will try to match the time dimension with the time dimension of the decay file. If it cannot find the matching time dimension, it will complain. 
 
 ![](extraction_ui_shots/fov_rd_not_found.png){width=90% fig-align=center}
 ![](extraction_ui_shots/fov_rd_not_match.png){width=90% fig-align=center}
 
-Once the time axis is matched, the reference dye file path, the reference dye lifetime, and the time axis will be recorded. 
+Once the time axis is matched, the file path to the fluorescence lifetime standard, the fluorescence lifetime standard's lifetime, and the time axis will be recorded. 
 
 ### Result Preview and Export
 
-If there is a non-zero number of FOVs with ✅ and channel assignment and reference dye checks (if applicable) are passed, a preview of the metadata data sheet will be shown for users to check. 
+If there is a non-zero number of FOVs with ✅ and channel assignment and fluorescence lifetime standard checks (if applicable) are passed, a preview of the metadata data sheet will be shown for users to check. 
 
 ![](extraction_ui_shots/fov_export.png){width=100% fig-align=center}
 

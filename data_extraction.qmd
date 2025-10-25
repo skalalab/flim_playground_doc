@@ -17,7 +17,7 @@ Users can [configure](#sec-data-extraction-config) the system once and apply it 
         - [Fit Calibration](numerical_feature_extraction.qmd#fit-calibration)
         - [Fit Free Calibration](numerical_feature_extraction.qmd#fit-free-calibration)
             - [IRF Shift](numerical_feature_extraction.qmd#shift-irf)
-            - [Reference Dye](numerical_feature_extraction.qmd#reference-dye)
+            - [Fluorescence lifetime standard](numerical_feature_extraction.qmd#fluorescence-lifetime-standard)
     - Per-channel feature extraction includes:
         - [Lifetime fitting features](#sec-lifetime-fit): fit an exponential decay curve to the measured decay and extract lifetime features per cell ROI. 
         - [Phasor features](#sec-lifetime-fit-free): calculate the phasor features such as the phasor coordinates. It also provides [phasor analysis](#sec-phasor-analysis). 
@@ -61,8 +61,8 @@ If the decay type is [3D/4D pixel-prefitted](data_extraction_config.qmd#three-d4
 - `.asc`: a 2D array in spatial dimensions outputted by [SPCImage](https://www.becker-hickl.com/products/spcimage/), with each (row, column) containing the value of the lifetime feature (e.g. `t1`: the first component's lifetime) of that pixel.
 - Depending on the chosen number of lifetime components, the other pixel-prefitted feature files are included and their names are inferred from the `t1` file, by replacing `t1` in the file name with `t2`, `t3`, `a1[%]`, etc. 
 
-### Reference Dye
-If the reference dye-based calibration is chosen, users are expected to provide the reference dye file. 
+### fluorescence lifetime standard
+If the fluorescence lifetime standard-based calibration is chosen, users are expected to provide the fluorescence lifetime standard file. 
 
 - `.tiff`/`.tif`: a 3D array, with one dimension representing the time axis. 
 

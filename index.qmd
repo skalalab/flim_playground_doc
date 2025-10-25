@@ -143,7 +143,7 @@ FLIM Playground has two independent sections:
 - [Data Extraction Configuration (A)](#sec-data-extraction-config): allows users to choose among alternative input types and extraction methods (extractors).
 - [Metadata organization (B)](#sec-fov-metadata): extracts the field of view <span style="color: #C94146;">identifiers</span> and their configurations
 - [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell <span style="color: #D3AE4A;">numerical features</span> based on user-selected extractors. More extractors can be integrated in the future.
-  - [Calibration (C)](#sec-calibration): calibrate for IRF shift or use reference dye
+  - [Calibration (C)](#sec-calibration): calibrate for IRF shift or use fluorescence lifetime standard
   - Alternative lifetime extractors (D): 
     - [Fitting](#sec-lifetime-fit)
     - [Phasor](#sec-lifetime-fit-free)
@@ -157,7 +157,7 @@ FLIM Playground has two independent sections:
 - [Data Extraction Configuration (A)](#sec-data-extraction-config): allows users to choose among alternative input types and extraction methods (extractors).
 - [Metadata organization (B)](#sec-fov-metadata): extracts the field of view \textcolor[HTML]{C94146}{identifiers} and their configurations
 - [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell \textcolor[HTML]{D3AE4A}{numerical features} based on user-selected extractors. More extractors can be integrated in the future.
-  - [Calibration (C)](#sec-calibration): calibrate for IRF shift or use reference dye
+  - [Calibration (C)](#sec-calibration): calibrate for IRF shift or use fluorescence lifetime standard
   - Alternative lifetime extractors (D): 
     - [Fitting](#sec-lifetime-fit)
     - [Phasor](#sec-lifetime-fit-free)

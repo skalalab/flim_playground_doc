@@ -59,9 +59,9 @@ Since the [2D decay](#two-d-decay) file does not provide the `duration` and the 
 It supports two calibration methods for phasor analysis:
 
 - [IRF shift-based calibration](numerical_feature_extraction.qmd#irf-shift)
-- [Reference dye-based calibration](numerical_feature_extraction.qmd#reference-dye)
+- [fluorescence lifetime standard-based calibration](numerical_feature_extraction.qmd#fluorescence-lifetime-standard)
 
-Since instrumental response function (IRF) or the reference dye are measured for each channel, they are set in the [per-channel configurations](#per-channel-configurations). The reference dye's lifetime is channel-agnostic. 
+Since instrumental response function (IRF) or the fluorescence lifetime standard is measured for each channel, they are set in the [per-channel configurations](#per-channel-configurations). The fluorescence lifetime standard's lifetime is channel-agnostic. 
 
 ![](extraction_ui_shots/config_calibration.png){width=100% fig-align=center}
 
