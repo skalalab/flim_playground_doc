@@ -1,0 +1,18 @@
+\makeatletter
+\AtBeginDocument{%
+  \hypersetup{%
+    pdftitle={FLIM Playground Manual},
+    pdfauthor={}
+  }%
+  \renewcommand{\maketitle}{%
+    \begin{titlepage}
+      \thispagestyle{empty}
+      \centering
+      {\Huge\bfseries FLIM Playground Manual\par}
+      \vspace{1.5cm}
+      {\Large Last Modified: \@date\par}
+      \vfill
+    \end{titlepage}
+  }%
+}
+\makeatother

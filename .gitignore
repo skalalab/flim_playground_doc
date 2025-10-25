@@ -16,3 +16,4 @@ _book/
 !Fig2.svg
 !table1.svg
 *.tex
+!pdf-title.tex
