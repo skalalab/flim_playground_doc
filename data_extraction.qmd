@@ -56,7 +56,7 @@ IRF must be a 1D array. Currently, the supported formats are (extendable to more
 - `.txt`: it uses `np.loadtxt` to parse a txt file. It returns a 1D array if the IRF numbers are in one row or in one column.  
 
 ### SPCImage t1
-If the decay type is [3D/4D pixel-prefitted](data_extraction_config.qmd#d4d-pixel-prefitted), users can provide pixel-prefitted lifetime feature files. 
+If the decay type is [3D/4D pixel-prefitted](data_extraction_config.qmd#three-d4d-pixel-prefitted), users can provide pixel-prefitted lifetime feature files. 
 
 - `.asc`: a 2D array in spatial dimensions outputted by [SPCImage](https://www.becker-hickl.com/products/spcimage/), with each (row, column) containing the value of the lifetime feature (e.g. `t1`: the first component's lifetime) of that pixel.
 - Depending on the chosen number of lifetime components, the other pixel-prefitted feature files are included and their names are inferred from the `t1` file, by replacing `t1` in the file name with `t2`, `t3`, `a1[%]`, etc. 

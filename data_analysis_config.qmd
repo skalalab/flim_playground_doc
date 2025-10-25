@@ -35,4 +35,4 @@ After hitting the `ctrl/cmd + enter` key, the numerical features are parsed and 
 After users finish the configuration and click the `Save Configuration` button, FLIM Playground saves the configuration for processing current and future datasets.
 
 ## Reset
-Users can reset the configuration to the default settings, which are configured in the [configuration step](#sec-data-extraction-config) in the Data Extraction module.
+Users can reset the configuration to the default settings.

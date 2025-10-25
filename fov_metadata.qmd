@@ -37,7 +37,7 @@ See [decay info config](data_extraction_config.qmd#decay-info) for more details.
 
 #### 2D Decay-specific
 
-Since the [2D decay](data_extraction_config.qmd#2d-decay) file does not provide the `duration` and the number of `time bins` per laser pulse interval, users need to specify them. 
+Since the [2D decay](data_extraction_config.qmd#two-d-decay) file does not provide the `duration` and the number of `time bins` per laser pulse interval, users need to specify them. 
 
 ![](extraction_ui_shots/fov_decay_2d.png){width=60% fig-align=center}
 

@@ -1,0 +1,185 @@
+\contentsline {chapter}{\numberline {1}Quick Start}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Installation}{3}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Download}{4}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Build it yourself}{4}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}Introduction}{4}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Challenges}{5}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Data Levels}{5}{subsection.1.3.1}%
+\contentsline {section}{\numberline {1.4}Method}{6}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Feature Classes}{6}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Design}{7}{subsection.1.4.2}%
+\contentsline {subsubsection}{\numberline {1.4.2.1}Data Extraction}{7}{subsubsection.1.4.2.1}%
+\contentsline {subsubsection}{\numberline {1.4.2.2}Data Analysis}{8}{subsubsection.1.4.2.2}%
+\contentsline {subsection}{\numberline {1.4.3}Summary}{9}{subsection.1.4.3}%
+\contentsline {part}{\numberline {I}Data Extraction}{10}{part.1}%
+\contentsline {chapter}{\numberline {2}Overview}{11}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Stages}{11}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Input File Types}{12}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Decay}{12}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Mask}{13}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}IRF}{13}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}SPCImage t1}{13}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Reference Dye}{13}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}Intensity (2D)}{14}{subsection.2.2.6}%
+\contentsline {section}{\numberline {2.3}Limitations}{14}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Configuration}{15}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Cross-Channel Configurations}{16}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Categorical Features}{16}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Decay Types}{16}{subsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.1}2D Decay}{16}{subsubsection.3.1.2.1}%
+\contentsline {subsubsection}{\numberline {3.1.2.2}3D/4D Decay}{16}{subsubsection.3.1.2.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.3}3D/4D pixel-prefitted}{17}{subsubsection.3.1.2.3}%
+\contentsline {subsection}{\numberline {3.1.3}Identifiers}{17}{subsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.3.1}Cell Identifier}{17}{subsubsection.3.1.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.3.2}FOV Identifier}{17}{subsubsection.3.1.3.2}%
+\contentsline {subsection}{\numberline {3.1.4}Decay Info}{17}{subsection.3.1.4}%
+\contentsline {subsubsection}{\numberline {3.1.4.1}Laser frequency}{17}{subsubsection.3.1.4.1}%
+\contentsline {subsubsection}{\numberline {3.1.4.2}2D Decay-specific}{18}{subsubsection.3.1.4.2}%
+\contentsline {subsection}{\numberline {3.1.5}Calibration Method}{18}{subsection.3.1.5}%
+\contentsline {subsection}{\numberline {3.1.6}Number of Channels}{18}{subsection.3.1.6}%
+\contentsline {section}{\numberline {3.2}Per-Channel Configurations}{18}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Channel Name}{18}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Imaging Modality}{19}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Feature Extractor}{19}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Number of Components}{20}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}File Suffix}{20}{subsection.3.2.5}%
+\contentsline {section}{\numberline {3.3}Save}{21}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Field of View Metadata}{22}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Metadata}{22}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Decay Type}{23}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Channel Names}{23}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Feature Extractors}{23}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Decay Info}{23}{subsection.4.1.4}%
+\contentsline {subsubsection}{\numberline {4.1.4.1}2D Decay-specific}{24}{subsubsection.4.1.4.1}%
+\contentsline {subsection}{\numberline {4.1.5}File Suffix}{24}{subsection.4.1.5}%
+\contentsline {subsection}{\numberline {4.1.6}Reference Dye}{24}{subsection.4.1.6}%
+\contentsline {subsection}{\numberline {4.1.7}Folder Path}{24}{subsection.4.1.7}%
+\contentsline {section}{\numberline {4.2}Metadata Extraction}{25}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}FOV File Paths}{25}{subsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.1.1}Success}{25}{subsubsection.4.2.1.1}%
+\contentsline {subsubsection}{\numberline {4.2.1.2}Missing}{25}{subsubsection.4.2.1.2}%
+\contentsline {subsubsection}{\numberline {4.2.1.3}Duplicate}{26}{subsubsection.4.2.1.3}%
+\contentsline {subsection}{\numberline {4.2.2}Decay Info}{26}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.1}Channel Assignment}{26}{subsubsection.4.2.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2.2}Reference Dye}{27}{subsubsection.4.2.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Result Preview and Export}{27}{subsection.4.2.3}%
+\contentsline {chapter}{\numberline {5}Numerical Feature Extraction}{29}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Input}{29}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Calibration}{30}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Fit Calibration}{30}{subsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.1.1}Gather High SNR Decay Curves}{31}{subsubsection.5.2.1.1}%
+\contentsline {subsubsection}{\numberline {5.2.1.2}Reconvolution Fitting}{31}{subsubsection.5.2.1.2}%
+\contentsline {paragraph}{\numberline {5.2.1.2.1}Number of Components}{32}{paragraph.5.2.1.2.1}%
+\contentsline {paragraph}{\numberline {5.2.1.2.2}Time Gates}{32}{paragraph.5.2.1.2.2}%
+\contentsline {paragraph}{\numberline {5.2.1.2.3}Metric}{33}{paragraph.5.2.1.2.3}%
+\contentsline {paragraph}{\numberline {5.2.1.2.4}Fitting Mode}{33}{paragraph.5.2.1.2.4}%
+\contentsline {subsection}{\numberline {5.2.2}Fit Free Calibration}{34}{subsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.2.1}Shift IRF}{34}{subsubsection.5.2.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2.2}Reference Dye}{34}{subsubsection.5.2.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Confirm Calibration}{35}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Feature Extraction}{35}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Save Results}{36}{section.5.4}%
+\contentsline {chapter}{\numberline {6}Lifetime Features (Fit)}{37}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Fitting}{37}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Preprocessing}{37}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Fraction of components}{38}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.1.3}Mean lifetime}{38}{subsection.6.1.3}%
+\contentsline {section}{\numberline {6.2}Pixel-prefitted}{38}{section.6.2}%
+\contentsline {chapter}{\numberline {7}Lifetime Features (Fit-Free)}{39}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Preprocessing}{39}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Phasor features}{39}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Step 1: raw phasor coordinates}{39}{subsection.7.2.1}%
+\contentsline {subsubsection}{\numberline {7.2.1.1}Untruncated decay curve}{40}{subsubsection.7.2.1.1}%
+\contentsline {subsubsection}{\numberline {7.2.1.2}Truncated decay curve}{40}{subsubsection.7.2.1.2}%
+\contentsline {subsection}{\numberline {7.2.2}Step 2: calibrated phasor coordinates}{40}{subsection.7.2.2}%
+\contentsline {subsection}{\numberline {7.2.3}Step 3: phasor-derived lifetime}{41}{subsection.7.2.3}%
+\contentsline {chapter}{\numberline {8}Morphological Features}{42}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Textural Features}{43}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Granularity}{43}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Radial Distribution}{43}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Mass Displacement}{43}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Intensity Sum}{44}{section.9.4}%
+\contentsline {chapter}{\numberline {10}Categorical Feature Extraction}{45}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Merging Datasets}{45}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Assigning Categorical Features}{47}{section.10.2}%
+\contentsline {part}{\numberline {II}Data Analysis}{48}{part.2}%
+\contentsline {chapter}{\numberline {11}Overview}{49}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Methods}{49}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Input}{50}{section.11.2}%
+\contentsline {subsection}{\numberline {11.2.1}Requirements}{51}{subsection.11.2.1}%
+\contentsline {subsection}{\numberline {11.2.2}Warning Messages}{51}{subsection.11.2.2}%
+\contentsline {subsection}{\numberline {11.2.3}Error Messages}{52}{subsection.11.2.3}%
+\contentsline {section}{\numberline {11.3}Shared Interactive Widgets}{52}{section.11.3}%
+\contentsline {subsection}{\numberline {11.3.1}General Workflow}{52}{subsection.11.3.1}%
+\contentsline {subsection}{\numberline {11.3.2}Numerical Feature Widgets}{52}{subsection.11.3.2}%
+\contentsline {subsubsection}{\numberline {11.3.2.1}Univariate Analysis}{53}{subsubsection.11.3.2.1}%
+\contentsline {subsubsection}{\numberline {11.3.2.2}Bivariate Analysis}{53}{subsubsection.11.3.2.2}%
+\contentsline {subsubsection}{\numberline {11.3.2.3}Multivariate Analysis}{54}{subsubsection.11.3.2.3}%
+\contentsline {subsection}{\numberline {11.3.3}Categorical Feature Widgets}{54}{subsection.11.3.3}%
+\contentsline {subsubsection}{\numberline {11.3.3.1}Filter Widgets}{54}{subsubsection.11.3.3.1}%
+\contentsline {subsubsection}{\numberline {11.3.3.2}Visual Channels Widgets}{55}{subsubsection.11.3.3.2}%
+\contentsline {paragraph}{\numberline {11.3.3.2.1}Color by}{55}{paragraph.11.3.3.2.1}%
+\contentsline {paragraph}{\numberline {11.3.3.2.2}Opacity and Shape by}{56}{paragraph.11.3.3.2.2}%
+\contentsline {subsection}{\numberline {11.3.4}Unique ID Hover}{56}{subsection.11.3.4}%
+\contentsline {subsection}{\numberline {11.3.5}Plotting Configuration Widgets}{57}{subsection.11.3.5}%
+\contentsline {chapter}{\numberline {12}Configuration}{58}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Identifiers Config}{58}{section.12.1}%
+\contentsline {section}{\numberline {12.2}Categorical Feature Config}{58}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Numerical Feature Config}{59}{section.12.3}%
+\contentsline {subsection}{\numberline {12.3.1}Example}{60}{subsection.12.3.1}%
+\contentsline {section}{\numberline {12.4}Save}{60}{section.12.4}%
+\contentsline {section}{\numberline {12.5}Reset}{60}{section.12.5}%
+\contentsline {part}{\numberline {III}Univariate Analysis}{61}{part.3}%
+\contentsline {chapter}{\numberline {13}Feature Comparison}{62}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Interface Components}{62}{section.13.1}%
+\contentsline {subsection}{\numberline {13.1.1}Shared Components}{62}{subsection.13.1.1}%
+\contentsline {subsection}{\numberline {13.1.2}Separate by}{63}{subsection.13.1.2}%
+\contentsline {subsection}{\numberline {13.1.3}Effect Size}{64}{subsection.13.1.3}%
+\contentsline {subsubsection}{\numberline {13.1.3.1}Glass's Delta}{64}{subsubsection.13.1.3.1}%
+\contentsline {subsubsection}{\numberline {13.1.3.2}Cohen's d}{65}{subsubsection.13.1.3.2}%
+\contentsline {subsubsection}{\numberline {13.1.3.3}Effect Size Widgets}{66}{subsubsection.13.1.3.3}%
+\contentsline {subsubsection}{\numberline {13.1.3.4}Effect size annotation}{66}{subsubsection.13.1.3.4}%
+\contentsline {chapter}{\numberline {14}Feature Histogram}{67}{chapter.14}%
+\contentsline {section}{\numberline {14.1}Interface Components}{67}{section.14.1}%
+\contentsline {subsection}{\numberline {14.1.1}Shared Components}{67}{subsection.14.1.1}%
+\contentsline {section}{\numberline {14.2}Histogram Mode}{68}{section.14.2}%
+\contentsline {section}{\numberline {14.3}Gaussian Mixture Model Mode}{69}{section.14.3}%
+\contentsline {subsection}{\numberline {14.3.1}Fit Gaussian Mixture Models}{70}{subsection.14.3.1}%
+\contentsline {subsection}{\numberline {14.3.2}Heterogeneity index}{70}{subsection.14.3.2}%
+\contentsline {subsection}{\numberline {14.3.3}Classification}{70}{subsection.14.3.3}%
+\contentsline {subsubsection}{\numberline {14.3.3.1}Intersection thresholding}{71}{subsubsection.14.3.3.1}%
+\contentsline {subsubsection}{\numberline {14.3.3.2}Hard assignment}{71}{subsubsection.14.3.3.2}%
+\contentsline {subsection}{\numberline {14.3.4}Example}{71}{subsection.14.3.4}%
+\contentsline {chapter}{\numberline {15}Field of View Comparison}{74}{chapter.15}%
+\contentsline {section}{\numberline {15.1}Interface Components}{74}{section.15.1}%
+\contentsline {subsection}{\numberline {15.1.1}Shared Components}{75}{subsection.15.1.1}%
+\contentsline {section}{\numberline {15.2}Example}{75}{section.15.2}%
+\contentsline {part}{\numberline {IV}Bivariate Analysis}{77}{part.4}%
+\contentsline {chapter}{\numberline {16}Feature Distribution}{78}{chapter.16}%
+\contentsline {section}{\numberline {16.1}Interface Components}{78}{section.16.1}%
+\contentsline {subsection}{\numberline {16.1.1}Shared Components}{78}{subsection.16.1.1}%
+\contentsline {subsection}{\numberline {16.1.2}Marginal Distribution}{79}{subsection.16.1.2}%
+\contentsline {subsection}{\numberline {16.1.3}2D Gaussian Mixture Model}{79}{subsection.16.1.3}%
+\contentsline {subsection}{\numberline {16.1.4}Regression line}{81}{subsection.16.1.4}%
+\contentsline {chapter}{\numberline {17}Phasor Analysis}{82}{chapter.17}%
+\contentsline {section}{\numberline {17.1}Interface Components}{82}{section.17.1}%
+\contentsline {subsection}{\numberline {17.1.1}Shared Components}{82}{subsection.17.1.1}%
+\contentsline {subsection}{\numberline {17.1.2}Select Phasor Coordinate}{83}{subsection.17.1.2}%
+\contentsline {subsection}{\numberline {17.1.3}K-means Clustering}{83}{subsection.17.1.3}%
+\contentsline {subsection}{\numberline {17.1.4}Export Clustered Dataset}{84}{subsection.17.1.4}%
+\contentsline {part}{\numberline {V}Multivariate Analysis}{85}{part.5}%
+\contentsline {chapter}{\numberline {18}Dimension Reduction}{86}{chapter.18}%
+\contentsline {section}{\numberline {18.1}Interface Components}{87}{section.18.1}%
+\contentsline {subsection}{\numberline {18.1.1}Shared Components}{87}{subsection.18.1.1}%
+\contentsline {subsection}{\numberline {18.1.2}Hyperparameter}{87}{subsection.18.1.2}%
+\contentsline {subsubsection}{\numberline {18.1.2.1}UMAP}{87}{subsubsection.18.1.2.1}%
+\contentsline {subsubsection}{\numberline {18.1.2.2}t-SNE}{88}{subsubsection.18.1.2.2}%
+\contentsline {chapter}{\numberline {19}Classification}{89}{chapter.19}%
+\contentsline {section}{\numberline {19.1}Interface Components}{89}{section.19.1}%
+\contentsline {subsection}{\numberline {19.1.1}Shared Components}{90}{subsection.19.1.1}%
+\contentsline {subsection}{\numberline {19.1.2}Method-specific Components}{90}{subsection.19.1.2}%
+\contentsline {subsection}{\numberline {19.1.3}Performance Metrics}{92}{subsection.19.1.3}%
+\contentsline {subsubsection}{\numberline {19.1.3.1}Confusion Matrix}{92}{subsubsection.19.1.3.1}%
+\contentsline {subsubsection}{\numberline {19.1.3.2}ROC Curve}{93}{subsubsection.19.1.3.2}%
+\contentsline {subsubsection}{\numberline {19.1.3.3}Feature Importance}{94}{subsubsection.19.1.3.3}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

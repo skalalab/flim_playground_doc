@@ -71,7 +71,7 @@ However, while some tools offer code-free interfaces, users still need to write 
   - Masks focusing on different parts of the cell (e.g., whole cell, cytoplasm, nucleus, stain, etc.)
   - Different feature extraction methods (fitting, phasor, morphology, texture)
 - <span style="color: #d62728;">**Field of View (FOV)**</span>
-  - Input decay types (e.g., [2D](data_extraction_config.qmd#2d-decay), [3/4D](data_extraction_config.qmd#3d4d-decay))
+  - Input decay types (e.g., [2D](data_extraction_config.qmd#two-d-decay), [3/4D](data_extraction_config.qmd#three-d4d-decay), [pixel-level lifetime features already fitted](data_extraction_config.qmd#three-d4d-pixel-prefitted))
 - <span style="color: #9467bd;">**Experiment**</span>
   - Different treatments, time points, cell lines, etc., and combinations thereof
 :::
@@ -87,7 +87,7 @@ However, while some tools offer code-free interfaces, users still need to write 
   - Masks focusing on different parts of the cell (e.g., whole cell, cytoplasm, nucleus, stain, etc.)
   - Different feature extraction methods (fitting, phasor, morphology, texture)
 - \textcolor[HTML]{d62728}{\textbf{Field of View (FOV)}}
-  - Input decay types (e.g., [2D](data_extraction_config.qmd#2d-decay), [3/4D](data_extraction_config.qmd#3d4d-decay))
+  - Input decay types (e.g., [2D](data_extraction_config.qmd#two-d-decay), [3/4D](data_extraction_config.qmd#three-d4d-decay), [pixel-level lifetime features already fitted](data_extraction_config.qmd#three-d4d-pixel-prefitted))
 - \textcolor[HTML]{9467bd}{\textbf{Experiment}}
   - Different treatments, time points, cell lines, etc., and combinations thereof
 :::

@@ -47,7 +47,7 @@ The distribution of the shift values is displayed as an interactive scatter plot
 
 #### Gather High SNR Decay Curves
 
-The high SNR decay curves are constructed automatically based on the [decay type](data_extraction_config.qmd#decay-types). If it is in [2D format](data_extraction_config.qmd#2d-decay), a total of the brightest 30 curves that are below `100000` photons are selected and evenly distributed across all field of views (one csv file is considered as one FOV). If it is in [3D/4D format](data_extraction_config.qmd#3d4d-decay), the field of views are images, and one curve is constructed for each image that includes all the non-zero pixels within the [ROI mask](data_extraction.qmd#mask). 
+The high SNR decay curves are constructed automatically based on the [decay type](data_extraction_config.qmd#decay-types). If it is in [2D format](data_extraction_config.qmd#two-d-decay), a total of the brightest 30 curves that are below `100000` photons are selected and evenly distributed across all field of views (one csv file is considered as one FOV). If it is in [3D/4D format](data_extraction_config.qmd#three-d4d-decay), the field of views are images, and one curve is constructed for each image that includes all the non-zero pixels within the [ROI mask](data_extraction.qmd#mask). 
 
 #### Reconvolution Fitting
 

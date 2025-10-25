@@ -19,17 +19,17 @@ Categorical features are useful to organize the data into groups of interest, an
 
 FLIM Playground supports different decay types, including 2D decay, 3D/4D decay, and 3D/4D pixel-prefitted decay, through user specification. 
 
-#### 2D Decay
+#### 2D Decay {#two-d-decay}
 
 In the system developed by Samimi et al. [@Samimi2024], single cells flow through and a decay curve is acquired for each cell by aggregating all the photon arrival time delays deemed to be from the same cell. In exchange of spatial distribution, the acquisition speed is increased enormously. The output of the system is a tabular data sheet with each row representing a cell and each column representing a time bin. **FLIM Playground currently supports 2D decay in the CSV format.** 
 
-#### 3D/4D Decay
+#### 3D/4D Decay {#three-d4d-decay}
 
 In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g. `.sdt`, `.ptu`). In addition to the spatial dimensions and the time dimension (`XYT`), the channel dimension may also be present, making it 4 dimensional (`CXYT`). Some systems can also record a time stack, making it has at most 5 dimensions. **FLIM Playground currently supports both `.sdt` and `.ptu` files up to 4 dimensions.** It reads the `duration` and the number of `time bins` from decay file metadata.
 
-#### 3D/4D pixel-prefitted
+#### 3D/4D pixel-prefitted {#three-d4d-pixel-prefitted}
 
-Since FLIM Playground currently does **not** support pixel-fitting, users have the option to provide pixel-prefitted outputs from [SPCImage](https://www.becker-hickl.com/products/spcimage/) in the format of `.asc`. 
+Since FLIM Playground currently does **not** support pixel-fitting, users have the option to provide pixel-prefitted outputs from [SPCImage](https://www.becker-hickl.com/products/spcimage/) in the format of `.asc`. See [here](lifetime_fit.qmd#pixel-prefitted) for how FLIM Playground processes SPCImage outputs to obtain cell-level lifetime fitting features. 
 
 ### Identifiers
 
@@ -50,7 +50,7 @@ Users can specify the column name for the field of view identifier. If the decay
 Users can specify the laser frequency in GHz. For example, 0.8 GHz equals to 80 MHz. It will be used in the [phasor analysis](#sec-phasor-analysis). If you do not intend to use the phasor analysis, you can fill in any number. 
 
 #### 2D Decay-specific
-Since the [2D decay](#2d-decay) file does not provide the `duration` and the number of `time bins` per laser pulse interval, users need to specify them. 
+Since the [2D decay](#two-d-decay) file does not provide the `duration` and the number of `time bins` per laser pulse interval, users need to specify them. 
 
 ![](extraction_ui_shots/config_2d_setting.png){width=100% fig-align=center}
 
@@ -91,7 +91,7 @@ This setup allows users to image some channels in FLIM mode, and others in non-F
 :::
 
 ::: {.callout-note}
-If the decay type is [2D decay](#2d-decay), the [imaging modality](#imaging-modality) for all channels is restricted to `FLIM`.
+If the decay type is [2D decay](#two-d-decay), the [imaging modality](#imaging-modality) for all channels is restricted to `FLIM`.
 :::
 
 ### Feature Extractor
@@ -106,7 +106,7 @@ Four types of feature extractors are available if the [imaging modality](#imagin
 ![](extraction_ui_shots/config_feature_extractor.png){width=80% fig-align=center}
 
 ::: {.callout-note}
-If the decay type is [2D decay](#2d-decay), the [Intensity Morphology](#sec-intensity-morphology) and [Intensity Texture](#sec-intensity-texture) feature extractors are **not** applicable.
+If the decay type is [2D decay](#two-d-decay), the [Intensity Morphology](#sec-intensity-morphology) and [Intensity Texture](#sec-intensity-texture) feature extractors are **not** applicable.
 :::
 
 The [Intensity Morphology](#sec-intensity-morphology) and [Intensity Texture](#sec-intensity-texture) feature extractors are available if the [imaging modality](#imaging-modality) is `Intensity-only`.
