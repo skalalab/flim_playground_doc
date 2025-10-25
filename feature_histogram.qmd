@@ -1,4 +1,4 @@
-# Feature Histogram
+# Feature Histogram {#sec-feature-histogram}
 Feature histograms give an instant read-out of each group’s center, spread, skew and any multi-peaked shape that raw tables hide. FLIM Playground plots a histogram for each group based on the selected numerical feature. Additionally, the [Gaussian Mixture Model](#gaussian-mixture-model-mode) mode can help find subcomponents of each histogram in an unsupervised way. To quantify the distribution heterogeneity, normalized [H-index](#heterogeneity-index) is calculated for each group. 
 
 ## Interface Components

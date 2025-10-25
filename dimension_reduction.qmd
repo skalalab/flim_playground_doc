@@ -1,4 +1,4 @@
-# Dimension Reduction
+# Dimension Reduction {#sec-dimension-reduction}
 
 To represent and visualize high-dimensional data in a meaningful way and help users interpret the data, dimension reduction methods project the data into a lower-dimensional space. Three popular dimension reduction methods are often used: UMAP, PCA, and t-SNE. 
 
@@ -38,5 +38,4 @@ FLIM Playground uses the `sklearn.manifold.TSNE` implementation of t-SNE. It cho
 ![](analysis_ui_shots/t_sne.png){width=100%}
 :::
 :::
-
 

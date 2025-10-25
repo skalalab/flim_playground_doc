@@ -1,4 +1,4 @@
-# Configuration
+# Configuration {#sec-data-analysis-config}
 FLIM Playground provides an interactive configuration workflow to help users prepare their datasets that are not extracted by [Data Extraction](data_extraction.qmd) so that they fulfill the [requirements](data_analysis.qmd#requirements). The following sections use the [iris dataset](https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/0e7a9b0a5d22642a06d3d5b9bcbad9890c8ee534/iris.csv), and the `flower_id` is added to uniquely identify each row (i.e. a single flower). The other columns are: a categorical feature `species`, and a set of numerical features `sepal_length`, `sepal_width`, `petal_length`, and `petal_width`.
 
 On the left side of the screen, uncheck `Use Dataset from Data Extraction`.

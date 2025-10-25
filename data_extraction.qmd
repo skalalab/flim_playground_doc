@@ -1,4 +1,4 @@
-# Overview
+# Overview {#sec-data-extraction}
 
 FLIM Playground transforms raw FLIM data into single-cell numerical and categorical features, ensuring smooth integration with [downstream analysis](data_analysis.qmd). All steps are seamlessly connected through interactive widgets, with built-in error checking and reporting to ensure correctness.
 

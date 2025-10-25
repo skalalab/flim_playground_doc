@@ -1,4 +1,4 @@
-# Feature Distribution
+# Feature Distribution {#sec-feature-distribution}
 
 This method extends the univariate [Feature Histogram](feature_histogram.qmd) method to visualize the distribution of two numerical features on a scatter plot. It helps reveal patterns such as correlations, clusters, trends, or outliers. 
 
@@ -71,7 +71,6 @@ $R^{2}$ tells how much of the variability in $y$ is captured by the model, compa
 - $R^{2} = 1$ → perfect prediction.
 - $R^{2} = 0$ → model predicts no better than the mean.
 :::
-
 
 
 

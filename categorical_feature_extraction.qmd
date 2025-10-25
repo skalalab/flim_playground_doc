@@ -1,4 +1,4 @@
-# Categorical Feature Extraction
+# Categorical Feature Extraction {#sec-categorical-feature-extraction}
 
 Based on the datasets extracted in the [numerical feature extraction](numerical_feature_extraction.qmd) step, FLIM Playground:
 

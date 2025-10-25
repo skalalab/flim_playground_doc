@@ -1,4 +1,4 @@
-# Field of View Comparison
+# Field of View Comparison {#sec-fov-comparison}
 
 In imaging datasets like FLIM data, field of view (FOV) is an important categorical feature that documents where a certain set of rows (e.g. cells) originates. Visualizing each FOV side by side on a numerical feature can help identify potential FOV-level outliers. 
 

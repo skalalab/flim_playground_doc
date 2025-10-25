@@ -1,4 +1,4 @@
-# Overview
+# Overview {#sec-data-analysis}
 We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](data_extraction.qmd) module or in users' own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data [categorization](index.qmd#feature-classes) as [Data Extraction](data_extraction.qmd) does, the [Data Analysis](data_analysis.qmd) module designs an [architectural blueprint](#shared-interactive-widgets) that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.  
 
 ## Methods

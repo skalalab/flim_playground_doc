@@ -1,4 +1,4 @@
-# Numerical Feature Extraction
+# Numerical Feature Extraction {#sec-numerical-feature-extraction}
 In this step, FLIM Playground extracts *single-cell* numerical features from the raw data in a folder. For each channel, the features to be extracted are specified in the [user-selected feature extractors](data_extraction_config.qmd#feature-extractor). The available feature extractors are:
 
 - [Lifetime fit](lifetime_fit.qmd): fit exponential models to decay curves to estimate lifetimes and their fractional contributions by minimizing an objective function. 

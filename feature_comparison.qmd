@@ -1,4 +1,4 @@
-# Feature Comparison
+# Feature Comparison {#sec-feature-comparison}
 This method allows users to compare the distributions of a single numerical feature across groups. It can help users spot overarching trends between distributions, identify within distribution shape-related characteristics such as skewness or bimodality that might signal sub-populations, and diagnose for potential outliers. 
 
 ## Interface Components

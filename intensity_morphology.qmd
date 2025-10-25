@@ -1,4 +1,4 @@
-# Morphological Features
+# Morphological Features {#sec-intensity-morphology}
 FLIM Playground extracts single-cell morphological features based on the cell region of interest (ROI) mask of each *channel*. By inputting the ROI mask to [`skimage.measure.regionprops`](https://scikit-image.org/docs/stable/api/skimage.measure.html#skimage.measure.regionprops), the following features are extracted:
 
 - `area`: the number of pixels in the ROI. 
@@ -15,7 +15,6 @@ $e = \frac{c}{a}, \quad e \in [0,1)$, where $a$ is the semi-major axis length, $
 
 
 Feature names in the final dataset are prefixed by the combination of the feature extractor name (i.e. `Intensity morphology`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Intensity morphology_nadh: area` means the area of each cell in the NAD(P)H channel. 
-
 
 
 

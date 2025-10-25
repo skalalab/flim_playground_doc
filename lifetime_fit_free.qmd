@@ -1,8 +1,8 @@
-# Lifetime Features (Fit-Free)
+# Lifetime Features (Fit-Free) {#sec-lifetime-fit-free}
 
-Phasor analysis provides a fast, model-free view of lifetimes by transforming fluorescence decays into phasor coordinates through a Fourier transform. This approach is considered “fit-free” because it does not require iterative curve fitting or predefined decay models—each decay is mapped directly to a point on the [phasor plot](phasor_analysis.qmd). It has the nice property that mono-exponential decays fall on the universal semicircle while mixtures lie inside as linear combinations, so clusters reveal distinct species and their fractional contributions. FLIM Playground currently extracts cell-level phasor features: `G`, `S`, `Tau_phase`, `Tau_m`, `G_2nd` (2nd harmonic), and `S_2nd`. 
+Phasor analysis provides a fast, model-free view of lifetimes by transforming fluorescence decays into phasor coordinates through a Fourier transform. This approach is considered “fit-free” because it does not require iterative curve fitting or predefined decay models—each decay is mapped directly to a point on the [phasor plot](phasor_analysis.qmd). It has the nice property that mono-exponential decays fall on the universal semicircle while mixtures lie inside as linear combinations, so clusters reveal distinct species and their fractional contributions. FLIM Playground currently extracts cell-level phasor features: `g`, `s`, `Tau_phase`, `Tau_m`, `g_2nd` (2nd harmonic), and `s_2nd`. 
 
-Fit-free features in the final dataset are prefixed by the combination of the feature extractor name (i.e. `Lifetime fit free`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Lifetime fit free_nadh: G` means the $G$ coordinate for this cell in the NAD(P)H channel. 
+Fit-free features in the final dataset are prefixed by the combination of the feature extractor name (i.e. `Lifetime fit free`) and the channel name, allowing [Data Analysis](data_analysis.qmd) to group the features. For example, `Lifetime fit free_nadh: G` means the $g$ coordinate for this cell in the NAD(P)H channel. 
 
 ## Preprocessing
 
@@ -18,9 +18,9 @@ The reference implementation from [phasorpy](https://www.phasorpy.org/) assumes 
 
 #### Untruncated decay curve
 
-It uses the [`phasor_from_signal`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal) function from the [phasorpy](https://www.phasorpy.org/) package to calculate the uncalibrated phasor coordinates `G_raw` and `S_raw`, `G_raw_2nd` and `S_raw_2nd`, the first and second harmonics' real and imaginary parts, from the cell decay curve.
+It uses the [`phasor_from_signal`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal) function from the [phasorpy](https://www.phasorpy.org/) package to calculate the uncalibrated phasor coordinates `g_raw` and `s_raw`, `g_raw_2nd` and `s_raw_2nd`, the first and second harmonics' real and imaginary parts, from the cell decay curve.
 
-Either `G_irf`, `S_irf`, `G_irf_2nd`, and `S_irf_2nd` from the IRF, or `ref_mean`, `ref_real`, `ref_imag` from the reference dye, depending on the chosen [calibration method](data_extraction_config.qmd#calibration-method), are calculated using the same function.
+Either `g_irf`, `s_irf`, `g_irf_2nd`, and `s_irf_2nd` from the IRF, or `ref_mean`, `ref_real`, `ref_imag` from the reference dye, depending on the chosen [calibration method](data_extraction_config.qmd#calibration-method), are calculated using the same function.
 
 Mathematically, the raw phasor coordinates are calculated as (copied from the [phasorpy](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal) documentation):
 
@@ -50,34 +50,34 @@ For reference dye, the phasor coordinates are calculated using `phasorpy`'s `pha
 
 ### Step 2: calibrated phasor coordinates
 
-To get the calibrated phasor coordinates `G`, `S`, `G_2nd`, and `S_2nd`, FLIM Playground uses either
+To get the calibrated phasor coordinates `g`, `s`, `g_2nd`, and `s_2nd`, FLIM Playground uses either
 ```python
 from phasorpy import phasor
-G, S = phasor.phasor_divide(g_raw, s_raw, g_irf, s_irf)
-G_2nd, S_2nd = phasor.phasor_divide(g_raw_2nd, s_raw_2nd, g_irf_2nd, s_irf_2nd)
+g, s = phasor.phasor_divide(g_raw, s_raw, g_irf, s_irf)
+g_2nd, s_2nd = phasor.phasor_divide(g_raw_2nd, s_raw_2nd, g_irf_2nd, s_irf_2nd)
 ```
 or 
 ```python
 from phasorpy import lifetime
-G, S = lifetime.phasor_calibrate(g_raw, s_raw, ref_mean, ref_real, ref_imag, frequency=laser_rate, lifetime=reference_dye_lifetime)
-G_2nd, S_2nd = lifetime.phasor_calibrate(g_raw_2nd, s_raw_2nd, ref_mean, ref_real, ref_imag, frequency=laser_rate, lifetime=reference_dye_lifetime, harmonic=2)
+g, s = lifetime.phasor_calibrate(g_raw, s_raw, ref_mean, ref_real, ref_imag, frequency=laser_rate, lifetime=reference_dye_lifetime)
+g_2nd, s_2nd = lifetime.phasor_calibrate(g_raw_2nd, s_raw_2nd, ref_mean, ref_real, ref_imag, frequency=laser_rate, lifetime=reference_dye_lifetime, harmonic=2)
 ```
 
 The `laser_rate` is specified during the [fov metadata extraction](fov_metadata.qmd#laser-frequency) and [config](data_extraction_config.qmd#laser-frequency). 
 
 ### Step 3: phasor-derived lifetime
 
-`Tau_phase` and `Tau_m` are calculated using the first harmonic's phasor coordinates `G` and `S`. 
+`Tau_phase` and `Tau_m` are calculated using the first harmonic's phasor coordinates `g` and `s`. 
 
 ```python
 import numpy as np
 w = 2 * np.pi * laser_rate
-phi = np.arctan2(S, G) 
-m = np.sqrt(G**2 + S**2)
+phi = np.arctan2(s, g) 
+m = np.sqrt(g**2 + s**2)
 tau_phase = 1/w * np.tan(phi)
 tau_m = 1/w * np.sqrt(1/m**2 - 1)
 ```
 
 $$
-\phi = \operatorname{atan2}(S,\,G), m = \sqrt{G^{2}+S^{2}}, \tau_{\phi} = \frac{\tan \phi}{\omega}, \tau_{M} = \frac{1}{\omega}\sqrt{\frac{1}{m^{2}}-1}
+\phi = \operatorname{atan2}(s,\,g), m = \sqrt{g^{2}+s^{2}}, \tau_{\phi} = \frac{\tan \phi}{\omega}, \tau_{M} = \frac{1}{\omega}\sqrt{\frac{1}{m^{2}}-1}
 $$

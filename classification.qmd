@@ -1,4 +1,4 @@
-# Classification
+# Classification {#sec-classification}
 A machine learning classifier learns patterns from categorized data and then predicts the category of new, unseen data. This module provides a set of machine learning classifiers and interactive widgets to help users perform classification. 
 
 All the classifiers are implemented using `scikit-learn` and the performance metrics are calculated using `sklearn.metrics`. A fixed random seed (42) is used for all the classifiers to ensure reproducibility. 

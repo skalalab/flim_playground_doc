@@ -1,4 +1,4 @@
-# Phasor Analysis
+# Phasor Analysis {#sec-phasor-analysis}
 
 This method focuses on visualizing the distribution of the 1st harmonic or 2nd harmonic phasor coordinates, extracted by the [Lifetime fit free](lifetime_fit_free.qmd) extractor, and performs optional clustering to highlight subpopulations or structural patterns.
 

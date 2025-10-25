@@ -17,9 +17,9 @@
 
 # Quick Start
 
-Welcome to the FLIM Playground 🥳🎉🥂! This is an interactive graphical user interface (GUI) that allows you to extract single-cell features from fluorescence lifetime imaging microscopy (FLIM) raw data ([Data Extraction](data_extraction.qmd)) and analyze extracted features or datasets extracted via other methods using a built-in repertoire of methods ([Data Analysis](data_analysis.qmd)). 
+Welcome to the FLIM Playground 🥳🎉🥂! This is an interactive graphical user interface (GUI) that allows you to extract single-cell features from fluorescence lifetime imaging microscopy (FLIM) raw data ([Data Extraction](#sec-data-extraction)) and analyze extracted features or datasets extracted via other methods using a built-in repertoire of methods ([Data Analysis](#sec-data-analysis)). 
 
-To quickly try out different analysis methods, download this [sample dataset](https://github.com/skalalab/flim_playground_bioarchive/blob/main/inhibitors.csv) and try the [online demo](https://flim-playground.streamlit.app/). If you prefer to use your own data, read [data analysis configuration](data_analysis_config.qmd) to learn how to configure the system.
+To quickly try out different analysis methods, download this [sample dataset](https://github.com/skalalab/flim_playground_bioarchive/blob/main/inhibitors.csv) and try the [online demo](https://flim-playground.streamlit.app/). If you prefer to use your own data, read [this chapter on data analysis configuration](#sec-data-analysis-config) to learn how to configure the system.
 
 ![](analysis_ui_shots/feature_comparison.png){width=100% fig-align=center}
 
@@ -59,7 +59,10 @@ A diverse set of [tools](https://www.phasorpy.org/docs/stable/phasor_approach/#s
 However, while some tools offer code-free interfaces, users still need to write custom code—either to prepare data in the proper format as input, or to further process their outputs for downstream analysis. The fragmentation between tools arises because each focuses on only a subset of data levels: pixel, cell ROI, channel, field of view, and experiment. 
 
 ### Data Levels
-- <span style="color: #1f77b4;">**Pixel**</span>: a single decay curve encoded in vendor-specific file formats (e.g., Becker & Hickl, PicoQuant, etc.)
+
+::: {.content-visible when-format="html"}
+- <span style="color: #1f77b4;">**Pixel**</span>: 
+  - A single decay curve encoded in vendor-specific file formats (e.g., Becker & Hickl, PicoQuant, etc.)
 - <span style="color: #ff7f0e;">**Region of Interest (ROI)**</span>
   - Mask with cell labels
 - <span style="color: #2ca02c;">**Channel**</span>
@@ -71,14 +74,37 @@ However, while some tools offer code-free interfaces, users still need to write 
   - Input decay types (e.g., [2D](data_extraction_config.qmd#2d-decay), [3/4D](data_extraction_config.qmd#3d4d-decay))
 - <span style="color: #9467bd;">**Experiment**</span>
   - Different treatments, time points, cell lines, etc., and combinations thereof
+:::
 
+::: {.content-visible when-format="pdf"}
+- \textcolor[HTML]{1f77b4}{\textbf{Pixel}}: 
+  - A single decay curve encoded in vendor-specific file formats (e.g., Becker & Hickl, PicoQuant, etc.)
+- \textcolor[HTML]{ff7f0e}{\textbf{Region of Interest (ROI)}}
+  - Mask with cell labels
+- \textcolor[HTML]{2ca02c}{\textbf{Channel}}
+  - Different fluorophores
+  - Fluorophore-specific calibration files
+  - Masks focusing on different parts of the cell (e.g., whole cell, cytoplasm, nucleus, stain, etc.)
+  - Different feature extraction methods (fitting, phasor, morphology, texture)
+- \textcolor[HTML]{d62728}{\textbf{Field of View (FOV)}}
+  - Input decay types (e.g., [2D](data_extraction_config.qmd#2d-decay), [3/4D](data_extraction_config.qmd#3d4d-decay))
+- \textcolor[HTML]{9467bd}{\textbf{Experiment}}
+  - Different treatments, time points, cell lines, etc., and combinations thereof
+:::
+
+::: {.content-visible when-format="html"}
 An integrated framework should take into account all data levels <span style="color: #1f77b4;">■</span> <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> <span style="color: #9467bd;">■</span> (•) while maintaining the flexibility to handle various input types (◦). **It should provide a level of abstraction to address fragmentation from data levels and input types**.
+:::
+
+::: {.content-visible when-format="pdf"}
+An integrated framework should take into account all data levels \textcolor[HTML]{1f77b4}{■} \textcolor[HTML]{ff7f0e}{■} \textcolor[HTML]{2ca02c}{■} \textcolor[HTML]{d62728}{■} \textcolor[HTML]{9467bd}{■} (•) while maintaining the flexibility to handle various input types (◦). **It should provide a level of abstraction to address fragmentation from data levels and input types**.
+:::
 
 Additionally, the use of FLIM is rapidly evolving, and new methods are being developed all the time. An integrated framework should allow users to choose among alternative methods seamlessly, be the backbone of iterative explorations integral to research, and be ready to incorporate new methods: **The provided level of abstraction should address fragmentation from extraction and analysis methods**. 
 
 Finally, many of the existing tools especially GUI based softwares are not cross-platform, which limits their accessibility. The [Installation](#installation) addresses this last challenge.
 
-A closer parallel to FLIM Playground's integrated approach is the combination of [CellProfiler](https://cellprofiler.org/) [@cellprofiler4], which extracts per-object morphological and texture features, and [CellProfiler Analyst](https://cellprofileranalyst.org/) [@cpa21], which ingests these outputs or other feature tables for visualization and statistical analysis. However, FLIM Playground stands apart in that it can extract lifetime features from time-resolved data, alongside morphological and texture features from intensity images. Its general data analysis module incorporates FLIM-specific methods (e.g., [phasor analysis](lifetime_fit_free.qmd)) and provides statistical models that address additional analysis aspects such as data heterogeneity, in addition to training machine learning classifiers.
+A closer parallel to FLIM Playground's integrated approach is the combination of [CellProfiler](https://cellprofiler.org/) [@cellprofiler4], which extracts per-object morphological and texture features, and [CellProfiler Analyst](https://cellprofileranalyst.org/) [@cpa21], which ingests these outputs or other feature tables for visualization and statistical analysis. However, FLIM Playground stands apart in that it can extract lifetime features from time-resolved data, alongside morphological and texture features from intensity images. Its general data analysis module incorporates FLIM-specific methods (e.g., [phasor analysis](sec-phasor-analysis)) and provides statistical models that address additional analysis aspects such as data heterogeneity, in addition to training machine learning classifiers.
  
 ## Method
 
@@ -86,13 +112,21 @@ A closer parallel to FLIM Playground's integrated approach is the combination of
 
 Tabular data columns can be categorized into three feature classes:
 
+::: {.content-visible when-format="html"}
 - <span style="color: #C94146;">Identifiers</span>: unique row identifier and (optional) field of view identifier that allow us to investigate the biological heterogeneity at the single-cell level
 - <span style="color: #4880D4;">Categorical features</span>: conceptually help us group the rows (e.g., `treatment` will group the rows into different treatment groups)
 - <span style="color: #D3AE4A;">Numerical features</span>: quantify the differences/similarities between data groups
+:::
+
+::: {.content-visible when-format="pdf"}
+- \textcolor[HTML]{C94146}{Identifiers}: unique row identifier and (optional) field of view identifier that allow us to investigate the biological heterogeneity at the single-cell level
+- \textcolor[HTML]{4880D4}{Categorical features}: conceptually help us group the rows (e.g., `treatment` will group the rows into different treatment groups)
+- \textcolor[HTML]{D3AE4A}{Numerical features}: quantify the differences/similarities between data groups
+:::
 
 **Science, from the data perspective, is about closing the conceptual categorical gaps with quantitative measurements.**
 
-At [data levels](index.qmd#data-levels), the data are processed to extract the feature classes in [Data Extraction](data_extraction.qmd), and the classes are used in the [Data Analysis](data_analysis.qmd) modules.
+At [data levels](#data-levels), the data are processed to extract the feature classes in [Data Extraction](#sec-data-extraction), and the classes are used in the [Data Analysis](#sec-data-analysis) modules.
 
 ![](table1.svg){width=100% fig-align=center}
 
@@ -103,38 +137,54 @@ FLIM Playground has two independent sections:
 
 #### Data Extraction
 
-[Data Extraction](data_extraction.qmd) extracts single-cell features from the raw data. It adopts a [framework](data_extraction_config.qmd#channel-centric-framework) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for users. Following the above [categorization](#feature-classes), it is divided into the following steps:
+[Data Extraction](#sec-data-extraction) extracts single-cell features from the raw data. It adopts a [framework](data_extraction_config.qmd#channel-centric-framework) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for users. Following the above [categorization](#feature-classes), it is divided into the following steps:
 
-- [Data Extraction Configuration (A)](data_extraction_config.qmd): allows users to choose among alternative input types and extraction methods (extractors).
-- [Metadata organization (B)](fov_metadata.qmd): extracts the field of view <span style="color: #C94146;">identifiers</span> and their configurations
-- [Numerical Feature Extraction](numerical_feature_extraction.qmd): extracts single-cell <span style="color: #D3AE4A;">numerical features</span> based on user-selected extractors. More extractors can be integrated in the future.
-  - [Calibration (C)](numerical_feature_extraction.qmd#calibration): calibrate for IRF shift or use reference dye
+::: {.content-visible when-format="html"}
+- [Data Extraction Configuration (A)](#sec-data-extraction-config): allows users to choose among alternative input types and extraction methods (extractors).
+- [Metadata organization (B)](#sec-fov-metadata): extracts the field of view <span style="color: #C94146;">identifiers</span> and their configurations
+- [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell <span style="color: #D3AE4A;">numerical features</span> based on user-selected extractors. More extractors can be integrated in the future.
+  - [Calibration (C)](#sec-calibration): calibrate for IRF shift or use reference dye
   - Alternative lifetime extractors (D): 
-    - [Fitting](lifetime_fit.qmd)
-    - [Phasor](lifetime_fit_free.qmd)
+    - [Fitting](#sec-lifetime-fit)
+    - [Phasor](#sec-lifetime-fit-free)
   - Alternative intensity-based extractors (D):
-    - [Morphology](intensity_morphology.qmd)
-    - [Texture](intensity_texture.qmd)
-- [Categorical feature extraction (E)](categorical_feature_extraction.qmd): extracts single-cell <span style="color: #4880D4;">categorical features</span> and combines experiment-level datasets.
+    - [Morphology](#sec-intensity-morphology)
+    - [Texture](#sec-intensity-texture)
+- [Categorical feature extraction (E)](#sec-categorical-feature-extraction): extracts single-cell <span style="color: #4880D4;">categorical features</span> and combines experiment-level datasets.
+:::
+
+::: {.content-visible when-format="pdf"}
+- [Data Extraction Configuration (A)](#sec-data-extraction-config): allows users to choose among alternative input types and extraction methods (extractors).
+- [Metadata organization (B)](#sec-fov-metadata): extracts the field of view \textcolor[HTML]{C94146}{identifiers} and their configurations
+- [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell \textcolor[HTML]{D3AE4A}{numerical features} based on user-selected extractors. More extractors can be integrated in the future.
+  - [Calibration (C)](#sec-calibration): calibrate for IRF shift or use reference dye
+  - Alternative lifetime extractors (D): 
+    - [Fitting](#sec-lifetime-fit)
+    - [Phasor](#sec-lifetime-fit-free)
+  - Alternative intensity-based extractors (D):
+    - [Morphology](#sec-intensity-morphology)
+    - [Texture](#sec-intensity-texture)
+- [Categorical feature extraction (E)](#sec-categorical-feature-extraction): extracts single-cell \textcolor[HTML]{4880D4}{categorical features} and combines experiment-level datasets.
+:::
 
 #### Data Analysis
 
-[Data Analysis](data_analysis.qmd) analyzes features—whether extracted through Data Extraction or by other methods—using visualizations and statistical modeling. It deploys a [shared framework (F)](data_analysis.qmd#shared-interactive-widgets) built to handle the [feature classes](#feature-classes) across all analysis methods, enabling the same interactive and frictionless exploration experience and allowing new methods to be integrated in the future easily.
+[Data Analysis](#sec-data-analysis) analyzes features—whether extracted through Data Extraction or by other methods—using visualizations and statistical modeling. It deploys a [shared framework (F)](data_analysis.qmd#shared-interactive-widgets) built to handle the [feature classes](#feature-classes) across all analysis methods, enabling the same interactive and frictionless exploration experience and allowing new methods to be integrated in the future easily.
 
-- [Data Analysis (G)](data_analysis.qmd) goes in-depth into how FLIM Playground handles the feature classes and [Data Analysis Config](data_analysis_config.qmd) goes through how users can configure FLIM Playground to analyze datasets that are not extracted by [Data Extraction](data_extraction.qmd). 
+- [Data Analysis (G)](#sec-data-analysis) goes in-depth into how FLIM Playground handles the feature classes and [Data Analysis Config](#sec-data-analysis-config) goes through how users can configure FLIM Playground to analyze datasets that are not extracted by [Data Extraction](#sec-data-extraction). 
 
 Here is the list of analysis methods incorporated into FLIM Playground, grouped by the number of numerical features they take as inputs:
 
 - [Univariate analysis](data_analysis.qmd#univariate-analysis)
-  - [Feature Comparison](feature_comparison.qmd)
-  - [Feature Histogram](feature_histogram.qmd)
-  - [Field of View Comparison](fov_comparison.qmd)
-- [Bivariate analysis](data_analysis.qmd#bivariate-analysis)
-  - [Feature Distribution](feature_distribution.qmd)
-  - [Phasor Analysis](phasor_analysis.qmd)
+  - [Feature Comparison](#sec-feature-comparison)
+  - [Feature Histogram](#sec-feature-histogram)
+  - [Field of View Comparison](#sec-fov-comparison)
+- [Bivariate analysis](#data_analysis.qmd#bivariate-analysis)
+  - [Feature Distribution](#sec-feature-distribution)
+  - [Phasor Analysis](#sec-phasor-analysis)
 - [Multivariate analysis](data_analysis.qmd#multivariate-analysis)
-  - [Dimension Reduction](dimension_reduction.qmd)
-  - [Classification](classification.qmd)
+  - [Dimension Reduction](#sec-dimension-reduction)
+  - [Classification](#sec-classification)
 
 Both sections are built in Python and built as self-contained executables ready to run on major operating systems and in browsers (**H**).
 
