@@ -527,7 +527,7 @@
     "href": "feature_comparison.html#statistical-test",
     "title": "13  Feature Comparison",
     "section": "13.5 Statistical Test",
-    "text": "13.5 Statistical Test\nStatistical tests are performed on the selected comparison pairs that exceed the effect size threshold (if users choose to calculate effect sizes). The statistical tests supported are:\n\nIndependent t-test (student’s t-test, for equal variances)\nWelch’s t-test (for unequal variances)",
+    "text": "13.5 Statistical Test\nStatistical tests are performed on the selected comparison pairs that exceed the effect size threshold (if users choose to calculate effect sizes). The statistical tests supported are:\n\nIndependent t-test (student’s t-test, for equal variances)\nWelch’s t-test (for unequal variances)\n\n\n\n\n\n\nFLIM Playground uses scipy.stats.ttest_ind to perform the independent t-test and scipy.stats.ttest_ind with equal_var=False to perform the Welch’s t-test.",
     "crumbs": [
       "Univariate Analysis",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Feature Comparison</span>"
