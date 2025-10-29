@@ -2,18 +2,16 @@
 
 This method extends the univariate [Feature Histogram](#sec-feature-histogram) method to visualize the distribution of two numerical features on a scatter plot. It helps reveal patterns such as correlations, clusters, trends, or outliers. 
 
-## Interface Components
-
 ![](analysis_ui_shots/feature_distribution.png){width=100% fig-align=center}
 
-### Shared Components
+## Shared Interface Components
 
 - On the left, users can use the [selection widgets](data_analysis.qmd#bivariate-analysis) to select the two numerical features in the x-axis and y-axis. 
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
 - Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allow users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
-### Marginal Distribution
+## Marginal Distribution
 
 Marginal distributions (distribution of a single feature) are plotted on the top and right of the scatter plot. Users can choose the plot type from the dropdown menu. 
 
@@ -21,7 +19,7 @@ Marginal distributions (distribution of a single feature) are plotted on the top
 
 `gaussian fit`: provides kernel-density estimate using Gaussian kernels. It uses `gaussian_kde` from `scipy.stats` and sets all parameters to default values. 
 
-### 2D Gaussian Mixture Model
+## 2D Gaussian Mixture Model
 
 Using the same method as fitting a 1D [Gaussian Mixture Model](feature_histogram.qmd#fit-gaussian-mixture-models), users can fit a 2D GMM by specifying `Max Components` and `Min Weight Threshold` on each color group.  
 
@@ -57,7 +55,7 @@ The classification result can be saved by clicking:
 
 The classification is done by [hard assignment](feature_histogram.qmd#hard-assignment) to determine which GMM component each data point belongs to. It appends a new categorical feature column called `2D_GMM_group` to the filtered dataset, the values of which are `{color_group}_group1`, `{color_group}_group2`, etc. The downloaded dataset keeps all the features plus the new categorical feature column, which is recognized by any methods in Data Analysis as a categorical feature like others, and rows that pass the [filters](data_analysis.qmd#filter-widgets).
 
-### Regression line
+## Regression line
 
 A linear regression line is fitted to the data points in each color group. The key statistics are reported on the side. 
 

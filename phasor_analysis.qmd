@@ -2,23 +2,21 @@
 
 This method focuses on visualizing the distribution of the 1st harmonic or 2nd harmonic phasor coordinates, extracted by the [Lifetime fit free](#sec-lifetime-fit-free) extractor, and performs optional clustering to highlight subpopulations or structural patterns.
 
-## Interface Components
-
 ![](analysis_ui_shots/phasor_analysis.png){width=100% fig-align=center}
 
-### Shared Components
+## Shared Interface Components
 
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
 - Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allow users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
-### Select Phasor Coordinate 
+## Select Phasor Coordinate 
 
 Instead of using the [bivariate selection widgets](data_analysis.qmd#bivariate-analysis) that select two generic numerical features, this method renders a dropdown menu to select the channel and another to select the harmonic.
 
 ![](analysis_ui_shots/phasor_coordinate_select.png){width=15% fig-align=center}
 
-### K-means Clustering
+## K-means Clustering
 
 Phasor coordinates of single-cell ROIs from the selected channel and harmonic are plotted in the phasor space. K-means clustering can be performed for each color group (created by [`Color by`](data_analysis.qmd#color-by)). If `Perform K-means Clustering` is checked, users can specify the number of clusters to be created based on their prior knowledge. In the future, automatic tuning for this parameter, akin to selecting the number of components of [GMM](feature_histogram.qmd#fit-gaussian-mixture-models), using silhouette analysis will be added.
 

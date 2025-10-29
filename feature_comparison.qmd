@@ -1,18 +1,16 @@
 # Feature Comparison {#sec-feature-comparison}
 This method allows users to compare the distributions of a single numerical feature across groups. It can help users spot overarching trends between distributions, identify within distribution shape-related characteristics such as skewness or bimodality that might signal sub-populations, and diagnose for potential outliers. 
 
-## Interface Components
-
 ![](analysis_ui_shots/feature_comparison.png)
 
-### Shared Components 
+## Shared Interface Components 
 
 - On the left, users can use the [selection widgets](data_analysis.qmd#univariate-analysis) to select the numerical feature to be compared. Exactly one feature can be selected from all feature groups. 
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
 - Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allow users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
-### Separate by
+## Separate by
 ![](analysis_ui_shots/separate_by_widget.png)
 
 `Separate by` takes effect before [`Color by`](data_analysis.qmd#color-by). `Separate by` divides the plot into sections separated by a dashed line, with each section labeled by one of the available categories of the selected categorical feature after [filtering](data_analysis.qmd#filter-widgets). The selected feature of `Separate by` is automatically removed from available features in `Color by`. The section order is determined by the order of the categories which are sorted [numeric-alphabetically](data_analysis.qmd#nte-order). 
@@ -25,12 +23,25 @@ If `Separate by` is left blank and both `cell_line` and `treatment` are selected
 
 ![](analysis_ui_shots/no_separate_by.png)
 
-### Effect Size 
-Complementary to parametric tests, which address “is there a difference?”, effect size metrics answer “how large is the difference?”. A p-value that is significant can come from a trivial difference in a huge dataset (e.g. large single-cell datasets), whereas effect size can be more meaningful and can enable cross-study comparison. FLIM Playground offers two effect size calculation methods (significance tests may be added later), Glass's Delta and Cohen's d, each can be in mean or median form. 
+## Comparison Widget
+
+Statistical tests and effect size calculations are performed on the selected comparison pairs. FLIM Playground uses the groups on the x-axis populated by [Color by](data_analysis.qmd#color-by) to create comparison groups, starting from the leftmost group. For example, if there are 5 groups, then $\binom{5}{2} = 10$ comparisons will be created. The number of groups can get combinatorially large and many of the comparisons are not meaningful. Therefore, two widgets are provided to filter the comparison groups: 
+
+- A selection widget that shows all possible comparisons by default and users can deselect groups they do not need.
+
+![](analysis_ui_shots/comparison_widget.png){width=60% fig-align=center}
+
+- A threshold by effect size widget that filters out comparisons below the threshold. 
+
+![](analysis_ui_shots/effect_size_threshold.png){width=20% fig-align=center}
+
+
+## Effect Size 
+Complementary to statistical tests, which address “is there a difference?”, effect size metrics answer “how large is the difference?”, enabling cross-study comparison. FLIM Playground offers two effect size calculation methods, Glass's Delta and Cohen's d, each can be in mean or median form. 
 
 ![](analysis_ui_shots/effect_size.png){width=40% fig-align=center}
 
-#### Glass's Delta
+### Glass's Delta
 
 Mean ($\bar{X}$) form:
 $$
@@ -68,7 +79,7 @@ Who is treatment and who is control matters! From the formula of $\Delta_G$, swi
 To keep the point-based visualization style that supports [interactive hover](data_analysis.qmd#unique-id-hover) while showing the violin plot like distribution, [Sina plot](https://en.wikipedia.org/wiki/Sina_plot) is used: it uses `gaussian_kde` from `scikit-learn` to make sure the width of the point distribution is proportional to the kernel density. 
 :::
 
-#### Cohen's d
+### Cohen's d
 Mean ($\bar{X}$) form:
 
 $$
@@ -92,15 +103,24 @@ s_{\tilde{p}}
                  {n_1 + n_2 - 2}}
 $$
 
-#### Effect Size Widgets 
 
-It requires pairs of groups to calculate effect sizes. FLIM Playground uses the groups on the x-axis populated by [Color by](data_analysis.qmd#color-by) to create comparison groups, starting from the leftmost group. For example, if there are 5 groups, then $\binom{5}{2} = 10$ comparisons will be created. The number of groups can get combinatorially large and many of the comparisons are not meaningful. Therefore, two widgets are provided to filter the comparison groups: 
+## Statistical Test
 
-- A selection widget that shows all possible comparisons by default and users can deselect groups they do not need.
-- A threshold by effect size widget that filters out comparisons below the threshold. 
+Statistical tests are performed on the selected comparison pairs that exceed the effect size threshold (if users choose to calculate effect sizes). The statistical tests supported are:
 
-![](analysis_ui_shots/effect_size_widgets.png)
+- Independent t-test (student's t-test) 
+- Welch's t-test
 
-#### Effect size annotation
+![](analysis_ui_shots/stats_test.png){width=40% fig-align=center}
 
-For each selected pair of groups that exceeds the effect size threshold, the effect size is annotated on the plot. It selects the lowest eligible position (over all points in both groups and over existing annotations) to annotate the effect size.  
+## Comparison annotation
+
+For each selected comparison pair that exceeds the effect size threshold (if any), the statistical significance, effect size, or both are annotated on the plot. It selects the lowest eligible position (over all points in both groups and over existing annotations) to annotate. If both statistical significance and effect size calculation are performed, the annoatation is shown in the format of effect size followed by p-value. If only one is performed, then only the performed method's result is shown. 
+
+::: {layout-ncol=3 layout-align="center"}
+![](analysis_ui_shots/both_annot.png)
+
+![](analysis_ui_shots/stats_annot.png)
+
+![](analysis_ui_shots/effect_size_annot.png)
+:::

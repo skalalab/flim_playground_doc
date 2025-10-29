@@ -2,8 +2,6 @@
 
 In imaging datasets like FLIM data, field of view (FOV) is an important categorical feature that documents where a certain set of rows (e.g. cells) originates. Visualizing each FOV side by side on a numerical feature can help identify potential FOV-level outliers. 
 
-## Interface Components 
-
 FLIM Playground finds the FOV identifier column from the dataset using the `FOV column name` field in [data analysis config](data_analysis_config.qmd#id-config) (dataset not extracted by Data Extraction) or [data extraction config](data_extraction_config.qmd#configuration) (dataset extracted by [Data Extraction](#sec-data-extraction)). 
 
 If the FOV identifier column is not found in the dataset, then a warning message will be shown:
@@ -14,7 +12,7 @@ If found:
 
 ![](analysis_ui_shots/fov.png){width=100% fig-align=center}
 
-### Shared Components
+## Shared Interface Components
 
 - On the left, users can use the [selection widgets](data_analysis.qmd#univariate-analysis) to select the numerical feature to see the boxplot of each FOV. Exactly one feature can be selected from all feature groups. 
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
