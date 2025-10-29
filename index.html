@@ -552,8 +552,8 @@ div.csl-indent {
 </div>
 <section id="quick-start" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Quick Start</h1>
-<p>Welcome to the FLIM Playground 🥳🎉🥂! This is an interactive graphical user interface (GUI) that allows you to extract single-cell features from fluorescence lifetime imaging microscopy (FLIM) raw data (<a href="./data_extraction.html">Data Extraction</a>) and analyze extracted features or datasets extracted via other methods using a built-in repertoire of methods (<a href="./data_analysis.html">Data Analysis</a>).</p>
-<p>To quickly try out different analysis methods, download this <a href="https://github.com/skalalab/flim_playground_bioarchive/blob/main/inhibitors.csv">sample dataset</a> and try the <a href="https://flim-playground.streamlit.app/">online demo</a>. If you prefer to use your own data, read <a href="./data_analysis_config.html">data analysis configuration</a> to learn how to configure the system.</p>
+<p>Welcome to the FLIM Playground 🥳🎉🥂! This is an interactive graphical user interface (GUI) that allows you to extract single-cell features from fluorescence lifetime imaging microscopy (FLIM) raw data (<a href="data_extraction.html">Data Extraction</a>) and analyze extracted features or datasets extracted via other methods using a built-in repertoire of methods (<a href="data_analysis.html">Data Analysis</a>).</p>
+<p>To quickly try out different analysis methods, download this <a href="https://github.com/skalalab/flim_playground_bioarchive/blob/main/inhibitors.csv">sample dataset</a> and try the <a href="https://flim-playground.streamlit.app/">online demo</a>. If you prefer to use your own data, read <a href="data_analysis_config.html">this chapter on data analysis configuration</a> to learn how to configure the system.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/feature_comparison.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
@@ -611,7 +611,10 @@ div.csl-indent {
 <section id="data-levels" class="level3" data-number="1.3.1">
 <h3 data-number="1.3.1" class="anchored" data-anchor-id="data-levels"><span class="header-section-number">1.3.1</span> Data Levels</h3>
 <ul>
-<li><span style="color: #1f77b4;"><strong>Pixel</strong></span>: a single decay curve encoded in vendor-specific file formats (e.g., Becker &amp; Hickl, PicoQuant, etc.)</li>
+<li><span style="color: #1f77b4;"><strong>Pixel</strong></span>:
+<ul>
+<li>A single decay curve encoded in vendor-specific file formats (e.g., Becker &amp; Hickl, PicoQuant, etc.)</li>
+</ul></li>
 <li><span style="color: #ff7f0e;"><strong>Region of Interest (ROI)</strong></span>
 <ul>
 <li>Mask with cell labels</li>
@@ -625,7 +628,7 @@ div.csl-indent {
 </ul></li>
 <li><span style="color: #d62728;"><strong>Field of View (FOV)</strong></span>
 <ul>
-<li>Input decay types (e.g., <a href="./data_extraction_config.html#2d-decay">2D</a>, <a href="./data_extraction_config.html#3d4d-decay">3/4D</a>)</li>
+<li>Input decay types (e.g., <a href="./data_extraction_config.html#two-d-decay">2D</a>, <a href="./data_extraction_config.html#three-d4d-decay">3/4D</a>, <a href="./data_extraction_config.html#three-d4d-pixel-prefitted">pixel-level lifetime features already fitted</a>)</li>
 </ul></li>
 <li><span style="color: #9467bd;"><strong>Experiment</strong></span>
 <ul>
@@ -635,7 +638,7 @@ div.csl-indent {
 <p>An integrated framework should take into account all data levels <span style="color: #1f77b4;">■</span> <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> <span style="color: #9467bd;">■</span> (•) while maintaining the flexibility to handle various input types (◦). <strong>It should provide a level of abstraction to address fragmentation from data levels and input types</strong>.</p>
 <p>Additionally, the use of FLIM is rapidly evolving, and new methods are being developed all the time. An integrated framework should allow users to choose among alternative methods seamlessly, be the backbone of iterative explorations integral to research, and be ready to incorporate new methods: <strong>The provided level of abstraction should address fragmentation from extraction and analysis methods</strong>.</p>
 <p>Finally, many of the existing tools especially GUI based softwares are not cross-platform, which limits their accessibility. The <a href="#installation">Installation</a> addresses this last challenge.</p>
-<p>A closer parallel to FLIM Playground’s integrated approach is the combination of <a href="https://cellprofiler.org/">CellProfiler</a><span class="citation" data-cites="cellprofiler4"><sup><a href="#ref-cellprofiler4" role="doc-biblioref">7</a></sup></span>, which extracts per-object morphological and texture features, and <a href="https://cellprofileranalyst.org/">CellProfiler Analyst</a><span class="citation" data-cites="cpa21"><sup><a href="#ref-cpa21" role="doc-biblioref">8</a></sup></span>, which ingests these outputs or other feature tables for visualization and statistical analysis. However, FLIM Playground stands apart in that it can extract lifetime features from time-resolved data, alongside morphological and texture features from intensity images. Its general data analysis module incorporates FLIM-specific methods (e.g., <a href="./lifetime_fit_free.html">phasor analysis</a>) and provides statistical models that address additional analysis aspects such as data heterogeneity, in addition to training machine learning classifiers.</p>
+<p>A closer parallel to FLIM Playground’s integrated approach is the combination of <a href="https://cellprofiler.org/">CellProfiler</a><span class="citation" data-cites="cellprofiler4"><sup><a href="#ref-cellprofiler4" role="doc-biblioref">7</a></sup></span>, which extracts per-object morphological and texture features, and <a href="https://cellprofileranalyst.org/">CellProfiler Analyst</a><span class="citation" data-cites="cpa21"><sup><a href="#ref-cpa21" role="doc-biblioref">8</a></sup></span>, which ingests these outputs or other feature tables for visualization and statistical analysis. However, FLIM Playground stands apart in that it can extract lifetime features from time-resolved data, alongside morphological and texture features from intensity images. Its general data analysis module incorporates FLIM-specific methods (e.g., <a href="phasor_analysis.html">phasor analysis</a>) and provides statistical models that address additional analysis aspects such as data heterogeneity, in addition to training machine learning classifiers.</p>
 </section>
 </section>
 <section id="method" class="level2" data-number="1.4">
@@ -649,7 +652,7 @@ div.csl-indent {
 <li><span style="color: #D3AE4A;">Numerical features</span>: quantify the differences/similarities between data groups</li>
 </ul>
 <p><strong>Science, from the data perspective, is about closing the conceptual categorical gaps with quantitative measurements.</strong></p>
-<p>At <a href="./index.html#data-levels">data levels</a>, the data are processed to extract the feature classes in <a href="./data_extraction.html">Data Extraction</a>, and the classes are used in the <a href="./data_analysis.html">Data Analysis</a> modules.</p>
+<p>At <a href="#data-levels">data levels</a>, the data are processed to extract the feature classes in <a href="data_extraction.html">Data Extraction</a>, and the classes are used in the <a href="data_analysis.html">Data Analysis</a> modules.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="table1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
@@ -666,50 +669,50 @@ div.csl-indent {
 </div>
 <section id="data-extraction" class="level4">
 <h4 class="anchored" data-anchor-id="data-extraction">Data Extraction</h4>
-<p><a href="./data_extraction.html">Data Extraction</a> extracts single-cell features from the raw data. It adopts a <a href="./data_extraction_config.html#channel-centric-framework">framework</a> that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for users. Following the above <a href="#feature-classes">categorization</a>, it is divided into the following steps:</p>
+<p><a href="data_extraction.html">Data Extraction</a> extracts single-cell features from the raw data. It adopts a <a href="./data_extraction_config.html#channel-centric-framework">framework</a> that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for users. Following the above <a href="#feature-classes">categorization</a>, it is divided into the following steps:</p>
 <ul>
-<li><a href="./data_extraction_config.html">Data Extraction Configuration (A)</a>: allows users to choose among alternative input types and extraction methods (extractors).</li>
-<li><a href="./fov_metadata.html">Metadata organization (B)</a>: extracts the field of view <span style="color: #C94146;">identifiers</span> and their configurations</li>
-<li><a href="./numerical_feature_extraction.html">Numerical Feature Extraction</a>: extracts single-cell <span style="color: #D3AE4A;">numerical features</span> based on user-selected extractors. More extractors can be integrated in the future.
+<li><a href="data_extraction_config.html">Data Extraction Configuration (A)</a>: allows users to choose among alternative input types and extraction methods (extractors).</li>
+<li><a href="fov_metadata.html">Metadata organization (B)</a>: extracts the field of view <span style="color: #C94146;">identifiers</span> and their configurations</li>
+<li><a href="numerical_feature_extraction.html">Numerical Feature Extraction</a>: extracts single-cell <span style="color: #D3AE4A;">numerical features</span> based on user-selected extractors. More extractors can be integrated in the future.
 <ul>
-<li><a href="./numerical_feature_extraction.html#calibration">Calibration (C)</a>: calibrate for IRF shift or use reference dye</li>
+<li><a href="#sec-calibration">Calibration (C)</a>: calibrate for IRF shift or use fluorescence lifetime standard</li>
 <li>Alternative lifetime extractors (D):
 <ul>
-<li><a href="./lifetime_fit.html">Fitting</a></li>
-<li><a href="./lifetime_fit_free.html">Phasor</a></li>
+<li><a href="lifetime_fit.html">Fitting</a></li>
+<li><a href="lifetime_fit_free.html">Phasor</a></li>
 </ul></li>
 <li>Alternative intensity-based extractors (D):
 <ul>
-<li><a href="./intensity_morphology.html">Morphology</a></li>
-<li><a href="./intensity_texture.html">Texture</a></li>
+<li><a href="intensity_morphology.html">Morphology</a></li>
+<li><a href="intensity_texture.html">Texture</a></li>
 </ul></li>
 </ul></li>
-<li><a href="./categorical_feature_extraction.html">Categorical feature extraction (E)</a>: extracts single-cell <span style="color: #4880D4;">categorical features</span> and combines experiment-level datasets.</li>
+<li><a href="categorical_feature_extraction.html">Categorical feature extraction (E)</a>: extracts single-cell <span style="color: #4880D4;">categorical features</span> and combines experiment-level datasets.</li>
 </ul>
 </section>
 <section id="data-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="data-analysis">Data Analysis</h4>
-<p><a href="./data_analysis.html">Data Analysis</a> analyzes features—whether extracted through Data Extraction or by other methods—using visualizations and statistical modeling. It deploys a <a href="./data_analysis.html#shared-interactive-widgets">shared framework (F)</a> built to handle the <a href="#feature-classes">feature classes</a> across all analysis methods, enabling the same interactive and frictionless exploration experience and allowing new methods to be integrated in the future easily.</p>
+<p><a href="data_analysis.html">Data Analysis</a> analyzes features—whether extracted through Data Extraction or by other methods—using visualizations and statistical modeling. It deploys a <a href="./data_analysis.html#shared-interactive-widgets">shared framework (F)</a> built to handle the <a href="#feature-classes">feature classes</a> across all analysis methods, enabling the same interactive and frictionless exploration experience and allowing new methods to be integrated in the future easily.</p>
 <ul>
-<li><a href="./data_analysis.html">Data Analysis (G)</a> goes in-depth into how FLIM Playground handles the feature classes and <a href="./data_analysis_config.html">Data Analysis Config</a> goes through how users can configure FLIM Playground to analyze datasets that are not extracted by <a href="./data_extraction.html">Data Extraction</a>.</li>
+<li><a href="data_analysis.html">Data Analysis (G)</a> goes in-depth into how FLIM Playground handles the feature classes and <a href="data_analysis_config.html">Data Analysis Config</a> goes through how users can configure FLIM Playground to analyze datasets that are not extracted by <a href="data_extraction.html">Data Extraction</a>.</li>
 </ul>
 <p>Here is the list of analysis methods incorporated into FLIM Playground, grouped by the number of numerical features they take as inputs:</p>
 <ul>
 <li><a href="./data_analysis.html#univariate-analysis">Univariate analysis</a>
 <ul>
-<li><a href="./feature_comparison.html">Feature Comparison</a></li>
-<li><a href="./feature_histogram.html">Feature Histogram</a></li>
-<li><a href="./fov_comparison.html">Field of View Comparison</a></li>
+<li><a href="feature_comparison.html">Feature Comparison</a></li>
+<li><a href="feature_histogram.html">Feature Histogram</a></li>
+<li><a href="fov_comparison.html">Field of View Comparison</a></li>
 </ul></li>
-<li><a href="./data_analysis.html#bivariate-analysis">Bivariate analysis</a>
+<li><a href="#data_analysis.qmd#bivariate-analysis">Bivariate analysis</a>
 <ul>
-<li><a href="./feature_distribution.html">Feature Distribution</a></li>
-<li><a href="./phasor_analysis.html">Phasor Analysis</a></li>
+<li><a href="feature_distribution.html">Feature Distribution</a></li>
+<li><a href="phasor_analysis.html">Phasor Analysis</a></li>
 </ul></li>
 <li><a href="./data_analysis.html#multivariate-analysis">Multivariate analysis</a>
 <ul>
-<li><a href="./dimension_reduction.html">Dimension Reduction</a></li>
-<li><a href="./classification.html">Classification</a></li>
+<li><a href="dimension_reduction.html">Dimension Reduction</a></li>
+<li><a href="classification.html">Classification</a></li>
 </ul></li>
 </ul>
 <p>Both sections are built in Python and built as self-contained executables ready to run on major operating systems and in browsers (<strong>H</strong>).</p>

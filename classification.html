@@ -487,11 +487,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#interface-components" id="toc-interface-components" class="nav-link active" data-scroll-target="#interface-components"><span class="header-section-number">19.1</span> Interface Components</a>
+  <li><a href="#shared-interface-components" id="toc-shared-interface-components" class="nav-link active" data-scroll-target="#shared-interface-components"><span class="header-section-number">19.1</span> Shared Interface Components</a></li>
+  <li><a href="#method-specific-components" id="toc-method-specific-components" class="nav-link" data-scroll-target="#method-specific-components"><span class="header-section-number">19.2</span> Method-specific Components</a>
   <ul class="collapse">
-  <li><a href="#shared-components" id="toc-shared-components" class="nav-link" data-scroll-target="#shared-components"><span class="header-section-number">19.1.1</span> Shared Components</a></li>
-  <li><a href="#method-specific-components" id="toc-method-specific-components" class="nav-link" data-scroll-target="#method-specific-components"><span class="header-section-number">19.1.2</span> Method-specific Components</a></li>
-  <li><a href="#performance-metrics" id="toc-performance-metrics" class="nav-link" data-scroll-target="#performance-metrics"><span class="header-section-number">19.1.3</span> Performance Metrics</a></li>
+  <li><a href="#performance-metrics" id="toc-performance-metrics" class="nav-link" data-scroll-target="#performance-metrics"><span class="header-section-number">19.2.1</span> Performance Metrics</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/classification.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -502,7 +501,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dimension_reduction.html">Multivariate Analysis</a></li><li class="breadcrumb-item"><a href="./classification.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Classification</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Classification</span></h1>
+<h1 class="title"><span id="sec-classification" class="quarto-section-identifier"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Classification</span></span></h1>
 </div>
 
 
@@ -521,19 +520,17 @@ window.Quarto = {
 
 <p>A machine learning classifier learns patterns from categorized data and then predicts the category of new, unseen data. This module provides a set of machine learning classifiers and interactive widgets to help users perform classification.</p>
 <p>All the classifiers are implemented using <code>scikit-learn</code> and the performance metrics are calculated using <code>sklearn.metrics</code>. A fixed random seed (42) is used for all the classifiers to ensure reproducibility.</p>
-<section id="interface-components" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="interface-components"><span class="header-section-number">19.1</span> Interface Components</h2>
 <p><img src="analysis_ui_shots/classification.png" class="img-fluid quarto-figure quarto-figure-center" style="width:100.0%"> The performance metrics plots are cut off in the screenshot. See the <a href="#performance-metrics">performance metrics section</a> for the complete view.</p>
-<section id="shared-components" class="level3" data-number="19.1.1">
-<h3 data-number="19.1.1" class="anchored" data-anchor-id="shared-components"><span class="header-section-number">19.1.1</span> Shared Components</h3>
+<section id="shared-interface-components" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">19.1</span> Shared Interface Components</h2>
 <ul>
 <li>On the left, users can use the <a href="./data_analysis.html#multivariate-analysis">selection widgets</a> to select numerical features for the classifier. Multiple features can be selected from each feature group.</li>
 <li>On the top right, users can use the <a href="./data_analysis.html#filter-widgets">filters</a> to subset the data to find the groups of interest.</li>
 <li>Above the performance metrics plots, users can change the plot style using the <a href="./data_analysis.html#plotting-configuration-widgets">plot styling widgets</a>.</li>
 </ul>
 </section>
-<section id="method-specific-components" class="level3" data-number="19.1.2">
-<h3 data-number="19.1.2" class="anchored" data-anchor-id="method-specific-components"><span class="header-section-number">19.1.2</span> Method-specific Components</h3>
+<section id="method-specific-components" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="method-specific-components"><span class="header-section-number">19.2</span> Method-specific Components</h2>
 <ul>
 <li>Choose the classifier and train-test split: the slider controls the proportion of the data used to train the classifier and the rest are used as unseen data to test its generalizability.</li>
 </ul>
@@ -584,9 +581,8 @@ Note
 <p>FLIM Playground applies a unit normalization (i.e.&nbsp;z-score) to the features before training if the chosen classifier is <code>SVM</code> or <code>Logistic Regression</code>, because they are sensitive to feature magnitudes, while <code>Random Forest</code> and <code>Gradient Boosting</code> are not.</p>
 </div>
 </div>
-</section>
-<section id="performance-metrics" class="level3" data-number="19.1.3">
-<h3 data-number="19.1.3" class="anchored" data-anchor-id="performance-metrics"><span class="header-section-number">19.1.3</span> Performance Metrics</h3>
+<section id="performance-metrics" class="level3" data-number="19.2.1">
+<h3 data-number="19.2.1" class="anchored" data-anchor-id="performance-metrics"><span class="header-section-number">19.2.1</span> Performance Metrics</h3>
 <p>To evaluate the performance of the classifiers, performance metrics visualizations are provided.</p>
 <section id="confusion-matrix" class="level4">
 <h4 class="anchored" data-anchor-id="confusion-matrix">Confusion Matrix</h4>

@@ -506,7 +506,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./numerical_feature_extraction.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Numerical Feature Extraction</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Numerical Feature Extraction</span></h1>
+<h1 class="title"><span id="sec-numerical-feature-extraction" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Numerical Feature Extraction</span></span></h1>
 </div>
 
 
@@ -525,14 +525,14 @@ window.Quarto = {
 
 <p>In this step, FLIM Playground extracts <em>single-cell</em> numerical features from the raw data in a folder. For each channel, the features to be extracted are specified in the <a href="./data_extraction_config.html#feature-extractor">user-selected feature extractors</a>. The available feature extractors are:</p>
 <ul>
-<li><a href="./lifetime_fit.html">Lifetime fit</a>: fit exponential models to decay curves to estimate lifetimes and their fractional contributions by minimizing an objective function.</li>
-<li><a href="./lifetime_fit_free.html">Lifetime fit free</a>: transform decay curves to phasor space using Fourier transform to obtain phasor coordinates.</li>
-<li><a href="./intensity_morphology.html">Intensity Morphology</a>: morphological features of single cell ROI masks</li>
-<li><a href="./intensity_texture.html">Intensity Texture</a>: texture features of single cell ROI intensity images</li>
+<li><a href="lifetime_fit.html">Lifetime fit</a>: fit exponential models to decay curves to estimate lifetimes and their fractional contributions by minimizing an objective function.</li>
+<li><a href="lifetime_fit_free.html">Lifetime fit free</a>: transform decay curves to phasor space using Fourier transform to obtain phasor coordinates.</li>
+<li><a href="intensity_morphology.html">Intensity Morphology</a>: morphological features of single cell ROI masks</li>
+<li><a href="intensity_texture.html">Intensity Texture</a>: texture features of single cell ROI intensity images</li>
 </ul>
 <section id="input" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="input"><span class="header-section-number">5.1</span> Input</h2>
-<p>A csv extracted in the <a href="./fov_metadata.html">fov metadata extraction</a> step that contains the metadata of the FOVs including:</p>
+<p>A csv extracted in the <a href="fov_metadata.html">fov metadata extraction</a> step that contains the metadata of the FOVs including:</p>
 <ul>
 <li><a href="./fov_metadata.html#fov-file-paths">required file paths</a></li>
 <li><a href="./fov_metadata.html#decay-type">decay type</a></li>
@@ -540,7 +540,7 @@ window.Quarto = {
 <li><a href="./fov_metadata.html#feature-extractors">selected feature extractors</a> for each channel</li>
 <li><a href="./data_extraction_config.html#calibration-method">fit free calibration method</a>(if fit free calibration is required)</li>
 </ul>
-<p>Users can either upload a previously extracted metadata file (left), or use the cached metadata file just extracted in the <a href="./fov_metadata.html">fov metadata extraction</a> step (right).</p>
+<p>Users can either upload a previously extracted metadata file (left), or use the cached metadata file just extracted in the <a href="fov_metadata.html">fov metadata extraction</a> step (right).</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -568,7 +568,7 @@ window.Quarto = {
 <p><img src="extraction_ui_shots/irf_shift.png" id="irf-shift" class="img-fluid"></p>
 <section id="gather-high-snr-decay-curves" class="level4">
 <h4 class="anchored" data-anchor-id="gather-high-snr-decay-curves">Gather High SNR Decay Curves</h4>
-<p>The high SNR decay curves are constructed automatically based on the <a href="./data_extraction_config.html#decay-types">decay type</a>. If it is in <a href="./data_extraction_config.html#2d-decay">2D format</a>, a total of the brightest 30 curves that are below <code>100000</code> photons are selected and evenly distributed across all field of views (one csv file is considered as one FOV). If it is in <a href="./data_extraction_config.html#3d4d-decay">3D/4D format</a>, the field of views are images, and one curve is constructed for each image that includes all the non-zero pixels within the <a href="./data_extraction.html#mask">ROI mask</a>.</p>
+<p>The high SNR decay curves are constructed automatically based on the <a href="./data_extraction_config.html#decay-types">decay type</a>. If it is in <a href="./data_extraction_config.html#two-d-decay">2D format</a>, a total of the brightest 30 curves that are below <code>100000</code> photons are selected and evenly distributed across all field of views (one csv file is considered as one FOV). If it is in <a href="./data_extraction_config.html#three-d4d-decay">3D/4D format</a>, the field of views are images, and one curve is constructed for each image that includes all the non-zero pixels within the <a href="./data_extraction.html#mask">ROI mask</a>.</p>
 </section>
 <section id="reconvolution-fitting" class="level4">
 <h4 class="anchored" data-anchor-id="reconvolution-fitting">Reconvolution Fitting</h4>
@@ -665,9 +665,9 @@ Note
 <p>In addition to shifting the IRF based on the chosen shift values, each decay curve is subtracted an offset value and clipped to 0 if the time bin is negative after the subtraction. The offset is chosen to be the mean of the last 10th percentile of the decay curve (tail).</p>
 <p>Finally, the signals of the shifted IRF are deconvolved from the offset-subtracted decay curves using <a href="https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_divide"><code>phasor.phasor_divide</code></a> from the <code>phasorpy</code> package.</p>
 </section>
-<section id="reference-dye" class="level4">
-<h4 class="anchored" data-anchor-id="reference-dye">Reference Dye</h4>
-<p>Because the reference dye is measured in the same system as the decay curves and we know its lifetime, there is no need to account for the IRF shift and the offset. Therefore</p>
+<section id="fluorescence-lifetime-standard" class="level4">
+<h4 class="anchored" data-anchor-id="fluorescence-lifetime-standard">Fluorescence lifetime standard</h4>
+<p>Because the fluorescence lifetime standard is measured in the same system as the decay curves and we know its lifetime, there is no need to account for the IRF shift and the offset. Therefore</p>
 <p><code>phasorpy</code>’s <a href="https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate"><code>lifetime.phasor_calibrate</code></a> function is used to calibrate all the decay curves behind the scene when calculating the phasor coordinates.</p>
 </section>
 </section>
@@ -690,7 +690,7 @@ Note
 <section id="feature-extraction" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="feature-extraction"><span class="header-section-number">5.3</span> Feature Extraction</h2>
 <p>If the selected feature extractors do not require IRF shift calibration, or users have <a href="#calibration-done">finished the calibration</a>, they can proceed to the feature extraction step by clicking the <code>Confirm and Start Analysis</code> button.</p>
-<p>Similar to the <a href="./fov_metadata.html#fov-metadata">fov metadata extraction</a> step, FLIM Playground extracts the features and displays the extraction status for each field of view.</p>
+<p>Similar to the <a href="fov_metadata.html">fov metadata extraction</a> step, FLIM Playground extracts the features and displays the extraction status for each field of view.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="extraction_ui_shots/numerical_feature_extraction.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>

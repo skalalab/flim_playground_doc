@@ -508,10 +508,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#interface-components" id="toc-interface-components" class="nav-link active" data-scroll-target="#interface-components"><span class="header-section-number">14.1</span> Interface Components</a>
-  <ul class="collapse">
-  <li><a href="#shared-components" id="toc-shared-components" class="nav-link" data-scroll-target="#shared-components"><span class="header-section-number">14.1.1</span> Shared Components</a></li>
-  </ul></li>
+  <li><a href="#shared-interface-components" id="toc-shared-interface-components" class="nav-link active" data-scroll-target="#shared-interface-components"><span class="header-section-number">14.1</span> Shared Interface Components</a></li>
   <li><a href="#histogram-mode" id="toc-histogram-mode" class="nav-link" data-scroll-target="#histogram-mode"><span class="header-section-number">14.2</span> Histogram Mode</a></li>
   <li><a href="#gaussian-mixture-model-mode" id="toc-gaussian-mixture-model-mode" class="nav-link" data-scroll-target="#gaussian-mixture-model-mode"><span class="header-section-number">14.3</span> Gaussian Mixture Model Mode</a>
   <ul class="collapse">
@@ -529,7 +526,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_comparison.html">Univariate Analysis</a></li><li class="breadcrumb-item"><a href="./feature_histogram.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Histogram</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Histogram</span></h1>
+<h1 class="title"><span id="sec-feature-histogram" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></h1>
 </div>
 
 
@@ -547,22 +544,19 @@ window.Quarto = {
 
 
 <p>Feature histograms give an instant read-out of each group’s center, spread, skew and any multi-peaked shape that raw tables hide. FLIM Playground plots a histogram for each group based on the selected numerical feature. Additionally, the <a href="#gaussian-mixture-model-mode">Gaussian Mixture Model</a> mode can help find subcomponents of each histogram in an unsupervised way. To quantify the distribution heterogeneity, normalized <a href="#heterogeneity-index">H-index</a> is calculated for each group.</p>
-<section id="interface-components" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="interface-components"><span class="header-section-number">14.1</span> Interface Components</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/feature_histogram.png" id="feature-histogram-img" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" data-fig-cap="Histogram Mode"></p>
 </figure>
 </div>
-<section id="shared-components" class="level3" data-number="14.1.1">
-<h3 data-number="14.1.1" class="anchored" data-anchor-id="shared-components"><span class="header-section-number">14.1.1</span> Shared Components</h3>
+<section id="shared-interface-components" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">14.1</span> Shared Interface Components</h2>
 <ul>
 <li>On the left, users can use the <a href="./data_analysis.html#univariate-analysis">selection widgets</a> to select the numerical feature to see the histogram/GMM distribution. Exactly one feature can be selected from all feature groups.</li>
 <li>On the top right, users can use the <a href="./data_analysis.html#filter-widgets">filters</a> to subset the data to find the groups of interest.</li>
 <li>Below the filters, users can apply the <a href="./data_analysis.html#visual-channels-widgets">visual channels widgets</a> that allow users to <code>Color by</code> categorical features. <code>Opacity by</code> and <code>Shape by</code> are <em>not</em> supported because there are no points in the histogram/GMM plot.</li>
 <li>On the bottom right, users can change the plot style using the <a href="./data_analysis.html#plotting-configuration-widgets">plot styling widgets</a>.</li>
 </ul>
-</section>
 </section>
 <section id="histogram-mode" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="histogram-mode"><span class="header-section-number">14.2</span> Histogram Mode</h2>

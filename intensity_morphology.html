@@ -492,7 +492,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./intensity_morphology.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Features</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Features</span></h1>
+<h1 class="title"><span id="sec-intensity-morphology" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></h1>
 </div>
 
 
@@ -519,7 +519,7 @@ window.Quarto = {
 <li><p><code>minor_axis_length</code>: the length of the minor axis of the ellipse that has the same second moments as the region: <span class="math inline">\(2b\)</span>. It represents the shortest dimension of that ellipse, capturing the region’s minimum elongation.</p></li>
 <li><p><code>circularity</code>: describes how close the ROI is to a perfect circle. It is defined as <span class="math inline">\(\text{circularity} = \frac{4 \pi A_{\text{ROI}}}{P_{\text{ROI}}^2}, \quad \text{circularity} \in (0,1]\)</span>, where <span class="math inline">\(A_{\text{ROI}}\)</span> is the area of the region and <span class="math inline">\(P_{\text{ROI}}\)</span> is its perimeter. A value of <span class="math inline">\(1\)</span> corresponds to a perfect circle.</p></li>
 </ul>
-<p>Feature names in the final dataset are prefixed by the combination of the feature extractor name (i.e.&nbsp;<code>Intensity morphology</code>) and the channel name, allowing <a href="./data_analysis.html">Data Analysis</a> to group the features. For example, <code>Intensity morphology_nadh: area</code> means the area of each cell in the NAD(P)H channel.</p>
+<p>Feature names in the final dataset are prefixed by the combination of the feature extractor name (i.e.&nbsp;<code>Intensity morphology</code>) and the channel name, allowing <a href="data_analysis.html">Data Analysis</a> to group the features. For example, <code>Intensity morphology_nadh: area</code> means the area of each cell in the NAD(P)H channel.</p>
 
 
 

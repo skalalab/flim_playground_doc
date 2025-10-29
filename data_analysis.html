@@ -503,7 +503,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_analysis.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./data_analysis.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Overview</span></h1>
+<h1 class="title"><span id="sec-data-analysis" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Overview</span></span></h1>
 </div>
 
 
@@ -520,7 +520,7 @@ div.csl-indent {
 </header>
 
 
-<p>We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the <a href="./data_extraction.html">Data Extraction</a> module or in users’ own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data <a href="./index.html#feature-classes">categorization</a> as <a href="./data_extraction.html">Data Extraction</a> does, the <a href="./data_analysis.html">Data Analysis</a> module designs an <a href="#shared-interactive-widgets">architectural blueprint</a> that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.</p>
+<p>We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the <a href="data_extraction.html">Data Extraction</a> module or in users’ own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data <a href="./index.html#feature-classes">categorization</a> as <a href="data_extraction.html">Data Extraction</a> does, the <a href="#sec-data-analysis">Data Analysis</a> module designs an <a href="#shared-interactive-widgets">architectural blueprint</a> that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.</p>
 <section id="methods" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="methods"><span class="header-section-number">11.1</span> Methods</h2>
 <ul>
@@ -528,19 +528,19 @@ div.csl-indent {
 <ul>
 <li>Univariate Analysis
 <ul>
-<li><a href="./feature_comparison.html">Feature Comparison</a></li>
-<li><a href="./feature_histogram.html">Feature Histogram</a></li>
-<li><a href="./fov_comparison.html">Field of View Comparison</a></li>
+<li><a href="feature_comparison.html">Feature Comparison</a></li>
+<li><a href="feature_histogram.html">Feature Histogram</a></li>
+<li><a href="fov_comparison.html">Field of View Comparison</a></li>
 </ul></li>
 <li>Bivariate Analysis
 <ul>
-<li><a href="./feature_distribution.html">2D Feature Distribution</a></li>
-<li><a href="./phasor_analysis.html">Phasor Analysis</a></li>
+<li><a href="feature_distribution.html">2D Feature Distribution</a></li>
+<li><a href="phasor_analysis.html">Phasor Analysis</a></li>
 </ul></li>
 <li>Multivariate Analysis
 <ul>
-<li><a href="./dimension_reduction.html">Dimension Reduction</a></li>
-<li><a href="./classification.html">Classification</a></li>
+<li><a href="dimension_reduction.html">Dimension Reduction</a></li>
+<li><a href="classification.html">Classification</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -557,7 +557,7 @@ div.csl-indent {
 </section>
 <section id="input" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="input"><span class="header-section-number">11.2</span> Input</h2>
-<p>Users can upload the dataset outputted from the <a href="./data_extraction.html">Data Extraction</a> directly or <em>their own datasets</em> in <strong>csv</strong> (Comma Separated Values) format after finishing the <a href="./data_analysis_config.html">interactive configuration</a> setup.</p>
+<p>Users can upload the dataset outputted from the <a href="data_extraction.html">Data Extraction</a> directly or <em>their own datasets</em> in <strong>csv</strong> (Comma Separated Values) format after finishing the <a href="data_analysis_config.html">interactive configuration</a> setup.</p>
 <div class="columns">
 <div class="column" style="width:5%;">
 
@@ -689,7 +689,7 @@ Tip
 </section>
 <section id="categorical-feature-widgets" class="level3" data-number="11.3.3">
 <h3 data-number="11.3.3" class="anchored" data-anchor-id="categorical-feature-widgets"><span class="header-section-number">11.3.3</span> Categorical Feature Widgets</h3>
-<p>FLIM Playground recognizes the categorical features in the uploaded dataset based on the <a href="./data_analysis_config.html">user-specified configuration</a> if the dataset is not extracted by <a href="./data_extraction.html">Data Extraction</a>. Otherwise, it recognizes categorical features specified in the <a href="./data_extraction_config.html#categorical-features">Data Extraction configuration</a>.</p>
+<p>FLIM Playground recognizes the categorical features in the uploaded dataset based on the <a href="data_analysis_config.html">user-specified configuration</a> if the dataset is not extracted by <a href="data_extraction.html">Data Extraction</a>. Otherwise, it recognizes categorical features specified in the <a href="./data_extraction_config.html#categorical-features">Data Extraction configuration</a>.</p>
 <section id="filter-widgets" class="level4">
 <h4 class="anchored" data-anchor-id="filter-widgets">Filter Widgets</h4>
 <p><img src="analysis_ui_shots/filter.png" class="img-fluid" style="width:95.0%"></p>
@@ -701,7 +701,7 @@ Tip
 <p>Human vision is wired for rapid, parallel pattern and trend detection; good visual encodings (how to map data to visual elements such as color, shape, opacity, etc.) harness this to surface insights that raw numbers or text obscure<span class="citation" data-cites="cleveland1984"><sup><a href="#ref-cleveland1984" role="doc-biblioref">1</a></sup></span>. FLIM Playground provides <code>color</code>, <code>opacity</code>, and <code>shape</code> channels for visualizations that support them:</p>
 <section id="color-by" class="level5">
 <h5 class="anchored" data-anchor-id="color-by">Color by</h5>
-<p>Color is supported in all methods except for <a href="./classification.html">Classification</a>. In <code>Color by</code>, users can select multiple categorical features, and each unique combination of available categories (determined by the filters in the <a href="#filter-widgets">Filter Widgets</a>) in selected features are assigned a distinct color. Groups created by <code>Color by</code> show up in the x-axis (if multiple features, categories from each feature are delimited by <code>::</code>).</p>
+<p>Color is supported in all methods except for <a href="classification.html">Classification</a>. In <code>Color by</code>, users can select multiple categorical features, and each unique combination of available categories (determined by the filters in the <a href="#filter-widgets">Filter Widgets</a>) in selected features are assigned a distinct color. Groups created by <code>Color by</code> show up in the x-axis (if multiple features, categories from each feature are delimited by <code>::</code>).</p>
 <div id="nte-order" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -728,7 +728,7 @@ Note&nbsp;11.1: How to order the groups
 <section id="opacity-and-shape-by" class="level5">
 <h5 class="anchored" data-anchor-id="opacity-and-shape-by">Opacity and Shape by</h5>
 <ul>
-<li>Opacity and shape are supported in all point-based visualizations (e.g.&nbsp;<a href="./feature_comparison.html">Feature Comparison</a>, <a href="./feature_distribution.html">2D Feature Distribution</a>, <a href="./phasor_analysis.html">Phasor Analysis</a>, <a href="./dimension_reduction.html">Dimension Reduction</a>). In <code>Opacity by</code> and <code>Shape by</code>, users can select one categorical feature, and each unique category is assigned a distinct opacity or shape. The order of the shape and opacity is also sorted <a href="#nte-order">numer-alphatically</a>.</li>
+<li>Opacity and shape are supported in all point-based visualizations (e.g.&nbsp;<a href="feature_comparison.html">Feature Comparison</a>, <a href="feature_distribution.html">2D Feature Distribution</a>, <a href="phasor_analysis.html">Phasor Analysis</a>, <a href="dimension_reduction.html">Dimension Reduction</a>). In <code>Opacity by</code> and <code>Shape by</code>, users can select one categorical feature, and each unique category is assigned a distinct opacity or shape. The order of the shape and opacity is also sorted <a href="#nte-order">numer-alphatically</a>.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

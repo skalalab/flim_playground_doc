@@ -488,12 +488,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#interface-components" id="toc-interface-components" class="nav-link active" data-scroll-target="#interface-components"><span class="header-section-number">17.1</span> Interface Components</a>
+  <li><a href="#shared-interface-components" id="toc-shared-interface-components" class="nav-link active" data-scroll-target="#shared-interface-components"><span class="header-section-number">17.1</span> Shared Interface Components</a></li>
+  <li><a href="#select-phasor-coordinate" id="toc-select-phasor-coordinate" class="nav-link" data-scroll-target="#select-phasor-coordinate"><span class="header-section-number">17.2</span> Select Phasor Coordinate</a></li>
+  <li><a href="#k-means-clustering" id="toc-k-means-clustering" class="nav-link" data-scroll-target="#k-means-clustering"><span class="header-section-number">17.3</span> K-means Clustering</a>
   <ul class="collapse">
-  <li><a href="#shared-components" id="toc-shared-components" class="nav-link" data-scroll-target="#shared-components"><span class="header-section-number">17.1.1</span> Shared Components</a></li>
-  <li><a href="#select-phasor-coordinate" id="toc-select-phasor-coordinate" class="nav-link" data-scroll-target="#select-phasor-coordinate"><span class="header-section-number">17.1.2</span> Select Phasor Coordinate</a></li>
-  <li><a href="#k-means-clustering" id="toc-k-means-clustering" class="nav-link" data-scroll-target="#k-means-clustering"><span class="header-section-number">17.1.3</span> K-means Clustering</a></li>
-  <li><a href="#export-clustered-dataset" id="toc-export-clustered-dataset" class="nav-link" data-scroll-target="#export-clustered-dataset"><span class="header-section-number">17.1.4</span> Export Clustered Dataset</a></li>
+  <li><a href="#export-clustered-dataset" id="toc-export-clustered-dataset" class="nav-link" data-scroll-target="#export-clustered-dataset"><span class="header-section-number">17.3.1</span> Export Clustered Dataset</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/phasor_analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -504,7 +503,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_distribution.html">Bivariate Analysis</a></li><li class="breadcrumb-item"><a href="./phasor_analysis.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></h1>
+<h1 class="title"><span id="sec-phasor-analysis" class="quarto-section-identifier"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></span></h1>
 </div>
 
 
@@ -521,24 +520,22 @@ window.Quarto = {
 </header>
 
 
-<p>This method focuses on visualizing the distribution of the 1st harmonic or 2nd harmonic phasor coordinates, extracted by the <a href="./lifetime_fit_free.html">Lifetime fit free</a> extractor, and performs optional clustering to highlight subpopulations or structural patterns.</p>
-<section id="interface-components" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="interface-components"><span class="header-section-number">17.1</span> Interface Components</h2>
+<p>This method focuses on visualizing the distribution of the 1st harmonic or 2nd harmonic phasor coordinates, extracted by the <a href="lifetime_fit_free.html">Lifetime fit free</a> extractor, and performs optional clustering to highlight subpopulations or structural patterns.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/phasor_analysis.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
-<section id="shared-components" class="level3" data-number="17.1.1">
-<h3 data-number="17.1.1" class="anchored" data-anchor-id="shared-components"><span class="header-section-number">17.1.1</span> Shared Components</h3>
+<section id="shared-interface-components" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">17.1</span> Shared Interface Components</h2>
 <ul>
 <li>On the top right, users can use the <a href="./data_analysis.html#filter-widgets">filters</a> to subset the data to find the groups of interest.</li>
 <li>Below the filters, users can apply the <a href="./data_analysis.html#visual-channels-widgets">visual channels widgets</a> that allow users to <code>Color by</code>, <code>Opacity by</code>, and <code>Shape by</code> categorical features.</li>
 <li>On the bottom right, users can change the plot style using the <a href="./data_analysis.html#plotting-configuration-widgets">plot styling widgets</a>.</li>
 </ul>
 </section>
-<section id="select-phasor-coordinate" class="level3" data-number="17.1.2">
-<h3 data-number="17.1.2" class="anchored" data-anchor-id="select-phasor-coordinate"><span class="header-section-number">17.1.2</span> Select Phasor Coordinate</h3>
+<section id="select-phasor-coordinate" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="select-phasor-coordinate"><span class="header-section-number">17.2</span> Select Phasor Coordinate</h2>
 <p>Instead of using the <a href="./data_analysis.html#bivariate-analysis">bivariate selection widgets</a> that select two generic numerical features, this method renders a dropdown menu to select the channel and another to select the harmonic.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -546,8 +543,8 @@ window.Quarto = {
 </figure>
 </div>
 </section>
-<section id="k-means-clustering" class="level3" data-number="17.1.3">
-<h3 data-number="17.1.3" class="anchored" data-anchor-id="k-means-clustering"><span class="header-section-number">17.1.3</span> K-means Clustering</h3>
+<section id="k-means-clustering" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="k-means-clustering"><span class="header-section-number">17.3</span> K-means Clustering</h2>
 <p>Phasor coordinates of single-cell ROIs from the selected channel and harmonic are plotted in the phasor space. K-means clustering can be performed for each color group (created by <a href="./data_analysis.html#color-by"><code>Color by</code></a>). If <code>Perform K-means Clustering</code> is checked, users can specify the number of clusters to be created based on their prior knowledge. In the future, automatic tuning for this parameter, akin to selecting the number of components of <a href="./feature_histogram.html#fit-gaussian-mixture-models">GMM</a>, using silhouette analysis will be added.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -568,9 +565,8 @@ window.Quarto = {
 <p><img src="analysis_ui_shots/phasor_plot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
 </figure>
 </div>
-</section>
-<section id="export-clustered-dataset" class="level3" data-number="17.1.4">
-<h3 data-number="17.1.4" class="anchored" data-anchor-id="export-clustered-dataset"><span class="header-section-number">17.1.4</span> Export Clustered Dataset</h3>
+<section id="export-clustered-dataset" class="level3" data-number="17.3.1">
+<h3 data-number="17.3.1" class="anchored" data-anchor-id="export-clustered-dataset"><span class="header-section-number">17.3.1</span> Export Clustered Dataset</h3>
 <p>Users can download the clustered dataset by clicking:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

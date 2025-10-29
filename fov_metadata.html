@@ -466,7 +466,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#feature-extractors" id="toc-feature-extractors" class="nav-link" data-scroll-target="#feature-extractors"><span class="header-section-number">4.1.3</span> Feature Extractors</a></li>
   <li><a href="#decay-info" id="toc-decay-info" class="nav-link" data-scroll-target="#decay-info"><span class="header-section-number">4.1.4</span> Decay Info</a></li>
   <li><a href="#file-suffix" id="toc-file-suffix" class="nav-link" data-scroll-target="#file-suffix"><span class="header-section-number">4.1.5</span> File Suffix</a></li>
-  <li><a href="#reference-dye" id="toc-reference-dye" class="nav-link" data-scroll-target="#reference-dye"><span class="header-section-number">4.1.6</span> Reference Dye</a></li>
+  <li><a href="#fluorescence-lifetime-standard" id="toc-fluorescence-lifetime-standard" class="nav-link" data-scroll-target="#fluorescence-lifetime-standard"><span class="header-section-number">4.1.6</span> fluorescence lifetime standard</a></li>
   <li><a href="#folder-path" id="toc-folder-path" class="nav-link" data-scroll-target="#folder-path"><span class="header-section-number">4.1.7</span> Folder Path</a></li>
   </ul></li>
   <li><a href="#metadata-extraction" id="toc-metadata-extraction" class="nav-link" data-scroll-target="#metadata-extraction"><span class="header-section-number">4.2</span> Metadata Extraction</a>
@@ -484,7 +484,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./fov_metadata.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></h1>
+<h1 class="title"><span id="sec-fov-metadata" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></span></h1>
 </div>
 
 
@@ -501,7 +501,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>It is the first step in the <a href="./data_extraction.html">Data Extraction</a> workflow. It organizes the metadata of each field of view (FOV)—including file paths for all required inputs and decay information—into a single metadata file. This file is then used for <a href="./numerical_feature_extraction.html">numerical feature extraction</a>, as well as for users’ own bookkeeping and troubleshooting.</p>
+<p>It is the first step in the <a href="data_extraction.html">Data Extraction</a> workflow. It organizes the metadata of each field of view (FOV)—including file paths for all required inputs and decay information—into a single metadata file. This file is then used for <a href="numerical_feature_extraction.html">numerical feature extraction</a>, as well as for users’ own bookkeeping and troubleshooting.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="extraction_ui_shots/fov.png" id="fov-metadata" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:100.0%"></p>
@@ -509,12 +509,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>It is divided into two sections:</p>
 <ul>
-<li>The left 1/3 of the screen is the metadata configuration panel, inherited from the <a href="./data_extraction_config.html">Data Extraction Configuration</a> step.</li>
+<li>The left 1/3 of the screen is the metadata configuration panel, inherited from the <a href="data_extraction_config.html">Data Extraction Configuration</a> step.</li>
 <li>The right 2/3 shows the extraction status for all FOVs.</li>
 </ul>
 <section id="metadata" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="metadata"><span class="header-section-number">4.1</span> Metadata</h2>
-<p>Metadata are configured earlier in the <a href="./data_extraction_config.html">Data Extraction Configuration</a> step and copied here. Some fields remain editable for flexibility, while others are fixed to ensure usability. Non-editable fields can be modified in the Data Extraction Configuration step. After saving your modifications, return to this page and refresh it to see the changes.</p>
+<p>Metadata are configured earlier in the <a href="data_extraction_config.html">Data Extraction Configuration</a> step and copied here. Some fields remain editable for flexibility, while others are fixed to ensure usability. Non-editable fields can be modified in the Data Extraction Configuration step. After saving your modifications, return to this page and refresh it to see the changes.</p>
 <section id="decay-type" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="decay-type"><span class="header-section-number">4.1.1</span> Decay Type</h3>
 <p>See <a href="./data_extraction_config.html#decay-types">decay types</a> for more details. The decay type is not editable here.</p>
@@ -552,7 +552,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="d-decay-specific" class="level4">
 <h4 class="anchored" data-anchor-id="d-decay-specific">2D Decay-specific</h4>
-<p>Since the <a href="./data_extraction_config.html#2d-decay">2D decay</a> file does not provide the <code>duration</code> and the number of <code>time bins</code> per laser pulse interval, users need to specify them.</p>
+<p>Since the <a href="./data_extraction_config.html#two-d-decay">2D decay</a> file does not provide the <code>duration</code> and the number of <code>time bins</code> per laser pulse interval, users need to specify them.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="extraction_ui_shots/fov_decay_2d.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
@@ -569,9 +569,9 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="reference-dye" class="level3" data-number="4.1.6">
-<h3 data-number="4.1.6" class="anchored" data-anchor-id="reference-dye"><span class="header-section-number">4.1.6</span> Reference Dye</h3>
-<p>If the selected fit free calibration method is <a href="./data_extraction_config.html#calibration-method">reference dye</a>, users are asked to specify the reference dye file path for each channel and the reference dye lifetime, the default of those are copied from the reference dye config.</p>
+<section id="fluorescence-lifetime-standard" class="level3" data-number="4.1.6">
+<h3 data-number="4.1.6" class="anchored" data-anchor-id="fluorescence-lifetime-standard"><span class="header-section-number">4.1.6</span> fluorescence lifetime standard</h3>
+<p>If the selected fit free calibration method is <a href="./data_extraction_config.html#fluorescence-lifetime-standard">fluorescence lifetime standard</a>, users are asked to specify the fluorescence lifetime standard file path for each channel and the fluorescence lifetime standard’s lifetime, the default of those are copied from the data extraction configuration.</p>
 </section>
 <section id="folder-path" class="level3" data-number="4.1.7">
 <h3 data-number="4.1.7" class="anchored" data-anchor-id="folder-path"><span class="header-section-number">4.1.7</span> Folder Path</h3>
@@ -648,16 +648,16 @@ Tip
 <h4 class="anchored" data-anchor-id="channel-assignment">Channel Assignment</h4>
 <p>If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channel to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there is any.</p>
 </section>
-<section id="reference-dye-1" class="level4">
-<h4 class="anchored" data-anchor-id="reference-dye-1">Reference Dye</h4>
-<p>If the <a href="#reference-dye">reference dye file path</a> is specified, FLIM Playground will try to look for and read the file. It expects a <code>tiff</code> or <code>tif</code> file that contains a 3D array, with one of them as the time dimension. It will try to match the time dimension with the time dimension of the decay file. If it cannot find the matching time dimension, it will complain.</p>
+<section id="fluorescence-lifetime-standard-1" class="level4">
+<h4 class="anchored" data-anchor-id="fluorescence-lifetime-standard-1">fluorescence lifetime standard</h4>
+<p>If the file path to the <a href="#fluorescence-lifetime-standard">fluorescence lifetime standard</a> is specified, FLIM Playground will try to look for and read the file. It expects a <code>tiff</code> or <code>tif</code> file that contains a 3D array, with one of them as the time dimension. It will try to match the time dimension with the time dimension of the decay file. If it cannot find the matching time dimension, it will complain.</p>
 <p><img src="extraction_ui_shots/fov_rd_not_found.png" class="img-fluid quarto-figure quarto-figure-center" style="width:90.0%"> <img src="extraction_ui_shots/fov_rd_not_match.png" class="img-fluid quarto-figure quarto-figure-center" style="width:90.0%"></p>
-<p>Once the time axis is matched, the reference dye file path, the reference dye lifetime, and the time axis will be recorded.</p>
+<p>Once the time axis is matched, the file path to the fluorescence lifetime standard, the fluorescence lifetime standard’s lifetime, and the time axis will be recorded.</p>
 </section>
 </section>
 <section id="result-preview-and-export" class="level3" data-number="4.2.3">
 <h3 data-number="4.2.3" class="anchored" data-anchor-id="result-preview-and-export"><span class="header-section-number">4.2.3</span> Result Preview and Export</h3>
-<p>If there is a non-zero number of FOVs with ✅ and channel assignment and reference dye checks (if applicable) are passed, a preview of the metadata data sheet will be shown for users to check.</p>
+<p>If there is a non-zero number of FOVs with ✅ and channel assignment and fluorescence lifetime standard checks (if applicable) are passed, a preview of the metadata data sheet will be shown for users to check.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="extraction_ui_shots/fov_export.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>

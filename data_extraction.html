@@ -486,7 +486,7 @@ div.csl-indent {
   <li><a href="#mask" id="toc-mask" class="nav-link" data-scroll-target="#mask"><span class="header-section-number">2.2.2</span> Mask</a></li>
   <li><a href="#irf" id="toc-irf" class="nav-link" data-scroll-target="#irf"><span class="header-section-number">2.2.3</span> IRF</a></li>
   <li><a href="#spcimage-t1" id="toc-spcimage-t1" class="nav-link" data-scroll-target="#spcimage-t1"><span class="header-section-number">2.2.4</span> SPCImage t1</a></li>
-  <li><a href="#reference-dye" id="toc-reference-dye" class="nav-link" data-scroll-target="#reference-dye"><span class="header-section-number">2.2.5</span> Reference Dye</a></li>
+  <li><a href="#fluorescence-lifetime-standard" id="toc-fluorescence-lifetime-standard" class="nav-link" data-scroll-target="#fluorescence-lifetime-standard"><span class="header-section-number">2.2.5</span> fluorescence lifetime standard</a></li>
   <li><a href="#intensity-2d" id="toc-intensity-2d" class="nav-link" data-scroll-target="#intensity-2d"><span class="header-section-number">2.2.6</span> Intensity (2D)</a></li>
   </ul></li>
   <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">2.3</span> Limitations</a></li>
@@ -499,7 +499,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./data_extraction.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview</span></h1>
+<h1 class="title"><span id="sec-data-extraction" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview</span></span></h1>
 </div>
 
 
@@ -516,19 +516,19 @@ div.csl-indent {
 </header>
 
 
-<p>FLIM Playground transforms raw FLIM data into single-cell numerical and categorical features, ensuring smooth integration with <a href="./data_analysis.html">downstream analysis</a>. All steps are seamlessly connected through interactive widgets, with built-in error checking and reporting to ensure correctness.</p>
+<p>FLIM Playground transforms raw FLIM data into single-cell numerical and categorical features, ensuring smooth integration with <a href="data_analysis.html">downstream analysis</a>. All steps are seamlessly connected through interactive widgets, with built-in error checking and reporting to ensure correctness.</p>
 <p>A high-level overview of the data extraction process is shown below. <img src="Fig2.svg" class="img-fluid quarto-figure quarto-figure-center" style="width:100.0%"></p>
 <section id="stages" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="stages"><span class="header-section-number">2.1</span> Stages</h2>
-<p>Users can <a href="./data_extraction_config.html">configure</a> the system once and apply it to future data. After configuration, users can extract features from raw data using the following steps, inspired by the <a href="./index.html#feature-classes">categorization</a>:</p>
+<p>Users can <a href="data_extraction_config.html">configure</a> the system once and apply it to future data. After configuration, users can extract features from raw data using the following steps, inspired by the <a href="./index.html#feature-classes">categorization</a>:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="extraction_ui_shots/extraction_steps.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
 </figure>
 </div>
 <ol type="1">
-<li><a href="./fov_metadata.html">FOV Metadata Organization (A)</a>: each experiment session consists of multiple fields of view (FOVs). This step helps users organize the metadata of the FOVs.</li>
-<li><a href="./numerical_feature_extraction.html">Numerical feature extraction (B)</a>: it calibrates and then extracts single cell numerical features.
+<li><a href="fov_metadata.html">FOV Metadata Organization (A)</a>: each experiment session consists of multiple fields of view (FOVs). This step helps users organize the metadata of the FOVs.</li>
+<li><a href="numerical_feature_extraction.html">Numerical feature extraction (B)</a>: it calibrates and then extracts single cell numerical features.
 <ul>
 <li><a href="./numerical_feature_extraction.html#calibration">Calibration</a>
 <ul>
@@ -536,21 +536,21 @@ div.csl-indent {
 <li><a href="./numerical_feature_extraction.html#fit-free-calibration">Fit Free Calibration</a>
 <ul>
 <li><a href="./numerical_feature_extraction.html#shift-irf">IRF Shift</a></li>
-<li><a href="./numerical_feature_extraction.html#reference-dye">Reference Dye</a></li>
+<li><a href="./numerical_feature_extraction.html#fluorescence-lifetime-standard">Fluorescence lifetime standard</a></li>
 </ul></li>
 </ul></li>
 <li>Per-channel feature extraction includes:
 <ul>
-<li><a href="./lifetime_fit.html">Lifetime fitting features</a>: fit an exponential decay curve to the measured decay and extract lifetime features per cell ROI.</li>
-<li><a href="./lifetime_fit_free.html">Phasor features</a>: calculate the phasor features such as the phasor coordinates. It also provides <a href="./phasor_analysis.html">phasor analysis</a>.</li>
-<li><a href="./intensity_morphology.html">Morphology features</a>: calculate morphology features based on the ROI mask.</li>
-<li><a href="./intensity_texture.html">Texture features</a>: calculate texture features based on the intensity image and the ROI mask.</li>
+<li><a href="lifetime_fit.html">Lifetime fitting features</a>: fit an exponential decay curve to the measured decay and extract lifetime features per cell ROI.</li>
+<li><a href="lifetime_fit_free.html">Phasor features</a>: calculate the phasor features such as the phasor coordinates. It also provides <a href="phasor_analysis.html">phasor analysis</a>.</li>
+<li><a href="intensity_morphology.html">Morphology features</a>: calculate morphology features based on the ROI mask.</li>
+<li><a href="intensity_texture.html">Texture features</a>: calculate texture features based on the intensity image and the ROI mask.</li>
 </ul></li>
 </ul></li>
-<li><a href="./categorical_feature_extraction.html">Categorical feature extraction (C)</a>: extract the categorical features such as the treatment, time point, etc based on the FOV name.</li>
+<li><a href="categorical_feature_extraction.html">Categorical feature extraction (C)</a>: extract the categorical features such as the treatment, time point, etc based on the FOV name.</li>
 </ol>
 <ul>
-<li>Users can then upload the extracted datasets to perform <a href="./data_analysis.html">Data Analysis</a>.</li>
+<li>Users can then upload the extracted datasets to perform <a href="data_analysis.html">Data Analysis</a>.</li>
 </ul>
 </section>
 <section id="input-file-types" class="level2" data-number="2.2">
@@ -588,15 +588,15 @@ div.csl-indent {
 </section>
 <section id="spcimage-t1" class="level3" data-number="2.2.4">
 <h3 data-number="2.2.4" class="anchored" data-anchor-id="spcimage-t1"><span class="header-section-number">2.2.4</span> SPCImage t1</h3>
-<p>If the decay type is <a href="./data_extraction_config.html#3d4d-pixel-prefitted">3D/4D pixel-prefitted</a>, users can provide pixel-prefitted lifetime feature files.</p>
+<p>If the decay type is <a href="./data_extraction_config.html#three-d4d-pixel-prefitted">3D/4D pixel-prefitted</a>, users can provide pixel-prefitted lifetime feature files.</p>
 <ul>
 <li><code>.asc</code>: a 2D array in spatial dimensions outputted by <a href="https://www.becker-hickl.com/products/spcimage/">SPCImage</a>, with each (row, column) containing the value of the lifetime feature (e.g.&nbsp;<code>t1</code>: the first component’s lifetime) of that pixel.</li>
 <li>Depending on the chosen number of lifetime components, the other pixel-prefitted feature files are included and their names are inferred from the <code>t1</code> file, by replacing <code>t1</code> in the file name with <code>t2</code>, <code>t3</code>, <code>a1[%]</code>, etc.</li>
 </ul>
 </section>
-<section id="reference-dye" class="level3" data-number="2.2.5">
-<h3 data-number="2.2.5" class="anchored" data-anchor-id="reference-dye"><span class="header-section-number">2.2.5</span> Reference Dye</h3>
-<p>If the reference dye-based calibration is chosen, users are expected to provide the reference dye file.</p>
+<section id="fluorescence-lifetime-standard" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="fluorescence-lifetime-standard"><span class="header-section-number">2.2.5</span> fluorescence lifetime standard</h3>
+<p>If the fluorescence lifetime standard-based calibration is chosen, users are expected to provide the fluorescence lifetime standard file.</p>
 <ul>
 <li><code>.tiff</code>/<code>.tif</code>: a 3D array, with one dimension representing the time axis.</li>
 </ul>
@@ -612,7 +612,7 @@ div.csl-indent {
 <section id="limitations" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="limitations"><span class="header-section-number">2.3</span> Limitations</h2>
 <ul>
-<li>To simplify the workflow and due to the framework chosen, FLIM Playground does not support pixel-level fitting and fit-free analysis, and there are many other open-source tools that can do so (for a comprehensive list, see <a href="https://www.phasorpy.org/docs/stable/phasor_approach/#software">here</a>). Instead, it does cell-level fitting and fit-free (phasor) feature extraction by summing up all the decays belonging to the same cell ROI to get one cell-level decay as a preprocessing step<span class="citation" data-cites="Samimi2025"><sup><a href="#ref-Samimi2025" role="doc-biblioref">1</a></sup></span>. It also accepts prefitted pixel-level lifetime features from <a href="https://www.becker-hickl.com/products/spcimage/">SPCImage</a> and aggregates pixel-level lifetime features to cell-level lifetime features.</li>
+<li>To simplify the workflow and due to the framework chosen, FLIM Playground does not support pixel-level fitting and fit-free analysis, and there are many other open-source tools that can do so (for a comprehensive list, see <a href="https://www.phasorpy.org/docs/stable/phasor_approach/#software">here</a>). Instead, it does cell-level fitting and fit-free (phasor) feature extraction by summing up all the decays belonging to the same cell ROI to get one cell-level decay as a preprocessing step<span class="citation" data-cites="Samimi2025"><sup><a href="#ref-Samimi2025" role="doc-biblioref">1</a></sup></span>. It also accepts prefitted pixel-level lifetime features from <a href="https://www.becker-hickl.com/products/spcimage/">SPCImage</a> and <a href="./lifetime_fit.html#pixel-prefitted">aggregates pixel-level lifetime features to cell-level lifetime features</a>.</li>
 </ul>
 
 

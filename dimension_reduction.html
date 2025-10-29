@@ -459,10 +459,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#interface-components" id="toc-interface-components" class="nav-link active" data-scroll-target="#interface-components"><span class="header-section-number">18.1</span> Interface Components</a>
+  <li><a href="#shared-interface-components" id="toc-shared-interface-components" class="nav-link active" data-scroll-target="#shared-interface-components"><span class="header-section-number">18.1</span> Shared Interface Components</a></li>
+  <li><a href="#hyperparameter-widget" id="toc-hyperparameter-widget" class="nav-link" data-scroll-target="#hyperparameter-widget"><span class="header-section-number">18.2</span> Hyperparameter Widget</a>
   <ul class="collapse">
-  <li><a href="#shared-components" id="toc-shared-components" class="nav-link" data-scroll-target="#shared-components"><span class="header-section-number">18.1.1</span> Shared Components</a></li>
-  <li><a href="#hyperparameter" id="toc-hyperparameter" class="nav-link" data-scroll-target="#hyperparameter"><span class="header-section-number">18.1.2</span> Hyperparameter</a></li>
+  <li><a href="#umap" id="toc-umap" class="nav-link" data-scroll-target="#umap"><span class="header-section-number">18.2.1</span> UMAP</a></li>
+  <li><a href="#t-sne" id="toc-t-sne" class="nav-link" data-scroll-target="#t-sne"><span class="header-section-number">18.2.2</span> t-SNE</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/dimension_reduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -473,7 +474,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dimension_reduction.html">Multivariate Analysis</a></li><li class="breadcrumb-item"><a href="./dimension_reduction.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></h1>
+<h1 class="title"><span id="sec-dimension-reduction" class="quarto-section-identifier"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></h1>
 </div>
 
 
@@ -494,15 +495,13 @@ ul.task-list li input[type="checkbox"] {
 <p>Principal Component Analysis (PCA) is a linear dimension reduction method that projects the data onto the directions of the largest variance. It is fast, deterministic, and easier to interpret (PCA loadings are provided), but it is limited by the linear nature of the projection. For a detailed discussion of PCA, please refer to <a href="https://github.com/skalalab/dimension_reduction/blob/main/pca.ipynb">this post</a>.</p>
 <p>Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochastic Neighbor Embedding (t-SNE) are non-linear dimension reduction methods that can capture more complex patterns in the data. They are more flexible and can handle non-linear relationships between features, but they are more computationally expensive, less interpretable, not deterministic (FLIM Playground uses the random seed <code>42</code> to ensure reproducibility), and dependent on the hyperparameters. Here is a <a href="https://pair-code.github.io/understanding-umap/">post</a> that explains how UMAP and t-SNE work at a high level and the meaning of some of the hyperparameters.</p>
 <p>The numerical features are standardized before the dimension reduction.</p>
-<section id="interface-components" class="level2" data-number="18.1">
-<h2 data-number="18.1" class="anchored" data-anchor-id="interface-components"><span class="header-section-number">18.1</span> Interface Components</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/dimension_reduction.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
-<section id="shared-components" class="level3" data-number="18.1.1">
-<h3 data-number="18.1.1" class="anchored" data-anchor-id="shared-components"><span class="header-section-number">18.1.1</span> Shared Components</h3>
+<section id="shared-interface-components" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">18.1</span> Shared Interface Components</h2>
 <ul>
 <li>On the left, users can use the <a href="./data_analysis.html#multivariate-analysis">selection widgets</a> to select multiple numerical features from each feature group.<br>
 </li>
@@ -511,15 +510,15 @@ ul.task-list li input[type="checkbox"] {
 <li>On the bottom right, users can change the plot style using the <a href="./data_analysis.html#plotting-configuration-widgets">plot styling widgets</a>.</li>
 </ul>
 </section>
-<section id="hyperparameter" class="level3" data-number="18.1.2">
-<h3 data-number="18.1.2" class="anchored" data-anchor-id="hyperparameter"><span class="header-section-number">18.1.2</span> Hyperparameter</h3>
+<section id="hyperparameter-widget" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="hyperparameter-widget"><span class="header-section-number">18.2</span> Hyperparameter Widget</h2>
 <p>Hyperparameters really matter. So we provide a set of interactive widgets to help users to change the hyperparameters and see their effects on the dimension reduction in real time.</p>
-<section id="umap" class="level4">
-<h4 class="anchored" data-anchor-id="umap">UMAP</h4>
+<section id="umap" class="level3" data-number="18.2.1">
+<h3 data-number="18.2.1" class="anchored" data-anchor-id="umap"><span class="header-section-number">18.2.1</span> UMAP</h3>
 <p>FLIM Playground uses the <code>umap-learn</code> implementation of UMAP. It chooses to expose <code>n_neighbors</code> and <code>min_dist</code> for users to tweak. Other hyperparameters are set to <a href="https://umap-learn.readthedocs.io/en/latest/parameters.html">default values</a>.</p>
 </section>
-<section id="t-sne" class="level4">
-<h4 class="anchored" data-anchor-id="t-sne">t-SNE</h4>
+<section id="t-sne" class="level3" data-number="18.2.2">
+<h3 data-number="18.2.2" class="anchored" data-anchor-id="t-sne"><span class="header-section-number">18.2.2</span> t-SNE</h3>
 <p>FLIM Playground uses the <code>sklearn.manifold.TSNE</code> implementation of t-SNE. It chooses to expose <code>perplexity</code> and <code>early_exaggeration</code> for users to tweak. Other hyperparameters are set to <a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html">default values</a>.</p>
 <div class="columns">
 <div class="column" style="width:33%;">
@@ -532,7 +531,6 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 
-</section>
 </section>
 </section>
 

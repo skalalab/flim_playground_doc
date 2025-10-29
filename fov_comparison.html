@@ -459,10 +459,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#interface-components" id="toc-interface-components" class="nav-link active" data-scroll-target="#interface-components"><span class="header-section-number">15.1</span> Interface Components</a>
-  <ul class="collapse">
-  <li><a href="#shared-components" id="toc-shared-components" class="nav-link" data-scroll-target="#shared-components"><span class="header-section-number">15.1.1</span> Shared Components</a></li>
-  </ul></li>
+  <li><a href="#shared-interface-components" id="toc-shared-interface-components" class="nav-link active" data-scroll-target="#shared-interface-components"><span class="header-section-number">15.1</span> Shared Interface Components</a></li>
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">15.2</span> Example</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/fov_comparison.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -473,7 +470,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_comparison.html">Univariate Analysis</a></li><li class="breadcrumb-item"><a href="./fov_comparison.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Field of View Comparison</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Field of View Comparison</span></h1>
+<h1 class="title"><span id="sec-fov-comparison" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Field of View Comparison</span></span></h1>
 </div>
 
 
@@ -491,9 +488,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>In imaging datasets like FLIM data, field of view (FOV) is an important categorical feature that documents where a certain set of rows (e.g.&nbsp;cells) originates. Visualizing each FOV side by side on a numerical feature can help identify potential FOV-level outliers.</p>
-<section id="interface-components" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="interface-components"><span class="header-section-number">15.1</span> Interface Components</h2>
-<p>FLIM Playground finds the FOV identifier column from the dataset using the <code>FOV column name</code> field in <a href="./data_analysis_config.html#id-config">data analysis config</a> (dataset not extracted by <a href="./data_extraction.html">data extraction</a>) or <a href="./data_extraction_config.html#configuration">data extraction config</a> (dataset extracted by <a href="./data_extraction.html">data extraction</a>).</p>
+<p>FLIM Playground finds the FOV identifier column from the dataset using the <code>FOV column name</code> field in <a href="./data_analysis_config.html#id-config">data analysis config</a> (dataset not extracted by Data Extraction) or <a href="./data_extraction_config.html#configuration">data extraction config</a> (dataset extracted by <a href="data_extraction.html">Data Extraction</a>).</p>
 <p>If the FOV identifier column is not found in the dataset, then a warning message will be shown:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -506,8 +501,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="analysis_ui_shots/fov.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
-<section id="shared-components" class="level3" data-number="15.1.1">
-<h3 data-number="15.1.1" class="anchored" data-anchor-id="shared-components"><span class="header-section-number">15.1.1</span> Shared Components</h3>
+<section id="shared-interface-components" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">15.1</span> Shared Interface Components</h2>
 <ul>
 <li>On the left, users can use the <a href="./data_analysis.html#univariate-analysis">selection widgets</a> to select the numerical feature to see the boxplot of each FOV. Exactly one feature can be selected from all feature groups.</li>
 <li>On the top right, users can use the <a href="./data_analysis.html#filter-widgets">filters</a> to subset the data to find the groups of interest.</li>
@@ -515,7 +510,6 @@ ul.task-list li input[type="checkbox"] {
 <li>On the bottom right, users can change the plot style using the <a href="./data_analysis.html#plotting-configuration-widgets">plot styling widgets</a>.</li>
 </ul>
 <p>Besides the shared components, this module does not have any method-specific components.</p>
-</section>
 </section>
 <section id="example" class="level2" data-number="15.2">
 <h2 data-number="15.2" class="anchored" data-anchor-id="example"><span class="header-section-number">15.2</span> Example</h2>
