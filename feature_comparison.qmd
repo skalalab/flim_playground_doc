@@ -108,8 +108,8 @@ $$
 
 Statistical tests are performed on the selected comparison pairs that exceed the effect size threshold (if users choose to calculate effect sizes). The statistical tests supported are:
 
-- Independent t-test (student's t-test) 
-- Welch's t-test
+- Independent t-test (student's t-test, for equal variances) 
+- Welch's t-test (for unequal variances)
 
 ![](analysis_ui_shots/stats_test.png){width=40% fig-align=center}
 
