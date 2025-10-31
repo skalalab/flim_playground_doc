@@ -117,6 +117,10 @@ After constructing the objective metric, the fitting mode is used to determine t
 
 Users get to choose between the following two methods to calibrate the IRF shift in the [configuration step](data_extraction_config.qmd#calibration-method). 
 
+The first step of the calibration is to **subtract an offset value and clip each decay curve to 0 if the time bin is negative**. The offset is chosen to be the mean of the last 10th percentile of the decay curve (tail). 
+
+Then, depending on the chosen [calibration method](data_extraction_config.qmd#calibration-method), the following two methods are available:
+
 #### Shift IRF
 
 It is performed similarly to the [fit calibration](#fit-calibration) steps, but in the second step, the shift is not optimized (fitted). It shares the [same interface](#irf-shift) as the [fit calibration](#fit-calibration) step, where a scatter plot of the shift values is displayed for each channel, only that the plot is not interactive to show the fit. Instead, it outputs the shift that maximizes the cross-correlation between the IRF and each decay. If `Fix the Shift` is selected, users can specify the shift value that will be applied to all fields of view. Otherwise, the shift value is chosen to be the one that maximizes the cross-correlation between the IRF and the decay.
@@ -125,15 +129,11 @@ It is performed similarly to the [fit calibration](#fit-calibration) steps, but 
 If both the `Lifetime fit` and `Lifetime fit free` feature extractors are selected for this channel, the optimized IRF shift derived from [the fit calibration](#fit-calibration) step is reused for the `Lifetime fit free` feature extractor. 
 :::
 
-In addition to shifting the IRF based on the chosen shift values, each decay curve is subtracted an offset value and clipped to 0 if the time bin is negative after the subtraction. The offset is chosen to be the mean of the last 10th percentile of the decay curve (tail). 
-
-Finally, the signals of the shifted IRF are deconvolved from the offset-subtracted decay curves using [`phasor.phasor_divide`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_divide) from the `phasorpy` package. 
+The signals of the shifted IRF are deconvolved from the offset-subtracted decay curves using [`phasor.phasor_divide`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_divide) from the `phasorpy` package. 
 
 #### Fluorescence lifetime standard 
 
-Because the fluorescence lifetime standard is measured in the same system as the decay curves and we know its lifetime, there is no need to account for the IRF shift and the offset. Therefore
-
-`phasorpy`'s [`lifetime.phasor_calibrate`](https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate) function is used to calibrate all the decay curves behind the scene when calculating the phasor coordinates. 
+Because the fluorescence lifetime standard is measured in the same system as the decay curves and we know its lifetime, there is no need to account for the IRF shift and the offset. Therefore, after subtracting the offset, `phasorpy`'s [`lifetime.phasor_calibrate`](https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate) function is used to calibrate all the decay curves behind the scene when calculating the phasor coordinates. 
 
 ### Confirm Calibration
 
