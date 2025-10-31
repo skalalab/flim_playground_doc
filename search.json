@@ -417,7 +417,18 @@
     "href": "data_analysis_config.html",
     "title": "12  Configuration",
     "section": "",
-    "text": "12.1 Identifiers Config\nFLIM Playground provides an interactive configuration workflow to help users prepare their datasets that are not extracted by Data Extraction so that they fulfill the requirements. The following sections use the iris dataset, and the flower_id is added to uniquely identify each row (i.e. a single flower). The other columns are: a categorical feature species, and a set of numerical features sepal_length, sepal_width, petal_length, and petal_width.\nOn the left side of the screen, uncheck Use Dataset from Data Extraction.\nThe dataset needs to have a unique identifier column to identify each row. In this case, flower_id is the unique identifier column. This dataset does not have a field of view column, so we leave it blank.",
+    "text": "12.1 Identifiers Config\nFLIM Playground provides an interactive configuration workflow to help users prepare their datasets that are not extracted by Data Extraction so that they fulfill the requirements. The following sections use the iris dataset as an example: the flower_id is added to uniquely identify each row (i.e. a single flower). The other columns are: a categorical feature species, and a set of numerical features sepal_length, sepal_width, petal_length, and petal_width.\nThe configuration workflow in motion:\nSpecifically, the steps are:",
+    "crumbs": [
+      "Data Analysis",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Configuration</span>"
+    ]
+  },
+  {
+    "objectID": "data_analysis_config.html#identifiers-config",
+    "href": "data_analysis_config.html#identifiers-config",
+    "title": "12  Configuration",
+    "section": "",
+    "text": "The dataset needs to have a unique identifier column to identify each row. In this case, flower_id is the unique identifier column. This dataset does not have a field of view column, so we leave it blank.",
     "crumbs": [
       "Data Analysis",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Configuration</span>"
@@ -428,7 +439,7 @@
     "href": "data_analysis_config.html#categorical-feature-config",
     "title": "12  Configuration",
     "section": "12.2 Categorical Feature Config",
-    "text": "12.2 Categorical Feature Config\nAdd categorical columns you want FLIM Playground to recognize here. Those columns are converted to strings internally.\n\nThe default categorical feature list does not include species, so we add it manually.",
+    "text": "12.2 Categorical Feature Config\n\nAdd categorical columns you want FLIM Playground to recognize here. Those columns are converted to strings internally.\n\n\nThe default categorical feature list does not include species, so we add it manually.",
     "crumbs": [
       "Data Analysis",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Configuration</span>"
@@ -439,7 +450,7 @@
     "href": "data_analysis_config.html#numerical-feature-config",
     "title": "12  Configuration",
     "section": "12.3 Numerical Feature Config",
-    "text": "12.3 Numerical Feature Config\n\nUsers can copy the numerical features from Excel or any text editor that opens their csv files. The features can be separated by ,, ;, or whitespaces including newlines.\nAfter hitting the ctrl/cmd + enter key, the numerical features are parsed and added to Available Features. Users can add/delete groups and drag features from the Available Features to groups just created. Any ungrouped features are added to a group called Uncategorized Features.\n\n12.3.1 Example",
+    "text": "12.3 Numerical Feature Config\n\n\nUsers can copy the numerical features from Excel or any text editor that opens their csv files. The features can be separated by ,, ;, or whitespaces including newlines.\nAfter hitting the ctrl/cmd + enter key, the numerical features are parsed and added to Available Features. Users can add/delete groups and drag features from the Available Features to groups just created. Any ungrouped features are added to a group called Uncategorized Features.\n\n\n12.3.1 Example",
     "crumbs": [
       "Data Analysis",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Configuration</span>"
@@ -450,7 +461,7 @@
     "href": "data_analysis_config.html#save",
     "title": "12  Configuration",
     "section": "12.4 Save",
-    "text": "12.4 Save\nAfter users finish the configuration and click the Save Configuration button, FLIM Playground saves the configuration for processing current and future datasets.",
+    "text": "12.4 Save\n\nAfter users finish the configuration and click the Save Configuration button, FLIM Playground saves the configuration for processing current and future datasets.",
     "crumbs": [
       "Data Analysis",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Configuration</span>"
