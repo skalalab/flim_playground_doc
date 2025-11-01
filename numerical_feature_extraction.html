@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -594,7 +614,10 @@ I(\mathbf{t})=\sum_{i=1}^{n} A_i\, e^{-\mathbf{t}/\tau_i}, \qquad \tau_i&gt;0
 \quad \text{where }\Delta t=\frac{T}{K}.
 \]</span></p>
 <p>It supports <span class="math inline">\(n=1,2,3\)</span> components.</p>
-<p>Additionally, the <code>offset</code> is a parameter to be fitted.</p>
+<p>Additionally, the constant offset parameter (<span class="math inline">\(Z\)</span>) that represents a time independent background (i.e., room light) is also optimized<span class="citation" data-cites="warren2013"><sup><a href="#ref-warren2013" role="doc-biblioref">1</a></sup></span>.</p>
+<p><span class="math display">\[
+\hat{y}(t) = [I(t) \otimes \text{IRF}(t)] + Z
+\]</span></p>
 </section>
 <section id="time-gates" class="level5">
 <h5 class="anchored" data-anchor-id="time-gates">Time Gates</h5>
@@ -621,9 +644,9 @@ I(\mathbf{t})=\sum_{i=1}^{n} A_i\, e^{-\mathbf{t}/\tau_i}, \qquad \tau_i&gt;0
 <p>Maximum Likelihood Estimation (<code>MLE</code>): it estimates the parameters by maximizing the likelihood function, which is the probability of the measured data given the model parameters. A mathematically convenient way to do this is to minimize the negative log-likelihood function:</p>
 <p><span class="math display">\[
 \text{NLL}(\theta; t_s,t_e)
-= -\sum_{k=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_k)\,\bigl[y_k \log m_\theta(t_k) - m_\theta(t_k)\bigr].
+= -\sum_{k=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_k)\,\bigl[y_k \log \hat{y}(t_k) - \hat{y}(t_k)\bigr].
 \]</span></p>
-<p><span class="math inline">\(\mathbf{1}_{[t_s,t_e]}\)</span> is the indicator function that is 1 if <span class="math inline">\(t_k\)</span> is within the <a href="#time-gates">time gates</a><span class="math inline">\([t_s, t_e]\)</span>, and 0 otherwise. <span class="math inline">\(y_k\)</span> is the observed count at time <span class="math inline">\(t_k\)</span>, and <span class="math inline">\(m_\theta(t_k)\)</span> is the model prediction at <span class="math inline">\(t_k\)</span>.</p>
+<p><span class="math inline">\(\mathbf{1}_{[t_s,t_e]}\)</span> is the indicator function that is 1 if <span class="math inline">\(t_k\)</span> is within the <a href="#time-gates">time gates</a><span class="math inline">\([t_s, t_e]\)</span>, and 0 otherwise. <span class="math inline">\(y_k\)</span> is the observed count at time <span class="math inline">\(t_k\)</span>, and <span class="math inline">\(\hat{y}(t_k)\)</span> is the model prediction at <span class="math inline">\(t_k\)</span>.</p>
 <p>Least Squares (<code>LS</code>): it estimates the parameters by minimizing the sum of the squared differences between the measured curve and the model prediction.</p>
 </section>
 <section id="fitting-mode" class="level5">
@@ -709,6 +732,11 @@ Note
 </div>
 
 
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-warren2013" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Warren, S. C. <em>et al.</em> <a href="https://doi.org/10.1371/journal.pone.0070687">Rapid global fitting of large fluorescence lifetime imaging microscopy datasets</a>. <em>PLoS ONE</em> <strong>8</strong>, e70687 (2013).</div>
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
