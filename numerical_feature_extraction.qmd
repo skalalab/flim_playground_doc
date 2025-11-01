@@ -78,7 +78,12 @@ $$
 
 It supports $n=1,2,3$ components. 
 
-Additionally, the `offset` is a parameter to be fitted. 
+Additionally, the constant offset parameter ($Z$) that represents a time independent background (i.e., room light) is also optimized [@warren2013].
+
+$$
+\hat{y}(t) = [I(t) \otimes \text{IRF}(t)] + Z
+$$
+
 
 ##### Time Gates
 Due to the deadtime of the system certain time bins from the head and/or tail of the decay curve are not reliable. The T1 (head) and T2 (tail) gates are used to select the time range of the decay curve to be fitted. Users can inspect the decay curve by clicking the full screen mode button of the plot on the right of the [shift result](#irf-shift). Hover-based interaction is implemented so users can see the time bin numbers to have a better sense of the time range. 
@@ -96,10 +101,10 @@ Maximum Likelihood Estimation (`MLE`): it estimates the parameters by maximizing
 
 $$
 \text{NLL}(\theta; t_s,t_e)
-= -\sum_{k=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_k)\,\bigl[y_k \log m_\theta(t_k) - m_\theta(t_k)\bigr].
+= -\sum_{k=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_k)\,\bigl[y_k \log \hat{y}(t_k) - \hat{y}(t_k)\bigr].
 $$
 
-$\mathbf{1}_{[t_s,t_e]}$ is the indicator function that is 1 if $t_k$ is within the [time gates](#time-gates)$[t_s, t_e]$, and 0 otherwise. $y_k$ is the observed count at time $t_k$, and $m_\theta(t_k)$ is the model prediction at $t_k$.
+$\mathbf{1}_{[t_s,t_e]}$ is the indicator function that is 1 if $t_k$ is within the [time gates](#time-gates)$[t_s, t_e]$, and 0 otherwise. $y_k$ is the observed count at time $t_k$, and $\hat{y}(t_k)$ is the model prediction at $t_k$.
 
 Least Squares (`LS`): it estimates the parameters by minimizing the sum of the squared differences between the measured curve and the model prediction. 
 
