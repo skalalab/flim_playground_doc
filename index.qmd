@@ -29,7 +29,11 @@ To quickly try out different analysis methods, download this [sample dataset](ht
 ![](analysis_ui_shots/feature_comparison.png){width=100% fig-align=center}
 :::
 
-Due to the online demo's limitation in local file system access, extracting features from raw data is not available in the online demo. Read on to learn more about FLIM Playground from processing raw decay data to gaining insights.
+Due to the online demo's limitation in local file system access, extracting features from raw data is not available in the online demo. Read on to discover how FLIM Playground transforms raw fluorescence decay data into biological insight through an integrated, interactive workflow.
+
+::: {.content-visible when-format="html"}
+{{< video src="data_extraction_n_analysis.mp4" controls=true style="object-fit:cover; border-radius:12px; display:block; margin:auto;" >}}
+:::
 
 ## Installation
 
