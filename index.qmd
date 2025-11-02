@@ -19,7 +19,7 @@
 
 Welcome to the FLIM Playground 🥳🎉🥂! This is an interactive graphical user interface (GUI) that allows you to extract single-cell features from fluorescence lifetime imaging microscopy (FLIM) raw data ([Data Extraction](#sec-data-extraction)) and analyze extracted features or datasets extracted via other methods using a built-in repertoire of methods ([Data Analysis](#sec-data-analysis)). 
 
-To quickly try out different analysis methods, download this [sample dataset](https://github.com/skalalab/flim_playground_bioarchive/blob/main/inhibitors.csv) and try the [online demo](https://flim-playground.streamlit.app/). If you prefer to use your own data, read [this chapter on data analysis configuration](#sec-data-analysis-config) to learn how to configure the system.
+To quickly try out different analysis methods, download this [sample dataset](https://github.com/skalalab/flim_playground/blob/main/example_data/Data_Analysis/inhibitors.csv) and try the [online demo](https://flim-playground.streamlit.app/). If you prefer to use your own data, read [this chapter on data analysis configuration](#sec-data-analysis-config) to learn how to configure the system.
 
 ::: {.content-visible when-format="html"}
 {{< video src="analysis_ui_shots/data_analysis_movie.mp4" controls=true style="object-fit:cover; border-radius:12px; display:block; margin:auto;" >}}
@@ -36,7 +36,7 @@ Due to the online demo's limitation in local file system access, extracting feat
 FLIM Playground is built entirely in Python and is open-source. 
 
 ### Download
-Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground_bioarchive) and double-click it to run. Releases are currently available for Windows 11 and Mac OS 26. If your operating system is not either of these, you can build it yourself by following the instructions below. Code will be open-sourced after publication.
+Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground) and double-click it to run. Releases are currently available for Windows 11 and Mac OS 26. If your operating system is not either of these, you can build it yourself by following the instructions below. Code will be open-sourced after publication.
 
 ### Build it yourself
 1. Clone the repo and navigate into the repository once cloned.
