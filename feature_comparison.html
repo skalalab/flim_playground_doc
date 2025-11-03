@@ -615,7 +615,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Who is treatment and who is control matters! From the formula of <span class="math inline">\(\Delta_G\)</span>, switching the order not only flips the sign of the result, but also changes the denominator, which is <span class="math inline">\({s_{\text{control}}}\)</span>, the standard deviation of the <em>control</em>. Currently, FLIM Playground treats the group on the left as treatment and the group on the right as control (the negative <span class="math inline">\(\Delta_G\)</span> below implies this). In the future, it may support user-customizable x-axis order so that users can arrange the groups to make sure the treatment group is on the left. Or users can use <a href="#cohens-d">Cohen’s d</a> that does not assume the treatment-control structure.</p>
+<p>Who is treatment and who is control matters! From the formula of <span class="math inline">\(\Delta_G\)</span>, switching the order not only flips the sign of the result, but also changes the denominator, which is <span class="math inline">\({s_{\text{control}}}\)</span>, the standard deviation of the <em>control</em>. Currently, FLIM Playground treats the group on the left as control and the group on the right as treatment (the negative <span class="math inline">\(\Delta_G\)</span> below implies this). In the future, it may support user-customizable x-axis order so that users can arrange the groups to make sure the control group is on the left. Or users can use <a href="#cohens-d">Cohen’s d</a> that does not assume the treatment-control structure.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/glass_d.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
@@ -677,7 +677,7 @@ s_{\tilde{p}}
 <section id="comparison-annotation" class="level2" data-number="13.6">
 <h2 data-number="13.6" class="anchored" data-anchor-id="comparison-annotation"><span class="header-section-number">13.6</span> Comparison Annotation</h2>
 <p>For each selected comparison pair that exceeds the effect size threshold (if any), the statistical significance, effect size, or both are annotated on the plot. It selects the lowest eligible position (over all points in both groups and over existing annotations) to annotate. If both statistical significance and effect size calculation are performed, the annoatation is shown in the format of effect size followed by p-value. If only one is performed, then only the performed method’s result is shown.</p>
-<div class="quarto-layout-panel" data-layout-ncol="3" data-layout-align="center">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <p><img src="analysis_ui_shots/both_annot.png" class="img-fluid"></p>
