@@ -22,6 +22,8 @@ Welcome to the FLIM Playground 🥳🎉🥂! This is an interactive graphical us
 To quickly try out different analysis methods, download this [sample dataset](https://github.com/skalalab/flim_playground/blob/main/example_data/Data_Analysis/inhibitors.csv) and try the [online demo](https://flim-playground.streamlit.app/). If you prefer to use your own data, read [this chapter on data analysis configuration](#sec-data-analysis-config) to learn how to configure the system.
 
 ::: {.content-visible when-format="html"}
+A video of the Data Analysis section:
+
 {{< video src="analysis_ui_shots/data_analysis_movie.mp4" controls=true style="object-fit:cover; border-radius:12px; display:block; margin:auto;" >}}
 :::
 
@@ -29,9 +31,11 @@ To quickly try out different analysis methods, download this [sample dataset](ht
 ![](analysis_ui_shots/feature_comparison.png){width=100% fig-align=center}
 :::
 
-Due to the online demo's limitation in local file system access, extracting features from raw data is not available in the online demo. Read on to discover how FLIM Playground transforms raw fluorescence decay data into biological insight through an integrated, interactive workflow.
+Due to its limitation in local file system access, extracting features from raw data is not available in the online demo. Read on to discover how FLIM Playground transforms raw fluorescence decay data into biological insight through an integrated, interactive workflow.
 
 ::: {.content-visible when-format="html"}
+A video of the entire workflow (Data Extraction and Data Analysis):
+
 {{< video src="data_extraction_n_analysis.mp4" controls=true style="object-fit:cover; border-radius:12px; display:block; margin:auto;" >}}
 :::
 
