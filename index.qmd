@@ -118,7 +118,7 @@ Additionally, the use of FLIM is rapidly evolving, and new methods are being dev
 
 Finally, many of the existing tools especially GUI based softwares are not cross-platform, which limits their accessibility. The [Installation](#installation) addresses this last challenge.
 
-A closer parallel to FLIM Playground's integrated approach is the combination of [CellProfiler](https://cellprofiler.org/) [@cellprofiler4], which extracts per-object morphological and texture features, and [CellProfiler Analyst](https://cellprofileranalyst.org/) [@cpa21], which ingests these outputs or other feature tables for visualization and statistical analysis. However, FLIM Playground stands apart in that it can extract lifetime features from time-resolved data, alongside morphological and texture features from intensity images. Its general data analysis module incorporates FLIM-specific methods (e.g., [phasor analysis](#sec-phasor-analysis)) and provides statistical models that address additional analysis aspects such as data heterogeneity, in addition to training machine learning classifiers.
+A closer parallel to FLIM Playground's integrated approach is the combination of [CellProfiler](https://cellprofiler.org/) [@cellprofiler4], which extracts per-object morphological and texture features, and [CellProfiler Analyst](https://cellprofileranalyst.org/) [@cpa21], which ingests these outputs or other feature tables for visualization and statistical analysis. However, FLIM Playground stands apart in that it can extract lifetime features from time-resolved data, alongside morphological and texture features from intensity images. Its general Data Analysis section incorporates FLIM-specific methods (e.g., [phasor analysis](#sec-phasor-analysis)) and provides statistical models that address additional analysis aspects such as data heterogeneity, in addition to training machine learning classifiers.
  
 ## Method
 
@@ -140,7 +140,7 @@ Tabular data columns can be categorized into three feature classes:
 
 **Science, from the data perspective, is about closing the conceptual categorical gaps with quantitative measurements.**
 
-At [data levels](#data-levels), the data are processed to extract the feature classes in [Data Extraction](#sec-data-extraction), and the classes are used in the [Data Analysis](#sec-data-analysis) modules.
+At [data levels](#data-levels), the data are processed to extract the feature classes in [Data Extraction](#sec-data-extraction), and the classes are used in the [Data Analysis](#sec-data-analysis) section.
 
 ![](table1.svg){width=100% fig-align=center}
 

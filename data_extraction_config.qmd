@@ -13,7 +13,7 @@ Constructing a framework that balances flexibility and usability is about choosi
 
 ![](extraction_ui_shots/config_cat.png){width=80% fig-align=center}
 
-Categorical features are useful to organize the data into groups of interest, and will be used extensively in the [Data Analysis](#sec-data-analysis) module. Users can specify the potential categorical feature names to be extracted in the [Categorical Feature Extraction](#sec-categorical-feature-extraction) step. 
+Categorical features are useful to organize the data into groups of interest, and will be used extensively in the [Data Analysis](#sec-data-analysis) section. Users can specify the potential categorical feature names to be extracted in the [Categorical Feature Extraction](#sec-categorical-feature-extraction) step. 
 
 ### Decay Types 
 
