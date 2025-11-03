@@ -34,9 +34,9 @@ A video of the Data Analysis section:
 Due to its limitation in local file system access, extracting features from raw data is not available in the online demo. Read on to discover how FLIM Playground transforms raw fluorescence decay data into biological insight through an integrated, interactive workflow.
 
 ::: {.content-visible when-format="html"}
-A video of the entire workflow (Data Extraction and Data Analysis):
+A video of the Data Extraction section:
 
-{{< video src="data_extraction_n_analysis.mp4" controls=true style="object-fit:cover; border-radius:12px; display:block; margin:auto;" >}}
+{{< video src="extraction_ui_shots/data_extraction_movie.mp4" controls=true style="object-fit:cover; border-radius:12px; display:block; margin:auto;" >}}
 :::
 
 ## Installation
