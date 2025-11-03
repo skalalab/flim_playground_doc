@@ -70,7 +70,7 @@ $\operatorname{MAD}$ stands for median absolute deviation, a robust measure of t
 :::
 
 ::: {.callout-important}
-Who is treatment and who is control matters! From the formula of $\Delta_G$, switching the order not only flips the sign of the result, but also changes the denominator, which is ${s_{\text{control}}}$, the standard deviation of the *control*. Currently, FLIM Playground treats the group on the left as treatment and the group on the right as control (the negative $\Delta_G$ below implies this). In the future, it may support user-customizable x-axis order so that users can arrange the groups to make sure the treatment group is on the left. Or users can use [Cohen's d](#cohens-d) that does not assume the treatment-control structure.
+Who is treatment and who is control matters! From the formula of $\Delta_G$, switching the order not only flips the sign of the result, but also changes the denominator, which is ${s_{\text{control}}}$, the standard deviation of the *control*. Currently, FLIM Playground treats the group on the left as control and the group on the right as treatment (the negative $\Delta_G$ below implies this). In the future, it may support user-customizable x-axis order so that users can arrange the groups to make sure the control group is on the left. Or users can use [Cohen's d](#cohens-d) that does not assume the treatment-control structure.
 
 ![](analysis_ui_shots/glass_d.png){width=40% fig-align=center}
 :::
