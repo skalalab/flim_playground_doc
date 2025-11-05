@@ -486,7 +486,7 @@ div.csl-indent {
   <li><a href="#mask" id="toc-mask" class="nav-link" data-scroll-target="#mask"><span class="header-section-number">2.2.2</span> Mask</a></li>
   <li><a href="#irf" id="toc-irf" class="nav-link" data-scroll-target="#irf"><span class="header-section-number">2.2.3</span> IRF</a></li>
   <li><a href="#spcimage-t1" id="toc-spcimage-t1" class="nav-link" data-scroll-target="#spcimage-t1"><span class="header-section-number">2.2.4</span> SPCImage t1</a></li>
-  <li><a href="#fluorescence-lifetime-standard" id="toc-fluorescence-lifetime-standard" class="nav-link" data-scroll-target="#fluorescence-lifetime-standard"><span class="header-section-number">2.2.5</span> fluorescence lifetime standard</a></li>
+  <li><a href="#fluorescence-lifetime-standard" id="toc-fluorescence-lifetime-standard" class="nav-link" data-scroll-target="#fluorescence-lifetime-standard"><span class="header-section-number">2.2.5</span> Fluorescence Lifetime Standard</a></li>
   <li><a href="#intensity-2d" id="toc-intensity-2d" class="nav-link" data-scroll-target="#intensity-2d"><span class="header-section-number">2.2.6</span> Intensity (2D)</a></li>
   </ul></li>
   <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">2.3</span> Limitations</a></li>
@@ -528,7 +528,7 @@ div.csl-indent {
 </div>
 <ol type="1">
 <li><a href="fov_metadata.html">FOV Metadata Organization (A)</a>: each experiment session consists of multiple fields of view (FOVs). This step helps users organize the metadata of the FOVs.</li>
-<li><a href="numerical_feature_extraction.html">Numerical feature extraction (B)</a>: it calibrates and then extracts single cell numerical features.
+<li><a href="numerical_feature_extraction.html">Numerical feature extraction (B)</a>: it calibrates and then extracts single-cell numerical features.
 <ul>
 <li><a href="./numerical_feature_extraction.html#calibration">Calibration</a>
 <ul>
@@ -547,7 +547,7 @@ div.csl-indent {
 <li><a href="intensity_texture.html">Texture features</a>: calculate texture features based on the intensity image and the ROI mask.</li>
 </ul></li>
 </ul></li>
-<li><a href="categorical_feature_extraction.html">Categorical feature extraction (C)</a>: extract the categorical features such as the treatment, time point, etc based on the FOV name.</li>
+<li><a href="categorical_feature_extraction.html">Categorical feature extraction (C)</a>: extract the categorical features such as the treatment, time point, etc. based on the FOV name.</li>
 </ol>
 <ul>
 <li>Users can then upload the extracted datasets to perform <a href="data_analysis.html">Data Analysis</a>.</li>
@@ -563,7 +563,7 @@ div.csl-indent {
 <ul>
 <li><code>.csv</code>: a tabular data sheet with each row representing a cell and each column representing a time bin.</li>
 </ul></li>
-<li>3D/4D decay: besides the spatial dimensions and the time dimension, the extra dimension in the 4D array should be acquisition channels.
+<li>3D/4D decay: besides the spatial dimensions and the time dimension, the additional dimension in the 4D array represents acquisition channels.
 <ul>
 <li><code>.sdt</code>: Becker &amp; Hickl</li>
 <li><code>.ptu</code>: PicoQuant</li>
@@ -595,7 +595,7 @@ div.csl-indent {
 </ul>
 </section>
 <section id="fluorescence-lifetime-standard" class="level3" data-number="2.2.5">
-<h3 data-number="2.2.5" class="anchored" data-anchor-id="fluorescence-lifetime-standard"><span class="header-section-number">2.2.5</span> fluorescence lifetime standard</h3>
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="fluorescence-lifetime-standard"><span class="header-section-number">2.2.5</span> Fluorescence Lifetime Standard</h3>
 <p>If the fluorescence lifetime standard-based calibration is chosen, users are expected to provide the fluorescence lifetime standard file.</p>
 <ul>
 <li><code>.tiff</code>/<code>.tif</code>: a 3D array, with one dimension representing the time axis.</li>

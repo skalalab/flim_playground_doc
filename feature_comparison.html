@@ -524,7 +524,7 @@ window.Quarto = {
 </header>
 
 
-<p>This method allows users to compare the distributions of a single numerical feature across groups. It can help users spot overarching trends between distributions, identify within distribution shape-related characteristics such as skewness or bimodality that might signal sub-populations, and diagnose for potential outliers.</p>
+<p>This method allows users to compare the distributions of a single numerical feature across groups. It can help users spot overarching trends between distributions, identify within-distribution shape-related characteristics such as skewness or bimodality that might signal sub-populations, and diagnose potential outliers.</p>
 <p><img src="analysis_ui_shots/feature_comparison.png" class="img-fluid"></p>
 <section id="shared-interface-components" class="level2" data-number="13.1">
 <h2 data-number="13.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">13.1</span> Shared Interface Components</h2>
@@ -539,7 +539,7 @@ window.Quarto = {
 <h2 data-number="13.2" class="anchored" data-anchor-id="separate-by"><span class="header-section-number">13.2</span> Separate by</h2>
 <p><img src="analysis_ui_shots/separate_by_widget.png" class="img-fluid"></p>
 <p><code>Separate by</code> takes effect before <a href="./data_analysis.html#color-by"><code>Color by</code></a>. <code>Separate by</code> divides the plot into sections separated by a dashed line, with each section labeled by one of the available categories of the selected categorical feature after <a href="./data_analysis.html#filter-widgets">filtering</a>. The selected feature of <code>Separate by</code> is automatically removed from available features in <code>Color by</code>. The section order is determined by the order of the categories which are sorted <a href="./data_analysis.html#nte-order">numeric-alphabetically</a>.</p>
-<p>Then, visual channels (color, shape, opacity) and effect size annotation are applied within each section. For example, the visualization below was separated by <code>cell_line</code>, with each section labelled by the bold text of a cell line. Within each section, the x-axis rendered the <code>Color by</code> categories (<code>treatments</code>) so colors were consistent across sections. <a href="#effect-size">Effect size</a> calculation and annotation (only effect size <span class="math inline">\(&gt; 0.5\)</span> is shown) were performed within each section.</p>
+<p>Then, visual channels (color, shape, opacity) and effect size annotation are applied within each section. For example, the visualization below was separated by <code>cell_line</code>, with each section labeled by the bold text of a cell line. Within each section, the x-axis rendered the <code>Color by</code> categories (<code>treatments</code>) so colors were consistent across sections. <a href="#effect-size">Effect size</a> calculation and annotation (only effect size <span class="math inline">\(&gt; 0.5\)</span> is shown) were performed within each section.</p>
 <p><img src="analysis_ui_shots/separate_by.png" class="img-fluid"></p>
 <p>If <code>Separate by</code> is left blank and both <code>cell_line</code> and <code>treatment</code> are selected in <code>Color by</code>, then colors are assigned to each cell line and treatment combination, and effect sizes are calculated across all combinations of group pairs (only pairs with effect size <span class="math inline">\(&gt; 0.5\)</span> are shown).</p>
 <p><img src="analysis_ui_shots/no_separate_by.png" class="img-fluid"></p>
@@ -580,7 +580,7 @@ window.Quarto = {
          {s_{\text{control}}},\qquad
 s_{\text{control}}
   = \sqrt{\frac{1}{\,n_c-1\,}\sum_{i=1}^{n_c}
-           \bigl(X_{ci}-\bar{X}_{\text{control}}\bigr)^{2}}
+           \bigl(X_{control_i}-\bar{X}_{\text{control}}\bigr)^{2}}
 \]</span></p>
 <p>Median (<span class="math inline">\(\tilde{X}\)</span>) form: <span class="math display">\[
 \widetilde{\Delta}_G
@@ -588,9 +588,9 @@ s_{\text{control}}
          {\operatorname{MAD}_{\text{control}}},\qquad
 \operatorname{MAD}_{\text{control}}
   = 1.4826 \times
-    \operatorname{median}\!\bigl\lvert
-      X_{ci}-\tilde{X}_{\text{control}}
-    \bigr\rvert
+    \operatorname{median}\,\bigl\lvert
+      X_{control_i}-\tilde{X}_{\text{control}}
+    \bigr\rvert, \qquad i = 1, \ldots, n_c
 \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -602,7 +602,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><span class="math inline">\(\operatorname{MAD}\)</span> stands for median absolute deviation, a robust measure of the variability of a univariate sample. In order to make <span class="math inline">\(\operatorname{MAD}\)</span> asymptotically consistent with the standard deviation under normality, it uses <span class="math inline">\(C = 1 / \Phi^{-1}(0.75) \approx 1.4826\)</span>. Implementation-wise, it uses <code>median_abs_deviation</code> from <code>scipy.stats</code>, and <code>scale</code> option is set to <code>"normal"</code> to account for the constant multiplier <span class="math inline">\(C\)</span>.</p>
+<p><span class="math inline">\(\operatorname{MAD}\)</span> stands for median absolute deviation, a robust measure of the variability of a univariate sample. In order to make <span class="math inline">\(\operatorname{MAD}\)</span> asymptotically consistent with the standard deviation under normality, it uses <span class="math inline">\(C = 1 / \Phi^{-1}(0.75) \approx 1.4826\)</span>. Implementation-wise, it uses <code>median_abs_deviation</code> from <code>scipy.stats</code>, and <code>scale</code> option is set to <code>"normal"</code> to account for the constant multiplier <span class="math inline">\(C\)</span>. THE MEDIAN FORM of both Glass’s Delta and Cohen’s d IS NOT REPORTED IN THE LITERATURE.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -615,7 +615,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Who is treatment and who is control matters! From the formula of <span class="math inline">\(\Delta_G\)</span>, switching the order not only flips the sign of the result, but also changes the denominator, which is <span class="math inline">\({s_{\text{control}}}\)</span>, the standard deviation of the <em>control</em>. Currently, FLIM Playground treats the group on the left as control and the group on the right as treatment (the negative <span class="math inline">\(\Delta_G\)</span> below implies this). In the future, it may support user-customizable x-axis order so that users can arrange the groups to make sure the control group is on the left. Or users can use <a href="#cohens-d">Cohen’s d</a> that does not assume the treatment-control structure.</p>
+<p>Which group is treatment and which is control matters! From the formula of <span class="math inline">\(\Delta_G\)</span>, switching the order not only flips the sign of the result, but also changes the denominator, which is <span class="math inline">\({s_{\text{control}}}\)</span>, the standard deviation of the <em>control</em>. Currently, FLIM Playground treats the group on the left as control and the group on the right as treatment (the negative <span class="math inline">\(\Delta_G\)</span> below implies this). In the future, it may support user-customizable x-axis order so that users can arrange the groups to make sure the control group is on the left. Or users can use <a href="#cohens-d">Cohen’s d</a> that does not assume the treatment-control structure.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/glass_d.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
@@ -633,7 +633,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To keep the point-based visualization style that supports <a href="./data_analysis.html#unique-id-hover">interactive hover</a> while showing the violin plot like distribution, <a href="https://en.wikipedia.org/wiki/Sina_plot">Sina plot</a> is used: it uses <code>gaussian_kde</code> from <code>scikit-learn</code> to make sure the width of the point distribution is proportional to the kernel density.</p>
+<p>To keep the point-based visualization style that supports <a href="./data_analysis.html#unique-id-hover">interactive hover</a> while showing the violin-plot-like distribution, <a href="https://en.wikipedia.org/wiki/Sina_plot">Sina plot</a> is used: it uses <code>gaussian_kde</code> from <code>scikit-learn</code> to make sure the width of the point distribution is proportional to the kernel density.</p>
 </div>
 </div>
 </section>
@@ -676,8 +676,8 @@ s_{\tilde{p}}
 </section>
 <section id="comparison-annotation" class="level2" data-number="13.6">
 <h2 data-number="13.6" class="anchored" data-anchor-id="comparison-annotation"><span class="header-section-number">13.6</span> Comparison Annotation</h2>
-<p>For each selected comparison pair that exceeds the effect size threshold (if any), the statistical significance, effect size, or both are annotated on the plot. It selects the lowest eligible position (over all points in both groups and over existing annotations) to annotate. If both statistical significance and effect size calculation are performed, the annoatation is shown in the format of effect size followed by p-value. If only one is performed, then only the performed method’s result is shown.</p>
-<div class="quarto-layout-panel" data-layout-align="center" data-layout-ncol="3">
+<p>For each selected comparison pair that exceeds the effect size threshold (if any), the statistical significance, effect size, or both are annotated on the plot. It selects the lowest eligible position (over all points in both groups and over existing annotations) to annotate. If both statistical significance and effect size calculation are performed, the annotation is shown in the format of effect size followed by p-value. If only one is performed, then only the performed method’s result is shown.</p>
+<div class="quarto-layout-panel" data-layout-ncol="3" data-layout-align="center">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <p><img src="analysis_ui_shots/both_annot.png" class="img-fluid"></p>

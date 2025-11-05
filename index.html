@@ -558,7 +558,7 @@ div.csl-indent {
 <p>To quickly try out different analysis methods, download this <a href="https://github.com/skalalab/flim_playground/blob/main/example_data/Data_Analysis/inhibitors.csv">sample dataset</a> and try the <a href="https://flim-playground.streamlit.app/">online demo</a>. If you prefer to use your own data, read <a href="data_analysis_config.html">this chapter on data analysis configuration</a> to learn how to configure the system.</p>
 <p>A video of the Data Analysis section:</p>
 <div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="analysis_ui_shots/data_analysis.mp4"></video></div>
-<p>Due to its limitation in local file system access, extracting features from raw data is not available in the online demo. Read on to discover how FLIM Playground transforms raw fluorescence decay data into biological insight through an integrated, interactive workflow.</p>
+<p>Due to the limitation in local file system access, extracting features from raw data is not available in the online demo. Read on to discover how FLIM Playground transforms raw fluorescence decay data into biological insight through an integrated, interactive workflow.</p>
 <p>A video of the Data Extraction section:</p>
 <div class="quarto-video"><video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="extraction_ui_shots/data_extraction.mp4"></video></div>
 <section id="installation" class="level2" data-number="1.1">
@@ -566,7 +566,7 @@ div.csl-indent {
 <p>FLIM Playground is built entirely in Python and is open-source.</p>
 <section id="download" class="level3" data-number="1.1.1">
 <h3 data-number="1.1.1" class="anchored" data-anchor-id="download"><span class="header-section-number">1.1.1</span> Download</h3>
-<p>Download the desktop app from <a href="https://github.com/skalalab/flim_playground">GitHub</a> and double-click it to run. Releases are currently available for Windows 11 and Mac OS 26. If your operating system is not either of these, you can build it yourself by following the instructions below. Code will be open-sourced after publication.</p>
+<p>Download the desktop app from <a href="https://github.com/skalalab/flim_playground">GitHub</a> and double-click it to run. Releases are currently available for Windows 11 and Mac OS 26. If your operating system is not either of these, you can build it yourself by following the instructions below.</p>
 </section>
 <section id="build-it-yourself" class="level3" data-number="1.1.2">
 <h3 data-number="1.1.2" class="anchored" data-anchor-id="build-it-yourself"><span class="header-section-number">1.1.2</span> Build it yourself</h3>
@@ -586,7 +586,7 @@ div.csl-indent {
 </section>
 <section id="introduction" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.2</span> Introduction</h2>
-<p>Fluorescence lifetime imaging microscopy (FLIM) measures the time it takes for a fluorescent molecule to emit light (return to the ground state) after being excited by a pulse of light (enter excited state). It is sensitive to changes in fluorophore microenvironment including, pH, temperature, and conformational changes due to protein-binding and the presence of quenchers<span class="citation" data-cites="datta2020"><sup><a href="#ref-datta2020" role="doc-biblioref">1</a></sup></span>. Coupled with modern automated cell-segmentation methods<span class="citation" data-cites="stringer2021"><sup><a href="#ref-stringer2021" role="doc-biblioref">2</a></sup></span>, FLIM enables single-cell analyses that can reveal biological heterogeneity.</p>
+<p>Fluorescence lifetime imaging microscopy (FLIM) measures the time it takes for a fluorescent molecule to emit light (return to the ground state) after being excited by a pulse of light (enter the excited state). It is sensitive to changes in fluorophore microenvironment including, pH, temperature, and conformational changes due to protein-binding and the presence of quenchers<span class="citation" data-cites="datta2020"><sup><a href="#ref-datta2020" role="doc-biblioref">1</a></sup></span>. Coupled with modern automated cell-segmentation methods<span class="citation" data-cites="stringer2021"><sup><a href="#ref-stringer2021" role="doc-biblioref">2</a></sup></span>, FLIM enables single-cell analyses that can reveal biological heterogeneity.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -607,7 +607,7 @@ div.csl-indent {
 </section>
 <section id="challenges" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="challenges"><span class="header-section-number">1.3</span> Challenges</h2>
-<p>A diverse set of <a href="https://www.phasorpy.org/docs/stable/phasor_approach/#software">tools</a> — both open-source and commercial, ranging from libraries to code-free graphical user interfaces (GUIs) — are available to extract and analyze FLIM data, providing alternative methods and therefore flexibility to FLIM researchers. Examples include <a href="https://www.phasorpy.org/">PhasorPy</a><span class="citation" data-cites="phasorpy25"><sup><a href="#ref-phasorpy25" role="doc-biblioref">3</a></sup></span>, an open-source library for analyzing fluorescence lifetime using the phasor approach; <a href="https://github.com/LaboratoryOpticsBiosciences/FLUTE">FLUTE</a><span class="citation" data-cites="flute23"><sup><a href="#ref-flute23" role="doc-biblioref">4</a></sup></span>, an open-source GUI for interactive phasor analysis; <a href="https://github.com/SofiaKapsiani/FLIMPA">FLIMPA</a><span class="citation" data-cites="flimpa2025"><sup><a href="#ref-flimpa2025" role="doc-biblioref">5</a></sup></span>, an open-source phasor analysis GUI enabling batch processing, ROI-based quantification, and experiment-level comparison through manual assignment; <a href="https://flimlib.github.io/">FLIMLib</a>, an open-source generic curve fitting library that can be used to fit fluorescence lifetime decay data; <a href="https://www.becker-hickl.com/products/spcimage/">SPCImage</a><span class="citation" data-cites="becker2021"><sup><a href="#ref-becker2021" role="doc-biblioref">6</a></sup></span>, a commercial software for fitting and phasor features.</p>
+<p>A diverse set of <a href="https://www.phasorpy.org/docs/stable/phasor_approach/#software">tools</a> — both open-source and commercial, ranging from libraries to code-free graphical user interfaces (GUIs) — is available to extract and analyze FLIM data, providing alternative methods and therefore flexibility to FLIM researchers. Examples include <a href="https://www.phasorpy.org/">PhasorPy</a><span class="citation" data-cites="phasorpy25"><sup><a href="#ref-phasorpy25" role="doc-biblioref">3</a></sup></span>, an open-source library for analyzing fluorescence lifetime using the phasor approach; <a href="https://github.com/LaboratoryOpticsBiosciences/FLUTE">FLUTE</a><span class="citation" data-cites="flute23"><sup><a href="#ref-flute23" role="doc-biblioref">4</a></sup></span>, an open-source GUI for interactive phasor analysis; <a href="https://github.com/SofiaKapsiani/FLIMPA">FLIMPA</a><span class="citation" data-cites="flimpa2025"><sup><a href="#ref-flimpa2025" role="doc-biblioref">5</a></sup></span>, an open-source phasor analysis GUI enabling batch processing, ROI-based quantification, and experiment-level comparison through manual assignment; <a href="https://flimlib.github.io/">FLIMLib</a>, an open-source generic curve fitting library that can be used to fit fluorescence lifetime decay data; <a href="https://www.becker-hickl.com/products/spcimage/">SPCImage</a><span class="citation" data-cites="becker2021"><sup><a href="#ref-becker2021" role="doc-biblioref">6</a></sup></span>, a commercial software for fitting and phasor features.</p>
 <p>However, while some tools offer code-free interfaces, users still need to write custom code—either to prepare data in the proper format as input, or to further process their outputs for downstream analysis. The fragmentation between tools arises because each focuses on only a subset of data levels: pixel, cell ROI, channel, field of view, and experiment.</p>
 <section id="data-levels" class="level3" data-number="1.3.1">
 <h3 data-number="1.3.1" class="anchored" data-anchor-id="data-levels"><span class="header-section-number">1.3.1</span> Data Levels</h3>
@@ -638,7 +638,7 @@ div.csl-indent {
 </ul>
 <p>An integrated framework should take into account all data levels <span style="color: #1f77b4;">■</span> <span style="color: #ff7f0e;">■</span> <span style="color: #2ca02c;">■</span> <span style="color: #d62728;">■</span> <span style="color: #9467bd;">■</span> (•) while maintaining the flexibility to handle various input types (◦). <strong>It should provide a level of abstraction to address fragmentation from data levels and input types</strong>.</p>
 <p>Additionally, the use of FLIM is rapidly evolving, and new methods are being developed all the time. An integrated framework should allow users to choose among alternative methods seamlessly, be the backbone of iterative explorations integral to research, and be ready to incorporate new methods: <strong>The provided level of abstraction should address fragmentation from extraction and analysis methods</strong>.</p>
-<p>Finally, many of the existing tools especially GUI based softwares are not cross-platform, which limits their accessibility. The <a href="#installation">Installation</a> addresses this last challenge.</p>
+<p>Finally, many of the existing tools, including GUI-based software, are not cross-platform, which limits their accessibility. The <a href="#installation">Installation</a> addresses this last challenge.</p>
 <p>A closer parallel to FLIM Playground’s integrated approach is the combination of <a href="https://cellprofiler.org/">CellProfiler</a><span class="citation" data-cites="cellprofiler4"><sup><a href="#ref-cellprofiler4" role="doc-biblioref">7</a></sup></span>, which extracts per-object morphological and texture features, and <a href="https://cellprofileranalyst.org/">CellProfiler Analyst</a><span class="citation" data-cites="cpa21"><sup><a href="#ref-cpa21" role="doc-biblioref">8</a></sup></span>, which ingests these outputs or other feature tables for visualization and statistical analysis. However, FLIM Playground stands apart in that it can extract lifetime features from time-resolved data, alongside morphological and texture features from intensity images. Its general Data Analysis section incorporates FLIM-specific methods (e.g., <a href="phasor_analysis.html">phasor analysis</a>) and provides statistical models that address additional analysis aspects such as data heterogeneity, in addition to training machine learning classifiers.</p>
 </section>
 </section>
@@ -676,7 +676,7 @@ div.csl-indent {
 <li><a href="fov_metadata.html">Metadata organization (B)</a>: extracts the field of view <span style="color: #C94146;">identifiers</span> and their configurations</li>
 <li><a href="numerical_feature_extraction.html">Numerical Feature Extraction</a>: extracts single-cell <span style="color: #D3AE4A;">numerical features</span> based on user-selected extractors. More extractors can be integrated in the future.
 <ul>
-<li><a href="#sec-calibration">Calibration (C)</a>: calibrate for IRF shift or use fluorescence lifetime standard</li>
+<li><a href="./numerical_feature_extraction.html#calibration">Calibration (C)</a>: calibrate for IRF shift or use fluorescence lifetime standard for phasor extraction</li>
 <li>Alternative lifetime extractors (D):
 <ul>
 <li><a href="lifetime_fit.html">Fitting</a></li>
@@ -705,7 +705,7 @@ div.csl-indent {
 <li><a href="feature_histogram.html">Feature Histogram</a></li>
 <li><a href="fov_comparison.html">Field of View Comparison</a></li>
 </ul></li>
-<li><a href="#data_analysis.qmd#bivariate-analysis">Bivariate analysis</a>
+<li><a href="./data_analysis.html#bivariate-analysis">Bivariate analysis</a>
 <ul>
 <li><a href="feature_distribution.html">Feature Distribution</a></li>
 <li><a href="phasor_analysis.html">Phasor Analysis</a></li>
@@ -716,12 +716,12 @@ div.csl-indent {
 <li><a href="classification.html">Classification</a></li>
 </ul></li>
 </ul>
-<p>Both sections are built in Python and built as self-contained executables ready to run on major operating systems and in browsers (<strong>H</strong>).</p>
+<p>Both sections are built in Python and as self-contained executables ready to run on major operating systems and in browsers (<strong>H</strong>).</p>
 </section>
 </section>
 <section id="summary" class="level3" data-number="1.4.3">
 <h3 data-number="1.4.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">1.4.3</span> Summary</h3>
-<p><strong>FLIM Playground</strong> resolves these <a href="#challenges">challenges</a> with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and has a built-in repertoire of analytical methods with interactive widgets that encourage hypothesis driven, iterative exploration of large datasets. It is built on a modular architecture that enables incorporation of new algorithms in the future.</p>
+<p><strong>FLIM Playground</strong> resolves these <a href="#challenges">challenges</a> with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and has a built-in repertoire of analytical methods with interactive widgets that encourage hypothesis-driven, iterative exploration of large datasets. It is built on a modular architecture that enables incorporation of new algorithms in the future.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">

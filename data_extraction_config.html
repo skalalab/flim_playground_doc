@@ -536,7 +536,7 @@ Note
 <p>Users can configure the system once, and it will be applied to future data.</p>
 </div>
 </div>
-<p>Constructing a framework that balances flexibility and usability is about choosing the right abstraction level. FLIM Playground chooses acquisition <em>channel</em> from <a href="./index.html#data-levels">data levels</a> as the focus and adopt the <strong>channel-centric framework</strong>. Settings are divided into two categories: <a href="#cross-channel-configurations">cross-channel configurations</a> and <a href="#per-channel-configurations">per-channel configurations</a>.</p>
+<p>Constructing a framework that balances flexibility and usability is about choosing the right abstraction level. FLIM Playground chooses acquisition <em>channel</em> from <a href="./index.html#data-levels">data levels</a> as the focus and adopts the <strong>channel-centric framework</strong>. Settings are divided into two categories: <a href="#cross-channel-configurations">cross-channel configurations</a> and <a href="#per-channel-configurations">per-channel configurations</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="extraction_ui_shots/config.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
@@ -558,11 +558,11 @@ Note
 <p>FLIM Playground supports different decay types, including 2D decay, 3D/4D decay, and 3D/4D pixel-prefitted decay, through user specification.</p>
 <section id="two-d-decay" class="level4">
 <h4 class="anchored" data-anchor-id="two-d-decay">2D Decay</h4>
-<p>In the system developed by Samimi et al.<span class="citation" data-cites="Samimi2024"><sup><a href="#ref-Samimi2024" role="doc-biblioref">1</a></sup></span>, single cells flow through and a decay curve is acquired for each cell by aggregating all the photon arrival time delays deemed to be from the same cell. In exchange of spatial distribution, the acquisition speed is increased enormously. The output of the system is a tabular data sheet with each row representing a cell and each column representing a time bin. <strong>FLIM Playground currently supports 2D decay in the CSV format.</strong></p>
+<p>In the system developed by Samimi et al.<span class="citation" data-cites="Samimi2024"><sup><a href="#ref-Samimi2024" role="doc-biblioref">1</a></sup></span>, single cells flow through and a decay curve is acquired for each cell by aggregating all the photon arrival time delays deemed to be from the same cell. In exchange for spatial distribution, the acquisition speed is increased enormously. The output of the system is a tabular data sheet with each row representing a cell and each column representing a time bin. <strong>FLIM Playground currently supports 2D decay in the CSV format.</strong></p>
 </section>
 <section id="three-d4d-decay" class="level4">
 <h4 class="anchored" data-anchor-id="three-d4d-decay">3D/4D Decay</h4>
-<p>In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g.&nbsp;<code>.sdt</code>, <code>.ptu</code>). In addition to the spatial dimensions and the time dimension (<code>XYT</code>), the channel dimension may also be present, making it 4 dimensional (<code>CXYT</code>). Some systems can also record a time stack, making it has at most 5 dimensions. <strong>FLIM Playground currently supports both <code>.sdt</code> and <code>.ptu</code> files up to 4 dimensions.</strong> It reads the <code>duration</code> and the number of <code>time bins</code> from decay file metadata.</p>
+<p>In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g.&nbsp;<code>.sdt</code>, <code>.ptu</code>). In addition to the spatial dimensions and the time dimension (<code>XYT</code>), the channel dimension may also be present, making it 4-dimensional (<code>CXYT</code>). <strong>FLIM Playground currently supports both <code>.sdt</code> and <code>.ptu</code> files up to those 4 dimensions.</strong> It reads the <code>duration</code> and the number of <code>time bins</code> from the decay file metadata. Some systems can also record a time stack, which is not supported yet.</p>
 </section>
 <section id="three-d4d-pixel-prefitted" class="level4">
 <h4 class="anchored" data-anchor-id="three-d4d-pixel-prefitted">3D/4D pixel-prefitted</h4>
@@ -578,18 +578,18 @@ Note
 </div>
 <section id="cell-identifier" class="level4">
 <h4 class="anchored" data-anchor-id="cell-identifier">Cell Identifier</h4>
-<p>Users can specify the column name for the unique identifier of the cell to be stored in the output dataset. The cell identifier is constructed as <code>{FOV Identifier}_{cell_label}</code>, where the <code>cell_label</code> is the unique integer label in the mask or the row number if the decay type is <a href="#2d-decay">2D decay</a>.</p>
+<p>Users can specify the column name for the unique identifier of the cell to be stored in the output dataset. The cell identifier is constructed as <code>{FOV Identifier}_{cell_label}</code>, where the <code>cell_label</code> is the unique integer label in the mask or the row number if the decay type is <a href="#two-d-decay">2D decay</a>.</p>
 </section>
 <section id="fov-identifier" class="level4">
 <h4 class="anchored" data-anchor-id="fov-identifier">FOV Identifier</h4>
-<p>Users can specify the column name for the field of view identifier. If the decay type is <a href="#2d-decay">2D decay</a>, users may want to specify the column name as <code>exp_name</code>, because the FOV is not image but an experiment.</p>
+<p>Users can specify the column name for the field of view identifier. If the decay type is <a href="#two-d-decay">2D decay</a>, users may want to specify the column name as <code>exp_name</code>, because the FOV is not an image.</p>
 </section>
 </section>
 <section id="decay-info" class="level3" data-number="3.1.4">
 <h3 data-number="3.1.4" class="anchored" data-anchor-id="decay-info"><span class="header-section-number">3.1.4</span> Decay Info</h3>
 <section id="laser-frequency" class="level4">
 <h4 class="anchored" data-anchor-id="laser-frequency">Laser frequency</h4>
-<p>Users can specify the laser frequency in GHz. For example, 0.8 GHz equals to 80 MHz. It will be used in the <a href="phasor_analysis.html">phasor analysis</a>. If you do not intend to use the phasor analysis, you can fill in any number.</p>
+<p>Users can specify the laser frequency in GHz. For example, 0.08 GHz equals 80 MHz. It will be used in the <a href="phasor_analysis.html">phasor analysis</a>. If you do not intend to use the phasor analysis, you can fill in any number.</p>
 </section>
 <section id="d-decay-specific" class="level4">
 <h4 class="anchored" data-anchor-id="d-decay-specific">2D Decay-specific</h4>
@@ -608,7 +608,7 @@ Note
 <li><a href="./numerical_feature_extraction.html#irf-shift">IRF shift-based calibration</a></li>
 <li><a href="./numerical_feature_extraction.html#fluorescence-lifetime-standard">fluorescence lifetime standard-based calibration</a></li>
 </ul>
-<p>Since instrumental response function (IRF) or the fluorescence lifetime standard is measured for each channel, they are set in the <a href="#per-channel-configurations">per-channel configurations</a>. The fluorescence lifetime standard’s lifetime is channel-agnostic.</p>
+<p>Since the instrumental response function (IRF) or the fluorescence lifetime standard is measured for each channel, they are set in the <a href="#per-channel-configurations">per-channel configurations</a>. The fluorescence lifetime standard’s lifetime is channel-agnostic.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="extraction_ui_shots/config_calibration.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
@@ -635,8 +635,8 @@ Note
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="imaging-modality"><span class="header-section-number">3.2.2</span> Imaging Modality</h3>
 <p>Users can specify the imaging modality for each channel. Currently, two modalities are supported:</p>
 <ul>
-<li><code>FLIM</code>: The signal is time resolved, i.e., has a time dimension, and expected to be from one of the <a href="./data_extraction_config.html#decay-types">decay types</a>.</li>
-<li><code>Intensity-only</code>: The signal is a spatial map of intensity values (2 spatial dimensions), i.e., has no time dimension. <strong>Currently, the only supported signal type is a 2D intensity .<code>tiff/.tif</code> image.</strong></li>
+<li><code>FLIM</code>: The signal is time-resolved, i.e., has a time dimension, and is expected to be from one of the <a href="./data_extraction_config.html#decay-types">decay types</a>.</li>
+<li><code>Intensity-only</code>: The signal is a spatial map of intensity values (2 spatial dimensions), i.e., has no time dimension. <strong>Currently, the only supported signal type is a 2D intensity image in the format of <code>.tiff/.tif</code>.</strong></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -703,7 +703,7 @@ Note
 <p><img src="extraction_ui_shots/config_intensity_feature_extractor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
-<p>Each channel can be assigned with its own set of feature extractors. For example, if users do not intend to do lifetime extraction, they can de-select the <code>Lifetime fit</code> and <code>Lifetime fit free</code> options.</p>
+<p>Each channel can be assigned its own set of feature extractors. For example, if users do not intend to do lifetime extraction, they can de-select the <code>Lifetime fit</code> and <code>Lifetime fit free</code> options.</p>
 </section>
 <section id="number-of-components" class="level3" data-number="3.2.4">
 <h3 data-number="3.2.4" class="anchored" data-anchor-id="number-of-components"><span class="header-section-number">3.2.4</span> Number of Components</h3>

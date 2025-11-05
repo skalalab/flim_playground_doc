@@ -551,7 +551,7 @@ window.Quarto = {
 <p><img src="analysis_ui_shots/kmeans_config.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
 </div>
-<p>K-means clustering is performed given the number of clusters specified for each color group. Mathematically, it is an iterative algorithm that finds the best cluster assignment: what cluster with what centroid each point belongs to. The <em>best</em> is defined as the one that minimizes the sum of the squared distances between each point and the center of the cluster it belongs to.</p>
+<p>K-means clustering is performed given the number of clusters specified for each color group. Mathematically, it is an iterative algorithm that finds the best cluster assignment with regard to what cluster each point belongs to and what centroid the cluster has. The <em>best</em> is defined as the one that minimizes the sum of the squared distances between each point and the center of the cluster it belongs to.</p>
 <p><span class="math display">\[
 \min_{\{C_k\}_{k=1}^K}\;\sum_{k=1}^K\sum_{x_i\in C_k}\bigl\lVert x_i-\mu(C_k)\bigr\rVert_2^2,
 \qquad
@@ -573,7 +573,7 @@ window.Quarto = {
 <p><img src="analysis_ui_shots/k_means_download.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%"></p>
 </figure>
 </div>
-<p>The downloaded dataset keeps all the features plus the new categorical feature column (<code>k_means_cluster</code>), which is recognized by any method in Data Analysis as a categorical feature like others, and rows that pass the <a href="./data_analysis.html#filter-widgets">filters</a>.</p>
+<p>The downloaded dataset keeps all the features plus the new categorical feature column (<code>k_means_cluster</code>), which is recognized by any method in Data Analysis as a categorical feature like others. The rows that pass the <a href="./data_analysis.html#filter-widgets">filters</a> are included.</p>
 
 
 </section>

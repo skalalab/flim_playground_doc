@@ -543,7 +543,7 @@ window.Quarto = {
 </header>
 
 
-<p>Feature histograms give an instant read-out of each group’s center, spread, skew and any multi-peaked shape that raw tables hide. FLIM Playground plots a histogram for each group based on the selected numerical feature. Additionally, the <a href="#gaussian-mixture-model-mode">Gaussian Mixture Model</a> mode can help find subcomponents of each histogram in an unsupervised way. To quantify the distribution heterogeneity, normalized <a href="#heterogeneity-index">H-index</a> is calculated for each group.</p>
+<p>Feature histograms give an instant readout of each group’s center, spread, skew and any multi-peaked shape that raw tables hide. FLIM Playground plots a histogram for each group based on the selected numerical feature. Additionally, the <a href="#gaussian-mixture-model-mode">Gaussian Mixture Model</a> mode can help find subcomponents of each histogram in an unsupervised way. To quantify the distribution heterogeneity, normalized <a href="#heterogeneity-index">H-index</a> is calculated for each group.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/feature_histogram.png" id="feature-histogram-img" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" data-fig-cap="Histogram Mode"></p>
@@ -566,7 +566,7 @@ window.Quarto = {
 <p><img src="analysis_ui_shots/gmm_switch.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
 </div>
-<p>Histogram mode plots a histogram of the selected numerical feature for each group. The histogram bin width is user-controllable, with default bin width determined automatically as the minimum bin width between the ‘sturges’ and ‘fd’ estimators (see <a href="https://numpy.org/devdocs/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges">here</a> for more details). The maximum bin width is set to <span class="math inline">\(1/3\)</span> the range of the data. The step size is set to <span class="math inline">\(1/50\)</span> of the range.</p>
+<p>Histogram mode plots a histogram of the selected numerical feature for each group. The histogram bin width is user-controllable, with the default bin width determined automatically as the minimum bin width between the ‘sturges’ and ‘fd’ estimators (see <a href="https://numpy.org/devdocs/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges">here</a> for more details). The maximum bin width is set to one-third of the range of the data. The step size is set to <span class="math inline">\(1/50\)</span> of the range.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/feature_histogram_mode.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%"></p>
@@ -601,9 +601,9 @@ window.Quarto = {
 </figure>
 </div>
 <ul>
-<li>Set “Max Components”: fit GMM on the selected numerical feature up to <code>Max Components</code> components, each of which has its component weights (<span class="math inline">\(w_i\)</span>), means (<span class="math inline">\(\mu_i\)</span>) and variances (<span class="math inline">\(\sigma_i^2\)</span>).</li>
-<li>Set “Min Weight Threshold”: keep only the <em>valid</em> models that contain components that have at least <code>Min Weight Threshold</code> weights (the weights of all components add to 1)</li>
-<li>FLIM Playground will choose the valid model with the lowest BIC score that penalizes the model complexity to avoid overfitting</li>
+<li>Fits GMMs on the selected numerical feature up to <code>Max Components</code> components, each of which has its component weights (<span class="math inline">\(w_i\)</span>), means (<span class="math inline">\(\mu_i\)</span>) and variances (<span class="math inline">\(\sigma_i^2\)</span>).</li>
+<li>Retains only <em>valid</em> models in which every component has weight at least <code>Min Weight Threshold</code> (the weights of all components add to 1).</li>
+<li>FLIM Playground will choose the valid model with the lowest BIC score that penalizes the model complexity to avoid overfitting.</li>
 </ul>
 </section>
 <section id="heterogeneity-index" class="level3" data-number="14.3.2">
@@ -632,7 +632,7 @@ H =\sum_{i=1}^{k}\bigl(-w_i \log w_i\bigr)\,d_i, \qquad d_i \;=\;
                       \;=\;
                       w_2\,\mathcal{N}(x;\mu_2,\sigma_2^2)
                       \]</span> where <span class="math inline">\(w_1, \mu_1, \sigma_1\)</span> are the mixture weight, mean, and standard deviation of the first Gaussian component, respectively, and <span class="math inline">\(w_2, \mu_2, \sigma_2\)</span> those of the second component.</li>
-<li>The above equation can be formed as a quadratic equation and be solved for the unique root lying between <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>. In practice, we bracket this interval and apply a robust one‐dimensional root-finding routine (e.g.&nbsp;Brent’s method) to compute intersection points. Data points are then assigned to the class corresponding to the interval in which they fall.</li>
+<li>The above equation can be formed as a quadratic equation and solved for the unique root lying between <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>. In practice, we bracket this interval and apply a robust one‐dimensional root-finding routine (e.g.&nbsp;Brent’s method) to compute intersection points. Data points are then assigned to the class corresponding to the interval in which they fall.</li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -673,7 +673,7 @@ Important
 <p><img src="analysis_ui_shots/gmm_example.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
-<p>suggesting that optical metabolic imaging (OMI) could serve as an early, non-destructive indicator of T cell viability post-thaw.</p>
+<p>It suggests that optical metabolic imaging (OMI) could serve as an early, non-destructive indicator of T cell viability post-thaw.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">

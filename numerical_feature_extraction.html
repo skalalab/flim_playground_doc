@@ -547,18 +547,18 @@ window.Quarto = {
 <ul>
 <li><a href="lifetime_fit.html">Lifetime fit</a>: fit exponential models to decay curves to estimate lifetimes and their fractional contributions by minimizing an objective function.</li>
 <li><a href="lifetime_fit_free.html">Lifetime fit free</a>: transform decay curves to phasor space using Fourier transform to obtain phasor coordinates.</li>
-<li><a href="intensity_morphology.html">Intensity Morphology</a>: morphological features of single cell ROI masks</li>
-<li><a href="intensity_texture.html">Intensity Texture</a>: texture features of single cell ROI intensity images</li>
+<li><a href="intensity_morphology.html">Intensity Morphology</a>: morphological features of single-cell ROI masks</li>
+<li><a href="intensity_texture.html">Intensity Texture</a>: texture features of single-cell ROI intensity images</li>
 </ul>
 <section id="input" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="input"><span class="header-section-number">5.1</span> Input</h2>
-<p>A csv extracted in the <a href="fov_metadata.html">fov metadata extraction</a> step that contains the metadata of the FOVs including:</p>
+<p>A CSV file extracted in the <a href="fov_metadata.html">fov metadata extraction</a> step that contains the metadata of the FOVs including:</p>
 <ul>
 <li><a href="./fov_metadata.html#fov-file-paths">required file paths</a></li>
 <li><a href="./fov_metadata.html#decay-type">decay type</a></li>
 <li><a href="./fov_metadata.html#decay-info">decay info</a></li>
 <li><a href="./fov_metadata.html#feature-extractors">selected feature extractors</a> for each channel</li>
-<li><a href="./data_extraction_config.html#calibration-method">fit free calibration method</a>(if fit free calibration is required)</li>
+<li><a href="./data_extraction_config.html#calibration-method">fit free calibration method</a> (if fit free calibration is required)</li>
 </ul>
 <p>Users can either upload a previously extracted metadata file (left), or use the cached metadata file just extracted in the <a href="fov_metadata.html">fov metadata extraction</a> step (right).</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
@@ -582,17 +582,17 @@ window.Quarto = {
 <p>It is performed in two steps:</p>
 <ol type="1">
 <li>Gather the high signal-to-noise ratio (SNR) decay curves</li>
-<li>For each curve, perform reconvolution fitting and set shift value as the free parameter to be optimized/fitted.</li>
+<li>For each curve, perform reconvolution fitting and set the shift value as the free parameter to be optimized/fitted.</li>
 </ol>
-<p>The distribution of the shift values is displayed as an interactive scatter plot. When clicking on a point, the corresponding decay curve with the fitted curve and the key statistics are displayed for diagnostics. Based on the distribution or using certain prior knowledge, users can specify the shift value applied to all field of views (if <code>Fix the Shift</code> is selected, see <a href="#fitting-options">fitting options</a>), or use the fov-specific shift value found by the fitting (if <code>Fix the Shift</code> is deselected).</p>
+<p>The distribution of the shift values is displayed as an interactive scatter plot. When clicking on a point, the corresponding decay curve with the fitted curve and the key statistics are displayed for diagnostics. Based on the distribution or using certain prior knowledge, users can specify the shift value applied to all fields of view (if <code>Fix the Shift</code> is selected, see <a href="#fitting-options">fitting options</a>), or use the fov-specific shift value found by the fitting (if <code>Fix the Shift</code> is deselected).</p>
 <p><img src="extraction_ui_shots/irf_shift.png" id="irf-shift" class="img-fluid"></p>
 <section id="gather-high-snr-decay-curves" class="level4">
 <h4 class="anchored" data-anchor-id="gather-high-snr-decay-curves">Gather High SNR Decay Curves</h4>
-<p>The high SNR decay curves are constructed automatically based on the <a href="./data_extraction_config.html#decay-types">decay type</a>. If it is in <a href="./data_extraction_config.html#two-d-decay">2D format</a>, a total of the brightest 30 curves that are below <code>100000</code> photons are selected and evenly distributed across all field of views (one csv file is considered as one FOV). If it is in <a href="./data_extraction_config.html#three-d4d-decay">3D/4D format</a>, the field of views are images, and one curve is constructed for each image that includes all the non-zero pixels within the <a href="./data_extraction.html#mask">ROI mask</a>.</p>
+<p>The high SNR decay curves are constructed automatically based on the <a href="./data_extraction_config.html#decay-types">decay type</a>. If it is in <a href="./data_extraction_config.html#two-d-decay">2D format</a>, a total of the brightest 30 curves that are below <code>100000</code> photons are selected and evenly distributed across all fields of view (one CSV file is considered as one FOV). If it is in <a href="./data_extraction_config.html#three-d4d-decay">3D/4D format</a>, the fields of view are images, and one curve is constructed for each image that includes all the non-zero pixels within the <a href="./data_extraction.html#mask">ROI mask</a>.</p>
 </section>
 <section id="reconvolution-fitting" class="level4">
 <h4 class="anchored" data-anchor-id="reconvolution-fitting">Reconvolution Fitting</h4>
-<p>Fitting is essentially an optimization problem: it minimizes the difference between the fitted curve and the measured curve. The fitted curve is modeled by a <span class="math inline">\(n^{th}\)</span> component exponential function convolved with the shifted IRF, and the difference is modeled as an objective metric. Therefore, users are provided with controls over two parts of the fitting process through the <a href="#fitting-options">fitting options panel</a>:</p>
+<p>Fitting is essentially an optimization problem: it minimizes the difference between the fitted curve and the measured curve. The fitted curve is modeled by an <span class="math inline">\(n^{th}\)</span> component exponential function convolved with the shifted IRF, and the difference is modeled as an objective metric. Therefore, users are provided with controls over two parts of the fitting process through the <a href="#fitting-options">fitting options panel</a>:</p>
 <ol type="1">
 <li>How to construct the objective metric</li>
 <li>How to perform the optimization</li>
@@ -607,21 +607,21 @@ window.Quarto = {
 <p>Let’s break down the fitting options one by one.</p>
 <section id="number-of-components" class="level5">
 <h5 class="anchored" data-anchor-id="number-of-components">Number of Components</h5>
-<p>The number <span class="math inline">\(n\)</span> in the <span class="math inline">\(n^{th}\)</span> component exponential function: <span class="math display">\[% Generic (non-normalized) n-exponential decay
+<p>The number <span class="math inline">\(n\)</span> in the <span class="math inline">\(n^{th}\)</span> component exponential function: <span class="math display">\[
 I(\mathbf{t})=\sum_{i=1}^{n} A_i\, e^{-\mathbf{t}/\tau_i}, \qquad \tau_i&gt;0
 \]</span></p>
 <p>Therefore, <span class="math inline">\(n\)</span> determines the parameters to be fitted: the amplitudes <span class="math inline">\(A_i\)</span> and the lifetimes <span class="math inline">\(\tau_i\)</span>. <span class="math inline">\(\mathbf{t}\)</span> is the time axis of the decay curve calculated by the <code>duration</code> and <code>time bins</code> from the <a href="./fov_metadata.html#decay-info">decay info</a>: <span class="math display">\[\mathbf{t}=\bigl[0,\ \Delta t,\ 2\Delta t,\ \ldots,\ (N-1)\Delta t\bigr],
-\quad \text{where }\Delta t=\frac{T}{K}.
+\quad \text{where }\Delta t=\frac{T}{N}.
 \]</span></p>
 <p>It supports <span class="math inline">\(n=1,2,3\)</span> components.</p>
-<p>Additionally, the constant offset parameter (<span class="math inline">\(Z\)</span>) that represents a time independent background (i.e., room light) is also optimized<span class="citation" data-cites="warren2013"><sup><a href="#ref-warren2013" role="doc-biblioref">1</a></sup></span>.</p>
+<p>Additionally, the constant offset parameter (<span class="math inline">\(Z\)</span>) that represents a time-independent background (i.e., room light) is also optimized<span class="citation" data-cites="warren2013"><sup><a href="#ref-warren2013" role="doc-biblioref">1</a></sup></span>.</p>
 <p><span class="math display">\[
 \hat{y}(t) = [I(t) \otimes \text{IRF}(t)] + Z
 \]</span></p>
 </section>
 <section id="time-gates" class="level5">
 <h5 class="anchored" data-anchor-id="time-gates">Time Gates</h5>
-<p>Due to the deadtime of the system certain time bins from the head and/or tail of the decay curve are not reliable. The T1 (head) and T2 (tail) gates are used to select the time range of the decay curve to be fitted. Users can inspect the decay curve by clicking the full screen mode button of the plot on the right of the <a href="#irf-shift">shift result</a>. Hover-based interaction is implemented so users can see the time bin numbers to have a better sense of the time range.</p>
+<p>Due to the dead time of the system certain time bins from the head and/or tail of the decay curve are not reliable. The T1 (head) and T2 (tail) gates are used to select the time range of the decay curve to be fitted. Users can inspect the decay curve by clicking the full-screen mode button of the plot on the right of the <a href="#irf-shift">shift result</a>. Hover-based interaction is implemented so users can see the time bin numbers to have a better sense of the time range.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="extraction_ui_shots/time_gate_choose.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
@@ -641,13 +641,13 @@ I(\mathbf{t})=\sum_{i=1}^{n} A_i\, e^{-\mathbf{t}/\tau_i}, \qquad \tau_i&gt;0
 <p><img src="extraction_ui_shots/metric.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:20.0%"></p>
 </figure>
 </div>
-<p>Maximum Likelihood Estimation (<code>MLE</code>): it estimates the parameters by maximizing the likelihood function, which is the probability of the measured data given the model parameters. A mathematically convenient way to do this is to minimize the negative log-likelihood function:</p>
+<p>Maximum Likelihood Estimation (<code>MLE</code>) estimates the parameters by maximizing the likelihood function, which is the probability of the measured data given the model parameters. A mathematically convenient way to do this is to minimize the negative log-likelihood function:</p>
 <p><span class="math display">\[
 \text{NLL}(\theta; t_s,t_e)
-= -\sum_{k=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_k)\,\bigl[y_k \log \hat{y}(t_k) - \hat{y}(t_k)\bigr].
+= -\sum_{n=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_n)\,\bigl[y_n \log \hat{y}(t_n) - \hat{y}(t_n)\bigr].
 \]</span></p>
-<p><span class="math inline">\(\mathbf{1}_{[t_s,t_e]}\)</span> is the indicator function that is 1 if <span class="math inline">\(t_k\)</span> is within the <a href="#time-gates">time gates</a><span class="math inline">\([t_s, t_e]\)</span>, and 0 otherwise. <span class="math inline">\(y_k\)</span> is the observed count at time <span class="math inline">\(t_k\)</span>, and <span class="math inline">\(\hat{y}(t_k)\)</span> is the model prediction at <span class="math inline">\(t_k\)</span>.</p>
-<p>Least Squares (<code>LS</code>): it estimates the parameters by minimizing the sum of the squared differences between the measured curve and the model prediction.</p>
+<p><span class="math inline">\(\mathbf{1}_{[t_s,t_e]}\)</span> is the indicator function that is 1 if <span class="math inline">\(t_n\)</span> is within the <a href="#time-gates">time gates</a> <span class="math inline">\([t_s, t_e]\)</span>, and 0 otherwise. <span class="math inline">\(y_n\)</span> is the observed count at time <span class="math inline">\(t_n\)</span>, and <span class="math inline">\(\hat{y}(t_n)\)</span> is the model prediction at <span class="math inline">\(t_n\)</span>.</p>
+<p>Least Squares (<code>LS</code>) estimates the parameters by minimizing the sum of the squared differences between the measured curve and the model prediction.</p>
 </section>
 <section id="fitting-mode" class="level5">
 <h5 class="anchored" data-anchor-id="fitting-mode">Fitting Mode</h5>
@@ -669,7 +669,7 @@ I(\mathbf{t})=\sum_{i=1}^{n} A_i\, e^{-\mathbf{t}/\tau_i}, \qquad \tau_i&gt;0
 <section id="fit-free-calibration" class="level3" data-number="5.2.2">
 <h3 data-number="5.2.2" class="anchored" data-anchor-id="fit-free-calibration"><span class="header-section-number">5.2.2</span> Fit Free Calibration</h3>
 <p>Users get to choose between the following two methods to calibrate the IRF shift in the <a href="./data_extraction_config.html#calibration-method">configuration step</a>.</p>
-<p>The first step of the calibration is to <strong>subtract an offset value and clip each decay curve to 0 if the time bin is negative</strong>. The offset is chosen to be the mean of the last 10th percentile of the decay curve (tail).</p>
+<p>The first step of the calibration is to <strong>subtract an offset value and clip each decay curve to 0 if the time bin is negative</strong>. The offset <span class="math inline">\(C\)</span> is estimated as the mean signal over the final 10% of time bins in each decay (‘tail’).</p>
 <p>Then, depending on the chosen <a href="./data_extraction_config.html#calibration-method">calibration method</a>, the following two methods are available:</p>
 <section id="shift-irf" class="level4">
 <h4 class="anchored" data-anchor-id="shift-irf">Shift IRF</h4>
@@ -691,7 +691,7 @@ Note
 </section>
 <section id="fluorescence-lifetime-standard" class="level4">
 <h4 class="anchored" data-anchor-id="fluorescence-lifetime-standard">Fluorescence lifetime standard</h4>
-<p>Because the fluorescence lifetime standard is measured in the same system as the decay curves and we know its lifetime, there is no need to account for the IRF shift and the offset. Therefore, after subtracting the offset, <code>phasorpy</code>’s <a href="https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate"><code>lifetime.phasor_calibrate</code></a> function is used to calibrate all the decay curves behind the scene when calculating the phasor coordinates.</p>
+<p>Because the fluorescence lifetime standard is measured in the same system as the decay curves and we know its lifetime, there is no need to account for the IRF shift and the offset. Therefore, after subtracting the offset, <code>phasorpy</code>’s <a href="https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate"><code>lifetime.phasor_calibrate</code></a> function is used to calibrate all the decay curves behind the scenes when calculating the phasor coordinates.</p>
 </section>
 </section>
 <section id="confirm-calibration" class="level3" data-number="5.2.3">
@@ -724,7 +724,7 @@ Note
 </section>
 <section id="save-results" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="save-results"><span class="header-section-number">5.4</span> Save Results</h2>
-<p>Once the feature extraction is finished, users can save the results to a csv file by clicking the <code>Download</code> button at the bottom of the page.</p>
+<p>Once the feature extraction is finished, users can save the results to a CSV file by clicking the <code>Download</code> button at the bottom of the page.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="extraction_ui_shots/feature_export.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>

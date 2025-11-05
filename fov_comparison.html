@@ -487,7 +487,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In imaging datasets like FLIM data, field of view (FOV) is an important categorical feature that documents where a certain set of rows (e.g.&nbsp;cells) originates. Visualizing each FOV side by side on a numerical feature can help identify potential FOV-level outliers.</p>
+<p>In imaging datasets like FLIM data, field of view (FOV) is an important categorical feature that documents where a certain set of rows (e.g.&nbsp;cells) originate. Visualizing each FOV side by side on a numerical feature can help identify potential FOV-level outliers.</p>
 <p>FLIM Playground finds the FOV identifier column from the dataset using the <code>FOV column name</code> field in <a href="./data_analysis_config.html#id-config">data analysis config</a> (dataset not extracted by Data Extraction) or <a href="./data_extraction_config.html#configuration">data extraction config</a> (dataset extracted by <a href="data_extraction.html">Data Extraction</a>).</p>
 <p>If the FOV identifier column is not found in the dataset, then a warning message will be shown:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -506,14 +506,14 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>On the left, users can use the <a href="./data_analysis.html#univariate-analysis">selection widgets</a> to select the numerical feature to see the boxplot of each FOV. Exactly one feature can be selected from all feature groups.</li>
 <li>On the top right, users can use the <a href="./data_analysis.html#filter-widgets">filters</a> to subset the data to find the groups of interest.</li>
-<li>Below the filters, users can apply the <a href="./data_analysis.html#visual-channels-widgets">visual channels widgets</a> that allows users to <code>Color by</code> categorical features. <code>Opacity by</code> and <code>Shape by</code> are <em>not</em> supported because there are no points in the boxplot.</li>
+<li>Below the filters, users can apply the <a href="./data_analysis.html#visual-channels-widgets">visual channels widgets</a> that allow users to <code>Color by</code> categorical features. <code>Opacity by</code> and <code>Shape by</code> are <em>not</em> supported because there are no points in the boxplot.</li>
 <li>On the bottom right, users can change the plot style using the <a href="./data_analysis.html#plotting-configuration-widgets">plot styling widgets</a>.</li>
 </ul>
 <p>Besides the shared components, this module does not have any method-specific components.</p>
 </section>
 <section id="example" class="level2" data-number="15.2">
 <h2 data-number="15.2" class="anchored" data-anchor-id="example"><span class="header-section-number">15.2</span> Example</h2>
-<p>Sometimes, the FOV-level boxplots may show consistent divergence across different imaging days, which may suggest the experimental or data extraction inconsistency (e.g.&nbsp;shifts are not optimized correctly for one day versus the others). Below is an example that, despite the same conditions, systematically diverged across days, but was consistent within the same day.</p>
+<p>Sometimes, the FOV-level boxplots may show consistent divergence across different imaging days, which may suggest that there is experimental or data extraction inconsistency (e.g.&nbsp;shifts are not optimized correctly for one day versus the others). Below is an example that, despite the same conditions, systematically diverged across days, but was consistent within the same day.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/fov_example.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>

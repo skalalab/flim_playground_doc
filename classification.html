@@ -520,7 +520,7 @@ window.Quarto = {
 
 <p>A machine learning classifier learns patterns from categorized data and then predicts the category of new, unseen data. This module provides a set of machine learning classifiers and interactive widgets to help users perform classification.</p>
 <p>All the classifiers are implemented using <code>scikit-learn</code> and the performance metrics are calculated using <code>sklearn.metrics</code>. A fixed random seed (42) is used for all the classifiers to ensure reproducibility.</p>
-<p><img src="analysis_ui_shots/classification.png" class="img-fluid quarto-figure quarto-figure-center" style="width:100.0%"> The performance metrics plots are cut off in the screenshot. See the <a href="#performance-metrics">performance metrics section</a> for the complete view.</p>
+<p><img src="analysis_ui_shots/classification.png" class="img-fluid quarto-figure quarto-figure-center" style="width:100.0%"> The performance metric plots are cut off in the screenshot. See the <a href="#performance-metrics">performance metrics section</a> for the complete view.</p>
 <section id="shared-interface-components" class="level2" data-number="19.1">
 <h2 data-number="19.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">19.1</span> Shared Interface Components</h2>
 <ul>
@@ -532,7 +532,7 @@ window.Quarto = {
 <section id="method-specific-components" class="level2" data-number="19.2">
 <h2 data-number="19.2" class="anchored" data-anchor-id="method-specific-components"><span class="header-section-number">19.2</span> Method-specific Components</h2>
 <ul>
-<li>Choose the classifier and train-test split: the slider controls the proportion of the data used to train the classifier and the rest are used as unseen data to test its generalizability.</li>
+<li>Choose the classifier and train-test split: the slider controls the proportion of the data used to train the classifier and the rest is used as unseen data to test its generalizability.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -540,7 +540,7 @@ window.Quarto = {
 </figure>
 </div>
 <ul>
-<li><code>Classify by</code>: The <code>Color by</code> from the <a href="./data_analysis.html#visual-channels-widgets">visual channels widgets</a> is renamed to <code>Classify by</code> and it is used to form classes based on (combination of) selected categorical features. Other visual channels are not supported in this method.</li>
+<li><code>Classify by</code>: The <code>Color by</code> from the <a href="./data_analysis.html#visual-channels-widgets">visual channels widgets</a> is renamed to <code>Classify by</code> and it is used to form classes based on (a combination of) selected categorical features. Other visual channels are not supported in this method.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -548,7 +548,7 @@ window.Quarto = {
 </figure>
 </div>
 <ul>
-<li>Choose the classes to be classified: classes are formed based on the combinations of categories of the selected categorical features. In general, it supports from binary classification to n-way classification where n is the number of classes. If one categorical feature is selected and after filtering has 3 categories, then all possible ways to classify are produced including the three-way classification. Additionally, the <code>class x vs the rest</code> option is provided for each class.</li>
+<li>Choose the classes to be classified: classes are formed based on the combinations of categories of the selected categorical features. In general, it supports binary classification and in general n-way classification where n is the number of classes. If one categorical feature is selected and after filtering has 3 categories, then all possible ways to classify are produced including the three-way classification. Additionally, the <code>class x vs the rest</code> option is provided for each class.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -578,7 +578,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>FLIM Playground applies a unit normalization (i.e.&nbsp;z-score) to the features before training if the chosen classifier is <code>SVM</code> or <code>Logistic Regression</code>, because they are sensitive to feature magnitudes, while <code>Random Forest</code> and <code>Gradient Boosting</code> are not.</p>
+<p>FLIM Playground applies the z-score normalization to the features before training if the chosen classifier is <code>SVM</code> or <code>Logistic Regression</code>, because they are sensitive to feature magnitudes, while <code>Random Forest</code> and <code>Gradient Boosting</code> are not.</p>
 </div>
 </div>
 <section id="performance-metrics" class="level3" data-number="19.2.1">
@@ -629,7 +629,7 @@ Note
 <section id="roc-curve" class="level4">
 <h4 class="anchored" data-anchor-id="roc-curve">ROC Curve</h4>
 <p>Another way to look at the performance of the classifier is to plot the Receiver Operating Characteristic (ROC) curve and its Area Under the Curve (AUC).</p>
-<p>A classifier usually outputs a score for each sample. To turn scores into hard labels a decision threshold must be chosen. Confusion matrix looks at the performance of the classifier at a single threshold (in the binary case, the threshold is 0.5), while ROC curve looks at the performance of the classifier at all thresholds (from 1 to 0).</p>
+<p>A classifier usually outputs a score for each sample. To turn scores into hard labels, a decision threshold must be chosen. Confusion matrix looks at the performance of the classifier at a single threshold (in the binary case, the threshold is 0.5), while ROC curve looks at the performance of the classifier at all thresholds (from 0 to 1).</p>
 <p>At the origin (0, 0), the threshold is 1, so the classifier predicts all samples as negative, making the false positive rate <span class="math inline">\(\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}} = 0\)</span> and the true positive rate <span class="math inline">\(\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}} = 0\)</span>, i.e.&nbsp;the origin. At the point (1, 1), the threshold is 0, so the classifier predicts all samples as positive, making the false positive rate 1 and the true positive rate 1, i.e.&nbsp;the point (1, 1).</p>
 <p>AUC summarizes the ROC curve by integrating it from 0 to 1, so it is threshold-free and has a nice interpretation: it is the probability that the classifier assigns a higher score to a randomly chosen positive sample <span class="math inline">\(X^+\)</span> than to a randomly chosen negative sample <span class="math inline">\(X^-\)</span>.</p>
 <p>To generalize to the <span class="math inline">\(K\)</span>-class cases (<span class="math inline">\(K &gt; 2\)</span>), FLIM Playground chooses the One-vs-Rest (OvR) strategy. For each class <span class="math inline">\(i\)</span>, it trains a binary classifier to predict the class <span class="math inline">\(i\)</span> against all other classes. The ROC curve is then computed and plotted for each class.</p>

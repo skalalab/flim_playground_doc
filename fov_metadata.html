@@ -466,7 +466,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#feature-extractors" id="toc-feature-extractors" class="nav-link" data-scroll-target="#feature-extractors"><span class="header-section-number">4.1.3</span> Feature Extractors</a></li>
   <li><a href="#decay-info" id="toc-decay-info" class="nav-link" data-scroll-target="#decay-info"><span class="header-section-number">4.1.4</span> Decay Info</a></li>
   <li><a href="#file-suffix" id="toc-file-suffix" class="nav-link" data-scroll-target="#file-suffix"><span class="header-section-number">4.1.5</span> File Suffix</a></li>
-  <li><a href="#fluorescence-lifetime-standard" id="toc-fluorescence-lifetime-standard" class="nav-link" data-scroll-target="#fluorescence-lifetime-standard"><span class="header-section-number">4.1.6</span> fluorescence lifetime standard</a></li>
+  <li><a href="#fluorescence-lifetime-standard" id="toc-fluorescence-lifetime-standard" class="nav-link" data-scroll-target="#fluorescence-lifetime-standard"><span class="header-section-number">4.1.6</span> Fluorescence Lifetime Standard</a></li>
   <li><a href="#folder-path" id="toc-folder-path" class="nav-link" data-scroll-target="#folder-path"><span class="header-section-number">4.1.7</span> Folder Path</a></li>
   </ul></li>
   <li><a href="#metadata-extraction" id="toc-metadata-extraction" class="nav-link" data-scroll-target="#metadata-extraction"><span class="header-section-number">4.2</span> Metadata Extraction</a>
@@ -570,8 +570,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 <section id="fluorescence-lifetime-standard" class="level3" data-number="4.1.6">
-<h3 data-number="4.1.6" class="anchored" data-anchor-id="fluorescence-lifetime-standard"><span class="header-section-number">4.1.6</span> fluorescence lifetime standard</h3>
-<p>If the selected fit free calibration method is <a href="./data_extraction_config.html#fluorescence-lifetime-standard">fluorescence lifetime standard</a>, users are asked to specify the fluorescence lifetime standard file path for each channel and the fluorescence lifetime standard’s lifetime, the default of those are copied from the data extraction configuration.</p>
+<h3 data-number="4.1.6" class="anchored" data-anchor-id="fluorescence-lifetime-standard"><span class="header-section-number">4.1.6</span> Fluorescence Lifetime Standard</h3>
+<p>If the selected fit free calibration method is <a href="./data_extraction_config.html#fluorescence-lifetime-standard">fluorescence lifetime standard</a>, users are asked to specify the fluorescence lifetime standard file path for each channel and the fluorescence lifetime standard’s lifetime, which are copied from the data extraction configuration.</p>
 </section>
 <section id="folder-path" class="level3" data-number="4.1.7">
 <h3 data-number="4.1.7" class="anchored" data-anchor-id="folder-path"><span class="header-section-number">4.1.7</span> Folder Path</h3>
@@ -589,17 +589,17 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="fov-file-paths"><span class="header-section-number">4.2.1</span> FOV File Paths</h3>
 <p>The first step is to find the fields of view:</p>
 <ul>
-<li>it finds all the files recursively in the folder path that ends with the 1st file suffix of the 1st channel.</li>
-<li>the prefix of all the matched files are considered to be the field of view name.
+<li>It finds all the files recursively in the folder path that ends with the 1st file suffix of the 1st channel.</li>
+<li>The prefix of all the matched files is considered to be the field of view name.
 <ul>
 <li>FOV name = file name - 1st file suffix</li>
 </ul></li>
 </ul>
 <p>Then, it uses the found FOV names to find all other files:</p>
 <ul>
-<li>file name to search = FOV name + other file suffixes for each file suffix</li>
+<li>The file name to search = FOV name + other file suffixes for each file suffix</li>
 </ul>
-<p>The only exception is the calibration file, because it is not FOV-specific. They will be searched for based on their file suffixes only.</p>
+<p>The only exceptions are the calibration files, because they are not FOV-specific. They will be searched for based on their file suffixes only.</p>
 <section id="success" class="level4">
 <h4 class="anchored" data-anchor-id="success">Success</h4>
 <div class="quarto-figure quarto-figure-center">
@@ -619,7 +619,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="duplicate" class="level4">
 <h4 class="anchored" data-anchor-id="duplicate">Duplicate</h4>
-<p>Because the calibration file is not FOV-specific, it will be searched based on the file suffixes only. If there are multiple files that match the same file suffix, FLIM Playground will be confused as which one to use.</p>
+<p>Because the calibration file is not FOV-specific, it will be searched based on the file suffixes only. If there are multiple files that match the same file suffix, FLIM Playground will be confused about which one to use.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="extraction_ui_shots/fov_duplicate.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
@@ -636,20 +636,20 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If after changing the file names that conform with the prefix assumption, and the problem persists, users can try killing the app and restarting it to clear the cache internally maintained by FLIM Playground.</p>
+<p>If the issue persists after renaming the files to match the required prefix, force-quit and relaunch FLIM Playground to clear its internal cache.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="decay-info-1" class="level3" data-number="4.2.2">
 <h3 data-number="4.2.2" class="anchored" data-anchor-id="decay-info-1"><span class="header-section-number">4.2.2</span> Decay Info</h3>
-<p>If the decay type is <a href="./data_extraction.html#3d4d-decay">3D/4D decay</a>, FLIM Playground will try to infer the <code>duration</code> and the number of <code>time bins</code> per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files.</p>
+<p>If the decay type is <a href="./data_extraction.html#three-d4d-decay">3D/4D decay</a>, FLIM Playground will try to infer the <code>duration</code> and the number of <code>time bins</code> per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files.</p>
 <section id="channel-assignment" class="level4">
 <h4 class="anchored" data-anchor-id="channel-assignment">Channel Assignment</h4>
-<p>If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channel to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there is any.</p>
+<p>If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channels to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there are any.</p>
 </section>
 <section id="fluorescence-lifetime-standard-1" class="level4">
-<h4 class="anchored" data-anchor-id="fluorescence-lifetime-standard-1">fluorescence lifetime standard</h4>
+<h4 class="anchored" data-anchor-id="fluorescence-lifetime-standard-1">Fluorescence Lifetime Standard</h4>
 <p>If the file path to the <a href="#fluorescence-lifetime-standard">fluorescence lifetime standard</a> is specified, FLIM Playground will try to look for and read the file. It expects a <code>tiff</code> or <code>tif</code> file that contains a 3D array, with one of them as the time dimension. It will try to match the time dimension with the time dimension of the decay file. If it cannot find the matching time dimension, it will complain.</p>
 <p><img src="extraction_ui_shots/fov_rd_not_found.png" class="img-fluid quarto-figure quarto-figure-center" style="width:90.0%"> <img src="extraction_ui_shots/fov_rd_not_match.png" class="img-fluid quarto-figure quarto-figure-center" style="width:90.0%"></p>
 <p>Once the time axis is matched, the file path to the fluorescence lifetime standard, the fluorescence lifetime standard’s lifetime, and the time axis will be recorded.</p>
@@ -668,10 +668,10 @@ Tip
 <li><code>image_name</code>: The <code>image_name</code> column is the name of each FOV, which is specified in the <a href="./data_extraction_config.html#fov-identifier">fov identifier config</a>.</li>
 <li><code>nadh_Mask</code>, <code>nadh_Decay</code>, <code>nadh_IRF</code>, <code>fad_Mask</code>, <code>fad_Decay</code>, <code>fad_IRF</code>: the <a href="#fov-file-paths">file paths</a> of the mask, decay, and IRF files for the <code>nadh</code> and <code>fad</code> channels.</li>
 <li><code>nadh_input_type</code>, <code>nadh_imaging_modality</code>, <code>fad_input_type</code>, <code>fad_imaging_modality</code>: the <a href="#decay-type">decay type</a> for each channel. If they share the same imaging modality, the input types should be the same. The only imaging modality supported by FLIM Playground is <code>FLIM</code>, therefore the input_type for all channels should be from one of the <a href="./data_extraction_config.html#decay-types">decay types</a>.</li>
-<li><code>nadh_Lifetime fit free</code>, <code>nadh_Intensity morphology</code>, <code>nadh_Lifetime fit</code>,<code>fad_Intensity morphology</code>, <code>fad_Intensity texture</code>, <code>fad_Lifetime fit</code>: <a href="#feature-extractors">feature extractors</a> for each channel.</li>
-<li><code>nadh_channel</code>,<code>duration</code>, <code>fad_channel</code>, <code>time_bins</code>, <code>laser_rate</code>: the <a href="#decay-info">decay info</a> for each channel and info shared by all channels.</li>
+<li><code>nadh_Lifetime fit free</code>, <code>nadh_Intensity morphology</code>, <code>nadh_Lifetime fit</code>, <code>fad_Intensity morphology</code>, <code>fad_Intensity texture</code>, <code>fad_Lifetime fit</code>: <a href="#feature-extractors">feature extractors</a> for each channel.</li>
+<li><code>nadh_channel</code>, <code>duration</code>, <code>fad_channel</code>, <code>time_bins</code>, <code>laser_rate</code>: the <a href="#decay-info">decay info</a> for each channel and info shared by all channels.</li>
 </ul>
-<p>The user can click the <code>Export FOV Metadata as CSV</code> button to export the metadata to a CSV file.</p>
+<p>The user can click the <code>Export FOV Metadata as CSV</code> button to export the metadata as a CSV file.</p>
 
 
 </section>

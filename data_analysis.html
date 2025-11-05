@@ -520,7 +520,7 @@ div.csl-indent {
 </header>
 
 
-<p>We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the <a href="data_extraction.html">Data Extraction</a> section or in users’ own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data <a href="./index.html#feature-classes">categorization</a> as <a href="data_extraction.html">Data Extraction</a> does, the Data Analysis section designs an <a href="#shared-interactive-widgets">architectural blueprint</a> that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.</p>
+<p>We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the <a href="data_extraction.html">Data Extraction</a> section or in users’ own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data <a href="./index.html#feature-classes">categorization</a> in <a href="data_extraction.html">Data Extraction</a>, the Data Analysis section designs an <a href="#shared-interactive-widgets">architectural blueprint</a> that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.</p>
 <section id="methods" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="methods"><span class="header-section-number">11.1</span> Methods</h2>
 <ul>
@@ -557,7 +557,7 @@ div.csl-indent {
 </section>
 <section id="input" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="input"><span class="header-section-number">11.2</span> Input</h2>
-<p>Users can upload the dataset outputted from the <a href="data_extraction.html">Data Extraction</a> directly or <em>their own datasets</em> in <strong>csv</strong> (Comma Separated Values) format after finishing the <a href="data_analysis_config.html">interactive configuration</a> setup.</p>
+<p>Users can upload the dataset output from the <a href="data_extraction.html">Data Extraction</a> directly or <em>their own datasets</em> in <strong>CSV</strong> (Comma Separated Values) format after finishing the <a href="data_analysis_config.html">interactive configuration</a> setup.</p>
 <div class="columns">
 <div class="column" style="width:5%;">
 
@@ -624,7 +624,7 @@ Note
 <li>Missing a column that uniquely identifies each row</li>
 <li>Cannot identify any numerical feature column
 <ul>
-<li>it uses <code>pd.api.types.is_numeric_dtype</code> to check if a column is numerical.</li>
+<li>It uses <code>pd.api.types.is_numeric_dtype</code> to check if a column is numerical.</li>
 </ul></li>
 </ul>
 </section>
@@ -645,7 +645,7 @@ Note
 </section>
 <section id="numerical-feature-widgets" class="level3" data-number="11.3.2">
 <h3 data-number="11.3.2" class="anchored" data-anchor-id="numerical-feature-widgets"><span class="header-section-number">11.3.2</span> Numerical Feature Widgets</h3>
-<p>The Data Extraction recognizes numerical features using <code>pd.api.types.is_numeric_dtype</code> internally. Then it groups numerical features based on the <a href="./data_extraction_config.html#feature-extractor">feature extractor type</a> and the channel it belongs to. For user-provided datasets, the numerical features are grouped based on the <a href="./data_analysis_config.html">user-specified configuration</a>. Ungrouped numerical features are grouped into a group called <code>Uncategorized Features</code>. One selection widget is rendered for each numerical feature group.</p>
+<p>The Data Extraction recognizes numerical features using <code>pd.api.types.is_numeric_dtype</code> internally. Then it groups numerical features based on the <a href="./data_extraction_config.html#feature-extractor">feature extractor type</a> and the channel it belongs to. For user-provided datasets, the numerical features are grouped based on the <a href="./data_analysis_config.html">user-specified configuration</a>. Ungrouped numerical features are put into the <code>Uncategorized Features</code> group. One selection widget is rendered for each numerical feature group.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -661,7 +661,7 @@ Tip
 </div>
 <section id="univariate-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="univariate-analysis">Univariate Analysis</h4>
-<p>One set of selection widgets, each can select one feature from a feature group, is rendered. If one feature from a feature group is selected, all the other features groups will be reset to the value <code>Select</code>.</p>
+<p>One single-select widget is rendered per group; choosing a feature in any group clears the selections and resets the others to <code>Select</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/uni_select.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
@@ -693,7 +693,7 @@ Tip
 <section id="filter-widgets" class="level4">
 <h4 class="anchored" data-anchor-id="filter-widgets">Filter Widgets</h4>
 <p><img src="analysis_ui_shots/filter.png" class="img-fluid" style="width:95.0%"></p>
-<p>For complex datasets that are collected over multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget is rendered for each categorical feature so that users have the flexibility to filter the data based on combinations of categorical features. <code>All</code> is a special option that will include all categories of the selected categorical feature. Once it is selected, all the other options are cleared, and vice versa.</p>
+<p>For complex datasets that are collected over multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget is rendered for each categorical feature so that users have the flexibility to filter the data based on combinations of categorical features. <code>All</code> is a special option that include all categories of the selected categorical feature. Once it is selected, all the other options are cleared, and vice versa.</p>
 </section>
 <section id="visual-channels-widgets" class="level4">
 <h4 class="anchored" data-anchor-id="visual-channels-widgets">Visual Channels Widgets</h4>
@@ -701,7 +701,7 @@ Tip
 <p>Human vision is wired for rapid, parallel pattern and trend detection; good visual encodings (how to map data to visual elements such as color, shape, opacity, etc.) harness this to surface insights that raw numbers or text obscure<span class="citation" data-cites="cleveland1984"><sup><a href="#ref-cleveland1984" role="doc-biblioref">1</a></sup></span>. FLIM Playground provides <code>color</code>, <code>opacity</code>, and <code>shape</code> channels for visualizations that support them:</p>
 <section id="color-by" class="level5">
 <h5 class="anchored" data-anchor-id="color-by">Color by</h5>
-<p>Color is supported in all methods except for <a href="classification.html">Classification</a>. In <code>Color by</code>, users can select multiple categorical features, and each unique combination of available categories (determined by the filters in the <a href="#filter-widgets">Filter Widgets</a>) in selected features are assigned a distinct color. Groups created by <code>Color by</code> show up in the x-axis (if multiple features, categories from each feature are delimited by <code>::</code>).</p>
+<p>Color is supported in all methods except for <a href="classification.html">Classification</a>. In <code>Color by</code>, users can select multiple categorical features, and each unique combination of available categories (determined by the filters in the <a href="#filter-widgets">Filter Widgets</a>) in selected features is assigned a distinct color. Groups created by <code>Color by</code> show up in the x-axis (if multiple features, categories from each feature are delimited by <code>::</code>).</p>
 <div id="nte-order" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -714,8 +714,8 @@ Note&nbsp;11.1: How to order the groups
 <div class="callout-body-container callout-body">
 <p>The order of the groups in x-axis and in the legend is determined by:</p>
 <ul>
-<li><p>the order of the selected features: categories of the first feature appear before those of the second, so on so forth. For example, the two treatments of <code>Panc1</code> are together, because it is sorted first on the cell lines, then on treatments. If you want the treatments to be together, in <code>Color by</code> you can select <code>treatment</code> then <code>cell_line</code>.</p></li>
-<li><p><em>Numeric-alphabetical sort</em>: within each feature, the category order is determined by the number inside (e.g.&nbsp;<code>1</code> in <code>Panc1</code>) first, then the alphabetical order of the category name. Therefore, although <code>P</code> is after <code>M</code> alphabetically, the <code>1</code> is before <code>7</code> numerically, making <code>Panc1</code> appears before <code>MCF7</code>. This may be helpful when you have data from different days or hours. The default string sort will put <code>Day 100</code> before <code>Day 30</code>, and this is not what we want.</p></li>
+<li><p>the order of the selected features: categories of the first feature appear before those of the second, and so on and so forth. For example, the two treatments of <code>Panc1</code> are together, because it is sorted first on the cell lines, then on treatments. If you want the treatments to be together, in <code>Color by</code> you can select <code>treatment</code> then <code>cell_line</code>.</p></li>
+<li><p><em>Numeric-alphabetical sort</em>: within each feature, the category order is determined by the number inside (e.g.&nbsp;<code>1</code> in <code>Panc1</code>) first, then the alphabetical order of the category name. Therefore, although <code>P</code> is after <code>M</code> alphabetically, the <code>1</code> is before <code>7</code> numerically, making <code>Panc1</code> appear before <code>MCF7</code>. This may be helpful when you have data from different days or hours. The default string sort will put <code>Day 100</code> before <code>Day 30</code>, and this is not what we want.</p></li>
 </ul>
 </div>
 </div>
@@ -728,7 +728,7 @@ Note&nbsp;11.1: How to order the groups
 <section id="opacity-and-shape-by" class="level5">
 <h5 class="anchored" data-anchor-id="opacity-and-shape-by">Opacity and Shape by</h5>
 <ul>
-<li>Opacity and shape are supported in all point-based visualizations (e.g.&nbsp;<a href="feature_comparison.html">Feature Comparison</a>, <a href="feature_distribution.html">2D Feature Distribution</a>, <a href="phasor_analysis.html">Phasor Analysis</a>, <a href="dimension_reduction.html">Dimension Reduction</a>). In <code>Opacity by</code> and <code>Shape by</code>, users can select one categorical feature, and each unique category is assigned a distinct opacity or shape. The order of the shape and opacity is also sorted <a href="#nte-order">numer-alphatically</a>.</li>
+<li>Opacity and shape are supported in all point-based visualizations (e.g.&nbsp;<a href="feature_comparison.html">Feature Comparison</a>, <a href="feature_distribution.html">2D Feature Distribution</a>, <a href="phasor_analysis.html">Phasor Analysis</a>, <a href="dimension_reduction.html">Dimension Reduction</a>). In <code>Opacity by</code> and <code>Shape by</code>, users can select one categorical feature, and each unique category is assigned a distinct opacity or shape. The order of the shape and opacity is also sorted <a href="#nte-order">numeric-alphabetically</a>.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

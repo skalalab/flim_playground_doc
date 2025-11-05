@@ -518,12 +518,12 @@ window.Quarto = {
 </header>
 
 
-<p>FLIM Playground extracts single-cell texture features based on the intensity image and the ROI mask from each acquisition <em>channel</em>. For an example application, refer to this <a href="https://pubmed.ncbi.nlm.nih.gov/31081599/">paper</a> which used CellProfiler to extract the texture features.</p>
-<p>The first step is to create a single cell intensity image for each cell based on the ROI mask and the intensity image. Then a list of texture features (the list may be extended in the future) is calculated:</p>
+<p>FLIM Playground extracts single-cell texture features based on the intensity image and the ROI mask from each acquisition <em>channel</em>. For an example application, refer to this <a href="https://pubmed.ncbi.nlm.nih.gov/31081599/">paper</a> that used CellProfiler to extract the texture features.</p>
+<p>The first step is to create a single-cell intensity image for each cell based on the ROI mask and the intensity image. Then a list of texture features (the list may be extended in the future) is calculated:</p>
 <section id="granularity" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="granularity"><span class="header-section-number">9.1</span> Granularity</h2>
-<p><span class="math inline">\(Granularity_n\)</span> is the percentage of intensity removed when bright objects of <span class="math inline">\(n\)</span> pixels in diameter are removed. A disk of radius <span class="math inline">\(n\)</span> is created, and a morphological opening is performed on the single-cell intensity image. The difference between the original and the opened image is the bright objects to be removed. The granularity value, ranging from 0 to 1, is calculated as the ratio of the removed intensity to the total intensity.</p>
-<p><span class="math inline">\(n = 1, 3, 5, 7, 9\)</span> are calculated.</p>
+<p><span class="math inline">\(Granularity_n\)</span> is the percentage of intensity contributed by bright objects of <span class="math inline">\(n\)</span> pixels in radius. It is computed by performing a morphological opening with a disk of radius n on the cell intensity image and measuring the intensity lost as a percentage of the total intensity of the original cell ROI.</p>
+<p><span class="math inline">\(n = 1, 3, 5, 7, 9\)</span> are computed.</p>
 <p>Semantically, higher granularity at smaller scales implies higher fragmentation.</p>
 </section>
 <section id="radial-distribution" class="level2" data-number="9.2">
@@ -532,7 +532,7 @@ window.Quarto = {
 </section>
 <section id="mass-displacement" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="mass-displacement"><span class="header-section-number">9.3</span> Mass Displacement</h2>
-<p>Mass displacement defines the Euclidean distance (in pixels) between the intensity-weighted centroid of the cell ROI and the geometric centroid of the same ROI.</p>
+<p>Mass displacement is the Euclidean distance (in pixels) between the intensity-weighted centroid of the cell ROI and the geometric centroid of the same ROI.</p>
 </section>
 <section id="intensity-sum" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="intensity-sum"><span class="header-section-number">9.4</span> Intensity Sum</h2>

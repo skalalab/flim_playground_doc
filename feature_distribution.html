@@ -527,7 +527,7 @@ window.Quarto = {
 <section id="shared-interface-components" class="level2" data-number="16.1">
 <h2 data-number="16.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">16.1</span> Shared Interface Components</h2>
 <ul>
-<li>On the left, users can use the <a href="./data_analysis.html#bivariate-analysis">selection widgets</a> to select the two numerical features in the x-axis and y-axis.</li>
+<li>On the left, users can use the <a href="./data_analysis.html#bivariate-analysis">selection widgets</a> to select the two numerical features on the x-axis and y-axis.</li>
 <li>On the top right, users can use the <a href="./data_analysis.html#filter-widgets">filters</a> to subset the data to find the groups of interest.</li>
 <li>Below the filters, users can apply the <a href="./data_analysis.html#visual-channels-widgets">visual channels widgets</a> that allow users to <code>Color by</code>, <code>Opacity by</code>, and <code>Shape by</code> categorical features.</li>
 <li>On the bottom right, users can change the plot style using the <a href="./data_analysis.html#plotting-configuration-widgets">plot styling widgets</a>.</li>
@@ -535,17 +535,17 @@ window.Quarto = {
 </section>
 <section id="marginal-distribution" class="level2" data-number="16.2">
 <h2 data-number="16.2" class="anchored" data-anchor-id="marginal-distribution"><span class="header-section-number">16.2</span> Marginal Distribution</h2>
-<p>Marginal distributions (distribution of a single feature) are plotted on the top and right of the scatter plot. Users can choose the plot type from the dropdown menu.</p>
+<p>Marginal distributions (the distribution of a single feature) are plotted at the top and the right of the scatter plot. Users can choose the plot type from the dropdown menu.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/marginal_distribution.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
-<p><code>gaussian fit</code>: provides kernel-density estimate using Gaussian kernels. It uses <code>gaussian_kde</code> from <code>scipy.stats</code> and sets all parameters to default values.</p>
+<p><code>gaussian fit</code>: provides a kernel-density estimate using Gaussian kernels. It uses <code>gaussian_kde</code> from <code>scipy.stats</code> and sets all parameters to default values.</p>
 </section>
 <section id="d-gaussian-mixture-model" class="level2" data-number="16.3">
 <h2 data-number="16.3" class="anchored" data-anchor-id="d-gaussian-mixture-model"><span class="header-section-number">16.3</span> 2D Gaussian Mixture Model</h2>
-<p>Using the same method as fitting a 1D <a href="./feature_histogram.html#fit-gaussian-mixture-models">Gaussian Mixture Model</a>, users can fit a 2D GMM by specifying <code>Max Components</code> and <code>Min Weight Threshold</code> on each color group.</p>
+<p>Using the same method as fitting a 1D <a href="./feature_histogram.html#fit-gaussian-mixture-models">Gaussian Mixture Model</a>, users can fit a 2D GMM by specifying <code>Max Components</code> and <code>Min Weight Threshold</code> for each color group.</p>
 <p>Ellipses that capture approximately 95% of the points in each subcomponent are drawn. The color of the ellipses is determined by the color group that the subcomponent belongs to.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -563,7 +563,7 @@ window.Quarto = {
 <ul>
 <li><p>Center of the ellipse is the mean of the subcomponent (<span class="math inline">\(\mu_x, \mu_y\)</span>).</p></li>
 <li><p>The ellipse is rotated by <span class="math inline">\(\theta = \arctan2\!\left(v_{1y}, v_{1x} \right)\)</span>, where <span class="math inline">\(\mathbf{v}_1 = \begin{bmatrix} v_{1x} \\ v_{1y} \end{bmatrix}\)</span> is the first eigenvector of the covariance matrix, so that the major axis of the ellipse is aligned with the eigenvector corresponding to the largest eigenvalue.</p></li>
-<li><p>Axis lengths represent the variances along the major and minor axes of the ellipse. They are the eigenvalues of the covariance matrix scaled by <span class="math inline">\(r = \sqrt{\chi^2_{\,\mathrm{df}=2,\,p=0.95}}\)</span> (Mahalanobis distance) that captures approximately 95% of the points in the subcomponent.</p></li>
+<li><p>The semi-axis lengths are <span class="math inline">\(r\sqrt{\lambda_1}\)</span> and <span class="math inline">\(r\sqrt{\lambda_2}\)</span>, where <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> are the covariance eigenvalues (variances along the principal axes) scaled by <span class="math inline">\(r = \sqrt{\chi^2_{\,\mathrm{df}=2,\,p=0.95}}\)</span> (Mahalanobis distance) that captures approximately 95% of the points in the subcomponent.</p></li>
 </ul>
 </div>
 </div>
@@ -599,7 +599,7 @@ Tip
 <p><img src="analysis_ui_shots/2d_gmm_download.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:20.0%"></p>
 </figure>
 </div>
-<p>The classification is done by <a href="./feature_histogram.html#hard-assignment">hard assignment</a> to determine which GMM component each data point belongs to. It appends a new categorical feature column called <code>2D_GMM_group</code> to the filtered dataset, the values of which are <code>{color_group}_group1</code>, <code>{color_group}_group2</code>, etc. The downloaded dataset keeps all the features plus the new categorical feature column, which is recognized by any methods in Data Analysis as a categorical feature like others, and rows that pass the <a href="./data_analysis.html#filter-widgets">filters</a>.</p>
+<p>The classification is done by <a href="./feature_histogram.html#hard-assignment">hard assignment</a> to determine which GMM component each data point belongs to. It appends a new categorical feature column called <code>2D_GMM_group</code> to the filtered dataset, the values of which are <code>{color_group}_group1</code>, <code>{color_group}_group2</code>, etc. The downloaded dataset keeps all the features plus the new categorical feature column, which is recognized by any method in Data Analysis as a categorical feature like others. The rows that pass the <a href="./data_analysis.html#filter-widgets">filters</a> are included.</p>
 </section>
 <section id="regression-line" class="level2" data-number="16.4">
 <h2 data-number="16.4" class="anchored" data-anchor-id="regression-line"><span class="header-section-number">16.4</span> Regression line</h2>
