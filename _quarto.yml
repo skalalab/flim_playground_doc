@@ -54,9 +54,10 @@ format:
     reference-location: document
   pdf:
     documentclass: scrreprt
+    pdf-engine: lualatex
     top-level-division: chapter
     shift-headings: -1
+    title: "FLIM Playground Supplemental Manual"
     author: []
+    date: ""
     include-in-header: pdf-title.tex
-    filters:
-      - pdf-last-mod.lua

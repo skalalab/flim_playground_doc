@@ -1,5 +1,5 @@
 # Feature Comparison {#sec-feature-comparison}
-This method allows users to compare the distributions of a single numerical feature across groups. It can help users spot overarching trends between distributions, identify within distribution shape-related characteristics such as skewness or bimodality that might signal sub-populations, and diagnose for potential outliers. 
+This method allows users to compare the distributions of a single numerical feature across groups. It can help users spot overarching trends between distributions, identify within distribution shape-related characteristics such as skewness or bimodality that might signal sub-populations, and diagnose potential outliers. 
 
 ![](analysis_ui_shots/feature_comparison.png)
 
@@ -76,7 +76,7 @@ Who is treatment and who is control matters! From the formula of $\Delta_G$, swi
 :::
 
 :::{.callout-note}
-To keep the point-based visualization style that supports [interactive hover](data_analysis.qmd#unique-id-hover) while showing the violin plot like distribution, [Sina plot](https://en.wikipedia.org/wiki/Sina_plot) is used: it uses `gaussian_kde` from `scikit-learn` to make sure the width of the point distribution is proportional to the kernel density. 
+To keep the point-based visualization style that supports [interactive hover](data_analysis.qmd#unique-id-hover) while showing the violin-plot-like distribution, [Sina plot](https://en.wikipedia.org/wiki/Sina_plot) is used: it uses `gaussian_kde` from `scikit-learn` to make sure the width of the point distribution is proportional to the kernel density. 
 :::
 
 ### Cohen's d
@@ -117,7 +117,7 @@ FLIM Playground uses `scipy.stats.ttest_ind` to perform the independent t-test a
 
 ## Comparison Annotation
 
-For each selected comparison pair that exceeds the effect size threshold (if any), the statistical significance, effect size, or both are annotated on the plot. It selects the lowest eligible position (over all points in both groups and over existing annotations) to annotate. If both statistical significance and effect size calculation are performed, the annoatation is shown in the format of effect size followed by p-value. If only one is performed, then only the performed method's result is shown. 
+For each selected comparison pair that exceeds the effect size threshold (if any), the statistical significance, effect size, or both are annotated on the plot. It selects the lowest eligible position (over all points in both groups and over existing annotations) to annotate. If both statistical significance and effect size calculation are performed, the annotation is shown in the format of effect size followed by p-value. If only one is performed, then only the performed method's result is shown. 
 
 ::: {layout-ncol=3 layout-align="center"}
 ![](analysis_ui_shots/both_annot.png)

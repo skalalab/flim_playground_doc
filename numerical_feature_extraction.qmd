@@ -8,13 +8,13 @@ In this step, FLIM Playground extracts *single-cell* numerical features from the
 
 ## Input 
 
-A csv extracted in the [fov metadata extraction](#sec-fov-metadata) step that contains the metadata of the FOVs including: 
+A CSV file extracted in the [fov metadata extraction](#sec-fov-metadata) step that contains the metadata of the FOVs including: 
 
 - [required file paths](fov_metadata.qmd#fov-file-paths)
 - [decay type](fov_metadata.qmd#decay-type)
 - [decay info](fov_metadata.qmd#decay-info)
 - [selected feature extractors](fov_metadata.qmd#feature-extractors) for each channel
-- [fit free calibration method](data_extraction_config.qmd#calibration-method)(if fit free calibration is required)
+- [fit free calibration method](data_extraction_config.qmd#calibration-method) (if fit free calibration is required)
 
 Users can either upload a previously extracted metadata file (left), or use the cached metadata file just extracted in the [fov metadata extraction](#sec-fov-metadata) step (right). 
 
@@ -41,7 +41,7 @@ It is performed in two steps:
 1. Gather the high signal-to-noise ratio (SNR) decay curves 
 2. For each curve, perform reconvolution fitting and set shift value as the free parameter to be optimized/fitted. 
 
-The distribution of the shift values is displayed as an interactive scatter plot. When clicking on a point, the corresponding decay curve with the fitted curve and the key statistics are displayed for diagnostics. Based on the distribution or using certain prior knowledge, users can specify the shift value applied to all field of views (if `Fix the Shift` is selected, see [fitting options](#fitting-options)), or use the fov-specific shift value found by the fitting (if `Fix the Shift` is deselected). 
+The distribution of the shift values is displayed as an interactive scatter plot. When clicking on a point, the corresponding decay curve with the fitted curve and the key statistics are displayed for diagnostics. Based on the distribution or using certain prior knowledge, users can specify the shift value applied to all field of view (if `Fix the Shift` is selected, see [fitting options](#fitting-options)), or use the fov-specific shift value found by the fitting (if `Fix the Shift` is deselected). 
 
 ![](extraction_ui_shots/irf_shift.png){#irf-shift}
 
@@ -164,6 +164,6 @@ Warnings are displayed if cells have `NaN` values for some features. They are *n
 
 ## Save Results
 
-Once the feature extraction is finished, users can save the results to a csv file by clicking the `Download` button at the bottom of the page.
+Once the feature extraction is finished, users can save the results to a CSV file by clicking the `Download` button at the bottom of the page.
 
 ![](extraction_ui_shots/feature_export.png){width=100% fig-align=center}

@@ -1,12 +1,12 @@
 # Textural Features {#sec-intensity-texture}
-FLIM Playground extracts single-cell texture features based on the intensity image and the ROI mask from each acquisition *channel*. For an example application, refer to this [paper](https://pubmed.ncbi.nlm.nih.gov/31081599/) which used CellProfiler to extract the texture features. 
+FLIM Playground extracts single-cell texture features based on the intensity image and the ROI mask from each acquisition *channel*. For an example application, refer to this [paper](https://pubmed.ncbi.nlm.nih.gov/31081599/) that used CellProfiler to extract the texture features. 
 
-The first step is to create a single cell intensity image for each cell based on the ROI mask and the intensity image. Then a list of texture features (the list may be extended in the future) is calculated:  
+The first step is to create a single-cell intensity image for each cell based on the ROI mask and the intensity image. Then a list of texture features (the list may be extended in the future) is calculated:  
 
 ## Granularity
-$Granularity_n$ is the percentage of intensity removed when bright objects of $n$ pixels in diameter are removed. A disk of radius $n$ is created, and a morphological opening is performed on the single-cell intensity image. The difference between the original and the opened image is the bright objects to be removed. The granularity value, ranging from 0 to 1, is calculated as the ratio of the removed intensity to the total intensity. 
+$Granularity_n$ is the percentage of intensity contributed by bright objects of $n$ pixels in radius. It is computed by performing a morphological opening with a disk of radius n on the cell intensity image and measuring the intensity lost as a percentage of the total intensity of the original cell ROI.
 
-$n = 1, 3, 5, 7, 9$ are calculated. 
+$n = 1, 3, 5, 7, 9$ are computed. 
 
 Semantically, higher granularity at smaller scales implies higher fragmentation. 
 
@@ -14,7 +14,7 @@ Semantically, higher granularity at smaller scales implies higher fragmentation.
 To calculate the radial distribution, each cell intensity image is partitioned into $4$ concentric rings, and the intensity fraction over the total intensity for each ring is calculated. For example, a higher fraction in ring 1 implies that signals are more concentrated at the center of the cell, whereas a higher fraction in ring 4 implies that signals are more concentrated at the cell edge.
 
 ## Mass Displacement
-Mass displacement defines the Euclidean distance (in pixels) between the intensity-weighted centroid of the cell ROI and the geometric centroid of the same ROI.
+Mass displacement is the Euclidean distance (in pixels) between the intensity-weighted centroid of the cell ROI and the geometric centroid of the same ROI.
 
 ## Intensity Sum
 Intensity sum is defined as the sum of pixel intensities within the cell intensity image.

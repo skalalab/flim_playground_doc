@@ -13,11 +13,11 @@ The numerical features are standardized before the dimension reduction.
 ## Shared Interface Components
 - On the left, users can use the [selection widgets](data_analysis.qmd#multivariate-analysis) to select multiple numerical features from each feature group.  
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
-- Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allows users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
+- Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allow users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 ## Hyperparameter Widget
-Hyperparameters really matter. So we provide a set of interactive widgets to help users to change the hyperparameters and see their effects on the dimension reduction in real time. 
+Hyperparameters really matter, therefore we provide a set of interactive widgets to help users change the hyperparameters and see their effects on the dimension reduction in real time. 
 
 ### UMAP
 FLIM Playground uses the `umap-learn` implementation of UMAP. It chooses to expose `n_neighbors` and `min_dist` for users to tweak. Other hyperparameters are set to [default values](https://umap-learn.readthedocs.io/en/latest/parameters.html).

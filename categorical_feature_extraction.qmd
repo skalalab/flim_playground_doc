@@ -9,7 +9,7 @@ Based on the datasets extracted in the [numerical feature extraction](#sec-numer
 
 ## Merging Datasets
 
-It scans the specified folder path and finds all csv files. It uses the [cell identifier column](data_extraction_config.qmd#cell-identifier) to check for duplicates both within each dataset and across all datasets. 
+It scans the specified folder path and finds all CSV files. It uses the [cell identifier column](data_extraction_config.qmd#cell-identifier) to check for duplicates both within each dataset and across all datasets. 
 
 :::{.callout-important #fov-id-categorical}
 **The FOV identifier uniquely identifies a field of view and is assumed to contain all information necessary to extract the categorical features (e.g., treatment, time point, etc.), by including segments separated by a certain delimiter (e.g., `_`). Categorical features are assigned from individual or combinations of segments.** 

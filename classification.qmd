@@ -12,15 +12,15 @@ The performance metrics plots are cut off in the screenshot. See the [performanc
 - Above the performance metrics plots, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 ## Method-specific Components
-- Choose the classifier and train-test split: the slider controls the proportion of the data used to train the classifier and the rest are used as unseen data to test its generalizability.
+- Choose the classifier and train-test split: the slider controls the proportion of the data used to train the classifier and the rest is used as unseen data to test its generalizability.
 
 ![](analysis_ui_shots/classifier_config.png){width=60% fig-align=center}
 
-- `Classify by`: The `Color by` from the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) is renamed to `Classify by` and it is used to form classes based on (combination of) selected categorical features. Other visual channels are not supported in this method. 
+- `Classify by`: The `Color by` from the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) is renamed to `Classify by` and it is used to form classes based on (a combination of) selected categorical features. Other visual channels are not supported in this method. 
 
 ![](analysis_ui_shots/classify_by.png){width=90% fig-align=center}
 
-- Choose the classes to be classified: classes are formed based on the combinations of categories of the selected categorical features. In general, it supports from binary classification to n-way classification where n is the number of classes. If one categorical feature is selected and after filtering has 3 categories, then all possible ways to classify are produced including the three-way classification. Additionally, the `class x vs the rest` option is provided for each class. 
+- Choose the classes to be classified: classes are formed based on the combinations of categories of the selected categorical features. In general, it supports binary classification through n-way classification where n is the number of classes. If one categorical feature is selected and after filtering has 3 categories, then all possible ways to classify are produced including the three-way classification. Additionally, the `class x vs the rest` option is provided for each class. 
 
 ![](analysis_ui_shots/classifier_options.png){width=30% fig-align=center}
 
@@ -32,7 +32,7 @@ The performance metrics plots are cut off in the screenshot. See the [performanc
 ![](analysis_ui_shots/sampling.png){width=20% fig-align=center}
 
 ::: {.callout-note}
-FLIM Playground applies a unit normalization (i.e. z-score) to the features before training if the chosen classifier is `SVM` or `Logistic Regression`, because they are sensitive to feature magnitudes, while `Random Forest` and `Gradient Boosting` are not. 
+FLIM Playground applies the z-score normalization to the features before training if the chosen classifier is `SVM` or `Logistic Regression`, because they are sensitive to feature magnitudes, while `Random Forest` and `Gradient Boosting` are not. 
 :::
 
 ### Performance Metrics
@@ -58,7 +58,7 @@ Other metrics can be calculated based on the confusion matrix:
 #### ROC Curve
 Another way to look at the performance of the classifier is to plot the Receiver Operating Characteristic (ROC) curve and its Area Under the Curve (AUC). 
 
-A classifier usually outputs a score for each sample. To turn scores into hard labels a decision threshold must be chosen. Confusion matrix looks at the performance of the classifier at a single threshold (in the binary case, the threshold is 0.5), while ROC curve looks at the performance of the classifier at all thresholds (from 1 to 0). 
+A classifier usually outputs a score for each sample. To turn scores into hard labels, a decision threshold must be chosen. Confusion matrix looks at the performance of the classifier at a single threshold (in the binary case, the threshold is 0.5), while ROC curve looks at the performance of the classifier at all thresholds (from 0 to 1). 
 
 At the origin (0, 0), the threshold is 1, so the classifier predicts all samples as negative, making the false positive rate $\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}} = 0$ and the true positive rate $\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}} = 0$, i.e. the origin. At the point (1, 1), the threshold is 0, so the classifier predicts all samples as positive, making the false positive rate 1 and the true positive rate 1, i.e. the point (1, 1). 
 

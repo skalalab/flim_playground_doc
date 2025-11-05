@@ -6,18 +6,18 @@ This method extends the univariate [Feature Histogram](#sec-feature-histogram) m
 
 ## Shared Interface Components
 
-- On the left, users can use the [selection widgets](data_analysis.qmd#bivariate-analysis) to select the two numerical features in the x-axis and y-axis. 
+- On the left, users can use the [selection widgets](data_analysis.qmd#bivariate-analysis) to select the two numerical features on the x-axis and y-axis. 
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
 - Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allow users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 ## Marginal Distribution
 
-Marginal distributions (distribution of a single feature) are plotted on the top and right of the scatter plot. Users can choose the plot type from the dropdown menu. 
+Marginal distributions (thedistribution of a single feature) are plotted on the top and right of the scatter plot. Users can choose the plot type from the dropdown menu. 
 
 ![](analysis_ui_shots/marginal_distribution.png){width=40% fig-align=center}
 
-`gaussian fit`: provides kernel-density estimate using Gaussian kernels. It uses `gaussian_kde` from `scipy.stats` and sets all parameters to default values. 
+`gaussian fit`: provides akernel-density estimate using Gaussian kernels. It uses `gaussian_kde` from `scipy.stats` and sets all parameters to default values. 
 
 ## 2D Gaussian Mixture Model
 
@@ -53,7 +53,7 @@ The classification result can be saved by clicking:
 
 ![](analysis_ui_shots/2d_gmm_download.png){width=20% fig-align=center}
 
-The classification is done by [hard assignment](feature_histogram.qmd#hard-assignment) to determine which GMM component each data point belongs to. It appends a new categorical feature column called `2D_GMM_group` to the filtered dataset, the values of which are `{color_group}_group1`, `{color_group}_group2`, etc. The downloaded dataset keeps all the features plus the new categorical feature column, which is recognized by any methods in Data Analysis as a categorical feature like others, and rows that pass the [filters](data_analysis.qmd#filter-widgets).
+The classification is done by [hard assignment](feature_histogram.qmd#hard-assignment) to determine which GMM component each data point belongs to. It appends a new categorical feature column called `2D_GMM_group` to the filtered dataset, the values of which are `{color_group}_group1`, `{color_group}_group2`, etc. The downloaded dataset keeps all the features plus the new categorical feature column, which is recognized by any methods in Data Analysis as a categorical feature like others. The rows that pass the [filters](data_analysis.qmd#filter-widgets) are included.
 
 ## Regression line
 

@@ -35,9 +35,9 @@ The default categorical feature list does not include `species`, so we add it ma
 
 ![](analysis_ui_shots/config_num.png){width=70%}
 
-- Users can copy the numerical features from Excel or any text editor that opens their csv files. The features can be separated by `,`, `;`, or whitespaces including newlines. 
+- Users can copy the numerical features from Excel or any text editor that opens their CSV files. The features can be separated by `,`, `;`, or whitespaces including newlines. 
 
-- After hitting the `ctrl/cmd + enter` key, the numerical features are parsed and added to `Available Features`. Users can add/delete groups and drag features from the `Available Features` to groups just created. Any ungrouped features are added to a group called `Uncategorized Features`.
+- After hitting the `ctrl/cmd + enter` key, the numerical features are parsed and added to `Available Features`. Users can add/delete groups and drag features from the `Available Features` to the groups they've just created. Any ungrouped features are added to a group called `Uncategorized Features`.
 
 ### Example
 

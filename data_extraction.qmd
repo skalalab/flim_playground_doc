@@ -12,7 +12,7 @@ Users can [configure](#sec-data-extraction-config) the system once and apply it 
 ![](extraction_ui_shots/extraction_steps.png){width=30% fig-align=center}
 
 1. [FOV Metadata Organization (A)](#sec-fov-metadata): each experiment session consists of multiple fields of view (FOVs). This step helps users organize the metadata of the FOVs. 
-2. [Numerical feature extraction (B)](#sec-numerical-feature-extraction): it calibrates and then extracts single cell numerical features. 
+2. [Numerical feature extraction (B)](#sec-numerical-feature-extraction): it calibrates and then extracts single-cell numerical features. 
     - [Calibration](numerical_feature_extraction.qmd#calibration)
         - [Fit Calibration](numerical_feature_extraction.qmd#fit-calibration)
         - [Fit Free Calibration](numerical_feature_extraction.qmd#fit-free-calibration)
@@ -23,7 +23,7 @@ Users can [configure](#sec-data-extraction-config) the system once and apply it 
         - [Phasor features](#sec-lifetime-fit-free): calculate the phasor features such as the phasor coordinates. It also provides [phasor analysis](#sec-phasor-analysis). 
         - [Morphology features](#sec-intensity-morphology): calculate morphology features based on the ROI mask. 
         - [Texture features](#sec-intensity-texture): calculate texture features based on the intensity image and the ROI mask. 
-3. [Categorical feature extraction (C)](#sec-categorical-feature-extraction): extract the categorical features such as the treatment, time point, etc based on the FOV name.
+3. [Categorical feature extraction (C)](#sec-categorical-feature-extraction): extract the categorical features such as the treatment, time point, etc. based on the FOV name.
 
 - Users can then upload the extracted datasets to perform [Data Analysis](#sec-data-analysis). 
 

@@ -29,7 +29,7 @@ All the methods [share a set of interactive widgets](#shared-interactive-widgets
 :::
 
 ## Input
-Users can upload the dataset outputted from the [Data Extraction](#sec-data-extraction) directly or *their own datasets* in **csv** (Comma Separated Values) format after finishing the [interactive configuration](#sec-data-analysis-config) setup. 
+Users can upload the dataset output from the [Data Extraction](#sec-data-extraction) directly or *their own datasets* in **csv** (Comma Separated Values) format after finishing the [interactive configuration](#sec-data-analysis-config) setup. 
 
 ::: {.columns}
 ::: {.column width="5%"}
@@ -96,7 +96,7 @@ If you cannot find a certain numerical feature under any numerical widgets inclu
 :::
 
 #### Univariate Analysis
-One set of selection widgets, each can select one feature from a feature group, is rendered. If one feature from a feature group is selected, all the other features groups will be reset to the value `Select`. 
+One single-select widget is rendered per group; choosing a feature in any group clears the selections and resets the others to `Select`.
 
 ![](analysis_ui_shots/uni_select.png){width=40% fig-align=center}
 
@@ -125,7 +125,7 @@ For complex datasets that are collected over multiple days, experiments, treatme
 Human vision is wired for rapid, parallel pattern and trend detection; good visual encodings (how to map data to visual elements such as color, shape, opacity, etc.) harness this to surface insights that raw numbers or text obscure [@cleveland1984]. FLIM Playground provides `color`, `opacity`, and `shape` channels for visualizations that support them: 
 
 ##### Color by
-Color is supported in all methods except for [Classification](#sec-classification). In `Color by`, users can select multiple categorical features, and each unique combination of available categories (determined by the filters in the [Filter Widgets](#filter-widgets)) in selected features are assigned a distinct color. Groups created by `Color by` show up in the x-axis (if multiple features, categories from each feature are delimited by `::`).
+Color is supported in all methods except for [Classification](#sec-classification). In `Color by`, users can select multiple categorical features, and each unique combination of available categories (determined by the filters in the [Filter Widgets](#filter-widgets)) in selected features is assigned a distinct color. Groups created by `Color by` show up in the x-axis (if multiple features, categories from each feature are delimited by `::`).
 
 ::: {#nte-order .callout-note}
 ## How to order the groups
@@ -139,7 +139,7 @@ The order of the groups in x-axis and in the legend is determined by:
 ![](analysis_ui_shots/color_by.png){width=90% fig-align=center}
 
 ##### Opacity and Shape by
-- Opacity and shape are supported in all point-based visualizations (e.g. [Feature Comparison](#sec-feature-comparison), [2D Feature Distribution](#sec-feature-distribution), [Phasor Analysis](#sec-phasor-analysis), [Dimension Reduction](#sec-dimension-reduction)). In `Opacity by` and `Shape by`, users can select one categorical feature, and each unique category is assigned a distinct opacity or shape. The order of the shape and opacity is also sorted [numer-alphatically](#nte-order). 
+- Opacity and shape are supported in all point-based visualizations (e.g. [Feature Comparison](#sec-feature-comparison), [2D Feature Distribution](#sec-feature-distribution), [Phasor Analysis](#sec-phasor-analysis), [Dimension Reduction](#sec-dimension-reduction)). In `Opacity by` and `Shape by`, users can select one categorical feature, and each unique category is assigned a distinct opacity or shape. The order of the shape and opacity is also sorted [numeric-alphabetically](#nte-order). 
 
 ![](analysis_ui_shots/opacity_shape_by.png){width=90% fig-align=center}
 

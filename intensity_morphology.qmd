@@ -6,7 +6,7 @@ FLIM Playground extracts single-cell morphological features based on the cell re
 
 - `solidity`: $\text{Solidity} = \frac{\text{\# ROI pixels}}{\text{\# convex hull pixels}}$, where the convex hull is the smallest convex polygon that contains the ROI. A value close to 1 means the shape has few concavities (more solid), while lower values indicate more irregular boundaries.
 
-- `eccentricity`: equals to the eccentricity of the ellipse that has the same second moments as the region. It is given by the ratio of the focal distance (the distance between the foci) to the length of the major axis:
+- `eccentricity`: equals the eccentricity of the ellipse that has the same second moments as the region. It is given by the ratio of the focal distance (the distance between the foci) to the length of the major axis:
 $e = \frac{c}{a}, \quad e \in [0,1)$, where $a$ is the semi-major axis length, $b$ is the semi-minor axis length, and $c = \sqrt{a^2 - b^2}$ is the focal distance. When $e=0$, the ellipse reduces to a circle. It quantifies how elongated the ROI is, with 0 being a perfect circle and 1 being a line.
 
 - `major_axis_length`: the length of the major axis of the ellipse that has the same second moments as the region: $2a$. It represents the longest dimension of the ellipse that approximates the region’s shape, essentially describing its maximum elongation.

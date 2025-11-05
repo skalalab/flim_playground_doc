@@ -1,16 +1,18 @@
+\usepackage{fontspec}
+\directlua{luaotfload.add_fallback("emojifallback", {"Apple Color Emoji:mode=harf;"})}
+\setmainfont{Times New Roman}[RawFeature={fallback=emojifallback}]
+
 \makeatletter
 \AtBeginDocument{%
   \hypersetup{%
-    pdftitle={FLIM Playground Manual},
+    pdftitle={Supplemental Manual},
     pdfauthor={}
   }%
   \renewcommand{\maketitle}{%
     \begin{titlepage}
       \thispagestyle{empty}
       \centering
-      {\Huge\bfseries FLIM Playground Manual\par}
-      \vspace{1.5cm}
-      {\Large Last Modified: \@date\par}
+      {\Huge\bfseries\itshape Supplemental Manual\par}
       \vfill
     \end{titlepage}
   }%

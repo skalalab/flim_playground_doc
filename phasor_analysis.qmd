@@ -22,7 +22,7 @@ Phasor coordinates of single-cell ROIs from the selected channel and harmonic ar
 
 ![](analysis_ui_shots/kmeans_config.png){width=60% fig-align=center}
 
-K-means clustering is performed given the number of clusters specified for each color group. Mathematically, it is an iterative algorithm that finds the best cluster assignment: what cluster with what centroid each point belongs to. The *best* is defined as the one that minimizes the sum of the squared distances between each point and the center of the cluster it belongs to. 
+K-means clustering is performed given the number of clusters specified for each color group. Mathematically, it is an iterative algorithm that finds the best cluster assignment with regard towhat cluster with what centroid each point belongs to. The *best* is defined as the one that minimizes the sum of the squared distances between each point and the center of the cluster it belongs to. 
 
 $$
 \min_{\{C_k\}_{k=1}^K}\;\sum_{k=1}^K\sum_{x_i\in C_k}\bigl\lVert x_i-\mu(C_k)\bigr\rVert_2^2,
@@ -44,4 +44,4 @@ Users can download the clustered dataset by clicking:
 
 ![](analysis_ui_shots/k_means_download.png){width=35% fig-align=center}
 
-The downloaded dataset keeps all the features plus the new categorical feature column (`k_means_cluster`), which is recognized by any method in Data Analysis as a categorical feature like others, and rows that pass the [filters](data_analysis.qmd#filter-widgets).
+The downloaded dataset keeps all the features plus the new categorical feature column (`k_means_cluster`), which is recognized by any method in Data Analysis as a categorical feature like others. The rows that pass the [filters](data_analysis.qmd#filter-widgets) are included.

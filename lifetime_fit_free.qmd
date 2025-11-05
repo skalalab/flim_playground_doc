@@ -46,7 +46,7 @@ $$
 
 This formula is equivalent to the untruncated formula when $fT = 1$.
 
-For fluorescence lifetime standard, the phasor coordinates are calculated using `phasorpy`'s `phasor_from_signal` and `sample_phase` option is set to $\omega t_k$.
+For the fluorescence lifetime standard, the phasor coordinates are calculated using `phasorpy`'s `phasor_from_signal` and `sample_phase` option is set to $\omega t_k$.
 
 ### Step 2: calibrated phasor coordinates
 

@@ -63,7 +63,7 @@ Finally, users can specify the folder path that contains all the required input 
 The first step is to find the fields of view:
 
 - it finds all the files recursively in the folder path that ends with the 1st file suffix of the 1st channel.
-- the prefix of all the matched files are considered to be the field of view name. 
+- the prefix of all the matched files is considered to be the field of view name. 
     - FOV name = file name - 1st file suffix
 
 Then, it uses the found FOV names to find all other files: 
@@ -84,14 +84,14 @@ When it cannot find the file based on the file name (FOV name + file suffix for 
 
 #### Duplicate
 
-Because the calibration file is not FOV-specific, it will be searched based on the file suffixes only. If there are multiple files that match the same file suffix, FLIM Playground will be confused as which one to use. 
+Because the calibration file is not FOV-specific, it will be searched based on the file suffixes only. If there are multiple files that match the same file suffix, FLIM Playground will be confused about which one to use. 
 
 ![](extraction_ui_shots/fov_duplicate.png){width=60% fig-align=center}
 
 Fields of view with ✅ are loaded successfully 🎆. FOVs with ❌ (if any) will not be recorded.
 
 ::: {.callout-tip}
-If after changing the file names that conform with the prefix assumption, and the problem persists, users can try killing the app and restarting it to clear the cache internally maintained by FLIM Playground.
+If the issue persists after renaming the files to match the required prefix, force-quit and relaunch FLIM Playground to clear its internal cache.
 :::
 
 ### Decay Info

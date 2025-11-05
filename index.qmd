@@ -39,6 +39,10 @@ A video of the Data Extraction section:
 {{< video src="extraction_ui_shots/data_extraction.mp4" controls=true style="object-fit:cover; border-radius:12px; display:block; margin:auto;" >}}
 :::
 
+::: {.content-visible when-format="pdf"}
+The latest version of this FLIM Playground manual is available [online](https://skalalab.github.io/flim_playground_doc/). 
+:::
+
 ## Installation
 
 FLIM Playground is built entirely in Python and is open-source. 
@@ -57,7 +61,7 @@ Download the desktop app from [GitHub](https://github.com/skalalab/flim_playgrou
 
 ## Introduction
 
-Fluorescence lifetime imaging microscopy (FLIM) measures the time it takes for a fluorescent molecule to emit light (return to the ground state) after being excited by a pulse of light (enter excited state). It is sensitive to changes in fluorophore microenvironment including, pH, temperature, and conformational changes due to protein-binding and the presence of quenchers [@datta2020]. Coupled with modern automated cell-segmentation methods [@stringer2021], FLIM enables single-cell analyses that can reveal biological heterogeneity.
+Fluorescence lifetime imaging microscopy (FLIM) measures the time it takes for a fluorescent molecule to emit light (return to the ground state) after being excited by a pulse of light (enter the excited state). It is sensitive to changes in fluorophore microenvironment including, pH, temperature, and conformational changes due to protein-binding and the presence of quenchers [@datta2020]. Coupled with modern automated cell-segmentation methods [@stringer2021], FLIM enables single-cell analyses that can reveal biological heterogeneity.
 
 ::: {.callout-note collapse="true"}
 # Instrumentation
@@ -157,7 +161,7 @@ FLIM Playground has two independent sections:
 - [Data Extraction Configuration (A)](#sec-data-extraction-config): allows users to choose among alternative input types and extraction methods (extractors).
 - [Metadata organization (B)](#sec-fov-metadata): extracts the field of view <span style="color: #C94146;">identifiers</span> and their configurations
 - [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell <span style="color: #D3AE4A;">numerical features</span> based on user-selected extractors. More extractors can be integrated in the future.
-  - [Calibration (C)](#sec-calibration): calibrate for IRF shift or use fluorescence lifetime standard
+  - [Calibration (C)](numerical_feature_extraction.qmd#calibration): calibrate for IRF shift or use fluorescence lifetime standard for phasor extraction
   - Alternative lifetime extractors (D): 
     - [Fitting](#sec-lifetime-fit)
     - [Phasor](#sec-lifetime-fit-free)
@@ -193,7 +197,7 @@ Here is the list of analysis methods incorporated into FLIM Playground, grouped 
   - [Feature Comparison](#sec-feature-comparison)
   - [Feature Histogram](#sec-feature-histogram)
   - [Field of View Comparison](#sec-fov-comparison)
-- [Bivariate analysis](#data_analysis.qmd#bivariate-analysis)
+- [Bivariate analysis](data_analysis.qmd#bivariate-analysis)
   - [Feature Distribution](#sec-feature-distribution)
   - [Phasor Analysis](#sec-phasor-analysis)
 - [Multivariate analysis](data_analysis.qmd#multivariate-analysis)
@@ -204,4 +208,4 @@ Both sections are built in Python and built as self-contained executables ready 
 
 ### Summary
 
-**FLIM Playground** resolves these [challenges](#challenges) with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and has a built-in repertoire of analytical methods with interactive widgets that encourage hypothesis driven, iterative exploration of large datasets. It is built on a modular architecture that enables incorporation of new algorithms in the future.
+**FLIM Playground** resolves these [challenges](#challenges) with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and has a built-in repertoire of analytical methods with interactive widgets that encourage hypothesis-driven, iterative exploration of large datasets. It is built on a modular architecture that enables incorporation of new algorithms in the future.
