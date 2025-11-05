@@ -14,7 +14,7 @@ If the chosen [calibration method](data_extraction_config.qmd#calibration-method
 
 ### Step 1: raw phasor coordinates
 
-The reference implementation from [phasorpy](https://www.phasorpy.org/) assumes the decay curve comes from one period and time bins are evenly spaced (untruncated). So, their calculation is frequency ($f$) and time ($T$) independent. However, there are cases when the decay curve is truncated due to the deadtime of the system. For example, when the laser frequency is $f = 0.08$ GHz, the theoretical period is $T = 12.5$ ns, but in practice the time window is truncated to $T = 10$ ns. FLIM Playground applies custom implementation to the truncated decay curve. (The `sample_phase` option can be used to account for the truncation but it does not handle the second or above harmonics)
+The reference implementation from [phasorpy](https://www.phasorpy.org/) assumes the decay curve comes from one period and time bins are evenly spaced (untruncated). So, their calculation is frequency ($f$) and time ($T$) independent. However, there are cases when the decay curve is truncated due to the deadtime of the system. For example, when the laser frequency is $f = 0.08$ GHz, the theoretical period is $T = 12.5$ ns, but in practice the time window is truncated to $T = 10$ ns. FLIM Playground applies a custom implementation to the truncated decay curve. (The `sample_phase` option can be used to account for the truncation but it does not handle the second or higher harmonics)
 
 #### Untruncated decay curve
 

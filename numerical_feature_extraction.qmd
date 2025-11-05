@@ -4,7 +4,7 @@ In this step, FLIM Playground extracts *single-cell* numerical features from the
 - [Lifetime fit](#sec-lifetime-fit): fit exponential models to decay curves to estimate lifetimes and their fractional contributions by minimizing an objective function. 
 - [Lifetime fit free](#sec-lifetime-fit-free): transform decay curves to phasor space using Fourier transform to obtain phasor coordinates. 
 - [Intensity Morphology](#sec-intensity-morphology): morphological features of single-cell ROI masks
-- [Intensity Texture](#sec-intensity-texture): texture features of single cell ROI intensity images
+- [Intensity Texture](#sec-intensity-texture): texture features of single-cell ROI intensity images
 
 ## Input 
 

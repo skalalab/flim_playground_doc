@@ -25,7 +25,7 @@ In the system developed by Samimi et al. [@Samimi2024], single cells flow throug
 
 #### 3D/4D Decay {#three-d4d-decay}
 
-In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g. `.sdt`, `.ptu`). In addition to the spatial dimensions and the time dimension (`XYT`), the channel dimension may also be present, making it 4- dimensional (`CXYT`). **FLIM Playground currently supports both `.sdt` and `.ptu` files up to those 4 dimensions.** It reads the `duration` and the number of `time bins` from the decay file metadata. Some systems can also record a time stack, which is not supported yet.
+In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g. `.sdt`, `.ptu`). In addition to the spatial dimensions and the time dimension (`XYT`), the channel dimension may also be present, making it 4-dimensional (`CXYT`). **FLIM Playground currently supports both `.sdt` and `.ptu` files up to those 4 dimensions.** It reads the `duration` and the number of `time bins` from the decay file metadata. Some systems can also record a time stack, which is not supported yet.
 
 #### 3D/4D pixel-prefitted {#three-d4d-pixel-prefitted}
 
@@ -81,7 +81,7 @@ Users can customize the channel name based on, for example, the name of the fluo
 
 Users can specify the imaging modality for each channel. Currently, two modalities are supported: 
 
-- `FLIM`: The signal is time-resolved, i.e., has a time dimension, and expected to be from one of the [decay types](data_extraction_config.qmd#decay-types).
+- `FLIM`: The signal is time-resolved, i.e., has a time dimension, and is expected to be from one of the [decay types](data_extraction_config.qmd#decay-types).
 - `Intensity-only`: The signal is a spatial map of intensity values (2 spatial dimensions), i.e., has no time dimension. **Currently, the only supported signal type is a 2D intensity image in the format of `.tiff/.tif`.**
 
 ![](extraction_ui_shots/config_modality.png){width=20% fig-align=center}

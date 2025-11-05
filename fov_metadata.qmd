@@ -62,13 +62,13 @@ Finally, users can specify the folder path that contains all the required input 
 
 The first step is to find the fields of view:
 
-- it finds all the files recursively in the folder path that ends with the 1st file suffix of the 1st channel.
-- the prefix of all the matched files is considered to be the field of view name. 
+- It finds all the files recursively in the folder path that ends with the 1st file suffix of the 1st channel.
+- The prefix of all the matched files is considered to be the field of view name. 
     - FOV name = file name - 1st file suffix
 
 Then, it uses the found FOV names to find all other files: 
 
-- file name to search = FOV name + other file suffixes for each file suffix
+- The file name to search = FOV name + other file suffixes for each file suffix
 
 The only exceptions are the calibration files, because they are not FOV-specific. They will be searched for based on their file suffixes only. 
 
@@ -102,7 +102,7 @@ If the decay type is [3D/4D decay](data_extraction.qmd#three-d4d-decay), FLIM Pl
 
 If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channels to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there are any. 
 
-#### fluorescence lifetime standard
+#### Fluorescence Lifetime Standard
 
 If the file path to the [fluorescence lifetime standard](#fluorescence-lifetime-standard) is specified, FLIM Playground will try to look for and read the file. It expects a `tiff` or `tif` file that contains a 3D array, with one of them as the time dimension. It will try to match the time dimension with the time dimension of the decay file. If it cannot find the matching time dimension, it will complain. 
 

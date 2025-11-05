@@ -12,7 +12,7 @@ Based on the datasets extracted in the [numerical feature extraction](#sec-numer
 It scans the specified folder path and finds all CSV files. It uses the [cell identifier column](data_extraction_config.qmd#cell-identifier) to check for duplicates both within each dataset and across all datasets. 
 
 :::{.callout-important #fov-id-categorical}
-**The FOV identifier uniquely identifies a field of view and is assumed to contain all information necessary to extract the categorical features (e.g., treatment, time point, etc.), by including segments separated by a certain delimiter (e.g., `_`). Categorical features are assigned from individual or combinations of segments.** Example: The FOV `Panc1_Cyanide_dish1` denotes that it comes from the Panc1 cell line, under the Cyanide treatment, in the 1st dish.  
+**The FOV identifier uniquely identifies a field of view and is assumed to contain all information necessary to extract the categorical features (e.g., treatment, time point, etc.), by including segments separated by a certain delimiter (e.g., `_`). Categorical features are assigned from individual segments or their combinations.** Example: The FOV `Panc1_Cyanide_dish1` denotes that it comes from the Panc1 cell line, under the Cyanide treatment, in the 1st dish.  
 :::
 
 Therefore, it checks if all field-of-view names include the same number of segments to determine the eligibility of [categorical feature assignment](#assigning-categorical-features). 

@@ -15,7 +15,7 @@ This method allows users to compare the distributions of a single numerical feat
 
 `Separate by` takes effect before [`Color by`](data_analysis.qmd#color-by). `Separate by` divides the plot into sections separated by a dashed line, with each section labeled by one of the available categories of the selected categorical feature after [filtering](data_analysis.qmd#filter-widgets). The selected feature of `Separate by` is automatically removed from available features in `Color by`. The section order is determined by the order of the categories which are sorted [numeric-alphabetically](data_analysis.qmd#nte-order). 
 
-Then, visual channels (color, shape, opacity) and effect size annotation are applied within each section. For example, the visualization below was separated by `cell_line`, with each section labelled by the bold text of a cell line. Within each section, the x-axis rendered the `Color by` categories (`treatments`) so colors were consistent across sections. [Effect size](#effect-size) calculation and annotation (only effect size $> 0.5$ is shown) were performed within each section. 
+Then, visual channels (color, shape, opacity) and effect size annotation are applied within each section. For example, the visualization below was separated by `cell_line`, with each section labeled by the bold text of a cell line. Within each section, the x-axis rendered the `Color by` categories (`treatments`) so colors were consistent across sections. [Effect size](#effect-size) calculation and annotation (only effect size $> 0.5$ is shown) were performed within each section. 
 
 ![](analysis_ui_shots/separate_by.png)
 
@@ -60,7 +60,7 @@ $$
          {\operatorname{MAD}_{\text{control}}},\qquad
 \operatorname{MAD}_{\text{control}}
   = 1.4826 \times
-    \operatorname{median}\!\bigl\lvert
+    \operatorname{median}\,\bigl\lvert
       X_{control_i}-\tilde{X}_{\text{control}}
     \bigr\rvert, \qquad i = 1, \ldots, n_c
 $$

@@ -36,7 +36,7 @@ See [decay types](data_extraction_config.qmd#decay-types) for more details.
 
 - 2D decay: 
     - `.csv`: a tabular data sheet with each row representing a cell and each column representing a time bin. 
-- 3D/4D decay: besides the spatial dimensions and the time dimension, the extra dimension in the 4D array should be acquisition channels.
+- 3D/4D decay: besides the spatial dimensions and the time dimension, the additional dimension in the 4D array represents acquisition channels.
     - `.sdt`: Becker & Hickl
     - `.ptu`: PicoQuant
 
