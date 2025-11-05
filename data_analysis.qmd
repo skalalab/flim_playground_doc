@@ -1,5 +1,5 @@
 # Overview {#sec-data-analysis}
-We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](#sec-data-extraction) section or in users' own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data [categorization](index.qmd#feature-classes) as [Data Extraction](#sec-data-extraction) does, the Data Analysis section designs an [architectural blueprint](#shared-interactive-widgets) that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.  
+We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](#sec-data-extraction) section or in users' own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data [categorization](index.qmd#feature-classes) in [Data Extraction](#sec-data-extraction), the Data Analysis section designs an [architectural blueprint](#shared-interactive-widgets) that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.  
 
 ## Methods
 - Depending on the number of numerical features in the analysis, the methods are categorized into 3 groups: 
@@ -29,7 +29,7 @@ All the methods [share a set of interactive widgets](#shared-interactive-widgets
 :::
 
 ## Input
-Users can upload the dataset output from the [Data Extraction](#sec-data-extraction) directly or *their own datasets* in **csv** (Comma Separated Values) format after finishing the [interactive configuration](#sec-data-analysis-config) setup. 
+Users can upload the dataset output from the [Data Extraction](#sec-data-extraction) directly or *their own datasets* in **CSV** (Comma Separated Values) format after finishing the [interactive configuration](#sec-data-analysis-config) setup. 
 
 ::: {.columns}
 ::: {.column width="5%"}
@@ -72,7 +72,7 @@ Warning messages will not prevent the analysis but error messages will.
 ### Error Messages
 - Missing a column that uniquely identifies each row
 - Cannot identify any numerical feature column
-    - it uses `pd.api.types.is_numeric_dtype` to check if a column is numerical. 
+    - It uses `pd.api.types.is_numeric_dtype` to check if a column is numerical. 
 
 ## Shared Interactive Widgets
 
@@ -117,7 +117,7 @@ FLIM Playground recognizes the categorical features in the uploaded dataset base
 #### Filter Widgets
 ![](analysis_ui_shots/filter.png){width=95%}
 
-For complex datasets that are collected over multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget is rendered for each categorical feature so that users have the flexibility to filter the data based on combinations of categorical features. `All` is a special option that will include all categories of the selected categorical feature. Once it is selected, all the other options are cleared, and vice versa. 
+For complex datasets that are collected over multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget is rendered for each categorical feature so that users have the flexibility to filter the data based on combinations of categorical features. `All` is a special option that include all categories of the selected categorical feature. Once it is selected, all the other options are cleared, and vice versa. 
 
 #### Visual Channels Widgets
 ![](analysis_ui_shots/vis_channels.png){width=100%}
@@ -131,9 +131,9 @@ Color is supported in all methods except for [Classification](#sec-classificatio
 ## How to order the groups
 The order of the groups in x-axis and in the legend is determined by:
 
-- the order of the selected features: categories of the first feature appear before those of the second, so on so forth. For example, the two treatments of `Panc1` are together, because it is sorted first on the cell lines, then on treatments. If you want the treatments to be together, in `Color by` you can select `treatment` then `cell_line`. 
+- the order of the selected features: categories of the first feature appear before those of the second, and so on and so forth. For example, the two treatments of `Panc1` are together, because it is sorted first on the cell lines, then on treatments. If you want the treatments to be together, in `Color by` you can select `treatment` then `cell_line`. 
 
-- *Numeric-alphabetical sort*: within each feature, the category order is determined by the number inside (e.g. `1` in `Panc1`) first, then the alphabetical order of the category name. Therefore, although `P` is after `M` alphabetically, the `1` is before `7` numerically, making `Panc1` appears before `MCF7`. This may be helpful when you have data from different days or hours. The default string sort will put `Day 100` before `Day 30`, and this is not what we want.
+- *Numeric-alphabetical sort*: within each feature, the category order is determined by the number inside (e.g. `1` in `Panc1`) first, then the alphabetical order of the category name. Therefore, although `P` is after `M` alphabetically, the `1` is before `7` numerically, making `Panc1` appear before `MCF7`. This may be helpful when you have data from different days or hours. The default string sort will put `Day 100` before `Day 30`, and this is not what we want.
 ::: 
 
 ![](analysis_ui_shots/color_by.png){width=90% fig-align=center}

@@ -17,7 +17,7 @@ The numerical features are standardized before the dimension reduction.
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 ## Hyperparameter Widget
-Hyperparameters really matter, therefore we provide a set of interactive widgets to help users change the hyperparameters and see their effects on the dimension reduction in real time. 
+Hyperparameters really matter, so we provide a set of interactive widgets to help users change the hyperparameters and see their effects in real time. 
 
 ### UMAP
 FLIM Playground uses the `umap-learn` implementation of UMAP. It chooses to expose `n_neighbors` and `min_dist` for users to tweak. Other hyperparameters are set to [default values](https://umap-learn.readthedocs.io/en/latest/parameters.html).

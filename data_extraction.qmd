@@ -61,7 +61,7 @@ If the decay type is [3D/4D pixel-prefitted](data_extraction_config.qmd#three-d4
 - `.asc`: a 2D array in spatial dimensions outputted by [SPCImage](https://www.becker-hickl.com/products/spcimage/), with each (row, column) containing the value of the lifetime feature (e.g. `t1`: the first component's lifetime) of that pixel.
 - Depending on the chosen number of lifetime components, the other pixel-prefitted feature files are included and their names are inferred from the `t1` file, by replacing `t1` in the file name with `t2`, `t3`, `a1[%]`, etc. 
 
-### fluorescence lifetime standard
+### Fluorescence Lifetime Standard
 If the fluorescence lifetime standard-based calibration is chosen, users are expected to provide the fluorescence lifetime standard file. 
 
 - `.tiff`/`.tif`: a 3D array, with one dimension representing the time axis. 

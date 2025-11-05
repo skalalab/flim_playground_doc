@@ -3,7 +3,7 @@ In this step, FLIM Playground extracts *single-cell* numerical features from the
 
 - [Lifetime fit](#sec-lifetime-fit): fit exponential models to decay curves to estimate lifetimes and their fractional contributions by minimizing an objective function. 
 - [Lifetime fit free](#sec-lifetime-fit-free): transform decay curves to phasor space using Fourier transform to obtain phasor coordinates. 
-- [Intensity Morphology](#sec-intensity-morphology): morphological features of single cell ROI masks
+- [Intensity Morphology](#sec-intensity-morphology): morphological features of single-cell ROI masks
 - [Intensity Texture](#sec-intensity-texture): texture features of single cell ROI intensity images
 
 ## Input 
@@ -39,19 +39,19 @@ During different experiments, the IRF may shift differently with respect to the 
 It is performed in two steps: 
 
 1. Gather the high signal-to-noise ratio (SNR) decay curves 
-2. For each curve, perform reconvolution fitting and set shift value as the free parameter to be optimized/fitted. 
+2. For each curve, perform reconvolution fitting and set the shift value as the free parameter to be optimized/fitted. 
 
-The distribution of the shift values is displayed as an interactive scatter plot. When clicking on a point, the corresponding decay curve with the fitted curve and the key statistics are displayed for diagnostics. Based on the distribution or using certain prior knowledge, users can specify the shift value applied to all field of view (if `Fix the Shift` is selected, see [fitting options](#fitting-options)), or use the fov-specific shift value found by the fitting (if `Fix the Shift` is deselected). 
+The distribution of the shift values is displayed as an interactive scatter plot. When clicking on a point, the corresponding decay curve with the fitted curve and the key statistics are displayed for diagnostics. Based on the distribution or using certain prior knowledge, users can specify the shift value applied to all fields of view (if `Fix the Shift` is selected, see [fitting options](#fitting-options)), or use the fov-specific shift value found by the fitting (if `Fix the Shift` is deselected). 
 
 ![](extraction_ui_shots/irf_shift.png){#irf-shift}
 
 #### Gather High SNR Decay Curves
 
-The high SNR decay curves are constructed automatically based on the [decay type](data_extraction_config.qmd#decay-types). If it is in [2D format](data_extraction_config.qmd#two-d-decay), a total of the brightest 30 curves that are below `100000` photons are selected and evenly distributed across all field of views (one csv file is considered as one FOV). If it is in [3D/4D format](data_extraction_config.qmd#three-d4d-decay), the field of views are images, and one curve is constructed for each image that includes all the non-zero pixels within the [ROI mask](data_extraction.qmd#mask). 
+The high SNR decay curves are constructed automatically based on the [decay type](data_extraction_config.qmd#decay-types). If it is in [2D format](data_extraction_config.qmd#two-d-decay), a total of the brightest 30 curves that are below `100000` photons are selected and evenly distributed across all fields of view (one CSV file is considered as one FOV). If it is in [3D/4D format](data_extraction_config.qmd#three-d4d-decay), the fields of view are images, and one curve is constructed for each image that includes all the non-zero pixels within the [ROI mask](data_extraction.qmd#mask). 
 
 #### Reconvolution Fitting
 
-Fitting is essentially an optimization problem: it minimizes the difference between the fitted curve and the measured curve. The fitted curve is modeled by a $n^{th}$ component exponential function convolved with the shifted IRF, and the difference is modeled as an objective metric. Therefore, users are provided with controls over two parts of the fitting process through the [fitting options panel](#fitting-options): 
+Fitting is essentially an optimization problem: it minimizes the difference between the fitted curve and the measured curve. The fitted curve is modeled by an $n^{th}$ component exponential function convolved with the shifted IRF, and the difference is modeled as an objective metric. Therefore, users are provided with controls over two parts of the fitting process through the [fitting options panel](#fitting-options): 
 
 1. How to construct the objective metric
 2. How to perform the optimization
@@ -67,18 +67,18 @@ Let's break down the fitting options one by one.
 ##### Number of Components
 
 The number $n$ in the $n^{th}$ component exponential function: 
-$$% Generic (non-normalized) n-exponential decay
+$$
 I(\mathbf{t})=\sum_{i=1}^{n} A_i\, e^{-\mathbf{t}/\tau_i}, \qquad \tau_i>0
 $$
 
 Therefore, $n$ determines the parameters to be fitted: the amplitudes $A_i$ and the lifetimes $\tau_i$. $\mathbf{t}$ is the time axis of the decay curve calculated by the `duration` and `time bins` from the [decay info](fov_metadata.qmd#decay-info): 
 $$\mathbf{t}=\bigl[0,\ \Delta t,\ 2\Delta t,\ \ldots,\ (N-1)\Delta t\bigr],
-\quad \text{where }\Delta t=\frac{T}{K}.
+\quad \text{where }\Delta t=\frac{T}{N}.
 $$
 
 It supports $n=1,2,3$ components. 
 
-Additionally, the constant offset parameter ($Z$) that represents a time independent background (i.e., room light) is also optimized [@warren2013].
+Additionally, the constant offset parameter ($Z$) that represents a time-independent background (i.e., room light) is also optimized [@warren2013].
 
 $$
 \hat{y}(t) = [I(t) \otimes \text{IRF}(t)] + Z
@@ -86,7 +86,7 @@ $$
 
 
 ##### Time Gates
-Due to the deadtime of the system certain time bins from the head and/or tail of the decay curve are not reliable. The T1 (head) and T2 (tail) gates are used to select the time range of the decay curve to be fitted. Users can inspect the decay curve by clicking the full screen mode button of the plot on the right of the [shift result](#irf-shift). Hover-based interaction is implemented so users can see the time bin numbers to have a better sense of the time range. 
+Due to the dead time of the system certain time bins from the head and/or tail of the decay curve are not reliable. The T1 (head) and T2 (tail) gates are used to select the time range of the decay curve to be fitted. Users can inspect the decay curve by clicking the full-screen mode button of the plot on the right of the [shift result](#irf-shift). Hover-based interaction is implemented so users can see the time bin numbers to have a better sense of the time range. 
 
 ![](extraction_ui_shots/time_gate_choose.png){width=100% fig-align=center}
 
@@ -97,16 +97,16 @@ Only the time bins within the T1 and T2 gates are used to calculate the cost met
 ##### Metric
 ![](extraction_ui_shots/metric.png){width=20% fig-align=center}
 
-Maximum Likelihood Estimation (`MLE`): it estimates the parameters by maximizing the likelihood function, which is the probability of the measured data given the model parameters. A mathematically convenient way to do this is to minimize the negative log-likelihood function: 
+Maximum Likelihood Estimation (`MLE`) estimates the parameters by maximizing the likelihood function, which is the probability of the measured data given the model parameters. A mathematically convenient way to do this is to minimize the negative log-likelihood function: 
 
 $$
 \text{NLL}(\theta; t_s,t_e)
-= -\sum_{k=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_k)\,\bigl[y_k \log \hat{y}(t_k) - \hat{y}(t_k)\bigr].
+= -\sum_{n=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_n)\,\bigl[y_n \log \hat{y}(t_n) - \hat{y}(t_n)\bigr].
 $$
 
-$\mathbf{1}_{[t_s,t_e]}$ is the indicator function that is 1 if $t_k$ is within the [time gates](#time-gates)$[t_s, t_e]$, and 0 otherwise. $y_k$ is the observed count at time $t_k$, and $\hat{y}(t_k)$ is the model prediction at $t_k$.
+$\mathbf{1}_{[t_s,t_e]}$ is the indicator function that is 1 if $t_n$ is within the [time gates](#time-gates) $[t_s, t_e]$, and 0 otherwise. $y_n$ is the observed count at time $t_n$, and $\hat{y}(t_n)$ is the model prediction at $t_n$.
 
-Least Squares (`LS`): it estimates the parameters by minimizing the sum of the squared differences between the measured curve and the model prediction. 
+Least Squares (`LS`) estimates the parameters by minimizing the sum of the squared differences between the measured curve and the model prediction. 
 
 ##### Fitting Mode
 
@@ -122,7 +122,7 @@ After constructing the objective metric, the fitting mode is used to determine t
 
 Users get to choose between the following two methods to calibrate the IRF shift in the [configuration step](data_extraction_config.qmd#calibration-method). 
 
-The first step of the calibration is to **subtract an offset value and clip each decay curve to 0 if the time bin is negative**. The offset is chosen to be the mean of the last 10th percentile of the decay curve (tail). 
+The first step of the calibration is to **subtract an offset value and clip each decay curve to 0 if the time bin is negative**. The offset $C$ is estimated as the mean signal over the final 10% of time bins in each decay (‘tail’). 
 
 Then, depending on the chosen [calibration method](data_extraction_config.qmd#calibration-method), the following two methods are available:
 
@@ -138,7 +138,7 @@ The signals of the shifted IRF are deconvolved from the offset-subtracted decay 
 
 #### Fluorescence lifetime standard 
 
-Because the fluorescence lifetime standard is measured in the same system as the decay curves and we know its lifetime, there is no need to account for the IRF shift and the offset. Therefore, after subtracting the offset, `phasorpy`'s [`lifetime.phasor_calibrate`](https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate) function is used to calibrate all the decay curves behind the scene when calculating the phasor coordinates. 
+Because the fluorescence lifetime standard is measured in the same system as the decay curves and we know its lifetime, there is no need to account for the IRF shift and the offset. Therefore, after subtracting the offset, `phasorpy`'s [`lifetime.phasor_calibrate`](https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate) function is used to calibrate all the decay curves behind the scenes when calculating the phasor coordinates. 
 
 ### Confirm Calibration
 

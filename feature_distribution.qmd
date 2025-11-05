@@ -13,15 +13,15 @@ This method extends the univariate [Feature Histogram](#sec-feature-histogram) m
 
 ## Marginal Distribution
 
-Marginal distributions (thedistribution of a single feature) are plotted on the top and right of the scatter plot. Users can choose the plot type from the dropdown menu. 
+Marginal distributions (the distribution of a single feature) are plotted at the top and the right of the scatter plot. Users can choose the plot type from the dropdown menu. 
 
 ![](analysis_ui_shots/marginal_distribution.png){width=40% fig-align=center}
 
-`gaussian fit`: provides akernel-density estimate using Gaussian kernels. It uses `gaussian_kde` from `scipy.stats` and sets all parameters to default values. 
+`gaussian fit`: provides a kernel-density estimate using Gaussian kernels. It uses `gaussian_kde` from `scipy.stats` and sets all parameters to default values. 
 
 ## 2D Gaussian Mixture Model
 
-Using the same method as fitting a 1D [Gaussian Mixture Model](feature_histogram.qmd#fit-gaussian-mixture-models), users can fit a 2D GMM by specifying `Max Components` and `Min Weight Threshold` on each color group.  
+Using the same method as fitting a 1D [Gaussian Mixture Model](feature_histogram.qmd#fit-gaussian-mixture-models), users can fit a 2D GMM by specifying `Max Components` and `Min Weight Threshold` for each color group.  
 
 Ellipses that capture approximately 95% of the points in each subcomponent are drawn. The color of the ellipses is determined by the color group that the subcomponent belongs to. 
 
@@ -34,7 +34,7 @@ Each ellipse represents a subcomponent of the GMM.
 
 - The ellipse is rotated by $\theta = \arctan2\!\left(v_{1y}, v_{1x} \right)$, where $\mathbf{v}_1 = \begin{bmatrix} v_{1x} \\ v_{1y} \end{bmatrix}$ is the first eigenvector of the covariance matrix, so that the major axis of the ellipse is aligned with the eigenvector corresponding to the largest eigenvalue. 
 
-- Axis lengths represent the variances along the major and minor axes of the ellipse. They are the eigenvalues of the covariance matrix scaled by $r = \sqrt{\chi^2_{\,\mathrm{df}=2,\,p=0.95}}$ (Mahalanobis distance) that captures approximately 95% of the points in the subcomponent. 
+- The semi-axis lengths are $r\sqrt{\lambda_1}$ and $r\sqrt{\lambda_2}$, where $\lambda_1$ and $\lambda_2$ are the covariance eigenvalues (variances along the principal axes) scaled by $r = \sqrt{\chi^2_{\,\mathrm{df}=2,\,p=0.95}}$ (Mahalanobis distance) that captures approximately 95% of the points in the subcomponent. 
 :::
 
 All the components below will be rendered for each color group, which is created by user-chosen categorical features in [`Color by`](data_analysis.qmd#color-by).
@@ -53,7 +53,7 @@ The classification result can be saved by clicking:
 
 ![](analysis_ui_shots/2d_gmm_download.png){width=20% fig-align=center}
 
-The classification is done by [hard assignment](feature_histogram.qmd#hard-assignment) to determine which GMM component each data point belongs to. It appends a new categorical feature column called `2D_GMM_group` to the filtered dataset, the values of which are `{color_group}_group1`, `{color_group}_group2`, etc. The downloaded dataset keeps all the features plus the new categorical feature column, which is recognized by any methods in Data Analysis as a categorical feature like others. The rows that pass the [filters](data_analysis.qmd#filter-widgets) are included.
+The classification is done by [hard assignment](feature_histogram.qmd#hard-assignment) to determine which GMM component each data point belongs to. It appends a new categorical feature column called `2D_GMM_group` to the filtered dataset, the values of which are `{color_group}_group1`, `{color_group}_group2`, etc. The downloaded dataset keeps all the features plus the new categorical feature column, which is recognized by any method in Data Analysis as a categorical feature like others. The rows that pass the [filters](data_analysis.qmd#filter-widgets) are included.
 
 ## Regression line
 

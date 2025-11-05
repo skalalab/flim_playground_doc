@@ -48,9 +48,9 @@ Users can edit the file suffixes here.
 
 ![](extraction_ui_shots/fov_file_suffix.png){width=60% fig-align=center}
 
-### fluorescence lifetime standard
+### Fluorescence Lifetime Standard
 
-If the selected fit free calibration method is [fluorescence lifetime standard](data_extraction_config.qmd#fluorescence-lifetime-standard), users are asked to specify the fluorescence lifetime standard file path for each channel and the fluorescence lifetime standard's lifetime, the default of those are copied from the data extraction configuration. 
+If the selected fit free calibration method is [fluorescence lifetime standard](data_extraction_config.qmd#fluorescence-lifetime-standard), users are asked to specify the fluorescence lifetime standard file path for each channel and the fluorescence lifetime standard's lifetime, which are copied from the data extraction configuration. 
 
 ### Folder Path
 Finally, users can specify the folder path that contains all the required input files. 
@@ -70,7 +70,7 @@ Then, it uses the found FOV names to find all other files:
 
 - file name to search = FOV name + other file suffixes for each file suffix
 
-The only exception is the calibration file, because it is not FOV-specific. They will be searched for based on their file suffixes only. 
+The only exceptions are the calibration files, because they are not FOV-specific. They will be searched for based on their file suffixes only. 
 
 #### Success
 
@@ -96,11 +96,11 @@ If the issue persists after renaming the files to match the required prefix, for
 
 ### Decay Info
 
-If the decay type is [3D/4D decay](data_extraction.qmd#3d4d-decay), FLIM Playground will try to infer the `duration` and the number of `time bins` per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files. 
+If the decay type is [3D/4D decay](data_extraction.qmd#three-d4d-decay), FLIM Playground will try to infer the `duration` and the number of `time bins` per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files. 
 
 #### Channel Assignment
 
-If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channel to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there is any. 
+If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channels to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there are any. 
 
 #### fluorescence lifetime standard
 
@@ -122,7 +122,7 @@ As an example, the following metadata are extracted:
 - `image_name`: The `image_name` column is the name of each FOV, which is specified in the [fov identifier config](data_extraction_config.qmd#fov-identifier). 
 - `nadh_Mask`, `nadh_Decay`, `nadh_IRF`, `fad_Mask`, `fad_Decay`, `fad_IRF`: the [file paths](#fov-file-paths) of the mask, decay, and IRF files for the `nadh` and `fad` channels. 
 - `nadh_input_type`, `nadh_imaging_modality`, `fad_input_type`, `fad_imaging_modality`: the [decay type](#decay-type) for each channel. If they share the same imaging modality, the input types should be the same. The only imaging modality supported by FLIM Playground is `FLIM`, therefore the input_type for all channels should be from one of the [decay types](data_extraction_config.qmd#decay-types). 
-- `nadh_Lifetime fit free`, `nadh_Intensity morphology`, `nadh_Lifetime fit`,`fad_Intensity morphology`, `fad_Intensity texture`, `fad_Lifetime fit`: [feature extractors](#feature-extractors) for each channel. 
-- `nadh_channel`,`duration`, `fad_channel`, `time_bins`, `laser_rate`: the [decay info](#decay-info) for each channel and info shared by all channels. 
+- `nadh_Lifetime fit free`, `nadh_Intensity morphology`, `nadh_Lifetime fit`, `fad_Intensity morphology`, `fad_Intensity texture`, `fad_Lifetime fit`: [feature extractors](#feature-extractors) for each channel. 
+- `nadh_channel`, `duration`, `fad_channel`, `time_bins`, `laser_rate`: the [decay info](#decay-info) for each channel and info shared by all channels. 
 
-The user can click the `Export FOV Metadata as CSV` button to export the metadata to a CSV file. 
+The user can click the `Export FOV Metadata as CSV` button to export the metadata as a CSV file. 

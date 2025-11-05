@@ -31,7 +31,7 @@ A video of the Data Analysis section:
 ![](analysis_ui_shots/feature_comparison.png){width=100% fig-align=center}
 :::
 
-Due to its limitation in local file system access, extracting features from raw data is not available in the online demo. Read on to discover how FLIM Playground transforms raw fluorescence decay data into biological insight through an integrated, interactive workflow.
+Due to the limitation in local file system access, extracting features from raw data is not available in the online demo. Read on to discover how FLIM Playground transforms raw fluorescence decay data into biological insight through an integrated, interactive workflow.
 
 ::: {.content-visible when-format="html"}
 A video of the Data Extraction section:
@@ -48,7 +48,7 @@ The latest version of this FLIM Playground manual is available [online](https://
 FLIM Playground is built entirely in Python and is open-source. 
 
 ### Download
-Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground) and double-click it to run. Releases are currently available for Windows 11 and Mac OS 26. If your operating system is not either of these, you can build it yourself by following the instructions below. Code will be open-sourced after publication.
+Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground) and double-click it to run. Releases are currently available for Windows 11 and Mac OS 26. If your operating system is not either of these, you can build it yourself by following the instructions below. 
 
 ### Build it yourself
 1. Clone the repo and navigate into the repository once cloned.
@@ -72,7 +72,7 @@ In frequency-domain FLIM, the phase shift and modulation depth of the emission r
 :::
 
 ## Challenges
-A diverse set of [tools](https://www.phasorpy.org/docs/stable/phasor_approach/#software) — both open-source and commercial, ranging from libraries to code-free graphical user interfaces (GUIs) — are available to extract and analyze FLIM data, providing alternative methods and therefore flexibility to FLIM researchers. Examples include [PhasorPy](https://www.phasorpy.org/) [@phasorpy25], an open-source library for analyzing fluorescence lifetime using the phasor approach; [FLUTE](https://github.com/LaboratoryOpticsBiosciences/FLUTE) [@flute23], an open-source GUI for interactive phasor analysis; [FLIMPA](https://github.com/SofiaKapsiani/FLIMPA) [@flimpa2025], an open-source phasor analysis GUI enabling batch processing, ROI-based quantification, and experiment-level comparison through manual assignment; [FLIMLib](https://flimlib.github.io/), an open-source generic curve fitting library that can be used to fit fluorescence lifetime decay data; [SPCImage](https://www.becker-hickl.com/products/spcimage/) [@becker2021], a commercial software for fitting and phasor features.
+A diverse set of [tools](https://www.phasorpy.org/docs/stable/phasor_approach/#software) — both open-source and commercial, ranging from libraries to code-free graphical user interfaces (GUIs) — is available to extract and analyze FLIM data, providing alternative methods and therefore flexibility to FLIM researchers. Examples include [PhasorPy](https://www.phasorpy.org/) [@phasorpy25], an open-source library for analyzing fluorescence lifetime using the phasor approach; [FLUTE](https://github.com/LaboratoryOpticsBiosciences/FLUTE) [@flute23], an open-source GUI for interactive phasor analysis; [FLIMPA](https://github.com/SofiaKapsiani/FLIMPA) [@flimpa2025], an open-source phasor analysis GUI enabling batch processing, ROI-based quantification, and experiment-level comparison through manual assignment; [FLIMLib](https://flimlib.github.io/), an open-source generic curve fitting library that can be used to fit fluorescence lifetime decay data; [SPCImage](https://www.becker-hickl.com/products/spcimage/) [@becker2021], a commercial software for fitting and phasor features.
 
 However, while some tools offer code-free interfaces, users still need to write custom code—either to prepare data in the proper format as input, or to further process their outputs for downstream analysis. The fragmentation between tools arises because each focuses on only a subset of data levels: pixel, cell ROI, channel, field of view, and experiment. 
 
@@ -120,7 +120,7 @@ An integrated framework should take into account all data levels \textcolor[HTML
 
 Additionally, the use of FLIM is rapidly evolving, and new methods are being developed all the time. An integrated framework should allow users to choose among alternative methods seamlessly, be the backbone of iterative explorations integral to research, and be ready to incorporate new methods: **The provided level of abstraction should address fragmentation from extraction and analysis methods**. 
 
-Finally, many of the existing tools especially GUI based softwares are not cross-platform, which limits their accessibility. The [Installation](#installation) addresses this last challenge.
+Finally, many of the existing tools, including GUI-based software, are not cross-platform, which limits their accessibility. The [Installation](#installation) addresses this last challenge.
 
 A closer parallel to FLIM Playground's integrated approach is the combination of [CellProfiler](https://cellprofiler.org/) [@cellprofiler4], which extracts per-object morphological and texture features, and [CellProfiler Analyst](https://cellprofileranalyst.org/) [@cpa21], which ingests these outputs or other feature tables for visualization and statistical analysis. However, FLIM Playground stands apart in that it can extract lifetime features from time-resolved data, alongside morphological and texture features from intensity images. Its general Data Analysis section incorporates FLIM-specific methods (e.g., [phasor analysis](#sec-phasor-analysis)) and provides statistical models that address additional analysis aspects such as data heterogeneity, in addition to training machine learning classifiers.
  
@@ -204,7 +204,7 @@ Here is the list of analysis methods incorporated into FLIM Playground, grouped 
   - [Dimension Reduction](#sec-dimension-reduction)
   - [Classification](#sec-classification)
 
-Both sections are built in Python and built as self-contained executables ready to run on major operating systems and in browsers (**H**).
+Both sections are built in Python and as self-contained executables ready to run on major operating systems and in browsers (**H**).
 
 ### Summary
 

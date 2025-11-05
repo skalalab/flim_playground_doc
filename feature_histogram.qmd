@@ -41,8 +41,8 @@ A Gaussian Mixture Model (GMM) represents a dataset as a weighted sum of multipl
 ### Fit Gaussian Mixture Models
 ![Gaussian Mixture Model Configuration](analysis_ui_shots/gmm_config.png){width=95% fig-align=center}
 
-- Set “Max Components”: fit GMM on the selected numerical feature up to `Max Components` components, each of which has its component weights ($w_i$), means ($\mu_i$) and variances ($\sigma_i^2$). 
-- Set “Min Weight Threshold”: keep only the *valid* models that contain components that have at least `Min Weight Threshold` weights (the weights of all components add to 1).
+- Fits GMMs on the selected numerical feature up to `Max Components` components, each of which has its component weights ($w_i$), means ($\mu_i$) and variances ($\sigma_i^2$). 
+- Retains only *valid* models in which every component has weight at least `Min Weight Threshold` (the weights of all components add to 1).
 - FLIM Playground will choose the valid model with the lowest BIC score that penalizes the model complexity to avoid overfitting.
 
 ### Heterogeneity index 
@@ -65,7 +65,7 @@ $$
                         w_2\,\mathcal{N}(x;\mu_2,\sigma_2^2)
                         $$
 where $w_1, \mu_1, \sigma_1$ are the mixture weight, mean, and standard deviation of the first Gaussian component, respectively, and $w_2, \mu_2, \sigma_2$ those of the second component.
-- The above equation can be formed as a quadratic equation and be solved for the unique root lying between $\mu_1$ and $\mu_2$. In practice, we bracket this interval and apply a robust one‐dimensional root-finding routine (e.g. Brent’s method) to compute intersection points. Data points are then assigned to the class corresponding to the interval in which they fall. 
+- The above equation can be formed as a quadratic equation and solved for the unique root lying between $\mu_1$ and $\mu_2$. In practice, we bracket this interval and apply a robust one‐dimensional root-finding routine (e.g. Brent’s method) to compute intersection points. Data points are then assigned to the class corresponding to the interval in which they fall. 
 
 ::: {.callout-important}
 In rare cases when there is more than one intersection point, the data point is assigned using hard assignment rather than intersection thresholding.

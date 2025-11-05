@@ -14,7 +14,7 @@ If the chosen [calibration method](data_extraction_config.qmd#calibration-method
 
 ### Step 1: raw phasor coordinates
 
-The reference implementation from [phasorpy](https://www.phasorpy.org/) assumes the decay curve comes from one period and time bins are evenly spaced (Untruncated). So their calculation is frequency ($f$) and time ($T$) independent. But there are cases when the decay curve is truncated due to the deadtime of the system. For example, when the laser frequency is $f = 0.08$ GHz, the theoretical period is $T = 12.5$ ns, but in practice the time window is truncated to $T = 10$ ns. FLIM Playground applies custom implementation to the truncated decay curve. (the `sample_phase` option can be used to account for the truncation but it does not handle the second or above harmonics)
+The reference implementation from [phasorpy](https://www.phasorpy.org/) assumes the decay curve comes from one period and time bins are evenly spaced (untruncated). So, their calculation is frequency ($f$) and time ($T$) independent. However, there are cases when the decay curve is truncated due to the deadtime of the system. For example, when the laser frequency is $f = 0.08$ GHz, the theoretical period is $T = 12.5$ ns, but in practice the time window is truncated to $T = 10$ ns. FLIM Playground applies custom implementation to the truncated decay curve. (The `sample_phase` option can be used to account for the truncation but it does not handle the second or above harmonics)
 
 #### Untruncated decay curve
 
@@ -33,7 +33,7 @@ where $K$ is the number of time bins, $F_k$ is the decay curve, and $h$ is the h
 
 #### Truncated decay curve
 
-The phasor coordinates of IRF and the decay curves of both harmonics are calculated using time axis $t_k = k\,(T/K)\;\;(k=0,\ldots,K-1)$ and angular frequency $\omega = 2\pi\,hf$:
+The phasor coordinates of the IRF and the decay curves of both harmonics are calculated using the time axis $t_k = k\,(T/K)\;\;(k=0,\ldots,K-1)$ and the angular frequency $\omega = 2\pi\,hf$:
 
 $$
 g_{\mathrm{raw}}
@@ -46,7 +46,7 @@ $$
 
 This formula is equivalent to the untruncated formula when $fT = 1$.
 
-For the fluorescence lifetime standard, the phasor coordinates are calculated using `phasorpy`'s `phasor_from_signal` and `sample_phase` option is set to $\omega t_k$.
+For the fluorescence lifetime standard, the phasor coordinates are calculated using `phasorpy`'s `phasor_from_signal` and the `sample_phase` option is set to $\omega t_k$.
 
 ### Step 2: calibrated phasor coordinates
 
@@ -63,7 +63,7 @@ g, s = lifetime.phasor_calibrate(g_raw, s_raw, ref_mean, ref_real, ref_imag, fre
 g_2nd, s_2nd = lifetime.phasor_calibrate(g_raw_2nd, s_raw_2nd, ref_mean, ref_real, ref_imag, frequency=laser_rate, lifetime=reference_dye_lifetime, harmonic=2)
 ```
 
-The `laser_rate` is specified during the [fov metadata extraction](fov_metadata.qmd#laser-frequency) and [config](data_extraction_config.qmd#laser-frequency). 
+The `laser_rate` is specified during the [fov metadata extraction](fov_metadata.qmd#laser-frequency) and the [configuration interface](data_extraction_config.qmd#laser-frequency). 
 
 ### Step 3: phasor-derived lifetime
 
@@ -79,5 +79,5 @@ tau_m = 1/w * np.sqrt(1/m**2 - 1)
 ```
 
 $$
-\phi = \operatorname{atan2}(s,\,g), m = \sqrt{g^{2}+s^{2}}, \tau_{\phi} = \frac{\tan \phi}{\omega}, \tau_{M} = \frac{1}{\omega}\sqrt{\frac{1}{m^{2}}-1}
+\phi = \operatorname{atan2}(s,\,g), m = \sqrt{g^{2}+s^{2}}, \tau_{\phi} = \frac{\tan \phi}{\omega}, \tau_{m} = \frac{1}{\omega}\sqrt{\frac{1}{m^{2}}-1}
 $$
