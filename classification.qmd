@@ -46,7 +46,8 @@ FLIM Playground evaluates the trained classifier on the held-out test set and su
 | **Actual Positive** | **True Positive (TP)** – correct hits  | **False Negative (FN)** – missed positives  |
 | **Actual Negative** | **False Positive (FP)** – false alarms | **True Negative (TN)** – correct rejections |
 
-Other metrics can be calculated based on the confusion matrix:
+The accuracy is calculated as the ratio of the sum of the true positives and true negatives to the sum of all the elements in the confusion matrix.
+Other metrics are calculated for each class based on the confusion matrix:
 
 - Accuracy: $\frac{TP + TN}{TP + FP + TN + FN}$
 - Precision: $\frac{TP}{TP + FP}$
