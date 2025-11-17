@@ -52,6 +52,8 @@ Other metrics are calculated for each class based on the confusion matrix:
 - Accuracy: $\frac{TP + TN}{TP + FP + TN + FN}$
 - Precision: $\frac{TP}{TP + FP}$
 - Recall (Sensitivity): $\frac{TP}{TP + FN}$
+- Specificity: $\frac{TN}{TN + FP}$
+- Youden's Index: $\text{Sensitivity} + \text{Specificity} - 1$
 - F1 Score: $\frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$
 
 ![](analysis_ui_shots/classifier_performance.png){width=90% fig-align=center}
