@@ -4,7 +4,19 @@ A machine learning classifier learns patterns from categorized data and then pre
 All the classifiers are implemented using `scikit-learn` and the performance metrics are calculated using `sklearn.metrics`. A fixed random seed (42) is used for all the classifiers to ensure reproducibility. 
 
 ![](analysis_ui_shots/classification.png){width=100% fig-align=center}
-The performance metric plots are cut off in the screenshot. See the [performance metrics section](#performance-metrics) for the complete view. 
+The performance metric plots are cut off in the screenshot. See the [performance metrics section](#performance-metrics) for the complete view.
+
+An overview of the pipeline: 
+
+- Choose the numerical features on the left.
+    - The z-score normalization is appliedto the features before training if the chosen classifier is `SVM` or `Logistic Regression`, because they are sensitive to feature magnitudes, while `Random Forest` and `Gradient Boosting` are not. 
+- Choose the classifier and train-test split.
+- Filter the dataset. 
+- Choose categorical features to form classes. 
+- Choose any of the methods to handle [class imbalance](#class-imbalance-handling).
+- Choose the classes to be classified.
+- Look at the [performance metrics](#performance-metrics), [confusion matrix](#confusion-matrix), and [ROC curve](#roc-curve).
+- Iterate over the previous options to improve the performance with regard to the metrics you care about.
 
 ## Shared Interface Components
 - On the left, users can use the [selection widgets](data_analysis.qmd#multivariate-analysis) to select numerical features for the classifier. Multiple features can be selected from each feature group. 
@@ -24,55 +36,82 @@ The performance metric plots are cut off in the screenshot. See the [performance
 
 ![](analysis_ui_shots/classifier_options.png){width=30% fig-align=center}
 
-- Sampling methods: 
+### Class Imbalance Handling
+
+We provide three options for handling class imbalance (i.e., one or more classes in a dataset have significantly fewer samples than others, which would otherwise cause a classifier to bias toward the majority class). Note: to prevent data leakage, all the methods below are applied to the training set only.
+
+- **Sampling methods**: 
     - `None`: stratified random sampling of the data on classification classes, regardless of the class size. It is implemented using `train_test_split` from `sklearn.model_selection`. 
-    - `Undersampling`: All classes are downsampled to the size of the smallest class. It is implemented using `RandomUnderSampler` from `imbalanced-learn`. 
+    - `Undersampling`: All classes are downsampled to the size of the smallest class. It is implemented using `RandomUnderSampler` from [`imbalanced-learn`](https://imbalanced-learn.org/stable/). 
     - `Oversampling`: All classes are upsampled to the size of the largest class by randomly duplicating samples from minority classes. It is implemented using `RandomOverSampler` from `imbalanced-learn`. 
 
-![](analysis_ui_shots/sampling.png){width=20% fig-align=center}
+![](analysis_ui_shots/sampling.png){width=25% fig-align=center}
 
-::: {.callout-note}
-FLIM Playground applies the z-score normalization to the features before training if the chosen classifier is `SVM` or `Logistic Regression`, because they are sensitive to feature magnitudes, while `Random Forest` and `Gradient Boosting` are not. 
+- **Class weights**: 
+    - `None`: no class weights.
+    - `Balanced`: the class weights are inversely proportional to the class size (support). Note: Gradient Boosting does not support class weights in the scikit-learn implementation, and thus this option is not available for it.
+
+- **Threshold tuning**: Whereas the previous two options influence the probablity estimation part of the classifier, this option adjusts only the decision boundary used to convert predicted probabilities into class labels. 
+    - `None`: no threshold tuning. The default decision is always the class that has the highest predicted probability (in binary, anything above 0.5; in multi-class, the class with the highest predicted probability).
+    - `Balanced Accuracy`: the threshold is set to maximize the balanced accuracy score, which is the unweighted average of each class's recall (i.e., the minority class's recall is as important as the majority class's recall). 
+    - `F1 Score`: the threshold is set to maximize the unweighted average of each class's F1 score. 
+
+![](analysis_ui_shots/threshold_tuning.png){width=30% fig-align=center}
+
+::: {.callout-note collapse="true" title="How does threshold tuning work?"}
+
+It treats threshold selection as a separate optimization problem from model training, allowing thresholds to be tuned independently of the underlying classifier's probability estimates.
+
+**K-fold cross-validation for the probability model**: The procedure begins by establishing a stratified k-fold cross-validation scheme (default k=5): the dataset is divided into k mutually exclusive subsets, and for each fold, one subset serves as the validation set while the remaining k-1 subsets form the training set.
+
+The probability models are trained separately for each cross-validation fold. This process yields k distinct probability models, each trained on a different subset of the data, along with their corresponding validation set probability predictions that collectively cover all samples exactly once.
+
+**Threshold optimization**: A single threshold optimization procedure is performed once using all cross-validation folds. The threshold optimization process differs for binary and multi-class classification problems. For binary classification, a single threshold parameter $\theta \in [0, 1]$ is optimized, where class 1 is predicted when $P(\text{class } 1 \mid x) \geq \theta$, and class 0 otherwise. For multi-class problems, a threshold vector $\theta = [\theta_1, \theta_2, \ldots, \theta_k]$ is optimized simultaneously for all $k$ classes, where thresholds are applied through a normalized probability scheme: predictions are made by selecting the class with the highest normalized probability $P(\text{class } i \mid x) / (\theta_i + \epsilon)$, where $\epsilon = 10^{-10}$ prevents division by zero.
+
+The optimization objective function evaluates candidate thresholds by: (1) applying the same threshold(s) on top of the fold-specific probability models to generate prediction classes for the fold-specific validation set, (2) computing the specified evaluation metric (e.g., balanced accuracy, F1-score) between predicted and true labels for each fold, and (3) returning the negative mean cross-validated score across all folds (for minimization using the Nelder-Mead simplex algorithm). 
+
+Finally, the optimized threshold(s) are applied on top of the probablity model trained on the entire training set to the test set to generate the final predictions.
+
 :::
 
-### Performance Metrics
-To evaluate the performance of the classifiers, performance metrics visualizations are provided. 
-
-#### Confusion Matrix
-FLIM Playground evaluates the trained classifier on the held-out test set and summarizes its predictions with `sklearn.metrics.confusion_matrix`. In the binary case, it is represented as: 
+### Confusion Matrix
+FLIM Playground evaluates the trained classifier on the held-out test set by converting the predicted probabilities into hard labels using the chosen threshold or by selecting the class with the highest predicted probability. The predictions are then summarized using sklearn.metrics.confusion_matrix. In the binary case, it is represented as: 
 
 |                     | Predicted Positive                     | Predicted Negative                          |
 | ------------------- | -------------------------------------- | ------------------------------------------- |
 | **Actual Positive** | **True Positive (TP)** – correct hits  | **False Negative (FN)** – missed positives  |
 | **Actual Negative** | **False Positive (FP)** – false alarms | **True Negative (TN)** – correct rejections |
 
-The accuracy is calculated as the ratio of the sum of the true positives and true negatives to the sum of all the elements in the confusion matrix.
-Other metrics are calculated for each class based on the confusion matrix:
+### Performance Metrics
+
+The overall accuracy is calculated as the ratio of the sum of the true positives and true negatives to the sum of all the elements in the confusion matrix (the sum of the diagonal over the sum of all the elements).
 
 - Accuracy: $\frac{TP + TN}{TP + FP + TN + FN}$
+
+Other metrics are calculated for each class based on the confusion matrix:
+
 - Precision: $\frac{TP}{TP + FP}$
 - Recall (Sensitivity): $\frac{TP}{TP + FN}$
 - Specificity: $\frac{TN}{TN + FP}$
 - Youden's Index: $\text{Sensitivity} + \text{Specificity} - 1$
 - F1 Score: $\frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$
 
-![](analysis_ui_shots/classifier_performance.png){width=90% fig-align=center}
+![](analysis_ui_shots/performance_metrics.png){width=90% fig-align=center}
 
-#### ROC Curve
+### ROC Curve
 Another way to look at the performance of the classifier is to plot the Receiver Operating Characteristic (ROC) curve and its Area Under the Curve (AUC). 
 
-A classifier usually outputs a score for each sample. To turn scores into hard labels, a decision threshold must be chosen. Confusion matrix looks at the performance of the classifier at a single threshold (in the binary case, the threshold is 0.5), while ROC curve looks at the performance of the classifier at all thresholds (from 0 to 1). 
+Confusion matrix looks at the performance of the classifier at a single threshold, while ROC curve looks at the performance of the classifier at all thresholds (i.e., from 0 to 1. If it is a multi-class classification, each class's ROC curve is computed as a one-vs-rest binary classification problem). 
 
 At the origin (0, 0), the threshold is 1, so the classifier predicts all samples as negative, making the false positive rate $\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}} = 0$ and the true positive rate $\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}} = 0$, i.e. the origin. At the point (1, 1), the threshold is 0, so the classifier predicts all samples as positive, making the false positive rate 1 and the true positive rate 1, i.e. the point (1, 1). 
 
 AUC summarizes the ROC curve by integrating it from 0 to 1, so it is threshold-free and has a nice interpretation: it is the probability that the classifier assigns a higher score to a randomly chosen positive sample $X^+$ than to a randomly chosen negative sample $X^-$. 
 
-To generalize to the $K$-class cases ($K > 2$), FLIM Playground chooses the One-vs-Rest (OvR) strategy. For each class $i$, it trains a binary classifier to predict the class $i$ against all other classes. The ROC curve is then computed and plotted for each class. 
+If the threshold tuning is applied, the ROC curve displays the chosen "optimal" threshold that maximizes the chosen performance metric (colored in red).
 
-![](analysis_ui_shots/threeway_classifier.png){width=90% fig-align=center}
+![](analysis_ui_shots/roc_threshold_tuning.png){width=90% fig-align=center}
 
-
-#### Feature Importance
+### Feature Importance
 `Random Forest` and `Gradient Boosting` classifiers provide feature importance scores. 
 
 ![](analysis_ui_shots/feature_importance.png){width=90% fig-align=center}
