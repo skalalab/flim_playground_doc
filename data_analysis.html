@@ -467,6 +467,12 @@ div.csl-indent {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./common_qa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Common Q &amp; A</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -477,20 +483,21 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#methods" id="toc-methods" class="nav-link active" data-scroll-target="#methods"><span class="header-section-number">11.1</span> Methods</a></li>
-  <li><a href="#input" id="toc-input" class="nav-link" data-scroll-target="#input"><span class="header-section-number">11.2</span> Input</a>
+  <li><a href="#general-workflow" id="toc-general-workflow" class="nav-link active" data-scroll-target="#general-workflow"><span class="header-section-number">11.1</span> General Workflow</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">11.2</span> Methods</a></li>
+  <li><a href="#input" id="toc-input" class="nav-link" data-scroll-target="#input"><span class="header-section-number">11.3</span> Input</a>
   <ul class="collapse">
-  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements"><span class="header-section-number">11.2.1</span> Requirements</a></li>
-  <li><a href="#warning-messages" id="toc-warning-messages" class="nav-link" data-scroll-target="#warning-messages"><span class="header-section-number">11.2.2</span> Warning Messages</a></li>
-  <li><a href="#error-messages" id="toc-error-messages" class="nav-link" data-scroll-target="#error-messages"><span class="header-section-number">11.2.3</span> Error Messages</a></li>
+  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements"><span class="header-section-number">11.3.1</span> Requirements</a></li>
+  <li><a href="#warning-messages" id="toc-warning-messages" class="nav-link" data-scroll-target="#warning-messages"><span class="header-section-number">11.3.2</span> Warning Messages</a></li>
+  <li><a href="#error-messages" id="toc-error-messages" class="nav-link" data-scroll-target="#error-messages"><span class="header-section-number">11.3.3</span> Error Messages</a></li>
   </ul></li>
-  <li><a href="#shared-interactive-widgets" id="toc-shared-interactive-widgets" class="nav-link" data-scroll-target="#shared-interactive-widgets"><span class="header-section-number">11.3</span> Shared Interactive Widgets</a>
+  <li><a href="#shared-interactive-widgets" id="toc-shared-interactive-widgets" class="nav-link" data-scroll-target="#shared-interactive-widgets"><span class="header-section-number">11.4</span> Shared Interactive Widgets</a>
   <ul class="collapse">
-  <li><a href="#general-workflow" id="toc-general-workflow" class="nav-link" data-scroll-target="#general-workflow"><span class="header-section-number">11.3.1</span> General Workflow</a></li>
-  <li><a href="#numerical-feature-widgets" id="toc-numerical-feature-widgets" class="nav-link" data-scroll-target="#numerical-feature-widgets"><span class="header-section-number">11.3.2</span> Numerical Feature Widgets</a></li>
-  <li><a href="#categorical-feature-widgets" id="toc-categorical-feature-widgets" class="nav-link" data-scroll-target="#categorical-feature-widgets"><span class="header-section-number">11.3.3</span> Categorical Feature Widgets</a></li>
-  <li><a href="#unique-id-hover" id="toc-unique-id-hover" class="nav-link" data-scroll-target="#unique-id-hover"><span class="header-section-number">11.3.4</span> Unique ID Hover</a></li>
-  <li><a href="#plotting-configuration-widgets" id="toc-plotting-configuration-widgets" class="nav-link" data-scroll-target="#plotting-configuration-widgets"><span class="header-section-number">11.3.5</span> Plotting Configuration Widgets</a></li>
+  <li><a href="#numerical-selection-widgets" id="toc-numerical-selection-widgets" class="nav-link" data-scroll-target="#numerical-selection-widgets"><span class="header-section-number">11.4.1</span> Numerical Selection Widgets</a></li>
+  <li><a href="#filter-widgets" id="toc-filter-widgets" class="nav-link" data-scroll-target="#filter-widgets"><span class="header-section-number">11.4.2</span> Filter Widgets</a></li>
+  <li><a href="#visual-channels-widgets" id="toc-visual-channels-widgets" class="nav-link" data-scroll-target="#visual-channels-widgets"><span class="header-section-number">11.4.3</span> Visual Channels Widgets</a></li>
+  <li><a href="#unique-id-hover" id="toc-unique-id-hover" class="nav-link" data-scroll-target="#unique-id-hover"><span class="header-section-number">11.4.4</span> Unique ID Hover</a></li>
+  <li><a href="#plotting-configuration-widgets" id="toc-plotting-configuration-widgets" class="nav-link" data-scroll-target="#plotting-configuration-widgets"><span class="header-section-number">11.4.5</span> Plotting Configuration Widgets</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/data_analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -519,8 +526,20 @@ div.csl-indent {
 
 
 <p>We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the <a href="data_extraction.html">Data Extraction</a> section or in users’ own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data <a href="./index.html#feature-classes">categorization</a> in <a href="data_extraction.html">Data Extraction</a>, the Data Analysis section designs an <a href="#shared-interactive-widgets">architectural blueprint</a> that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.</p>
-<section id="methods" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="methods"><span class="header-section-number">11.1</span> Methods</h2>
+<section id="general-workflow" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="general-workflow"><span class="header-section-number">11.1</span> General Workflow</h2>
+<ul>
+<li>Select <a href="#numerical-selection-widgets">numerical feature(s)</a> on the left.</li>
+<li><a href="#filter-widgets">Subset the data</a> to find data of interest on the top. <strong><em>All the later interactions are based on this filtered dataset.</em></strong></li>
+<li>Use <a href="#visual-channels-widgets">visual channels widgets</a> to look at the data in different ways.</li>
+<li>Change the plot <a href="#plotting-configuration-widgets">style</a>.</li>
+<li><a href="#unique-id-hover">Hover</a> to find data points of interest.</li>
+<li>Interact with method-specific widgets that typically are associated with a modeling method.</li>
+</ul>
+<p>The visualization and analysis results are updated in real time to reflect users’ interactions with any of the above widgets.</p>
+</section>
+<section id="methods" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="methods"><span class="header-section-number">11.2</span> Methods</h2>
 <ul>
 <li>Depending on the number of numerical features in the analysis, the methods are categorized into 3 groups:
 <ul>
@@ -542,7 +561,7 @@ div.csl-indent {
 </ul></li>
 </ul></li>
 </ul>
-<p>All the methods <a href="#shared-interactive-widgets">share a set of interactive widgets</a> to support the <a href="#general-workflow">general workflow</a>. They also have their own method-specific widgets, the descriptions of which are provided in the corresponding method pages.</p>
+<p>All the methods <a href="#shared-interactive-widgets">share a set of interactive widgets</a>. They also have their own method-specific widgets, the descriptions of which are provided in the corresponding method pages.</p>
 <div class="columns">
 <div class="column" style="width:33%;">
 <p><img src="analysis_ui_shots/method_selection_uni.png" class="img-fluid" style="width:100.0%"></p>
@@ -553,8 +572,8 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="input" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="input"><span class="header-section-number">11.2</span> Input</h2>
+<section id="input" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="input"><span class="header-section-number">11.3</span> Input</h2>
 <p>Users can upload the dataset output from the <a href="data_extraction.html">Data Extraction</a> directly or <em>their own datasets</em> in <strong>CSV</strong> (Comma Separated Values) format after finishing the <a href="data_analysis_config.html">interactive configuration</a> setup.</p>
 <div class="columns">
 <div class="column" style="width:5%;">
@@ -567,8 +586,8 @@ div.csl-indent {
 
 </div>
 </div>
-<section id="requirements" class="level3" data-number="11.2.1">
-<h3 data-number="11.2.1" class="anchored" data-anchor-id="requirements"><span class="header-section-number">11.2.1</span> Requirements</h3>
+<section id="requirements" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="requirements"><span class="header-section-number">11.3.1</span> Requirements</h3>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -590,6 +609,42 @@ Important
 </div>
 </div>
 <p>The unique row id and field of view id are used to help users identify the row (e.g.&nbsp;a single cell) and field of view (e.g.&nbsp;a single image) of data of interest through the built-in <a href="#unique-id-hover">hover-based interaction</a>. Numerical and categorical features are used to render <a href="#shared-interactive-widgets">shared widgets</a>. Internally, FLIM Playground will check whether the dataset fulfills the requirements and output meaningful warning or error messages.</p>
+<div id="feature-recognition" class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you cannot find a certain <strong>numerical feature</strong> under any numerical widgets including <code>Uncategorized Features</code>, please inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. One non-numeric value (e.g., “–”) will prevent it from being recognized.</p>
+<p>FLIM Playground searches for <strong>categorical features</strong> in the uploaded dataset based on the <a href="data_analysis_config.html">user-specified configuration</a> if the dataset is not extracted by <a href="data_extraction.html">Data Extraction</a>. Otherwise, it searches for categorical features specified in the <a href="./data_extraction_config.html#categorical-features">Data Extraction configuration</a>.</p>
+</div>
+</div>
+</section>
+<section id="warning-messages" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="warning-messages"><span class="header-section-number">11.3.2</span> Warning Messages</h3>
+<ul>
+<li><code>Empty columns</code>: will be dropped.</li>
+<li><code>Duplicated columns</code>: Only the first occurrence of the duplicated column will be kept. Other occurrences will be dropped.</li>
+<li><code>Duplicated rows based on the unique row id</code>: Only the first occurrence of the duplicated row will be kept. Other occurrences will be dropped.</li>
+<li><code>Columns with NaN values</code>: won’t be dropped, just a warning message.
+<ul>
+<li>The analysis will be performed on the rows that are not NaN in the <a href="#numerical-selection-widgets">selected numerical features</a>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="error-messages" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="error-messages"><span class="header-section-number">11.3.3</span> Error Messages</h3>
+<ul>
+<li>Missing a column that uniquely identifies each row</li>
+<li>Cannot identify any numerical feature column
+<ul>
+<li>It uses <code>pd.api.types.is_numeric_dtype</code> to check if a column is numerical.</li>
+</ul></li>
+</ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -604,59 +659,13 @@ Note
 </div>
 </div>
 </section>
-<section id="warning-messages" class="level3" data-number="11.2.2">
-<h3 data-number="11.2.2" class="anchored" data-anchor-id="warning-messages"><span class="header-section-number">11.2.2</span> Warning Messages</h3>
-<ul>
-<li><code>Empty columns</code>: will be dropped.</li>
-<li><code>Duplicated columns</code>: Only the first occurrence of the duplicated column will be kept. Other occurrences will be dropped.</li>
-<li><code>Duplicated rows based on the unique row id</code>: Only the first occurrence of the duplicated row will be kept. Other occurrences will be dropped.</li>
-<li><code>Columns with NaN values</code>: won’t be dropped, just a warning message.
-<ul>
-<li>The analysis will be performed on the rows that are not NaN in the <a href="#numerical-feature-widgets">selected numerical features</a>.</li>
-</ul></li>
-</ul>
 </section>
-<section id="error-messages" class="level3" data-number="11.2.3">
-<h3 data-number="11.2.3" class="anchored" data-anchor-id="error-messages"><span class="header-section-number">11.2.3</span> Error Messages</h3>
-<ul>
-<li>Missing a column that uniquely identifies each row</li>
-<li>Cannot identify any numerical feature column
-<ul>
-<li>It uses <code>pd.api.types.is_numeric_dtype</code> to check if a column is numerical.</li>
-</ul></li>
-</ul>
-</section>
-</section>
-<section id="shared-interactive-widgets" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="shared-interactive-widgets"><span class="header-section-number">11.3</span> Shared Interactive Widgets</h2>
-<p>A list of shared widgets is provided to support the general workflow in analysis.</p>
-<section id="general-workflow" class="level3" data-number="11.3.1">
-<h3 data-number="11.3.1" class="anchored" data-anchor-id="general-workflow"><span class="header-section-number">11.3.1</span> General Workflow</h3>
-<ul>
-<li>select <a href="#numerical-feature-widgets">numerical feature(s)</a> on the left</li>
-<li><a href="#filter-widgets">subset the data</a> to find data of interest on the top</li>
-<li>use <a href="#visual-channels-widgets">visual channels widgets</a> to look at the data in different ways</li>
-<li>change the plot <a href="#plotting-configuration-widgets">style</a></li>
-<li><a href="#unique-id-hover">hover</a> to find data points of interest</li>
-</ul>
-<p>The visualization and analysis results are updated in real time to reflect users’ interactions with any of the above widgets.</p>
-</section>
-<section id="numerical-feature-widgets" class="level3" data-number="11.3.2">
-<h3 data-number="11.3.2" class="anchored" data-anchor-id="numerical-feature-widgets"><span class="header-section-number">11.3.2</span> Numerical Feature Widgets</h3>
+<section id="shared-interactive-widgets" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="shared-interactive-widgets"><span class="header-section-number">11.4</span> Shared Interactive Widgets</h2>
+<p>A list of shared widgets is provided to support the <a href="#general-workflow">general workflow</a> in analysis.</p>
+<section id="numerical-selection-widgets" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="numerical-selection-widgets"><span class="header-section-number">11.4.1</span> Numerical Selection Widgets</h3>
 <p>The Data Extraction recognizes numerical features using <code>pd.api.types.is_numeric_dtype</code> internally. Then it groups numerical features based on the <a href="./data_extraction_config.html#feature-extractor">feature extractor type</a> and the channel it belongs to. For user-provided datasets, the numerical features are grouped based on the <a href="./data_analysis_config.html">user-specified configuration</a>. Ungrouped numerical features are put into the <code>Uncategorized Features</code> group. One selection widget is rendered for each numerical feature group.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you cannot find a certain numerical feature under any numerical widgets including <code>Uncategorized Features</code>, please inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. One non-numeric value (e.g., “–”) will prevent it from being recognized.</p>
-</div>
-</div>
 <section id="univariate-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="univariate-analysis">Univariate Analysis</h4>
 <p>One single-select widget is rendered per group; choosing a feature in any group clears the selections and resets the others to <code>Select</code>.</p>
@@ -685,21 +694,33 @@ Tip
 </div>
 </section>
 </section>
-<section id="categorical-feature-widgets" class="level3" data-number="11.3.3">
-<h3 data-number="11.3.3" class="anchored" data-anchor-id="categorical-feature-widgets"><span class="header-section-number">11.3.3</span> Categorical Feature Widgets</h3>
-<p>FLIM Playground recognizes the categorical features in the uploaded dataset based on the <a href="data_analysis_config.html">user-specified configuration</a> if the dataset is not extracted by <a href="data_extraction.html">Data Extraction</a>. Otherwise, it recognizes categorical features specified in the <a href="./data_extraction_config.html#categorical-features">Data Extraction configuration</a>.</p>
-<section id="filter-widgets" class="level4">
-<h4 class="anchored" data-anchor-id="filter-widgets">Filter Widgets</h4>
+<section id="filter-widgets" class="level3" data-number="11.4.2">
+<h3 data-number="11.4.2" class="anchored" data-anchor-id="filter-widgets"><span class="header-section-number">11.4.2</span> Filter Widgets</h3>
+<section id="categorical-filters" class="level4">
+<h4 class="anchored" data-anchor-id="categorical-filters">Categorical Filters</h4>
 <p><img src="analysis_ui_shots/filter.png" class="img-fluid" style="width:95.0%"></p>
 <p>For complex datasets that are collected over multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget is rendered for each categorical feature so that users have the flexibility to filter the data based on combinations of categorical features. <code>All</code> is a special option that include all categories of the selected categorical feature. Once it is selected, all the other options are cleared, and vice versa.</p>
 </section>
-<section id="visual-channels-widgets" class="level4">
-<h4 class="anchored" data-anchor-id="visual-channels-widgets">Visual Channels Widgets</h4>
+<section id="numerical-filters" class="level4">
+<h4 class="anchored" data-anchor-id="numerical-filters">Numerical Filters</h4>
+<p><img src="analysis_ui_shots/numerical_filters.png" class="img-fluid" style="width:95.0%"></p>
+<p>Users can further filter the data based on numerical features. Each row specifies a condition to filter the data:</p>
+<ul>
+<li><code>Feature</code>: the numerical feature to filter on</li>
+<li><code>Operator</code>: <code>&gt;</code> or <code>&lt;=</code></li>
+<li><code>Threshold</code>: the range of values to filter on, dynamically updated based on previous filters, is displayed for reference. The entered value should be within the range.</li>
+<li><code>Add Another</code>: add a new condition in the next row.</li>
+</ul>
+<p>After the two sets of filters are applied, the final filtered data is used for visualization and analysis.</p>
+</section>
+</section>
+<section id="visual-channels-widgets" class="level3" data-number="11.4.3">
+<h3 data-number="11.4.3" class="anchored" data-anchor-id="visual-channels-widgets"><span class="header-section-number">11.4.3</span> Visual Channels Widgets</h3>
 <p><img src="analysis_ui_shots/vis_channels.png" class="img-fluid" style="width:100.0%"></p>
 <p>Human vision is wired for rapid, parallel pattern and trend detection; good visual encodings (how to map data to visual elements such as color, shape, opacity, etc.) harness this to surface insights that raw numbers or text obscure<span class="citation" data-cites="cleveland1984"><sup><a href="#ref-cleveland1984" role="doc-biblioref">1</a></sup></span>. FLIM Playground provides <code>color</code>, <code>opacity</code>, and <code>shape</code> channels for visualizations that support them:</p>
-<section id="color-by" class="level5">
-<h5 class="anchored" data-anchor-id="color-by">Color by</h5>
-<p>Color is supported in all methods except for <a href="classification.html">Classification</a>. In <code>Color by</code>, users can select multiple categorical features, and each unique combination of available categories (determined by the filters in the <a href="#filter-widgets">Filter Widgets</a>) in selected features is assigned a distinct color. Groups created by <code>Color by</code> show up in the x-axis (if multiple features, categories from each feature are delimited by <code>::</code>).</p>
+<section id="color-by" class="level4">
+<h4 class="anchored" data-anchor-id="color-by">Color by</h4>
+<p>Color is supported in all methods except for <a href="classification.html">Classification</a>. In <code>Color by</code>, users can select multiple categorical features, and each unique combination of available categories in selected features is assigned a distinct color. Groups created by <code>Color by</code> show up in the x-axis (if multiple features, categories from each feature are delimited by <code>::</code>).</p>
 <div id="nte-order" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -723,11 +744,9 @@ Note&nbsp;11.1: How to order the groups
 </figure>
 </div>
 </section>
-<section id="opacity-and-shape-by" class="level5">
-<h5 class="anchored" data-anchor-id="opacity-and-shape-by">Opacity and Shape by</h5>
-<ul>
-<li>Opacity and shape are supported in all point-based visualizations (e.g.&nbsp;<a href="feature_comparison.html">Feature Comparison</a>, <a href="feature_distribution.html">2D Feature Distribution</a>, <a href="phasor_analysis.html">Phasor Analysis</a>, <a href="dimension_reduction.html">Dimension Reduction</a>). In <code>Opacity by</code> and <code>Shape by</code>, users can select one categorical feature, and each unique category is assigned a distinct opacity or shape. The order of the shape and opacity is also sorted <a href="#nte-order">numeric-alphabetically</a>.</li>
-</ul>
+<section id="opacity-and-shape-by" class="level4">
+<h4 class="anchored" data-anchor-id="opacity-and-shape-by">Opacity and Shape by</h4>
+<p>Opacity and shape are supported in all point-based visualizations (e.g.&nbsp;<a href="feature_comparison.html">Feature Comparison</a>, <a href="feature_distribution.html">2D Feature Distribution</a>, <a href="phasor_analysis.html">Phasor Analysis</a>, <a href="dimension_reduction.html">Dimension Reduction</a>). In <code>Opacity by</code> and <code>Shape by</code>, users can select one categorical feature, and each unique category is assigned a distinct opacity or shape. The order of the shape and opacity is also sorted <a href="#nte-order">numeric-alphabetically</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/opacity_shape_by.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
@@ -735,9 +754,8 @@ Note&nbsp;11.1: How to order the groups
 </div>
 </section>
 </section>
-</section>
-<section id="unique-id-hover" class="level3" data-number="11.3.4">
-<h3 data-number="11.3.4" class="anchored" data-anchor-id="unique-id-hover"><span class="header-section-number">11.3.4</span> Unique ID Hover</h3>
+<section id="unique-id-hover" class="level3" data-number="11.4.4">
+<h3 data-number="11.4.4" class="anchored" data-anchor-id="unique-id-hover"><span class="header-section-number">11.4.4</span> Unique ID Hover</h3>
 <ul>
 <li>In all point-based visualizations, when hovering over a point, the unique id of the point will be shown.</li>
 </ul>
@@ -747,8 +765,8 @@ Note&nbsp;11.1: How to order the groups
 </figure>
 </div>
 </section>
-<section id="plotting-configuration-widgets" class="level3" data-number="11.3.5">
-<h3 data-number="11.3.5" class="anchored" data-anchor-id="plotting-configuration-widgets"><span class="header-section-number">11.3.5</span> Plotting Configuration Widgets</h3>
+<section id="plotting-configuration-widgets" class="level3" data-number="11.4.5">
+<h3 data-number="11.4.5" class="anchored" data-anchor-id="plotting-configuration-widgets"><span class="header-section-number">11.4.5</span> Plotting Configuration Widgets</h3>
 <p><img src="analysis_ui_shots/style.png" class="img-fluid" style="width:100.0%"></p>
 <p>Users can interactively configure the following plot parameters:</p>
 <ul>

@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./common_qa.html" rel="next">
 <link href="./dimension_reduction.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -475,6 +476,12 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./common_qa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Common Q &amp; A</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -605,7 +612,7 @@ window.Quarto = {
 <p><img src="analysis_ui_shots/threshold_tuning.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
 </figure>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="How does threshold tuning work?">
+<div id="threshold-tuning" class="callout callout-style-default callout-note callout-titled" title="How does threshold tuning work?">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -623,6 +630,71 @@ window.Quarto = {
 <p><strong>Threshold optimization</strong>: A single threshold optimization procedure is performed once using all cross-validation folds. The threshold optimization process differs for binary and multi-class classification problems. For binary classification, a single threshold parameter <span class="math inline">\(\theta \in [0, 1]\)</span> is optimized, where class 1 is predicted when <span class="math inline">\(P(\text{class } 1 \mid x) \geq \theta\)</span>, and class 0 otherwise. For multi-class problems, a threshold vector <span class="math inline">\(\theta = [\theta_1, \theta_2, \ldots, \theta_k]\)</span> is optimized simultaneously for all <span class="math inline">\(k\)</span> classes, where thresholds are applied through a normalized probability scheme: predictions are made by selecting the class with the highest normalized probability <span class="math inline">\(P(\text{class } i \mid x) / (\theta_i + \epsilon)\)</span>, where <span class="math inline">\(\epsilon = 10^{-10}\)</span> prevents division by zero.</p>
 <p>The optimization objective function evaluates candidate thresholds by: (1) applying the same threshold(s) on top of the fold-specific probability models to generate prediction classes for the fold-specific validation set, (2) computing the specified evaluation metric (e.g., balanced accuracy, F1-score) between predicted and true labels for each fold, and (3) returning the negative mean cross-validated score across all folds (for minimization using the Nelder-Mead simplex algorithm).</p>
 <p>Finally, the optimized threshold(s) are applied on top of the probablity model trained on the entire training set to the test set to generate the final predictions.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Threshold Tuning Example">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Threshold Tuning Example
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Before threshold tuning:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="analysis_ui_shots/threshold_tuning_before.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+<p>After threshold tuning based on the balanced accuracy metric:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="analysis_ui_shots/threshold_tuning_after.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+<p>Things to <strong>highlight</strong>:</p>
+<ul>
+<li>The two ROC curves are the same, because the underlying probability models are the same.</li>
+<li>The annotated operating point in <span style="color:red;">red</span> is “better” <em>after</em> the threshold tuning because it achieves higher Recall (TRP) + Specificity (TNR), as can be seen in the metrics table (the optimized metrics are highlighted in <span style="color:red;">red</span>). The threshold before was 0.5, the default value, and after tuning it was optimized to 0.19. The reduction in thresholds means that the classifier is tuned to be more “confident” at predicting the positive class (2DG), which is the minority class. The effect of this threshold optimization is also visible in the confusion matrix.</li>
+<li>However, all of the above come at the cost of other metrics, such as the overall accuracy (0.89 to 0.82) and average precision (0.82 to 0.74). <strong>Select the class imbalance methods/options that maximize the metrics most important to you.</strong></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Sampling Example">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Sampling Example
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Before sampling:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="analysis_ui_shots/sampling_before.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+<p>After sampling (undersampling was used in this case):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="analysis_ui_shots/sampling_after.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+<p>Things to <strong>highlight</strong>:</p>
+<ul>
+<li>The ROC curve is different, because the underlying probability models are different.</li>
+<li>The thresholds before and after are the same (the default value of 0.5), but the operating points are at different locations and their associated confusion matrices are different.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -680,15 +752,19 @@ window.Quarto = {
 <section id="roc-curve" class="level3" data-number="19.2.4">
 <h3 data-number="19.2.4" class="anchored" data-anchor-id="roc-curve"><span class="header-section-number">19.2.4</span> ROC Curve</h3>
 <p>Another way to look at the performance of the classifier is to plot the Receiver Operating Characteristic (ROC) curve and its Area Under the Curve (AUC).</p>
-<p>Confusion matrix looks at the performance of the classifier at a single threshold, while ROC curve looks at the performance of the classifier at all thresholds (i.e., from 0 to 1. If it is a multi-class classification, each class’s ROC curve is computed as a one-vs-rest binary classification problem).</p>
+<p>Confusion matrix looks at the performance of the classifier at a single threshold, while ROC curve looks at the performance of the classifier at all thresholds (i.e., from 0 to 1).</p>
 <p>At the origin (0, 0), the threshold is 1, so the classifier predicts all samples as negative, making the false positive rate <span class="math inline">\(\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}} = 0\)</span> and the true positive rate <span class="math inline">\(\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}} = 0\)</span>, i.e.&nbsp;the origin. At the point (1, 1), the threshold is 0, so the classifier predicts all samples as positive, making the false positive rate 1 and the true positive rate 1, i.e.&nbsp;the point (1, 1).</p>
 <p>AUC summarizes the ROC curve by integrating it from 0 to 1, so it is threshold-free and has a nice interpretation: it is the probability that the classifier assigns a higher score to a randomly chosen positive sample <span class="math inline">\(X^+\)</span> than to a randomly chosen negative sample <span class="math inline">\(X^-\)</span>.</p>
-<p>If the threshold tuning is applied, the ROC curve displays the chosen “optimal” threshold that maximizes the chosen performance metric (colored in red).</p>
+<p>The ROC curve displays the operating point (FPR, TPR) associated with the confusion matrix on the right.</p>
+<section id="multi-class-roc-curve" class="level4">
+<h4 class="anchored" data-anchor-id="multi-class-roc-curve">Multi-class ROC Curve</h4>
+<p>In multi-class classification, each class’s ROC curve is computed as a one-vs-rest binary classification problem. The operating point (FPR, TPR) associated with the confusion matrix is displayed for each class.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/roc_threshold_tuning.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<p><img src="analysis_ui_shots/roc_multiclass.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
+</section>
 </section>
 <section id="feature-importance" class="level3" data-number="19.2.5">
 <h3 data-number="19.2.5" class="anchored" data-anchor-id="feature-importance"><span class="header-section-number">19.2.5</span> Feature Importance</h3>
@@ -1126,6 +1202,9 @@ window.Quarto = {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./common_qa.html" class="pagination-link" aria-label="Common Q &amp; A">
+        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Common Q &amp; A</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

@@ -449,6 +449,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./common_qa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Common Q &amp; A</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -459,14 +465,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#identifiers-config" id="toc-identifiers-config" class="nav-link active" data-scroll-target="#identifiers-config"><span class="header-section-number">12.1</span> Identifiers Config</a></li>
-  <li><a href="#categorical-feature-config" id="toc-categorical-feature-config" class="nav-link" data-scroll-target="#categorical-feature-config"><span class="header-section-number">12.2</span> Categorical Feature Config</a></li>
-  <li><a href="#numerical-feature-config" id="toc-numerical-feature-config" class="nav-link" data-scroll-target="#numerical-feature-config"><span class="header-section-number">12.3</span> Numerical Feature Config</a>
+  <li><a href="#analysis-profiles" id="toc-analysis-profiles" class="nav-link active" data-scroll-target="#analysis-profiles"><span class="header-section-number">12.1</span> Analysis Profiles</a></li>
+  <li><a href="#identifiers-config" id="toc-identifiers-config" class="nav-link" data-scroll-target="#identifiers-config"><span class="header-section-number">12.2</span> Identifiers Config</a></li>
+  <li><a href="#categorical-feature-config" id="toc-categorical-feature-config" class="nav-link" data-scroll-target="#categorical-feature-config"><span class="header-section-number">12.3</span> Categorical Feature Config</a></li>
+  <li><a href="#numerical-feature-config" id="toc-numerical-feature-config" class="nav-link" data-scroll-target="#numerical-feature-config"><span class="header-section-number">12.4</span> Numerical Feature Config</a>
   <ul class="collapse">
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">12.3.1</span> Example</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">12.4.1</span> Example</a></li>
   </ul></li>
-  <li><a href="#save" id="toc-save" class="nav-link" data-scroll-target="#save"><span class="header-section-number">12.4</span> Save</a></li>
-  <li><a href="#reset" id="toc-reset" class="nav-link" data-scroll-target="#reset"><span class="header-section-number">12.5</span> Reset</a></li>
+  <li><a href="#save" id="toc-save" class="nav-link" data-scroll-target="#save"><span class="header-section-number">12.5</span> Save</a></li>
+  <li><a href="#reset" id="toc-reset" class="nav-link" data-scroll-target="#reset"><span class="header-section-number">12.6</span> Reset</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/data_analysis_config.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -497,12 +504,6 @@ ul.task-list li input[type="checkbox"] {
 <p>The following sections use the <a href="https://github.com/skalalab/flim_playground/blob/main/demo/iris.csv">iris dataset</a> as an example: the <code>flower_id</code> is added to uniquely identify each row (i.e.&nbsp;a single flower). The other columns are: a categorical feature <code>species</code>, and a set of numerical features <code>sepal_length</code>, <code>sepal_width</code>, <code>petal_length</code>, and <code>petal_width</code>.</p>
 <p>The configuration workflow in motion:</p>
 <div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="analysis_ui_shots/data_analysis_config_movie.mp4"></video></div>
-<p>NEW: It now supports multiple analysis configurations through profiles 🥂</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/config_profiles.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
 <p>Specifically, the steps are:</p>
 <ul>
 <li>On the left side of the screen, uncheck <code>Use Dataset from Data Extraction</code>.</li>
@@ -512,8 +513,24 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="analysis_ui_shots/data_extraction_uncheck.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
-<section id="identifiers-config" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="identifiers-config"><span class="header-section-number">12.1</span> Identifiers Config</h2>
+<p>Then the configuration interface will be displayed.</p>
+<section id="analysis-profiles" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="analysis-profiles"><span class="header-section-number">12.1</span> Analysis Profiles</h2>
+<p><strong>✨ NEW ✨</strong>: Users can now create, save, and switch between multiple analysis profiles—each a ready-to-go configuration tailored for different datasets.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="analysis_ui_shots/config_profiles.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<ul>
+<li>On the left you can select an existing profile to load.</li>
+<li>In the middle you can create a new profile.</li>
+<li>On the right you can delete an existing profile.</li>
+</ul>
+<p>Everything described below is pertained to the current profile.</p>
+</section>
+<section id="identifiers-config" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="identifiers-config"><span class="header-section-number">12.2</span> Identifiers Config</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/config_id.png" id="id-config" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:50.0%"></p>
@@ -523,23 +540,23 @@ ul.task-list li input[type="checkbox"] {
 <li>The dataset needs to have a unique identifier column to identify each row. In this case, <code>flower_id</code> is the unique identifier column. This dataset does not have a field of view column, so we leave it blank.</li>
 </ul>
 </section>
-<section id="categorical-feature-config" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="categorical-feature-config"><span class="header-section-number">12.2</span> Categorical Feature Config</h2>
+<section id="categorical-feature-config" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="categorical-feature-config"><span class="header-section-number">12.3</span> Categorical Feature Config</h2>
 <ul>
 <li>Add categorical columns you want FLIM Playground to recognize here. Those columns are converted to strings internally.</li>
 </ul>
 <p><img src="analysis_ui_shots/config_cat.png" class="img-fluid" style="width:20.0%"></p>
 <p>The default categorical feature list does not include <code>species</code>, so we add it manually.</p>
 </section>
-<section id="numerical-feature-config" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="numerical-feature-config"><span class="header-section-number">12.3</span> Numerical Feature Config</h2>
+<section id="numerical-feature-config" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="numerical-feature-config"><span class="header-section-number">12.4</span> Numerical Feature Config</h2>
 <p><img src="analysis_ui_shots/config_num.png" class="img-fluid" style="width:70.0%"></p>
 <ul>
 <li><p>Users can copy the numerical features from Excel or any text editor that opens their CSV files. The features can be separated by <code>,</code>, <code>;</code>, or whitespaces including newlines.</p></li>
 <li><p>After hitting the <code>ctrl/cmd + enter</code> key, the numerical features are parsed and added to <code>Available Features</code>. Users can add/delete groups and drag features from the <code>Available Features</code> to the groups they’ve just created. Any ungrouped features are added to a group called <code>Uncategorized Features</code>.</p></li>
 </ul>
-<section id="example" class="level3" data-number="12.3.1">
-<h3 data-number="12.3.1" class="anchored" data-anchor-id="example"><span class="header-section-number">12.3.1</span> Example</h3>
+<section id="example" class="level3" data-number="12.4.1">
+<h3 data-number="12.4.1" class="anchored" data-anchor-id="example"><span class="header-section-number">12.4.1</span> Example</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/config_num_group.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
@@ -547,15 +564,15 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="save" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="save"><span class="header-section-number">12.4</span> Save</h2>
+<section id="save" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="save"><span class="header-section-number">12.5</span> Save</h2>
 <ul>
-<li>After users finish the configuration and click the <code>Save Configuration</code> button, FLIM Playground saves the configuration for processing current and future datasets.</li>
+<li>After users finish the configuration and click the <code>Save Configuration</code> button, FLIM Playground saves configurations into the current profile and loads it for processing current and future datasets.</li>
 </ul>
 </section>
-<section id="reset" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="reset"><span class="header-section-number">12.5</span> Reset</h2>
-<p>Users can reset the configuration to the default settings.</p>
+<section id="reset" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="reset"><span class="header-section-number">12.6</span> Reset</h2>
+<p>Users can reset the current profile to the default configurations.</p>
 
 
 </section>
