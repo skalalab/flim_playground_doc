@@ -13,15 +13,25 @@ The configuration workflow in motion:
 >}}
 :::
 
-NEW: It now supports multiple analysis configurations through profiles 🥂
-
-![](analysis_ui_shots/config_profiles.png){width=100% fig-align=center}
-
 Specifically, the steps are:
 
 - On the left side of the screen, uncheck `Use Dataset from Data Extraction`.
 
 ![](analysis_ui_shots/data_extraction_uncheck.png){width=50% fig-align=center}
+
+Then the configuration interface will be displayed. 
+
+## Analysis Profiles
+
+**✨ NEW ✨**: Users can now create, save, and switch between multiple analysis profiles—each a ready-to-go configuration tailored for different datasets. 
+
+![](analysis_ui_shots/config_profiles.png){width=100% fig-align=center}
+
+- On the left you can select an existing profile to load. 
+- In the middle you can create a new profile. 
+- On the right you can delete an existing profile.
+
+Everything described below is pertained to the current profile.
 
 ## Identifiers Config
 
@@ -50,7 +60,8 @@ The default categorical feature list does not include `species`, so we add it ma
 ![](analysis_ui_shots/config_num_group.png){width=90% fig-align=center}
 
 ## Save
-- After users finish the configuration and click the `Save Configuration` button, FLIM Playground saves the configuration for processing current and future datasets.
+
+- After users finish the configuration and click the `Save Configuration` button, FLIM Playground saves configurations into the current profile and loads it for processing current and future datasets.
 
 ## Reset
-Users can reset the configuration to the default settings.
+Users can reset the current profile to the default configurations.

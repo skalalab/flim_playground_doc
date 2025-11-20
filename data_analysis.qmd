@@ -1,6 +1,18 @@
 # Overview {#sec-data-analysis}
 We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the [Data Extraction](#sec-data-extraction) section or in users' own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data [categorization](index.qmd#feature-classes) in [Data Extraction](#sec-data-extraction), the Data Analysis section designs an [architectural blueprint](#shared-interactive-widgets) that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.  
 
+## General Workflow
+
+- Select [numerical feature(s)](#numerical-selection-widgets) on the left.
+- [Subset the data](#filter-widgets) to find data of interest on the top. ***All the later interactions are based on this filtered dataset.*** 
+- Use [visual channels widgets](#visual-channels-widgets) to look at the data in different ways.
+- Change the plot [style](#plotting-configuration-widgets).
+- [Hover](#unique-id-hover) to find data points of interest.
+- Interact with method-specific widgets that typically are associated with a modeling method. 
+
+The visualization and analysis results are updated in real time to reflect users' interactions with any of the above widgets. 
+
+
 ## Methods
 - Depending on the number of numerical features in the analysis, the methods are categorized into 3 groups: 
     - Univariate Analysis
@@ -14,7 +26,7 @@ We are not done yet 😱! FLIM Playground also provides a suite of methods to an
         - [Dimension Reduction](#sec-dimension-reduction)
         - [Classification](#sec-classification)
 
-All the methods [share a set of interactive widgets](#shared-interactive-widgets) to support the [general workflow](#general-workflow). They also have their own method-specific widgets, the descriptions of which are provided in the corresponding method pages. 
+All the methods [share a set of interactive widgets](#shared-interactive-widgets). They also have their own method-specific widgets, the descriptions of which are provided in the corresponding method pages. 
 
 ::: {.columns}
 ::: {.column width="33%"}
@@ -58,8 +70,12 @@ In either case, following the [categorization](index.qmd#feature-classes), the d
 
 The unique row id and field of view id are used to help users identify the row (e.g. a single cell) and field of view (e.g. a single image) of data of interest through the built-in [hover-based interaction](#unique-id-hover). Numerical and categorical features are used to render [shared widgets](#shared-interactive-widgets). Internally, FLIM Playground will check whether the dataset fulfills the requirements and output meaningful warning or error messages.
 
-::: {.callout-note}
-Warning messages will not prevent the analysis but error messages will. 
+::: {.callout-tip #feature-recognition}
+If you cannot find a certain **numerical feature** under any numerical widgets including `Uncategorized Features`, please inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. One non-numeric value (e.g., "--") will prevent it from being recognized. 
+
+
+FLIM Playground searches for **categorical features** in the uploaded dataset based on the [user-specified configuration](#sec-data-analysis-config) if the dataset is not extracted by [Data Extraction](#sec-data-extraction). Otherwise, it searches for categorical features specified in the [Data Extraction configuration](data_extraction_config.qmd#categorical-features). 
+
 :::
 
 ### Warning Messages
@@ -67,33 +83,23 @@ Warning messages will not prevent the analysis but error messages will.
 - `Duplicated columns`: Only the first occurrence of the duplicated column will be kept. Other occurrences will be dropped.
 - `Duplicated rows based on the unique row id`: Only the first occurrence of the duplicated row will be kept. Other occurrences will be dropped.
 - `Columns with NaN values`: won't be dropped, just a warning message. 
-    - The analysis will be performed on the rows that are not NaN in the [selected numerical features](#numerical-feature-widgets). 
+    - The analysis will be performed on the rows that are not NaN in the [selected numerical features](#numerical-selection-widgets). 
 
 ### Error Messages
 - Missing a column that uniquely identifies each row
 - Cannot identify any numerical feature column
     - It uses `pd.api.types.is_numeric_dtype` to check if a column is numerical. 
 
+::: {.callout-note}
+Warning messages will not prevent the analysis but error messages will. 
+:::
+
 ## Shared Interactive Widgets
 
-A list of shared widgets is provided to support the general workflow in analysis. 
+A list of shared widgets is provided to support the [general workflow](#general-workflow) in analysis. 
 
-### General Workflow
-
-- select [numerical feature(s)](#numerical-feature-widgets) on the left
-- [subset the data](#filter-widgets) to find data of interest on the top 
-- use [visual channels widgets](#visual-channels-widgets) to look at the data in different ways
-- change the plot [style](#plotting-configuration-widgets)
-- [hover](#unique-id-hover) to find data points of interest
-
-The visualization and analysis results are updated in real time to reflect users' interactions with any of the above widgets. 
-
-### Numerical Feature Widgets 
+### Numerical Selection Widgets 
 The Data Extraction recognizes numerical features using `pd.api.types.is_numeric_dtype` internally.  Then it groups numerical features based on the [feature extractor type](data_extraction_config.qmd#feature-extractor) and the channel it belongs to. For user-provided datasets, the numerical features are grouped based on the [user-specified configuration](data_analysis_config.qmd). Ungrouped numerical features are put into the `Uncategorized Features` group. One selection widget is rendered for each numerical feature group. 
-
-::: {.callout-tip}
-If you cannot find a certain numerical feature under any numerical widgets including `Uncategorized Features`, please inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. One non-numeric value (e.g., "--") will prevent it from being recognized. 
-:::
 
 #### Univariate Analysis
 One single-select widget is rendered per group; choosing a feature in any group clears the selections and resets the others to `Select`.
@@ -110,25 +116,37 @@ One set of selection widgets, each can select multiple features from a feature g
 
 ![](analysis_ui_shots/multi_select.png){width=40% fig-align=center}
 
-### Categorical Feature Widgets
 
-FLIM Playground recognizes the categorical features in the uploaded dataset based on the [user-specified configuration](#sec-data-analysis-config) if the dataset is not extracted by [Data Extraction](#sec-data-extraction). Otherwise, it recognizes categorical features specified in the [Data Extraction configuration](data_extraction_config.qmd#categorical-features). 
+### Filter Widgets
 
-#### Filter Widgets
+#### Categorical Filters
 ![](analysis_ui_shots/filter.png){width=95%}
 
 For complex datasets that are collected over multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget is rendered for each categorical feature so that users have the flexibility to filter the data based on combinations of categorical features. `All` is a special option that include all categories of the selected categorical feature. Once it is selected, all the other options are cleared, and vice versa. 
 
-#### Visual Channels Widgets
+#### Numerical Filters
+
+![](analysis_ui_shots/numerical_filters.png){width=95%}
+
+Users can further filter the data based on numerical features. Each row specifies a condition to filter the data: 
+
+- `Feature`: the numerical feature to filter on
+- `Operator`: `>` or `<=`
+- `Threshold`: the range of values to filter on, dynamically updated based on previous filters, is displayed for reference. The entered value should be within the range.
+- `Add Another`: add a new condition in the next row. 
+
+After the two sets of filters are applied, the final filtered data is used for visualization and analysis.
+
+### Visual Channels Widgets
 ![](analysis_ui_shots/vis_channels.png){width=100%}
 
 Human vision is wired for rapid, parallel pattern and trend detection; good visual encodings (how to map data to visual elements such as color, shape, opacity, etc.) harness this to surface insights that raw numbers or text obscure [@cleveland1984]. FLIM Playground provides `color`, `opacity`, and `shape` channels for visualizations that support them: 
 
-##### Color by
-Color is supported in all methods except for [Classification](#sec-classification). In `Color by`, users can select multiple categorical features, and each unique combination of available categories (determined by the filters in the [Filter Widgets](#filter-widgets)) in selected features is assigned a distinct color. Groups created by `Color by` show up in the x-axis (if multiple features, categories from each feature are delimited by `::`).
+#### Color by
+Color is supported in all methods except for [Classification](#sec-classification). In `Color by`, users can select multiple categorical features, and each unique combination of available categories in selected features is assigned a distinct color. Groups created by `Color by` show up in the x-axis (if multiple features, categories from each feature are delimited by `::`).
 
 ::: {#nte-order .callout-note}
-## How to order the groups
+# How to order the groups
 The order of the groups in x-axis and in the legend is determined by:
 
 - the order of the selected features: categories of the first feature appear before those of the second, and so on and so forth. For example, the two treatments of `Panc1` are together, because it is sorted first on the cell lines, then on treatments. If you want the treatments to be together, in `Color by` you can select `treatment` then `cell_line`. 
@@ -138,8 +156,8 @@ The order of the groups in x-axis and in the legend is determined by:
 
 ![](analysis_ui_shots/color_by.png){width=90% fig-align=center}
 
-##### Opacity and Shape by
-- Opacity and shape are supported in all point-based visualizations (e.g. [Feature Comparison](#sec-feature-comparison), [2D Feature Distribution](#sec-feature-distribution), [Phasor Analysis](#sec-phasor-analysis), [Dimension Reduction](#sec-dimension-reduction)). In `Opacity by` and `Shape by`, users can select one categorical feature, and each unique category is assigned a distinct opacity or shape. The order of the shape and opacity is also sorted [numeric-alphabetically](#nte-order). 
+#### Opacity and Shape by
+Opacity and shape are supported in all point-based visualizations (e.g. [Feature Comparison](#sec-feature-comparison), [2D Feature Distribution](#sec-feature-distribution), [Phasor Analysis](#sec-phasor-analysis), [Dimension Reduction](#sec-dimension-reduction)). In `Opacity by` and `Shape by`, users can select one categorical feature, and each unique category is assigned a distinct opacity or shape. The order of the shape and opacity is also sorted [numeric-alphabetically](#nte-order). 
 
 ![](analysis_ui_shots/opacity_shape_by.png){width=90% fig-align=center}
 

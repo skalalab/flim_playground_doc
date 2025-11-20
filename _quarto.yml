@@ -37,6 +37,7 @@ book:
       chapters:
         - dimension_reduction.qmd
         - classification.qmd
+    - common_qa.qmd
 
 bibliography: references.bib
 csl: https://www.zotero.org/styles/nature

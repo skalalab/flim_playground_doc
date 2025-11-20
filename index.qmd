@@ -209,3 +209,7 @@ Both sections are built in Python and as self-contained executables ready to run
 ### Summary
 
 **FLIM Playground** resolves these [challenges](#challenges) with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and has a built-in repertoire of analytical methods with interactive widgets that encourage hypothesis-driven, iterative exploration of large datasets. It is built on a modular architecture that enables incorporation of new algorithms in the future.
+
+### Citation
+
+FLIM Playground is currently on [bioarchive](https://www.biorxiv.org/content/10.1101/2025.09.30.679625). If it contributed to your research—whether through Data Extraction for single-cell feature generation or through Data Analysis for data exploration, visualization, selection of analysis methods, or hyperparameter tuning (UMAP, clustering, classification, etc.)—please cite this work in your publication. Your citation directly supports us in maintaining and improving it ✨🎈🍾. 

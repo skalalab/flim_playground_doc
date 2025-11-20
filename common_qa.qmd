@@ -1,0 +1,9 @@
+# Common Q & A
+
+This chapter addresses frequently asked questions about FLIM Playground.
+
+## Feature Missing in Data Analysis
+
+**Q**: Why I cannot find a certain **numerical feature** under numerical selection/filter widgets? Why I cannot find a certain **categorical feature** under categorical filter/visual channel widgets?
+
+**A**: Please see [here](data_analysis.qmd#feature-recognition) for the tip.

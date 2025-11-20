@@ -58,7 +58,7 @@ We provide three options for handling class imbalance (i.e., one or more classes
 
 ![](analysis_ui_shots/threshold_tuning.png){width=30% fig-align=center}
 
-::: {.callout-note collapse="true" title="How does threshold tuning work?"}
+::: {.callout-note collapse="true" title="How does threshold tuning work?" #threshold-tuning}
 
 It treats threshold selection as a separate optimization problem from model training, allowing thresholds to be tuned independently of the underlying classifier's probability estimates.
 
@@ -73,6 +73,41 @@ The optimization objective function evaluates candidate thresholds by: (1) apply
 Finally, the optimized threshold(s) are applied on top of the probablity model trained on the entire training set to the test set to generate the final predictions.
 
 :::
+
+::: {.callout-note collapse="true" title="Threshold Tuning Example"}
+
+Before threshold tuning: 
+
+![](analysis_ui_shots/threshold_tuning_before.png){width=90% fig-align=center}
+
+After threshold tuning based on the balanced accuracy metric: 
+
+![](analysis_ui_shots/threshold_tuning_after.png){width=90% fig-align=center}
+
+Things to **highlight**: 
+
+- The two ROC curves are the same, because the underlying probability models are the same. 
+- The annotated operating point in <span style="color:red;">red</span> is "better" *after* the threshold tuning because it achieves higher Recall (TRP) + Specificity (TNR), as can be seen in the metrics table (the optimized metrics are highlighted in <span style="color:red;">red</span>). The threshold before was 0.5, the default value, and after tuning it was optimized to 0.19. The reduction in thresholds means that the classifier is tuned to be more "confident" at predicting the positive class (2DG), which is the minority class. The effect of this threshold optimization is also visible in the confusion matrix.
+- However, all of the above come at the cost of other metrics, such as the overall accuracy (0.89 to 0.82) and average precision (0.82 to 0.74). **Select the class imbalance methods/options that maximize the metrics most important to you.**
+
+:::
+
+::: {.callout-note collapse="true" title="Sampling Example"}
+
+Before sampling: 
+
+![](analysis_ui_shots/sampling_before.png){width=90% fig-align=center}
+
+After sampling (undersampling was used in this case): 
+
+![](analysis_ui_shots/sampling_after.png){width=90% fig-align=center}
+
+Things to **highlight**: 
+
+- The ROC curve is different, because the underlying probability models are different. 
+- The thresholds before and after are the same (the default value of 0.5), but the operating points are at different locations and their associated confusion matrices are different. 
+
+::: 
 
 ### Confusion Matrix
 FLIM Playground evaluates the trained classifier on the held-out test set by converting the predicted probabilities into hard labels using the chosen threshold or by selecting the class with the highest predicted probability. The predictions are then summarized using sklearn.metrics.confusion_matrix. In the binary case, it is represented as: 
@@ -101,15 +136,21 @@ Other metrics are calculated for each class based on the confusion matrix:
 ### ROC Curve
 Another way to look at the performance of the classifier is to plot the Receiver Operating Characteristic (ROC) curve and its Area Under the Curve (AUC). 
 
-Confusion matrix looks at the performance of the classifier at a single threshold, while ROC curve looks at the performance of the classifier at all thresholds (i.e., from 0 to 1. If it is a multi-class classification, each class's ROC curve is computed as a one-vs-rest binary classification problem). 
+Confusion matrix looks at the performance of the classifier at a single threshold, while ROC curve looks at the performance of the classifier at all thresholds (i.e., from 0 to 1). 
 
 At the origin (0, 0), the threshold is 1, so the classifier predicts all samples as negative, making the false positive rate $\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}} = 0$ and the true positive rate $\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}} = 0$, i.e. the origin. At the point (1, 1), the threshold is 0, so the classifier predicts all samples as positive, making the false positive rate 1 and the true positive rate 1, i.e. the point (1, 1). 
 
 AUC summarizes the ROC curve by integrating it from 0 to 1, so it is threshold-free and has a nice interpretation: it is the probability that the classifier assigns a higher score to a randomly chosen positive sample $X^+$ than to a randomly chosen negative sample $X^-$. 
 
-If the threshold tuning is applied, the ROC curve displays the chosen "optimal" threshold that maximizes the chosen performance metric (colored in red).
+The ROC curve displays the operating point (FPR, TPR) associated with the confusion matrix on the right. 
 
-![](analysis_ui_shots/roc_threshold_tuning.png){width=90% fig-align=center}
+#### Multi-class ROC Curve
+
+In multi-class classification, each class's ROC curve is computed as a one-vs-rest binary classification problem. The operating point (FPR, TPR) associated with the confusion matrix is displayed for each class. 
+
+![](analysis_ui_shots/roc_multiclass.png){width=90% fig-align=center}
+
+
 
 ### Feature Importance
 `Random Forest` and `Gradient Boosting` classifiers provide feature importance scores. 
