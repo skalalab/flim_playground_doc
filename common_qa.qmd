@@ -4,6 +4,15 @@ This chapter addresses frequently asked questions about FLIM Playground.
 
 ## Feature Missing in Data Analysis
 
-**Q**: Why I cannot find a certain **numerical feature** under numerical selection/filter widgets? Why I cannot find a certain **categorical feature** under categorical filter/visual channel widgets?
+**Q**: Why I cannot find a certain **numerical feature** under numerical selection/filter widgets? 
 
-**A**: Please see [here](data_analysis.qmd#feature-recognition) for the tip.
+**A**: If you cannot find a certain **numerical feature**, try the following:
+
+- look inside the `Uncategorized Features` feature group
+- inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. One non-numeric value (e.g., "--") will prevent it from being recognized. After clearing those cells (Excel cell not real cells), saving the file, and uploading it again, the feature should be recognized. 
+
+**Q**: Why I cannot find a certain **categorical feature** under categorical filter/visual channel widgets?
+
+**A**: FLIM Playground will only match **categorical features** in the uploaded dataset either specified in the [configuration](data_analysis_config.qmd#categorical-feature-config) if the dataset is not extracted by [Data Extraction](#sec-data-extraction), or specified in the [Data Extraction configuration](data_extraction_config.qmd#categorical-features) if the dataset has been extracted by [Data Extraction](#sec-data-extraction). It is ok if your dataset does not have all of the categorical features specified in the configuration. 
+
+
