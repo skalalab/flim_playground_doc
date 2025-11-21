@@ -824,7 +824,17 @@
     "href": "common_qa.html",
     "title": "20  Common Q & A",
     "section": "",
-    "text": "20.1 Feature Missing in Data Analysis\nThis chapter addresses frequently asked questions about FLIM Playground.\nQ: Why I cannot find a certain numerical feature under numerical selection/filter widgets? Why I cannot find a certain categorical feature under categorical filter/visual channel widgets?\nA: Please see here for the tip.",
+    "text": "20.1 Feature Missing in Data Analysis\nThis chapter addresses frequently asked questions about FLIM Playground.\nQ: Why I cannot find a certain numerical feature under numerical selection/filter widgets?\nA: If you cannot find a certain numerical feature, try the following:\nQ: Why I cannot find a certain categorical feature under categorical filter/visual channel widgets?\nA: FLIM Playground will only match categorical features in the uploaded dataset either specified in the configuration if the dataset is not extracted by Data Extraction, or specified in the Data Extraction configuration if the dataset has been extracted by Data Extraction. It is ok if your dataset does not have all of the categorical features specified in the configuration.",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Common Q & A</span>"
+    ]
+  },
+  {
+    "objectID": "common_qa.html#feature-missing-in-data-analysis",
+    "href": "common_qa.html#feature-missing-in-data-analysis",
+    "title": "20  Common Q & A",
+    "section": "",
+    "text": "look inside the Uncategorized Features feature group\ninspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. One non-numeric value (e.g., “–”) will prevent it from being recognized. After clearing those cells (Excel cell not real cells), saving the file, and uploading it again, the feature should be recognized.",
     "crumbs": [
       "<span class='chapter-number'>20</span>  <span class='chapter-title'>Common Q & A</span>"
     ]

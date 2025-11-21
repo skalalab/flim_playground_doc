@@ -492,8 +492,14 @@ ul.task-list li input[type="checkbox"] {
 <p>This chapter addresses frequently asked questions about FLIM Playground.</p>
 <section id="feature-missing-in-data-analysis" class="level2" data-number="20.1">
 <h2 data-number="20.1" class="anchored" data-anchor-id="feature-missing-in-data-analysis"><span class="header-section-number">20.1</span> Feature Missing in Data Analysis</h2>
-<p><strong>Q</strong>: Why I cannot find a certain <strong>numerical feature</strong> under numerical selection/filter widgets? Why I cannot find a certain <strong>categorical feature</strong> under categorical filter/visual channel widgets?</p>
-<p><strong>A</strong>: Please see <a href="./data_analysis.html#feature-recognition">here</a> for the tip.</p>
+<p><strong>Q</strong>: Why I cannot find a certain <strong>numerical feature</strong> under numerical selection/filter widgets?</p>
+<p><strong>A</strong>: If you cannot find a certain <strong>numerical feature</strong>, try the following:</p>
+<ul>
+<li>look inside the <code>Uncategorized Features</code> feature group</li>
+<li>inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. One non-numeric value (e.g., “–”) will prevent it from being recognized. After clearing those cells (Excel cell not real cells), saving the file, and uploading it again, the feature should be recognized.</li>
+</ul>
+<p><strong>Q</strong>: Why I cannot find a certain <strong>categorical feature</strong> under categorical filter/visual channel widgets?</p>
+<p><strong>A</strong>: FLIM Playground will only match <strong>categorical features</strong> in the uploaded dataset either specified in the <a href="./data_analysis_config.html#categorical-feature-config">configuration</a> if the dataset is not extracted by <a href="data_extraction.html">Data Extraction</a>, or specified in the <a href="./data_extraction_config.html#categorical-features">Data Extraction configuration</a> if the dataset has been extracted by <a href="data_extraction.html">Data Extraction</a>. It is ok if your dataset does not have all of the categorical features specified in the configuration.</p>
 
 
 </section>
