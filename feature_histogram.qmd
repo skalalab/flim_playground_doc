@@ -79,7 +79,7 @@ $$\text{label}(x) = \arg\max_{i} \gamma_i(x)$$
 $$\text{where} \quad \gamma_i(x) = \frac{w_i \; \mathcal{N}\bigl(x \mid \mu_i, \sigma_i^2\bigr)}{\sum_{j=1}^K w_j \; \mathcal{N}\bigl(x \mid \mu_j, \sigma_j^2\bigr)}$$
 
 ### Example 
-Pham et al. used GMM with hard thresholding to create gates using NAD(P)H $a_1$ and optical redox ratio. These gates were used to define metabolically stressed and fit cells in their study of the impact of cryopreservation on T cell metabolism. 
+Pham et al. [@Pham2025] used GMM with hard thresholding to create gates using NAD(P)H $a_1$ and optical redox ratio. These gates were used to define metabolically stressed and fit cells in their study of the impact of cryopreservation on T cell metabolism. 
 
 ::: {.columns}
 ::: {.column width="50%"}
