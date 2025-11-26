@@ -137,6 +137,11 @@ Users can further filter the data based on numerical features. Each row specifie
 
 After the two sets of filters are applied, the final filtered data is used for visualization and analysis.
 
+::: {.callout-important}
+Make sure you clearly state all numerical filters used.
+:::
+
+
 ### Visual Channels Widgets
 ![](analysis_ui_shots/vis_channels.png){width=100%}
 

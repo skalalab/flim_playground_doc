@@ -27,6 +27,12 @@ A video of the Data Analysis section:
 {{< video src="analysis_ui_shots/data_analysis.mp4" controls=true style="object-fit:cover; border-radius:12px; display:block; margin:auto;" >}}
 :::
 
+::: {.content-visible when-format="html"}
+Data Analysis on mobile:
+
+{{< video src="analysis_ui_shots/analysis_mobile.mp4" controls=true style="object-fit:cover; border-radius:12px; display:block; margin:auto;" >}}
+:::
+
 ::: {.content-visible when-format="pdf"}
 ![](analysis_ui_shots/feature_comparison.png){width=100% fig-align=center}
 :::
