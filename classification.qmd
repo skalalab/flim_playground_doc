@@ -24,7 +24,13 @@ An overview of the pipeline:
 - Above the performance metrics plots, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 ## Method-specific Components
-- Choose the classifier and train-test split: the slider controls the proportion of the data used to train the classifier and the rest is used as unseen data to test its generalizability.
+- Choose the classifier and train-test split: the slider controls the proportion of the data used to train the classifier and the rest is used as unseen data to test its generalizability. The following classifiers are available:
+    - [`Random Forest`](https://mlu-explain.github.io/random-forest/)
+    - `Gradient Boosting`
+    - Support Vector Machine (`SVM`)
+    - [`Logistic Regression`](https://mlu-explain.github.io/logistic-regression/)
+
+The [train-test split](https://mlu-explain.github.io/train-test-validation/) is used to evaluate the generalizability of the classifier. The Validation set is used in hyperparameter tuning. Since the classifiers above do not have a lot of hyperparameters to tune, it does not partition a separate validation set. Though the k-fold cross-validation is used in [tuning the threshold](#threshold-tuning).
 
 ![](analysis_ui_shots/classifier_config.png){width=60% fig-align=center}
 
@@ -62,7 +68,7 @@ We provide three options for handling class imbalance (i.e., one or more classes
 
 It treats threshold selection as a separate optimization problem from model training, allowing thresholds to be tuned independently of the underlying classifier's probability estimates.
 
-**K-fold cross-validation for the probability model**: The procedure begins by establishing a stratified k-fold cross-validation scheme (default k=5): the dataset is divided into k mutually exclusive subsets, and for each fold, one subset serves as the validation set while the remaining k-1 subsets form the training set.
+**K-fold cross-validation for the probability model**: The procedure begins by establishing a stratified [k-fold cross-validation](https://mlu-explain.github.io/cross-validation/) scheme (default k=5): the dataset is divided into k mutually exclusive subsets, and for each fold, one subset serves as the validation set while the remaining k-1 subsets form the training set.
 
 The probability models are trained separately for each cross-validation fold. This process yields k distinct probability models, each trained on a different subset of the data, along with their corresponding validation set probability predictions that collectively cover all samples exactly once.
 
@@ -133,6 +139,12 @@ Other metrics are calculated for each class based on the confusion matrix:
 
 ![](analysis_ui_shots/performance_metrics.png){width=90% fig-align=center}
 
+::: {.callout-tip title="Performance Metrics Example"}
+
+The reason that we need metrics in addition to accuracy is because *Accuracy is Not Enough*. For a visual explantion of metrics, see [here](https://mlu-explain.github.io/precision-recall/). In short, it is all about trade-off. 
+
+:::
+
 ### ROC Curve
 Another way to look at the performance of the classifier is to plot the Receiver Operating Characteristic (ROC) curve and its Area Under the Curve (AUC). 
 
@@ -144,13 +156,13 @@ AUC summarizes the ROC curve by integrating it from 0 to 1, so it is threshold-f
 
 The ROC curve displays the operating point (FPR, TPR) associated with the confusion matrix on the right. 
 
+For a visual explanation, see [here](https://mlu-explain.github.io/roc-auc/).
+
 #### Multi-class ROC Curve
 
 In multi-class classification, each class's ROC curve is computed as a one-vs-rest binary classification problem. The operating point (FPR, TPR) associated with the confusion matrix is displayed for each class. 
 
 ![](analysis_ui_shots/roc_multiclass.png){width=90% fig-align=center}
-
-
 
 ### Feature Importance
 `Random Forest` and `Gradient Boosting` classifiers provide feature importance scores. 
