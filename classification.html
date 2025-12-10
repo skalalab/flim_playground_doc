@@ -555,8 +555,15 @@ window.Quarto = {
 <section id="method-specific-components" class="level2" data-number="19.2">
 <h2 data-number="19.2" class="anchored" data-anchor-id="method-specific-components"><span class="header-section-number">19.2</span> Method-specific Components</h2>
 <ul>
-<li>Choose the classifier and train-test split: the slider controls the proportion of the data used to train the classifier and the rest is used as unseen data to test its generalizability.</li>
+<li>Choose the classifier and train-test split: the slider controls the proportion of the data used to train the classifier and the rest is used as unseen data to test its generalizability. The following classifiers are available:
+<ul>
+<li><a href="https://mlu-explain.github.io/random-forest/"><code>Random Forest</code></a></li>
+<li><code>Gradient Boosting</code></li>
+<li>Support Vector Machine (<code>SVM</code>)</li>
+<li><a href="https://mlu-explain.github.io/logistic-regression/"><code>Logistic Regression</code></a></li>
+</ul></li>
 </ul>
+<p>The <a href="https://mlu-explain.github.io/train-test-validation/">train-test split</a> is used to evaluate the generalizability of the classifier. The Validation set is used in hyperparameter tuning. Since the classifiers above do not have a lot of hyperparameters to tune, it does not partition a separate validation set. Though the k-fold cross-validation is used in <a href="#threshold-tuning">tuning the threshold</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/classifier_config.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
@@ -625,7 +632,7 @@ window.Quarto = {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>It treats threshold selection as a separate optimization problem from model training, allowing thresholds to be tuned independently of the underlying classifier’s probability estimates.</p>
-<p><strong>K-fold cross-validation for the probability model</strong>: The procedure begins by establishing a stratified k-fold cross-validation scheme (default k=5): the dataset is divided into k mutually exclusive subsets, and for each fold, one subset serves as the validation set while the remaining k-1 subsets form the training set.</p>
+<p><strong>K-fold cross-validation for the probability model</strong>: The procedure begins by establishing a stratified <a href="https://mlu-explain.github.io/cross-validation/">k-fold cross-validation</a> scheme (default k=5): the dataset is divided into k mutually exclusive subsets, and for each fold, one subset serves as the validation set while the remaining k-1 subsets form the training set.</p>
 <p>The probability models are trained separately for each cross-validation fold. This process yields k distinct probability models, each trained on a different subset of the data, along with their corresponding validation set probability predictions that collectively cover all samples exactly once.</p>
 <p><strong>Threshold optimization</strong>: A single threshold optimization procedure is performed once using all cross-validation folds. The threshold optimization process differs for binary and multi-class classification problems. For binary classification, a single threshold parameter <span class="math inline">\(\theta \in [0, 1]\)</span> is optimized, where class 1 is predicted when <span class="math inline">\(P(\text{class } 1 \mid x) \geq \theta\)</span>, and class 0 otherwise. For multi-class problems, a threshold vector <span class="math inline">\(\theta = [\theta_1, \theta_2, \ldots, \theta_k]\)</span> is optimized simultaneously for all <span class="math inline">\(k\)</span> classes, where thresholds are applied through a normalized probability scheme: predictions are made by selecting the class with the highest normalized probability <span class="math inline">\(P(\text{class } i \mid x) / (\theta_i + \epsilon)\)</span>, where <span class="math inline">\(\epsilon = 10^{-10}\)</span> prevents division by zero.</p>
 <p>The optimization objective function evaluates candidate thresholds by: (1) applying the same threshold(s) on top of the fold-specific probability models to generate prediction classes for the fold-specific validation set, (2) computing the specified evaluation metric (e.g., balanced accuracy, F1-score) between predicted and true labels for each fold, and (3) returning the negative mean cross-validated score across all folds (for minimization using the Nelder-Mead simplex algorithm).</p>
@@ -748,6 +755,19 @@ window.Quarto = {
 <p><img src="analysis_ui_shots/performance_metrics.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Performance Metrics Example">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Performance Metrics Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The reason that we need metrics in addition to accuracy is because <em>Accuracy is Not Enough</em>. For a visual explantion of metrics, see <a href="https://mlu-explain.github.io/precision-recall/">here</a>. In short, it is all about trade-off.</p>
+</div>
+</div>
 </section>
 <section id="roc-curve" class="level3" data-number="19.2.4">
 <h3 data-number="19.2.4" class="anchored" data-anchor-id="roc-curve"><span class="header-section-number">19.2.4</span> ROC Curve</h3>
@@ -756,6 +776,7 @@ window.Quarto = {
 <p>At the origin (0, 0), the threshold is 1, so the classifier predicts all samples as negative, making the false positive rate <span class="math inline">\(\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}} = 0\)</span> and the true positive rate <span class="math inline">\(\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}} = 0\)</span>, i.e.&nbsp;the origin. At the point (1, 1), the threshold is 0, so the classifier predicts all samples as positive, making the false positive rate 1 and the true positive rate 1, i.e.&nbsp;the point (1, 1).</p>
 <p>AUC summarizes the ROC curve by integrating it from 0 to 1, so it is threshold-free and has a nice interpretation: it is the probability that the classifier assigns a higher score to a randomly chosen positive sample <span class="math inline">\(X^+\)</span> than to a randomly chosen negative sample <span class="math inline">\(X^-\)</span>.</p>
 <p>The ROC curve displays the operating point (FPR, TPR) associated with the confusion matrix on the right.</p>
+<p>For a visual explanation, see <a href="https://mlu-explain.github.io/roc-auc/">here</a>.</p>
 <section id="multi-class-roc-curve" class="level4">
 <h4 class="anchored" data-anchor-id="multi-class-roc-curve">Multi-class ROC Curve</h4>
 <p>In multi-class classification, each class’s ROC curve is computed as a one-vs-rest binary classification problem. The operating point (FPR, TPR) associated with the confusion matrix is displayed for each class.</p>
