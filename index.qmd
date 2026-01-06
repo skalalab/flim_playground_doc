@@ -10,7 +10,7 @@
 ::: {.content-visible when-format="html"}
 ![](logo.gif){width=300px fig-align="center"}
 
-<p style="text-align: center; font-size: 0.85em; color: #666; margin-top: -10px;">*Logo courtesy to Matt Stefely. The <span style="color: #D3AE4A;">yellow</span> dot is a photon sliding down a lifetime decay curve (or a slide 🛝).*</p>
+<p style="text-align: center; font-size: 0.85em; color: #666; margin-top: -10px;">*Logo courtesy to Matt Stefely. The <span style="color: #D3AE4A;">yellow</span> dot is a photon sliding down a lifetime decay curve 🛝.*</p>
 :::
 
 ::: {.content-visible when-format="pdf"}

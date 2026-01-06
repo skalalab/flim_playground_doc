@@ -20,3 +20,8 @@ Mass displacement is the Euclidean distance (in pixels) between the intensity-we
 Intensity sum is defined as the sum of pixel intensities within the cell intensity image.
 
 In the final dataset, feature names are prefixed by the combination of the feature extractor name (i.e. `Intensity texture`) and the channel name, allowing [Data Analysis](#sec-data-analysis) to group the features. For example, `Intensity texture_nadh: granularity_1` means the percentage of intensity removed when bright objects of 1-pixel diameter are removed in the NAD(P)H channel. 
+
+::: {.callout-note collapse="true" title="Visual explanation"}
+[This post](https://allanware.quarto.pub/cell-texture/) provides a visual explanation of and code to calculate some of the texture features above.
+
+:::
