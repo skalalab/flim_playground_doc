@@ -499,7 +499,10 @@ ul.task-list li input[type="checkbox"] {
 <li>inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. One non-numeric value (e.g., “–”) will prevent it from being recognized. After clearing those cells (Excel cell not real cells), saving the file, and uploading it again, the feature should be recognized.</li>
 </ul>
 <p><strong>Q</strong>: Why I cannot find a certain <strong>categorical feature</strong> under categorical filter/visual channel widgets?</p>
-<p><strong>A</strong>: FLIM Playground will only match <strong>categorical features</strong> in the uploaded dataset either specified in the <a href="./data_analysis_config.html#categorical-feature-config">configuration</a> if the dataset is not extracted by <a href="data_extraction.html">Data Extraction</a>, or specified in the <a href="./data_extraction_config.html#categorical-features">Data Extraction configuration</a> if the dataset has been extracted by <a href="data_extraction.html">Data Extraction</a>. It is ok if your dataset does not have all of the categorical features specified in the configuration.</p>
+<p><strong>A</strong>: - If the uploaded dataset was extracted by <a href="data_extraction.html">Data Extraction</a>, FLIM Playground will only match categorical features specified in the <a href="./data_extraction_config.html#categorical-features">Data Extraction configuration</a>. Otherwise, FLIM Playground will only match categorical features specified in the <a href="./data_analysis_config.html#categorical-feature-config">configuration</a>. - If the categorical feature was in the corresponding configuration, and it is still not visible: - If you just added it, FLIM Playground may not have picked it up yet. Try refreshing the page. - If you have already added it, then there is only one unique value in that categorical feature column. FLIM Playground will not show it.</p>
+<ul>
+<li>It is ok if your dataset does not have all of the categorical features specified in either of the configurations.</li>
+</ul>
 
 
 </section>
