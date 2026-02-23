@@ -42,6 +42,83 @@ The [train-test split](https://mlu-explain.github.io/train-test-validation/) is 
 
 ![](analysis_ui_shots/classifier_options.png){width=30% fig-align=center}
 
+### Classifier Hyperparameters
+
+The classifier hyperparameter panel is organized per classifier with three roles:
+
+- `Model-Form/Capacity`: defines the hypothesis family or expressive power.
+- `Regularization`: constrains model complexity to reduce overfitting.
+- `Optimization`: affects training convergence and runtime behavior.
+
+#### Random Forest
+
+::: {.callout-note collapse="true" title="Parameter table"}
+
+| Param | Role | Effect | Priority |
+| --- | --- | --- | --- |
+| `n_estimators` | Model-Form/Capacity | More trees increase ensemble capacity; gains usually show diminishing returns after enough trees. | High |
+| `max_depth` | Regularization | Caps tree depth to reduce overfitting; also directly limits capacity. | High |
+| `min_samples_split` | Regularization | Requires more samples before splitting, reducing fragmentation on small partitions. | Medium |
+| `min_samples_leaf` | Regularization | Enforces minimum leaf size, smoothing predictions. | Medium |
+| `max_features` | Regularization | Fewer features per split increase tree diversity and reduce variance/overfitting. | Medium-High |
+
+:::
+
+#### Gradient Boosting
+
+::: {.callout-note collapse="true" title="Parameter table"}
+
+| Param | Role | Effect | Priority |
+| --- | --- | --- | --- |
+| `n_estimators` | Model-Form/Capacity | More stages increase additive model capacity; strongly interacts with `learning_rate`. | High |
+| `learning_rate` | Regularization | Shrinks each stage contribution; lower values typically need more trees and often generalize better (also affects optimization dynamics). | High |
+| `max_depth` | Regularization | Limits base learner complexity; also limits capacity. | High |
+| `subsample` | Regularization | `< 1.0` introduces stochastic boosting, reducing variance and overfitting risk. | High |
+
+:::
+
+#### Support Vector Machine (SVM)
+
+::: {.callout-note collapse="true" title="Parameter table"}
+
+| Param | Role | Effect | Priority |
+| --- | --- | --- | --- |
+| `C` | Regularization | Higher `C` penalizes training errors more, which usually weakens regularization. | High |
+| `kernel` | Model-Form/Capacity | Chooses hypothesis family (`linear` vs non-linear kernels). | High |
+| `gamma` | Model-Form/Capacity | Controls influence radius of samples for `rbf`/`poly`/`sigmoid`; higher values create tighter boundaries. | High |
+| `degree` | Model-Form/Capacity | Polynomial order for `poly` kernel; higher degree increases flexibility. | Medium-High |
+| `coef0` | Model-Form/Capacity | Kernel offset for `poly`/`sigmoid`, shifting boundary behavior. | Medium |
+| `tol` | Optimization | Convergence tolerance; mostly affects runtime/termination behavior. | Low |
+
+:::
+
+#### Logistic Regression
+
+::: {.callout-note collapse="true" title="Parameter table"}
+
+| Param | Role | Effect | Priority |
+| --- | --- | --- | --- |
+| `regularization` | Regularization | Selects regularization type; available options depend on `solver` (see table below). Maps to `l1_ratio` internally. | High |
+| `C` | Regularization | Inverse regularization strength; higher `C` means weaker regularization. | High |
+| `l1_ratio` | Regularization | Balances `l1` vs `l2` when `solver='saga'` and `regularization='elasticnet'`. | Medium |
+| `fit_intercept` | Regularization | Disabling intercept is a mild structural constraint. | Low |
+| `solver` | Optimization | Optimization algorithm; affects convergence speed and which regularization options are available. | Low-Medium |
+| `max_iter` | Optimization | Iteration budget; too low can stop before convergence. | Low-Medium |
+| `tol` | Optimization | Convergence threshold; mainly runtime-sensitive. | Low |
+
+**Regularization options by solver:**
+
+| Solver | Available regularization |
+| --- | --- |
+| `lbfgs` | `l2`, `none` |
+| `liblinear` | `l1`, `l2` |
+| `newton-cg` | `l2`, `none` |
+| `newton-cholesky` | `l2`, `none` |
+| `sag` | `l2`, `none` |
+| `saga` | `l1`, `l2`, `elasticnet`, `none` |
+
+:::
+
 ### Class Imbalance Handling
 
 We provide three options for handling class imbalance (i.e., one or more classes in a dataset have significantly fewer samples than others, which would otherwise cause a classifier to bias toward the majority class). Note: to prevent data leakage, all the methods below are applied to the training set only.
