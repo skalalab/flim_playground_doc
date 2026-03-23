@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>19&nbsp; Classification – FLIM Playground</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,19 +37,18 @@ ul.task-list li input[type="checkbox"] {
 <link href="./dimension_reduction.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-234501a227967ac462f24af7be37efa8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-22e83d4e5eff2a99ccc45532742ac980.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-aa873432a3c62897e6c2091c0d30a948.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b9eaee60a963b5d74e9d33cc267de6a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -76,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -495,11 +497,12 @@ window.Quarto = {
   <li><a href="#shared-interface-components" id="toc-shared-interface-components" class="nav-link active" data-scroll-target="#shared-interface-components"><span class="header-section-number">19.1</span> Shared Interface Components</a></li>
   <li><a href="#method-specific-components" id="toc-method-specific-components" class="nav-link" data-scroll-target="#method-specific-components"><span class="header-section-number">19.2</span> Method-specific Components</a>
   <ul class="collapse">
-  <li><a href="#class-imbalance-handling" id="toc-class-imbalance-handling" class="nav-link" data-scroll-target="#class-imbalance-handling"><span class="header-section-number">19.2.1</span> Class Imbalance Handling</a></li>
-  <li><a href="#confusion-matrix" id="toc-confusion-matrix" class="nav-link" data-scroll-target="#confusion-matrix"><span class="header-section-number">19.2.2</span> Confusion Matrix</a></li>
-  <li><a href="#performance-metrics" id="toc-performance-metrics" class="nav-link" data-scroll-target="#performance-metrics"><span class="header-section-number">19.2.3</span> Performance Metrics</a></li>
-  <li><a href="#roc-curve" id="toc-roc-curve" class="nav-link" data-scroll-target="#roc-curve"><span class="header-section-number">19.2.4</span> ROC Curve</a></li>
-  <li><a href="#feature-importance" id="toc-feature-importance" class="nav-link" data-scroll-target="#feature-importance"><span class="header-section-number">19.2.5</span> Feature Importance</a></li>
+  <li><a href="#classifier-hyperparameters" id="toc-classifier-hyperparameters" class="nav-link" data-scroll-target="#classifier-hyperparameters"><span class="header-section-number">19.2.1</span> Classifier Hyperparameters</a></li>
+  <li><a href="#class-imbalance-handling" id="toc-class-imbalance-handling" class="nav-link" data-scroll-target="#class-imbalance-handling"><span class="header-section-number">19.2.2</span> Class Imbalance Handling</a></li>
+  <li><a href="#confusion-matrix" id="toc-confusion-matrix" class="nav-link" data-scroll-target="#confusion-matrix"><span class="header-section-number">19.2.3</span> Confusion Matrix</a></li>
+  <li><a href="#performance-metrics" id="toc-performance-metrics" class="nav-link" data-scroll-target="#performance-metrics"><span class="header-section-number">19.2.4</span> Performance Metrics</a></li>
+  <li><a href="#roc-curve" id="toc-roc-curve" class="nav-link" data-scroll-target="#roc-curve"><span class="header-section-number">19.2.5</span> ROC Curve</a></li>
+  <li><a href="#feature-importance" id="toc-feature-importance" class="nav-link" data-scroll-target="#feature-importance"><span class="header-section-number">19.2.6</span> Feature Importance</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/classification.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -585,8 +588,328 @@ window.Quarto = {
 <p><img src="analysis_ui_shots/classifier_options.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
 </figure>
 </div>
-<section id="class-imbalance-handling" class="level3" data-number="19.2.1">
-<h3 data-number="19.2.1" class="anchored" data-anchor-id="class-imbalance-handling"><span class="header-section-number">19.2.1</span> Class Imbalance Handling</h3>
+<section id="classifier-hyperparameters" class="level3" data-number="19.2.1">
+<h3 data-number="19.2.1" class="anchored" data-anchor-id="classifier-hyperparameters"><span class="header-section-number">19.2.1</span> Classifier Hyperparameters</h3>
+<p>The classifier hyperparameter panel is organized per classifier with three roles:</p>
+<ul>
+<li><code>Model-Form/Capacity</code>: defines the hypothesis family or expressive power.</li>
+<li><code>Regularization</code>: constrains model complexity to reduce overfitting.</li>
+<li><code>Optimization</code>: affects training convergence and runtime behavior.</li>
+</ul>
+<section id="random-forest" class="level4">
+<h4 class="anchored" data-anchor-id="random-forest">Random Forest</h4>
+<div class="callout callout-style-default callout-note callout-titled" title="Parameter table">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Parameter table
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Param</th>
+<th>Role</th>
+<th>Effect</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>n_estimators</code></td>
+<td>Model-Form/Capacity</td>
+<td>More trees increase ensemble capacity; gains usually show diminishing returns after enough trees.</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td><code>max_depth</code></td>
+<td>Regularization</td>
+<td>Caps tree depth to reduce overfitting; also directly limits capacity.</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td><code>min_samples_split</code></td>
+<td>Regularization</td>
+<td>Requires more samples before splitting, reducing fragmentation on small partitions.</td>
+<td>Medium</td>
+</tr>
+<tr class="even">
+<td><code>min_samples_leaf</code></td>
+<td>Regularization</td>
+<td>Enforces minimum leaf size, smoothing predictions.</td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td><code>max_features</code></td>
+<td>Regularization</td>
+<td>Fewer features per split increase tree diversity and reduce variance/overfitting.</td>
+<td>Medium-High</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="gradient-boosting" class="level4">
+<h4 class="anchored" data-anchor-id="gradient-boosting">Gradient Boosting</h4>
+<div class="callout callout-style-default callout-note callout-titled" title="Parameter table">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Parameter table
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Param</th>
+<th>Role</th>
+<th>Effect</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>n_estimators</code></td>
+<td>Model-Form/Capacity</td>
+<td>More stages increase additive model capacity; strongly interacts with <code>learning_rate</code>.</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td><code>learning_rate</code></td>
+<td>Regularization</td>
+<td>Shrinks each stage contribution; lower values typically need more trees and often generalize better (also affects optimization dynamics).</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td><code>max_depth</code></td>
+<td>Regularization</td>
+<td>Limits base learner complexity; also limits capacity.</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td><code>subsample</code></td>
+<td>Regularization</td>
+<td><code>&lt; 1.0</code> introduces stochastic boosting, reducing variance and overfitting risk.</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="support-vector-machine-svm" class="level4">
+<h4 class="anchored" data-anchor-id="support-vector-machine-svm">Support Vector Machine (SVM)</h4>
+<div class="callout callout-style-default callout-note callout-titled" title="Parameter table">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Parameter table
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Param</th>
+<th>Role</th>
+<th>Effect</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>C</code></td>
+<td>Regularization</td>
+<td>Higher <code>C</code> penalizes training errors more, which usually weakens regularization.</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td><code>kernel</code></td>
+<td>Model-Form/Capacity</td>
+<td>Chooses hypothesis family (<code>linear</code> vs non-linear kernels).</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td><code>gamma</code></td>
+<td>Model-Form/Capacity</td>
+<td>Controls influence radius of samples for <code>rbf</code>/<code>poly</code>/<code>sigmoid</code>; higher values create tighter boundaries.</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td><code>degree</code></td>
+<td>Model-Form/Capacity</td>
+<td>Polynomial order for <code>poly</code> kernel; higher degree increases flexibility.</td>
+<td>Medium-High</td>
+</tr>
+<tr class="odd">
+<td><code>coef0</code></td>
+<td>Model-Form/Capacity</td>
+<td>Kernel offset for <code>poly</code>/<code>sigmoid</code>, shifting boundary behavior.</td>
+<td>Medium</td>
+</tr>
+<tr class="even">
+<td><code>tol</code></td>
+<td>Optimization</td>
+<td>Convergence tolerance; mostly affects runtime/termination behavior.</td>
+<td>Low</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="logistic-regression" class="level4">
+<h4 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h4>
+<div class="callout callout-style-default callout-note callout-titled" title="Parameter table">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Parameter table
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Param</th>
+<th>Role</th>
+<th>Effect</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>regularization</code></td>
+<td>Regularization</td>
+<td>Selects regularization type; available options depend on <code>solver</code> (see table below). Maps to <code>l1_ratio</code> internally.</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td><code>C</code></td>
+<td>Regularization</td>
+<td>Inverse regularization strength; higher <code>C</code> means weaker regularization.</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td><code>l1_ratio</code></td>
+<td>Regularization</td>
+<td>Balances <code>l1</code> vs <code>l2</code> when <code>solver='saga'</code> and <code>regularization='elasticnet'</code>.</td>
+<td>Medium</td>
+</tr>
+<tr class="even">
+<td><code>fit_intercept</code></td>
+<td>Regularization</td>
+<td>Disabling intercept is a mild structural constraint.</td>
+<td>Low</td>
+</tr>
+<tr class="odd">
+<td><code>solver</code></td>
+<td>Optimization</td>
+<td>Optimization algorithm; affects convergence speed and which regularization options are available.</td>
+<td>Low-Medium</td>
+</tr>
+<tr class="even">
+<td><code>max_iter</code></td>
+<td>Optimization</td>
+<td>Iteration budget; too low can stop before convergence.</td>
+<td>Low-Medium</td>
+</tr>
+<tr class="odd">
+<td><code>tol</code></td>
+<td>Optimization</td>
+<td>Convergence threshold; mainly runtime-sensitive.</td>
+<td>Low</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Regularization options by solver:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Solver</th>
+<th>Available regularization</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>lbfgs</code></td>
+<td><code>l2</code>, <code>none</code></td>
+</tr>
+<tr class="even">
+<td><code>liblinear</code></td>
+<td><code>l1</code>, <code>l2</code></td>
+</tr>
+<tr class="odd">
+<td><code>newton-cg</code></td>
+<td><code>l2</code>, <code>none</code></td>
+</tr>
+<tr class="even">
+<td><code>newton-cholesky</code></td>
+<td><code>l2</code>, <code>none</code></td>
+</tr>
+<tr class="odd">
+<td><code>sag</code></td>
+<td><code>l2</code>, <code>none</code></td>
+</tr>
+<tr class="even">
+<td><code>saga</code></td>
+<td><code>l1</code>, <code>l2</code>, <code>elasticnet</code>, <code>none</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="class-imbalance-handling" class="level3" data-number="19.2.2">
+<h3 data-number="19.2.2" class="anchored" data-anchor-id="class-imbalance-handling"><span class="header-section-number">19.2.2</span> Class Imbalance Handling</h3>
 <p>We provide three options for handling class imbalance (i.e., one or more classes in a dataset have significantly fewer samples than others, which would otherwise cause a classifier to bias toward the majority class). Note: to prevent data leakage, all the methods below are applied to the training set only.</p>
 <ul>
 <li><strong>Sampling methods</strong>:
@@ -620,7 +943,7 @@ window.Quarto = {
 </figure>
 </div>
 <div id="threshold-tuning" class="callout callout-style-default callout-note callout-titled" title="How does threshold tuning work?">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -629,7 +952,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>It treats threshold selection as a separate optimization problem from model training, allowing thresholds to be tuned independently of the underlying classifier’s probability estimates.</p>
 <p><strong>K-fold cross-validation for the probability model</strong>: The procedure begins by establishing a stratified <a href="https://mlu-explain.github.io/cross-validation/">k-fold cross-validation</a> scheme (default k=5): the dataset is divided into k mutually exclusive subsets, and for each fold, one subset serves as the validation set while the remaining k-1 subsets form the training set.</p>
@@ -641,7 +964,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Threshold Tuning Example">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -650,7 +973,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Before threshold tuning:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -674,7 +997,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Sampling Example">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -683,7 +1006,7 @@ window.Quarto = {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Before sampling:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -706,8 +1029,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="confusion-matrix" class="level3" data-number="19.2.2">
-<h3 data-number="19.2.2" class="anchored" data-anchor-id="confusion-matrix"><span class="header-section-number">19.2.2</span> Confusion Matrix</h3>
+<section id="confusion-matrix" class="level3" data-number="19.2.3">
+<h3 data-number="19.2.3" class="anchored" data-anchor-id="confusion-matrix"><span class="header-section-number">19.2.3</span> Confusion Matrix</h3>
 <p>FLIM Playground evaluates the trained classifier on the held-out test set by converting the predicted probabilities into hard labels using the chosen threshold or by selecting the class with the highest predicted probability. The predictions are then summarized using sklearn.metrics.confusion_matrix. In the binary case, it is represented as:</p>
 <table class="caption-top table">
 <colgroup>
@@ -736,8 +1059,8 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="performance-metrics" class="level3" data-number="19.2.3">
-<h3 data-number="19.2.3" class="anchored" data-anchor-id="performance-metrics"><span class="header-section-number">19.2.3</span> Performance Metrics</h3>
+<section id="performance-metrics" class="level3" data-number="19.2.4">
+<h3 data-number="19.2.4" class="anchored" data-anchor-id="performance-metrics"><span class="header-section-number">19.2.4</span> Performance Metrics</h3>
 <p>The overall accuracy is calculated as the ratio of the sum of the true positives and true negatives to the sum of all the elements in the confusion matrix (the sum of the diagonal over the sum of all the elements).</p>
 <ul>
 <li>Accuracy: <span class="math inline">\(\frac{TP + TN}{TP + FP + TN + FN}\)</span></li>
@@ -769,8 +1092,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="roc-curve" class="level3" data-number="19.2.4">
-<h3 data-number="19.2.4" class="anchored" data-anchor-id="roc-curve"><span class="header-section-number">19.2.4</span> ROC Curve</h3>
+<section id="roc-curve" class="level3" data-number="19.2.5">
+<h3 data-number="19.2.5" class="anchored" data-anchor-id="roc-curve"><span class="header-section-number">19.2.5</span> ROC Curve</h3>
 <p>Another way to look at the performance of the classifier is to plot the Receiver Operating Characteristic (ROC) curve and its Area Under the Curve (AUC).</p>
 <p>Confusion matrix looks at the performance of the classifier at a single threshold, while ROC curve looks at the performance of the classifier at all thresholds (i.e., from 0 to 1).</p>
 <p>At the origin (0, 0), the threshold is 1, so the classifier predicts all samples as negative, making the false positive rate <span class="math inline">\(\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}} = 0\)</span> and the true positive rate <span class="math inline">\(\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}} = 0\)</span>, i.e.&nbsp;the origin. At the point (1, 1), the threshold is 0, so the classifier predicts all samples as positive, making the false positive rate 1 and the true positive rate 1, i.e.&nbsp;the point (1, 1).</p>
@@ -787,8 +1110,8 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="feature-importance" class="level3" data-number="19.2.5">
-<h3 data-number="19.2.5" class="anchored" data-anchor-id="feature-importance"><span class="header-section-number">19.2.5</span> Feature Importance</h3>
+<section id="feature-importance" class="level3" data-number="19.2.6">
+<h3 data-number="19.2.6" class="anchored" data-anchor-id="feature-importance"><span class="header-section-number">19.2.6</span> Feature Importance</h3>
 <p><code>Random Forest</code> and <code>Gradient Boosting</code> classifiers provide feature importance scores.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
