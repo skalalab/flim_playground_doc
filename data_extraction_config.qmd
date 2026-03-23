@@ -119,6 +119,10 @@ Each channel can be assigned its own set of feature extractors. For example, if 
 
 If users select the `Lifetime fit` under this channel, they can specify the number of components to fit. 
 
+### Fixed Lifetimes
+
+Users can optionally assign a fixed value (in ns) for specific lifetime components (when $n>1$, e.g., $t_1$, $t_2$). If a value is provided, it serves as the default fixed lifetime during the [interactive fitting phase](numerical_feature_extraction.qmd#fixed-lifetimes). If left blank (or set to 0), the lifetime acts as a free parameter to be optimized. This is particularly useful when analyzing fluorophores with prior knowledge of their lifetimes.
+
 ### File Suffix
 
 The [FOV Metadata Organization](#sec-fov-metadata) step looks for associated input files for all channels of a given FOV using file suffixes. Based on the [decay type](#decay-types), [calibration method](#calibration-method), and the selected [feature extractors](#feature-extractor), the system automatically generates the file suffixes for required input files. 

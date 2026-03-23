@@ -84,6 +84,9 @@ $$
 \hat{y}(t) = [I(t) \otimes \text{IRF}(t)] + Z
 $$
 
+##### Fixed Lifetimes
+
+While finding the optimal amplitudes $A_i$ and lifetimes $\tau_i$ (when [number of components](#number-of-components) is greater than 1), users can optionally assign fixed values to specific $\tau_i$ components during the interactive fitting phase. These explicit constraints remain constant (are not treated as free parameters) while minimizing the cost metric, making the optimization more robust when the true lifetime state is known. The default fixed lifetime values can be initialized in the [Data Extraction Configuration](data_extraction_config.qmd#fixed-lifetimes).
 
 ##### Time Gates
 Due to the dead time of the system certain time bins from the head and/or tail of the decay curve are not reliable. The T1 (head) and T2 (tail) gates are used to select the time range of the decay curve to be fitted. Users can inspect the decay curve by clicking the full-screen mode button of the plot on the right of the [shift result](#irf-shift). Hover-based interaction is implemented so users can see the time bin numbers to have a better sense of the time range. 
