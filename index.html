@@ -560,7 +560,7 @@ div.csl-indent {
 </figure>
 </div>
 <p style="text-align: center; font-size: 0.85em; color: #666; margin-top: -10px;">
-<em>Logo courtesy to Matt Stefely. The <span style="color: #D3AE4A;">yellow</span> dot is a photon sliding down a lifetime decay curve 🛝.</em>
+<em>Logo courtesy of Matt Stefely. The <span style="color: #D3AE4A;">yellow</span> dot is a photon sliding down a lifetime decay curve 🛝.</em>
 </p>
 <section id="quick-start" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Quick Start</h1>
@@ -581,7 +581,7 @@ div.csl-indent {
 <p>FLIM Playground is built entirely in Python and is open-source.</p>
 <section id="download" class="level3" data-number="1.1.1">
 <h3 data-number="1.1.1" class="anchored" data-anchor-id="download"><span class="header-section-number">1.1.1</span> Download</h3>
-<p>Download the desktop app from <a href="https://github.com/skalalab/flim_playground">GitHub</a> and double-click it to run. Releases are currently available for Windows 11 and Mac OS 26. If your operating system is not either of these, you can build it yourself by following the instructions below.</p>
+<p>Download the desktop app from <a href="https://github.com/skalalab/flim_playground">GitHub</a> and double-click it to run. Releases are currently available for Windows 11, Mac OS 26, and Ubuntu 24.04. If your operating system is not either of these, you can build it yourself by following the instructions below.</p>
 </section>
 <section id="build-it-yourself" class="level3" data-number="1.1.2">
 <h3 data-number="1.1.2" class="anchored" data-anchor-id="build-it-yourself"><span class="header-section-number">1.1.2</span> Build it yourself</h3>
@@ -644,7 +644,7 @@ div.csl-indent {
 </ul></li>
 <li><span style="color: #d62728;"><strong>Field of View (FOV)</strong></span>
 <ul>
-<li>Input decay types (e.g., <a href="./data_extraction_config.html#two-d-decay">2D</a>, <a href="./data_extraction_config.html#three-d4d-decay">3/4D</a>, <a href="./data_extraction_config.html#three-d4d-pixel-prefitted">pixel-level lifetime features already fitted</a>)</li>
+<li>Input decay types (e.g., <a href="./data_extraction_config.html#two-d-decay">2D</a>, <a href="./data_extraction_config.html#three-d4d-decay">3/4D</a>, <a href="./data_extraction_config.html#three-d4d-pixel-pre-fit">pixel-level pre-fit lifetime features</a>)</li>
 </ul></li>
 <li><span style="color: #9467bd;"><strong>Experiment</strong></span>
 <ul>
@@ -685,7 +685,7 @@ div.csl-indent {
 </div>
 <section id="data-extraction" class="level4">
 <h4 class="anchored" data-anchor-id="data-extraction">Data Extraction</h4>
-<p><a href="data_extraction.html">Data Extraction</a> extracts single-cell features from the raw data. It adopts a <a href="./data_extraction_config.html#channel-centric-framework">framework</a> that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for users. Following the above <a href="#feature-classes">categorization</a>, it is divided into the following steps:</p>
+<p><a href="data_extraction.html">Data Extraction</a> extracts single-cell features from the raw data. It adopts a <a href="./data_extraction_config.html#sec-data-extraction-config">framework</a> that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for users. Following the above <a href="#feature-classes">categorization</a>, it is divided into the following steps:</p>
 <ul>
 <li><a href="data_extraction_config.html">Data Extraction Configuration (A)</a>: allows users to choose among alternative input types and extraction methods (extractors).</li>
 <li><a href="fov_metadata.html">Metadata organization (B)</a>: extracts the field of view <span style="color: #C94146;">identifiers</span> and their configurations</li>
@@ -740,7 +740,7 @@ div.csl-indent {
 </section>
 <section id="citation" class="level3" data-number="1.4.4">
 <h3 data-number="1.4.4" class="anchored" data-anchor-id="citation"><span class="header-section-number">1.4.4</span> Citation</h3>
-<p>FLIM Playground is currently on <a href="https://www.biorxiv.org/content/10.1101/2025.09.30.679625">bioarchive</a>. If it contributed to your research—whether through Data Extraction for single-cell feature generation or through Data Analysis for data exploration, visualization, selection of analysis methods, or hyperparameter tuning (UMAP, clustering, classification, etc.)—please cite this work in your publication. Your citation directly supports us in maintaining and improving it ✨🎈🍾.</p>
+<p>FLIM Playground is currently on <a href="https://www.biorxiv.org/content/10.1101/2025.09.30.679625">bioRxiv</a>. If it contributed to your research—whether through Data Extraction for single-cell feature generation or through Data Analysis for data exploration, visualization, selection of analysis methods, or hyperparameter tuning (UMAP, clustering, classification, etc.)—please cite this work in your publication. Your citation directly supports us in maintaining and improving it ✨🎈🍾.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">

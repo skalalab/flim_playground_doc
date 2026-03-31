@@ -591,7 +591,7 @@ Note
 </section>
 <section id="decay-types" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="decay-types"><span class="header-section-number">3.1.2</span> Decay Types</h3>
-<p>FLIM Playground supports different decay types, including 2D decay, 3D/4D decay, and 3D/4D pixel-prefitted decay, through user specification.</p>
+<p>FLIM Playground supports different decay types, including 2D decay, 3D/4D decay, and 3D/4D pixel pre-fit decay, through user specification.</p>
 <section id="two-d-decay" class="level4">
 <h4 class="anchored" data-anchor-id="two-d-decay">2D Decay</h4>
 <p>In the system developed by Samimi et al.<span class="citation" data-cites="Samimi2024"><sup><a href="#ref-Samimi2024" role="doc-biblioref">1</a></sup></span>, single cells flow through and a decay curve is acquired for each cell by aggregating all the photon arrival time delays deemed to be from the same cell. In exchange for spatial distribution, the acquisition speed is increased enormously. The output of the system is a tabular data sheet with each row representing a cell and each column representing a time bin. <strong>FLIM Playground currently supports 2D decay in the CSV format.</strong></p>
@@ -600,9 +600,9 @@ Note
 <h4 class="anchored" data-anchor-id="three-d4d-decay">3D/4D Decay</h4>
 <p>In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g.&nbsp;<code>.sdt</code>, <code>.ptu</code>). In addition to the spatial dimensions and the time dimension (<code>XYT</code>), the channel dimension may also be present, making it 4-dimensional (<code>CXYT</code>). <strong>FLIM Playground currently supports both <code>.sdt</code> and <code>.ptu</code> files up to those 4 dimensions.</strong> It reads the <code>duration</code> and the number of <code>time bins</code> from the decay file metadata. Some systems can also record a time stack, which is not supported yet.</p>
 </section>
-<section id="three-d4d-pixel-prefitted" class="level4">
-<h4 class="anchored" data-anchor-id="three-d4d-pixel-prefitted">3D/4D pixel-prefitted</h4>
-<p>Since FLIM Playground currently does <strong>not</strong> support pixel-fitting, users have the option to provide pixel-prefitted outputs from <a href="https://www.becker-hickl.com/products/spcimage/">SPCImage</a> in the format of <code>.asc</code>. See <a href="./lifetime_fit.html#pixel-prefitted">here</a> for how FLIM Playground processes SPCImage outputs to obtain cell-level lifetime fitting features.</p>
+<section id="three-d4d-pixel-pre-fit" class="level4">
+<h4 class="anchored" data-anchor-id="three-d4d-pixel-pre-fit">3D/4D pixel pre-fit</h4>
+<p>Since FLIM Playground currently does <strong>not</strong> support pixel-fitting, users have the option to provide pixel pre-fit outputs from <a href="https://www.becker-hickl.com/products/spcimage/">SPCImage</a> in the format of <code>.asc</code>. See <a href="./lifetime_fit.html#pixel-pre-fit">here</a> for how FLIM Playground processes SPCImage outputs to obtain cell-level lifetime fitting features.</p>
 </section>
 </section>
 <section id="identifiers" class="level3" data-number="3.1.3">

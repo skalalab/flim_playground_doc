@@ -594,10 +594,10 @@ div.csl-indent {
 </section>
 <section id="spcimage-t1" class="level3" data-number="2.2.4">
 <h3 data-number="2.2.4" class="anchored" data-anchor-id="spcimage-t1"><span class="header-section-number">2.2.4</span> SPCImage t1</h3>
-<p>If the decay type is <a href="./data_extraction_config.html#three-d4d-pixel-prefitted">3D/4D pixel-prefitted</a>, users can provide pixel-prefitted lifetime feature files.</p>
+<p>If the decay type is <a href="./data_extraction_config.html#three-d4d-pixel-pre-fit">3D/4D pixel pre-fit</a>, users can provide pixel pre-fit lifetime feature files.</p>
 <ul>
 <li><code>.asc</code>: a 2D array in spatial dimensions outputted by <a href="https://www.becker-hickl.com/products/spcimage/">SPCImage</a>, with each (row, column) containing the value of the lifetime feature (e.g.&nbsp;<code>t1</code>: the first component’s lifetime) of that pixel.</li>
-<li>Depending on the chosen number of lifetime components, the other pixel-prefitted feature files are included and their names are inferred from the <code>t1</code> file, by replacing <code>t1</code> in the file name with <code>t2</code>, <code>t3</code>, <code>a1[%]</code>, etc.</li>
+<li>Depending on the chosen number of lifetime components, the other pixel pre-fit feature files are included and their names are inferred from the <code>t1</code> file, by replacing <code>t1</code> in the file name with <code>t2</code>, <code>t3</code>, <code>a1[%]</code>, etc.</li>
 </ul>
 </section>
 <section id="fluorescence-lifetime-standard" class="level3" data-number="2.2.5">
@@ -618,7 +618,7 @@ div.csl-indent {
 <section id="limitations" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="limitations"><span class="header-section-number">2.3</span> Limitations</h2>
 <ul>
-<li>To simplify the workflow and due to the framework chosen, FLIM Playground does not support pixel-level fitting and fit-free analysis, and there are many other open-source tools that can do so (for a comprehensive list, see <a href="https://www.phasorpy.org/docs/stable/phasor_approach/#software">here</a>). Instead, it does cell-level fitting and fit-free (phasor) feature extraction by summing up all the decays belonging to the same cell ROI to get one cell-level decay as a preprocessing step<span class="citation" data-cites="Samimi2025"><sup><a href="#ref-Samimi2025" role="doc-biblioref">1</a></sup></span>. It also accepts prefitted pixel-level lifetime features from <a href="https://www.becker-hickl.com/products/spcimage/">SPCImage</a> and <a href="./lifetime_fit.html#pixel-prefitted">aggregates pixel-level lifetime features to cell-level lifetime features</a>.</li>
+<li>To simplify the workflow and due to the framework chosen, FLIM Playground does not support pixel-level fitting and fit-free analysis, and there are many other open-source tools that can do so (for a comprehensive list, see <a href="https://www.phasorpy.org/docs/stable/phasor_approach/#software">here</a>). Instead, it does cell-level fitting and fit-free (phasor) feature extraction by summing up all the decays belonging to the same cell ROI to get one cell-level decay as a preprocessing step<span class="citation" data-cites="Samimi2025"><sup><a href="#ref-Samimi2025" role="doc-biblioref">1</a></sup></span>. It also accepts pre-fit pixel-level lifetime features from <a href="https://www.becker-hickl.com/products/spcimage/">SPCImage</a> and <a href="./lifetime_fit.html#pixel-pre-fit">aggregates pixel-level lifetime features to cell-level lifetime features</a>.</li>
 </ul>
 
 

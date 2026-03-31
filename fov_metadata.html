@@ -577,7 +577,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="fluorescence-lifetime-standard" class="level3" data-number="4.1.6">
 <h3 data-number="4.1.6" class="anchored" data-anchor-id="fluorescence-lifetime-standard"><span class="header-section-number">4.1.6</span> Fluorescence Lifetime Standard</h3>
-<p>If the selected fit free calibration method is <a href="./data_extraction_config.html#fluorescence-lifetime-standard">fluorescence lifetime standard</a>, users are asked to specify the fluorescence lifetime standard file path for each channel and the fluorescence lifetime standard’s lifetime, which are copied from the data extraction configuration.</p>
+<p>If the selected fit free calibration method is <a href="./data_extraction_config.html#calibration-method">fluorescence lifetime standard</a>, users are asked to specify the fluorescence lifetime standard file path for each channel and the fluorescence lifetime standard’s lifetime, which are copied from the data extraction configuration.</p>
 </section>
 <section id="folder-path" class="level3" data-number="4.1.7">
 <h3 data-number="4.1.7" class="anchored" data-anchor-id="folder-path"><span class="header-section-number">4.1.7</span> Folder Path</h3>
@@ -642,14 +642,14 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If the issue persists after renaming the files to match the required prefix, force-quit and relaunch FLIM Playground to clear its internal cache.</p>
+<p>If the issue persists after renaming the files to match the required prefix, hit the <code>Rescan Folder</code> button to force a re-scan of the folder. <img src="extraction_ui_shots/fov_rescan.png" class="img-fluid quarto-figure quarto-figure-center" style="width:20.0%"></p>
 </div>
 </div>
 </section>
 </section>
 <section id="decay-info-1" class="level3" data-number="4.2.2">
 <h3 data-number="4.2.2" class="anchored" data-anchor-id="decay-info-1"><span class="header-section-number">4.2.2</span> Decay Info</h3>
-<p>If the decay type is <a href="./data_extraction.html#three-d4d-decay">3D/4D decay</a>, FLIM Playground will try to infer the <code>duration</code> and the number of <code>time bins</code> per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files.</p>
+<p>If the decay type is <a href="./data_extraction_config.html#three-d4d-decay">3D/4D decay</a>, FLIM Playground will try to infer the <code>duration</code> and the number of <code>time bins</code> per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files.</p>
 <section id="channel-assignment" class="level4">
 <h4 class="anchored" data-anchor-id="channel-assignment">Channel Assignment</h4>
 <p>If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channels to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there are any.</p>
