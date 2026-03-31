@@ -58,6 +58,8 @@ Fitting is essentially an optimization problem: it minimizes the difference betw
 
 Implementation-wise, FLIM Playground uses the `lmfit` package that takes generic objectives to perform the optimization process that is flexible enough to handle the reconvolution fitting.
 
+Each decay curve is fitted independently. **Fit calibration** (one optimization per high-SNR curve in the IRF shift step) and **Lifetime fit** ROI-level extraction (one optimization per ROI per channel) both schedule those independent fits **in parallel across CPU cores**, so on a multi-core machine many fits run at once.
+
 If at least one channel has `Lifetime fit` feature extractor selected, the fitting options panel is displayed. 
 
 ![](extraction_ui_shots/fitting_option.png){width=50% fig-align=center #fitting-options}
@@ -115,11 +117,10 @@ Least Squares (`LS`) estimates the parameters by minimizing the sum of the squar
 
 ![](extraction_ui_shots/fitting_mode.png){width=20% fig-align=center}
 
-After constructing the objective metric, the fitting mode is used to determine the optimization algorithm. It is a trade-off between the speed and the effort to avoid local minima. 
+**Fit calibration** (IRF shift) always runs **Hybrid** optimization to ensure accuracy. For **Lifetime fit** cell-level extraction after calibration, the fitting mode selects the optimization strategy. It is a trade-off between speed and the effort to avoid local minima.
 
-- `Global`: It uses the `differential evolution` algorithm, a derivative-free, population-based but slow global optimizer. 
 - `Local`: It uses the `leastsq` (least squares with Levenberg-Marquardt) algorithm if the chosen metric is `LS`, otherwise it uses the `nelder` (Nelder-Mead) algorithm.  
-- `Hybrid`: The most time-consuming option but combines the best of both worlds. It uses the `differential evolution` to find a good initial guess to all the parameters, and then uses the `Local` to drill in. 
+- `Hybrid`: The slower  but more accurate option that combines the `differential evolution` algorithm to obtain a good initial guess for all parameters, followed by the `Local` optimizer to refine the solution. 
 
 ### Fit Free Calibration
 
