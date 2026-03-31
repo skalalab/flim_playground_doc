@@ -10,7 +10,7 @@
 ::: {.content-visible when-format="html"}
 ![](logo.gif){width=300px fig-align="center"}
 
-<p style="text-align: center; font-size: 0.85em; color: #666; margin-top: -10px;">*Logo courtesy to Matt Stefely. The <span style="color: #D3AE4A;">yellow</span> dot is a photon sliding down a lifetime decay curve 🛝.*</p>
+<p style="text-align: center; font-size: 0.85em; color: #666; margin-top: -10px;">*Logo courtesy of Matt Stefely. The <span style="color: #D3AE4A;">yellow</span> dot is a photon sliding down a lifetime decay curve 🛝.*</p>
 :::
 
 ::: {.content-visible when-format="pdf"}
@@ -55,7 +55,7 @@ The latest version of this FLIM Playground manual is available [online](https://
 FLIM Playground is built entirely in Python and is open-source. 
 
 ### Download
-Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground) and double-click it to run. Releases are currently available for Windows 11 and Mac OS 26. If your operating system is not either of these, you can build it yourself by following the instructions below. 
+Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground) and double-click it to run. Releases are currently available for Windows 11, Mac OS 26, and Ubuntu 24.04. If your operating system is not either of these, you can build it yourself by following the instructions below. 
 
 ### Build it yourself
 1. Clone the repo and navigate into the repository once cloned.
@@ -96,7 +96,7 @@ However, while some tools offer code-free interfaces, users still need to write 
   - Masks focusing on different parts of the cell (e.g., whole cell, cytoplasm, nucleus, stain, etc.)
   - Different feature extraction methods (fitting, phasor, morphology, texture)
 - <span style="color: #d62728;">**Field of View (FOV)**</span>
-  - Input decay types (e.g., [2D](data_extraction_config.qmd#two-d-decay), [3/4D](data_extraction_config.qmd#three-d4d-decay), [pixel-level lifetime features already fitted](data_extraction_config.qmd#three-d4d-pixel-prefitted))
+  - Input decay types (e.g., [2D](data_extraction_config.qmd#two-d-decay), [3/4D](data_extraction_config.qmd#three-d4d-decay), [pixel-level pre-fit lifetime features](data_extraction_config.qmd#three-d4d-pixel-pre-fit))
 - <span style="color: #9467bd;">**Experiment**</span>
   - Different treatments, time points, cell lines, etc., and combinations thereof
 :::
@@ -112,7 +112,7 @@ However, while some tools offer code-free interfaces, users still need to write 
   - Masks focusing on different parts of the cell (e.g., whole cell, cytoplasm, nucleus, stain, etc.)
   - Different feature extraction methods (fitting, phasor, morphology, texture)
 - \textcolor[HTML]{d62728}{\textbf{Field of View (FOV)}}
-  - Input decay types (e.g., [2D](data_extraction_config.qmd#two-d-decay), [3/4D](data_extraction_config.qmd#three-d4d-decay), [pixel-level lifetime features already fitted](data_extraction_config.qmd#three-d4d-pixel-prefitted))
+  - Input decay types (e.g., [2D](data_extraction_config.qmd#two-d-decay), [3/4D](data_extraction_config.qmd#three-d4d-decay), [pixel-level pre-fit lifetime features](data_extraction_config.qmd#three-d4d-pixel-pre-fit))
 - \textcolor[HTML]{9467bd}{\textbf{Experiment}}
   - Different treatments, time points, cell lines, etc., and combinations thereof
 :::
@@ -162,7 +162,7 @@ FLIM Playground has two independent sections:
 
 #### Data Extraction
 
-[Data Extraction](#sec-data-extraction) extracts single-cell features from the raw data. It adopts a [framework](data_extraction_config.qmd#channel-centric-framework) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for users. Following the above [categorization](#feature-classes), it is divided into the following steps:
+[Data Extraction](#sec-data-extraction) extracts single-cell features from the raw data. It adopts a [framework](data_extraction_config.qmd#sec-data-extraction-config) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for users. Following the above [categorization](#feature-classes), it is divided into the following steps:
 
 ::: {.content-visible when-format="html"}
 - [Data Extraction Configuration (A)](#sec-data-extraction-config): allows users to choose among alternative input types and extraction methods (extractors).
@@ -182,7 +182,7 @@ FLIM Playground has two independent sections:
 - [Data Extraction Configuration (A)](#sec-data-extraction-config): allows users to choose among alternative input types and extraction methods (extractors).
 - [Metadata organization (B)](#sec-fov-metadata): extracts the field of view \textcolor[HTML]{C94146}{identifiers} and their configurations
 - [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell \textcolor[HTML]{D3AE4A}{numerical features} based on user-selected extractors. More extractors can be integrated in the future.
-  - [Calibration (C)](#sec-calibration): calibrate for IRF shift or use fluorescence lifetime standard
+  - [Calibration (C)](numerical_feature_extraction.qmd#calibration): calibrate for IRF shift or use fluorescence lifetime standard
   - Alternative lifetime extractors (D): 
     - [Fitting](#sec-lifetime-fit)
     - [Phasor](#sec-lifetime-fit-free)
@@ -219,4 +219,4 @@ Both sections are built in Python and as self-contained executables ready to run
 
 ### Citation
 
-FLIM Playground is currently on [bioarchive](https://www.biorxiv.org/content/10.1101/2025.09.30.679625). If it contributed to your research—whether through Data Extraction for single-cell feature generation or through Data Analysis for data exploration, visualization, selection of analysis methods, or hyperparameter tuning (UMAP, clustering, classification, etc.)—please cite this work in your publication. Your citation directly supports us in maintaining and improving it ✨🎈🍾. 
+FLIM Playground is currently on [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.09.30.679625). If it contributed to your research—whether through Data Extraction for single-cell feature generation or through Data Analysis for data exploration, visualization, selection of analysis methods, or hyperparameter tuning (UMAP, clustering, classification, etc.)—please cite this work in your publication. Your citation directly supports us in maintaining and improving it ✨🎈🍾. 

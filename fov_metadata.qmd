@@ -50,7 +50,7 @@ Users can edit the file suffixes here.
 
 ### Fluorescence Lifetime Standard
 
-If the selected fit free calibration method is [fluorescence lifetime standard](data_extraction_config.qmd#fluorescence-lifetime-standard), users are asked to specify the fluorescence lifetime standard file path for each channel and the fluorescence lifetime standard's lifetime, which are copied from the data extraction configuration. 
+If the selected fit free calibration method is [fluorescence lifetime standard](data_extraction_config.qmd#calibration-method), users are asked to specify the fluorescence lifetime standard file path for each channel and the fluorescence lifetime standard's lifetime, which are copied from the data extraction configuration. 
 
 ### Folder Path
 Finally, users can specify the folder path that contains all the required input files. 
@@ -91,12 +91,13 @@ Because the calibration file is not FOV-specific, it will be searched based on t
 Fields of view with ✅ are loaded successfully 🎆. FOVs with ❌ (if any) will not be recorded.
 
 ::: {.callout-tip}
-If the issue persists after renaming the files to match the required prefix, force-quit and relaunch FLIM Playground to clear its internal cache.
+If the issue persists after renaming the files to match the required prefix, hit the `Rescan Folder` button to force a re-scan of the folder.
+![](extraction_ui_shots/fov_rescan.png){width=20% fig-align=center}
 :::
 
 ### Decay Info
 
-If the decay type is [3D/4D decay](data_extraction.qmd#three-d4d-decay), FLIM Playground will try to infer the `duration` and the number of `time bins` per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files. 
+If the decay type is [3D/4D decay](data_extraction_config.qmd#three-d4d-decay), FLIM Playground will try to infer the `duration` and the number of `time bins` per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files. 
 
 #### Channel Assignment
 
