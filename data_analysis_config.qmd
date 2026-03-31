@@ -1,7 +1,7 @@
 # Configuration {#sec-data-analysis-config}
 FLIM Playground provides an interactive configuration workflow to help users prepare their datasets that are not extracted by [Data Extraction](#sec-data-extraction) so that they fulfill the [requirements](data_analysis.qmd#requirements). 
 
-The following sections use the [iris dataset](https://github.com/skalalab/flim_playground/blob/main/demo/iris.csv) as an example: the `flower_id` is added to uniquely identify each row (i.e. a single flower). The other columns are: a categorical feature `species`, and a set of numerical features `sepal_length`, `sepal_width`, `petal_length`, and `petal_width`.
+The following sections use the [iris dataset](https://github.com/skalalab/flim_playground/blob/main/example_data/Data_Analysis/iris.csv) as an example: the `flower_id` is added to uniquely identify each row (i.e. a single flower). The other columns are: a categorical feature `species`, and a set of numerical features `sepal_length`, `sepal_width`, `petal_length`, and `petal_width`.
 
 ::: {.content-visible when-format="html"}
 The configuration workflow in motion:
