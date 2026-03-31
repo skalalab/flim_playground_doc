@@ -604,6 +604,7 @@ window.Quarto = {
 <li>How to perform the optimization</li>
 </ol>
 <p>Implementation-wise, FLIM Playground uses the <code>lmfit</code> package that takes generic objectives to perform the optimization process that is flexible enough to handle the reconvolution fitting.</p>
+<p>Each decay curve is fitted independently. <strong>Fit calibration</strong> (one optimization per high-SNR curve in the IRF shift step) and <strong>Lifetime fit</strong> ROI-level extraction (one optimization per ROI per channel) both schedule those independent fits <strong>in parallel across CPU cores</strong>, so on a multi-core machine many fits run at once.</p>
 <p>If at least one channel has <code>Lifetime fit</code> feature extractor selected, the fitting options panel is displayed.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -666,12 +667,11 @@ I(\mathbf{t})=\sum_{i=1}^{n} A_i\, e^{-\mathbf{t}/\tau_i}, \qquad \tau_i&gt;0
 <p><img src="extraction_ui_shots/fitting_mode.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:20.0%"></p>
 </figure>
 </div>
-<p>After constructing the objective metric, the fitting mode is used to determine the optimization algorithm. It is a trade-off between the speed and the effort to avoid local minima.</p>
+<p><strong>Fit calibration</strong> (IRF shift) always runs <strong>Hybrid</strong> optimization to ensure accuracy. For <strong>Lifetime fit</strong> cell-level extraction after calibration, the fitting mode selects the optimization strategy. It is a trade-off between speed and the effort to avoid local minima.</p>
 <ul>
-<li><code>Global</code>: It uses the <code>differential evolution</code> algorithm, a derivative-free, population-based but slow global optimizer.</li>
 <li><code>Local</code>: It uses the <code>leastsq</code> (least squares with Levenberg-Marquardt) algorithm if the chosen metric is <code>LS</code>, otherwise it uses the <code>nelder</code> (Nelder-Mead) algorithm.<br>
 </li>
-<li><code>Hybrid</code>: The most time-consuming option but combines the best of both worlds. It uses the <code>differential evolution</code> to find a good initial guess to all the parameters, and then uses the <code>Local</code> to drill in.</li>
+<li><code>Hybrid</code>: The slower but more accurate option that combines the <code>differential evolution</code> algorithm to obtain a good initial guess for all parameters, followed by the <code>Local</code> optimizer to refine the solution.</li>
 </ul>
 </section>
 </section>
