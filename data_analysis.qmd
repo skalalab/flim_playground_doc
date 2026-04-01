@@ -9,6 +9,7 @@ We are not done yet 😱! FLIM Playground also provides a suite of methods to an
 - Change the plot [style](#plotting-configuration-widgets).
 - [Hover](#unique-id-hover) to find data points of interest.
 - Interact with method-specific widgets that typically are associated with a modeling method. 
+- Once users are satisfied with the analysis (visualizations and statistical modeling results), they can [export the entire analysis workflow as a self-contained Python script](#export-workflow-as-python-script)! 🎉
 
 The visualization and analysis results are updated in real time to reflect users' interactions with any of the above widgets. 
 
@@ -181,3 +182,8 @@ Users can interactively configure the following plot parameters:
 - legend size
 - the colormap used to color different groups
     - `colorblind`, `tab10`, `tab20`, `Set1`, `Set2`, `Set3`, `Pastel1`, `Pastel2`, `Accent`, `viridis`, `plasma`, `inferno`, `magma`, `cividis`
+
+### Export Workflow as Python Script
+
+At the bottom right of the interface, users can export the entire analysis workflow as a self-contained Python script. This is useful when users want to share their analysis with others, reproduce their analysis later, customize the analysis further, or integrate it into their own workflow.
+The script will include all the code and analysis configuration (filters, selected numerical features, visual channels, plotting style, module-specific configurations, etc.). After exporting, users need to put the dataset in the same directory as the script and run the script to reproduce the analysis, where the plots are rendered as matplotlib figures.
