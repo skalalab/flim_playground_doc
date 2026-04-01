@@ -500,6 +500,7 @@ div.csl-indent {
   <li><a href="#visual-channels-widgets" id="toc-visual-channels-widgets" class="nav-link" data-scroll-target="#visual-channels-widgets"><span class="header-section-number">11.4.3</span> Visual Channels Widgets</a></li>
   <li><a href="#unique-id-hover" id="toc-unique-id-hover" class="nav-link" data-scroll-target="#unique-id-hover"><span class="header-section-number">11.4.4</span> Unique ID Hover</a></li>
   <li><a href="#plotting-configuration-widgets" id="toc-plotting-configuration-widgets" class="nav-link" data-scroll-target="#plotting-configuration-widgets"><span class="header-section-number">11.4.5</span> Plotting Configuration Widgets</a></li>
+  <li><a href="#export-workflow-as-python-script" id="toc-export-workflow-as-python-script" class="nav-link" data-scroll-target="#export-workflow-as-python-script"><span class="header-section-number">11.4.6</span> Export Workflow as Python Script</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/data_analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -537,6 +538,7 @@ div.csl-indent {
 <li>Change the plot <a href="#plotting-configuration-widgets">style</a>.</li>
 <li><a href="#unique-id-hover">Hover</a> to find data points of interest.</li>
 <li>Interact with method-specific widgets that typically are associated with a modeling method.</li>
+<li>Once users are satisfied with the analysis (visualizations and statistical modeling results), they can <a href="#export-workflow-as-python-script">export the entire analysis workflow as a self-contained Python script</a>! 🎉</li>
 </ul>
 <p>The visualization and analysis results are updated in real time to reflect users’ interactions with any of the above widgets.</p>
 </section>
@@ -793,6 +795,10 @@ Note&nbsp;11.1: How to order the groups
 <li><code>colorblind</code>, <code>tab10</code>, <code>tab20</code>, <code>Set1</code>, <code>Set2</code>, <code>Set3</code>, <code>Pastel1</code>, <code>Pastel2</code>, <code>Accent</code>, <code>viridis</code>, <code>plasma</code>, <code>inferno</code>, <code>magma</code>, <code>cividis</code></li>
 </ul></li>
 </ul>
+</section>
+<section id="export-workflow-as-python-script" class="level3" data-number="11.4.6">
+<h3 data-number="11.4.6" class="anchored" data-anchor-id="export-workflow-as-python-script"><span class="header-section-number">11.4.6</span> Export Workflow as Python Script</h3>
+<p>At the bottom right of the interface, users can export the entire analysis workflow as a self-contained Python script. This is useful when users want to share their analysis with others, reproduce their analysis later, customize the analysis further, or integrate it into their own workflow. The script will include all the code and analysis configuration (filters, selected numerical features, visual channels, plotting style, module-specific configurations, etc.). After exporting, users need to put the dataset in the same directory as the script and run the script to reproduce the analysis, where the plots are rendered as matplotlib figures.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
