@@ -500,7 +500,7 @@ window.Quarto = {
   <li><a href="#effect-size" id="toc-effect-size" class="nav-link" data-scroll-target="#effect-size"><span class="header-section-number">13.4</span> Effect Size</a>
   <ul class="collapse">
   <li><a href="#glasss-delta" id="toc-glasss-delta" class="nav-link" data-scroll-target="#glasss-delta"><span class="header-section-number">13.4.1</span> Glass’s Delta</a></li>
-  <li><a href="#cohens-d" id="toc-cohens-d" class="nav-link" data-scroll-target="#cohens-d"><span class="header-section-number">13.4.2</span> Cohen’s d</a></li>
+  <li><a href="#absolute-cohens-d" id="toc-absolute-cohens-d" class="nav-link" data-scroll-target="#absolute-cohens-d"><span class="header-section-number">13.4.2</span> Absolute Cohen’s d</a></li>
   </ul></li>
   <li><a href="#statistical-test" id="toc-statistical-test" class="nav-link" data-scroll-target="#statistical-test"><span class="header-section-number">13.5</span> Statistical Test</a></li>
   <li><a href="#comparison-annotation" id="toc-comparison-annotation" class="nav-link" data-scroll-target="#comparison-annotation"><span class="header-section-number">13.6</span> Comparison Annotation</a></li>
@@ -572,7 +572,7 @@ window.Quarto = {
 </section>
 <section id="effect-size" class="level2" data-number="13.4">
 <h2 data-number="13.4" class="anchored" data-anchor-id="effect-size"><span class="header-section-number">13.4</span> Effect Size</h2>
-<p>Complementary to statistical tests, which address “is there a difference?”, effect size metrics answer “how large is the difference?”, enabling cross-study comparison. FLIM Playground offers two effect size calculation methods, Glass’s Delta and Cohen’s d, each can be in mean or median form.</p>
+<p>Complementary to statistical tests, which address “is there a difference?”, effect size metrics answer “how large is the difference?”, enabling cross-study comparison. FLIM Playground offers two effect size calculation methods, Glass’s Delta and Absolute Cohen’s d, each can be in mean or median form.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/effect_size.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
@@ -608,7 +608,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><span class="math inline">\(\operatorname{MAD}\)</span> stands for <a href="https://en.wikipedia.org/wiki/Median_absolute_deviation">median absolute deviation</a>. In order to make <span class="math inline">\(\operatorname{MAD}\)</span> asymptotically consistent with the standard deviation under normality, it is scaled by <span class="math inline">\(C = 1 / \Phi^{-1}(0.75) \approx 1.4826\)</span>. Implementation-wise, it uses <code>median_abs_deviation</code> from <code>scipy.stats</code>, and <code>scale</code> option is set to <code>"normal"</code> to account for the constant multiplier <span class="math inline">\(C\)</span>. THE MEDIAN FORM of both Glass’s Delta and Cohen’s d IS NOT REPORTED IN THE LITERATURE.</p>
+<p><span class="math inline">\(\operatorname{MAD}\)</span> stands for <a href="https://en.wikipedia.org/wiki/Median_absolute_deviation">median absolute deviation</a>. In order to make <span class="math inline">\(\operatorname{MAD}\)</span> asymptotically consistent with the standard deviation under normality, it is scaled by <span class="math inline">\(C = 1 / \Phi^{-1}(0.75) \approx 1.4826\)</span>. Implementation-wise, it uses <code>median_abs_deviation</code> from <code>scipy.stats</code>, and <code>scale</code> option is set to <code>"normal"</code> to account for the constant multiplier <span class="math inline">\(C\)</span>. THE MEDIAN FORM of both Glass’s Delta and Absolute Cohen’s d IS NOT REPORTED IN THE LITERATURE.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -621,7 +621,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Which group is treatment and which is control matters! From the formula of <span class="math inline">\(\Delta_G\)</span>, switching the order not only flips the sign of the result, but also changes the denominator, which is <span class="math inline">\({s_{\text{control}}}\)</span>, the standard deviation of the <em>control</em>. Currently, FLIM Playground treats the group on the left as control and the group on the right as treatment (the negative <span class="math inline">\(\Delta_G\)</span> below implies this). FLIM Playground now supports user-customizable x-axis order so that users can arrange the groups to make sure the control group is on the left. Or users can use <a href="#cohens-d">Cohen’s d</a> that does not assume the treatment-control structure.</p>
+<p>Which group is treatment and which is control matters! From the formula of <span class="math inline">\(\Delta_G\)</span>, switching the order not only flips the sign of the result, but also changes the denominator, which is <span class="math inline">\({s_{\text{control}}}\)</span>, the standard deviation of the <em>control</em>. Currently, FLIM Playground treats the group on the left as control and the group on the right as treatment (the negative <span class="math inline">\(\Delta_G\)</span> below implies this). FLIM Playground now supports user-customizable x-axis order so that users can arrange the groups to make sure the control group is on the left. Or users can use <a href="#absolute-cohens-d">Absolute Cohen’s d</a> that does not assume the treatment-control structure.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/glass_d.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
@@ -643,22 +643,22 @@ Note
 </div>
 </div>
 </section>
-<section id="cohens-d" class="level3" data-number="13.4.2">
-<h3 data-number="13.4.2" class="anchored" data-anchor-id="cohens-d"><span class="header-section-number">13.4.2</span> Cohen’s d</h3>
+<section id="absolute-cohens-d" class="level3" data-number="13.4.2">
+<h3 data-number="13.4.2" class="anchored" data-anchor-id="absolute-cohens-d"><span class="header-section-number">13.4.2</span> Absolute Cohen’s d</h3>
 <p>Mean (<span class="math inline">\(\bar{X}\)</span>) form:</p>
 <p><span class="math display">\[
-d
-  = \frac{\bar{X}_{1}-\bar{X}_{2}}
-         {s_p},\qquad
+|d|
+  = \left\lvert\frac{\bar{X}_{1}-\bar{X}_{2}}
+         {s_p}\right\rvert,\qquad
 s_p
   = \sqrt{\frac{(n_1-1)s_1^{2} + (n_2-1)s_2^{2}}
                  {n_1 + n_2 - 2}}
 \]</span></p>
 <p>Median (<span class="math inline">\(\tilde{X}\)</span>) form:</p>
 <p><span class="math display">\[
-\tilde{d}
-  = \frac{\tilde{X}_{1}-\tilde{X}_{2}}
-         {s_{\tilde{p}}},\qquad
+|\tilde{d}|
+  = \left\lvert\frac{\tilde{X}_{1}-\tilde{X}_{2}}
+         {s_{\tilde{p}}}\right\rvert,\qquad
 s_{\tilde{p}}
   = \sqrt{\frac{(n_1-1)\operatorname{MAD}_{1}^{2}
              + (n_2-1)\operatorname{MAD}_{2}^{2}}
@@ -684,7 +684,7 @@ s_{\tilde{p}}
 <section id="comparison-annotation" class="level2" data-number="13.6">
 <h2 data-number="13.6" class="anchored" data-anchor-id="comparison-annotation"><span class="header-section-number">13.6</span> Comparison Annotation</h2>
 <p>For each selected comparison pair that exceeds the effect size threshold (if any), the statistical significance, effect size, or both are annotated on the plot. It selects the lowest eligible position (over all points in both groups and over existing annotations) to annotate. If both statistical significance and effect size calculation are performed, the annotation is shown in the format of effect size followed by p-value. If only one is performed, then only the performed method’s result is shown.</p>
-<div class="quarto-layout-panel" data-layout-ncol="3" data-layout-align="center">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <p><img src="analysis_ui_shots/both_annot.png" class="img-fluid"></p>
