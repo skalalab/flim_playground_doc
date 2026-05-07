@@ -15,6 +15,7 @@ The visualization and analysis results are updated in real time to reflect users
 
 
 ## Methods
+::: {.content-visible when-format="html"}
 - Depending on the number of numerical features in the analysis, the methods are categorized into 3 groups: 
     - Univariate Analysis
         - [Feature Comparison](#sec-feature-comparison)
@@ -26,6 +27,20 @@ The visualization and analysis results are updated in real time to reflect users
     - Multivariate Analysis
         - [Dimension Reduction](#sec-dimension-reduction)
         - [Classification](#sec-classification)
+::::
+
+::: {.content-visible when-format="pdf"}
+- Depending on the number of numerical features in the analysis, the methods are categorized into 3 groups: 
+    - Univariate Analysis
+        - [Feature Comparison](#sec-feature-comparison)
+        - [Feature Histogram](#sec-feature-histogram)
+    - Bivariate Analysis
+        - [2D Feature Distribution](#sec-feature-distribution)
+        - [Phasor Analysis](#sec-phasor-analysis)
+    - Multivariate Analysis
+        - [Dimension Reduction](#sec-dimension-reduction)
+        - [Classification](#sec-classification)
+::::
 
 All the methods [share a set of interactive widgets](#shared-interactive-widgets). They also have their own method-specific widgets, the descriptions of which are provided in the corresponding method pages. 
 
@@ -186,4 +201,4 @@ Users can interactively configure the following plot parameters:
 ### Export Workflow as Python Script
 
 At the bottom right of the interface, users can export the entire analysis workflow as a self-contained Python script. This is useful when users want to share their analysis with others, reproduce their analysis later, customize the analysis further, or integrate it into their own workflow.
-The script will include all the code and analysis configuration (filters, selected numerical features, visual channels, plotting style, module-specific configurations, etc.). After exporting, users need to put the dataset in the same directory as the script and run the script to reproduce the analysis, where the plots are rendered as matplotlib figures.
+The script will include all the code and analysis configuration (filters, selected numerical features, visual channels, plotting style, module-specific configurations, etc.). After exporting, users need to put the dataset in the same directory as the script and run the script to reproduce the analysis, where the plots are rendered as matplotlib figures and saved as **SVG** files for publication-ready quality.
