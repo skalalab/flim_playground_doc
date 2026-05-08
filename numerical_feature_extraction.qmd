@@ -88,6 +88,16 @@ $$
 
 where $\circledast$ denotes circular (periodic) convolution, implemented via FFT multiplication (`np.fft.ifft(np.fft.fft(decay) * np.fft.fft(irf))`). Circular convolution correctly accounts for the wrap-around effects inherent in periodic TCSPC decays, where photons arriving after the end of the measurement window appear at the beginning of the next period.
 
+::: {.callout-note title="Previous Versions (< 1.8.0)"}
+In versions prior to 1.8.0, the fitting process utilized linear convolution with a cut off:
+
+$$
+\hat{y}(t) = \bigl( I(t) * \text{IRF}(t) \bigr)_{0:N} + Z
+$$
+
+where $*$ denotes linear convolution and the subscript $(0:N)$ denotes truncating the result to the length of the original decay curve, effectively ignoring the part of the convolution that extends beyond the measurement window. The difference between this approach and circular convolution is minimal for shorter lifetimes. However, the correct way to fit incomplete decays is formulated above using circular convolution, which is now the standard used in the latest version.
+:::
+
 ##### Fixed Lifetimes
 
 While finding the optimal amplitudes $A_i$ and lifetimes $\tau_i$ (when [number of components](#number-of-components) is greater than 1), users can optionally assign fixed values to specific $\tau_i$ components during the interactive fitting phase. These explicit constraints remain constant (are not treated as free parameters) while minimizing the cost metric, making the optimization more robust when the true lifetime state is known. The default fixed lifetime values can be initialized in the [Data Extraction Configuration](data_extraction_config.qmd#fixed-lifetimes).
