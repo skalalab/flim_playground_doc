@@ -626,6 +626,23 @@ I(\mathbf{t})=\sum_{i=1}^{n} A_i\, e^{-\mathbf{t}/\tau_i}, \qquad \tau_i&gt;0
 \hat{y}(t) = \bigl[I(t) + Z\bigr] \circledast \text{IRF}(t)
 \]</span></p>
 <p>where <span class="math inline">\(\circledast\)</span> denotes circular (periodic) convolution, implemented via FFT multiplication (<code>np.fft.ifft(np.fft.fft(decay) * np.fft.fft(irf))</code>). Circular convolution correctly accounts for the wrap-around effects inherent in periodic TCSPC decays, where photons arriving after the end of the measurement window appear at the beginning of the next period.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Previous Versions (< 1.8.0)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Previous Versions (&lt; 1.8.0)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In versions prior to 1.8.0, the fitting process utilized linear convolution with a cut off:</p>
+<p><span class="math display">\[
+\hat{y}(t) = \bigl( I(t) * \text{IRF}(t) \bigr)_{0:N} + Z
+\]</span></p>
+<p>where <span class="math inline">\(*\)</span> denotes linear convolution and the subscript <span class="math inline">\((0:N)\)</span> denotes truncating the result to the length of the original decay curve, effectively ignoring the part of the convolution that extends beyond the measurement window. The difference between this approach and circular convolution is minimal for shorter lifetimes. However, the correct way to fit incomplete decays is formulated above using circular convolution, which is now the standard used in the latest version.</p>
+</div>
+</div>
 </section>
 <section id="fixed-lifetimes" class="level5">
 <h5 class="anchored" data-anchor-id="fixed-lifetimes">Fixed Lifetimes</h5>
