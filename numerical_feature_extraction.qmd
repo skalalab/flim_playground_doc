@@ -132,7 +132,7 @@ Least Squares (`LS`) estimates the parameters by minimizing the sum of the squar
 **Fit calibration** (IRF shift) always runs **Hybrid** optimization to ensure accuracy. For **Lifetime fit** cell-level extraction after calibration, the fitting mode selects the optimization strategy. It is a trade-off between speed and the effort to avoid local minima.
 
 - `Local`: It uses the `leastsq` (least squares with Levenberg-Marquardt) algorithm if the chosen metric is `LS`, otherwise it uses the `nelder` (Nelder-Mead) algorithm.  
-- `Hybrid`: The slower  but more accurate option that combines the `differential evolution` algorithm to obtain a good initial guess for all parameters, followed by the `Local` optimizer to refine the solution. 
+- `Hybrid`: The slower but more accurate option that combines the `differential evolution` algorithm to obtain a good initial guess for all parameters, followed by the `Local` optimizer to refine the solution. 
 
 ### Fit Free Calibration
 

@@ -31,7 +31,7 @@ Then the configuration interface will be displayed.
 - In the middle you can create a new profile. 
 - On the right you can delete an existing profile.
 
-Everything described below is pertained to the current profile.
+Everything described below pertains to the current profile.
 
 ## Identifiers Config
 
