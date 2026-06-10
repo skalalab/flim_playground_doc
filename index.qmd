@@ -200,6 +200,7 @@ FLIM Playground has two independent sections:
 
 Here is the list of analysis methods incorporated into FLIM Playground, grouped by the number of numerical features they take as inputs:
 
+::: {.content-visible when-format="html"}
 - [Univariate analysis](data_analysis.qmd#univariate-analysis)
   - [Feature Comparison](#sec-feature-comparison)
   - [Feature Histogram](#sec-feature-histogram)
@@ -210,6 +211,19 @@ Here is the list of analysis methods incorporated into FLIM Playground, grouped 
 - [Multivariate analysis](data_analysis.qmd#multivariate-analysis)
   - [Dimension Reduction](#sec-dimension-reduction)
   - [Classification](#sec-classification)
+::::
+
+::: {.content-visible when-format="pdf"}
+- [Univariate analysis](data_analysis.qmd#univariate-analysis)
+  - [Feature Comparison](#sec-feature-comparison)
+  - [Feature Histogram](#sec-feature-histogram)
+- [Bivariate analysis](data_analysis.qmd#bivariate-analysis)
+  - [Feature Distribution](#sec-feature-distribution)
+  - [Phasor Analysis](#sec-phasor-analysis)
+- [Multivariate analysis](data_analysis.qmd#multivariate-analysis)
+  - [Dimension Reduction](#sec-dimension-reduction)
+  - [Classification](#sec-classification)
+::::
 
 Both sections are built in Python and as self-contained executables ready to run on major operating systems and in browsers (**H**).
 
@@ -219,4 +233,4 @@ Both sections are built in Python and as self-contained executables ready to run
 
 ### Citation
 
-FLIM Playground is currently on [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.09.30.679625). If it contributed to your research—whether through Data Extraction for single-cell feature generation or through Data Analysis for data exploration, visualization, selection of analysis methods, or hyperparameter tuning (UMAP, clustering, classification, etc.)—please cite this work in your publication. Your citation directly supports us in maintaining and improving it ✨🎈🍾. 
+FLIM Playground is published in [Cell Reports Methods](https://www.cell.com/cell-reports-methods/fulltext/S2667-2375(26)00184-0). If it contributed to your research—whether through Data Extraction for single-cell feature generation or through Data Analysis for data exploration, visualization, selection of analysis methods, or hyperparameter tuning (UMAP, clustering, classification, etc.)—please cite this work in your publication. Your citation directly supports us in maintaining and improving it ✨🎈🍾. 

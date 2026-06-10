@@ -1,0 +1,36 @@
+project:
+  render:
+    - "*.qmd"
+    - "!fov_comparison.qmd"
+
+book:
+  chapters:
+    - index.qmd
+    - part: "Data Extraction"
+      chapters:
+        - data_extraction.qmd
+        - data_extraction_config.qmd
+        - fov_metadata.qmd
+        - numerical_feature_extraction.qmd
+        - lifetime_fit.qmd
+        - lifetime_fit_free.qmd
+        - intensity_morphology.qmd
+        - intensity_texture.qmd
+        - categorical_feature_extraction.qmd
+    - part: "Data Analysis"
+      chapters:
+        - data_analysis.qmd
+        - data_analysis_config.qmd
+    - part: "Univariate Analysis"
+      chapters:
+        - feature_comparison.qmd
+        - feature_histogram.qmd
+    - part: "Bivariate Analysis"
+      chapters:
+        - feature_distribution.qmd
+        - phasor_analysis.qmd
+    - part: "Multivariate Analysis"
+      chapters:
+        - dimension_reduction.qmd
+        - classification.qmd
+    - common_qa.qmd
