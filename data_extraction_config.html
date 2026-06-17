@@ -595,6 +595,19 @@ Note
 <section id="two-d-decay" class="level4">
 <h4 class="anchored" data-anchor-id="two-d-decay">2D Decay</h4>
 <p>In the system developed by Samimi et al.<span class="citation" data-cites="Samimi2024"><sup><a href="#ref-Samimi2024" role="doc-biblioref">1</a></sup></span>, single cells flow through and a decay curve is acquired for each cell by aggregating all the photon arrival time delays deemed to be from the same cell. In exchange for spatial distribution, the acquisition speed is increased enormously. The output of the system is a tabular data sheet with each row representing a cell and each column representing a time bin. <strong>FLIM Playground currently supports 2D decay in the CSV format.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Every column in a 2D decay CSV must be a numeric time bin. If any non-numeric column is present (for example, a cell-label or annotation column), FLIM Playground rejects the file with an error indicating that all columns are expected to be numeric time bins. Remove such columns before extraction.</p>
+</div>
+</div>
 </section>
 <section id="three-d4d-decay" class="level4">
 <h4 class="anchored" data-anchor-id="three-d4d-decay">3D/4D Decay</h4>

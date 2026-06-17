@@ -572,6 +572,7 @@ window.Quarto = {
 <p><img src="analysis_ui_shots/gmm_switch.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
 </div>
+<p>A <strong>Log X</strong> toggle (next to the mode switch) replaces the selected feature with its base-10 logarithm <em>before anything else is computed</em>, so the transform propagates into both modes: in histogram mode the bins are placed on the log-transformed values, and in GMM mode the model is <strong>fit on the log-transformed feature</strong> — its components, BIC-based model selection, <a href="#classification">classification</a> thresholds, and <a href="#heterogeneity-index">H-index</a> are therefore all computed in log space. Negative values cannot be log-transformed, so a warning is shown if the selected feature contains any.</p>
 <p>Histogram mode plots a histogram of the selected numerical feature for each group. The histogram bin width is user-controllable, with the default bin width determined automatically as the minimum bin width between the ‘sturges’ and ‘fd’ estimators (see <a href="https://numpy.org/devdocs/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges">here</a> for more details). The maximum bin width is set to one-third of the range of the data. The step size is set to <span class="math inline">\(1/50\)</span> of the range.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

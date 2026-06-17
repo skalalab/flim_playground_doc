@@ -495,15 +495,16 @@ window.Quarto = {
    
   <ul>
   <li><a href="#shared-interface-components" id="toc-shared-interface-components" class="nav-link active" data-scroll-target="#shared-interface-components"><span class="header-section-number">13.1</span> Shared Interface Components</a></li>
-  <li><a href="#separate-by" id="toc-separate-by" class="nav-link" data-scroll-target="#separate-by"><span class="header-section-number">13.2</span> Separate by</a></li>
-  <li><a href="#comparison-widget" id="toc-comparison-widget" class="nav-link" data-scroll-target="#comparison-widget"><span class="header-section-number">13.3</span> Comparison Widget</a></li>
-  <li><a href="#effect-size" id="toc-effect-size" class="nav-link" data-scroll-target="#effect-size"><span class="header-section-number">13.4</span> Effect Size</a>
+  <li><a href="#plot-options" id="toc-plot-options" class="nav-link" data-scroll-target="#plot-options"><span class="header-section-number">13.2</span> Plot Options</a></li>
+  <li><a href="#separate-by" id="toc-separate-by" class="nav-link" data-scroll-target="#separate-by"><span class="header-section-number">13.3</span> Separate by</a></li>
+  <li><a href="#comparison-widget" id="toc-comparison-widget" class="nav-link" data-scroll-target="#comparison-widget"><span class="header-section-number">13.4</span> Comparison Widget</a></li>
+  <li><a href="#effect-size" id="toc-effect-size" class="nav-link" data-scroll-target="#effect-size"><span class="header-section-number">13.5</span> Effect Size</a>
   <ul class="collapse">
-  <li><a href="#glasss-delta" id="toc-glasss-delta" class="nav-link" data-scroll-target="#glasss-delta"><span class="header-section-number">13.4.1</span> Glass’s Delta</a></li>
-  <li><a href="#absolute-cohens-d" id="toc-absolute-cohens-d" class="nav-link" data-scroll-target="#absolute-cohens-d"><span class="header-section-number">13.4.2</span> Absolute Cohen’s d</a></li>
+  <li><a href="#glasss-delta" id="toc-glasss-delta" class="nav-link" data-scroll-target="#glasss-delta"><span class="header-section-number">13.5.1</span> Glass’s Delta</a></li>
+  <li><a href="#absolute-cohens-d" id="toc-absolute-cohens-d" class="nav-link" data-scroll-target="#absolute-cohens-d"><span class="header-section-number">13.5.2</span> Absolute Cohen’s d</a></li>
   </ul></li>
-  <li><a href="#statistical-test" id="toc-statistical-test" class="nav-link" data-scroll-target="#statistical-test"><span class="header-section-number">13.5</span> Statistical Test</a></li>
-  <li><a href="#comparison-annotation" id="toc-comparison-annotation" class="nav-link" data-scroll-target="#comparison-annotation"><span class="header-section-number">13.6</span> Comparison Annotation</a></li>
+  <li><a href="#statistical-test" id="toc-statistical-test" class="nav-link" data-scroll-target="#statistical-test"><span class="header-section-number">13.6</span> Statistical Test</a></li>
+  <li><a href="#comparison-annotation" id="toc-comparison-annotation" class="nav-link" data-scroll-target="#comparison-annotation"><span class="header-section-number">13.7</span> Comparison Annotation</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/feature_comparison.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -541,8 +542,17 @@ window.Quarto = {
 <li>On the bottom right, users can change the plot style using the <a href="./data_analysis.html#plotting-configuration-widgets">plot styling widgets</a>.</li>
 </ul>
 </section>
-<section id="separate-by" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="separate-by"><span class="header-section-number">13.2</span> Separate by</h2>
+<section id="plot-options" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="plot-options"><span class="header-section-number">13.2</span> Plot Options</h2>
+<p>Above the plot, three toggles control how the distributions are displayed:</p>
+<ul>
+<li><strong>Log Y</strong>: plots the selected feature on a base-10 logarithmic y-axis (the axis label becomes <code>log₁₀(...)</code>). Negative values cannot be log-transformed, so a warning is shown if the selected feature contains any.</li>
+<li><strong>Add boxplot</strong>: overlays a box-and-whisker summary on each group. The box spans the interquartile range (<span class="math inline">\(Q_1\)</span>–<span class="math inline">\(Q_3\)</span>) with the median as a solid line and the mean as a dashed line; the whiskers follow the <a href="https://en.wikipedia.org/wiki/Box_plot">Tukey</a> definition at <span class="math inline">\(Q_1 - 1.5 \times \text{IQR}\)</span> and <span class="math inline">\(Q_3 + 1.5 \times \text{IQR}\)</span>, bounded by the data range.</li>
+<li><strong>Connect means</strong>: draws a line connecting the mean of each group (within each section when <a href="#separate-by"><code>Separate by</code></a> is used), which can help reveal trends across ordered groups.</li>
+</ul>
+</section>
+<section id="separate-by" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="separate-by"><span class="header-section-number">13.3</span> Separate by</h2>
 <p><img src="analysis_ui_shots/separate_by_widget.png" class="img-fluid"></p>
 <p><code>Separate by</code> takes effect before <a href="./data_analysis.html#color-by"><code>Color by</code></a>. <code>Separate by</code> divides the plot into sections separated by a dashed line, with each section labeled by one of the available categories of the selected categorical feature after <a href="./data_analysis.html#filter-widgets">filtering</a>. The selected feature of <code>Separate by</code> is automatically removed from available features in <code>Color by</code>. The section order is determined by the order of the categories which are sorted <a href="./data_analysis.html#nte-order">numeric-alphabetically</a>.</p>
 <p>Then, visual channels (color, shape, opacity) and effect size annotation are applied within each section. For example, the visualization below was separated by <code>cell_line</code>, with each section labeled by the bold text of a cell line. Within each section, the x-axis rendered the <code>Color by</code> categories (<code>treatments</code>) so colors were consistent across sections. <a href="#effect-size">Effect size</a> calculation and annotation (only effect size <span class="math inline">\(&gt; 0.5\)</span> is shown) were performed within each section.</p>
@@ -550,8 +560,8 @@ window.Quarto = {
 <p>If <code>Separate by</code> is left blank and both <code>cell_line</code> and <code>treatment</code> are selected in <code>Color by</code>, then colors are assigned to each cell line and treatment combination, and effect sizes are calculated across all combinations of group pairs (only pairs with effect size <span class="math inline">\(&gt; 0.5\)</span> are shown).</p>
 <p><img src="analysis_ui_shots/no_separate_by.png" class="img-fluid"></p>
 </section>
-<section id="comparison-widget" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="comparison-widget"><span class="header-section-number">13.3</span> Comparison Widget</h2>
+<section id="comparison-widget" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="comparison-widget"><span class="header-section-number">13.4</span> Comparison Widget</h2>
 <p>Statistical tests and effect size calculations are performed on the selected comparison pairs. FLIM Playground uses the groups on the x-axis populated by <a href="./data_analysis.html#color-by">Color by</a> to create comparison groups, starting from the leftmost group. For example, if there are 5 groups, then <span class="math inline">\(\binom{5}{2} = 10\)</span> comparisons will be created. The number of groups can get combinatorially large and many of the comparisons are not meaningful. Therefore, two widgets are provided to filter the comparison groups:</p>
 <ul>
 <li>A selection widget that shows all possible comparisons by default and users can deselect groups they do not need.</li>
@@ -570,16 +580,16 @@ window.Quarto = {
 </figure>
 </div>
 </section>
-<section id="effect-size" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="effect-size"><span class="header-section-number">13.4</span> Effect Size</h2>
+<section id="effect-size" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="effect-size"><span class="header-section-number">13.5</span> Effect Size</h2>
 <p>Complementary to statistical tests, which address “is there a difference?”, effect size metrics answer “how large is the difference?”, enabling cross-study comparison. FLIM Playground offers two effect size calculation methods, Glass’s Delta and Absolute Cohen’s d, each can be in mean or median form.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/effect_size.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
-<section id="glasss-delta" class="level3" data-number="13.4.1">
-<h3 data-number="13.4.1" class="anchored" data-anchor-id="glasss-delta"><span class="header-section-number">13.4.1</span> Glass’s Delta</h3>
+<section id="glasss-delta" class="level3" data-number="13.5.1">
+<h3 data-number="13.5.1" class="anchored" data-anchor-id="glasss-delta"><span class="header-section-number">13.5.1</span> Glass’s Delta</h3>
 <p>Mean (<span class="math inline">\(\bar{X}\)</span>) form: <span class="math display">\[
 \Delta_G
   = \frac{\bar{X}_{\text{treatment}} - \bar{X}_{\text{control}}}
@@ -643,8 +653,8 @@ Note
 </div>
 </div>
 </section>
-<section id="absolute-cohens-d" class="level3" data-number="13.4.2">
-<h3 data-number="13.4.2" class="anchored" data-anchor-id="absolute-cohens-d"><span class="header-section-number">13.4.2</span> Absolute Cohen’s d</h3>
+<section id="absolute-cohens-d" class="level3" data-number="13.5.2">
+<h3 data-number="13.5.2" class="anchored" data-anchor-id="absolute-cohens-d"><span class="header-section-number">13.5.2</span> Absolute Cohen’s d</h3>
 <p>Mean (<span class="math inline">\(\bar{X}\)</span>) form:</p>
 <p><span class="math display">\[
 |d|
@@ -666,8 +676,8 @@ s_{\tilde{p}}
 \]</span></p>
 </section>
 </section>
-<section id="statistical-test" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="statistical-test"><span class="header-section-number">13.5</span> Statistical Test</h2>
+<section id="statistical-test" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="statistical-test"><span class="header-section-number">13.6</span> Statistical Test</h2>
 <p>Statistical tests are performed on the selected comparison pairs that exceed the effect size threshold (if users choose to calculate effect sizes). The statistical tests supported are:</p>
 <ul>
 <li>Independent t-test (student’s t-test, for equal variances)</li>
@@ -681,8 +691,8 @@ s_{\tilde{p}}
 <p>FLIM Playground uses <code>scipy.stats.ttest_ind</code> to perform the independent t-test and <code>scipy.stats.ttest_ind</code> with <code>equal_var=False</code> to perform the Welch’s t-test.</p>
 <p>P-values are summarized with significance asterisks: if <span class="math inline">\(p \leq 0.0001\)</span>, four asterisks (<code>****</code>) are shown; otherwise if <span class="math inline">\(p \leq 0.001\)</span>, three (<code>***</code>); otherwise if <span class="math inline">\(p \leq 0.01\)</span>, two (<code>**</code>); otherwise if <span class="math inline">\(p \leq 0.05\)</span>, one (<code>*</code>). Values with <span class="math inline">\(p &gt; 0.05\)</span> are not given a significance asterisk marker in this convention.</p>
 </section>
-<section id="comparison-annotation" class="level2" data-number="13.6">
-<h2 data-number="13.6" class="anchored" data-anchor-id="comparison-annotation"><span class="header-section-number">13.6</span> Comparison Annotation</h2>
+<section id="comparison-annotation" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="comparison-annotation"><span class="header-section-number">13.7</span> Comparison Annotation</h2>
 <p>For each selected comparison pair that exceeds the effect size threshold (if any), the statistical significance, effect size, or both are annotated on the plot. It selects the lowest eligible position (over all points in both groups and over existing annotations) to annotate. If both statistical significance and effect size calculation are performed, the annotation is shown in the format of effect size followed by p-value. If only one is performed, then only the performed method’s result is shown.</p>
 <div class="quarto-layout-panel" data-layout-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">

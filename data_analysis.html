@@ -500,7 +500,8 @@ div.csl-indent {
   <li><a href="#visual-channels-widgets" id="toc-visual-channels-widgets" class="nav-link" data-scroll-target="#visual-channels-widgets"><span class="header-section-number">11.4.3</span> Visual Channels Widgets</a></li>
   <li><a href="#unique-id-hover" id="toc-unique-id-hover" class="nav-link" data-scroll-target="#unique-id-hover"><span class="header-section-number">11.4.4</span> Unique ID Hover</a></li>
   <li><a href="#plotting-configuration-widgets" id="toc-plotting-configuration-widgets" class="nav-link" data-scroll-target="#plotting-configuration-widgets"><span class="header-section-number">11.4.5</span> Plotting Configuration Widgets</a></li>
-  <li><a href="#export-workflow-as-python-script" id="toc-export-workflow-as-python-script" class="nav-link" data-scroll-target="#export-workflow-as-python-script"><span class="header-section-number">11.4.6</span> Export Workflow as Python Script</a></li>
+  <li><a href="#feature-labels" id="toc-feature-labels" class="nav-link" data-scroll-target="#feature-labels"><span class="header-section-number">11.4.6</span> Feature Labels</a></li>
+  <li><a href="#export-workflow-as-python-script" id="toc-export-workflow-as-python-script" class="nav-link" data-scroll-target="#export-workflow-as-python-script"><span class="header-section-number">11.4.7</span> Export Workflow as Python Script</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/data_analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -790,14 +791,19 @@ Note&nbsp;11.1: How to order the groups
 <li>point size (if point-based)</li>
 <li>axis label size</li>
 <li>legend size</li>
+<li>whether to show the per-group count (<code>n</code>) in the legend (when enabled, the count appears on a second line below each group name, e.g.&nbsp;<code>Control</code> with <code>n=42</code> beneath it)</li>
 <li>the colormap used to color different groups
 <ul>
 <li><code>colorblind</code>, <code>tab10</code>, <code>tab20</code>, <code>Set1</code>, <code>Set2</code>, <code>Set3</code>, <code>Pastel1</code>, <code>Pastel2</code>, <code>Accent</code>, <code>viridis</code>, <code>plasma</code>, <code>inferno</code>, <code>magma</code>, <code>cividis</code></li>
 </ul></li>
 </ul>
 </section>
-<section id="export-workflow-as-python-script" class="level3" data-number="11.4.6">
-<h3 data-number="11.4.6" class="anchored" data-anchor-id="export-workflow-as-python-script"><span class="header-section-number">11.4.6</span> Export Workflow as Python Script</h3>
+<section id="feature-labels" class="level3" data-number="11.4.6">
+<h3 data-number="11.4.6" class="anchored" data-anchor-id="feature-labels"><span class="header-section-number">11.4.6</span> Feature Labels</h3>
+<p>Numerical features extracted by <a href="data_extraction.html">Data Extraction</a> are automatically rendered in proper FLIM notation on plot axes, legends, and hover text. For example, the column <code>Lifetime fit_nadh: a1</code> is shown as “nadh α₁ (%)”, and other extracted features map to symbols such as “τ₁ (ps)”, “τₘ”, “τₘ,ᵢ”, “χ²ᵣ”, and “τ_mod”. The mapping (channel + Greek/scientific symbol + unit) follows the feature naming convention introduced in <a href="./lifetime_fit.html">Lifetime Features (Fit)</a>. Columns that are not recognized — identifiers, categorical features, or arbitrary user-provided columns — are displayed unchanged. The same labels are used in the <a href="#export-workflow-as-python-script">exported script</a>, so its figures match what you see in the app.</p>
+</section>
+<section id="export-workflow-as-python-script" class="level3" data-number="11.4.7">
+<h3 data-number="11.4.7" class="anchored" data-anchor-id="export-workflow-as-python-script"><span class="header-section-number">11.4.7</span> Export Workflow as Python Script</h3>
 <p>At the bottom right of the interface, users can export the entire analysis workflow as a self-contained Python script. This is useful when users want to share their analysis with others, reproduce their analysis later, customize the analysis further, or integrate it into their own workflow. The script will include all the code and analysis configuration (filters, selected numerical features, visual channels, plotting style, module-specific configurations, etc.). After exporting, users need to put the dataset in the same directory as the script and run the script to reproduce the analysis, where the plots are rendered as matplotlib figures and saved as <strong>SVG</strong> files for publication-ready quality.</p>
 
 

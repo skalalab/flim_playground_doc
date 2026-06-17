@@ -582,7 +582,7 @@ window.Quarto = {
 </header>
 
 
-<p>Phasor analysis provides a fast, model-free view of lifetimes by transforming fluorescence decays into phasor coordinates through a Fourier transform. This approach is considered “fit-free” because it does not require iterative curve fitting or predefined decay models—each decay is mapped directly to a point on the <a href="phasor_analysis.html">phasor plot</a>. It has the nice property that mono-exponential decays fall on the universal semicircle while mixtures lie inside as linear combinations, so clusters reveal distinct species and their fractional contributions. FLIM Playground currently extracts cell-level phasor features: <code>g</code>, <code>s</code>, <code>Tau_phase</code>, <code>Tau_m</code>, <code>g_2nd</code> (2nd harmonic), and <code>s_2nd</code>.</p>
+<p>Phasor analysis provides a fast, model-free view of lifetimes by transforming fluorescence decays into phasor coordinates through a Fourier transform. This approach is considered “fit-free” because it does not require iterative curve fitting or predefined decay models—each decay is mapped directly to a point on the <a href="phasor_analysis.html">phasor plot</a>. It has the nice property that mono-exponential decays fall on the universal semicircle while mixtures lie inside as linear combinations, so clusters reveal distinct species and their fractional contributions. FLIM Playground currently extracts cell-level phasor features: <code>g</code>, <code>s</code>, <code>Tau_phase</code>, <code>Tau_mod</code>, <code>g_2nd</code> (2nd harmonic), and <code>s_2nd</code>. (Datasets extracted before this feature was renamed use <code>Tau_m</code>, which Data Analysis still recognizes.)</p>
 <p>Fit-free features in the final dataset are prefixed by the combination of the feature extractor name (i.e.&nbsp;<code>Lifetime fit free</code>) and the channel name, allowing <a href="data_analysis.html">Data Analysis</a> to group the features. For example, <code>Lifetime fit free_nadh: G</code> means the <span class="math inline">\(g\)</span> coordinate for this cell in the NAD(P)H channel.</p>
 <section id="preprocessing" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="preprocessing"><span class="header-section-number">7.1</span> Preprocessing</h2>
@@ -634,15 +634,15 @@ s_{\mathrm{raw}}
 </section>
 <section id="step-3-phasor-derived-lifetime" class="level3" data-number="7.2.3">
 <h3 data-number="7.2.3" class="anchored" data-anchor-id="step-3-phasor-derived-lifetime"><span class="header-section-number">7.2.3</span> Step 3: phasor-derived lifetime</h3>
-<p><code>Tau_phase</code> and <code>Tau_m</code> are calculated using the first harmonic’s phasor coordinates <code>g</code> and <code>s</code>.</p>
+<p><code>Tau_phase</code> and <code>Tau_mod</code> are calculated using the first harmonic’s phasor coordinates <code>g</code> and <code>s</code>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> laser_rate</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> np.arctan2(s, g) </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> np.sqrt(g<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> s<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> np.sqrt(g<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> s<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>tau_phase <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>w <span class="op">*</span> np.tan(phi)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>tau_m <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>w <span class="op">*</span> np.sqrt(<span class="dv">1</span><span class="op">/</span>m<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>tau_mod <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>w <span class="op">*</span> np.sqrt(<span class="dv">1</span><span class="op">/</span>mod<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="math display">\[
-\phi = \operatorname{atan2}(s,\,g), m = \sqrt{g^{2}+s^{2}}, \tau_{\phi} = \frac{\tan \phi}{\omega}, \tau_{m} = \frac{1}{\omega}\sqrt{\frac{1}{m^{2}}-1}
+\phi = \operatorname{atan2}(s,\,g), \mathrm{mod} = \sqrt{g^{2}+s^{2}}, \tau_{\phi} = \frac{\tan \phi}{\omega}, \tau_{\mathrm{mod}} = \frac{1}{\omega}\sqrt{\frac{1}{\mathrm{mod}^{2}}-1}
 \]</span></p>
 
 

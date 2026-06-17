@@ -676,7 +676,12 @@ I(\mathbf{t})=\sum_{i=1}^{n} A_i\, e^{-\mathbf{t}/\tau_i}, \qquad \tau_i&gt;0
 = -\sum_{n=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_n)\,\bigl[y_n \log \hat{y}(t_n) - \hat{y}(t_n)\bigr].
 \]</span></p>
 <p><span class="math inline">\(\mathbf{1}_{[t_s,t_e]}\)</span> is the indicator function that is 1 if <span class="math inline">\(t_n\)</span> is within the <a href="#time-gates">time gates</a> <span class="math inline">\([t_s, t_e]\)</span>, and 0 otherwise. <span class="math inline">\(y_n\)</span> is the observed count at time <span class="math inline">\(t_n\)</span>, and <span class="math inline">\(\hat{y}(t_n)\)</span> is the model prediction at <span class="math inline">\(t_n\)</span>.</p>
-<p>Least Squares (<code>LS</code>) estimates the parameters by minimizing the sum of the squared differences between the measured curve and the model prediction.</p>
+<p>Least Squares (<code>LS</code>) estimates the parameters using <em>weighted</em> least squares: it minimizes the squared residuals between the measured curve and the model prediction, with each time bin weighted by the inverse of its expected variance. Because photon counts follow Poisson statistics (variance <span class="math inline">\(\approx\)</span> count), each residual is scaled by <span class="math inline">\(1/\sqrt{\max(y_n, 1)}\)</span>, so the cost minimized is</p>
+<p><span class="math display">\[
+\text{WLS}(\theta; t_s,t_e)
+= \sum_{n=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_n)\,\frac{\bigl(y_n - \hat{y}(t_n)\bigr)^2}{\max(y_n, 1)}.
+\]</span></p>
+<p>This weighting (equivalent to Pearson’s <span class="math inline">\(\chi^2\)</span>) keeps the high-count bins near the decay peak from dominating the fit, and the <span class="math inline">\(\max(\cdot, 1)\)</span> floor avoids division by zero in empty bins.</p>
 </section>
 <section id="fitting-mode" class="level5">
 <h5 class="anchored" data-anchor-id="fitting-mode">Fitting Mode</h5>

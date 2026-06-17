@@ -495,9 +495,10 @@ window.Quarto = {
    
   <ul>
   <li><a href="#shared-interface-components" id="toc-shared-interface-components" class="nav-link active" data-scroll-target="#shared-interface-components"><span class="header-section-number">16.1</span> Shared Interface Components</a></li>
-  <li><a href="#marginal-distribution" id="toc-marginal-distribution" class="nav-link" data-scroll-target="#marginal-distribution"><span class="header-section-number">16.2</span> Marginal Distribution</a></li>
-  <li><a href="#d-gaussian-mixture-model" id="toc-d-gaussian-mixture-model" class="nav-link" data-scroll-target="#d-gaussian-mixture-model"><span class="header-section-number">16.3</span> 2D Gaussian Mixture Model</a></li>
-  <li><a href="#regression-line" id="toc-regression-line" class="nav-link" data-scroll-target="#regression-line"><span class="header-section-number">16.4</span> Regression line</a></li>
+  <li><a href="#log-scale-axes" id="toc-log-scale-axes" class="nav-link" data-scroll-target="#log-scale-axes"><span class="header-section-number">16.2</span> Log-scale Axes</a></li>
+  <li><a href="#marginal-distribution" id="toc-marginal-distribution" class="nav-link" data-scroll-target="#marginal-distribution"><span class="header-section-number">16.3</span> Marginal Distribution</a></li>
+  <li><a href="#d-gaussian-mixture-model" id="toc-d-gaussian-mixture-model" class="nav-link" data-scroll-target="#d-gaussian-mixture-model"><span class="header-section-number">16.4</span> 2D Gaussian Mixture Model</a></li>
+  <li><a href="#regression-line" id="toc-regression-line" class="nav-link" data-scroll-target="#regression-line"><span class="header-section-number">16.5</span> Regression line</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/feature_distribution.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -539,8 +540,12 @@ window.Quarto = {
 <li>On the bottom right, users can change the plot style using the <a href="./data_analysis.html#plotting-configuration-widgets">plot styling widgets</a>.</li>
 </ul>
 </section>
-<section id="marginal-distribution" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="marginal-distribution"><span class="header-section-number">16.2</span> Marginal Distribution</h2>
+<section id="log-scale-axes" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="log-scale-axes"><span class="header-section-number">16.2</span> Log-scale Axes</h2>
+<p><strong>Log X</strong> and <strong>Log Y</strong> toggles plot the respective axis on a base-10 logarithmic scale, and the axis is relabeled <code>log₁₀(...)</code>. The base-10 logarithm is applied to the selected feature(s) <em>before any modeling</em>, so everything downstream is computed in log space: the <strong>2D GMM</strong> (its component means and covariances, BIC-based model selection, 95% ellipses, and <a href="./feature_histogram.html#hard-assignment">hard-assignment classification</a>) and the <strong>regression line</strong> (its slope and <span class="math inline">\(R^2\)</span>) are all fit on the log-transformed values. Negative values cannot be log-transformed, so a warning is shown if a selected feature contains any.</p>
+</section>
+<section id="marginal-distribution" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="marginal-distribution"><span class="header-section-number">16.3</span> Marginal Distribution</h2>
 <p>Marginal distributions (the distribution of a single feature) are plotted at the top and the right of the scatter plot. Users can choose the plot type from the dropdown menu.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -549,8 +554,8 @@ window.Quarto = {
 </div>
 <p><code>gaussian fit</code>: provides a kernel-density estimate using Gaussian kernels. It uses <code>gaussian_kde</code> from <code>scipy.stats</code> and sets all parameters to default values.</p>
 </section>
-<section id="d-gaussian-mixture-model" class="level2" data-number="16.3">
-<h2 data-number="16.3" class="anchored" data-anchor-id="d-gaussian-mixture-model"><span class="header-section-number">16.3</span> 2D Gaussian Mixture Model</h2>
+<section id="d-gaussian-mixture-model" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="d-gaussian-mixture-model"><span class="header-section-number">16.4</span> 2D Gaussian Mixture Model</h2>
 <p>Using the same method as fitting a 1D <a href="./feature_histogram.html#fit-gaussian-mixture-models">Gaussian Mixture Model</a>, users can fit a 2D GMM by specifying <code>Max Components</code> and <code>Min Weight Threshold</code> for each color group.</p>
 <p>Ellipses that capture approximately 95% of the points in each subcomponent are drawn. The color of the ellipses is determined by the color group that the subcomponent belongs to.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -607,8 +612,8 @@ Tip
 </div>
 <p>The classification is done by <a href="./feature_histogram.html#hard-assignment">hard assignment</a> to determine which GMM component each data point belongs to. It appends a new categorical feature column called <code>2D_GMM_group</code> to the filtered dataset, the values of which are <code>{color_group}_group1</code>, <code>{color_group}_group2</code>, etc. The downloaded dataset keeps all the features plus the new categorical feature column, which is recognized by any method in Data Analysis as a categorical feature like others. The rows that pass the <a href="./data_analysis.html#filter-widgets">filters</a> are included.</p>
 </section>
-<section id="regression-line" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="regression-line"><span class="header-section-number">16.4</span> Regression line</h2>
+<section id="regression-line" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="regression-line"><span class="header-section-number">16.5</span> Regression line</h2>
 <p>A linear regression line is fitted to the data points in each color group. The key statistics are reported on the side.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
