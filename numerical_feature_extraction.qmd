@@ -123,7 +123,14 @@ $$
 
 $\mathbf{1}_{[t_s,t_e]}$ is the indicator function that is 1 if $t_n$ is within the [time gates](#time-gates) $[t_s, t_e]$, and 0 otherwise. $y_n$ is the observed count at time $t_n$, and $\hat{y}(t_n)$ is the model prediction at $t_n$.
 
-Least Squares (`LS`) estimates the parameters by minimizing the sum of the squared differences between the measured curve and the model prediction. 
+Least Squares (`LS`) estimates the parameters using *weighted* least squares: it minimizes the squared residuals between the measured curve and the model prediction, with each time bin weighted by the inverse of its expected variance. Because photon counts follow Poisson statistics (variance $\approx$ count), each residual is scaled by $1/\sqrt{\max(y_n, 1)}$, so the cost minimized is
+
+$$
+\text{WLS}(\theta; t_s,t_e)
+= \sum_{n=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_n)\,\frac{\bigl(y_n - \hat{y}(t_n)\bigr)^2}{\max(y_n, 1)}.
+$$
+
+This weighting (equivalent to Pearson's $\chi^2$) keeps the high-count bins near the decay peak from dominating the fit, and the $\max(\cdot, 1)$ floor avoids division by zero in empty bins.
 
 ##### Fitting Mode
 

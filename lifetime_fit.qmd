@@ -2,7 +2,7 @@
 
 Biological samples often contain mixtures of fluorescent species, each with its own characteristic lifetime. By modeling the decay as a sum of exponentials, the analysis can separate and quantify these different contributions. For example, NADH in cells exists in both free (short lifetime, ~0.4 ns) and protein-bound (longer lifetime, ~2–3 ns) states; by fitting the fluorescence decay with a bi-exponential model, one can estimate the fraction of each state, which provides direct insight into cellular metabolism and energy production pathways. 
 
-FLIM Playground extracts cell-level lifetime fitting features in this feature extractor, including the fraction of each lifetime component ($\alpha_i$), their lifetimes ($\tau_i$), and mean lifetime ($\tau_{mean}$). 
+FLIM Playground extracts cell-level lifetime fitting features in this feature extractor, including the fraction of each lifetime component ($\alpha_i$), their lifetimes ($\tau_i$), mean lifetime ($\tau_{mean}$), intensity-weighted mean lifetime ($\tau_{m,iw}$), and the reduced chi-square ($\chi^2_r$) goodness-of-fit metric.
 
 $$I(t) = \sum_{i=1}^n A_i \, e^{-t/\tau_i}$$
 
@@ -29,6 +29,22 @@ In addition to the absolute amplitudes of each component directly from the fitti
 The mean lifetime, $\tau_{mean}$, is calculated as the weighted average of the lifetimes of all components, where the weights are the fractions of each component. 
 
 $$\tau_{mean} = \sum_{i=1}^n \alpha_i \tau_i$$
+
+### Intensity-weighted mean lifetime
+
+The [mean lifetime](#mean-lifetime) above is amplitude-weighted: each component is weighted by its fraction $\alpha_i$. The intensity-weighted mean lifetime, $\tau_{m,iw}$, instead weights each component by its relative intensity contribution ($\alpha_i \tau_i$), so longer-lived components — which emit more photons per molecule — count more.
+
+$$\tau_{m,iw} = \frac{\sum_{i=1}^n \alpha_i \tau_i^2}{\sum_{i=1}^n \alpha_i \tau_i} = \frac{\sum_{i=1}^n \alpha_i \tau_i^2}{\tau_{mean}}$$
+
+For a single component, $\tau_{m,iw} = \tau_1$. Both $\tau_{mean}$ and $\tau_{m,iw}$ are reported, whether the features come from fitting or from the [pixel pre-fit](#pixel-pre-fit) workflow.
+
+### Goodness of fit
+
+For each fitted decay, FLIM Playground also reports the reduced chi-square ($\chi^2_r$) as a goodness-of-fit diagnostic:
+
+$$\chi^2_r = \frac{1}{N - p}\sum_{n} \frac{\bigl(y_n - \hat{y}_n\bigr)^2}{\hat{y}_n}$$
+
+where the sum runs over the time bins within the [time gates](numerical_feature_extraction.qmd#time-gates) that have a positive model value ($\hat{y}_n > 0$), $y_n$ is the measured count, $\hat{y}_n$ is the fitted value, $N$ is the number of those bins, and $p$ is the number of free parameters (amplitudes, lifetimes, and the offset, minus any [fixed lifetimes](numerical_feature_extraction.qmd#fixed-lifetimes)). Values near 1 indicate a good fit.
 
 ## Pixel pre-fit {#pixel-pre-fit}
 Currently, FLIM Playground supports pixel pre-fit lifetime features from [SPCImage](https://www.becker-hickl.com/products/spcimage/). The pixel-level lifetime fitting features are expected to be stored in [2D arrays](data_extraction.qmd#spcimage-t1) in spatial dimensions, with each row and column having the value of a lifetime feature outputted from SPCImage. SPCImage assigns `0` for pixels that are not fitted (e.g. thresholded out). To avoid them biasing the results, FLIM Playground uses `np.ma.masked_array` to create a masked array and disregards them when calculating the averages using `np.ma.average`.  

@@ -11,6 +11,10 @@ This method extends the univariate [Feature Histogram](#sec-feature-histogram) m
 - Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allow users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
+## Log-scale Axes
+
+**Log X** and **Log Y** toggles plot the respective axis on a base-10 logarithmic scale, and the axis is relabeled `log₁₀(...)`. The base-10 logarithm is applied to the selected feature(s) *before any modeling*, so everything downstream is computed in log space: the **2D GMM** (its component means and covariances, BIC-based model selection, 95% ellipses, and [hard-assignment classification](feature_histogram.qmd#hard-assignment)) and the **regression line** (its slope and $R^2$) are all fit on the log-transformed values. Negative values cannot be log-transformed, so a warning is shown if a selected feature contains any.
+
 ## Marginal Distribution
 
 Marginal distributions (the distribution of a single feature) are plotted at the top and the right of the scatter plot. Users can choose the plot type from the dropdown menu. 

@@ -195,8 +195,13 @@ Users can interactively configure the following plot parameters:
 - point size (if point-based)
 - axis label size
 - legend size
+- whether to show the per-group count (`n`) in the legend (when enabled, the count appears on a second line below each group name, e.g. `Control` with `n=42` beneath it)
 - the colormap used to color different groups
     - `colorblind`, `tab10`, `tab20`, `Set1`, `Set2`, `Set3`, `Pastel1`, `Pastel2`, `Accent`, `viridis`, `plasma`, `inferno`, `magma`, `cividis`
+
+### Feature Labels
+
+Numerical features extracted by [Data Extraction](#sec-data-extraction) are automatically rendered in proper FLIM notation on plot axes, legends, and hover text. For example, the column `Lifetime fit_nadh: a1` is shown as "nadh α₁ (%)", and other extracted features map to symbols such as "τ₁ (ps)", "τₘ", "τₘ,ᵢ", "χ²ᵣ", and "τ_mod". The mapping (channel + Greek/scientific symbol + unit) follows the feature naming convention introduced in [Lifetime Features (Fit)](lifetime_fit.qmd). Columns that are not recognized — identifiers, categorical features, or arbitrary user-provided columns — are displayed unchanged. The same labels are used in the [exported script](#export-workflow-as-python-script), so its figures match what you see in the app.
 
 ### Export Workflow as Python Script
 

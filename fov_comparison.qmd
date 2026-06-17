@@ -21,6 +21,10 @@ If found:
 
 Besides the shared components, this module does not have any method-specific components. 
 
+::: {.callout-note}
+The box for each FOV follows the [Tukey](https://en.wikipedia.org/wiki/Box_plot) convention: the box spans the interquartile range ($Q_1$–$Q_3$) with the median line, and the whiskers extend to the most extreme points within $Q_1 - 1.5 \times \text{IQR}$ and $Q_3 + 1.5 \times \text{IQR}$.
+:::
+
 ## Example
 Sometimes, the FOV-level boxplots may show consistent divergence across different imaging days, which may suggest that there is experimental or data extraction inconsistency (e.g. shifts are not optimized correctly for one day versus the others). Below is an example that, despite the same conditions, systematically diverged across days, but was consistent within the same day. 
 

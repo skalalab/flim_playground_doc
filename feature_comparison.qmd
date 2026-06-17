@@ -10,6 +10,14 @@ This method allows users to compare the distributions of a single numerical feat
 - Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allow users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
+## Plot Options
+
+Above the plot, three toggles control how the distributions are displayed:
+
+- **Log Y**: plots the selected feature on a base-10 logarithmic y-axis (the axis label becomes `log₁₀(...)`). Negative values cannot be log-transformed, so a warning is shown if the selected feature contains any.
+- **Add boxplot**: overlays a box-and-whisker summary on each group. The box spans the interquartile range ($Q_1$–$Q_3$) with the median as a solid line and the mean as a dashed line; the whiskers follow the [Tukey](https://en.wikipedia.org/wiki/Box_plot) definition at $Q_1 - 1.5 \times \text{IQR}$ and $Q_3 + 1.5 \times \text{IQR}$, bounded by the data range.
+- **Connect means**: draws a line connecting the mean of each group (within each section when [`Separate by`](#separate-by) is used), which can help reveal trends across ordered groups.
+
 ## Separate by
 ![](analysis_ui_shots/separate_by_widget.png)
 
@@ -34,7 +42,6 @@ Statistical tests and effect size calculations are performed on the selected com
 - A threshold by effect size widget that filters out comparisons below the threshold. 
 
 ![](analysis_ui_shots/effect_size_threshold.png){width=20% fig-align=center}
-
 
 ## Effect Size 
 Complementary to statistical tests, which address “is there a difference?”, effect size metrics answer “how large is the difference?”, enabling cross-study comparison. FLIM Playground offers two effect size calculation methods, Glass's Delta and Absolute Cohen's d, each can be in mean or median form. 

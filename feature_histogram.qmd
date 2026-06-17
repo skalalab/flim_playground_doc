@@ -15,11 +15,13 @@ With a single click, users can switch between the [histogram mode](#histogram-mo
 
 ![](analysis_ui_shots/gmm_switch.png){width=60% fig-align=center}
 
+A **Log X** toggle (next to the mode switch) replaces the selected feature with its base-10 logarithm *before anything else is computed*, so the transform propagates into both modes: in histogram mode the bins are placed on the log-transformed values, and in GMM mode the model is **fit on the log-transformed feature** — its components, BIC-based model selection, [classification](#classification) thresholds, and [H-index](#heterogeneity-index) are therefore all computed in log space. Negative values cannot be log-transformed, so a warning is shown if the selected feature contains any.
+
 Histogram mode plots a histogram of the selected numerical feature for each group. The histogram bin width is user-controllable, with the default bin width determined automatically as the minimum bin width between the ‘sturges’ and ‘fd’ estimators (see [here](https://numpy.org/devdocs/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges) for more details). The maximum bin width is set to one-third of the range of the data. The step size is set to $1/50$ of the range. 
 
 ![](analysis_ui_shots/feature_histogram_mode.png){width=95% fig-align=center}
 
-Additionally, the skewness of the distribution is computed and displayed [@scipy2020]. 
+Additionally, the skewness of the distribution is computed and displayed [@scipy2020].
 
 A rule of thumb categorization of skewness is as follows:
 
@@ -79,7 +81,7 @@ $$\text{label}(x) = \arg\max_{i} \gamma_i(x)$$
 $$\text{where} \quad \gamma_i(x) = \frac{w_i \; \mathcal{N}\bigl(x \mid \mu_i, \sigma_i^2\bigr)}{\sum_{j=1}^K w_j \; \mathcal{N}\bigl(x \mid \mu_j, \sigma_j^2\bigr)}$$
 
 ### Example 
-Pham et al. [@Pham2025] used GMM with intersection thresholding to create gates using NAD(P)H $a_1$ and optical redox ratio. These gates were used to define metabolically stressed and fit cells in their study of the impact of cryopreservation on T cell metabolism. 
+Pham et al. [@Pham2026] used GMM with intersection thresholding to create gates using NAD(P)H $a_1$ and optical redox ratio. These gates were used to define metabolically stressed and fit cells in their study of the impact of cryopreservation on T cell metabolism. 
 
 ::: {.columns}
 ::: {.column width="50%"}

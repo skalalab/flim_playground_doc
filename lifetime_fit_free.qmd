@@ -1,6 +1,6 @@
 # Lifetime Features (Fit-Free) {#sec-lifetime-fit-free}
 
-Phasor analysis provides a fast, model-free view of lifetimes by transforming fluorescence decays into phasor coordinates through a Fourier transform. This approach is considered "fit-free" because it does not require iterative curve fitting or predefined decay models—each decay is mapped directly to a point on the [phasor plot](#sec-phasor-analysis). It has the nice property that mono-exponential decays fall on the universal semicircle while mixtures lie inside as linear combinations, so clusters reveal distinct species and their fractional contributions. FLIM Playground currently extracts cell-level phasor features: `g`, `s`, `Tau_phase`, `Tau_m`, `g_2nd` (2nd harmonic), and `s_2nd`.
+Phasor analysis provides a fast, model-free view of lifetimes by transforming fluorescence decays into phasor coordinates through a Fourier transform. This approach is considered "fit-free" because it does not require iterative curve fitting or predefined decay models—each decay is mapped directly to a point on the [phasor plot](#sec-phasor-analysis). It has the nice property that mono-exponential decays fall on the universal semicircle while mixtures lie inside as linear combinations, so clusters reveal distinct species and their fractional contributions. FLIM Playground currently extracts cell-level phasor features: `g`, `s`, `Tau_phase`, `Tau_mod`, `g_2nd` (2nd harmonic), and `s_2nd`. (Datasets extracted before this feature was renamed use `Tau_m`, which Data Analysis still recognizes.)
 
 Fit-free features in the final dataset are prefixed by the combination of the feature extractor name (i.e. `Lifetime fit free`) and the channel name, allowing [Data Analysis](#sec-data-analysis) to group the features. For example, `Lifetime fit free_nadh: G` means the $g$ coordinate for this cell in the NAD(P)H channel.
 
@@ -67,17 +67,17 @@ The `laser_rate` is specified during the [fov metadata extraction](fov_metadata.
 
 ### Step 3: phasor-derived lifetime
 
-`Tau_phase` and `Tau_m` are calculated using the first harmonic's phasor coordinates `g` and `s`. 
+`Tau_phase` and `Tau_mod` are calculated using the first harmonic's phasor coordinates `g` and `s`.
 
 ```python
 import numpy as np
 w = 2 * np.pi * laser_rate
 phi = np.arctan2(s, g) 
-m = np.sqrt(g**2 + s**2)
+mod = np.sqrt(g**2 + s**2)
 tau_phase = 1/w * np.tan(phi)
-tau_m = 1/w * np.sqrt(1/m**2 - 1)
+tau_mod = 1/w * np.sqrt(1/mod**2 - 1)
 ```
 
 $$
-\phi = \operatorname{atan2}(s,\,g), m = \sqrt{g^{2}+s^{2}}, \tau_{\phi} = \frac{\tan \phi}{\omega}, \tau_{m} = \frac{1}{\omega}\sqrt{\frac{1}{m^{2}}-1}
+\phi = \operatorname{atan2}(s,\,g), \mathrm{mod} = \sqrt{g^{2}+s^{2}}, \tau_{\phi} = \frac{\tan \phi}{\omega}, \tau_{\mathrm{mod}} = \frac{1}{\omega}\sqrt{\frac{1}{\mathrm{mod}^{2}}-1}
 $$
