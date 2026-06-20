@@ -123,7 +123,7 @@ $$
 
 $\mathbf{1}_{[t_s,t_e]}$ is the indicator function that is 1 if $t_n$ is within the [time gates](#time-gates) $[t_s, t_e]$, and 0 otherwise. $y_n$ is the observed count at time $t_n$, and $\hat{y}(t_n)$ is the model prediction at $t_n$.
 
-Least Squares (`LS`) estimates the parameters using *weighted* least squares: it minimizes the squared residuals between the measured curve and the model prediction, with each time bin weighted by the inverse of its expected variance. Because photon counts follow Poisson statistics (variance $\approx$ count), each residual is scaled by $1/\sqrt{\max(y_n, 1)}$, so the cost minimized is
+Weighted Least Squares (`WLS`) minimizes the squared residuals between the measured curve and the model prediction, with each time bin weighted by the inverse of its expected variance. Because photon counts follow Poisson statistics (variance $\approx$ count), each residual is scaled by $1/\sqrt{\max(y_n, 1)}$, so the cost minimized is
 
 $$
 \text{WLS}(\theta; t_s,t_e)
@@ -138,7 +138,7 @@ This weighting (equivalent to Pearson's $\chi^2$) keeps the high-count bins near
 
 **Fit calibration** (IRF shift) always runs **Hybrid** optimization to ensure accuracy. For **Lifetime fit** cell-level extraction after calibration, the fitting mode selects the optimization strategy. It is a trade-off between speed and the effort to avoid local minima.
 
-- `Local`: It uses the `leastsq` (least squares with Levenberg-Marquardt) algorithm if the chosen metric is `LS`, otherwise it uses the `nelder` (Nelder-Mead) algorithm.  
+- `Local`: It uses the `leastsq` (least squares with Levenberg-Marquardt) algorithm if the chosen metric is `WLS`, otherwise it uses the `nelder` (Nelder-Mead) algorithm.
 - `Hybrid`: The slower but more accurate option that combines the `differential evolution` algorithm to obtain a good initial guess for all parameters, followed by the `Local` optimizer to refine the solution. 
 
 ### Fit Free Calibration
