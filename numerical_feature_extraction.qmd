@@ -138,8 +138,8 @@ This weighting is Pearson's $\chi^2$ — the per-bin variance is taken from the 
 
 **Fit calibration** (IRF shift) always runs **Hybrid** optimization to ensure accuracy. For **Lifetime fit** cell-level extraction after calibration, the fitting mode selects the optimization strategy. It is a trade-off between speed and the effort to avoid local minima.
 
-- `Local`: It uses the `leastsq` (least squares with Levenberg-Marquardt) algorithm if the chosen metric is `WLS`, otherwise it uses the `nelder` (Nelder-Mead) algorithm.
-- `Hybrid`: The slower but more accurate option that combines the `differential evolution` algorithm to obtain a good initial guess for all parameters, followed by the `Local` optimizer to refine the solution. 
+- `Local`: Each cell is fit with a single local optimizer — `leastsq` (least squares with Levenberg-Marquardt) if the chosen metric is `WLS`, otherwise `nelder` (Nelder-Mead). To give those per-cell fits a good starting point, a one-time **warm start** is performed first: the `differential evolution` global optimizer is run once on the *mean* decay of all ROIs in the batch, and the resulting lifetimes (and the constant offset) seed the initial values for every per-cell fit. The mean is used rather than the sum so the seed stays at single-cell scale, keeping a cell's result independent of how many cells share its batch. This warm start runs once, up front, before the per-cell fits are [parallelized across CPU cores](#reconvolution-fitting); because the global search runs once for the whole batch instead of once per cell, `Local` is substantially faster than `Hybrid`.
+- `Hybrid`: The slower but more accurate option. For **each cell**, it runs the `differential evolution` algorithm to obtain a good initial guess for all parameters, followed by the `Local` optimizer to refine the solution.
 
 ### Fit Free Calibration
 
