@@ -83,7 +83,7 @@ Which group is treatment and which is control matters! From the formula of $\Del
 :::
 
 :::{.callout-note}
-To keep the point-based visualization style that supports [interactive hover](data_analysis.qmd#unique-id-hover) while showing the violin-plot-like distribution, [Sina plot](https://en.wikipedia.org/wiki/Sina_plot) is used: it uses `gaussian_kde` from `scikit-learn` to make sure the width of the point distribution is proportional to the kernel density. 
+To keep the point-based visualization style that supports [interactive hover](data_analysis.qmd#unique-id-hover) while showing the violin-plot-like distribution, [Sina plot](https://en.wikipedia.org/wiki/Sina_plot) is used: it uses `gaussian_kde` from `scipy.stats` to make sure the width of the point distribution is proportional to the kernel density.
 :::
 
 ### Absolute Cohen's d
