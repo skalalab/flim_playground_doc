@@ -13,8 +13,11 @@ This chapter addresses frequently asked questions about FLIM Playground.
 
 **A**: 
 - If the uploaded dataset was extracted by [Data Extraction](#sec-data-extraction), FLIM Playground will only match categorical features specified in the [Data Extraction configuration](data_extraction_config.qmd#categorical-features). Otherwise, FLIM Playground will only match categorical features specified in the [configuration](data_analysis_config.qmd#categorical-feature-config). 
+
     - If the categorical feature was in the corresponding configuration, and it is still not visible:
+
         - If you just added it, FLIM Playground may not have picked it up yet. Try refreshing the page.
+        
         - If you have already added it, then there is only one unique value in that categorical feature column. FLIM Playground will not show it.
 
 - It is ok if your dataset does not have all of the categorical features specified in either of the configurations. 
