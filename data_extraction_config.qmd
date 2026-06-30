@@ -1,11 +1,25 @@
 # Configuration {#sec-data-extraction-config}
 ::: {.callout-note}
-Users can configure the system once, and it will be applied to future data. 
+Configure FLIM Playground once and it is applied to all future data. You can also keep multiple named **configuration profiles** and switch between them — see [Extraction Profiles](#extraction-profiles).
 :::
 
 Constructing a framework that balances flexibility and usability is about choosing the right abstraction level. FLIM Playground chooses acquisition *channel* from [data levels](index.qmd#data-levels) as the focus and adopts the **channel-centric framework**. Settings are divided into two categories: [cross-channel configurations](#cross-channel-configurations) and [per-channel configurations](#per-channel-configurations).
 
 ![](extraction_ui_shots/config.png){width=100% fig-align=center}
+
+## Extraction Profiles
+
+**✨ NEW ✨**: Users can now create, save, and switch between multiple data extraction profiles — each an independent, ready-to-go setup for a different experiment or dataset. Up to **10 profiles** are supported.
+
+On the **Configuration** page:
+
+- Select an existing profile from the `Profile` dropdown to load it.
+- Create a new profile with `➕ Create` (give it a name, e.g. `experiment-B`).
+- Delete the active profile with `🗑️ Delete` (disabled when only one profile remains).
+
+![](extraction_ui_shots/config_profile.png){width=60% fig-align=center}
+
+A newly created profile starts blank. Fill in the settings described below and click `Update Configuration` to save it. Everything described below pertains to the current profile.
 
 ## Cross-Channel Configurations
 
@@ -140,4 +154,4 @@ For detailed information on what file formats are supported for each file type (
 For detailed information on how the file suffixes are used, and what each file type (e.g. `IRF`, `Mask`, etc.) is, see the [FOV Metadata Organization](#sec-fov-metadata) page. 
 
 ## Save 
-Finally, users can save the configuration for future use by clicking the `Update Configuration` button. 
+Finally, users can save the configuration into the **current profile** for future use by clicking the `Update Configuration` button.
