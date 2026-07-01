@@ -10,7 +10,7 @@
 ::: {.content-visible when-format="html"}
 ![](logo.gif){width=300px fig-align="center"}
 
-<p style="text-align: center; font-size: 0.85em; color: #666; margin-top: -10px;">*Logo courtesy of Matt Stefely. The <span style="color: #D3AE4A;">yellow</span> dot is a photon sliding down a lifetime decay curve 🛝.*</p>
+<p style="text-align: center; font-size: 0.85em; color: #666; margin-top: -10px;">*Logo courtesy of Matt Stefely. The <span style="color: #D3AE4A;">yellow</span> dot is a photon sliding down a lifetime decay curve 🛝.*^[It also appears in real life: ![FLIM Playground on a black t-shirt](fp_black.png){height=90px} ![FLIM Playground on a white t-shirt](fp_white.png){height=90px} ![FLIM Playground sticker](fp_sticker.png){height=90px} ![FLIM Playground on a water bottle](fp_waterbottle.jpeg){height=90px}]</p>
 :::
 
 ::: {.content-visible when-format="pdf"}
