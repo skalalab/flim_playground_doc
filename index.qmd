@@ -54,17 +54,9 @@ The latest version of this FLIM Playground manual is available [online](https://
 
 FLIM Playground is built entirely in Python and is open-source. 
 
-### Download
-Download the desktop app from [GitHub](https://github.com/skalalab/flim_playground) and double-click it to run. Releases are currently available for Windows 11, Mac OS 26, and Ubuntu 24.04. If your operating system is not either of these, you can build it yourself by following the instructions below. 
+For the complete, always-current instructions — per-platform download links, install steps, **upgrading**, and building from source — see the project README, kept as the single source of truth:
 
-### Build it yourself
-1. Clone the repo and navigate into the repository once cloned.
-
-2. Install the Python environment
-    - Install uv if not yet installed
-    - run `uv sync`
-3. Build the app
-    - run `pyinstaller Flim-Playground.spec --clean`
+👉 **[Installation & upgrade guide](https://github.com/skalalab/flim_playground#install)**
 
 ## Introduction
 
@@ -183,10 +175,10 @@ FLIM Playground has two independent sections:
 - [Metadata organization (B)](#sec-fov-metadata): extracts the field of view \textcolor[HTML]{C94146}{identifiers} and their configurations
 - [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell \textcolor[HTML]{D3AE4A}{numerical features} based on user-selected extractors. More extractors can be integrated in the future.
   - [Calibration (C)](numerical_feature_extraction.qmd#calibration): calibrate for IRF shift or use fluorescence lifetime standard
-  - Alternative lifetime extractors (D): 
+  - Lifetime extractors (D): 
     - [Fitting](#sec-lifetime-fit)
     - [Phasor](#sec-lifetime-fit-free)
-  - Alternative intensity-based extractors (D):
+  - Intensity-based extractors (D):
     - [Morphology](#sec-intensity-morphology)
     - [Texture](#sec-intensity-texture)
 - [Categorical feature extraction (E)](#sec-categorical-feature-extraction): extracts single-cell \textcolor[HTML]{4880D4}{categorical features} and combines experiment-level datasets.
@@ -225,7 +217,7 @@ Here is the list of analysis methods incorporated into FLIM Playground, grouped 
   - [Classification](#sec-classification)
 ::::
 
-Both sections are built in Python and as self-contained executables ready to run on major operating systems and in browsers (**H**).
+Both sections are built in Python and as self-contained apps ready to run on major operating systems and in browsers (**H**).
 
 ### Summary
 
