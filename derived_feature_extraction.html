@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Lifetime Features (Fit) – FLIM Playground</title>
+<title>10&nbsp; Derived Features – FLIM Playground</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,27 +23,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -53,8 +33,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./lifetime_fit_free.html" rel="next">
-<link href="./numerical_feature_extraction.html" rel="prev">
+<link href="./categorical_feature_extraction.html" rel="next">
+<link href="./intensity_texture.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -97,35 +77,6 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -300,7 +251,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./lifetime_fit.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./derived_feature_extraction.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -370,7 +321,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lifetime_fit.html" class="sidebar-item-text sidebar-link active">
+  <a href="./lifetime_fit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
   </div>
 </li>
@@ -394,7 +345,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./derived_feature.html" class="sidebar-item-text sidebar-link">
+  <a href="./derived_feature_extraction.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
   </div>
 </li>
@@ -520,25 +471,23 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#fitting" id="toc-fitting" class="nav-link active" data-scroll-target="#fitting"><span class="header-section-number">6.1</span> Fitting</a>
-  <ul class="collapse">
-  <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing"><span class="header-section-number">6.1.1</span> Preprocessing</a></li>
-  <li><a href="#fraction-of-components" id="toc-fraction-of-components" class="nav-link" data-scroll-target="#fraction-of-components"><span class="header-section-number">6.1.2</span> Fraction of components</a></li>
-  <li><a href="#mean-lifetime" id="toc-mean-lifetime" class="nav-link" data-scroll-target="#mean-lifetime"><span class="header-section-number">6.1.3</span> Mean lifetime</a></li>
-  <li><a href="#intensity-weighted-mean-lifetime" id="toc-intensity-weighted-mean-lifetime" class="nav-link" data-scroll-target="#intensity-weighted-mean-lifetime"><span class="header-section-number">6.1.4</span> Intensity-weighted mean lifetime</a></li>
-  <li><a href="#goodness-of-fit" id="toc-goodness-of-fit" class="nav-link" data-scroll-target="#goodness-of-fit"><span class="header-section-number">6.1.5</span> Goodness of fit</a></li>
-  </ul></li>
-  <li><a href="#pixel-pre-fit" id="toc-pixel-pre-fit" class="nav-link" data-scroll-target="#pixel-pre-fit"><span class="header-section-number">6.2</span> Pixel pre-fit</a></li>
+  <li><a href="#the-derived-features-builder" id="toc-the-derived-features-builder" class="nav-link active" data-scroll-target="#the-derived-features-builder"><span class="header-section-number">10.1</span> The Derived Features Builder</a></li>
+  <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates"><span class="header-section-number">10.2</span> Templates</a></li>
+  <li><a href="#custom-formulas" id="toc-custom-formulas" class="nav-link" data-scroll-target="#custom-formulas"><span class="header-section-number">10.3</span> Custom Formulas</a></li>
+  <li><a href="#cross-channel-features" id="toc-cross-channel-features" class="nav-link" data-scroll-target="#cross-channel-features"><span class="header-section-number">10.4</span> Cross-Channel Features</a></li>
+  <li><a href="#validation" id="toc-validation" class="nav-link" data-scroll-target="#validation"><span class="header-section-number">10.5</span> Validation</a></li>
+  <li><a href="#output" id="toc-output" class="nav-link" data-scroll-target="#output"><span class="header-section-number">10.6</span> Output</a></li>
+  <li><a href="#in-data-analysis" id="toc-in-data-analysis" class="nav-link" data-scroll-target="#in-data-analysis"><span class="header-section-number">10.7</span> In Data Analysis</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/lifetime_fit.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/derived_feature_extraction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./lifetime_fit.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./derived_feature_extraction.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-lifetime-fit" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></h1>
+<h1 class="title"><span id="sec-derived-feature" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></span></h1>
 </div>
 
 
@@ -555,52 +504,138 @@ window.Quarto = {
 </header>
 
 
-<p>Biological samples often contain mixtures of fluorescent species, each with its own characteristic lifetime. By modeling the decay as a sum of exponentials, the analysis can separate and quantify these different contributions. For example, NADH in cells exists in both free (short lifetime, ~0.4 ns) and protein-bound (longer lifetime, ~2–3 ns) states; by fitting the fluorescence decay with a bi-exponential model, one can estimate the fraction of each state, which provides direct insight into cellular metabolism and energy production pathways.</p>
-<p>FLIM Playground extracts cell-level lifetime fitting features in this feature extractor, including the fraction of each lifetime component (<span class="math inline">\(\alpha_i\)</span>), their lifetimes (<span class="math inline">\(\tau_i\)</span>), mean lifetime (<span class="math inline">\(\tau_{mean}\)</span>), intensity-weighted mean lifetime (<span class="math inline">\(\tau_{m,iw}\)</span>), and the reduced chi-square (<span class="math inline">\(\chi^2_r\)</span>) goodness-of-fit metric.</p>
-<p><span class="math display">\[I(t) = \sum_{i=1}^n A_i \, e^{-t/\tau_i}\]</span></p>
-<section id="fitting" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="fitting"><span class="header-section-number">6.1</span> Fitting</h2>
-<p>If the decays have not been pre-fit, FLIM Playground applies the confirmed fitting options (<a href="./numerical_feature_extraction.html#number-of-components">number of components</a>, <a href="./numerical_feature_extraction.html#fixed-lifetimes">fixed lifetimes</a>, <a href="./numerical_feature_extraction.html#time-gates">time gates</a>, <a href="./numerical_feature_extraction.html#metric">metric</a>, and <a href="./numerical_feature_extraction.html#fitting-mode">fitting mode</a>) to the same <a href="./numerical_feature_extraction.html#reconvolution-fitting">reconvolution fitting process</a> as in the <a href="./numerical_feature_extraction.html#fit-calibration">IRF shift calibration step</a>. The IRF shift is no longer a free variable to be optimized. Unlike calibration, which always uses hybrid optimization for shift estimation, users can choose between two fitting modes for cell-level lifetime fitting: <strong>Local</strong> or <strong>Hybrid</strong>. As with calibration, these per-cell fits are <a href="./numerical_feature_extraction.html#reconvolution-fitting">parallelized across CPU cores</a>. To recap, the reconvolution fitting minimizes the difference between the measured curve and the fitted curve modeled by a multi-exponential model convolved with the IRF, quantified by the cost metric.</p>
-<p><a href="#pixel-pre-fit">Otherwise</a>, FLIM Playground uses the <a href="./data_extraction.html#spcimage-t1">pre-fit values</a> to calculate the fitting features.</p>
-<p>In the final dataset, fitting features are prefixed by the combination of the feature extractor name (i.e.&nbsp;<code>Lifetime fit</code>) and the channel name, allowing <a href="data_analysis.html">Data Analysis</a> to group the features. For example, <code>Lifetime fit_nadh: a1</code> means the fraction of the first lifetime component for the NAD(P)H channel.</p>
-<section id="preprocessing" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="preprocessing"><span class="header-section-number">6.1.1</span> Preprocessing</h3>
-<p>It sums up all the pixel decays belonging to the same cell ROI labeled by the ROI <a href="./data_extraction.html#mask">mask</a> as one decay curve<span class="citation" data-cites="Samimi2025"><sup><a href="#ref-Samimi2025" role="doc-biblioref">1</a></sup></span>. The ROI summing reduces variability and bias and allows for short integration times at acquisition in exchange for sub-cellular resolution (i.e., pixel-level). Users do not need to specify the bin factor (each pixel sums up the surrounding pixels’ decay curves) to account for insufficient photon counts. ROI-level aggregation also keeps the workload manageable; independent ROI fits are then <a href="./numerical_feature_extraction.html#reconvolution-fitting">run in parallel across CPU cores</a>.</p>
-<p>It also shifts the IRF using the shift values from the <a href="./numerical_feature_extraction.html#fit-calibration">IRF shift calibration</a> step. To shift an IRF, FLIM Playground upsamples the IRF 10 times using linear interpolation to fill the gaps. Then it shifts the IRF by the shift values <span class="math inline">\(\times 10\)</span> and downsamples the IRF back to the original size.</p>
-</section>
-<section id="fraction-of-components" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="fraction-of-components"><span class="header-section-number">6.1.2</span> Fraction of components</h3>
-<p>In addition to the absolute amplitudes of each component directly from the fitting result, FLIM Playground calculates the fraction of each component, <span class="math inline">\(\alpha_i\)</span>, as the amplitude of the component divided by the sum of all amplitudes. This normalization allows lifetime to be independent of the absolute intensity of the signal.</p>
-</section>
-<section id="mean-lifetime" class="level3" data-number="6.1.3">
-<h3 data-number="6.1.3" class="anchored" data-anchor-id="mean-lifetime"><span class="header-section-number">6.1.3</span> Mean lifetime</h3>
-<p>The mean lifetime, <span class="math inline">\(\tau_{mean}\)</span>, is calculated as the weighted average of the lifetimes of all components, where the weights are the fractions of each component.</p>
-<p><span class="math display">\[\tau_{mean} = \sum_{i=1}^n \alpha_i \tau_i\]</span></p>
-</section>
-<section id="intensity-weighted-mean-lifetime" class="level3" data-number="6.1.4">
-<h3 data-number="6.1.4" class="anchored" data-anchor-id="intensity-weighted-mean-lifetime"><span class="header-section-number">6.1.4</span> Intensity-weighted mean lifetime</h3>
-<p>The <a href="#mean-lifetime">mean lifetime</a> above is amplitude-weighted: each component is weighted by its fraction <span class="math inline">\(\alpha_i\)</span>. The intensity-weighted mean lifetime, <span class="math inline">\(\tau_{m,iw}\)</span>, instead weights each component by its relative intensity contribution (<span class="math inline">\(\alpha_i \tau_i\)</span>), so longer-lived components — which emit more photons per molecule — count more.</p>
-<p><span class="math display">\[\tau_{m,iw} = \frac{\sum_{i=1}^n \alpha_i \tau_i^2}{\sum_{i=1}^n \alpha_i \tau_i} = \frac{\sum_{i=1}^n \alpha_i \tau_i^2}{\tau_{mean}}\]</span></p>
-<p>For a single component, <span class="math inline">\(\tau_{m,iw} = \tau_1\)</span>. Both <span class="math inline">\(\tau_{mean}\)</span> and <span class="math inline">\(\tau_{m,iw}\)</span> are reported, whether the features come from fitting or from the <a href="#pixel-pre-fit">pixel pre-fit</a> workflow.</p>
-</section>
-<section id="goodness-of-fit" class="level3" data-number="6.1.5">
-<h3 data-number="6.1.5" class="anchored" data-anchor-id="goodness-of-fit"><span class="header-section-number">6.1.5</span> Goodness of fit</h3>
-<p>For each fitted decay, FLIM Playground also reports the reduced chi-square (<span class="math inline">\(\chi^2_r\)</span>) as a goodness-of-fit diagnostic:</p>
-<p><span class="math display">\[\chi^2_r = \frac{1}{N - p}\sum_{n} \frac{\bigl(y_n - \hat{y}_n\bigr)^2}{\hat{y}_n}\]</span></p>
-<p>where the sum runs over the time bins within the <a href="./numerical_feature_extraction.html#time-gates">time gates</a> that have a positive model value (<span class="math inline">\(\hat{y}_n &gt; 0\)</span>), <span class="math inline">\(y_n\)</span> is the measured count, <span class="math inline">\(\hat{y}_n\)</span> is the fitted value, <span class="math inline">\(N\)</span> is the number of those bins, and <span class="math inline">\(p\)</span> is the number of free parameters (amplitudes, lifetimes, and the offset, minus any <a href="./numerical_feature_extraction.html#fixed-lifetimes">fixed lifetimes</a>). Values near 1 indicate a good fit.</p>
-</section>
-</section>
-<section id="pixel-pre-fit" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="pixel-pre-fit"><span class="header-section-number">6.2</span> Pixel pre-fit</h2>
-<p>Currently, FLIM Playground supports pixel pre-fit lifetime features from <a href="https://www.becker-hickl.com/products/spcimage/">SPCImage</a>. The pixel-level lifetime fitting features are expected to be stored in <a href="./data_extraction.html#spcimage-t1">2D arrays</a> in spatial dimensions, with each row and column having the value of a lifetime feature outputted from SPCImage. SPCImage assigns <code>0</code> for pixels that are not fitted (e.g.&nbsp;thresholded out). To avoid them biasing the results, FLIM Playground uses <code>np.ma.masked_array</code> to create a masked array and disregards them when calculating the averages using <code>np.ma.average</code>.</p>
-<p>Then it uses the ROI <a href="./data_extraction.html#mask">mask</a> to calculate the cell-level lifetime features by averaging the pixel-level features within each ROI.</p>
-
-
-<div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
-<div id="ref-Samimi2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Samimi, K. <em>et al.</em> Segmentation-guided photon pooling enables robust single cell analysis and fast fluorescence lifetime imaging microscopy. <em>bioRxiv</em> <a href="https://doi.org/10.1101/2025.09.30.679660">https://doi.org/10.1101/2025.09.30.679660</a> (2025) doi:<a href="https://doi.org/10.1101/2025.09.30.679660">10.1101/2025.09.30.679660</a>.</div>
+<p>FLIM Playground lets users compose <strong>derived features</strong> from features defined by the feature extractors defined in the previous chapters, potentially from <em>different channels</em>.</p>
+<p>An example would be the normalized optical redox ratio, composed from the intensity_sum feature from each of the two channels: NAD(P)H / (FAD + NAD(P)H).</p>
+<p>A derived feature travels across three pages:</p>
+<ul>
+<li>It is <strong>defined</strong> in the <code>Derived features</code> builder on the <a href="data_extraction_config.html">Configuration</a> page.</li>
+<li>It is <strong>computed</strong> during <a href="numerical_feature_extraction.html">Numerical Feature Extraction</a>, from the features extracted for each channel.</li>
+<li>It is <strong>analyzed</strong> on the <a href="data_analysis.html">Data Analysis</a> page, where all derived features form a single <code>Derived Features</code> group.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="extraction_ui_shots/derived_features.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<section id="the-derived-features-builder" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="the-derived-features-builder"><span class="header-section-number">10.1</span> The Derived Features Builder</h2>
+<p>The builder is revealed by a <code>Derived features</code> checkbox near the bottom of the <a href="data_extraction_config.html">Configuration</a> page. Its hover <code>?</code> reads: “Build new features from arithmetic over already-extracted features (e.g.&nbsp;a redox ratio). Each becomes a <strong>Derived: <em>name</em></strong> column and, in Data Analysis, a single <strong>Derived Features</strong> group. Operands may span channels.” The checkbox is ticked automatically for a profile that already defines derived features.</p>
+<p>Any derived features already defined for the current profile are listed at the top, each showing its name, its expanded formula, and a <code>🗑️</code> button to delete it. Below the list, a new feature is composed from:</p>
+<ul>
+<li>a <code>Template</code> (a common formula, or <code>Custom…</code> to write your own),</li>
+<li>a <code>Name</code> (placeholder <code>e.g. redox_ratio</code>) — the output column becomes <code>Derived: &lt;name&gt;</code>, and</li>
+<li>the operands that fill the formula.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<p>The builder draws its operand choices from the feature extractors currently selected for your channels. If no channel has a <a href="./data_extraction_config.html#feature-extractor">feature extractor</a> selected yet, the builder shows “Select feature extractors for your channels first — there are no features to derive from yet.” — configure the extractors first, then come back.</p>
+</div>
+</div>
+<p>Unlike the rest of the Configuration page, adding or deleting a derived feature is <strong>saved immediately</strong> — you do not need to click <code>Update Configuration</code>. Derived features are stored <strong>per profile</strong>, so each <a href="./data_extraction_config.html#extraction-profiles">extraction profile</a> keeps its own set.</p>
+</section>
+<section id="templates" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="templates"><span class="header-section-number">10.2</span> Templates</h2>
+<p>Choosing a <code>Template</code> other than <code>Custom…</code> fills in the formula for you and renders one searchable dropdown per operand slot (<code>A</code>, <code>B</code>, …). Four ready-made templates are provided:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Template</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Normalized  A / (A + B)</code></td>
+<td><code>A/(A+B)</code></td>
+</tr>
+<tr class="even">
+<td><code>Ratio  A / B</code></td>
+<td><code>A/B</code></td>
+</tr>
+<tr class="odd">
+<td><code>Difference  A − B</code></td>
+<td><code>A-B</code></td>
+</tr>
+<tr class="even">
+<td><code>Sum  A + B</code></td>
+<td><code>A+B</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each takes two operands: pick a feature for <code>A</code> and a feature for <code>B</code>, give the result a <code>Name</code>, and the <a href="#validation">live preview</a> confirms it. The fifth option, <code>Custom…</code>, unlocks the free formula editor described next.</p>
+</section>
+<section id="custom-formulas" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="custom-formulas"><span class="header-section-number">10.3</span> Custom Formulas</h2>
+<p><code>Custom…</code> mode lets you compose an arbitrary formula. First pick the operands from the <code>Operands (each becomes A, B, C… in the order picked)</code> multiselect — the features you choose are aliased <code>A</code>, <code>B</code>, <code>C</code>, … in pick order, and a caption echoes the mapping (e.g.&nbsp;<code>A = Intensity texture_fad: intensity_sum,  B = …</code>). Then build the formula in the <code>Formula</code> box, typing directly or using the append buttons for the operators (<code>+ - * / ( )</code>) and for each alias.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="extraction_ui_shots/derived_custom.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<p>The formula language is deliberately small and safe — it is a restricted interpreter, <strong>not</strong> Python <code>eval</code>. It supports:</p>
+<ul>
+<li>the four arithmetic operators <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>,</li>
+<li>a leading sign (unary <code>+</code> / <code>-</code>),</li>
+<li>numeric constants, and</li>
+<li>parentheses for grouping.</li>
+</ul>
+<p>Division by zero yields <code>NaN</code> rather than raising an error or producing infinity. Anything outside this language — function calls, exponentiation (<code>**</code>), modulo (<code>%</code>), comparisons, or a bare operand with no operator — is rejected (see <a href="#validation">Validation</a>).</p>
+</section>
+<section id="cross-channel-features" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="cross-channel-features"><span class="header-section-number">10.4</span> Cross-Channel Features</h2>
+<p>Operands are the full <code>{Extractor}_{channel}: {suffix}</code> feature columns, so an operand carries its channel with it. Choosing operands from <em>different</em> channels is all it takes to make a feature cross-channel.</p>
+<p>For example, to build an optical redox ratio, select the <code>Normalized  A / (A + B)</code> template, name it <code>redox_ratio</code>, and choose:</p>
+<ul>
+<li><code>A</code> = <code>Intensity texture_fad: intensity_sum</code></li>
+<li><code>B</code> = <code>Intensity texture_nadh: intensity_sum</code></li>
+</ul>
+<p>The result, <code>redox_ratio = FAD / (FAD + NAD(P)H)</code>, is computed per cell. However many channels its operands come from, a derived feature is a single column and joins one <code>Derived Features</code> group — it is never split back out per channel.</p>
+</section>
+<section id="validation" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="validation"><span class="header-section-number">10.5</span> Validation</h2>
+<p>The builder validates the name and formula live, and only enables <code>➕ Add derived feature</code> once both are valid:</p>
+<ul>
+<li>On success, a green preview shows <code>✓  Derived: &lt;name&gt;  =  &lt;expanded formula&gt;</code>, with the aliases replaced by their real column names.</li>
+<li>An empty or operator-less formula reports <code>Invalid formula: empty formula</code> or <code>Invalid formula: use an operator — a lone feature (e.g. 'A') just duplicates a column</code>.</li>
+<li>An unknown alias reports <code>Invalid formula: unknown operand '&lt;id&gt;'</code>; a disallowed operation reports <code>Invalid formula: only operands (A, B, …), numbers, + - * / and parentheses are allowed</code>.</li>
+<li>A name containing <code>": "</code> reports <code>Name cannot contain ': '.</code>, and a name already used by another derived feature shows <code>A derived feature named '&lt;name&gt;' already exists.</code> in red.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="extraction_ui_shots/derived_validation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</section>
+<section id="output" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="output"><span class="header-section-number">10.6</span> Output</h2>
+<p>Derived features are computed during <a href="numerical_feature_extraction.html">Numerical Feature Extraction</a>, right after each field of view’s base features are extracted and concatenated. The definitions are baked into the FOV metadata, so re-running extraction from a saved metadata file reproduces the same derived columns. Each definition adds one <code>Derived: &lt;name&gt;</code> column to the output dataset.</p>
+<p>Operands come only from the categorized numerical features. Raw bookkeeping columns — such as <code>amp1</code>, <code>offset</code>, <code>reduced_chi_square</code>, the centroid coordinates, and the <code>a2</code> / <code>a3</code> fit remainders — are intentionally excluded from the operand list and cannot be used as derived-feature inputs.</p>
+<p>If any cell ends up with a <code>NaN</code> in a derived column (for instance from a divide-by-zero or a <code>NaN</code> operand), a single dataset-wide warning is shown for that feature — “Derived feature <strong>name</strong> has <strong>N</strong> NaN value(s) out of <em>M</em> cell(s) (e.g.&nbsp;from divide-by-zero or a NaN operand).” As with other features, cells with <code>NaN</code> are <strong>not</strong> dropped from the output.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="extraction_ui_shots/derived_output.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</section>
+<section id="in-data-analysis" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="in-data-analysis"><span class="header-section-number">10.7</span> In Data Analysis</h2>
+<p>On the <a href="data_analysis.html">Data Analysis</a> page, all derived features are collected into one <code>Derived Features</code> group in the <a href="./data_analysis.html#numerical-selection-widgets">numerical selection widgets</a>, alongside the per-extractor groups. A derived feature is labeled by its plain name (e.g.&nbsp;<code>redox_ratio</code>); unlike extracted lifetime or intensity features, it carries no unit or symbol, since its meaning is entirely user-defined.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="analysis_ui_shots/derived_analysis.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+<p>In the final dataset, each derived feature becomes a <code>Derived: &lt;name&gt;</code> column, allowing <a href="data_analysis.html">Data Analysis</a> to collect them all into a single <code>Derived Features</code> group. For example, <code>Derived: redox_ratio</code> holds the per-cell optical redox ratio computed from the FAD and NAD(P)H intensity features.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -1021,13 +1056,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./numerical_feature_extraction.html" class="pagination-link" aria-label="Numerical Feature Extraction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Numerical Feature Extraction</span></span>
+      <a href="./intensity_texture.html" class="pagination-link" aria-label="Textural Features">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Textural Features</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lifetime_fit_free.html" class="pagination-link" aria-label="Lifetime Features (Fit-Free)">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./categorical_feature_extraction.html" class="pagination-link" aria-label="Categorical Feature Extraction">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1036,4 +1071,4 @@ window.Quarto = {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/lifetime_fit.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/derived_feature_extraction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
