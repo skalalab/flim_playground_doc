@@ -3,6 +3,7 @@ _book/
 /.quarto/
 .DS_Store
 *.aux
+*.toc
 *.fls
 *.fdb_latexmk
 *.log

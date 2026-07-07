@@ -85,7 +85,7 @@ Since the instrumental response function (IRF) or the fluorescence lifetime stan
 
 ### Number of Channels
 
-Each FOV is assumed to have the same number of channels. The configuration will dynamically adjust the [per-channel configurations](#per-channel-configurations) based on the specified number of channels. Currently, the maximum number of channels is 4, and it can be extended to house more channels.  
+Each FOV is assumed to have the same number of channels. The configuration will dynamically adjust the [per-channel configurations](#per-channel-configurations) based on the specified number of channels. Currently, the maximum number of channels is 8. When more than four channels are configured, the first four fold into a collapsed `Channels 1–4` group while the newer channels (5 and up) stay expanded, so the ones you just added remain in view.
 
 ## Per-Channel Configurations
 
@@ -124,7 +124,7 @@ Four types of feature extractors are available if the [imaging modality](#imagin
 ![](extraction_ui_shots/config_feature_extractor.png){width=80% fig-align=center}
 
 ::: {.callout-note}
-If the decay type is [2D decay](#two-d-decay), the [Intensity Morphology](#sec-intensity-morphology) and [Intensity Texture](#sec-intensity-texture) feature extractors are **not** applicable.
+If the decay type is [2D decay](#two-d-decay), the [Intensity Morphology](#sec-intensity-morphology) feature extractor is **not** applicable, because there is no ROI mask to measure. The [Intensity Texture](#sec-intensity-texture) extractor *is* available, but a 2D decay CSV has no intensity image, so it produces only the single `intensity_sum` feature (the sum of each cell's decay curve).
 :::
 
 The [Intensity Morphology](#sec-intensity-morphology) and [Intensity Texture](#sec-intensity-texture) feature extractors are available if the [imaging modality](#imaging-modality) is `Intensity-only`.
@@ -141,6 +141,10 @@ If users select the `Lifetime fit` under this channel, they can specify the numb
 
 Users can optionally assign a fixed value (in ns) for specific lifetime components (when $n>1$, e.g., $t_1$, $t_2$). If a value is provided, it serves as the default fixed lifetime during the [interactive fitting phase](numerical_feature_extraction.qmd#fixed-lifetimes). If left blank (or set to 0), the lifetime acts as a free parameter to be optimized. This is particularly useful when analyzing fluorophores with prior knowledge of their lifetimes.
 
+::: {.callout-note}
+Fixed lifetimes apply only to channels that FLIM Playground fits. For [pre-fit](#three-d4d-pixel-pre-fit) inputs (SPCImage `.asc`), whose lifetimes are read rather than fit, the fixed-lifetime controls are not shown.
+:::
+
 ### File Suffix
 
 The [FOV Metadata Organization](#sec-fov-metadata) step looks for associated input files for all channels of a given FOV using file suffixes. Based on the [decay type](#decay-types), [calibration method](#calibration-method), and the selected [feature extractors](#feature-extractor), the system automatically generates the file suffixes for required input files. 
@@ -153,5 +157,11 @@ For detailed information on what file formats are supported for each file type (
 
 For detailed information on how the file suffixes are used, and what each file type (e.g. `IRF`, `Mask`, etc.) is, see the [FOV Metadata Organization](#sec-fov-metadata) page. 
 
-## Save 
+## Derived Features
+
+The Configuration page also hosts the `Derived features` builder, which composes new single-cell features by arithmetic over the features you already extract — optionally combining operands from different channels (for example, an optical redox ratio). Definitions are saved with the [current profile](#extraction-profiles) and computed later, during [Numerical Feature Extraction](#sec-numerical-feature-extraction). See [Derived Features](#sec-derived-feature) for the full walkthrough.
+
+![](extraction_ui_shots/derived_features.png){width=100% fig-align=center}
+
+## Save
 Finally, users can save the configuration into the **current profile** for future use by clicking the `Update Configuration` button.

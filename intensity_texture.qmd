@@ -19,6 +19,10 @@ Mass displacement is the Euclidean distance (in pixels) between the intensity-we
 ## Intensity Sum
 Intensity sum is defined as the sum of pixel intensities within the cell intensity image.
 
+::: {.callout-note}
+For a [2D decay](data_extraction_config.qmd#two-d-decay) channel there is no intensity image or ROI mask, so [Granularity](#granularity), [Radial Distribution](#radial-distribution), and [Mass Displacement](#mass-displacement) cannot be computed. Selecting `Intensity Texture` for such a channel therefore yields only `intensity_sum`, defined here as the sum of the cell's decay curve (its total photon count across all time bins). The output column is `Intensity texture_{channel}: intensity_sum`.
+:::
+
 In the final dataset, feature names are prefixed by the combination of the feature extractor name (i.e. `Intensity texture`) and the channel name, allowing [Data Analysis](#sec-data-analysis) to group the features. For example, `Intensity texture_nadh: granularity_1` means the percentage of intensity removed when bright objects of 1-pixel radius are removed in the NAD(P)H channel.
 
 ::: {.callout-note collapse="true" title="Visual explanation"}

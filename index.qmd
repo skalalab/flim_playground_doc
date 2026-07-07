@@ -71,11 +71,12 @@ In frequency-domain FLIM, the phase shift and modulation depth of the emission r
 :::
 
 ## Challenges
+
 A diverse set of [tools](https://www.phasorpy.org/docs/stable/phasor_approach/#software) — both open-source and commercial, ranging from libraries to code-free graphical user interfaces (GUIs) — is available to extract and analyze FLIM data, providing alternative methods and therefore flexibility to FLIM researchers. Examples include [PhasorPy](https://www.phasorpy.org/) [@phasorpy25], an open-source library for analyzing fluorescence lifetime using the phasor approach; [FLUTE](https://github.com/LaboratoryOpticsBiosciences/FLUTE) [@flute23], an open-source GUI for interactive phasor analysis; [FLIMPA](https://github.com/SofiaKapsiani/FLIMPA) [@flimpa2025], an open-source phasor analysis GUI enabling batch processing, ROI-based quantification, and experiment-level comparison through manual assignment; [FLIMLib](https://flimlib.github.io/), an open-source generic curve fitting library that can be used to fit fluorescence lifetime decay data; [SPCImage](https://www.becker-hickl.com/products/spcimage/) [@becker2021], a commercial software for fitting and phasor features.
 
-However, while some tools offer code-free interfaces, users still need to write custom code—either to prepare data in the proper format as input, or to further process their outputs for downstream analysis. The fragmentation between tools arises because each focuses on only a subset of data levels: pixel, cell ROI, channel, field of view, and experiment. 
+However, while some tools offer code-free interfaces, users still need to write custom code—either to prepare data in the proper format as input, or to further process their outputs for downstream analysis. The fragmentation between tools arises because each focuses on only a subset of **data levels**: pixel, cell ROI, channel, field of view, and experiment. 
 
-### Data Levels
+:::: {#data-levels .callout-note collapse="true" title="Data Levels"}
 
 ::: {.content-visible when-format="html"}
 - <span style="color: #1f77b4;">**Pixel**</span>: 
@@ -122,7 +123,9 @@ Additionally, the use of FLIM is rapidly evolving, and new methods are being dev
 Finally, many of the existing tools, including GUI-based software, are not cross-platform, which limits their accessibility. The [Installation](#installation) addresses this last challenge.
 
 A closer parallel to FLIM Playground's integrated approach is the combination of [CellProfiler](https://cellprofiler.org/) [@cellprofiler4], which extracts per-object morphological and texture features, and [CellProfiler Analyst](https://cellprofileranalyst.org/) [@cpa21], which ingests these outputs or other feature tables for visualization and statistical analysis. However, FLIM Playground stands apart in that it can extract lifetime features from time-resolved data, alongside morphological and texture features from intensity images. Its general Data Analysis section incorporates FLIM-specific methods (e.g., [phasor analysis](#sec-phasor-analysis)) and provides statistical models that address additional analysis aspects such as data heterogeneity, in addition to training machine learning classifiers.
- 
+
+::::
+
 ## Method
 
 ### Feature Classes
@@ -161,12 +164,13 @@ FLIM Playground has two independent sections:
 - [Metadata organization (B)](#sec-fov-metadata): extracts the field of view <span style="color: #C94146;">identifiers</span> and their configurations
 - [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell <span style="color: #D3AE4A;">numerical features</span> based on user-selected extractors. More extractors can be integrated in the future.
   - [Calibration (C)](numerical_feature_extraction.qmd#calibration): calibrate for IRF shift or use fluorescence lifetime standard for phasor extraction
-  - Alternative lifetime extractors (D): 
+  - Lifetime extractors (D): 
     - [Fitting](#sec-lifetime-fit)
     - [Phasor](#sec-lifetime-fit-free)
-  - Alternative intensity-based extractors (D):
+  - Intensity-based extractors (D):
     - [Morphology](#sec-intensity-morphology)
     - [Texture](#sec-intensity-texture)
+  - [Derived features](#sec-derived-feature)
 - [Categorical feature extraction (E)](#sec-categorical-feature-extraction): extracts single-cell <span style="color: #4880D4;">categorical features</span> and combines experiment-level datasets.
 :::
 
@@ -181,6 +185,7 @@ FLIM Playground has two independent sections:
   - Intensity-based extractors (D):
     - [Morphology](#sec-intensity-morphology)
     - [Texture](#sec-intensity-texture)
+  - [Derived features](#sec-derived-feature)
 - [Categorical feature extraction (E)](#sec-categorical-feature-extraction): extracts single-cell \textcolor[HTML]{4880D4}{categorical features} and combines experiment-level datasets.
 :::
 
@@ -203,7 +208,7 @@ Here is the list of analysis methods incorporated into FLIM Playground, grouped 
 - [Multivariate analysis](data_analysis.qmd#multivariate-analysis)
   - [Dimension Reduction](#sec-dimension-reduction)
   - [Classification](#sec-classification)
-::::
+:::
 
 ::: {.content-visible when-format="pdf"}
 - [Univariate analysis](data_analysis.qmd#univariate-analysis)
@@ -215,7 +220,7 @@ Here is the list of analysis methods incorporated into FLIM Playground, grouped 
 - [Multivariate analysis](data_analysis.qmd#multivariate-analysis)
   - [Dimension Reduction](#sec-dimension-reduction)
   - [Classification](#sec-classification)
-::::
+:::
 
 Both sections are built in Python and as self-contained apps ready to run on major operating systems and in browsers (**H**).
 

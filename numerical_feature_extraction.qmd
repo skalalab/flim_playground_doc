@@ -4,7 +4,7 @@ In this step, FLIM Playground extracts *single-cell* numerical features from the
 - [Lifetime fit](#sec-lifetime-fit): fit exponential models to decay curves to estimate lifetimes and their fractional contributions by minimizing an objective function. 
 - [Lifetime fit free](#sec-lifetime-fit-free): transform decay curves to phasor space using Fourier transform to obtain phasor coordinates. 
 - [Intensity Morphology](#sec-intensity-morphology): morphological features of single-cell ROI masks
-- [Intensity Texture](#sec-intensity-texture): texture features of single-cell ROI intensity images
+- [Intensity Texture](#sec-intensity-texture): texture features of single-cell ROI intensity images (or, for 2D decay input, just the per-cell decay-curve sum, `intensity_sum`)
 
 ## Input 
 
@@ -101,6 +101,10 @@ where $*$ denotes linear convolution and the subscript $(0:N)$ denotes truncatin
 ##### Fixed Lifetimes
 
 While finding the optimal amplitudes $A_i$ and lifetimes $\tau_i$ (when [number of components](#number-of-components) is greater than 1), users can optionally assign fixed values to specific $\tau_i$ components during the interactive fitting phase. These explicit constraints remain constant (are not treated as free parameters) while minimizing the cost metric, making the optimization more robust when the true lifetime state is known. The default fixed lifetime values can be initialized in the [Data Extraction Configuration](data_extraction_config.qmd#fixed-lifetimes).
+
+::: {.callout-note}
+Fixed lifetimes apply only to channels that FLIM Playground fits. For [pre-fit](data_extraction_config.qmd#three-d4d-pixel-pre-fit) inputs (SPCImage `.asc`), whose lifetimes are read rather than fit, the fixed-lifetime controls are not shown.
+:::
 
 ##### Time Gates
 Due to the dead time of the system certain time bins from the head and/or tail of the decay curve are not reliable. The T1 (head) and T2 (tail) gates are used to select the time range of the decay curve to be fitted. Users can inspect the decay curve by clicking the full-screen mode button of the plot on the right of the [shift result](#irf-shift). Hover-based interaction is implemented so users can see the time bin numbers to have a better sense of the time range. 

@@ -11,6 +11,7 @@ book:
         - lifetime_fit_free.qmd
         - intensity_morphology.qmd
         - intensity_texture.qmd
+        - derived_feature.qmd
         - categorical_feature_extraction.qmd
     - part: "Data Analysis"
       chapters:
