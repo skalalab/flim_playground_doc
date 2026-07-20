@@ -2,7 +2,7 @@
 
 Biological samples often contain mixtures of fluorescent species, each with its own characteristic lifetime. By modeling the decay as a sum of exponentials, the analysis can separate and quantify these different contributions. For example, NADH in cells exists in both free (short lifetime, ~0.4 ns) and protein-bound (longer lifetime, ~2–3 ns) states; by fitting the fluorescence decay with a bi-exponential model, one can estimate the fraction of each state, which provides direct insight into cellular metabolism and energy production pathways. 
 
-FLIM Playground extracts cell-level lifetime fitting features in this feature extractor, including the fraction of each lifetime component ($\alpha_i$), their lifetimes ($\tau_i$), mean lifetime ($\tau_{mean}$), intensity-weighted mean lifetime ($\tau_{m,iw}$), and the reduced chi-square ($\chi^2_r$) goodness-of-fit metric.
+FLIM Playground extracts cell-level lifetime fitting features in this feature extractor, including the fraction of each lifetime component ($\alpha_i$), their lifetimes ($\tau_i$), mean lifetime ($\tau_{mean}$), intensity-weighted mean lifetime ($\tau_{m,iw}$), and the reduced chi-square ($\chi^2_r$) goodness-of-fit metric. (See [here](numerical_feature_extraction.qmd#number-of-components) for the definition of the equation below)
 
 $$I(t) = \sum_{i=1}^n A_i \, e^{-t/\tau_i}$$
 
