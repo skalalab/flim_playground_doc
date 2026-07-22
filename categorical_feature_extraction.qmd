@@ -37,4 +37,4 @@ A live preview of the assignment is displayed.
 
 ![](extraction_ui_shots/cat_slot_assign.png){width=100% fig-align=center}
 
-And the merged dataset with categorical features is available for download. 
+Clicking `Confirm category mapping & export the combined dataset` then writes the merged dataset with the categorical features as a timestamped CSV (`{timestamp}_combined.csv`) into the same folder as the input dataset. Note that this is a direct file write rather than a browser download, so the file is saved on the machine running FLIM Playground. When using the [hosted demo](https://flim-playground.streamlit.app/), the file is written to the server and does not reach your computer, which is one reason Data Extraction is intended to be run on a local installation.

@@ -6,7 +6,7 @@ The first step is to create a single-cell intensity image for each cell based on
 ## Granularity
 $Granularity_n$ is the percentage of intensity contributed by bright objects of $n$ pixels in radius. It is computed by performing a morphological opening with a disk of radius n on the cell intensity image and measuring the intensity lost as a percentage of the total intensity of the original cell ROI.
 
-$n = 1, 3, 5, 7, 9$ are computed. 
+$n = 1, 3, 5, 7$ are computed.
 
 Semantically, higher granularity at smaller scales implies higher fragmentation. 
 

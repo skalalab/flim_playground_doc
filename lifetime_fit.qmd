@@ -8,11 +8,21 @@ $$I(t) = \sum_{i=1}^n A_i \, e^{-t/\tau_i}$$
 
 ## Fitting 
 
-If the decays have not been pre-fit, FLIM Playground applies the confirmed fitting options ([number of components](numerical_feature_extraction.qmd#number-of-components), [fixed lifetimes](numerical_feature_extraction.qmd#fixed-lifetimes), [time gates](numerical_feature_extraction.qmd#time-gates), [metric](numerical_feature_extraction.qmd#metric), and [fitting mode](numerical_feature_extraction.qmd#fitting-mode)) to the same [reconvolution fitting process](numerical_feature_extraction.qmd#reconvolution-fitting) as in the [IRF shift calibration step](numerical_feature_extraction.qmd#fit-calibration). The IRF shift is no longer a free variable to be optimized. Unlike calibration, which always uses hybrid optimization for shift estimation, users can choose between two fitting modes for cell-level lifetime fitting: **Local** or **Hybrid**. As with calibration, these per-cell fits are [parallelized across CPU cores](numerical_feature_extraction.qmd#reconvolution-fitting). To recap, the reconvolution fitting minimizes the difference between the measured curve and the fitted curve modeled by a multi-exponential model convolved with the IRF, quantified by the cost metric. 
+If the decays have not been pre-fit, FLIM Playground applies the confirmed fitting options ([number of components](numerical_feature_extraction.qmd#number-of-components), [fixed lifetimes](numerical_feature_extraction.qmd#fixed-lifetimes), [time gates](numerical_feature_extraction.qmd#time-gates), [metric](numerical_feature_extraction.qmd#metric), and [fitting mode](numerical_feature_extraction.qmd#fitting-mode)) to the same [reconvolution fitting process](numerical_feature_extraction.qmd#reconvolution-fitting) as in the [IRF shift calibration step](numerical_feature_extraction.qmd#fit-calibration). The IRF shift is no longer a free variable to be optimized. The calibration step and the cell-level fit share a single **Fitting Mode** setting, and whenever any channel requires shift estimation — which is always the case for `Lifetime fit` on decays that have not been pre-fit — that setting is restricted to **Hybrid**. The `Local` mode therefore does not apply to this workflow; see [fitting mode](numerical_feature_extraction.qmd#fitting-mode) for when it becomes available. As with calibration, these per-cell fits are [parallelized across CPU cores](numerical_feature_extraction.qmd#reconvolution-fitting). To recap, the reconvolution fitting minimizes the difference between the measured curve and the fitted curve modeled by a multi-exponential model convolved with the IRF, quantified by the cost metric. 
 
 [Otherwise](#pixel-pre-fit), FLIM Playground uses the [pre-fit values](data_extraction.qmd#spcimage-t1) to calculate the fitting features. 
 
-In the final dataset, fitting features are prefixed by the combination of the feature extractor name (i.e. `Lifetime fit`) and the channel name, allowing [Data Analysis](#sec-data-analysis) to group the features. For example, `Lifetime fit_nadh: a1` means the fraction of the first lifetime component for the NAD(P)H channel. 
+In the final dataset, the primary fitting features are prefixed by the combination of the feature extractor name (i.e. `Lifetime fit`) and the channel name, allowing [Data Analysis](#sec-data-analysis) to group the features. For example, `Lifetime fit_nadh: a1` means the fraction of the first lifetime component for the NAD(P)H channel.
+
+Not every column produced by this extractor carries that prefix. The lifetimes ($\tau_i$, $\tau_{mean}$, $\tau_{m,iw}$) and the leading fractions do, but the raw amplitudes ($A_i$), the constant offset, the reduced chi-square, and the final fraction (which is derived as the remainder of the others) are written with only the channel name, e.g. `nadh_reduced_chi_square`. These are treated as bookkeeping values, so Data Analysis places them in the **Uncategorized Features** group rather than under `Lifetime fit_nadh`.
+
+::: {.callout-important title="Units in the exported dataset"}
+The extracted CSV mixes three units, so check the column before using a value in a formula:
+
+- **Lifetimes** (`t1`, `t2`, `t3`, `tm`, `tm_iw`) are exported in **picoseconds**, even though this chapter writes the formulas in nanoseconds.
+- **Fractions** (`a1`, `a2`, `a3`) are exported as **percentages** in the range 0–100, not as the 0–1 fraction $\alpha_i$ used in the formulas below. Divide by 100 before substituting them into $\tau_{mean}$ or $\tau_{m,iw}$.
+- Phasor-derived lifetimes from the [Lifetime fit free](#sec-lifetime-fit-free) extractor (`Tau_phase`, `Tau_mod`) are in **nanoseconds**.
+:::
 
 ### Preprocessing 
 
@@ -22,7 +32,9 @@ It also shifts the IRF using the shift values from the [IRF shift calibration](n
 
 ### Fraction of components
 
-In addition to the absolute amplitudes of each component directly from the fitting result, FLIM Playground calculates the fraction of each component, $\alpha_i$, as the amplitude of the component divided by the sum of all amplitudes. This normalization allows lifetime to be independent of the absolute intensity of the signal. 
+In addition to the absolute amplitudes of each component directly from the fitting result, FLIM Playground calculates the fraction of each component, $\alpha_i$, as the amplitude of the component divided by the sum of all amplitudes. This normalization allows lifetime to be independent of the absolute intensity of the signal.
+
+$\alpha_i$ is a value between 0 and 1, and it is used in that form throughout the formulas in this chapter. In the exported dataset, however, the corresponding `a1`/`a2`/`a3` columns are stored as **percentages** ($\alpha_i \times 100$, ranging from 0 to 100). The final fraction is not fitted independently; it is derived as the remainder that makes the fractions sum to 100.
 
 ### Mean lifetime
 
@@ -36,7 +48,9 @@ The [mean lifetime](#mean-lifetime) above is amplitude-weighted: each component 
 
 $$\tau_{m,iw} = \frac{\sum_{i=1}^n \alpha_i \tau_i^2}{\sum_{i=1}^n \alpha_i \tau_i} = \frac{\sum_{i=1}^n \alpha_i \tau_i^2}{\tau_{mean}}$$
 
-For a single component, $\tau_{m,iw} = \tau_1$. Both $\tau_{mean}$ and $\tau_{m,iw}$ are reported, whether the features come from fitting or from the [pixel pre-fit](#pixel-pre-fit) workflow.
+For a single component, $\tau_{m,iw} = \tau_1$.
+
+$\tau_{mean}$ and $\tau_{m,iw}$ are reported whenever there is more than one component to average over. For the [pixel pre-fit](#pixel-pre-fit) workflow they are reported for every component count, with both set to $\tau_1$ in the single-component case. For fitting, they are reported only for two- and three-component fits: a single-component fit yields $\tau_1$ itself, so no separate mean-lifetime columns are written.
 
 ### Goodness of fit
 

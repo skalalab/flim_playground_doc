@@ -1,7 +1,7 @@
 # Classification {#sec-classification}
 A machine learning classifier learns patterns from categorized data and then predicts the category of new, unseen data. This module provides a set of machine learning classifiers and interactive widgets to help users perform classification. 
 
-All the classifiers are implemented using `scikit-learn` and the performance metrics are calculated using `sklearn.metrics`. A fixed random seed (42) is used for all the classifiers to ensure reproducibility. 
+All the classifiers are implemented using `scikit-learn`. The confusion matrix and the ROC curve come from `sklearn.metrics`; the remaining [performance metrics](#performance-metrics) are computed directly from that confusion matrix using the standard formulas given below, which avoids re-scanning the predictions once per metric and covers quantities such as specificity and Youden's J that `sklearn.metrics` does not provide. A fixed random seed (42) is used for all the classifiers to ensure reproducibility.
 
 ![](analysis_ui_shots/classification.png){width=100% fig-align=center}
 The performance metric plots are cut off in the screenshot. See the [performance metrics section](#performance-metrics) for the complete view.
@@ -31,6 +31,12 @@ An overview of the pipeline:
     - [`Logistic Regression`](https://mlu-explain.github.io/logistic-regression/)
 
 The [train-test split](https://mlu-explain.github.io/train-test-validation/) is used to evaluate the generalizability of the classifier. The Validation set is used in hyperparameter tuning. Since the classifiers above do not have a lot of hyperparameters to tune, it does not partition a separate validation set. However, k-fold cross-validation is used in [tuning the threshold](#threshold-tuning).
+
+::: {.callout-warning title="The split is by row, not by field of view"}
+Both the train-test split and the cross-validation used in [threshold tuning](#threshold-tuning) operate on individual rows (i.e. single cells), stratified by class. They do not group rows by field of view, so cells segmented from the same image can end up in both the training set and the test set.
+
+Cells from one image are usually more similar to each other than to cells from a different image, because they share a field of view, an acquisition session, and often a well. When such cells appear on both sides of the split, the reported metrics can look better than the classifier's true performance on a genuinely new image. Keep this in mind when interpreting the [performance metrics](#performance-metrics), particularly when the dataset contains many cells drawn from relatively few fields of view.
+:::
 
 ![](analysis_ui_shots/classifier_config.png){width=60% fig-align=center}
 

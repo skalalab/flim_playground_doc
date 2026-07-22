@@ -7,7 +7,7 @@ This chapter addresses frequently asked questions about FLIM Playground.
 **A**: If you cannot find a certain **numerical feature**, try the following:
 
 - look inside the `Uncategorized Features` feature group
-- inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. One non-numeric value (e.g., "--") will prevent it from being recognized. After clearing those cells (Excel cell not real cells), saving the file, and uploading it again, the feature should be recognized. 
+- inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. Stray non-numeric values (e.g., "--") are tolerated as long as they make up **1% or less** of the column's non-empty values; FLIM Playground converts the column anyway and turns just those cells into NaN, telling you how many it converted. If more than 1% of the column is non-numeric, the column stays as text and will not be recognized. In that case, clear those cells (Excel cells, not real cells), save the file, and upload it again.
 
 **Q**: Why can't I find a certain **categorical feature** under categorical filter/visual channel widgets?
 

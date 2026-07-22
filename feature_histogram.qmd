@@ -55,7 +55,7 @@ H =\sum_{i=1}^{k}\bigl(-w_i \log w_i\bigr)\,d_i, \qquad d_i \;=\;
 $$
 
 ### Classification
-- Users can choose to perform [intersection thresholding](#intersection-thresholding) or [hard assignment](#hard-assignment) to determine which GMM component each data point belongs to. It appends a new categorical feature column called `GMM_Group` (recognizable by methods in Data Analysis as a categorical feature) to the filtered dataset, the values of which are `{color_group}_1`, `{color_group}_2`, etc. In the example above, the color groups were created by <span style="color: blue;">0.5hr</span> and <span style="color: orange;">4.5hr</span> because the user colored the data by `hour`. The classification result can be saved by clicking: 
+- Users can choose to perform [intersection thresholding](#intersection-thresholding) or [hard assignment](#hard-assignment) to determine which GMM component each data point belongs to. It appends a new categorical feature column called `GMM_group` (recognizable by methods in Data Analysis as a categorical feature) to the filtered dataset, the values of which are `{color_group}_group1`, `{color_group}_group2`, etc., numbered in ascending order of the component means. In the example above, the color groups were created by <span style="color: blue;">0.5hr</span> and <span style="color: orange;">4.5hr</span> because the user colored the data by `hour`, so the resulting values are `0.5hr_group1`, `0.5hr_group2`, `4.5hr_group1`, and `4.5hr_group2`. The classification result can be saved by clicking: 
 
 ![](analysis_ui_shots/gmm_download.png){width=30% fig-align=center}
 

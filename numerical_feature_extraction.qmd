@@ -140,7 +140,9 @@ This weighting is Pearson's $\chi^2$ — the per-bin variance is taken from the 
 
 ![](extraction_ui_shots/fitting_mode.png){width=20% fig-align=center}
 
-**Fit calibration** (IRF shift) always runs **Hybrid** optimization to ensure accuracy. For **Lifetime fit** cell-level extraction after calibration, the fitting mode selects the optimization strategy. It is a trade-off between speed and the effort to avoid local minima.
+The fitting mode selects the optimization strategy. It is a trade-off between speed and the effort to avoid local minima.
+
+The calibration step and the subsequent cell-level fit share this one setting. Whenever at least one channel requires shift estimation, the dropdown offers **Hybrid** only, so that shift estimation runs at full accuracy. 
 
 - `Local`: Each cell is fit with a single local optimizer — `leastsq` (least squares with Levenberg-Marquardt) if the chosen metric is `WLS`, otherwise `nelder` (Nelder-Mead). To give those per-cell fits a good starting point, a one-time **warm start** is performed first: the `differential evolution` global optimizer is run once on the *mean* decay of all ROIs in the batch, and the resulting lifetimes (and the constant offset) seed the initial values for every per-cell fit. The mean is used rather than the sum so the seed stays at single-cell scale, keeping a cell's result independent of how many cells share its batch. This warm start runs once, up front, before the per-cell fits are [parallelized across CPU cores](#reconvolution-fitting); because the global search runs once for the whole batch instead of once per cell, `Local` is substantially faster than `Hybrid`.
 - `Hybrid`: The slower but more accurate option. For **each cell**, it runs the `differential evolution` algorithm to obtain a good initial guess for all parameters, followed by the `Local` optimizer to refine the solution.
@@ -169,7 +171,7 @@ Because the fluorescence lifetime standard is measured in the same system as the
 
 ### Confirm Calibration
 
-Once users are satisfied with the calibration settings ([fitting options](#fitting-options) and shift values), they can click the `Confirm Calibration` button at the bottom of the [page](#irf-shift). 
+Once users are satisfied with the calibration settings ([fitting options](#fitting-options) and shift values), they can click the `Confirm Time Gates (if applicable) and Shift for each channel` button at the bottom of the [page](#irf-shift).
 
 ![](extraction_ui_shots/calibration_confirm.png){width=60% fig-align=center}
 
@@ -179,7 +181,7 @@ Once confirmed, the left panel prompts users to either apply the calibration set
 
 ## Feature Extraction
 
-If the selected feature extractors do not require IRF shift calibration, or users have [finished the calibration](#calibration-done), they can proceed to the feature extraction step by clicking the `Confirm and Start Analysis` button. 
+If the selected feature extractors do not require IRF shift calibration, or users have [finished the calibration](#calibration-done), they can proceed to the feature extraction step by clicking the `Confirm and Start` button.
 
 Similar to the [fov metadata extraction](#sec-fov-metadata) step, FLIM Playground extracts the features and displays the extraction status for each field of view. 
 
@@ -191,6 +193,6 @@ Warnings are displayed if cells have `NaN` values for some features. They are *n
 
 ## Save Results
 
-Once the feature extraction is finished, users can save the results to a CSV file by clicking the `Download` button at the bottom of the page.
+Once the feature extraction is finished, the results are saved to a CSV file. How this happens depends on how the metadata reached this step. If the cached metadata file from the [fov metadata extraction](#sec-fov-metadata) step was used, the CSV is written automatically into the same folder as that metadata file, and no button is shown. If the metadata file was uploaded manually, FLIM Playground cannot know where to write it, so a `Download single cell features as CSV` button appears at the bottom of the page instead.
 
 ![](extraction_ui_shots/feature_export.png){width=100% fig-align=center}

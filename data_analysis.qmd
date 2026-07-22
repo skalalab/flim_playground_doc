@@ -87,7 +87,7 @@ In either case, following the [categorization](index.qmd#feature-classes), the d
 The unique row id and field of view id are used to help users identify the row (e.g. a single cell) and field of view (e.g. a single image) of data of interest through the built-in [hover-based interaction](#unique-id-hover). Numerical and categorical features are used to render [shared widgets](#shared-interactive-widgets). Internally, FLIM Playground will check whether the dataset fulfills the requirements and output meaningful warning or error messages.
 
 ::: {.callout-tip #feature-recognition}
-If you cannot find a certain **numerical feature** under any numerical widgets including `Uncategorized Features`, please inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. One non-numeric value (e.g., "--") will prevent it from being recognized. 
+If you cannot find a certain **numerical feature** under any numerical widgets including `Uncategorized Features`, please inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. A small number of stray non-numeric values (e.g., "--") is tolerated: if they account for **1% or less** of the column's non-empty values, FLIM Playground converts the column to numeric anyway and replaces just those cells with NaN, reporting how many were converted. Above that threshold the column is left as text and will not appear as a numerical feature, so cleaning those cells is only necessary for columns that are mostly non-numeric.
 
 
 FLIM Playground searches for **categorical features** in the uploaded dataset based on the [user-specified configuration](#sec-data-analysis-config) if the dataset is not extracted by [Data Extraction](#sec-data-extraction). Otherwise, it searches for categorical features specified in the [Data Extraction configuration](data_extraction_config.qmd#categorical-features). 
@@ -98,8 +98,9 @@ FLIM Playground searches for **categorical features** in the uploaded dataset ba
 - `Empty columns`: will be dropped.
 - `Duplicated columns`: Only the first occurrence of the duplicated column will be kept. Other occurrences will be dropped.
 - `Duplicated rows based on the unique row id`: Only the first occurrence of the duplicated row will be kept. Other occurrences will be dropped.
-- `Columns with NaN values`: won't be dropped, just a warning message. 
-    - The analysis will be performed on the rows that are not NaN in the [selected numerical features](#numerical-selection-widgets). 
+- `Columns with NaN values`: won't be dropped, just a warning message.
+    - The analysis will be performed on the rows that are not NaN in the [selected numerical features](#numerical-selection-widgets).
+- `Non-numeric values converted to NaN`: reports how many values in a column were non-numeric when that column was otherwise numeric enough to recognize (see [above](#feature-recognition)). Those cells become NaN and the column is usable as a numerical feature.
 
 ### Error Messages
 - Missing a column that uniquely identifies each row

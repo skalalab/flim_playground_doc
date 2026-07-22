@@ -147,7 +147,7 @@ Fixed lifetimes apply only to channels that FLIM Playground fits. For [pre-fit](
 
 ### File Suffix
 
-The [FOV Metadata Organization](#sec-fov-metadata) step looks for associated input files for all channels of a given FOV using file suffixes. Based on the [decay type](#decay-types), [calibration method](#calibration-method), and the selected [feature extractors](#feature-extractor), the system automatically generates the file suffixes for required input files. 
+The [FOV Metadata Extraction](#sec-fov-metadata) step looks for associated input files for all channels of a given FOV using file suffixes. Based on the [decay type](#decay-types), [calibration method](#calibration-method), and the selected [feature extractors](#feature-extractor), the system automatically generates the file suffixes for required input files. 
 
 ![](extraction_ui_shots/config_file_suffix.png){width=100% fig-align=center}
 
@@ -155,7 +155,7 @@ In the example above, channels `nadh` and `fad` were asked to provide an IRF fil
 
 For detailed information on what file formats are supported for each file type (Mask, IRF, etc.), see [input file types](data_extraction.qmd#input-file-types). 
 
-For detailed information on how the file suffixes are used, and what each file type (e.g. `IRF`, `Mask`, etc.) is, see the [FOV Metadata Organization](#sec-fov-metadata) page. 
+For detailed information on how the file suffixes are used, and what each file type (e.g. `IRF`, `Mask`, etc.) is, see the [FOV Metadata Extraction](#sec-fov-metadata) page. 
 
 ## Derived Features
 

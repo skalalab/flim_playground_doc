@@ -4,13 +4,19 @@ In imaging datasets like FLIM data, field of view (FOV) is an important categori
 
 FLIM Playground finds the FOV identifier column from the dataset using the `FOV column name` field in [data analysis config](data_analysis_config.qmd#identifiers-config) (dataset not extracted by Data Extraction) or [data extraction config](data_extraction_config.qmd#sec-data-extraction-config) (dataset extracted by [Data Extraction](#sec-data-extraction)). 
 
-If the FOV identifier column is not found in the dataset, then a warning message will be shown:
+If found:
+
+![](analysis_ui_shots/fov.png){width=100% fig-align=center}
+
+If the column is not found, FLIM Playground does not stop. It falls back to deriving a FOV name for each row from that row's [unique row id](data_analysis_config.qmd#identifiers-config), by taking everything before the last underscore. A row with the id `day1_image3_17` is therefore assigned to the FOV `day1_image3`. This matches the `{FOV Identifier}_{cell_label}` convention used by [Data Extraction](#sec-data-extraction), so for datasets extracted by FLIM Playground the derived value is the correct FOV name.
+
+Only rows whose unique row id contains no underscore at all cannot be split. Those are labeled `missing fov name`, and the warning below appears if at least one such row is present:
 
 ![](analysis_ui_shots/no_fov.png){width=80% fig-align=center}
 
-If found: 
-
-![](analysis_ui_shots/fov.png){width=100% fig-align=center}
+::: {.callout-warning}
+Because the fallback is silent when every row id happens to contain an underscore, a plot can be rendered with no warning while grouping by something that is not a real FOV. If your unique row ids do not follow the `{FOV}_{cell}` convention, the boxplots will be grouped by an arbitrary fragment of the id string. Confirm that the `FOV column name` in the [data analysis config](data_analysis_config.qmd#identifiers-config) actually matches a column in your dataset before reading anything into this plot.
+:::
 
 ## Shared Interface Components
 

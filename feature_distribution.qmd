@@ -17,11 +17,13 @@ This method extends the univariate [Feature Histogram](#sec-feature-histogram) m
 
 ## Marginal Distribution
 
-Marginal distributions (the distribution of a single feature) are plotted at the top and the right of the scatter plot. Users can choose the plot type from the dropdown menu. 
+Marginal distributions (the distribution of a single feature) are plotted at the top and the right of the scatter plot. Users can choose the plot type from the dropdown menu, which offers three options.
 
 ![](analysis_ui_shots/marginal_distribution.png){width=40% fig-align=center}
 
-`gaussian fit`: provides a kernel-density estimate using Gaussian kernels. It uses `gaussian_kde` from `scipy.stats` and sets all parameters to default values. 
+- `gaussian fit`: provides a kernel-density estimate using Gaussian kernels. It uses `gaussian_kde` from `scipy.stats` and sets all parameters to default values.
+- `boxplot`: summarizes each color group with a box and whiskers, which makes the median and spread easier to compare across groups than overlapping density curves.
+- `violin`: shows the full distribution shape for each color group, combining the density information of the Gaussian fit with the per-group separation of the boxplot.
 
 ## 2D Gaussian Mixture Model
 
