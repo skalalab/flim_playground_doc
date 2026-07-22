@@ -562,7 +562,26 @@ window.Quarto = {
 <h2 data-number="6.1" class="anchored" data-anchor-id="fitting"><span class="header-section-number">6.1</span> Fitting</h2>
 <p>If the decays have not been pre-fit, FLIM Playground applies the confirmed fitting options (<a href="./numerical_feature_extraction.html#number-of-components">number of components</a>, <a href="./numerical_feature_extraction.html#fixed-lifetimes">fixed lifetimes</a>, <a href="./numerical_feature_extraction.html#time-gates">time gates</a>, <a href="./numerical_feature_extraction.html#metric">metric</a>, and <a href="./numerical_feature_extraction.html#fitting-mode">fitting mode</a>) to the same <a href="./numerical_feature_extraction.html#reconvolution-fitting">reconvolution fitting process</a> as in the <a href="./numerical_feature_extraction.html#fit-calibration">IRF shift calibration step</a>. The IRF shift is no longer a free variable to be optimized. The calibration step and the cell-level fit share a single <strong>Fitting Mode</strong> setting, and whenever any channel requires shift estimation — which is always the case for <code>Lifetime fit</code> on decays that have not been pre-fit — that setting is restricted to <strong>Hybrid</strong>. The <code>Local</code> mode therefore does not apply to this workflow; see <a href="./numerical_feature_extraction.html#fitting-mode">fitting mode</a> for when it becomes available. As with calibration, these per-cell fits are <a href="./numerical_feature_extraction.html#reconvolution-fitting">parallelized across CPU cores</a>. To recap, the reconvolution fitting minimizes the difference between the measured curve and the fitted curve modeled by a multi-exponential model convolved with the IRF, quantified by the cost metric.</p>
 <p><a href="#pixel-pre-fit">Otherwise</a>, FLIM Playground uses the <a href="./data_extraction.html#spcimage-t1">pre-fit values</a> to calculate the fitting features.</p>
-<p>In the final dataset, fitting features are prefixed by the combination of the feature extractor name (i.e.&nbsp;<code>Lifetime fit</code>) and the channel name, allowing <a href="data_analysis.html">Data Analysis</a> to group the features. For example, <code>Lifetime fit_nadh: a1</code> means the fraction of the first lifetime component for the NAD(P)H channel.</p>
+<p>In the final dataset, the primary fitting features are prefixed by the combination of the feature extractor name (i.e.&nbsp;<code>Lifetime fit</code>) and the channel name, allowing <a href="data_analysis.html">Data Analysis</a> to group the features. For example, <code>Lifetime fit_nadh: a1</code> means the fraction of the first lifetime component for the NAD(P)H channel.</p>
+<p>Not every column produced by this extractor carries that prefix. The lifetimes (<span class="math inline">\(\tau_i\)</span>, <span class="math inline">\(\tau_{mean}\)</span>, <span class="math inline">\(\tau_{m,iw}\)</span>) and the leading fractions do, but the raw amplitudes (<span class="math inline">\(A_i\)</span>), the constant offset, the reduced chi-square, and the final fraction (which is derived as the remainder of the others) are written with only the channel name, e.g.&nbsp;<code>nadh_reduced_chi_square</code>. These are treated as bookkeeping values, so Data Analysis places them in the <strong>Uncategorized Features</strong> group rather than under <code>Lifetime fit_nadh</code>.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Units in the exported dataset">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Units in the exported dataset
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The extracted CSV mixes three units, so check the column before using a value in a formula:</p>
+<ul>
+<li><strong>Lifetimes</strong> (<code>t1</code>, <code>t2</code>, <code>t3</code>, <code>tm</code>, <code>tm_iw</code>) are exported in <strong>picoseconds</strong>, even though this chapter writes the formulas in nanoseconds.</li>
+<li><strong>Fractions</strong> (<code>a1</code>, <code>a2</code>, <code>a3</code>) are exported as <strong>percentages</strong> in the range 0–100, not as the 0–1 fraction <span class="math inline">\(\alpha_i\)</span> used in the formulas below. Divide by 100 before substituting them into <span class="math inline">\(\tau_{mean}\)</span> or <span class="math inline">\(\tau_{m,iw}\)</span>.</li>
+<li>Phasor-derived lifetimes from the <a href="lifetime_fit_free.html">Lifetime fit free</a> extractor (<code>Tau_phase</code>, <code>Tau_mod</code>) are in <strong>nanoseconds</strong>.</li>
+</ul>
+</div>
+</div>
 <section id="preprocessing" class="level3" data-number="6.1.1">
 <h3 data-number="6.1.1" class="anchored" data-anchor-id="preprocessing"><span class="header-section-number">6.1.1</span> Preprocessing</h3>
 <p>It sums up all the pixel decays belonging to the same cell ROI labeled by the ROI <a href="./data_extraction.html#mask">mask</a> as one decay curve<span class="citation" data-cites="Samimi2025"><sup><a href="#ref-Samimi2025" role="doc-biblioref">1</a></sup></span>. The ROI summing reduces variability and bias and allows for short integration times at acquisition in exchange for sub-cellular resolution (i.e., pixel-level). Users do not need to specify the bin factor (each pixel sums up the surrounding pixels’ decay curves) to account for insufficient photon counts. ROI-level aggregation also keeps the workload manageable; independent ROI fits are then <a href="./numerical_feature_extraction.html#reconvolution-fitting">run in parallel across CPU cores</a>.</p>
@@ -571,6 +590,7 @@ window.Quarto = {
 <section id="fraction-of-components" class="level3" data-number="6.1.2">
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="fraction-of-components"><span class="header-section-number">6.1.2</span> Fraction of components</h3>
 <p>In addition to the absolute amplitudes of each component directly from the fitting result, FLIM Playground calculates the fraction of each component, <span class="math inline">\(\alpha_i\)</span>, as the amplitude of the component divided by the sum of all amplitudes. This normalization allows lifetime to be independent of the absolute intensity of the signal.</p>
+<p><span class="math inline">\(\alpha_i\)</span> is a value between 0 and 1, and it is used in that form throughout the formulas in this chapter. In the exported dataset, however, the corresponding <code>a1</code>/<code>a2</code>/<code>a3</code> columns are stored as <strong>percentages</strong> (<span class="math inline">\(\alpha_i \times 100\)</span>, ranging from 0 to 100). The final fraction is not fitted independently; it is derived as the remainder that makes the fractions sum to 100.</p>
 </section>
 <section id="mean-lifetime" class="level3" data-number="6.1.3">
 <h3 data-number="6.1.3" class="anchored" data-anchor-id="mean-lifetime"><span class="header-section-number">6.1.3</span> Mean lifetime</h3>

@@ -530,17 +530,31 @@ window.Quarto = {
 
 <p>In imaging datasets like FLIM data, field of view (FOV) is an important categorical feature that documents where a certain set of rows (e.g.&nbsp;cells) originate. Visualizing each FOV side by side on a numerical feature can help identify potential FOV-level outliers.</p>
 <p>FLIM Playground finds the FOV identifier column from the dataset using the <code>FOV column name</code> field in <a href="./data_analysis_config.html#identifiers-config">data analysis config</a> (dataset not extracted by Data Extraction) or <a href="./data_extraction_config.html#sec-data-extraction-config">data extraction config</a> (dataset extracted by <a href="data_extraction.html">Data Extraction</a>).</p>
-<p>If the FOV identifier column is not found in the dataset, then a warning message will be shown:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/no_fov.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
-</figure>
-</div>
 <p>If found:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/fov.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
+</div>
+<p>If the column is not found, FLIM Playground does not stop. It falls back to deriving a FOV name for each row from that row’s <a href="./data_analysis_config.html#identifiers-config">unique row id</a>, by taking everything before the last underscore. A row with the id <code>day1_image3_17</code> is therefore assigned to the FOV <code>day1_image3</code>. This matches the <code>{FOV Identifier}_{cell_label}</code> convention used by <a href="data_extraction.html">Data Extraction</a>, so for datasets extracted by FLIM Playground the derived value is the correct FOV name.</p>
+<p>Only rows whose unique row id contains no underscore at all cannot be split. Those are labeled <code>missing fov name</code>, and the warning below appears if at least one such row is present:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="analysis_ui_shots/no_fov.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Because the fallback is silent when every row id happens to contain an underscore, a plot can be rendered with no warning while grouping by something that is not a real FOV. If your unique row ids do not follow the <code>{FOV}_{cell}</code> convention, the boxplots will be grouped by an arbitrary fragment of the id string. Confirm that the <code>FOV column name</code> in the <a href="./data_analysis_config.html#identifiers-config">data analysis config</a> actually matches a column in your dataset before reading anything into this plot.</p>
+</div>
 </div>
 <section id="shared-interface-components" class="level2" data-number="16.1">
 <h2 data-number="16.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">16.1</span> Shared Interface Components</h2>

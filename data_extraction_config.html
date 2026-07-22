@@ -801,7 +801,7 @@ Note
 </section>
 <section id="file-suffix" class="level3" data-number="3.3.6">
 <h3 data-number="3.3.6" class="anchored" data-anchor-id="file-suffix"><span class="header-section-number">3.3.6</span> File Suffix</h3>
-<p>The <a href="fov_metadata.html">FOV Metadata Organization</a> step looks for associated input files for all channels of a given FOV using file suffixes. Based on the <a href="#decay-types">decay type</a>, <a href="#calibration-method">calibration method</a>, and the selected <a href="#feature-extractor">feature extractors</a>, the system automatically generates the file suffixes for required input files.</p>
+<p>The <a href="fov_metadata.html">FOV Metadata Extraction</a> step looks for associated input files for all channels of a given FOV using file suffixes. Based on the <a href="#decay-types">decay type</a>, <a href="#calibration-method">calibration method</a>, and the selected <a href="#feature-extractor">feature extractors</a>, the system automatically generates the file suffixes for required input files.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="extraction_ui_shots/config_file_suffix.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
@@ -809,7 +809,7 @@ Note
 </div>
 <p>In the example above, channels <code>nadh</code> and <code>fad</code> were asked to provide an IRF file, while channel <code>cd8</code> did not, because <code>Lifetime fit</code> was selected for the former two channels and not for the latter. The file suffixes of the IRF files were different for each of the two channels, but they shared the same ROI mask file suffix because they used the same ROI mask. The <code>cd8</code> channel used a different ROI mask than the other two channels, indicated by the mask file suffix.</p>
 <p>For detailed information on what file formats are supported for each file type (Mask, IRF, etc.), see <a href="./data_extraction.html#input-file-types">input file types</a>.</p>
-<p>For detailed information on how the file suffixes are used, and what each file type (e.g.&nbsp;<code>IRF</code>, <code>Mask</code>, etc.) is, see the <a href="fov_metadata.html">FOV Metadata Organization</a> page.</p>
+<p>For detailed information on how the file suffixes are used, and what each file type (e.g.&nbsp;<code>IRF</code>, <code>Mask</code>, etc.) is, see the <a href="fov_metadata.html">FOV Metadata Extraction</a> page.</p>
 </section>
 </section>
 <section id="derived-features" class="level2" data-number="3.4">

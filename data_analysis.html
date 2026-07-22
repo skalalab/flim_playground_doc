@@ -630,7 +630,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you cannot find a certain <strong>numerical feature</strong> under any numerical widgets including <code>Uncategorized Features</code>, please inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. One non-numeric value (e.g., “–”) will prevent it from being recognized.</p>
+<p>If you cannot find a certain <strong>numerical feature</strong> under any numerical widgets including <code>Uncategorized Features</code>, please inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. A small number of stray non-numeric values (e.g., “–”) is tolerated: if they account for <strong>1% or less</strong> of the column’s non-empty values, FLIM Playground converts the column to numeric anyway and replaces just those cells with NaN, reporting how many were converted. Above that threshold the column is left as text and will not appear as a numerical feature, so cleaning those cells is only necessary for columns that are mostly non-numeric.</p>
 <p>FLIM Playground searches for <strong>categorical features</strong> in the uploaded dataset based on the <a href="data_analysis_config.html">user-specified configuration</a> if the dataset is not extracted by <a href="data_extraction.html">Data Extraction</a>. Otherwise, it searches for categorical features specified in the <a href="./data_extraction_config.html#categorical-features">Data Extraction configuration</a>.</p>
 </div>
 </div>
@@ -645,6 +645,7 @@ Tip
 <ul>
 <li>The analysis will be performed on the rows that are not NaN in the <a href="#numerical-selection-widgets">selected numerical features</a>.</li>
 </ul></li>
+<li><code>Non-numeric values converted to NaN</code>: reports how many values in a column were non-numeric when that column was otherwise numeric enough to recognize (see <a href="#feature-recognition">above</a>). Those cells become NaN and the column is usable as a numerical feature.</li>
 </ul>
 </section>
 <section id="error-messages" class="level3" data-number="12.3.3">

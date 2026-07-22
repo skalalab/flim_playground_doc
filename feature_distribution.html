@@ -552,13 +552,17 @@ window.Quarto = {
 </section>
 <section id="marginal-distribution" class="level2" data-number="17.3">
 <h2 data-number="17.3" class="anchored" data-anchor-id="marginal-distribution"><span class="header-section-number">17.3</span> Marginal Distribution</h2>
-<p>Marginal distributions (the distribution of a single feature) are plotted at the top and the right of the scatter plot. Users can choose the plot type from the dropdown menu.</p>
+<p>Marginal distributions (the distribution of a single feature) are plotted at the top and the right of the scatter plot. Users can choose the plot type from the dropdown menu, which offers three options.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/marginal_distribution.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
-<p><code>gaussian fit</code>: provides a kernel-density estimate using Gaussian kernels. It uses <code>gaussian_kde</code> from <code>scipy.stats</code> and sets all parameters to default values.</p>
+<ul>
+<li><code>gaussian fit</code>: provides a kernel-density estimate using Gaussian kernels. It uses <code>gaussian_kde</code> from <code>scipy.stats</code> and sets all parameters to default values.</li>
+<li><code>boxplot</code>: summarizes each color group with a box and whiskers, which makes the median and spread easier to compare across groups than overlapping density curves.</li>
+<li><code>violin</code>: shows the full distribution shape for each color group, combining the density information of the Gaussian fit with the per-group separation of the boxplot.</li>
+</ul>
 </section>
 <section id="d-gaussian-mixture-model" class="level2" data-number="17.4">
 <h2 data-number="17.4" class="anchored" data-anchor-id="d-gaussian-mixture-model"><span class="header-section-number">17.4</span> 2D Gaussian Mixture Model</h2>

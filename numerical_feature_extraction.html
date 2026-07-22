@@ -748,7 +748,7 @@ Note
 </section>
 <section id="confirm-calibration" class="level3" data-number="5.2.3">
 <h3 data-number="5.2.3" class="anchored" data-anchor-id="confirm-calibration"><span class="header-section-number">5.2.3</span> Confirm Calibration</h3>
-<p>Once users are satisfied with the calibration settings (<a href="#fitting-options">fitting options</a> and shift values), they can click the <code>Confirm Calibration</code> button at the bottom of the <a href="#irf-shift">page</a>.</p>
+<p>Once users are satisfied with the calibration settings (<a href="#fitting-options">fitting options</a> and shift values), they can click the <code>Confirm Time Gates (if applicable) and Shift for each channel</code> button at the bottom of the <a href="#irf-shift">page</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="extraction_ui_shots/calibration_confirm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
@@ -764,7 +764,7 @@ Note
 </section>
 <section id="feature-extraction" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="feature-extraction"><span class="header-section-number">5.3</span> Feature Extraction</h2>
-<p>If the selected feature extractors do not require IRF shift calibration, or users have <a href="#calibration-done">finished the calibration</a>, they can proceed to the feature extraction step by clicking the <code>Confirm and Start Analysis</code> button.</p>
+<p>If the selected feature extractors do not require IRF shift calibration, or users have <a href="#calibration-done">finished the calibration</a>, they can proceed to the feature extraction step by clicking the <code>Confirm and Start</code> button.</p>
 <p>Similar to the <a href="fov_metadata.html">fov metadata extraction</a> step, FLIM Playground extracts the features and displays the extraction status for each field of view.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -776,7 +776,7 @@ Note
 </section>
 <section id="save-results" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="save-results"><span class="header-section-number">5.4</span> Save Results</h2>
-<p>Once the feature extraction is finished, users can save the results to a CSV file by clicking the <code>Download</code> button at the bottom of the page.</p>
+<p>Once the feature extraction is finished, the results are saved to a CSV file. How this happens depends on how the metadata reached this step. If the cached metadata file from the <a href="fov_metadata.html">fov metadata extraction</a> step was used, the CSV is written automatically into the same folder as that metadata file, and no button is shown. If the metadata file was uploaded manually, FLIM Playground cannot know where to write it, so a <code>Download single cell features as CSV</code> button appears at the bottom of the page instead.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="extraction_ui_shots/feature_export.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
