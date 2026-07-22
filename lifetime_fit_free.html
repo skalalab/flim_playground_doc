@@ -593,7 +593,11 @@ window.Quarto = {
 <section id="preprocessing" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="preprocessing"><span class="header-section-number">7.1</span> Preprocessing</h2>
 <p>It sums up all the pixel decays belonging to the same cell ROI labeled by the ROI <a href="./data_extraction.html#mask">mask</a> as one decay curve<span class="citation" data-cites="Samimi2025"><sup><a href="#ref-Samimi2025" role="doc-biblioref">1</a></sup></span>. The phasor features are calculated from the summed decay curve.</p>
-<p>If the chosen <a href="./data_extraction_config.html#calibration-method">calibration method</a> is IRF shift calibration, FLIM Playground shifts the IRF using the shift values and subtracts the estimated offset as described in the <a href="./numerical_feature_extraction.html#irf-shift">IRF shift calibration step</a>.</p>
+<p>Two preprocessing steps are then applied, and they are independent of each other:</p>
+<ul>
+<li><strong>Offset subtraction</strong> is applied to every decay curve, regardless of the chosen <a href="./data_extraction_config.html#calibration-method">calibration method</a>. For each cell, the offset is estimated as the mean of the last 10% of the time bins of that cell’s own decay curve, subtracted from the curve, and any resulting negative values are clipped to zero. Note that this per-cell baseline is unrelated to the <code>offset</code> parameter fitted during <a href="./lifetime_fit.html">lifetime fitting</a>.</li>
+<li><strong>IRF shifting</strong> is applied only when the chosen calibration method is IRF shift calibration. The IRF is shifted using the shift values as described in the <a href="./numerical_feature_extraction.html#shift-irf">Shift IRF step</a>. Under fluorescence lifetime standard calibration, no IRF shift is applied.</li>
+</ul>
 </section>
 <section id="phasor-features" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="phasor-features"><span class="header-section-number">7.2</span> Phasor features</h2>
