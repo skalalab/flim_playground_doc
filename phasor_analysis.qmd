@@ -16,6 +16,8 @@ Instead of using the [bivariate selection widgets](data_analysis.qmd#bivariate-a
 
 ![](analysis_ui_shots/phasor_coordinate_select.png){width=15% fig-align=center}
 
+The plot is drawn against the universal semicircle, with markers along it for lifetimes from 0.5 to 10 ns to read your points against. Switching to the 2nd harmonic moves those markers, because the transform is evaluated at twice the frequency and a given lifetime lands somewhere else. The frequency printed inside the plot tells you which view you are reading — `f = 160 MHz (2 × 80 MHz)` for the 2nd harmonic of an 80 MHz system — so check it before comparing a point against a marker. The semicircle itself is the same for both harmonics.
+
 ## K-means Clustering
 
 Phasor coordinates of single-cell ROIs from the selected channel and harmonic are plotted in the phasor space. K-means clustering can be performed for each color group (created by [`Color by`](data_analysis.qmd#color-by)). If `Perform K-means Clustering` is checked, users can specify the number of clusters to be created based on their prior knowledge. In the future, automatic tuning for this parameter, akin to selecting the number of components of [GMM](feature_histogram.qmd#fit-gaussian-mixture-models), using silhouette analysis will be added.

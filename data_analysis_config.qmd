@@ -47,6 +47,8 @@ Everything described below pertains to the current profile.
 
 The default categorical feature list does not include `species`, so we add it manually. 
 
+You do not have to make the configuration and your spreadsheet agree letter for letter. Names are matched loosely — ignoring capitalization, spaces, hyphens and a trailing "s" — so `IL-18` finds a column headed `IL_18`, `IL 18`, or `il-18s` just as well. Numbers used as categories keep the label you typed (`1`, not `1.0`), and blank cells become `N/A`. 
+
 ## Numerical Feature Config
 
 ![](analysis_ui_shots/config_num.png){width=70%}

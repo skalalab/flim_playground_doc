@@ -65,7 +65,7 @@ Users can specify the column name for the field of view identifier. If the decay
 
 #### Laser frequency
 
-Users can specify the laser frequency in GHz. For example, 0.08 GHz equals 80 MHz. It will be used in the [phasor analysis](#sec-phasor-analysis). If you do not intend to use the phasor analysis, you can fill in any number. 
+Users can specify the laser frequency in GHz, up to 1 GHz. For example, 0.08 GHz equals 80 MHz. It will be used in the [phasor analysis](#sec-phasor-analysis). If you do not intend to use the phasor analysis, any value in that range will do. 
 
 #### 2D Decay-specific
 Since the [2D decay](#two-d-decay) file does not provide the `duration` and the number of `time bins` per laser pulse interval, users need to specify them. 
@@ -165,3 +165,5 @@ The Configuration page also hosts the `Derived features` builder, which composes
 
 ## Save
 Finally, users can save the configuration into the **current profile** for future use by clicking the `Update Configuration` button.
+
+If you keep FLIM Playground open in more than one browser tab, saving here does not reach the others on its own. Any tab already showing Data Extraction will notice and post a small notice asking you to reload it, so you can finish what you are in the middle of first and pick up the new settings when it suits you.
