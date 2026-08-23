@@ -702,6 +702,7 @@ Note
 <section id="multivariate-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="multivariate-analysis">Multivariate Analysis</h4>
 <p>One set of selection widgets, each can select multiple features from a feature group, is rendered. A special value <code>All</code> is introduced so that users can conveniently select all features under the feature group. If users select <code>All</code>, all the other options will be cleared, and vice versa.</p>
+<p><code>Except:</code> is the mirror image of <code>All</code>, and it is the quick way to take a whole feature group bar one or two. Say you want to check that an effect is really about lifetime and not simply a brightness difference: select <code>Except:</code> together with <code>intensity_sum</code> to keep every other feature in the group and drop that one, as in the widget below. Selecting <code>All</code> clears everything else, while selecting a feature clears <code>All</code> but keeps <code>Except:</code>, so exclusions add up as you click.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_ui_shots/multi_select.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
@@ -715,6 +716,11 @@ Note
 <h4 class="anchored" data-anchor-id="categorical-filters">Categorical Filters</h4>
 <p><img src="analysis_ui_shots/filter.png" class="img-fluid" style="width:95.0%"></p>
 <p>For complex datasets that are collected over multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget is rendered for each categorical feature so that users have the flexibility to filter the data based on combinations of categorical features. <code>All</code> is a special option that include all categories of the selected categorical feature. Once it is selected, all the other options are cleared, and vice versa.</p>
+<p>Often it is easier to say what to leave out than what to keep. Suppose one field of view looks like an outlier and you want to see the dataset without it — clicking the other 79 by hand is tedious. <code>Except:</code> does it in one click: select it along with the categories to drop, and everything else stays. That is the <code>image_name</code> filter in the screenshot above, set to every field of view but <code>MCF7_IAA_dish1...</code>. Because the exclusion is re-read from the data rather than frozen into a list, it keeps meaning “everything else” as you work: widen another filter, or load a dataset with new fields of view in it, and the newcomers are kept automatically.</p>
+<p>The filters work as a set rather than in sequence: each one offers only the categories that still have data under everything else you have selected. That means you can approach a subset from whichever direction is natural — narrowing <code>treatment</code> first and then <code>day</code> leaves you the same options as doing it the other way around — and no combination is out of reach because of the order the categorical features happen to be listed in your configuration.</p>
+<p>One consequence is worth knowing about. Tightening one filter can deselect a choice you made elsewhere. Say you have fields of view picked out under <code>image_name</code> and then narrow <code>cell_line</code> to <code>Panc1</code>: every MCF7 field of view among them is left with no rows. Rather than hand you an empty plot, FLIM Playground deselects those fields of view and tells you which selection ruled them out.</p>
+<p><img src="analysis_ui_shots/filter_deselection_notice.png" class="img-fluid" style="width:80.0%"></p>
+<p>A filter therefore never quietly stops matching what you asked for.</p>
 </section>
 <section id="numerical-filters" class="level4">
 <h4 class="anchored" data-anchor-id="numerical-filters">Numerical Filters</h4>

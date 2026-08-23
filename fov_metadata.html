@@ -662,6 +662,12 @@ Tip
 <section id="channel-assignment" class="level4">
 <h4 class="anchored" data-anchor-id="channel-assignment">Channel Assignment</h4>
 <p>If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channels to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there are any.</p>
+<p>Picking the right channel number is easy to get wrong when one file holds several non-empty channels, so when there is a choice to make, a preview of the first field of view appears under the dropdown: one thumbnail per candidate channel, with a ✅ on the one currently selected. Glance at it to confirm the channel you picked looks like the fluorophore you expect.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="extraction_ui_shots/fov_channel_preview.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
 </section>
 <section id="fluorescence-lifetime-standard-1" class="level4">
 <h4 class="anchored" data-anchor-id="fluorescence-lifetime-standard-1">Fluorescence Lifetime Standard</h4>
