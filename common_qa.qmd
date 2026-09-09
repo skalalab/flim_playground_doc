@@ -1,28 +1,33 @@
 # Common Q & A
 
-This chapter addresses frequently asked questions about FLIM Playground.
+**Why is a numerical feature missing from a picker?**
 
-**Q**: Why can't I find a certain **numerical feature** under numerical selection/filter widgets? 
+For a user-provided table, reopen its [column review](data_analysis_config.qmd#id-config) and check that the column has the **Numerical** role. Look in `Uncategorized Features` if it has no feature group. A numerical picker needs usable numbers: the app tolerates stray text in up to **1%** of non-empty values, replacing those cells with NaN. Above that threshold the column remains text; clean the values and upload it again. See [feature recognition](data_analysis.qmd#feature-recognition).
 
-**A**: If you cannot find a certain **numerical feature**, try the following:
+**Why is a categorical column missing?**
 
-- look inside the `Uncategorized Features` feature group
-- inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. Stray non-numeric values (e.g., "--") are tolerated as long as they make up **1% or less** of the column's non-empty values; FLIM Playground converts the column anyway and turns just those cells into NaN, telling you how many it converted. If more than 1% of the column is non-numeric, the column stays as text and will not be recognized. In that case, clear those cells (Excel cells, not real cells), save the file, and upload it again.
+For a user table, assign **Categorical** in its [profile review](data_analysis_config.qmd#id-config) and save. For an extraction table, check the active [extraction configuration](data_extraction_config.qmd#categorical-features). A filter or visual picker may omit a column with only one remaining value. Other choices can also narrow the options: for example, a column used for `Separate by` cannot also define the color groups, except in Dimension Reduction. See [shared controls](data_analysis.qmd#shared-interactive-widgets).
 
-**Q**: Why can't I find a certain **categorical feature** under categorical filter/visual channel widgets?
+**Do I need to add an ID column before uploading my table?**
 
-**A**: 
+No. Leave **Row ID** unassigned to use generated row numbers. An assigned ID must be nonmissing and unique. Generated numbers follow input row order and are regenerated for each upload; provide your own ID if it must remain stable when rows are reordered. See [identifiers](data_analysis_config.qmd#identifiers-config).
 
-- If the uploaded dataset was extracted by [Data Extraction](#sec-data-extraction), FLIM Playground will only match categorical features specified in the [Data Extraction configuration](data_extraction_config.qmd#categorical-features). Otherwise, FLIM Playground will only match categorical features specified in the [configuration](data_analysis_config.qmd#categorical-feature-config). 
-    - If the categorical feature was in the corresponding configuration, and it is still not visible:
-        - If you just added it, FLIM Playground may not have picked it up yet. Try refreshing the page. A tab left open on Data Extraction will tell you when the configuration has moved on without it.
-        - If you have already added it, then there is only one unique value in that categorical feature column. FLIM Playground will not show it.
-- It is ok if your dataset does not have all of the categorical features specified in either of the configurations. 
+**Why did a different profile open, or why am I asked to review columns?**
 
-**Q**: How do I change the FLIM Playground's display mode (i.e., dark mode or light mode)?
+The uploaded file selects its analysis profile by exact column headers, including ignored columns. A single valid exact match can apply automatically. Otherwise, choose a candidate or start a new profile and review the columns. Header order does not matter; case, spaces, and punctuation do. See [profile matching](data_analysis_config.qmd).
 
-**A**: FLIM Playground uses the browser's current display mode. You can change it by going to the browser's settings and changing the display mode.
+**How do I average observations by a category, such as dish or patient?**
 
+Use [Collapse by](feature_comparison.qmd#collapse-by) with that categorical column. The app calculates one mean per category within each displayed group. Statistics then use those category means. The [SuperPlot overlay](feature_comparison.qmd#superplot) can show original observations behind them without changing the analysis unit.
 
+**Can I reuse a calibration and choose Local fitting?**
 
+Yes. Save the [updated metadata after calibration](irf_calibration.qmd#confirm-calibration), then upload it on a later run. Confirmed or saved shifts enable the choice between **Hybrid** and **Local** for cell-level fitting. Shift estimation itself uses Hybrid.
 
+**Where are exported files saved?**
+
+Browser download buttons use your browser's download location. Extraction workflows can also save directly into the selected local folder; the page reports the path. For example, categorical merging writes a timestamped combined CSV to its input folder. Run extraction on a [local installation](index.qmd#installation) so these folders are available. The [analysis Python export](data_analysis.qmd#export-workflow-as-python-script) reproduces the current view and saves SVG figures when run.
+
+**How do I use a light or dark theme?**
+
+The app follows its Streamlit theme setting, which can follow the system or select Light or Dark. Use the app's **Settings → Theme** when available. The documentation examples use Light.

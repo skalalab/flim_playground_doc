@@ -14,7 +14,7 @@ Semantically, higher granularity at smaller scales implies higher fragmentation.
 To calculate the radial distribution, each cell intensity image is partitioned into $4$ concentric rings, and the intensity fraction over the total intensity for each ring is calculated. For example, a higher fraction in ring 1 implies that signals are more concentrated at the center of the cell, whereas a higher fraction in ring 4 implies that signals are more concentrated at the cell edge.
 
 ## Mass Displacement
-Mass displacement is the Euclidean distance (in pixels) between the intensity-weighted centroid of the cell ROI and the geometric centroid of the same ROI.
+Mass displacement is the Euclidean distance (in pixels) between the geometric and intensity-weighted centroids, both calculated using pixels with intensity greater than zero within the cell ROI. If the ROI has no such pixels, the result is a missing value (`NaN`).
 
 ## Intensity Sum
 Intensity sum is defined as the sum of pixel intensities within the cell intensity image.

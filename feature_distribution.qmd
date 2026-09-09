@@ -1,25 +1,43 @@
-# Feature Distribution {#sec-feature-distribution}
+# 2D Feature Distribution {#sec-feature-distribution}
 
-This method extends the univariate [Feature Histogram](#sec-feature-histogram) method to visualize the distribution of two numerical features on a scatter plot. It helps reveal patterns such as correlations, clusters, trends, or outliers. 
-
-![](analysis_ui_shots/feature_distribution.png){width=100% fig-align=center}
+This method visualizes the distribution of two numerical features on a scatter plot. It helps reveal patterns such as correlations, clusters, trends, or outliers.
 
 ## Shared Interface Components
 
 - On the left, users can use the [selection widgets](data_analysis.qmd#bivariate-analysis) to select the two numerical features on the x-axis and y-axis. 
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
-- Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allow users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
+- Below the filters, choose `Color by`, [`Separate by`](#separate-by), and [`Collapse by`](#collapse-by). The **Opacity | Shape** selector shares one categorical column picker; only the selected encoding is applied. These point encodings preserve the groups used for marginal distributions, correlation, regression, and GMM fitting.
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 ## Log-scale Axes
 
-**Log X** and **Log Y** toggles plot the respective axis on a base-10 logarithmic scale, and the axis is relabeled `log₁₀(...)`. The base-10 logarithm is applied to the selected feature(s) *before any modeling*, so everything downstream is computed in log space: the **2D GMM** (its component means and covariances, BIC-based model selection, 95% ellipses, and [hard-assignment classification](feature_histogram.qmd#hard-assignment)) and the **regression line** (its slope and $R^2$) are all fit on the log-transformed values. Negative values cannot be log-transformed, so a warning is shown if a selected feature contains any.
+**Log X** and **Log Y** transform the selected feature with $\log_{10}(x + 10^{-6})$ and relabel its axis $\log_{10}(\ldots)$. The small offset allows zero values. The transformation happens before marginal distributions, Pearson correlation, regression, and 2D GMM fitting, so all of them use the transformed values. If a selected feature contains negative values, the app reports an error and keeps that feature on its original scale. With [`Collapse by`](#collapse-by), it averages first and then transforms the category means.
+
+## Separate by
+
+Choose one categorical column in **Separate by**, then choose a category above the plot. Its observations appear in color on a full-size scatter plot, with all other categories in gray for context. The same axes, colors, shapes, and opacities are used across category views. The separation column cannot also be used for `Color by` or `Collapse by`.
+
+For the [inhibitor dataset](https://github.com/skalalab/flim_playground/blob/main/example_data/Data_Analysis/inhibitors.csv), select **tm** under **Lifetime fit_nadh** for X and **tm** under **Lifetime fit_fad** for Y. Set **Separate by → cell_line** and **Color by → treatment**, keep the categorical filters at **All**, and leave **Collapse by** blank. Select **Panc1** in **cell_line category** to highlight its cells by treatment, with MCF7 cells in gray.
+
+![Choose cell_line for separation, treatment for color, and Panc1 as the displayed category.](analysis_ui_shots/distribution_separate_cell_line_controls.png){width=100% fig-align=center fig-alt="2D Feature Distribution controls with Separate by set to cell_line, Color by set to treatment, Collapse by empty, and Panc1 selected beside the MCF7 category button. Gaussian fit marginals are selected; logarithmic axes, GMM, and regression are off."}
+
+![Panc1 cells are colored by treatment while MCF7 cells remain in gray; the marginal curves describe Panc1.](analysis_ui_shots/distribution_separate_cell_line_plot.png){width=100% fig-align=center fig-alt="Full 2D scatter plot of NADH mean lifetime versus FAD mean lifetime. The selected Panc1 cells use five treatment colors, MCF7 cells form a gray background cloud, and colored marginal density curves summarize the Panc1 treatments."}
+
+Select **MCF7** to switch the highlighted cells and their marginal distributions. Both category views keep the same axis ranges and treatment colors.
+
+Marginal distributions, Pearson correlation, regression, and GMM fits are calculated independently within each separation category and color group. The displayed statistics and component tables describe the selected category. Switching the displayed category keeps those fits and the shared axis ranges; changing the separation column changes the populations being modeled. With **Show group counts (n) in legend**, counts refer to the selected separation category's observations, or its aggregated points after collapse.
+
+## Collapse by
+
+Choose a categorical column such as `dish`, `patient`, or `image_name` in **Collapse by** to plot one mean X/Y point per value of that column within each separation category and color group. The app removes rows missing either selected feature before averaging, so each point's X and Y means use the same observations. Hover text includes the collapse category's label and contributing observation count.
+
+Marginal distributions, Pearson correlation, regression, and GMM fitting then use these category means with equal weight. A column is unavailable for collapse if it already defines `Color by` or `Separate by`. Other categorical columns remain available for point encoding only when their values are constant within every collapsed group; the app explains when it must disable a varying encoding.
+
+A labeled GMM download after collapse contains one row per averaged group, with averaged numerical columns. It retains categorical metadata only when constant within every collapsed group. Clear `Collapse by` to return to individual observations.
 
 ## Marginal Distribution
 
 Marginal distributions (the distribution of a single feature) are plotted at the top and the right of the scatter plot. Users can choose the plot type from the dropdown menu, which offers three options.
-
-![](analysis_ui_shots/marginal_distribution.png){width=40% fig-align=center}
 
 - `gaussian fit`: provides a kernel-density estimate using Gaussian kernels. It uses `gaussian_kde` from `scipy.stats` and sets all parameters to default values.
 - `boxplot`: summarizes each color group with a box and whiskers, which makes the median and spread easier to compare across groups than overlapping density curves.
@@ -27,7 +45,7 @@ Marginal distributions (the distribution of a single feature) are plotted at the
 
 ## 2D Gaussian Mixture Model
 
-Using the same method as fitting a 1D [Gaussian Mixture Model](feature_histogram.qmd#fit-gaussian-mixture-models), users can fit a 2D GMM by specifying `Max Components` and `Min Weight Threshold` for each color group.  
+Select **2D Gaussian Mixture Model** above the plot to fit a GMM to each color group, separately within every category when `Separate by` is active. As in the [1D GMM](feature_histogram.qmd#fit-gaussian-mixture-models), **Max Components** and **Min Weight Threshold** control candidate fits; the valid model with the lowest BIC is chosen.
 
 Ellipses that capture approximately 95% of the points in each subcomponent are drawn. The color of the ellipses is determined by the color group that the subcomponent belongs to. 
 
@@ -43,29 +61,45 @@ Each ellipse represents a subcomponent of the GMM.
 - The semi-axis lengths are $r\sqrt{\lambda_1}$ and $r\sqrt{\lambda_2}$, where $\lambda_1$ and $\lambda_2$ are the covariance eigenvalues (variances along the principal axes) scaled by $r = \sqrt{\chi^2_{\,\mathrm{df}=2,\,p=0.95}}$ (Mahalanobis distance) that captures approximately 95% of the points in the subcomponent. 
 :::
 
-All the components below will be rendered for each color group, which is created by user-chosen categorical features in [`Color by`](data_analysis.qmd#color-by).
+The plot shows ellipses for each fitted component in the displayed category and color group.
 
-![](analysis_ui_shots/feature_distribution_components.png){width=100% fig-align=center}
+![The full-screen plot displays marginal densities, fitted GMM ellipses, and regression lines together.](analysis_ui_shots/feature_distribution_components.png){width=100% fig-align=center fig-alt="Two-feature scatter plot colored by cell line with density curves along the top and right margins, component ellipses, and fitted regression lines."}
 
 ::: {.callout-tip}
-Users can click on a legend group to hide/show the data points in that group. In the above example, to avoid cluttering the plot, the <span style="color: orange;">orange</span> group is hidden. 
+Click a legend group to hide or show its points and associated curves. This can make overlapping groups easier to inspect.
+
+Use the chart's **Fullscreen** control to inspect a tall plot with both marginal distributions visible.
 :::
 
-Tables of subcomponents' means, standard deviations, and weights are reported on the side.
+Tables below the plot report each component's **X (mean ± SD)**, **Y (mean ± SD)**, and **Weight**. These describe the fitted Gaussian components using soft membership probabilities. They can differ from the mean, SD, and fraction of observations assigned to each component by the hard assignment rule.
 
-![](analysis_ui_shots/2d_gmm_table.png){width=50% fig-align=center}
+![Results below the plot report correlation and regression summaries together with editable GMM component tables.](analysis_ui_shots/2d_gmm_table.png){width=100% fig-align=center fig-alt="Bivariate result summaries and GMM tables showing each component's name, X and Y means and standard deviations, and weight."}
 
-The classification result can be saved by clicking: 
+### Export labeled data
 
-![](analysis_ui_shots/2d_gmm_download.png){width=20% fig-align=center}
+The app uses [hard assignment](feature_histogram.qmd#hard-assignment) to give each analyzed point the label of its highest-probability component. A component's number identifies it within that fitted model; unlike the 1D GMM, the 2D components are not ranked by increasing mean. Groups with too little data, constant X or Y, no valid model, or only one fitted component remain unassigned.
 
-The classification is done by [hard assignment](feature_histogram.qmd#hard-assignment) to determine which GMM component each data point belongs to. It appends a new categorical feature column called `2D_GMM_group` to the filtered dataset, the values of which are `{color_group}_group1`, `{color_group}_group2`, etc. The downloaded dataset keeps all the features plus the new categorical feature column, which is recognized by any method in Data Analysis as a categorical feature like others. The rows that pass the [filters](data_analysis.qmd#filter-widgets) are included.
+Double-click a subpopulation's **Name** in the component table to rename it, and use **Exported column name** to name the new label column. The default is `2D_GMM_group`, with an available suffix such as `_2` when needed to preserve an existing column. Click **Download 2D GMM data** to save `2D_gmm_data.csv`.
+
+![The download adds the named GMM assignment column to the analyzed data.](analysis_ui_shots/2d_gmm_download.png){width=100% fig-align=center fig-alt="Exported column name field and Download 2D GMM data button below the bivariate results."}
+
+Default labels are `{color_group}_group1`, `{color_group}_group2`, and so on. With `Separate by`, they include the category as `{category}::{color_group}_group1`, or `{category}_group1` if `Color by` is empty. Giving several components the same name combines their exported labels without changing the fit. The [naming rules](feature_histogram.qmd#export-labeled-data) are shared with the 1D GMM.
+
+The CSV includes all analyzed categories, even when only one is displayed. It contains rows passing the filters with both selected measurements present, plus the label column; after collapse each row represents one averaged group. Selected measurements retain any logarithmic transformation used in the analysis. Unassigned rows have empty labels, and a download is offered when at least one group has generated labels.
+
+On reupload, review the label column and assign it **Categorical** to use it for filtering and grouping. The [exported Python script](data_analysis.qmd#export-workflow-as-python-script) records the fit, category view, collapse, and naming settings. Set `SAVE_DERIVED_DATA = True` in the script to also write the labeled CSV.
+
+## Correlation coefficient
+
+**Pearson's correlation coefficient $r$ and its p-value are reported below the plot for each color group in the current category**, even when **Regression line** is cleared. Scroll below the scatter plot to find the results. The coefficient ranges from $-1$ to $1$: its sign gives the direction of a linear association, and values near zero indicate a weak linear association.
+
+![The output reports Pearson r and its p-value separately from the regression statistics.](analysis_ui_shots/distribution_correlation.png){width=100% fig-align=center fig-alt="Panc1 has Pearson r 0.08 with p 0.0212, and MCF7 has Pearson r 0.17 with p 7.96e-13; regression R squared, slope, and intercept appear alongside each correlation result."}
+
+Correlation and regression use the selected category and color groups, after filtering and any [log transforms](#log-scale-axes). Both use category means when `Collapse by` is active. A group needs at least two points and variation in both X and Y; otherwise the app reports why correlation and regression are unavailable.
 
 ## Regression line
 
-A linear regression line is fitted to the data points in each color group. The key statistics are reported on the side. 
-
-![](analysis_ui_shots/regression.png){width=50% fig-align=center}
+Select **Regression line** to add a linear fit and report its $R^2$, slope, and intercept alongside the correlation results.
 
 $R^{2}$ tells how much of the variability in $y$ is captured by the model, compared to just predicting the $\bar{y}$. 
 
@@ -75,7 +109,3 @@ $R^{2}$ tells how much of the variability in $y$ is captured by the model, compa
 - $R^{2} = 1$ → perfect prediction.
 - $R^{2} = 0$ → model predicts no better than the mean.
 :::
-
-
-
-

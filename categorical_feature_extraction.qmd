@@ -5,11 +5,11 @@ Based on the datasets extracted in the [numerical feature extraction](#sec-numer
 - [merges the datasets](#merging-datasets) into a single dataset
 - [assigns categorical features](#assigning-categorical-features) to each cell in the merged dataset
 
-![](extraction_ui_shots/cat.png){width=100% fig-align=center}
+![This category-mapping example uses a table of 1,572 cells from 12 FOVs.](extraction_ui_shots/cat.png){width=100% fig-align=center fig-alt="Categorical Feature Extraction with a local dataset folder, underscore delimiter, category selections, slot mappings, and a preview of the assigned labels."}
 
 ## Merging Datasets
 
-It scans the specified folder path and finds all CSV files. It uses the [cell identifier column](data_extraction_config.qmd#cell-identifier) to check for duplicates both within each dataset and across all datasets. 
+Enter the full path to the folder containing your saved [numerical feature CSV files](numerical_feature_extraction.qmd#save-results). The folder is scanned recursively for CSV files. Each usable dataset must contain the configured [cell and FOV identifiers](data_extraction_config.qmd#identifiers). Cell identifiers must be nonmissing and unique within the file and across the accepted files; a file containing overlapping identifiers is skipped.
 
 :::{.callout-important #fov-id-categorical}
 **The FOV identifier uniquely identifies a field of view and is assumed to contain all information necessary to extract the categorical features (e.g., treatment, time point, etc.), by including segments separated by a certain delimiter (e.g., `_`). Categorical features are assigned from individual segments or their combinations.** Example: The FOV `Panc1_Cyanide_dish1` denotes that it comes from the Panc1 cell line, under the Cyanide treatment, in the 1st dish.  
@@ -17,24 +17,16 @@ It scans the specified folder path and finds all CSV files. It uses the [cell id
 
 Therefore, it checks if all field-of-view names include the same number of segments to determine the eligibility of [categorical feature assignment](#assigning-categorical-features). 
 
-![](extraction_ui_shots/cat_merge.png){width=60% fig-align=center}
-
-It merges the datasets that pass the checks by finding common columns and vertically concatenating them. 
-
-![](extraction_ui_shots/cat_merge_result.png){width=60% fig-align=center}
+Before merging, all-empty columns are removed. The remaining datasets are stacked using only their common columns, and the page reports columns discarded during merging.
 
 ## Assigning Categorical Features
 
-Available categorical features to be assigned are drawn from the [user-specified configuration](data_extraction_config.qmd#categorical-features). 
+Available categories are the [configured categorical names](data_extraction_config.qmd#categorical-features) that are not already columns in the merged dataset.
 
-![](extraction_ui_shots/cat_features.png){width=25% fig-align=center}
+Set `Field of View Name Delimiter` to the separator used in the [FOV names](#fov-id-categorical). Leaving it empty treats each complete name as one slot. For each chosen category, select one or more slots; their values are joined in the selected order.
 
-Based on the [assumptions](#fov-id-categorical), it breaks down the FOV identifier into individual fields and facilitates the assignment. 
+The live preview shows one row from each of the first five FOVs. Check the assigned values before exporting.
 
-![](extraction_ui_shots/cat_slots.png){width=50% fig-align=center}
-
-A live preview of the assignment is displayed. 
-
-![](extraction_ui_shots/cat_slot_assign.png){width=100% fig-align=center}
+![Map FOV-name slots to categories and check the preview before exporting.](extraction_ui_shots/cat_slot_assign.png){width=100% fig-align=center fig-alt="The MCF7, 2DG, and dish2 slots map to cell_line, treatment, and dish; a five-FOV preview appears above Confirm category mapping & export the combined dataset."}
 
 Clicking `Confirm category mapping & export the combined dataset` then writes the merged dataset with the categorical features as a timestamped CSV (`{timestamp}_combined.csv`) into the same folder as the input dataset. Note that this is a direct file write rather than a browser download, so the file is saved on the machine running FLIM Playground. When using the [hosted demo](https://flim-playground.streamlit.app/), the file is written to the server and does not reach your computer, which is one reason Data Extraction is intended to be run on a local installation.

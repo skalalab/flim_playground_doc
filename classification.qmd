@@ -1,36 +1,36 @@
 # Classification {#sec-classification}
 A machine learning classifier learns patterns from categorized data and then predicts the category of new, unseen data. This module provides a set of machine learning classifiers and interactive widgets to help users perform classification. 
 
-All the classifiers are implemented using `scikit-learn`. The confusion matrix and the ROC curve come from `sklearn.metrics`; the remaining [performance metrics](#performance-metrics) are computed directly from that confusion matrix using the standard formulas given below, which avoids re-scanning the predictions once per metric and covers quantities such as specificity and Youden's J that `sklearn.metrics` does not provide. A fixed random seed (42) is used for all the classifiers to ensure reproducibility.
+All classifiers use `scikit-learn`, with a fixed random seed of 42 for reproducibility. The app evaluates predictions on a held-out test set and reports [performance metrics](#performance-metrics), a [confusion matrix](#confusion-matrix), and [ROC curves](#roc-curve).
 
-![](analysis_ui_shots/classification.png){width=100% fig-align=center}
-The performance metric plots are cut off in the screenshot. See the [performance metrics section](#performance-metrics) for the complete view.
+![Choose features, a classifier, and target classes, then inspect results on the held-out test set.](analysis_ui_shots/classification.png){width=100% fig-align=center fig-alt="Classification interface with feature pickers and Random Forest settings on the left, and filters, target-class controls, and performance metrics on the right."}
 
 An overview of the pipeline: 
 
-- Choose the numerical features on the left.
-    - The z-score normalization is applied to the features before training if the chosen classifier is `SVM` or `Logistic Regression`, because they are sensitive to feature magnitudes, while `Random Forest` and `Gradient Boosting` are not. 
-- Choose the classifier and train-test split.
+- Choose one or more numerical features on the left.
+- Choose the classifier, train-test split, and [hyperparameters](#classifier-hyperparameters).
 - Filter the dataset. 
 - Choose categorical features to form classes. 
 - Choose any of the methods to handle [class imbalance](#class-imbalance-handling).
 - Choose the classes to be classified.
 - Look at the [performance metrics](#performance-metrics), [confusion matrix](#confusion-matrix), and [ROC curve](#roc-curve).
-- Iterate over the previous options to improve the performance with regard to the metrics you care about.
+- Compare the results using the metrics that matter for your classification task, then [export the analysis](#export-the-analysis) to reproduce it.
+
+SVM and Logistic Regression standardize features with a z-score within their training pipeline; test observations use that training-fitted transformation. Random Forest and Gradient Boosting use the original feature scale. Classification does not automatically remove rows with missing selected measurements, so a classifier that cannot accept them reports an error. Clean those measurements or use the [numerical filters](data_analysis.qmd#numerical-filters) to select complete observations.
 
 ## Shared Interface Components
 - On the left, users can use the [selection widgets](data_analysis.qmd#multivariate-analysis) to select numerical features for the classifier. Multiple features can be selected from each feature group. 
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
-- Above the performance metrics plots, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
+- Font-size controls appear between the performance metric tables and the ROC/confusion-matrix plots. They use the shared [plot styling settings](data_analysis.qmd#plotting-configuration-widgets).
 
 ## Method-specific Components
-- Choose the classifier and train-test split: the slider controls the proportion of the data used to train the classifier and the rest is used as unseen data to test its generalizability. The following classifiers are available:
+- Choose a **Classifier** and **Train size (proportion of training data)** on the left. The slider ranges from 0.5 to 0.9 in steps of 0.1, with a default of 0.7. The remaining observations form the held-out test set. Available classifiers are:
     - [`Random Forest`](https://mlu-explain.github.io/random-forest/)
     - `Gradient Boosting`
     - Support Vector Machine (`SVM`)
     - [`Logistic Regression`](https://mlu-explain.github.io/logistic-regression/)
 
-The [train-test split](https://mlu-explain.github.io/train-test-validation/) is used to evaluate the generalizability of the classifier. The Validation set is used in hyperparameter tuning. Since the classifiers above do not have a lot of hyperparameters to tune, it does not partition a separate validation set. However, k-fold cross-validation is used in [tuning the threshold](#threshold-tuning).
+The [train-test split](https://mlu-explain.github.io/train-test-validation/) is stratified to preserve class proportions. The app does not create a separate validation set for choosing model hyperparameters; those are set with the controls below the classifier. Optional [threshold tuning](#threshold-tuning) uses cross-validation within the training data.
 
 ::: {.callout-warning title="The split is by row, not by field of view"}
 Both the train-test split and the cross-validation used in [threshold tuning](#threshold-tuning) operate on individual rows (i.e. single cells), stratified by class. They do not group rows by field of view, so cells segmented from the same image can end up in both the training set and the test set.
@@ -38,23 +38,21 @@ Both the train-test split and the cross-validation used in [threshold tuning](#t
 Cells from one image are usually more similar to each other than to cells from a different image, because they share a field of view, an acquisition session, and often a well. When such cells appear on both sides of the split, the reported metrics can look better than the classifier's true performance on a genuinely new image. Keep this in mind when interpreting the [performance metrics](#performance-metrics), particularly when the dataset contains many cells drawn from relatively few fields of view.
 :::
 
-![](analysis_ui_shots/classifier_config.png){width=60% fig-align=center}
+- **Classify by** forms target classes from one or more categorical columns. With multiple columns, each distinct combination becomes a class, with values joined by underscores. Classification requires at least one categorical column with two distinct values after filtering. The designated field-of-view column in extraction data is excluded from this picker; a user-table field-of-view column is an ordinary categorical column.
 
-- `Classify by`: The `Color by` from the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) is renamed to `Classify by` and it is used to form classes based on (a combination of) selected categorical features. Other visual channels are not supported in this method. 
+- **Select a way to classify** chooses the classes included in a run. With two classes, the app offers their binary comparison. With more classes, it offers combinations of two or more classes, including the full multiclass problem, and a `class VS the rest` option for each class. A one-versus-rest choice combines all other classes into `the rest`. If the number of combinations is too large, the app asks you to narrow the categories or filters.
 
-![](analysis_ui_shots/classify_by.png){width=90% fig-align=center}
-
-- Choose the classes to be classified: classes are formed based on the combinations of categories of the selected categorical features. In general, it supports binary classification and in general n-way classification where n is the number of classes. If one categorical feature is selected and after filtering has 3 categories, then all possible ways to classify are produced including the three-way classification. Additionally, the `class x vs the rest` option is provided for each class. 
-
-![](analysis_ui_shots/classifier_options.png){width=30% fig-align=center}
+![Target and class-imbalance controls define the classification task.](analysis_ui_shots/classify_by.png){width=100% fig-align=center fig-alt="Classify by is treatment, all five treatment classes are selected, and Sampling method, Class weight, and Threshold tuning based on are set to None."}
 
 ### Classifier Hyperparameters
 
-The classifier hyperparameter panel is organized per classifier with three roles:
+The main hyperparameters appear below the classifier; open **Advanced settings** for additional controls. The tables below describe parameters using three roles:
 
 - `Model-Form/Capacity`: defines the hypothesis family or expressive power.
 - `Regularization`: constrains model complexity to reduce overfitting.
 - `Optimization`: affects training convergence and runtime behavior.
+
+For Random Forest, **max_depth (0=None)** uses `0` for an unrestricted depth. SVM shows **degree** only for the polynomial kernel and **coef0** for polynomial or sigmoid kernels. Logistic Regression updates its regularization choices when the solver changes and shows **l1_ratio** for `saga` with `elasticnet`.
 
 #### Random Forest
 
@@ -104,7 +102,7 @@ The classifier hyperparameter panel is organized per classifier with three roles
 
 | Param | Role | Effect | Priority |
 | --- | --- | --- | --- |
-| `regularization` | Regularization | Selects regularization type; available options depend on `solver` (see table below). Maps to `l1_ratio` internally. | High |
+| `regularization` | Regularization | Selects regularization type; available options depend on `solver` (see table below). | High |
 | `C` | Regularization | Inverse regularization strength; higher `C` means weaker regularization. | High |
 | `l1_ratio` | Regularization | Balances `l1` vs `l2` when `solver='saga'` and `regularization='elasticnet'`. | Medium |
 | `fit_intercept` | Regularization | Disabling intercept is a mild structural constraint. | Low |
@@ -134,24 +132,20 @@ We provide three options for handling class imbalance (i.e., one or more classes
     - `Undersampling`: All classes are downsampled to the size of the smallest class. It is implemented using `RandomUnderSampler` from [`imbalanced-learn`](https://imbalanced-learn.org/stable/). 
     - `Oversampling`: All classes are upsampled to the size of the largest class by randomly duplicating samples from minority classes. It is implemented using `RandomOverSampler` from `imbalanced-learn`. 
 
-![](analysis_ui_shots/sampling.png){width=25% fig-align=center}
-
 - **Class weights**: 
     - `None`: no class weights.
     - `Balanced`: the class weights are inversely proportional to the class size (support). Note: Gradient Boosting does not support class weights in the scikit-learn implementation, and thus this option is not available for it.
 
 - **Threshold tuning**: Whereas the previous two options influence the probability estimation part of the classifier, this option adjusts only the decision boundary used to convert predicted probabilities into class labels. 
-    - `None`: no threshold tuning. The default decision is always the class that has the highest predicted probability (in binary, anything above 0.5; in multi-class, the class with the highest predicted probability).
+    - `None`: uses the classifier's default decision rule without tuning a threshold.
     - `Balanced Accuracy`: the threshold is set to maximize the balanced accuracy score, which is the unweighted average of each class's recall (i.e., the minority class's recall is as important as the majority class's recall). 
     - `F1 Score`: the threshold is set to maximize the unweighted average of each class's F1 score. 
-
-![](analysis_ui_shots/threshold_tuning.png){width=30% fig-align=center}
 
 ::: {.callout-note collapse="true" title="How does threshold tuning work?" #threshold-tuning}
 
 It treats threshold selection as a separate optimization problem from model training, allowing thresholds to be tuned independently of the underlying classifier's probability estimates.
 
-**K-fold cross-validation for the probability model**: The procedure begins by establishing a stratified [k-fold cross-validation](https://mlu-explain.github.io/cross-validation/) scheme (default k=5): the dataset is divided into k mutually exclusive subsets, and for each fold, one subset serves as the validation set while the remaining k-1 subsets form the training set.
+**K-fold cross-validation for the probability model**: The procedure uses a stratified [k-fold cross-validation](https://mlu-explain.github.io/cross-validation/) scheme (default k=5) within the training data, after any selected resampling. That training data is divided into k mutually exclusive subsets; for each fold, one subset serves as validation while the other k-1 subsets train the probability model. The held-out test set is not used to choose the thresholds.
 
 The probability models are trained separately for each cross-validation fold. This process yields k distinct probability models, each trained on a different subset of the data, along with their corresponding validation set probability predictions that collectively cover all samples exactly once.
 
@@ -163,43 +157,16 @@ Finally, the optimized threshold(s) are applied on top of the probability model 
 
 :::
 
-::: {.callout-note collapse="true" title="Threshold Tuning Example"}
+::: {.callout-note collapse="true" title="Interpreting class-imbalance settings"}
 
-Before threshold tuning: 
+Keep the features, classifier, hyperparameters, and train size fixed when comparing class-imbalance settings. Sampling and class weights change model training, so they can change the predicted probabilities and ROC curve. Changing only the decision threshold preserves the probabilities and ROC curve, but can move the operating point and change the confusion matrix.
 
-![](analysis_ui_shots/threshold_tuning_before.png){width=90% fig-align=center}
-
-After threshold tuning based on the balanced accuracy metric: 
-
-![](analysis_ui_shots/threshold_tuning_after.png){width=90% fig-align=center}
-
-Things to **highlight**: 
-
-- The two ROC curves are the same, because the underlying probability models are the same. 
-- The annotated operating point in <span style="color:red;">red</span> is "better" *after* the threshold tuning because it achieves higher Recall (TPR) + Specificity (TNR), as can be seen in the metrics table (the optimized metrics are highlighted in <span style="color:red;">red</span>). The threshold before was 0.5, the default value, and after tuning it was optimized to 0.19. The reduction in thresholds means that the classifier is tuned to be more "confident" at predicting the positive class (2DG), which is the minority class. The effect of this threshold optimization is also visible in the confusion matrix.
-- However, all of the above come at the cost of other metrics, such as the overall accuracy (0.89 to 0.82) and average precision (0.82 to 0.74). **Select the class imbalance methods/options that maximize the metrics most important to you.**
+Lowering a binary class's probability threshold makes it easier to assign that class. Compare recall, specificity, precision, and accuracy to understand the trade-off. Thresholds are optimized within the training data; improvement on the held-out test set is not guaranteed. Choose the settings according to the metrics most important to the task.
 
 :::
 
-::: {.callout-note collapse="true" title="Sampling Example"}
-
-Before sampling: 
-
-![](analysis_ui_shots/sampling_before.png){width=90% fig-align=center}
-
-After sampling (undersampling was used in this case): 
-
-![](analysis_ui_shots/sampling_after.png){width=90% fig-align=center}
-
-Things to **highlight**: 
-
-- The ROC curve is different, because the underlying probability models are different. 
-- The thresholds before and after are the same (the default value of 0.5), but the operating points are at different locations and their associated confusion matrices are different. 
-
-::: 
-
 ### Confusion Matrix
-FLIM Playground evaluates the trained classifier on the held-out test set by converting the predicted probabilities into hard labels using the chosen threshold or by selecting the class with the highest predicted probability. The predictions are then summarized using sklearn.metrics.confusion_matrix. In the binary case, it is represented as: 
+FLIM Playground evaluates the trained classifier on the held-out test set using its default decision rule or the tuned probability thresholds. The resulting predicted labels are summarized with `sklearn.metrics.confusion_matrix`. In the binary case, it is represented as:
 
 |                     | Predicted Positive                     | Predicted Negative                          |
 | ------------------- | -------------------------------------- | ------------------------------------------- |
@@ -208,7 +175,9 @@ FLIM Playground evaluates the trained classifier on the held-out test set by con
 
 ### Performance Metrics
 
-The overall accuracy is calculated as the ratio of the sum of the true positives and true negatives to the sum of all the elements in the confusion matrix (the sum of the diagonal over the sum of all the elements).
+The **Overall Metrics** table reports accuracy and **N**, the number of held-out test observations. **Per-Class Metrics** reports each class's test-set support and the measures below, with an unweighted average across classes. Recall is highlighted when threshold tuning uses Balanced Accuracy, and F1 Score is highlighted when it uses F1 Score.
+
+Overall accuracy is the number of correct predictions divided by the number of test observations: the sum of the confusion matrix's diagonal divided by the sum of all its entries. For binary classification, this is:
 
 - Accuracy: $\frac{TP + TN}{TP + FP + TN + FN}$
 
@@ -220,7 +189,7 @@ Other metrics are calculated for each class based on the confusion matrix:
 - Youden's Index: $\text{Sensitivity} + \text{Specificity} - 1$
 - F1 Score: $\frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$
 
-![](analysis_ui_shots/performance_metrics.png){width=90% fig-align=center}
+![Overall and per-class metrics summarize predictions on the held-out observations.](analysis_ui_shots/performance_metrics.png){width=100% fig-align=center fig-alt="Overall Metrics table with accuracy and N, followed by Per-Class Metrics for the five treatment classes and their average."}
 
 ::: {.callout-tip title="Performance Metrics Example"}
 
@@ -231,13 +200,15 @@ The reason that we need metrics in addition to accuracy is because *Accuracy is 
 ### ROC Curve
 Another way to look at the performance of the classifier is to plot the Receiver Operating Characteristic (ROC) curve and its Area Under the Curve (AUC). 
 
-Confusion matrix looks at the performance of the classifier at a single threshold, while ROC curve looks at the performance of the classifier at all thresholds (i.e., from 0 to 1). 
+The confusion matrix summarizes one decision rule, while the ROC curve shows how true-positive and false-positive rates change as the probability threshold varies.
 
-At the origin (0, 0), the threshold is 1, so the classifier predicts all samples as negative, making the false positive rate $\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}} = 0$ and the true positive rate $\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}} = 0$, i.e. the origin. At the point (1, 1), the threshold is 0, so the classifier predicts all samples as positive, making the false positive rate 1 and the true positive rate 1, i.e. the point (1, 1). 
+At a threshold above the highest predicted probability, every observation is classified as negative, so the false-positive rate $\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}}$ and true-positive rate $\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}}$ are both 0. At a threshold of 0, every observation is classified as positive, giving the endpoint (1, 1).
 
-AUC summarizes the ROC curve by integrating it from 0 to 1, so it is threshold-free and has a nice interpretation: it is the probability that the classifier assigns a higher score to a randomly chosen positive sample $X^+$ than to a randomly chosen negative sample $X^-$. 
+AUC summarizes the area under the ROC curve. It is the probability that a randomly chosen positive observation receives a higher score than a randomly chosen negative observation, with tied scores contributing one-half.
 
 The ROC curve displays the operating point (FPR, TPR) associated with the confusion matrix on the right. 
+
+In a binary problem, the curve's legend names the class treated as positive. Read the displayed threshold in terms of that class's probability; the app converts it to match the class shown on the curve.
 
 For a visual explanation, see [here](https://mlu-explain.github.io/roc-auc/).
 
@@ -245,9 +216,17 @@ For a visual explanation, see [here](https://mlu-explain.github.io/roc-auc/).
 
 In multi-class classification, each class's ROC curve is computed as a one-vs-rest binary classification problem. The operating point (FPR, TPR) associated with the confusion matrix is displayed for each class. 
 
-![](analysis_ui_shots/roc_multiclass.png){width=90% fig-align=center}
+![One-versus-rest ROC curves show each treatment’s discrimination and operating point.](analysis_ui_shots/roc_multiclass.png){width=80% fig-align=center fig-alt="ROC curves for five treatment classes, with AUC values, square operating points, and a dashed random-chance diagonal."}
+
+![The confusion matrix compares true and predicted labels for the same test observations.](analysis_ui_shots/confusion_matrix.png){width=80% fig-align=center fig-alt="Five-class confusion matrix with counts for the held-out treatment predictions."}
 
 ### Feature Importance
 `Random Forest` and `Gradient Boosting` classifiers provide feature importance scores. 
 
-![](analysis_ui_shots/feature_importance.png){width=90% fig-align=center}
+![The fitted Random Forest assigns an importance score to each selected numerical feature.](analysis_ui_shots/feature_importance.png){width=100% fig-align=center fig-alt="Horizontal bar chart of feature importance scores from the Random Forest classifier."}
+
+## Export the analysis
+
+Click **Export the entire analysis as a Python script** below the results to retain the selected features, filters, target classes, classifier, hyperparameters, train size, sampling, class weights, threshold tuning, and font sizes. The script runs the classification workflow from the original input table, prints the metrics, and saves `roc_curve.svg` and `confusion_matrix.svg`. Random Forest and Gradient Boosting also save `feature_importance.svg`.
+
+Follow the [shared script workflow](data_analysis.qmd#export-workflow-as-python-script) to run it or change its settings. The script repeats the row-based split and classification decisions used in the app.

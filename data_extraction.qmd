@@ -9,15 +9,14 @@ A high-level overview of the data extraction process is shown below.
 
 Users can [configure](#sec-data-extraction-config) the system once and apply it to future data. After configuration, users can extract features from raw data using the following steps, inspired by the [categorization](index.qmd#feature-classes):
 
-![](extraction_ui_shots/extraction_steps.png){width=30% fig-align=center}
+![Choose the extraction stage from the workflow selector.](extraction_ui_shots/extraction_steps.png){width=80% fig-align=center fig-alt="FOV Metadata Extraction is selected above Numeric Feature Extraction and Categorical Feature Extraction."}
 
 1. [FOV Metadata Extraction (A)](#sec-fov-metadata): each experiment session consists of multiple fields of view (FOVs). This step helps users organize the metadata of the FOVs.
-2. [Numeric Feature Extraction (B)](#sec-numerical-feature-extraction): it calibrates and then extracts single-cell numerical features.
-    - [Calibration](numerical_feature_extraction.qmd#calibration)
-        - [Fit Calibration](numerical_feature_extraction.qmd#fit-calibration)
-        - [Fit Free Calibration](numerical_feature_extraction.qmd#fit-free-calibration)
-            - [IRF Shift](numerical_feature_extraction.qmd#shift-irf)
-            - [Fluorescence lifetime standard](numerical_feature_extraction.qmd#fluorescence-lifetime-standard)
+2. [Numeric Feature Extraction (B)](#sec-numerical-feature-extraction): extracts single-cell numerical features, with IRF shift calibration first for the channels that require it.
+    - [IRF Calibration](irf_calibration.qmd#sec-irf-calibration)
+        - [Fit Calibration](irf_calibration.qmd#fit-calibration)
+        - [Fit-Free IRF Calibration](irf_calibration.qmd#fit-free-calibration)
+    - [Fluorescence lifetime standard](lifetime_fit_free.qmd#fluorescence-lifetime-standard): calibrates phasors with a reference dye during extraction.
     - Per-channel feature extraction includes:
         - [Lifetime fitting features](#sec-lifetime-fit): fit an exponential decay curve to the measured decay and extract lifetime features per cell ROI. 
         - [Phasor features](#sec-lifetime-fit-free): calculate the phasor features such as the phasor coordinates. It also provides [phasor analysis](#sec-phasor-analysis). 
@@ -35,14 +34,14 @@ Users can [configure](#sec-data-extraction-config) the system once and apply it 
 See [decay types](data_extraction_config.qmd#decay-types) for more details. 
 
 - 2D decay: 
-    - `.csv`: a tabular data sheet with each row representing a cell and each column representing a time bin. 
+    - `.csv`: a headerless numeric table with one cell per row and one time bin per column. Do not include identifier or annotation columns.
 - 3D/4D decay: besides the spatial dimensions and the time dimension, the additional dimension in the 4D array represents acquisition channels.
     - `.sdt`: Becker & Hickl
     - `.ptu`: PicoQuant
 
 ### Mask
 
-Because of the single-cell focus of FLIM Playground, cell-level masks are needed for each channel. Channels can share the same mask, or use different masks (when they use different masks, the mask ID for each cell should match across masks). 
+Image-based inputs need a cell-level mask for each channel. Channels can share a mask or use different masks; when masks differ, the integer label for the same cell must match across them. A 2D decay table does not need a mask: its rows identify the cells.
 
 The cell-level mask can focus on different parts of the cell region, such as the whole cell, the cytoplasm, the nucleus, or the stain part. 
 
@@ -54,6 +53,7 @@ For an example, see [here](data_extraction_config.qmd#file-suffix).
 IRF must be a 1D array. Currently, the supported formats are (extendable to more formats in the future):
 
 - `.txt`: it uses `np.loadtxt` to parse a txt file. It returns a 1D array if the IRF numbers are in one row or in one column.  
+- `.csv`: comma-separated IRF values. The resulting IRF must contain one value per decay time bin.
 
 ### SPCImage t1
 If the decay type is [3D/4D pixel pre-fit](data_extraction_config.qmd#three-d4d-pixel-pre-fit), users can provide pixel pre-fit lifetime feature files. 

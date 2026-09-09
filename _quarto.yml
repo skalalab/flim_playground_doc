@@ -18,6 +18,7 @@ csl: https://www.zotero.org/styles/nature
 
 format:
   html:
+    lightbox: true
     theme:
       light: [flatly, brand]
       dark: [darkly, brand]
@@ -30,6 +31,7 @@ format:
   pdf:
     documentclass: scrreprt
     pdf-engine: lualatex
+    latex-min-runs: 3
     top-level-division: chapter
     shift-headings: -1
     title: "FLIM Playground Supplemental Manual"

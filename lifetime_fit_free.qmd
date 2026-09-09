@@ -1,17 +1,25 @@
 # Lifetime Features (Fit-Free) {#sec-lifetime-fit-free}
 
-Phasor analysis provides a fast, model-free view of lifetimes by transforming fluorescence decays into phasor coordinates through a Fourier transform. This approach is considered "fit-free" because it does not require iterative curve fitting or predefined decay models—each decay is mapped directly to a point on the [phasor plot](#sec-phasor-analysis). It has the nice property that mono-exponential decays fall on the universal semicircle while mixtures lie inside as linear combinations, so clusters reveal distinct species and their fractional contributions. FLIM Playground currently extracts cell-level phasor features: `g`, `s`, `Tau_phase`, `Tau_mod`, `g_2nd` (2nd harmonic), and `s_2nd`. (Datasets extracted before this feature was renamed use `Tau_m`, which Data Analysis still recognizes.)
+Phasor analysis provides a fast, model-free view of lifetimes by transforming fluorescence decays into phasor coordinates through a Fourier transform. This approach is considered "fit-free" because it does not require iterative curve fitting or predefined decay models—each decay is mapped directly to a point on the [phasor plot](#sec-phasor-analysis). It has the nice property that mono-exponential decays fall on the universal semicircle while mixtures lie inside as linear combinations, so clusters reveal distinct species and their fractional contributions. FLIM Playground currently extracts cell-level phasor features: `G(1st)`, `S(1st)`, `Tau_phase`, `Tau_mod`, `G(2nd)`, and `S(2nd)`. (Datasets extracted before this feature was renamed use `Tau_m`, which Data Analysis still recognizes.)
 
-Fit-free features in the final dataset are prefixed by the combination of the feature extractor name (i.e. `Lifetime fit free`) and the channel name, allowing [Data Analysis](#sec-data-analysis) to group the features. For example, `Lifetime fit free_nadh: G` means the $g$ coordinate for this cell in the NAD(P)H channel.
+Fit-free features in the final dataset are prefixed by the combination of the feature extractor name (i.e. `Lifetime fit free`) and the channel name, allowing [Data Analysis](#sec-data-analysis) to group the features. For example, `Lifetime fit free_nadh: G(1st)` means the $g$ coordinate for this cell in the NAD(P)H channel.
 
 ## Preprocessing
 
-It sums up all the pixel decays belonging to the same cell ROI labeled by the ROI [mask](data_extraction.qmd#mask) as one decay curve [@Samimi2025]. The phasor features are calculated from the summed decay curve. 
+For image inputs, the app sums the pixel decays within each cell ROI labeled by the ROI [mask](data_extraction.qmd#mask) to obtain one cell decay [@Samimi2025]. For [2D decay inputs](data_extraction_config.qmd#two-d-decay), each CSV row already supplies a cell decay, so no mask is needed. Phasor features are calculated from each cell decay.
 
 Two preprocessing steps are then applied, and they are independent of each other:
 
 - **Offset subtraction** is applied to every decay curve, regardless of the chosen [calibration method](data_extraction_config.qmd#calibration-method). For each cell, the offset is estimated as the mean of the last 10% of the time bins of that cell's own decay curve, subtracted from the curve, and any resulting negative values are clipped to zero. Note that this per-cell baseline is unrelated to the `offset` parameter fitted during [lifetime fitting](lifetime_fit.qmd).
-- **IRF shifting** is applied only when the chosen calibration method is IRF shift calibration. The IRF is shifted using the shift values as described in the [Shift IRF step](numerical_feature_extraction.qmd#shift-irf). Under fluorescence lifetime standard calibration, no IRF shift is applied.
+- **IRF shifting** is applied only when the chosen calibration method is IRF shift calibration. The IRF is shifted using the shift values as described in the [Shift IRF step](irf_calibration.qmd#shift-irf). Under fluorescence lifetime standard calibration, no IRF shift is applied.
+
+## Fluorescence lifetime standard
+
+A calibration dye with a known lifetime provides phasor calibration without an IRF shift. In [Home → Configuration](data_extraction_config.qmd#calibration-method), select **Fluorescence Lifetime Standard**, enter its known lifetime, and set each channel's reference-file suffix. The app applies this calibration during `Lifetime fit free` extraction, after [offset subtraction](#preprocessing).
+
+The reference's measured phasor and known lifetime determine the correction applied to each cell's coordinates, using `phasorpy`'s [`lifetime.phasor_calibrate`](https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate). The [calibrated-coordinate equations](#step-2-calibrated-phasor-coordinates) below show both calibration methods.
+
+Selecting raw `Lifetime fit` as well still requires [IRF shift calibration for fitting](irf_calibration.qmd#fit-calibration); the dye calibrates the phasor features.
 
 ## Phasor features
 
@@ -57,13 +65,24 @@ To get the calibrated phasor coordinates `g`, `s`, `g_2nd`, and `s_2nd`, FLIM Pl
 ```python
 from phasorpy import phasor
 g, s = phasor.phasor_divide(g_raw, s_raw, g_irf, s_irf)
-g_2nd, s_2nd = phasor.phasor_divide(g_raw_2nd, s_raw_2nd, g_irf_2nd, s_irf_2nd)
+g_2nd, s_2nd = phasor.phasor_divide(
+    g_raw_2nd, s_raw_2nd, g_irf_2nd, s_irf_2nd
+)
 ```
 or 
 ```python
 from phasorpy import lifetime
-g, s = lifetime.phasor_calibrate(g_raw, s_raw, ref_mean, ref_real, ref_imag, frequency=laser_rate, lifetime=reference_dye_lifetime)
-g_2nd, s_2nd = lifetime.phasor_calibrate(g_raw_2nd, s_raw_2nd, ref_mean, ref_real, ref_imag, frequency=laser_rate, lifetime=reference_dye_lifetime, harmonic=2)
+g, s = lifetime.phasor_calibrate(
+    g_raw, s_raw, ref_mean, ref_real, ref_imag,
+    frequency=laser_rate,
+    lifetime=reference_dye_lifetime,
+)
+g_2nd, s_2nd = lifetime.phasor_calibrate(
+    g_raw_2nd, s_raw_2nd, ref_mean, ref_real, ref_imag,
+    frequency=laser_rate,
+    lifetime=reference_dye_lifetime,
+    harmonic=2,
+)
 ```
 
 The `laser_rate` is specified during the [fov metadata extraction](fov_metadata.qmd#laser-frequency) and the [configuration interface](data_extraction_config.qmd#laser-frequency). 

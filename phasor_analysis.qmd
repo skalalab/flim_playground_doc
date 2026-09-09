@@ -1,49 +1,41 @@
-# Phasor Analysis {#sec-phasor-analysis}
+# Phasor Plot {#sec-phasor-analysis}
 
-This method focuses on visualizing the distribution of the 1st harmonic or 2nd harmonic phasor coordinates, extracted by the [Lifetime fit free](#sec-lifetime-fit-free) extractor, and performs optional clustering to highlight subpopulations or structural patterns.
+**Phasor Plot** displays a matching pair of first- or second-harmonic phasor coordinates against the universal semicircle. Use it to compare the positions and spread of groups measured with the [Lifetime fit free](#sec-lifetime-fit-free) extractor, or from a user table with the expected coordinate names.
 
-![](analysis_ui_shots/phasor_analysis.png){width=100% fig-align=center}
+::: {.callout-note title="Phasor Plot appears only for datasets with phasor coordinates"}
+After a dataset is loaded, **Phasor Plot is hidden from the Bivariate method selector if the dataset has no recognized, complete G/S coordinate pair**. A pair must belong to the same channel and harmonic, and both columns must be numerical. See [coordinate names and column roles](#select-phasor-coordinate) below.
+:::
+
+![The complete Phasor Plot screen, with cell-line selection and treatment colors.](analysis_ui_shots/phasor_analysis.png){width=100% fig-align=center fig-alt="Full Phasor Plot interface with dataset upload, NADH channel and first harmonic, filters, Separate by cell_line, Color by treatment, the selected cell-line category, and the phasor chart."}
 
 ## Shared Interface Components
 
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
-- Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allow users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
+- Below the filters, use `Color by`, `Opacity by`, and `Shape by` to encode categorical features. [`Separate by`](#separate-by) adds a category selector above the plot.
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
 ## Select Phasor Coordinate 
 
-Instead of using the [bivariate selection widgets](data_analysis.qmd#bivariate-analysis) that select two generic numerical features, this method renders a dropdown menu to select the channel and another to select the harmonic.
+On the left, select **Channel** when more than one channel is present, then choose its **harmonic No.** Only harmonics with both G and S coordinates are offered. A table containing just one complete harmonic pair can still use Phasor Plot.
 
-![](analysis_ui_shots/phasor_coordinate_select.png){width=15% fig-align=center}
+![Select the channel and harmonic for the matching G/S coordinate pair.](analysis_ui_shots/phasor_coordinate_select.png){width=80% fig-align=center fig-alt="Channel set to nadh and nadh harmonic No. set to 1."}
+
+The method recognizes numerical columns named `Lifetime fit free_{channel}: G(1st)` and `Lifetime fit free_{channel}: S(1st)`, or their `G(2nd)` and `S(2nd)` counterparts. For example, a first-harmonic NADH pair is `Lifetime fit free_nadh: G(1st)` and `Lifetime fit free_nadh: S(1st)`. In a user-table review, assign both columns **Numerical**; they may belong to different feature groups. After upload, Phasor Plot is available only if the table contains a complete pair.
+
+Set **Laser repetition rate (GHz)** to the acquisition's base repetition rate, for example `0.08` for 80 MHz. This controls the lifetime reference markers; it does not recalculate or calibrate the uploaded coordinates. The app removes rows missing either coordinate from the displayed plot.
 
 The plot is drawn against the universal semicircle, with markers along it for lifetimes from 0.5 to 10 ns to read your points against. Switching to the 2nd harmonic moves those markers, because the transform is evaluated at twice the frequency and a given lifetime lands somewhere else. The frequency printed inside the plot tells you which view you are reading — `f = 160 MHz (2 × 80 MHz)` for the 2nd harmonic of an 80 MHz system — so check it before comparing a point against a marker. The semicircle itself is the same for both harmonics.
 
-## K-means Clustering
+## Separate by
 
-Phasor coordinates of single-cell ROIs from the selected channel and harmonic are plotted in the phasor space. K-means clustering can be performed for each color group (created by [`Color by`](data_analysis.qmd#color-by)). If `Perform K-means Clustering` is checked, users can specify the number of clusters to be created based on their prior knowledge. In the future, automatic tuning for this parameter, akin to selecting the number of components of [GMM](feature_histogram.qmd#fit-gaussian-mixture-models), using silhouette analysis will be added.
+![Separate by adds a category selector while color, opacity, and shape remain independent controls.](analysis_ui_shots/phasor_encodings.png){width=100% fig-align=center fig-alt="Separate by is cell_line, Color by is treatment, and the category selector switches between Panc1 and MCF7; opacity and shape have no selection."}
 
-![](analysis_ui_shots/kmeans_config.png){width=60% fig-align=center}
+Choose `cell_line` in **Separate by** and `treatment` in **Color by**, then select a cell line above the plot. For example, select `Panc1` to highlight its treatments while keeping `MCF7` observations in gray for context. The selected category keeps its color, opacity, and shape encodings; observations from other categories remain visible as faint gray context points. The full-size axes and lifetime references remain the same as you switch categories.
 
-K-means clustering is performed given the number of clusters specified for each color group. Mathematically, it is an iterative algorithm that finds the best cluster assignment with regard to what cluster each point belongs to and what centroid the cluster has. The *best* is defined as the one that minimizes the sum of the squared distances between each point and the center of the cluster it belongs to. 
+The separation column cannot also be used for `Color by`. Point colors stay consistent across categories, and **Show group counts (n) in legend** counts only the selected category's complete G/S observations. Gray context points do not contribute to those counts or provide individual hover labels.
 
-$$
-\min_{\{C_k\}_{k=1}^K}\;\sum_{k=1}^K\sum_{x_i\in C_k}\bigl\lVert x_i-\mu(C_k)\bigr\rVert_2^2,
-\qquad
-\mu(C_k)=\frac{1}{|C_k|}\sum_{x_i\in C_k} x_i.
-$$
+![Treatments in the selected cell line appear in color against gray observations from the other cell line.](analysis_ui_shots/phasor_plot.png){width=100% fig-align=center fig-alt="First-harmonic NADH phasor plot with Panc1 observations colored by treatment, faint gray context points, and lifetime markers along the universal semicircle."}
 
-First, FLIM Playground standardizes the phasor coordinates because $g$ (real part) and $s$ (imaginary) are not necessarily on the same scale.
+## Export the plot
 
-Then, it performs k-means clustering using the `sklearn.cluster.KMeans` function. All the other hyperparameters control the optimization process (e.g. `init` controls the initialization of the centroids), and they are set to their [default values](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html). `42` is used as the random seed to ensure reproducibility. 
-
-To visualize the result of clustering, FLIM Playground draws a polygon (convex hull) that contains all the points of each cluster, the color of which is determined by the color group the cluster belongs to. It uses the [`scipy.spatial.ConvexHull`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.ConvexHull.html) function to calculate the convex hull. The center of each cluster is marked as a black bordered cross and users can hover over it to see its coordinates. 
-
-![](analysis_ui_shots/phasor_plot.png){width=80% fig-align=center}
-
-### Export Clustered Dataset
-
-Users can download the clustered dataset by clicking: 
-
-![](analysis_ui_shots/k_means_download.png){width=35% fig-align=center}
-
-The downloaded dataset keeps all the features plus the new categorical feature column (`k_means_cluster`), which is recognized by any method in Data Analysis as a categorical feature like others. The rows that pass the [filters](data_analysis.qmd#filter-widgets) are included.
+Click **Export the entire analysis as a Python script** below **Plot Styling** to reproduce the current channel, harmonic, repetition rate, filters, encodings, and selected category. Follow the [shared script workflow](data_analysis.qmd#export-workflow-as-python-script) to generate an SVG figure from the original table.

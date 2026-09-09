@@ -6,34 +6,39 @@ Principal Component Analysis (PCA) is a linear dimension reduction method that p
 
 Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochastic Neighbor Embedding (t-SNE) are non-linear dimension reduction methods that can capture more complex patterns in the data. They are more flexible and can handle non-linear relationships between features, but they are more computationally expensive, less interpretable, not deterministic (FLIM Playground uses the random seed `42` to ensure reproducibility), and dependent on the hyperparameters. Here is a [post](https://pair-code.github.io/understanding-umap/) that explains how UMAP and t-SNE work at a high level and the meaning of some of the hyperparameters. 
 
-The numerical features are standardized before the dimension reduction. 
+Select at least two numerical features. The app removes rows missing any selected feature, standardizes each feature to a z-score, and fits one two-dimensional embedding to the remaining filtered observations.
 
-![](analysis_ui_shots/dimension_reduction.png){width=100% fig-align=center}
+![UMAP of the `0-control` and `IAA` treatments, colored by `cell_line`, with `Separate by` left empty.](analysis_ui_shots/dimension_reduction.png){width=100% fig-align=center fig-alt="Dimension Reduction interface with 0-control and IAA selected, Color by set to cell_line, Separate by empty, and a single UMAP plot showing Panc1 in blue and MCF7 in orange."}
 
 ## Shared Interface Components
 - On the left, users can use the [selection widgets](data_analysis.qmd#multivariate-analysis) to select multiple numerical features from each feature group.  
 - On the top right, users can use the [filters](data_analysis.qmd#filter-widgets) to subset the data to find the groups of interest. 
-- Below the filters, users can apply the [visual channels widgets](data_analysis.qmd#visual-channels-widgets) that allow users to `Color by`, `Opacity by`, and `Shape by` categorical features. 
+- Below the filters, use `Color by`, `Opacity by`, and `Shape by` to encode categorical features, and [`Separate by`](#separate-by) to add category highlight maps.
 - On the bottom right, users can change the plot style using the [plot styling widgets](data_analysis.qmd#plotting-configuration-widgets). 
 
+## Separate by
+
+Choose up to two categorical columns in **Separate by** to display a shared overview beside smaller category maps:
+
+- One column creates a vertical stack of maps, one per category.
+- Two columns create a matrix: the first selected column defines rows and the second defines columns. A combination with no observations still has a panel showing the gray context.
+
+Each small map highlights its category's observations with the same coordinates, colors, shapes, and opacities as the overview. Other observations appear in faint gray. All maps share axis ranges, so positions can be compared directly. A column may be selected in both `Separate by` and `Color by`.
+
+Changing these display controls does not refit the embedding. Changing the numerical features, filters, reduction method, or its hyperparameters does. The shared legend controls groups across the maps, and **Show group counts (n) in legend** reports counts from the full embedding, rather than separate counts for each small map.
+
+![Select `treatment` and then `cell_line` in `Separate by` to show the same UMAP embedding with treatments in rows and cell lines in columns.](analysis_ui_shots/umap_separate.png){width=100% fig-align=center fig-alt="The 0-control and IAA treatment filter and cell_line coloring above a UMAP overview and a two-by-two matrix, with 0-control and IAA in rows and Panc1 and MCF7 in columns. Highlighted cells retain their overview coordinates and colors; other cells appear gray."}
+
 ## Hyperparameter Widget
-Hyperparameters really matter, so we provide a set of interactive widgets to help users change the hyperparameters and see their effects in real time. 
+
+Choose **UMAP**, **PCA**, or **t-SNE** in **Dimension Reduction Method** on the left. UMAP and t-SNE expose the controls below; PCA has no additional hyperparameter controls.
 
 ### UMAP
-FLIM Playground uses the `umap-learn` implementation of UMAP. It chooses to expose `n_neighbors` and `min_dist` for users to tweak. Other hyperparameters are set to [default values](https://umap-learn.readthedocs.io/en/latest/parameters.html).
+FLIM Playground uses the `umap-learn` implementation of UMAP. **n_neighbors** (default 15) controls the neighborhood size used to construct the embedding, while **min_dist** (default 0.1) controls how tightly nearby points can be packed. Other hyperparameters use the implementation's [default values](https://umap-learn.readthedocs.io/en/latest/parameters.html), with Euclidean distance and a fixed random seed of 42.
 
 ### t-SNE
-FLIM Playground uses the `sklearn.manifold.TSNE` implementation of t-SNE. It chooses to expose `perplexity` and `early_exaggeration` for users to tweak. Other hyperparameters are set to [default values](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html).
+FLIM Playground uses the `sklearn.manifold.TSNE` implementation of t-SNE. **perplexity** (default 15) controls the effective neighborhood size and must be smaller than the number of analyzed observations. **early_exaggeration** (default 1 in the app) controls the initial emphasis on keeping neighboring observations together. Other hyperparameters use the implementation's [default values](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html), with a fixed random seed of 42.
 
-::: {.columns}
-::: {.column width="33%"}
-![](analysis_ui_shots/umap.png){width=100%}
-:::
-::: {.column width="33%"}
-![](analysis_ui_shots/pca.png){width=100%}
-:::
-::: {.column width="33%"}
-![](analysis_ui_shots/t_sne.png){width=100%}
-:::
-:::
+## Export the analysis
 
+Click **Export the entire analysis as a Python script** below **Plot Styling** to retain the selected features, filters, method, hyperparameters, point encodings, and category-map layout. The script fits the same shared embedding and saves an SVG figure. See the [shared script workflow](data_analysis.qmd#export-workflow-as-python-script) for running it with the original table.

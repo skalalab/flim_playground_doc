@@ -1,7 +1,9 @@
 # Field of View Metadata {#sec-fov-metadata}
 It is the first step in the [Data Extraction](#sec-data-extraction) workflow. It organizes the metadata of each field of view (FOV)—including file paths for all required inputs and decay information—into a single metadata file. This file is then used for [numerical feature extraction](#sec-numerical-feature-extraction), as well as for users' own bookkeeping and troubleshooting.
 
-![](extraction_ui_shots/fov.png){width=100% fig-align=center #fov-metadata}
+::: {#fov-metadata}
+![Metadata settings appear beside the file checks and metadata preview.](extraction_ui_shots/fov.png){width=100% fig-align=center fig-alt="FOV Metadata Extraction with channel and folder settings on the left, and a successful field-of-view check, metadata table, and export button on the right."}
+:::
 
 It is divided into two sections: 
 
@@ -16,46 +18,34 @@ Metadata are configured earlier in the [Data Extraction Configuration](#sec-data
 
 See [decay types](data_extraction_config.qmd#decay-types) for more details. The decay type is not editable here. 
 
-![](extraction_ui_shots/fov_decay_type.png){width=30% fig-align=center}
-
 ### Channel Names 
 See [channel name config](data_extraction_config.qmd#channel-name) for more details. The names are not editable here, though users can choose which channel to include. 
-
-![](extraction_ui_shots/fov_channel.png){width=60% fig-align=center}
 
 ### Feature Extractors
 
 See [feature extractor config](data_extraction_config.qmd#feature-extractor) for more details. The feature extractors for each channel are shown but not editable here. 
 
-![](extraction_ui_shots/fov_feature_extractor.png){width=60% fig-align=center}
-
 ### Decay Info
 
-See [decay info config](data_extraction_config.qmd#decay-info) for more details. The decay information is editable here. 
-
-![](extraction_ui_shots/fov_decay.png){width=60% fig-align=center #laser-frequency}
+The [decay settings](data_extraction_config.qmd#decay-info) start from the active profile. [Laser rate]{#laser-frequency} is editable when `Lifetime fit free` is selected; 2D inputs also show duration and time-bin controls.
 
 #### 2D Decay-specific
 
 Since the [2D decay](data_extraction_config.qmd#two-d-decay) file does not provide the `duration` and the number of `time bins` per laser pulse interval, users need to specify them. 
 
-![](extraction_ui_shots/fov_decay_2d.png){width=60% fig-align=center}
+![Review the timing values used to interpret a 2D decay table.](extraction_ui_shots/fov_decay_2d.png){width=80% fig-align=center fig-alt="Decay (2D) metadata controls with the NADH channel included, duration 12.5 ns, 200 time bins, and laser rate 0.08 GHz."}
 
 ### File Suffix
 
 Copied from the [file suffix config](data_extraction_config.qmd#file-suffix). 
 Users can edit the file suffixes here. 
 
-![](extraction_ui_shots/fov_file_suffix.png){width=60% fig-align=center}
-
 ### Fluorescence Lifetime Standard
 
-If the selected fit free calibration method is [fluorescence lifetime standard](data_extraction_config.qmd#calibration-method), users are asked to specify the fluorescence lifetime standard file path for each channel and the fluorescence lifetime standard's lifetime, which are copied from the data extraction configuration. 
+When [Fluorescence Lifetime Standard](data_extraction_config.qmd#calibration-method) calibration is selected, specify the standard's filename suffix for each fit-free channel under `File suffixes`, and its shared lifetime in nanoseconds. These values start from the active configuration. The folder scan finds each standard by suffix, independently of the FOV name.
 
 ### Folder Path
 Finally, users can specify the folder path that contains all the required input files. 
-
-![](extraction_ui_shots/fov_folder.png){width=60% fig-align=center}
 
 ## Metadata Extraction
 ### FOV File Paths
@@ -72,27 +62,15 @@ Then, it uses the found FOV names to find all other files:
 
 The only exceptions are the calibration files, because they are not FOV-specific. They will be searched for based on their file suffixes only. 
 
-#### Success
+Each FOV card reports whether the required inputs were found:
 
-![](extraction_ui_shots/fov_success.png){width=60% fig-align=center}
+- **Missing:** no file matches the expected FOV name plus suffix, or no calibration file matches its suffix.
+- **Duplicate:** multiple files match a calibration suffix, or the same per-FOV filename appears in different subfolders. Keep one unambiguous match for each required input.
 
-#### Missing 
-
-When it cannot find the file based on the file name (FOV name + file suffix for that file type) inside the folder path, it will complain. 
-
-![](extraction_ui_shots/fov_missing.png){width=60% fig-align=center}
-
-#### Duplicate
-
-Because the calibration file is not FOV-specific, it will be searched based on the file suffixes only. If there are multiple files that match the same file suffix, FLIM Playground will be confused about which one to use. 
-
-![](extraction_ui_shots/fov_duplicate.png){width=60% fig-align=center}
-
-Fields of view with ✅ are loaded successfully 🎆. FOVs with ❌ (if any) will not be recorded.
+FOVs marked ✅ are included in the metadata; FOVs marked ❌ are excluded.
 
 ::: {.callout-tip}
-If the issue persists after renaming the files to match the required prefix, hit the `Rescan Folder` button to force a re-scan of the folder.
-![](extraction_ui_shots/fov_rescan.png){width=20% fig-align=center}
+After correcting missing or duplicate filenames, click `Rescan folder` to repeat the scan.
 :::
 
 ### Decay Info
@@ -105,14 +83,9 @@ If the decay file associated with the channel found by the previous step is a 4D
 
 Picking the right channel number is easy to get wrong when one file holds several non-empty channels, so when there is a choice to make, a preview of the first field of view appears under the dropdown: one thumbnail per candidate channel, with a ✅ on the one currently selected. Glance at it to confirm the channel you picked looks like the fluorophore you expect. 
 
-![](extraction_ui_shots/fov_channel_preview.png){width=60% fig-align=center} 
-
 #### Fluorescence Lifetime Standard
 
-If the file path to the [fluorescence lifetime standard](#fluorescence-lifetime-standard) is specified, FLIM Playground will try to look for and read the file. It expects a `tiff` or `tif` file that contains a 3D array, with one of them as the time dimension. It will try to match the time dimension with the time dimension of the decay file. If it cannot find the matching time dimension, it will complain. 
-
-![](extraction_ui_shots/fov_rd_not_found.png){width=90% fig-align=center}
-![](extraction_ui_shots/fov_rd_not_match.png){width=90% fig-align=center}
+After finding the [fluorescence lifetime standard](#fluorescence-lifetime-standard), FLIM Playground checks that it is a 3D TIFF and that exactly one dimension matches the decay's time-bin count. A missing or ambiguous time axis prevents metadata export.
 
 Once the time axis is matched, the file path to the fluorescence lifetime standard, the fluorescence lifetime standard's lifetime, and the time axis will be recorded. 
 
@@ -120,7 +93,7 @@ Once the time axis is matched, the file path to the fluorescence lifetime standa
 
 If there is a non-zero number of FOVs with ✅ and channel assignment and fluorescence lifetime standard checks (if applicable) are passed, a preview of the metadata data sheet will be shown for users to check. 
 
-![](extraction_ui_shots/fov_export.png){width=100% fig-align=center}
+![Check the recorded file paths before exporting the FOV metadata.](extraction_ui_shots/fov_export.png){width=100% fig-align=center fig-alt="A field of view reports All files found above the metadata preview and Export FOV Metadata as CSV button."}
 
 As an example, the following metadata are extracted: 
 
@@ -130,4 +103,4 @@ As an example, the following metadata are extracted:
 - `nadh_Lifetime fit free`, `nadh_Intensity morphology`, `nadh_Lifetime fit`, `fad_Intensity morphology`, `fad_Intensity texture`, `fad_Lifetime fit`: [feature extractors](#feature-extractors) for each channel. 
 - `nadh_channel`, `duration`, `fad_channel`, `time_bins`, `laser_rate`: the [decay info](#decay-info) for each channel and info shared by all channels. 
 
-The user can click the `Export FOV Metadata as CSV` button to export the metadata as a CSV file. 
+`Export FOV Metadata as CSV` writes `fov_metadata_<timestamp>.csv` into the selected folder and caches it for the numerical extraction step.

@@ -11,10 +11,12 @@ $e = \frac{c}{a}, \quad e \in [0,1)$, where $a$ is the semi-major axis length, $
 
 - `major_axis_length`: the length of the major axis of the ellipse that has the same second moments as the region: $2a$. It represents the longest dimension of the ellipse that approximates the region’s shape, essentially describing its maximum elongation.
 - `minor_axis_length`: the length of the minor axis of the ellipse that has the same second moments as the region: $2b$. It represents the shortest dimension of that ellipse, capturing the region’s minimum elongation.
-- `circularity`: describes how close the ROI is to a perfect circle. It is defined as $\text{circularity} = \frac{4 \pi A_{\text{ROI}}}{P_{\text{ROI}}^2}, \quad \text{circularity} \in (0,1]$, where $A_{\text{ROI}}$ is the area of the region and $P_{\text{ROI}}$ is its perimeter. A value of $1$ corresponds to a perfect circle.
+- `circularity`: describes how close the ROI is to a perfect circle. It is calculated as $\text{circularity} = \frac{4 \pi A_{\text{ROI}}}{P_{\text{ROI}}^2}$, where $A_{\text{ROI}}$ is the area of the region and $P_{\text{ROI}}$ is its perimeter. In continuous geometry, values lie in $(0,1]$, with $1$ for a perfect circle. The pixel-based perimeter estimate used here can produce values above $1$, and exported values are not clipped. If the estimated perimeter is zero, the app reports $0$.
 
 
 Feature names in the final dataset are prefixed by the combination of the feature extractor name (i.e. `Intensity morphology`) and the channel name, allowing [Data Analysis](#sec-data-analysis) to group the features. For example, `Intensity morphology_nadh: area` means the area of each cell in the NAD(P)H channel. 
 
 
 
+
+The extractor also exports `<channel>_centroid_x` and `<channel>_centroid_y` as uncategorized numerical columns. If several channels request morphology from the same mask file, morphology is exported once under the first such channel.

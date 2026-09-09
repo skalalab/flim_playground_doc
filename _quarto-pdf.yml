@@ -1,7 +1,6 @@
 project:
   render:
     - "*.qmd"
-    - "!fov_comparison.qmd"
 
 book:
   chapters:
@@ -12,6 +11,7 @@ book:
         - data_extraction_config.qmd
         - fov_metadata.qmd
         - numerical_feature_extraction.qmd
+        - irf_calibration.qmd
         - lifetime_fit.qmd
         - lifetime_fit_free.qmd
         - intensity_morphology.qmd
