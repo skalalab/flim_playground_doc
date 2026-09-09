@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Overview – FLIM Playground</title>
+<title>13&nbsp; Overview – FLIM Playground</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -72,6 +72,9 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-37a0ccb6f5b9899fcb884e11bb6f7458.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -100,6 +103,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -274,7 +306,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_analysis.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./data_analysis.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_analysis.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./data_analysis.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -344,38 +376,44 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./irf_calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IRF Calibration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./lifetime_fit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lifetime_fit_free.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_morphology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_texture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./derived_feature.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./categorical_feature_extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
   </div>
 </li>
       </ul>
@@ -392,13 +430,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
   </div>
 </li>
       </ul>
@@ -415,19 +453,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_histogram.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fov_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Field of View Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
   </div>
 </li>
       </ul>
@@ -444,13 +476,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_distribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feature Distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./phasor_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Plot</span></span></a>
   </div>
 </li>
       </ul>
@@ -494,23 +526,24 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#general-workflow" id="toc-general-workflow" class="nav-link active" data-scroll-target="#general-workflow"><span class="header-section-number">12.1</span> General Workflow</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">12.2</span> Methods</a></li>
-  <li><a href="#input" id="toc-input" class="nav-link" data-scroll-target="#input"><span class="header-section-number">12.3</span> Input</a>
+  <li><a href="#general-workflow" id="toc-general-workflow" class="nav-link active" data-scroll-target="#general-workflow"><span class="header-section-number">13.1</span> General Workflow</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">13.2</span> Methods</a></li>
+  <li><a href="#input" id="toc-input" class="nav-link" data-scroll-target="#input"><span class="header-section-number">13.3</span> Input</a>
   <ul class="collapse">
-  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements"><span class="header-section-number">12.3.1</span> Requirements</a></li>
-  <li><a href="#warning-messages" id="toc-warning-messages" class="nav-link" data-scroll-target="#warning-messages"><span class="header-section-number">12.3.2</span> Warning Messages</a></li>
-  <li><a href="#error-messages" id="toc-error-messages" class="nav-link" data-scroll-target="#error-messages"><span class="header-section-number">12.3.3</span> Error Messages</a></li>
+  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements"><span class="header-section-number">13.3.1</span> Requirements</a></li>
+  <li><a href="#column-roles" id="toc-column-roles" class="nav-link" data-scroll-target="#column-roles"><span class="header-section-number">13.3.2</span> Column roles</a></li>
+  <li><a href="#warning-messages" id="toc-warning-messages" class="nav-link" data-scroll-target="#warning-messages"><span class="header-section-number">13.3.3</span> Warning Messages</a></li>
+  <li><a href="#error-messages" id="toc-error-messages" class="nav-link" data-scroll-target="#error-messages"><span class="header-section-number">13.3.4</span> Error Messages</a></li>
   </ul></li>
-  <li><a href="#shared-interactive-widgets" id="toc-shared-interactive-widgets" class="nav-link" data-scroll-target="#shared-interactive-widgets"><span class="header-section-number">12.4</span> Shared Interactive Widgets</a>
+  <li><a href="#shared-interactive-widgets" id="toc-shared-interactive-widgets" class="nav-link" data-scroll-target="#shared-interactive-widgets"><span class="header-section-number">13.4</span> Shared Interactive Widgets</a>
   <ul class="collapse">
-  <li><a href="#numerical-selection-widgets" id="toc-numerical-selection-widgets" class="nav-link" data-scroll-target="#numerical-selection-widgets"><span class="header-section-number">12.4.1</span> Numerical Selection Widgets</a></li>
-  <li><a href="#filter-widgets" id="toc-filter-widgets" class="nav-link" data-scroll-target="#filter-widgets"><span class="header-section-number">12.4.2</span> Filter Widgets</a></li>
-  <li><a href="#visual-channels-widgets" id="toc-visual-channels-widgets" class="nav-link" data-scroll-target="#visual-channels-widgets"><span class="header-section-number">12.4.3</span> Visual Channels Widgets</a></li>
-  <li><a href="#unique-id-hover" id="toc-unique-id-hover" class="nav-link" data-scroll-target="#unique-id-hover"><span class="header-section-number">12.4.4</span> Unique ID Hover</a></li>
-  <li><a href="#plotting-configuration-widgets" id="toc-plotting-configuration-widgets" class="nav-link" data-scroll-target="#plotting-configuration-widgets"><span class="header-section-number">12.4.5</span> Plotting Configuration Widgets</a></li>
-  <li><a href="#feature-labels" id="toc-feature-labels" class="nav-link" data-scroll-target="#feature-labels"><span class="header-section-number">12.4.6</span> Feature Labels</a></li>
-  <li><a href="#export-workflow-as-python-script" id="toc-export-workflow-as-python-script" class="nav-link" data-scroll-target="#export-workflow-as-python-script"><span class="header-section-number">12.4.7</span> Export Workflow as Python Script</a></li>
+  <li><a href="#numerical-selection-widgets" id="toc-numerical-selection-widgets" class="nav-link" data-scroll-target="#numerical-selection-widgets"><span class="header-section-number">13.4.1</span> Numerical Selection Widgets</a></li>
+  <li><a href="#filter-widgets" id="toc-filter-widgets" class="nav-link" data-scroll-target="#filter-widgets"><span class="header-section-number">13.4.2</span> Filter Widgets</a></li>
+  <li><a href="#visual-channels-widgets" id="toc-visual-channels-widgets" class="nav-link" data-scroll-target="#visual-channels-widgets"><span class="header-section-number">13.4.3</span> Visual Channels Widgets</a></li>
+  <li><a href="#unique-id-hover" id="toc-unique-id-hover" class="nav-link" data-scroll-target="#unique-id-hover"><span class="header-section-number">13.4.4</span> Unique ID Hover</a></li>
+  <li><a href="#plotting-configuration-widgets" id="toc-plotting-configuration-widgets" class="nav-link" data-scroll-target="#plotting-configuration-widgets"><span class="header-section-number">13.4.5</span> Plotting Configuration Widgets</a></li>
+  <li><a href="#feature-labels" id="toc-feature-labels" class="nav-link" data-scroll-target="#feature-labels"><span class="header-section-number">13.4.6</span> Feature Labels</a></li>
+  <li><a href="#export-workflow-as-python-script" id="toc-export-workflow-as-python-script" class="nav-link" data-scroll-target="#export-workflow-as-python-script"><span class="header-section-number">13.4.7</span> Export Workflow as Python Script</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/data_analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -519,9 +552,9 @@ div.csl-indent {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_analysis.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./data_analysis.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_analysis.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./data_analysis.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-data-analysis" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Overview</span></span></h1>
+<h1 class="title"><span id="sec-data-analysis" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></span></h1>
 </div>
 
 
@@ -538,91 +571,81 @@ div.csl-indent {
 </header>
 
 
-<p>We are not done yet 😱! FLIM Playground also provides a suite of methods to analyze and visualize the extracted data (either using the <a href="data_extraction.html">Data Extraction</a> section or in users’ own way). They are designed to be interactive and frictionless ⚡ so that users can perform hassle-free exploration of their data with, hopefully, fun 😎. Inspired by the same data <a href="./index.html#feature-classes">categorization</a> in <a href="data_extraction.html">Data Extraction</a>, the Data Analysis section designs an <a href="#shared-interactive-widgets">architectural blueprint</a> that all in-house analysis methods build on. It is modularized so that new methods and features can be added in the future easily.</p>
-<section id="general-workflow" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="general-workflow"><span class="header-section-number">12.1</span> General Workflow</h2>
-<ul>
-<li>Select <a href="#numerical-selection-widgets">numerical feature(s)</a> on the left.</li>
-<li><a href="#filter-widgets">Subset the data</a> to find data of interest on the top. <strong><em>All the later interactions are based on this filtered dataset.</em></strong></li>
-<li>Use <a href="#visual-channels-widgets">visual channels widgets</a> to look at the data in different ways.</li>
-<li>Change the plot <a href="#plotting-configuration-widgets">style</a>.</li>
-<li><a href="#unique-id-hover">Hover</a> to find data points of interest.</li>
-<li>Interact with method-specific widgets that typically are associated with a modeling method.</li>
-<li>Once users are satisfied with the analysis (visualizations and statistical modeling results), they can <a href="#export-workflow-as-python-script">export the entire analysis workflow as a self-contained Python script</a>! 🎉</li>
-</ul>
-<p>The visualization and analysis results are updated in real time to reflect users’ interactions with any of the above widgets.</p>
+<p>Data Analysis lets you explore a table of measurements with interactive plots, statistical comparisons, and machine learning. Use a table from <a href="data_extraction.html">Data Extraction</a> or upload your own measurements and <a href="./data_analysis_config.html">review their column roles</a>.</p>
+<section id="general-workflow" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="general-workflow"><span class="header-section-number">13.1</span> General Workflow</h2>
+<ol type="1">
+<li><a href="#input">Upload your table</a>. For a user-provided table, review and save its column roles and feature groups before analysis.</li>
+<li>Choose an analysis type and method on the left, then select its <a href="#numerical-selection-widgets">numerical features</a>.</li>
+<li>Use the <a href="#filter-widgets">categorical and numerical filters</a> to select the observations to analyze. Later controls operate on this filtered dataset.</li>
+<li>Choose <a href="#visual-channels-widgets">groups and visual encodings</a>. In Feature Comparison and 2D Feature Distribution, <strong>Collapse by</strong> can replace individual observations with one mean per category within each analysis group.</li>
+<li>Adjust the method-specific controls, <a href="#plotting-configuration-widgets">plot style</a>, and <a href="#unique-id-hover">hover over points</a> to inspect observations.</li>
+<li><a href="#export-workflow-as-python-script">Export the analysis as a Python script</a> to reproduce or customize it. GMM analyses also offer labeled CSV downloads.</li>
+</ol>
+<p>The plots and results update as you change the controls. Reopening a user table’s column review hides analysis until you save or cancel; the current analysis settings are retained. See <a href="./data_analysis_config.html">reviewing an applied profile</a>.</p>
 </section>
-<section id="methods" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="methods"><span class="header-section-number">12.2</span> Methods</h2>
-<ul>
-<li>Depending on the number of numerical features in the analysis, the methods are categorized into 3 groups:
-<ul>
-<li>Univariate Analysis
-<ul>
-<li><a href="feature_comparison.html">Feature Comparison</a></li>
-<li><a href="feature_histogram.html">Feature Histogram</a></li>
-<li><a href="fov_comparison.html">Field of View Comparison</a></li>
-</ul></li>
-<li>Bivariate Analysis
-<ul>
-<li><a href="feature_distribution.html">2D Feature Distribution</a></li>
-<li><a href="phasor_analysis.html">Phasor Analysis</a></li>
-</ul></li>
-<li>Multivariate Analysis
-<ul>
-<li><a href="dimension_reduction.html">Dimension Reduction</a></li>
-<li><a href="classification.html">Classification</a></li>
-</ul></li>
-</ul></li>
-</ul>
-<p>All the methods <a href="#shared-interactive-widgets">share a set of interactive widgets</a>. They also have their own method-specific widgets, the descriptions of which are provided in the corresponding method pages.</p>
-<div class="columns">
-<div class="column" style="width:33%;">
-<p><img src="analysis_ui_shots/method_selection_uni.png" class="img-fluid" style="width:100.0%"></p>
-</div><div class="column" style="width:33%;">
-<p><img src="analysis_ui_shots/method_selection_bi.png" class="img-fluid" style="width:100.0%"></p>
-</div><div class="column" style="width:33%;">
-<p><img src="analysis_ui_shots/method_selection_mul.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
+<section id="methods" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="methods"><span class="header-section-number">13.2</span> Methods</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Analysis type</th>
+<th>Method</th>
+<th>Numerical input</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Univariate</td>
+<td><a href="feature_comparison.html">Feature Comparison</a></td>
+<td>One feature compared across groups</td>
+</tr>
+<tr class="even">
+<td>Univariate</td>
+<td><a href="feature_histogram.html">Feature Histogram</a></td>
+<td>One feature’s histogram or Gaussian mixture model</td>
+</tr>
+<tr class="odd">
+<td>Bivariate</td>
+<td><a href="feature_distribution.html">2D Feature Distribution</a></td>
+<td>Two features on a scatter plot</td>
+</tr>
+<tr class="even">
+<td>Bivariate</td>
+<td><a href="phasor_analysis.html">Phasor Plot</a></td>
+<td>A matching pair of phasor G and S coordinates</td>
+</tr>
+<tr class="odd">
+<td>Multivariate</td>
+<td><a href="dimension_reduction.html">Dimension Reduction</a></td>
+<td>At least two features projected into two dimensions</td>
+</tr>
+<tr class="even">
+<td>Multivariate</td>
+<td><a href="classification.html">Classification</a></td>
+<td>One or more features used to predict categorical labels</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phasor Plot</strong> is available after upload only when the table contains a complete G/S pair with the <a href="./phasor_analysis.html#select-phasor-coordinate">expected phasor column names</a>. All methods use the shared controls below, with additional controls described in their chapters.</p>
 </section>
-<section id="input" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="input"><span class="header-section-number">12.3</span> Input</h2>
-<p>Users can upload the dataset output from the <a href="data_extraction.html">Data Extraction</a> directly or <em>their own datasets</em> in <strong>CSV</strong> (Comma Separated Values) format after finishing the <a href="data_analysis_config.html">interactive configuration</a> setup.</p>
-<div class="columns">
-<div class="column" style="width:5%;">
-
-</div><div class="column" style="width:45%;">
-<p><img src="analysis_ui_shots/data_extraction_check.png" class="img-fluid" style="width:100.0%"></p>
-</div><div class="column" style="width:45%;">
-<p><img src="analysis_ui_shots/data_extraction_uncheck.png" class="img-fluid" style="width:100.0%"></p>
-</div><div class="column" style="width:5%;">
-
-</div>
-</div>
-<section id="requirements" class="level3" data-number="12.3.1">
-<h3 data-number="12.3.1" class="anchored" data-anchor-id="requirements"><span class="header-section-number">12.3.1</span> Requirements</h3>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In either case, following the <a href="./index.html#feature-classes">categorization</a>, the dataset should have:</p>
+<section id="input" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="input"><span class="header-section-number">13.3</span> Input</h2>
+<p>Use <strong>Use Dataset from Data Extraction</strong> for a table produced by <a href="data_extraction.html">Data Extraction</a>. For your own table, clear that checkbox and <strong>upload first</strong>, then review its column roles and feature groups in the <a href="./data_analysis_config.html">interactive configuration walkthrough</a>. The uploader accepts CSV, TSV/TXT with tab, semicolon, or pipe separators, Excel <code>.xlsx</code>/<code>.xlsm</code>, and OpenDocument <code>.ods</code>. Spreadsheet uploads use the first sheet.</p>
+<section id="requirements" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="requirements"><span class="header-section-number">13.3.1</span> Requirements</h3>
+<p>Use a plain table with column headers on the first row, one observation per row, and at least one usable numerical measurement. For a user-provided table, categorical columns, a unique row identifier, and a field-of-view column are optional. With <strong>Use Dataset from Data Extraction</strong> checked, the table must contain the identifier named in its extraction configuration.</p>
+</section>
+<section id="column-roles" class="level3" data-number="13.3.2">
+<h3 data-number="13.3.2" class="anchored" data-anchor-id="column-roles"><span class="header-section-number">13.3.2</span> Column roles</h3>
+<p>Each column in a user-provided table has one role. The app suggests roles after upload; review them according to what the values mean.</p>
 <ul>
-<li>a column that uniquely identifies each row</li>
-<li>an (optional) field of view identifier column<br>
-</li>
-<li>a set of numerical features</li>
-<li>zero or more categorical features (e.g.&nbsp;treatment, day, patient id, etc.)</li>
+<li><strong>Row ID</strong> identifies an individual observation in <a href="#unique-id-hover">hover text</a>, such as a cell or flower. This role is optional and can belong to at most one column. Its values must be nonmissing and unique after conversion to text. Without an assigned Row ID, the app creates row numbers from <code>1</code> through the number of input rows. See <a href="./data_analysis_config.html#identifiers-config">automatic row numbering and changing identifiers</a>.</li>
+<li><strong>Categorical</strong> supplies labels for <a href="#categorical-filters">filters</a> and visual grouping, such as species, treatment, day, or patient. Numeric codes can be categorical when they represent labels rather than quantities. For a user table, a field-of-view label also uses this role. Categories are stored as text. If every nonmissing value in a numeric category column is a whole number, labels use <code>1</code> rather than <code>1.0</code>; missing values become <code>N/A</code>.</li>
+<li><strong>Numerical</strong> supplies measurements for plotting and analysis, such as length, intensity, or lifetime. At least one column with this role must contain usable numbers. Numerical columns can be organized into <a href="./data_analysis_config.html#feature-group-management">feature groups</a>, each providing a dropdown in the feature pickers.</li>
+<li><strong>Ignore</strong> excludes a column from analysis while recording its header in the profile, so future uploads can still be matched to the complete table structure.</li>
 </ul>
-</div>
-</div>
-<p>The unique row id and field of view id are used to help users identify the row (e.g.&nbsp;a single cell) and field of view (e.g.&nbsp;a single image) of data of interest through the built-in <a href="#unique-id-hover">hover-based interaction</a>. Numerical and categorical features are used to render <a href="#shared-interactive-widgets">shared widgets</a>. Internally, FLIM Playground will check whether the dataset fulfills the requirements and output meaningful warning or error messages.</p>
+<p>Use the column’s <strong>Role</strong> dropdown to correct a suggestion or change how it is used, then save the profile. For example, assigning Categorical to a numeric treatment code makes it available as a category filter. Changing a Numerical column to another role removes its feature-group assignment. The <a href="./data_analysis_config.html#id-config">column-review walkthrough</a> explains these changes and the checks before saving.</p>
 <div id="feature-recognition" class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -633,104 +656,78 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you cannot find a certain <strong>numerical feature</strong> under any numerical widgets including <code>Uncategorized Features</code>, please inspect the dataset (e.g., using Excel filters) and look for non-numeric values in that column. A small number of stray non-numeric values (e.g., “–”) is tolerated: if they account for <strong>1% or less</strong> of the column’s non-empty values, FLIM Playground converts the column to numeric anyway and replaces just those cells with NaN, reporting how many were converted. Above that threshold the column is left as text and will not appear as a numerical feature, so cleaning those cells is only necessary for columns that are mostly non-numeric.</p>
+<p>If a <strong>numerical feature</strong> is missing from the feature pickers, including <code>Uncategorized Features</code>, first check that its Role is Numerical in a user-table review. Then inspect its values for stray text such as <code>--</code>. If non-numeric values account for <strong>1% or less</strong> of the column’s non-empty values, the app converts the column to numeric, replaces those cells with NaN, and reports their count. Above that threshold, the column remains text and cannot be used as a numerical feature until those values are cleaned, even if most values are numbers.</p>
 <p>FLIM Playground searches for <strong>categorical features</strong> in the uploaded dataset based on the <a href="data_analysis_config.html">user-specified configuration</a> if the dataset is not extracted by <a href="data_extraction.html">Data Extraction</a>. Otherwise, it searches for categorical features specified in the <a href="./data_extraction_config.html#categorical-features">Data Extraction configuration</a>.</p>
 </div>
 </div>
 </section>
-<section id="warning-messages" class="level3" data-number="12.3.2">
-<h3 data-number="12.3.2" class="anchored" data-anchor-id="warning-messages"><span class="header-section-number">12.3.2</span> Warning Messages</h3>
-<ul>
-<li><code>Empty columns</code>: will be dropped.</li>
-<li><code>Duplicated columns</code>: Only the first occurrence of the duplicated column will be kept. Other occurrences will be dropped.</li>
-<li><code>Duplicated rows based on the unique row id</code>: Only the first occurrence of the duplicated row will be kept. Other occurrences will be dropped.</li>
-<li><code>Columns with NaN values</code>: won’t be dropped, just a warning message.
-<ul>
-<li>The analysis will be performed on the rows that are not NaN in the <a href="#numerical-selection-widgets">selected numerical features</a>.</li>
-</ul></li>
-<li><code>Non-numeric values converted to NaN</code>: reports how many values in a column were non-numeric when that column was otherwise numeric enough to recognize (see <a href="#feature-recognition">above</a>). Those cells become NaN and the column is usable as a numerical feature.</li>
-</ul>
+<section id="warning-messages" class="level3" data-number="13.3.3">
+<h3 data-number="13.3.3" class="anchored" data-anchor-id="warning-messages"><span class="header-section-number">13.3.3</span> Warning Messages</h3>
+<p>Warnings report cleanup such as dropping empty columns or converting a small number of stray non-numeric values to NaN (see <a href="#feature-recognition">feature recognition</a>). Missing measurements can remain in the table. Plot methods use rows with valid values for their <a href="#numerical-selection-widgets">selected numerical features</a>; <a href="./classification.html">Classification</a> passes the selected rows to the classifier and reports an error if it cannot accept their missing measurements.</p>
 </section>
-<section id="error-messages" class="level3" data-number="12.3.3">
-<h3 data-number="12.3.3" class="anchored" data-anchor-id="error-messages"><span class="header-section-number">12.3.3</span> Error Messages</h3>
-<ul>
-<li>Missing a column that uniquely identifies each row</li>
-<li>Cannot identify any numerical feature column
-<ul>
-<li>It uses <code>pd.api.types.is_numeric_dtype</code> to check if a column is numerical.</li>
-</ul></li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Warning messages will not prevent the analysis but error messages will.</p>
-</div>
-</div>
+<section id="error-messages" class="level3" data-number="13.3.4">
+<h3 data-number="13.3.4" class="anchored" data-anchor-id="error-messages"><span class="header-section-number">13.3.4</span> Error Messages</h3>
+<p>Errors block saving or analysis until the input or roles are corrected. Examples include a malformed table, an assigned Row ID containing missing or duplicate values, or no usable Numerical column. Duplicate row identifiers are not silently removed. In a user-table review, correct the identifier, choose another column, or leave Row ID unassigned to use generated row numbers. For an extraction table, check the identifier and its extraction configuration.</p>
 </section>
 </section>
-<section id="shared-interactive-widgets" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="shared-interactive-widgets"><span class="header-section-number">12.4</span> Shared Interactive Widgets</h2>
-<p>A list of shared widgets is provided to support the <a href="#general-workflow">general workflow</a> in analysis.</p>
-<section id="numerical-selection-widgets" class="level3" data-number="12.4.1">
-<h3 data-number="12.4.1" class="anchored" data-anchor-id="numerical-selection-widgets"><span class="header-section-number">12.4.1</span> Numerical Selection Widgets</h3>
-<p>The Data Extraction recognizes numerical features using <code>pd.api.types.is_numeric_dtype</code> internally. Then it groups numerical features based on the <a href="./data_extraction_config.html#feature-extractor">feature extractor type</a> and the channel it belongs to. For user-provided datasets, the numerical features are grouped based on the <a href="./data_analysis_config.html">user-specified configuration</a>. Ungrouped numerical features are put into the <code>Uncategorized Features</code> group. One selection widget is rendered for each numerical feature group.</p>
+<section id="shared-interactive-widgets" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="shared-interactive-widgets"><span class="header-section-number">13.4</span> Shared Interactive Widgets</h2>
+<p>Feature selection is on the left; filters, grouping controls, plots, and exports are on the right. Only controls supported by the current method are shown.</p>
+<section id="numerical-selection-widgets" class="level3" data-number="13.4.1">
+<h3 data-number="13.4.1" class="anchored" data-anchor-id="numerical-selection-widgets"><span class="header-section-number">13.4.1</span> Numerical Selection Widgets</h3>
+<p>For extraction tables, numerical features are grouped by <a href="./data_extraction_config.html#feature-extractor">extractor</a> and channel. For user-provided tables, the <a href="./data_analysis_config.html#feature-group-management">saved column review</a> defines the numerical features and their groups. Ungrouped measurements appear under <code>Uncategorized Features</code>. Each group has its own picker.</p>
 <section id="univariate-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="univariate-analysis">Univariate Analysis</h4>
 <p>One single-select widget is rendered per group; choosing a feature in any group clears the selections and resets the others to <code>Select</code>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/uni_select.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
-</figure>
-</div>
 </section>
 <section id="bivariate-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="bivariate-analysis">Bivariate Analysis</h4>
-<p>Two sets of selection widgets are rendered to allow maximum flexibility (the two features can be from the same or different feature groups). Each set of selection widgets behaves like the selection widgets in the univariate analysis. The first selected feature will be hidden in the second set of selection widgets.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/bi_select.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
-</figure>
-</div>
+<p>For 2D Feature Distribution, choose an X feature and a different Y feature from the same or different feature groups. Each axis uses the single-feature selection behavior above, and the X feature is excluded from the Y options. Once selected, an axis’s pickers collapse into an expander labeled with the full feature name; reopen it to change the selection. <a href="./phasor_analysis.html#select-phasor-coordinate">Phasor Plot</a> instead selects a channel and a complete G/S harmonic pair.</p>
 </section>
 <section id="multivariate-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="multivariate-analysis">Multivariate Analysis</h4>
 <p>One set of selection widgets, each can select multiple features from a feature group, is rendered. A special value <code>All</code> is introduced so that users can conveniently select all features under the feature group. If users select <code>All</code>, all the other options will be cleared, and vice versa.</p>
-<p><code>Except:</code> is the mirror image of <code>All</code>, and it is the quick way to take a whole feature group bar one or two. Say you want to check that an effect is really about lifetime and not simply a brightness difference: select <code>Except:</code> together with <code>intensity_sum</code> to keep every other feature in the group and drop that one, as in the widget below. Selecting <code>All</code> clears everything else, while selecting a feature clears <code>All</code> but keeps <code>Except:</code>, so exclusions add up as you click.</p>
+<p><code>Except:</code> selects every feature in a group except the ones you name. For example, select <code>Except:</code> together with <code>intensity_sum</code> to exclude that measurement while keeping the other features. Selecting <code>All</code> clears everything else, while selecting a feature clears <code>All</code> but keeps <code>Except:</code>, so you can add exclusions as you click.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/multi_select.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/multi_select.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Multivariate feature pickers use Except: to exclude intensity_sum from both the NADH and FAD texture groups."><img src="analysis_ui_shots/multi_select.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Numerical feature groups with multiselect pickers. Intensity texture_nadh and Intensity texture_fad each show Except: and intensity_sum; the other categorized groups show All, and Derived Features contains redox_ratio."></a></p>
+</figure>
+</div>
+<figcaption>Multivariate feature pickers use Except: to exclude intensity_sum from both the NADH and FAD texture groups.</figcaption>
 </figure>
 </div>
 </section>
 </section>
-<section id="filter-widgets" class="level3" data-number="12.4.2">
-<h3 data-number="12.4.2" class="anchored" data-anchor-id="filter-widgets"><span class="header-section-number">12.4.2</span> Filter Widgets</h3>
+<section id="filter-widgets" class="level3" data-number="13.4.2">
+<h3 data-number="13.4.2" class="anchored" data-anchor-id="filter-widgets"><span class="header-section-number">13.4.2</span> Filter Widgets</h3>
 <section id="categorical-filters" class="level4">
 <h4 class="anchored" data-anchor-id="categorical-filters">Categorical Filters</h4>
-<p><img src="analysis_ui_shots/filter.png" class="img-fluid" style="width:95.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/filter.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Categorical filters select the observations included in the analysis."><img src="analysis_ui_shots/filter.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Categorical filter row with selections for the treatment, cell line, dish, and image categories."></a></p>
+</figure>
+</div>
+<figcaption>Categorical filters select the observations included in the analysis.</figcaption>
+</figure>
+</div>
 <p>For complex datasets that are collected over multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget is rendered for each categorical feature so that users have the flexibility to filter the data based on combinations of categorical features. <code>All</code> is a special option that include all categories of the selected categorical feature. Once it is selected, all the other options are cleared, and vice versa.</p>
-<p>Often it is easier to say what to leave out than what to keep. Suppose one field of view looks like an outlier and you want to see the dataset without it — clicking the other 79 by hand is tedious. <code>Except:</code> does it in one click: select it along with the categories to drop, and everything else stays. That is the <code>image_name</code> filter in the screenshot above, set to every field of view but <code>MCF7_IAA_dish1...</code>. Because the exclusion is re-read from the data rather than frozen into a list, it keeps meaning “everything else” as you work: widen another filter, or load a dataset with new fields of view in it, and the newcomers are kept automatically.</p>
+<p>Use <code>Except:</code> when it is easier to name the categories to leave out. For example, select <code>Except:</code> and one value in an <code>image_name</code> filter to keep every other field of view. The exclusion is evaluated against the current data, so categories added by widening another filter are included unless you excluded them explicitly.</p>
 <p>The filters work as a set rather than in sequence: each one offers only the categories that still have data under everything else you have selected. That means you can approach a subset from whichever direction is natural — narrowing <code>treatment</code> first and then <code>day</code> leaves you the same options as doing it the other way around — and no combination is out of reach because of the order the categorical features happen to be listed in your configuration.</p>
 <p>One consequence is worth knowing about. Tightening one filter can deselect a choice you made elsewhere. Say you have fields of view picked out under <code>image_name</code> and then narrow <code>cell_line</code> to <code>Panc1</code>: every MCF7 field of view among them is left with no rows. Rather than hand you an empty plot, FLIM Playground deselects those fields of view and tells you which selection ruled them out.</p>
-<p><img src="analysis_ui_shots/filter_deselection_notice.png" class="img-fluid" style="width:80.0%"></p>
 <p>A filter therefore never quietly stops matching what you asked for.</p>
 </section>
 <section id="numerical-filters" class="level4">
 <h4 class="anchored" data-anchor-id="numerical-filters">Numerical Filters</h4>
-<p><img src="analysis_ui_shots/numerical_filters.png" class="img-fluid" style="width:95.0%"></p>
 <p>Users can further filter the data based on numerical features. Each row specifies a condition to filter the data:</p>
 <ul>
 <li><code>Feature</code>: the numerical feature to filter on</li>
 <li><code>Operator</code>: <code>&gt;</code> or <code>&lt;=</code></li>
 <li><code>Threshold</code>: the range of values to filter on, dynamically updated based on previous filters, is displayed for reference. The entered value should be within the range.</li>
-<li><code>Add Another</code>: add a new condition in the next row.</li>
+<li><code>Add another</code>: show the next condition. Clear it to stop applying later rows; choose <code>None</code> in a feature picker to stop at that row.</li>
 </ul>
 <p>After the two sets of filters are applied, the final filtered data is used for visualization and analysis.</p>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -748,79 +745,156 @@ Important
 </div>
 </section>
 </section>
-<section id="visual-channels-widgets" class="level3" data-number="12.4.3">
-<h3 data-number="12.4.3" class="anchored" data-anchor-id="visual-channels-widgets"><span class="header-section-number">12.4.3</span> Visual Channels Widgets</h3>
-<p><img src="analysis_ui_shots/vis_channels.png" class="img-fluid" style="width:100.0%"></p>
-<p>Human vision is wired for rapid, parallel pattern and trend detection; good visual encodings (how to map data to visual elements such as color, shape, opacity, etc.) harness this to surface insights that raw numbers or text obscure<span class="citation" data-cites="cleveland1984"><sup><a href="#ref-cleveland1984" role="doc-biblioref">1</a></sup></span>. FLIM Playground provides <code>color</code>, <code>opacity</code>, and <code>shape</code> channels for visualizations that support them:</p>
+<section id="visual-channels-widgets" class="level3" data-number="13.4.3">
+<h3 data-number="13.4.3" class="anchored" data-anchor-id="visual-channels-widgets"><span class="header-section-number">13.4.3</span> Visual Channels Widgets</h3>
+<p>Visual encodings map categories to color, opacity, or marker shape, making patterns easier to compare<span class="citation" data-cites="cleveland1984"><sup><a href="#ref-cleveland1984" role="doc-biblioref">1</a></sup></span>. Grouping controls also determine which observations are compared or modeled together.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Grouping and layout</th>
+<th>Point encoding</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Feature Comparison</td>
+<td><code>Color by</code> / <code>Group by</code>, <code>Separate by</code>, <code>Collapse by</code></td>
+<td>Choose one of <code>Opacity</code>, <code>Subcolor</code>, or <code>Shape</code>, then a column</td>
+</tr>
+<tr class="even">
+<td>Feature Histogram</td>
+<td><code>Color by</code>, <code>Separate by</code></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>2D Feature Distribution</td>
+<td><code>Color by</code>, <code>Separate by</code>, <code>Collapse by</code></td>
+<td>Choose <code>Opacity</code> or <code>Shape</code>, then a column</td>
+</tr>
+<tr class="even">
+<td>Phasor Plot</td>
+<td><code>Color by</code>, <code>Separate by</code></td>
+<td>Independent <code>Opacity by</code> and <code>Shape by</code> pickers</td>
+</tr>
+<tr class="odd">
+<td>Dimension Reduction</td>
+<td><code>Color by</code>, up to two columns in <code>Separate by</code></td>
+<td>Independent <code>Opacity by</code> and <code>Shape by</code> pickers</td>
+</tr>
+<tr class="even">
+<td>Classification</td>
+<td><code>Classify by</code> forms the target classes</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/comparison_widget.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Feature Comparison controls for grouping, averaging by category, and point encoding."><img src="analysis_ui_shots/comparison_widget.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Feature Comparison controls for Separate by, Color by, Collapse by, and the Opacity, Subcolor, or Shape selector with one shared column picker."></a></p>
+</figure>
+</div>
+<figcaption>Feature Comparison controls for grouping, averaging by category, and point encoding.</figcaption>
+</figure>
+</div>
 <section id="color-by" class="level4">
 <h4 class="anchored" data-anchor-id="color-by">Color by</h4>
-<p>Color is supported in all methods except for <a href="classification.html">Classification</a>. In <code>Color by</code>, users can select multiple categorical features, and each unique combination of available categories in selected features is assigned a distinct color. Groups created by <code>Color by</code> show up in the x-axis (if multiple features, categories from each feature are delimited by <code>::</code>).</p>
+<p>Choose one or more categorical features in <code>Color by</code>. Each distinct combination receives a color; combined labels use <code>::</code> between categories. In Feature Comparison, these groups also define the x-axis positions. When its <a href="./feature_comparison.html#subcolor-by"><code>Subcolor</code></a> mode is selected, <code>Color by</code> becomes <code>Group by</code>: it still defines the comparisons, while the selected subcolor column supplies point colors.</p>
+<p>Leave the grouping picker empty to analyze all filtered observations as one group. In Classification, <a href="./classification.html#method-specific-components"><code>Classify by</code></a> defines the labels the classifier learns instead.</p>
 <div id="nte-order" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note&nbsp;12.1: How to order the groups
+Note&nbsp;13.1: How to order the groups
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The order of the groups in x-axis and in the legend is determined by:</p>
-<ul>
-<li><p>the order of the selected features: categories of the first feature appear before those of the second, and so on and so forth. For example, the two treatments of <code>Panc1</code> are together, because it is sorted first on the cell lines, then on treatments. If you want the treatments to be together, in <code>Color by</code> you can select <code>treatment</code> then <code>cell_line</code>.</p></li>
-<li><p><em>Numeric-alphabetical sort</em>: within each feature, the category order is determined by the number inside (e.g.&nbsp;<code>1</code> in <code>Panc1</code>) first, then the alphabetical order of the category name. Therefore, although <code>P</code> is after <code>M</code> alphabetically, the <code>1</code> is before <code>7</code> numerically, making <code>Panc1</code> appear before <code>MCF7</code>. This may be helpful when you have data from different days or hours. The default string sort will put <code>Day 100</code> before <code>Day 30</code>, and this is not what we want.</p></li>
-</ul>
+<p>The order of selected categorical features determines the grouping hierarchy. For example, choose <code>cell_line</code> and then <code>treatment</code> to keep each cell line’s treatments together; reverse the selection order to keep treatments together.</p>
+<p>Within each feature, groups use numeric-alphabetical sorting: labels containing a number are ordered by that number, then by their text. Thus <code>Panc1</code> precedes <code>MCF7</code>, and <code>Day 30</code> precedes <code>Day 100</code>. Feature Comparison also provides <a href="./feature_comparison.html#reorder-x-axis-groups">custom x-axis ordering</a>.</p>
 </div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/color_by.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
-</figure>
 </div>
 </section>
 <section id="opacity-and-shape-by" class="level4">
 <h4 class="anchored" data-anchor-id="opacity-and-shape-by">Opacity and Shape by</h4>
-<p>Opacity and shape are supported in all point-based visualizations (e.g.&nbsp;<a href="feature_comparison.html">Feature Comparison</a>, <a href="feature_distribution.html">2D Feature Distribution</a>, <a href="phasor_analysis.html">Phasor Analysis</a>, <a href="dimension_reduction.html">Dimension Reduction</a>). In <code>Opacity by</code> and <code>Shape by</code>, users can select one categorical feature, and each unique category is assigned a distinct opacity or shape. The order of the shape and opacity is also sorted <a href="#nte-order">numeric-alphabetically</a>.</p>
+<p><code>Opacity by</code> gives ordered categories different transparencies, and <code>Shape by</code> gives them different marker shapes. Each uses one categorical column, with categories ordered <a href="#nte-order">numeric-alphabetically</a>. These encodings change the appearance of points while preserving the groups used for modeling.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/opacity_shape_by.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-</section>
-</section>
-<section id="unique-id-hover" class="level3" data-number="12.4.4">
-<h3 data-number="12.4.4" class="anchored" data-anchor-id="unique-id-hover"><span class="header-section-number">12.4.4</span> Unique ID Hover</h3>
-<ul>
-<li>In all point-based visualizations, when hovering over a point, the unique id of the point will be shown.</li>
-</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/hover.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<p><a href="analysis_ui_shots/dimension_encodings.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Dimension Reduction keeps independent opacity and shape controls beside its category-map and color selections."><img src="analysis_ui_shots/dimension_encodings.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Dimension Reduction encoding row showing two Separate by columns, Color by, Opacity by, and Shape by."></a></p>
 </figure>
 </div>
+<figcaption>Dimension Reduction keeps independent opacity and shape controls beside its category-map and color selections.</figcaption>
+</figure>
+</div>
+<p>Feature Comparison shares one column picker between <strong>Opacity</strong>, <strong>Subcolor</strong>, and <strong>Shape</strong>. 2D Feature Distribution shares one between <strong>Opacity</strong> and <strong>Shape</strong>. Select the mode above the picker, then choose a column; switching modes keeps that column when it is available. Clear the column to turn the encoding off. Only the active mode is applied.</p>
 </section>
-<section id="plotting-configuration-widgets" class="level3" data-number="12.4.5">
-<h3 data-number="12.4.5" class="anchored" data-anchor-id="plotting-configuration-widgets"><span class="header-section-number">12.4.5</span> Plotting Configuration Widgets</h3>
-<p><img src="analysis_ui_shots/style.png" class="img-fluid" style="width:100.0%"></p>
-<p>Users can interactively configure the following plot parameters:</p>
+<section id="separate-by" class="level4">
+<h4 class="anchored" data-anchor-id="separate-by">Separate by</h4>
+<p><code>Separate by</code> organizes the current data into category views:</p>
 <ul>
-<li>point size (if point-based)</li>
-<li>axis label size</li>
-<li>legend size</li>
-<li>whether to show the per-group count (<code>n</code>) in the legend (when enabled, the count appears on a second line below each group name, e.g.&nbsp;<code>Control</code> with <code>n=42</code> beneath it)</li>
-<li>the colormap used to color different groups
-<ul>
-<li><code>colorblind</code>, <code>tab10</code>, <code>tab20</code>, <code>Set1</code>, <code>Set2</code>, <code>Set3</code>, <code>Pastel1</code>, <code>Pastel2</code>, <code>Accent</code>, <code>viridis</code>, <code>plasma</code>, <code>inferno</code>, <code>magma</code>, <code>cividis</code></li>
-</ul></li>
+<li><a href="./feature_comparison.html#separate-by">Feature Comparison</a> places categories in sections on one x-axis.</li>
+<li><a href="./feature_histogram.html#separate-by">Feature Histogram</a> stacks one histogram or GMM panel per category.</li>
+<li><a href="./feature_distribution.html#separate-by">2D Feature Distribution</a> and <a href="./phasor_analysis.html#separate-by">Phasor Plot</a> show one category at a time with the others in gray for context.</li>
+<li><a href="./dimension_reduction.html#separate-by">Dimension Reduction</a> adds category highlight maps beside a shared overview.</li>
 </ul>
+<p>For the first four methods, the separation column cannot also be used for <code>Color by</code>. Dimension Reduction permits the same column for both because separation highlights parts of one shared embedding.</p>
 </section>
-<section id="feature-labels" class="level3" data-number="12.4.6">
-<h3 data-number="12.4.6" class="anchored" data-anchor-id="feature-labels"><span class="header-section-number">12.4.6</span> Feature Labels</h3>
-<p>Numerical features extracted by <a href="data_extraction.html">Data Extraction</a> are automatically rendered in proper FLIM notation on plot axes, legends, and hover text. For example, the column <code>Lifetime fit_nadh: a1</code> is shown as “nadh α₁ (%)”, and other extracted features map to symbols such as “τ₁ (ps)”, “τₘ”, “τₘ,ᵢ”, “χ²ᵣ”, and “τ_mod”. The mapping (channel + Greek/scientific symbol + unit) follows the feature naming convention introduced in <a href="./lifetime_fit.html">Lifetime Features (Fit)</a>. Columns that are not recognized — identifiers, categorical features, or arbitrary user-provided columns — are displayed unchanged. The same labels are used in the <a href="#export-workflow-as-python-script">exported script</a>, so its figures match what you see in the app.</p>
+<section id="collapse-by" class="level4">
+<h4 class="anchored" data-anchor-id="collapse-by">Collapse by</h4>
+<p>In <a href="./feature_comparison.html#collapse-by">Feature Comparison</a> and <a href="./feature_distribution.html#collapse-by">2D Feature Distribution</a>, <code>Collapse by</code> averages observations that share a value in a selected categorical column, separately within each analysis group. The category determines what each mean represents. For example, choose <code>dish</code> to plot one mean per dish within each treatment and cell line, or <code>patient</code> to average observations from the same patient within each group.</p>
+<p>The resulting category means become the input to the method’s summaries, statistics, and models. The method chapters explain which measurements enter each mean and how <a href="./feature_comparison.html#superplot">SuperPlot</a> can show the original observations alongside them. Choose the grouping columns first: the same column cannot also be selected for collapse.</p>
 </section>
-<section id="export-workflow-as-python-script" class="level3" data-number="12.4.7">
-<h3 data-number="12.4.7" class="anchored" data-anchor-id="export-workflow-as-python-script"><span class="header-section-number">12.4.7</span> Export Workflow as Python Script</h3>
-<p>At the bottom right of the interface, users can export the entire analysis workflow as a self-contained Python script. This is useful when users want to share their analysis with others, reproduce their analysis later, customize the analysis further, or integrate it into their own workflow. The script will include all the code and analysis configuration (filters, selected numerical features, visual channels, plotting style, module-specific configurations, etc.). After exporting, users need to put the dataset in the same directory as the script and run the script to reproduce the analysis, where the plots are rendered as matplotlib figures and saved as <strong>SVG</strong> files for publication-ready quality.</p>
+</section>
+<section id="unique-id-hover" class="level3" data-number="13.4.4">
+<h3 data-number="13.4.4" class="anchored" data-anchor-id="unique-id-hover"><span class="header-section-number">13.4.4</span> Unique ID Hover</h3>
+<p>Hover over a point to see its measurement values and identifier. Extraction tables label the identifier <code>Cell ID</code> and include the configured field-of-view column when present. User tables show the assigned Row ID column’s name, or <code>ID</code> when the app generated row numbers. User-table field-of-view columns remain ordinary categories.</p>
+<p>With <code>Collapse by</code>, the hover identifies the category and the number of observations averaged into that point, such as <code>dish1 (n=1874)</code>. SuperPlot’s smaller observation points retain their individual identifiers.</p>
+</section>
+<section id="plotting-configuration-widgets" class="level3" data-number="13.4.5">
+<h3 data-number="13.4.5" class="anchored" data-anchor-id="plotting-configuration-widgets"><span class="header-section-number">13.4.5</span> Plotting Configuration Widgets</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/style.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Plot Styling controls point size, text sizes, the color map, and optional legend counts."><img src="analysis_ui_shots/style.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Plot Styling inputs for Point Size, Axis Label Font Size, Legend Font Size, Color Map, and Show group counts in legend."></a></p>
+</figure>
+</div>
+<figcaption>Plot Styling controls point size, text sizes, the color map, and optional legend counts.</figcaption>
+</figure>
+</div>
+<p>Under <strong>Plot Styling</strong>, adjust <code>Point Size</code> for point plots, <code>Axis Label Font Size</code>, <code>Legend Font Size</code>, and <code>Color Map</code> when color groups are present. Available palettes include <code>tab10</code>, <code>tab20</code>, <code>colorblind</code>, <code>Set1</code>–<code>Set3</code>, <code>Pastel1</code>, <code>Pastel2</code>, <code>Accent</code>, <code>viridis</code>, <code>plasma</code>, <code>inferno</code>, <code>magma</code>, and <code>cividis</code>.</p>
+<p><code>Show group counts (n) in legend</code> adds counts where supported. Counts refer to the points used in the analysis: individual observations, or category means when <code>Collapse by</code> is active. When <code>Separate by</code> is active, Phasor and 2D views count only points from the selected separation category. Histogram panels report their own group counts; Dimension Reduction’s shared legend reports counts for the full embedding.</p>
+<p>Classification places its font-size controls between the metric tables and the ROC/confusion-matrix plots.</p>
+</section>
+<section id="feature-labels" class="level3" data-number="13.4.6">
+<h3 data-number="13.4.6" class="anchored" data-anchor-id="feature-labels"><span class="header-section-number">13.4.6</span> Feature Labels</h3>
+<p>Numerical features extracted by <a href="data_extraction.html">Data Extraction</a> are automatically rendered in proper FLIM notation on plot axes, legends, and hover text. For example, the column <code>Lifetime fit_nadh: a1</code> is shown as “nadh <span class="math inline">\(\alpha_1\)</span> (%)”, and other extracted features map to symbols such as “<span class="math inline">\(\tau_1\)</span> (ps)”, “<span class="math inline">\(\tau_m\)</span>”, “<span class="math inline">\(\tau_{m,i}\)</span>”, “<span class="math inline">\(\chi_r^2\)</span>”, and “<span class="math inline">\(\tau_{\mathrm{mod}}\)</span>”. The mapping (channel + Greek/scientific symbol + unit) follows the feature naming convention introduced in <a href="./lifetime_fit.html">Lifetime Features (Fit)</a>. Columns that are not recognized — identifiers, categorical features, or arbitrary user-provided columns — are displayed unchanged. The same labels are used in the <a href="#export-workflow-as-python-script">exported script</a>, so its figures match what you see in the app.</p>
+</section>
+<section id="export-workflow-as-python-script" class="level3" data-number="13.4.7">
+<h3 data-number="13.4.7" class="anchored" data-anchor-id="export-workflow-as-python-script"><span class="header-section-number">13.4.7</span> Export Workflow as Python Script</h3>
+<p>Click <strong>Export the entire analysis as a Python script</strong> below the results and styling controls. The script records the selected features, filters, grouping, point encodings, plot style, and method settings, including collapse, category separation, and GMM export names where applicable.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/analysis_export.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Download a Python script that records the current analysis settings."><img src="analysis_ui_shots/analysis_export.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Export the entire analysis as a Python script download button."></a></p>
+</figure>
+</div>
+<figcaption>Download a Python script that records the current analysis settings.</figcaption>
+</figure>
+</div>
+<p>Keep the original uploaded table beside the downloaded <code>.py</code> file and run the script from that directory, or edit its <code>DATA_PATH</code> to point to the table. The dataset is not embedded in the script. The script reproduces the analysis with matplotlib and saves SVG figures that you can edit or use in a publication.</p>
+<p>For <a href="./feature_histogram.html#export-labeled-data">1D</a> and <a href="./feature_distribution.html#export-labeled-data">2D GMM</a> analyses, the app also offers labeled CSV downloads. Those downloads contain the analyzed data, including any collapse or log transformation. In the Python script, set <code>SAVE_DERIVED_DATA = True</code> to write the corresponding labeled CSV alongside the figures.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
@@ -1250,18 +1324,50 @@ Note&nbsp;12.1: How to order the groups
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./categorical_feature_extraction.html" class="pagination-link" aria-label="Categorical Feature Extraction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./data_analysis_config.html" class="pagination-link" aria-label="Configuration">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Configuration</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Configuration</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/data_analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/data_analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>

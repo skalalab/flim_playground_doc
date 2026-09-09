@@ -26,27 +26,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -56,7 +36,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./lifetime_fit.html" rel="next">
+<link href="./irf_calibration.html" rel="next">
 <link href="./fov_metadata.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -72,6 +52,9 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-37a0ccb6f5b9899fcb884e11bb6f7458.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -100,35 +83,6 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -373,38 +327,44 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./irf_calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IRF Calibration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./lifetime_fit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lifetime_fit_free.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_morphology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_texture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./derived_feature.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./categorical_feature_extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
   </div>
 </li>
       </ul>
@@ -421,13 +381,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
   </div>
 </li>
       </ul>
@@ -444,19 +404,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_histogram.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fov_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Field of View Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
   </div>
 </li>
       </ul>
@@ -473,13 +427,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_distribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feature Distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./phasor_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Plot</span></span></a>
   </div>
 </li>
       </ul>
@@ -524,14 +478,8 @@ window.Quarto = {
    
   <ul>
   <li><a href="#input" id="toc-input" class="nav-link active" data-scroll-target="#input"><span class="header-section-number">5.1</span> Input</a></li>
-  <li><a href="#calibration" id="toc-calibration" class="nav-link" data-scroll-target="#calibration"><span class="header-section-number">5.2</span> Calibration</a>
-  <ul class="collapse">
-  <li><a href="#fit-calibration" id="toc-fit-calibration" class="nav-link" data-scroll-target="#fit-calibration"><span class="header-section-number">5.2.1</span> Fit Calibration</a></li>
-  <li><a href="#fit-free-calibration" id="toc-fit-free-calibration" class="nav-link" data-scroll-target="#fit-free-calibration"><span class="header-section-number">5.2.2</span> Fit Free Calibration</a></li>
-  <li><a href="#confirm-calibration" id="toc-confirm-calibration" class="nav-link" data-scroll-target="#confirm-calibration"><span class="header-section-number">5.2.3</span> Confirm Calibration</a></li>
-  </ul></li>
-  <li><a href="#feature-extraction" id="toc-feature-extraction" class="nav-link" data-scroll-target="#feature-extraction"><span class="header-section-number">5.3</span> Feature Extraction</a></li>
-  <li><a href="#save-results" id="toc-save-results" class="nav-link" data-scroll-target="#save-results"><span class="header-section-number">5.4</span> Save Results</a></li>
+  <li><a href="#feature-extraction" id="toc-feature-extraction" class="nav-link" data-scroll-target="#feature-extraction"><span class="header-section-number">5.2</span> Feature Extraction</a></li>
+  <li><a href="#save-results" id="toc-save-results" class="nav-link" data-scroll-target="#save-results"><span class="header-section-number">5.3</span> Save Results</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/numerical_feature_extraction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -558,9 +506,11 @@ window.Quarto = {
 </header>
 
 
-<p>In this step, FLIM Playground extracts <em>single-cell</em> numerical features from the raw data in a folder. For each channel, the features to be extracted are specified in the <a href="./data_extraction_config.html#feature-extractor">user-selected feature extractors</a>. The available feature extractors are:</p>
+<p>FLIM Playground extracts <em>single-cell</em> numerical features from <strong>multiple channels and imaging modalities in the same workflow</strong>. Configure each channel independently: give it a name, choose FLIM or intensity-only imaging, and select the <a href="./data_extraction_config.html#feature-extractor">feature extractors</a> needed for that channel. For example, a FLIM channel can provide lifetime and phasor features while an intensity-only channel provides morphology and texture. All channels can also be intensity-only. FLIM channels share the <a href="./data_extraction_config.html#decay-types">FLIM input format</a>, but their feature selections can differ.</p>
+<p><strong>An IRF shift is required for raw FLIM channels using <code>Lifetime fit</code>, and for channels using <code>Lifetime fit free</code> with <code>IRF</code> calibration.</strong> Complete <a href="./irf_calibration.html#sec-irf-calibration">IRF Calibration</a> for those channels or load metadata with saved shifts. Calibration with a fluorescence lifetime standard (calibration dye) is applied during phasor extraction. All-intensity workflows proceed directly to extraction.</p>
+<p>The available feature extractors are:</p>
 <ul>
-<li><a href="lifetime_fit.html">Lifetime fit</a>: fit exponential models to decay curves to estimate lifetimes and their fractional contributions by minimizing an objective function.</li>
+<li><a href="lifetime_fit.html">Lifetime fit</a>: fit exponential models to raw decay curves to estimate lifetimes and their fractional contributions, or read existing fitted values from pre-fitted FLIM input.</li>
 <li><a href="lifetime_fit_free.html">Lifetime fit free</a>: transform decay curves to phasor space using Fourier transform to obtain phasor coordinates.</li>
 <li><a href="intensity_morphology.html">Intensity Morphology</a>: morphological features of single-cell ROI masks</li>
 <li><a href="intensity_texture.html">Intensity Texture</a>: texture features of single-cell ROI intensity images (or, for 2D decay input, just the per-cell decay-curve sum, <code>intensity_sum</code>)</li>
@@ -575,223 +525,40 @@ window.Quarto = {
 <li><a href="./fov_metadata.html#feature-extractors">selected feature extractors</a> for each channel</li>
 <li><a href="./data_extraction_config.html#calibration-method">fit free calibration method</a> (if fit free calibration is required)</li>
 </ul>
-<p>Users can either upload a previously extracted metadata file (left), or use the cached metadata file just extracted in the <a href="fov_metadata.html">fov metadata extraction</a> step (right).</p>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="extraction_ui_shots/metadata_upload.png" class="img-fluid"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="extraction_ui_shots/metadata_cache.png" class="img-fluid"></p>
-</div>
-</div>
-</div>
-<p>For <code>Lifetime fit</code> and <code>Lifetime fit free</code> feature extractors, the first step is always <a href="#calibration">calibration</a>.</p>
+<p>Use the cached metadata just exported in <a href="fov_metadata.html">FOV Metadata Extraction</a>, or upload a previously saved metadata CSV. Cached metadata takes precedence; refresh the page to clear it and upload a different file.</p>
 </section>
-<section id="calibration" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="calibration"><span class="header-section-number">5.2</span> Calibration</h2>
-<p>Calibration in FLIM is essential because raw decays are convolved with the instrument response function (IRF)—the timing profile of the detection system’s response to an ultrashort light pulse that broadens and shifts the measured decay—so without correcting for these, fitted lifetimes and phasor positions are biased and not comparable across days, samples, or instruments.</p>
-<section id="fit-calibration" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="fit-calibration"><span class="header-section-number">5.2.1</span> Fit Calibration</h3>
-<p>During different experiments, the IRF may shift differently with respect to the measured decay. Before applying reconvolution fitting, the IRF shift needs to be estimated for each channel if the <code>Lifetime fit</code> feature extractor is selected for the channel.</p>
-<p>It is performed in two steps:</p>
-<ol type="1">
-<li>Gather the high signal-to-noise ratio (SNR) decay curves</li>
-<li>For each curve, perform reconvolution fitting and set the shift value as the free parameter to be optimized/fitted. The shift search range is centered on the initial shift guess and extends <span class="math inline">\(\pm 2 \times \text{FWHM}\)</span> of the IRF in both directions, where FWHM is the full width at half maximum of the IRF measured in time bins. This focused search window prevents the optimizer from getting stuck in suboptimal basins when <a href="#time-gates">time gates</a> are restrictive.</li>
-</ol>
-<p>The distribution of the shift values is displayed as an interactive scatter plot. When clicking on a point, the corresponding decay curve with the fitted curve and the key statistics are displayed for diagnostics. Based on the distribution or using certain prior knowledge, users can specify the shift value applied to all fields of view (if <code>Fix the Shift</code> is selected, see <a href="#fitting-options">fitting options</a>), or use the fov-specific shift value found by the fitting (if <code>Fix the Shift</code> is deselected).</p>
-<p><img src="extraction_ui_shots/irf_shift.png" id="irf-shift" class="img-fluid"></p>
-<section id="gather-high-snr-decay-curves" class="level4">
-<h4 class="anchored" data-anchor-id="gather-high-snr-decay-curves">Gather High SNR Decay Curves</h4>
-<p>The high SNR decay curves are constructed automatically based on the <a href="./data_extraction_config.html#decay-types">decay type</a>. If it is in <a href="./data_extraction_config.html#two-d-decay">2D format</a>, a total of the brightest 30 curves that are below <code>100000</code> photons are selected and evenly distributed across all fields of view (one CSV file is considered as one FOV). If it is in <a href="./data_extraction_config.html#three-d4d-decay">3D/4D format</a>, the fields of view are images, and one curve is constructed for each image that includes all the non-zero pixels within the <a href="./data_extraction.html#mask">ROI mask</a>.</p>
-</section>
-<section id="reconvolution-fitting" class="level4">
-<h4 class="anchored" data-anchor-id="reconvolution-fitting">Reconvolution Fitting</h4>
-<p>Fitting is essentially an optimization problem: it minimizes the difference between the fitted curve and the measured curve. The fitted curve is modeled by an <span class="math inline">\(n^{th}\)</span> component exponential function convolved with the shifted IRF, and the difference is modeled as an objective metric. Therefore, users are provided with controls over two parts of the fitting process through the <a href="#fitting-options">fitting options panel</a>:</p>
-<ol type="1">
-<li>How to construct the objective metric</li>
-<li>How to perform the optimization</li>
-</ol>
-<p>Implementation-wise, FLIM Playground uses the <code>lmfit</code> package that takes generic objectives to perform the optimization process that is flexible enough to handle the reconvolution fitting.</p>
-<p>Each decay curve is fitted independently. <strong>Fit calibration</strong> (one optimization per high-SNR curve in the IRF shift step) and <strong>Lifetime fit</strong> ROI-level extraction (one optimization per ROI per channel) both schedule those independent fits <strong>in parallel across CPU cores</strong>, so on a multi-core machine many fits run at once.</p>
-<p>If at least one channel has <code>Lifetime fit</code> feature extractor selected, the fitting options panel is displayed.</p>
+<section id="feature-extraction" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="feature-extraction"><span class="header-section-number">5.2</span> Feature Extraction</h2>
+<p>Click <strong>Confirm and Start</strong> to extract the selected features. For channels that need an IRF shift, first <a href="./irf_calibration.html#confirm-calibration">confirm calibration</a> or load metadata with saved shifts. For raw FLIM channels using <code>Lifetime fit</code>, choose the fitting mode before starting.</p>
+<p>The right side of the screen lists the fields of view and their extraction status. Each FOV has a progress bar while it is being processed; completed FOVs show their result badges. Keep this view open to follow the batch.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="extraction_ui_shots/fitting_option.png" id="fitting-options" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="extraction_ui_shots/numerical_feature_extraction.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Full extraction screen: Mosaic01–03 are complete while Mosaic07 is processing."><img src="extraction_ui_shots/numerical_feature_extraction.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Full Numeric Feature Extraction screen with the workflow and Local fitting controls on the left, successful Mosaic01–03 badges, and an active NADH extraction progress bar for 40 cells in Mosaic07 on the right."></a></p>
 </figure>
 </div>
-<p>Let’s break down the fitting options one by one.</p>
-<section id="number-of-components" class="level5">
-<h5 class="anchored" data-anchor-id="number-of-components">Number of Components</h5>
-<p>The number <span class="math inline">\(n\)</span> in the <span class="math inline">\(n^{th}\)</span> component exponential function: <span class="math display">\[
-I(\mathbf{t})=\sum_{i=1}^{n} A_i\, e^{-\mathbf{t}/\tau_i}, \qquad \tau_i&gt;0
-\]</span></p>
-<p>Therefore, <span class="math inline">\(n\)</span> determines the parameters to be fitted: the amplitudes <span class="math inline">\(A_i\)</span> and the lifetimes <span class="math inline">\(\tau_i\)</span>. <span class="math inline">\(\mathbf{t}\)</span> is the time axis of the decay curve calculated by the <code>duration</code> and <code>time bins</code> from the <a href="./fov_metadata.html#decay-info">decay info</a>: <span class="math display">\[\mathbf{t}=\bigl[0,\ \Delta t,\ 2\Delta t,\ \ldots,\ (N-1)\Delta t\bigr],
-\quad \text{where }\Delta t=\frac{T}{N}.
-\]</span></p>
-<p>It supports <span class="math inline">\(n=1,2,3\)</span> components.</p>
-<p>Additionally, the constant offset parameter (<span class="math inline">\(Z\)</span>) that represents a time-independent background (i.e., room light) is also optimized<span class="citation" data-cites="warren2013"><sup><a href="#ref-warren2013" role="doc-biblioref">1</a></sup></span>.</p>
-<p><span class="math display">\[
-\hat{y}(t) = \bigl[I(t) + Z\bigr] \circledast \text{IRF}(t)
-\]</span></p>
-<p>where <span class="math inline">\(\circledast\)</span> denotes circular (periodic) convolution, implemented via FFT multiplication (<code>np.fft.ifft(np.fft.fft(decay) * np.fft.fft(irf))</code>). Circular convolution correctly accounts for the wrap-around effects inherent in periodic TCSPC decays, where photons arriving after the end of the measurement window appear at the beginning of the next period.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Previous Versions (< 1.8.0)">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Previous Versions (&lt; 1.8.0)
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In versions prior to 1.8.0, the fitting process utilized linear convolution with a cut off:</p>
-<p><span class="math display">\[
-\hat{y}(t) = \bigl( I(t) * \text{IRF}(t) \bigr)_{0:N} + Z
-\]</span></p>
-<p>where <span class="math inline">\(*\)</span> denotes linear convolution and the subscript <span class="math inline">\((0:N)\)</span> denotes truncating the result to the length of the original decay curve, effectively ignoring the part of the convolution that extends beyond the measurement window. The difference between this approach and circular convolution is minimal for shorter lifetimes. However, the correct way to fit incomplete decays is formulated above using circular convolution, which is now the standard used in the latest version.</p>
-</div>
-</div>
-</section>
-<section id="fixed-lifetimes" class="level5">
-<h5 class="anchored" data-anchor-id="fixed-lifetimes">Fixed Lifetimes</h5>
-<p>While finding the optimal amplitudes <span class="math inline">\(A_i\)</span> and lifetimes <span class="math inline">\(\tau_i\)</span> (when <a href="#number-of-components">number of components</a> is greater than 1), users can optionally assign fixed values to specific <span class="math inline">\(\tau_i\)</span> components during the interactive fitting phase. These explicit constraints remain constant (are not treated as free parameters) while minimizing the cost metric, making the optimization more robust when the true lifetime state is known. The default fixed lifetime values can be initialized in the <a href="./data_extraction_config.html#fixed-lifetimes">Data Extraction Configuration</a>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Fixed lifetimes apply only to channels that FLIM Playground fits. For <a href="./data_extraction_config.html#three-d4d-pixel-pre-fit">pre-fit</a> inputs (SPCImage <code>.asc</code>), whose lifetimes are read rather than fit, the fixed-lifetime controls are not shown.</p>
-</div>
-</div>
-</section>
-<section id="time-gates" class="level5">
-<h5 class="anchored" data-anchor-id="time-gates">Time Gates</h5>
-<p>Due to the dead time of the system certain time bins from the head and/or tail of the decay curve are not reliable. The T1 (head) and T2 (tail) gates are used to select the time range of the decay curve to be fitted. Users can inspect the decay curve by clicking the full-screen mode button of the plot on the right of the <a href="#irf-shift">shift result</a>. Hover-based interaction is implemented so users can see the time bin numbers to have a better sense of the time range.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="extraction_ui_shots/time_gate_choose.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figcaption>Full extraction screen: Mosaic01–03 are complete while Mosaic07 is processing.</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="extraction_ui_shots/time_gate.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-<p>Only the time bins within the T1 and T2 gates are used to calculate the cost metric.</p>
-</section>
-<section id="metric" class="level5">
-<h5 class="anchored" data-anchor-id="metric">Metric</h5>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="extraction_ui_shots/metric.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:20.0%"></p>
+<p><a href="extraction_ui_shots/feature_export.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="This numerical extraction example produces 185 cell rows and 70 columns from one FOV."><img src="extraction_ui_shots/feature_export.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Successful extraction for MCF7_2DG_dish2_04, a preview of the first five cell rows, and the Download single cell features as CSV button."></a></p>
 </figure>
 </div>
-<p>Maximum Likelihood Estimation (<code>MLE</code>) estimates the parameters by maximizing the likelihood function, which is the probability of the measured data given the model parameters. A mathematically convenient way to do this is to minimize the negative log-likelihood function:</p>
-<p><span class="math display">\[
-\text{NLL}(\theta; t_s,t_e)
-= -\sum_{n=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_n)\,\bigl[y_n \log \hat{y}(t_n) - \hat{y}(t_n)\bigr].
-\]</span></p>
-<p><span class="math inline">\(\mathbf{1}_{[t_s,t_e]}\)</span> is the indicator function that is 1 if <span class="math inline">\(t_n\)</span> is within the <a href="#time-gates">time gates</a> <span class="math inline">\([t_s, t_e]\)</span>, and 0 otherwise. <span class="math inline">\(y_n\)</span> is the observed count at time <span class="math inline">\(t_n\)</span>, and <span class="math inline">\(\hat{y}(t_n)\)</span> is the model prediction at <span class="math inline">\(t_n\)</span>.</p>
-<p>Weighted Least Squares (<code>WLS</code>) minimizes the squared residuals between the measured curve and the model prediction, with each time bin weighted by the inverse of its expected variance. Because photon counts follow Poisson statistics (variance <span class="math inline">\(\approx\)</span> mean), the per-bin variance is estimated by the model prediction <span class="math inline">\(\hat{y}(t_n)\)</span>, so each residual is scaled by <span class="math inline">\(1/\sqrt{\max(\hat{y}(t_n), 1)}\)</span>, and the cost minimized is</p>
-<p><span class="math display">\[
-\text{WLS}(\theta; t_s,t_e)
-= \sum_{n=0}^{N-1} \mathbf{1}_{[t_s,t_e]}(t_n)\,\frac{\bigl(y_n - \hat{y}(t_n)\bigr)^2}{\max(\hat{y}(t_n), 1)}.
-\]</span></p>
-<p>This weighting is Pearson’s <span class="math inline">\(\chi^2\)</span> — the per-bin variance is taken from the model <span class="math inline">\(\hat{y}(t_n)\)</span> rather than the noisy measured count — which keeps the high-count bins near the decay peak from dominating the fit; the <span class="math inline">\(\max(\cdot, 1)\)</span> floor avoids division by zero where the model is near zero. The minimized cost therefore uses the same definition as the reported <a href="./lifetime_fit.html#goodness-of-fit">reduced chi-square</a> (<span class="math inline">\(\chi^2_r\)</span>) goodness-of-fit metric.</p>
-</section>
-<section id="fitting-mode" class="level5">
-<h5 class="anchored" data-anchor-id="fitting-mode">Fitting Mode</h5>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="extraction_ui_shots/fitting_mode.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:20.0%"></p>
+<figcaption>This numerical extraction example produces 185 cell rows and 70 columns from one FOV.</figcaption>
 </figure>
 </div>
-<p>The fitting mode selects the optimization strategy. It is a trade-off between speed and the effort to avoid local minima.</p>
-<p>The calibration step and the subsequent cell-level fit share this one setting. Whenever at least one channel requires shift estimation, the dropdown offers <strong>Hybrid</strong> only, so that shift estimation runs at full accuracy.</p>
-<ul>
-<li><code>Local</code>: Each cell is fit with a single local optimizer — <code>leastsq</code> (least squares with Levenberg-Marquardt) if the chosen metric is <code>WLS</code>, otherwise <code>nelder</code> (Nelder-Mead). To give those per-cell fits a good starting point, a one-time <strong>warm start</strong> is performed first: the <code>differential evolution</code> global optimizer is run once on the <em>mean</em> decay of all ROIs in the batch, and the resulting lifetimes (and the constant offset) seed the initial values for every per-cell fit. The mean is used rather than the sum so the seed stays at single-cell scale, keeping a cell’s result independent of how many cells share its batch. This warm start runs once, up front, before the per-cell fits are <a href="#reconvolution-fitting">parallelized across CPU cores</a>; because the global search runs once for the whole batch instead of once per cell, <code>Local</code> is substantially faster than <code>Hybrid</code>.</li>
-<li><code>Hybrid</code>: The slower but more accurate option. For <strong>each cell</strong>, it runs the <code>differential evolution</code> algorithm to obtain a good initial guess for all parameters, followed by the <code>Local</code> optimizer to refine the solution.</li>
-</ul>
-</section>
-</section>
-</section>
-<section id="fit-free-calibration" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="fit-free-calibration"><span class="header-section-number">5.2.2</span> Fit Free Calibration</h3>
-<p>Users get to choose between the following two methods to calibrate the IRF shift in the <a href="./data_extraction_config.html#calibration-method">configuration step</a>.</p>
-<p>The first step of the calibration is to <strong>subtract an offset value and clip each decay curve to 0 if the time bin is negative</strong>. The offset <span class="math inline">\(C\)</span> is estimated as the mean signal over the final 10% of time bins in each decay (‘tail’).</p>
-<p>Then, depending on the chosen <a href="./data_extraction_config.html#calibration-method">calibration method</a>, the following two methods are available:</p>
-<section id="shift-irf" class="level4">
-<h4 class="anchored" data-anchor-id="shift-irf">Shift IRF</h4>
-<p>It is performed similarly to the <a href="#fit-calibration">fit calibration</a> steps, but in the second step, the shift is not optimized (fitted). It shares the <a href="#irf-shift">same interface</a> as the <a href="#fit-calibration">fit calibration</a> step, where a scatter plot of the shift values is displayed for each channel, only that the plot is not interactive to show the fit. Instead, it outputs the shift that maximizes the cross-correlation between the IRF and each decay. If <code>Fix the Shift</code> is selected, users can specify the shift value that will be applied to all fields of view. Otherwise, the shift value is chosen to be the one that maximizes the cross-correlation between the IRF and the decay.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If both the <code>Lifetime fit</code> and <code>Lifetime fit free</code> feature extractors are selected for this channel, the optimized IRF shift derived from <a href="#fit-calibration">the fit calibration</a> step is reused for the <code>Lifetime fit free</code> feature extractor.</p>
-</div>
-</div>
-<p>The signals of the shifted IRF are deconvolved from the offset-subtracted decay curves using <a href="https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_divide"><code>phasor.phasor_divide</code></a> from the <code>phasorpy</code> package.</p>
-</section>
-<section id="fluorescence-lifetime-standard" class="level4">
-<h4 class="anchored" data-anchor-id="fluorescence-lifetime-standard">Fluorescence lifetime standard</h4>
-<p>Because the fluorescence lifetime standard is measured in the same system as the decay curves and we know its lifetime, there is no need to account for the IRF shift and the offset. Therefore, after subtracting the offset, <code>phasorpy</code>’s <a href="https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate"><code>lifetime.phasor_calibrate</code></a> function is used to calibrate all the decay curves behind the scenes when calculating the phasor coordinates.</p>
-</section>
-</section>
-<section id="confirm-calibration" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="confirm-calibration"><span class="header-section-number">5.2.3</span> Confirm Calibration</h3>
-<p>Once users are satisfied with the calibration settings (<a href="#fitting-options">fitting options</a> and shift values), they can click the <code>Confirm Time Gates (if applicable) and Shift for each channel</code> button at the bottom of the <a href="#irf-shift">page</a>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="extraction_ui_shots/calibration_confirm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-<p>Once confirmed, the left panel prompts users to either apply the calibration settings to the downstream extractors or calibrate again. Users can also save the updated settings (fitting options and shift values) to the metadata file.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="extraction_ui_shots/calibration_done.png" id="calibration-done" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-</section>
-</section>
-<section id="feature-extraction" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="feature-extraction"><span class="header-section-number">5.3</span> Feature Extraction</h2>
-<p>If the selected feature extractors do not require IRF shift calibration, or users have <a href="#calibration-done">finished the calibration</a>, they can proceed to the feature extraction step by clicking the <code>Confirm and Start</code> button.</p>
-<p>Similar to the <a href="fov_metadata.html">fov metadata extraction</a> step, FLIM Playground extracts the features and displays the extraction status for each field of view.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="extraction_ui_shots/numerical_feature_extraction.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
-<p>A progress bar is rendered to show the feature extraction progress for each FOV (bottom right).</p>
+<p>The completed result above includes a preview of the extracted cell table.</p>
 <p>Warnings are displayed if cells have <code>NaN</code> values for some features. They are <em>not</em> excluded from the final CSV file.</p>
 </section>
-<section id="save-results" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="save-results"><span class="header-section-number">5.4</span> Save Results</h2>
+<section id="save-results" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="save-results"><span class="header-section-number">5.3</span> Save Results</h2>
 <p>Once the feature extraction is finished, the results are saved to a CSV file. How this happens depends on how the metadata reached this step. If the cached metadata file from the <a href="fov_metadata.html">fov metadata extraction</a> step was used, the CSV is written automatically into the same folder as that metadata file, and no button is shown. If the metadata file was uploaded manually, FLIM Playground cannot know where to write it, so a <code>Download single cell features as CSV</code> button appears at the bottom of the page instead.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="extraction_ui_shots/feature_export.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
 
 
-<div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
-<div id="ref-warren2013" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Warren, S. C. <em>et al.</em> <a href="https://doi.org/10.1371/journal.pone.0070687">Rapid global fitting of large fluorescence lifetime imaging microscopy datasets</a>. <em>PLoS ONE</em> <strong>8</strong>, e70687 (2013).</div>
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->
@@ -1217,14 +984,46 @@ Note
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lifetime_fit.html" class="pagination-link" aria-label="Lifetime Features (Fit)">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./irf_calibration.html" class="pagination-link" aria-label="IRF Calibration">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IRF Calibration</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/numerical_feature_extraction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/numerical_feature_extraction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>

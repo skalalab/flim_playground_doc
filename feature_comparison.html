@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>14&nbsp; Feature Comparison – FLIM Playground</title>
+<title>15&nbsp; Feature Comparison – FLIM Playground</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -52,6 +52,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-37a0ccb6f5b9899fcb884e11bb6f7458.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -283,7 +286,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_comparison.html">Univariate Analysis</a></li><li class="breadcrumb-item"><a href="./feature_comparison.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Comparison</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_comparison.html">Univariate Analysis</a></li><li class="breadcrumb-item"><a href="./feature_comparison.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -353,38 +356,44 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./irf_calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IRF Calibration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./lifetime_fit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lifetime_fit_free.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_morphology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_texture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./derived_feature.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./categorical_feature_extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
   </div>
 </li>
       </ul>
@@ -401,13 +410,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
   </div>
 </li>
       </ul>
@@ -424,19 +433,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_comparison.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_histogram.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fov_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Field of View Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
   </div>
 </li>
       </ul>
@@ -453,13 +456,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_distribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feature Distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./phasor_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Plot</span></span></a>
   </div>
 </li>
       </ul>
@@ -503,17 +506,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#shared-interface-components" id="toc-shared-interface-components" class="nav-link active" data-scroll-target="#shared-interface-components"><span class="header-section-number">14.1</span> Shared Interface Components</a></li>
-  <li><a href="#plot-options" id="toc-plot-options" class="nav-link" data-scroll-target="#plot-options"><span class="header-section-number">14.2</span> Plot Options</a></li>
-  <li><a href="#separate-by" id="toc-separate-by" class="nav-link" data-scroll-target="#separate-by"><span class="header-section-number">14.3</span> Separate by</a></li>
-  <li><a href="#comparison-widget" id="toc-comparison-widget" class="nav-link" data-scroll-target="#comparison-widget"><span class="header-section-number">14.4</span> Comparison Widget</a></li>
-  <li><a href="#effect-size" id="toc-effect-size" class="nav-link" data-scroll-target="#effect-size"><span class="header-section-number">14.5</span> Effect Size</a>
+  <li><a href="#shared-interface-components" id="toc-shared-interface-components" class="nav-link active" data-scroll-target="#shared-interface-components"><span class="header-section-number">15.1</span> Shared Interface Components</a></li>
+  <li><a href="#plot-options" id="toc-plot-options" class="nav-link" data-scroll-target="#plot-options"><span class="header-section-number">15.2</span> Plot Options</a></li>
+  <li><a href="#collapse-by" id="toc-collapse-by" class="nav-link" data-scroll-target="#collapse-by"><span class="header-section-number">15.3</span> Collapse by</a>
   <ul class="collapse">
-  <li><a href="#glasss-delta" id="toc-glasss-delta" class="nav-link" data-scroll-target="#glasss-delta"><span class="header-section-number">14.5.1</span> Glass’s Delta</a></li>
-  <li><a href="#absolute-cohens-d" id="toc-absolute-cohens-d" class="nav-link" data-scroll-target="#absolute-cohens-d"><span class="header-section-number">14.5.2</span> Absolute Cohen’s d</a></li>
+  <li><a href="#superplot" id="toc-superplot" class="nav-link" data-scroll-target="#superplot"><span class="header-section-number">15.3.1</span> SuperPlot</a></li>
   </ul></li>
-  <li><a href="#statistical-test" id="toc-statistical-test" class="nav-link" data-scroll-target="#statistical-test"><span class="header-section-number">14.6</span> Statistical Test</a></li>
-  <li><a href="#comparison-annotation" id="toc-comparison-annotation" class="nav-link" data-scroll-target="#comparison-annotation"><span class="header-section-number">14.7</span> Comparison Annotation</a></li>
+  <li><a href="#separate-by" id="toc-separate-by" class="nav-link" data-scroll-target="#separate-by"><span class="header-section-number">15.4</span> Separate by</a></li>
+  <li><a href="#subcolor-by" id="toc-subcolor-by" class="nav-link" data-scroll-target="#subcolor-by"><span class="header-section-number">15.5</span> Subcolor by</a></li>
+  <li><a href="#reorder-x-axis-groups" id="toc-reorder-x-axis-groups" class="nav-link" data-scroll-target="#reorder-x-axis-groups"><span class="header-section-number">15.6</span> Reorder X-axis Groups</a></li>
+  <li><a href="#comparison-widget" id="toc-comparison-widget" class="nav-link" data-scroll-target="#comparison-widget"><span class="header-section-number">15.7</span> Comparison Widget</a>
+  <ul class="collapse">
+  <li><a href="#effect-size-threshold" id="toc-effect-size-threshold" class="nav-link" data-scroll-target="#effect-size-threshold"><span class="header-section-number">15.7.1</span> Effect Size Threshold</a></li>
+  </ul></li>
+  <li><a href="#effect-size" id="toc-effect-size" class="nav-link" data-scroll-target="#effect-size"><span class="header-section-number">15.8</span> Effect Size</a>
+  <ul class="collapse">
+  <li><a href="#glasss-delta" id="toc-glasss-delta" class="nav-link" data-scroll-target="#glasss-delta"><span class="header-section-number">15.8.1</span> Glass’s Delta</a></li>
+  <li><a href="#absolute-cohens-d" id="toc-absolute-cohens-d" class="nav-link" data-scroll-target="#absolute-cohens-d"><span class="header-section-number">15.8.2</span> Absolute Cohen’s d</a></li>
+  </ul></li>
+  <li><a href="#statistical-test" id="toc-statistical-test" class="nav-link" data-scroll-target="#statistical-test"><span class="header-section-number">15.9</span> Statistical Test</a></li>
+  <li><a href="#comparison-annotation" id="toc-comparison-annotation" class="nav-link" data-scroll-target="#comparison-annotation"><span class="header-section-number">15.10</span> Comparison Annotation</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/feature_comparison.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -521,9 +533,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_comparison.html">Univariate Analysis</a></li><li class="breadcrumb-item"><a href="./feature_comparison.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Comparison</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_comparison.html">Univariate Analysis</a></li><li class="breadcrumb-item"><a href="./feature_comparison.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-feature-comparison" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></h1>
+<h1 class="title"><span id="sec-feature-comparison" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></h1>
 </div>
 
 
@@ -541,64 +553,191 @@ window.Quarto = {
 
 
 <p>This method allows users to compare the distributions of a single numerical feature across groups. It can help users spot overarching trends between distributions, identify within-distribution shape-related characteristics such as skewness or bimodality that might signal sub-populations, and diagnose potential outliers.</p>
-<p><img src="analysis_ui_shots/feature_comparison.png" class="img-fluid"></p>
-<section id="shared-interface-components" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">14.1</span> Shared Interface Components</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/feature_comparison.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Feature Comparison brings feature selection, filtering, grouping, and the comparison plot into one view."><img src="analysis_ui_shots/feature_comparison.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Feature Comparison page with numerical feature selection on the left and categorical filters, grouping controls, and treatment distributions separated by cell line on the right."></a></p>
+</figure>
+</div>
+<figcaption>Feature Comparison brings feature selection, filtering, grouping, and the comparison plot into one view.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To keep the point-based visualization style that supports <a href="./data_analysis.html#unique-id-hover">interactive hover</a> while showing the violin-plot-like distribution, <a href="https://en.wikipedia.org/wiki/Sina_plot">Sina plot</a> is used: it uses <code>gaussian_kde</code> from <code>scipy.stats</code> to make sure the width of the point distribution is proportional to the kernel density.</p>
+<p>The spread is computed per group on the x-axis, so <a href="./data_analysis.html#opacity-and-shape-by"><code>Shape by</code>, <code>Opacity by</code></a> and <a href="#subcolor-by"><code>Subcolor by</code></a> change how a point looks, not where it sits.</p>
+</div>
+</div>
+<section id="shared-interface-components" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">15.1</span> Shared Interface Components</h2>
 <ul>
 <li>On the left, users can use the <a href="./data_analysis.html#univariate-analysis">selection widgets</a> to select the numerical feature to be compared. Exactly one feature can be selected from all feature groups.</li>
 <li>On the top right, users can use the <a href="./data_analysis.html#filter-widgets">filters</a> to subset the data to find the groups of interest.</li>
-<li>Below the filters, users can apply the <a href="./data_analysis.html#visual-channels-widgets">visual channels widgets</a> that allow users to <code>Color by</code>, <code>Opacity by</code>, and <code>Shape by</code> categorical features.</li>
+<li>Below the filters, choose <a href="#separate-by"><code>Separate by</code></a>, <code>Color by</code> (or <code>Group by</code> in Subcolor mode), and <a href="#collapse-by"><code>Collapse by</code></a>. The <strong>Opacity | Subcolor | Shape</strong> selector shares one column picker: choose a mode, then its categorical column. Only that point encoding is applied.</li>
 <li>On the bottom right, users can change the plot style using the <a href="./data_analysis.html#plotting-configuration-widgets">plot styling widgets</a>.</li>
 </ul>
 </section>
-<section id="plot-options" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="plot-options"><span class="header-section-number">14.2</span> Plot Options</h2>
-<p>Above the plot, three toggles control how the distributions are displayed:</p>
+<section id="plot-options" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="plot-options"><span class="header-section-number">15.2</span> Plot Options</h2>
+<p>Above the plot, use <strong>Log Y</strong>, <strong>Overlay</strong>, and <strong>Connect means</strong> to control the display:</p>
 <ul>
-<li><strong>Log Y</strong>: plots the selected feature on a base-10 logarithmic y-axis (the axis label becomes <code>log₁₀(...)</code>). Negative values cannot be log-transformed, so a warning is shown if the selected feature contains any.</li>
-<li><strong>Add boxplot</strong>: overlays a box-and-whisker summary on each group. The box spans the interquartile range (<span class="math inline">\(Q_1\)</span>–<span class="math inline">\(Q_3\)</span>) with the median as a solid line and the mean as a dashed line; the whiskers follow the <a href="https://en.wikipedia.org/wiki/Box_plot">Tukey</a> definition at <span class="math inline">\(Q_1 - 1.5 \times \text{IQR}\)</span> and <span class="math inline">\(Q_3 + 1.5 \times \text{IQR}\)</span>, bounded by the data range.</li>
+<li><strong>Log Y</strong>: transforms the selected feature with <span class="math inline">\(\log_{10}(x + 10^{-6})\)</span> before plotting and calculating summaries and comparisons. The small offset allows zero values; the axis label becomes <span class="math inline">\(\log_{10}(\ldots)\)</span>. If negative values are present, the app reports an error and keeps the original scale. With <code>Collapse by</code>, it averages first and then transforms the category means.</li>
+<li><strong>Overlay → Boxplot</strong>: overlays a box-and-whisker summary on each group. The box spans the interquartile range (<span class="math inline">\(Q_1\)</span>–<span class="math inline">\(Q_3\)</span>) with the median as a solid line and the mean as a dashed line; the whiskers follow the <a href="https://en.wikipedia.org/wiki/Box_plot">Tukey</a> definition at <span class="math inline">\(Q_1 - 1.5 \times \text{IQR}\)</span> and <span class="math inline">\(Q_3 + 1.5 \times \text{IQR}\)</span>, bounded by the data range. Choose <code>None</code> to show the points without an overlay. Selecting <code>Collapse by</code> also makes <a href="#superplot"><code>SuperPlot</code></a> available.</li>
 <li><strong>Connect means</strong>: draws a line connecting the mean of each group (within each section when <a href="#separate-by"><code>Separate by</code></a> is used), which can help reveal trends across ordered groups.</li>
 </ul>
 </section>
-<section id="separate-by" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="separate-by"><span class="header-section-number">14.3</span> Separate by</h2>
-<p><img src="analysis_ui_shots/separate_by_widget.png" class="img-fluid"></p>
+<section id="collapse-by" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="collapse-by"><span class="header-section-number">15.3</span> Collapse by</h2>
+<p>Choose a categorical column in <strong>Collapse by</strong>, such as <code>dish</code>, <code>patient</code>, or <code>image_name</code>, to replace individual observations with one mean per category within each displayed group. The app first applies the filters and removes rows missing the selected measurement. It then averages the measurement separately for every combination of the selected collapse category, <code>Color by</code> / <code>Group by</code>, and <code>Separate by</code>. A dish represented in two treatments therefore contributes one point to each treatment.</p>
+<p>The boxplot, connected means, effect sizes, and statistical tests now use these category means. Each point has equal weight in its displayed group’s mean, regardless of how many observations were averaged into it. Selecting a collapse column keeps the existing x-axis groups and sections. A column already used for either grouping control is unavailable in <code>Collapse by</code>.</p>
+<p>Collapse changes the analysis unit, but the supported t-tests still assume independent samples. The app does not pair observations across groups, even when the same dish or patient appears in several groups.</p>
+<p>Hover over a category mean to see its label and contributing observation count, such as <code>dish1 (n=1874)</code>. <strong>Show group counts (n) in legend</strong> counts category means after collapse. If a point-encoding column varies within any group being averaged, the app turns that encoding off and explains why; using the collapse column itself for Subcolor, Opacity, or Shape keeps it available.</p>
+<section id="superplot" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="superplot"><span class="header-section-number">15.3.1</span> SuperPlot</h3>
+<p>After selecting <code>Collapse by</code>, choose <strong>Overlay → SuperPlot</strong> to show the original observations as smaller, fainter points behind the category means. The larger points remain the category means, and each displayed group receives a mean bar with ± one standard error of the mean (SEM), calculated across those category means. A group with only one category mean still has a mean bar, but its SEM is undefined.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/superplot_controls.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Use the same categorical column for Collapse by and Subcolor, then select the SuperPlot overlay."><img src="analysis_ui_shots/superplot_controls.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="SuperPlot controls with dish selected for Collapse by and Subcolor, treatment for Group by, cell_line for Separate by, and SuperPlot for Overlay."></a></p>
+</figure>
+</div>
+<figcaption>Use the same categorical column for Collapse by and Subcolor, then select the SuperPlot overlay.</figcaption>
+</figure>
+</div>
+<p>The original observations provide context while all comparisons continue to use category means. Hovering over a small point shows its individual identifier; hovering over a large point shows the category and its observation count. Legend counts still count category means. With <strong>Log Y</strong>, the small points are transformed individually and the larger points are transformed after averaging, so a large point need not equal the mean of the small points on the transformed scale.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/superplot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="SuperPlot shows original cells behind dish means and mean ± SEM summaries."><img src="analysis_ui_shots/superplot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Treatment groups separated by cell line, with faint individual cell points, larger dish means, mean and SEM bars, and dish counts in the legend."></a></p>
+</figure>
+</div>
+<figcaption>SuperPlot shows original cells behind dish means and mean ± SEM summaries.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="separate-by" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="separate-by"><span class="header-section-number">15.4</span> Separate by</h2>
 <p><code>Separate by</code> takes effect before <a href="./data_analysis.html#color-by"><code>Color by</code></a>. <code>Separate by</code> divides the plot into sections separated by a dashed line, with each section labeled by one of the available categories of the selected categorical feature after <a href="./data_analysis.html#filter-widgets">filtering</a>. The selected feature of <code>Separate by</code> is automatically removed from available features in <code>Color by</code>. The section order is determined by the order of the categories which are sorted <a href="./data_analysis.html#nte-order">numeric-alphabetically</a>.</p>
-<p>Then, visual channels (color, shape, opacity) and effect size annotation are applied within each section. For example, the visualization below was separated by <code>cell_line</code>, with each section labeled by the bold text of a cell line. Within each section, the x-axis rendered the <code>Color by</code> categories (<code>treatments</code>) so colors were consistent across sections. <a href="#effect-size">Effect size</a> calculation and annotation (only effect size <span class="math inline">\(&gt; 0.5\)</span> is shown) were performed within each section.</p>
-<p><img src="analysis_ui_shots/separate_by.png" class="img-fluid"></p>
-<p>If <code>Separate by</code> is left blank and both <code>cell_line</code> and <code>treatment</code> are selected in <code>Color by</code>, then colors are assigned to each cell line and treatment combination, and effect sizes are calculated across all combinations of group pairs (only pairs with effect size <span class="math inline">\(&gt; 0.5\)</span> are shown).</p>
-<p><img src="analysis_ui_shots/no_separate_by.png" class="img-fluid"></p>
-</section>
-<section id="comparison-widget" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="comparison-widget"><span class="header-section-number">14.4</span> Comparison Widget</h2>
-<p>Statistical tests and effect size calculations are performed on the selected comparison pairs. FLIM Playground uses the groups on the x-axis populated by <a href="./data_analysis.html#color-by">Color by</a> to create comparison groups, starting from the leftmost group. For example, if there are 5 groups, then <span class="math inline">\(\binom{5}{2} = 10\)</span> comparisons will be created. The number of groups can get combinatorially large and many of the comparisons are not meaningful. Therefore, two widgets are provided to filter the comparison groups:</p>
-<ul>
-<li>A selection widget that shows all possible comparisons by default and users can deselect groups they do not need.</li>
-</ul>
+<p>Point encodings and comparisons are then applied within each section. For example, select <code>cell_line</code> in <code>Separate by</code> and <code>treatment</code> in <code>Color by</code> to compare treatments separately for each cell line. Treatment colors stay consistent across sections. <a href="#effect-size">Effect sizes</a> are calculated within each section, with annotations limited by the selected pairs and <a href="#effect-size-threshold">effect size threshold</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/comparison_widget.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-<ul>
-<li>A threshold by effect size widget that filters out comparisons below the threshold.</li>
-</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/effect_size_threshold.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:20.0%"></p>
+<p><a href="analysis_ui_shots/feature_comparison_plot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Separate by divides the x-axis into cell-line sections while treatment colors remain consistent."><img src="analysis_ui_shots/feature_comparison_plot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Feature Comparison plot with separate cell-line sections divided by a dashed line and treatment groups within each section."></a></p>
 </figure>
 </div>
+<figcaption>Separate by divides the x-axis into cell-line sections while treatment colors remain consistent.</figcaption>
+</figure>
+</div>
+<p>If <code>Separate by</code> is left blank and both <code>cell_line</code> and <code>treatment</code> are selected in <code>Color by</code>, then colors are assigned to each cell line and treatment combination, and effect sizes are calculated across all combinations of group pairs (again, only pairs at or above the <a href="#effect-size-threshold">effect size threshold</a> are shown).</p>
 </section>
-<section id="effect-size" class="level2" data-number="14.5">
-<h2 data-number="14.5" class="anchored" data-anchor-id="effect-size"><span class="header-section-number">14.5</span> Effect Size</h2>
+<section id="subcolor-by" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="subcolor-by"><span class="header-section-number">15.5</span> Subcolor by</h2>
+<p><code>Color by</code> gives one color per x-axis group, which leaves no way to ask where the points <em>within</em> a group came from. If each treatment pools three donors, a shift between treatments may be a real effect, or it may be one donor sitting away from the other two. <code>Subcolor by</code> answers that.</p>
+<p>Select <strong>Subcolor</strong> in the <strong>Opacity | Subcolor | Shape</strong> selector, then choose a categorical column in the picker below it. <code>Color by</code> is relabeled <code>Group by</code>: it continues to define the x-axis groups, while the subcolor column supplies point colors. Switching to Opacity or Shape keeps the selected column when it remains available, but applies only the new encoding. Clear the column to turn the encoding off.</p>
+<p>Only the paint changes: x positions, tick labels, the <a href="#plot-options">boxplot and mean connector</a>, <a href="#effect-size">effect sizes</a>, <a href="#statistical-test">statistical tests</a>, and <a href="#comparison-widget">comparison pairs</a> all stay on the <code>Group by</code> groups. The color map is <strong>global</strong>, one color per value across the whole figure, so a donor appearing under three treatments is the same color in all three, gets a single legend entry, and toggles everywhere at once. With the <a href="./data_analysis.html#plotting-configuration-widgets">group count toggle</a> on, its <code>n</code> is likewise the figure-wide count.</p>
+<p>The picker offers categorical features with more than one category after <a href="./data_analysis.html#filter-widgets">filtering</a>, except the <a href="#separate-by"><code>Separate by</code></a> feature, and is disabled while <code>Group by</code> is empty. A grouping column can also supply the point encoding. To give each collapsed category a consistent color across treatments, choose the same categorical column in <code>Collapse by</code> and Subcolor. Missing values form an <code>N/A</code> level with a color of its own rather than being dropped.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>How the subcolors are chosen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Subcolors are generated rather than sliced out of the <a href="./data_analysis.html#plotting-configuration-widgets">colormap</a>: cyclic palettes put their first and last entries at neighboring hues, and qualitative ones such as <code>tab10</code> repeat once you ask for more colors than they hold. The colormap’s first color seeds a palette of exactly the size needed, built in <a href="https://en.wikipedia.org/wiki/Oklab_color_space">OKLCH</a> so the members read as a family — hue confined to an arc around the seed, lightness stepping outward for separation. Candidates are scored composited over the background at the opacity points are drawn with, since two semi-transparent colors that differ in RGB can look the same on screen. The result is deterministic, so the <a href="./data_analysis.html#export-workflow-as-python-script">exported script</a> matches the app.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>Subcolor by</code> is for a <strong>small</strong> nested feature, roughly 2–5 values. Past about 7, no palette lets a reader assign a point to a value; use <a href="#separate-by"><code>Separate by</code></a> or a <a href="./data_analysis.html#filter-widgets">filter</a> instead.</p>
+</div>
+</div>
+</section>
+<section id="reorder-x-axis-groups" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="reorder-x-axis-groups"><span class="header-section-number">15.6</span> Reorder X-axis Groups</h2>
+<p>Groups are ordered <a href="./data_analysis.html#nte-order">numeric-alphabetically</a> by default, which puts the control wherever its name happens to sort. The <code>Reorder X-axis Groups</code> checkbox below the plot opens a drag-and-drop list; rearrange it and press <code>Confirm Reordering</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/reorder_groups.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Drag the groups into the desired x-axis order, then confirm the change."><img src="analysis_ui_shots/reorder_groups.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Reorder X-axis Groups control expanded to show draggable treatment labels and the Confirm Reordering button."></a></p>
+</figure>
+</div>
+<figcaption>Drag the groups into the desired x-axis order, then confirm the change.</figcaption>
+</figure>
+</div>
+<p>The order is applied <strong>before</strong> <a href="#comparison-widget">comparison pairs</a> are formed, and each pair runs left to right, so the leftmost member is the one <a href="#glasss-delta">Glass’s Delta</a> treats as the control. Reordering is how you tell FLIM Playground which group that is.</p>
+<ul>
+<li>It reorders the <code>Color by</code> / <code>Group by</code> groups only. <a href="#separate-by"><code>Separate by</code></a> sections keep their default order, and one group order is shared by every section.</li>
+<li>It is stored per (numerical feature, <code>Color by</code>, <code>Separate by</code>) combination. Groups you did not move keep their relative order, and groups that turn up later are appended rather than resetting your arrangement.</li>
+<li>It is carried into the <a href="./data_analysis.html#export-workflow-as-python-script">exported script</a> as <code>CUSTOM_ORDER</code>.</li>
+</ul>
+</section>
+<section id="comparison-widget" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="comparison-widget"><span class="header-section-number">15.7</span> Comparison Widget</h2>
+<p>Statistical tests and effect size calculations are performed on the selected comparison pairs. FLIM Playground uses the groups on the x-axis populated by <a href="./data_analysis.html#color-by">Color by</a> — labeled <code>Group by</code> when <a href="#subcolor-by"><code>Subcolor by</code></a> is on — to create comparison groups, starting from the leftmost group. Pairs are formed after any <a href="#reorder-x-axis-groups">custom x-axis order</a> is applied. For example, if there are 5 groups, then <span class="math inline">\(\binom{5}{2} = 10\)</span> comparisons will be created. The number of groups can get combinatorially large and many of the comparisons are not meaningful. Therefore, two widgets are provided to filter the comparison groups:</p>
+<ul>
+<li><p>A selection widget that shows all possible comparisons by default and users can deselect groups they do not need.</p></li>
+<li><p>A threshold widget that filters out comparisons whose effect size falls below the threshold.</p></li>
+</ul>
+<section id="effect-size-threshold" class="level3" data-number="15.7.1">
+<h3 data-number="15.7.1" class="anchored" data-anchor-id="effect-size-threshold"><span class="header-section-number">15.7.1</span> Effect Size Threshold</h3>
+<p>The threshold widget is rendered per effect size method, and the two do not share a default:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Effect size method</th>
+<th>Default</th>
+<th>Step</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Glass’s Delta</td>
+<td>0.7</td>
+<td>0.05</td>
+<td>0–3</td>
+</tr>
+<tr class="even">
+<td>Absolute Cohen’s d</td>
+<td>0.5</td>
+<td>0.1</td>
+<td>0–3</td>
+</tr>
+</tbody>
+</table>
+<p>A pair is kept when the <strong>absolute</strong> effect size is greater than or equal to the threshold, so a large negative <a href="#glasss-delta">Glass’s Delta</a> is not dropped for being negative; 0 keeps every selected pair. Each threshold is remembered per numerical feature. Under <a href="#separate-by"><code>Separate by</code></a>, one threshold and one pair selection govern every section.</p>
+</section>
+</section>
+<section id="effect-size" class="level2" data-number="15.8">
+<h2 data-number="15.8" class="anchored" data-anchor-id="effect-size"><span class="header-section-number">15.8</span> Effect Size</h2>
 <p>Complementary to statistical tests, which address “is there a difference?”, effect size metrics answer “how large is the difference?”, enabling cross-study comparison. FLIM Playground offers two effect size calculation methods, Glass’s Delta and Absolute Cohen’s d, each can be in mean or median form.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/effect_size.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-<section id="glasss-delta" class="level3" data-number="14.5.1">
-<h3 data-number="14.5.1" class="anchored" data-anchor-id="glasss-delta"><span class="header-section-number">14.5.1</span> Glass’s Delta</h3>
+<section id="glasss-delta" class="level3" data-number="15.8.1">
+<h3 data-number="15.8.1" class="anchored" data-anchor-id="glasss-delta"><span class="header-section-number">15.8.1</span> Glass’s Delta</h3>
 <p>Mean (<span class="math inline">\(\bar{X}\)</span>) form: <span class="math display">\[
 \Delta_G
   = \frac{\bar{X}_{\text{treatment}} - \bar{X}_{\text{control}}}
@@ -640,30 +779,12 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Which group is treatment and which is control matters! From the formula of <span class="math inline">\(\Delta_G\)</span>, switching the order not only flips the sign of the result, but also changes the denominator, which is <span class="math inline">\({s_{\text{control}}}\)</span>, the standard deviation of the <em>control</em>. Currently, FLIM Playground treats the group on the left as control and the group on the right as treatment (the negative <span class="math inline">\(\Delta_G\)</span> below implies this). FLIM Playground now supports user-customizable x-axis order so that users can arrange the groups to make sure the control group is on the left. Or users can use <a href="#absolute-cohens-d">Absolute Cohen’s d</a> that does not assume the treatment-control structure.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/glass_d.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>To keep the point-based visualization style that supports <a href="./data_analysis.html#unique-id-hover">interactive hover</a> while showing the violin-plot-like distribution, <a href="https://en.wikipedia.org/wiki/Sina_plot">Sina plot</a> is used: it uses <code>gaussian_kde</code> from <code>scipy.stats</code> to make sure the width of the point distribution is proportional to the kernel density.</p>
+<p>Which group is treatment and which is control matters! From the formula of <span class="math inline">\(\Delta_G\)</span>, switching the order not only flips the sign of the result, but also changes the denominator, which is <span class="math inline">\({s_{\text{control}}}\)</span>, the standard deviation of the <em>control</em>. FLIM Playground treats the group on the left as control and the group on the right as treatment. Use the <a href="#reorder-x-axis-groups">custom x-axis order</a> to place the control on the left. <a href="#absolute-cohens-d">Absolute Cohen’s d</a> does not assume a treatment-control structure.</p>
 </div>
 </div>
 </section>
-<section id="absolute-cohens-d" class="level3" data-number="14.5.2">
-<h3 data-number="14.5.2" class="anchored" data-anchor-id="absolute-cohens-d"><span class="header-section-number">14.5.2</span> Absolute Cohen’s d</h3>
+<section id="absolute-cohens-d" class="level3" data-number="15.8.2">
+<h3 data-number="15.8.2" class="anchored" data-anchor-id="absolute-cohens-d"><span class="header-section-number">15.8.2</span> Absolute Cohen’s d</h3>
 <p>Mean (<span class="math inline">\(\bar{X}\)</span>) form:</p>
 <p><span class="math display">\[
 |d|
@@ -685,37 +806,25 @@ s_{\tilde{p}}
 \]</span></p>
 </section>
 </section>
-<section id="statistical-test" class="level2" data-number="14.6">
-<h2 data-number="14.6" class="anchored" data-anchor-id="statistical-test"><span class="header-section-number">14.6</span> Statistical Test</h2>
-<p>Statistical tests are performed on the selected comparison pairs that exceed the effect size threshold (if users choose to calculate effect sizes). The statistical tests supported are:</p>
+<section id="statistical-test" class="level2" data-number="15.9">
+<h2 data-number="15.9" class="anchored" data-anchor-id="statistical-test"><span class="header-section-number">15.9</span> Statistical Test</h2>
+<p>Statistical tests are performed on the selected comparison pairs that meet the effect size threshold (if users choose to calculate effect sizes). The statistical tests supported are:</p>
 <ul>
 <li>Independent t-test (student’s t-test, for equal variances)</li>
 <li>Welch’s t-test (for unequal variances)</li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/stats_test.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
-</figure>
-</div>
 <p>FLIM Playground uses <code>scipy.stats.ttest_ind</code> to perform the independent t-test and <code>scipy.stats.ttest_ind</code> with <code>equal_var=False</code> to perform the Welch’s t-test.</p>
+<p>With <a href="#collapse-by"><code>Collapse by</code></a>, sample sizes count the category means in each comparison group. The app reports when a selected comparison has too few points for a statistic; adding observations to an existing category can change its mean but does not add another point.</p>
 <p>P-values are summarized with significance asterisks: if <span class="math inline">\(p \leq 0.0001\)</span>, four asterisks (<code>****</code>) are shown; otherwise if <span class="math inline">\(p \leq 0.001\)</span>, three (<code>***</code>); otherwise if <span class="math inline">\(p \leq 0.01\)</span>, two (<code>**</code>); otherwise if <span class="math inline">\(p \leq 0.05\)</span>, one (<code>*</code>). Values with <span class="math inline">\(p &gt; 0.05\)</span> are not given a significance asterisk marker in this convention.</p>
 </section>
-<section id="comparison-annotation" class="level2" data-number="14.7">
-<h2 data-number="14.7" class="anchored" data-anchor-id="comparison-annotation"><span class="header-section-number">14.7</span> Comparison Annotation</h2>
-<p>For each selected comparison pair that exceeds the effect size threshold (if any), the statistical significance, effect size, or both are annotated on the plot. It selects the lowest eligible position (over all points in both groups and over existing annotations) to annotate. If both statistical significance and effect size calculation are performed, the annotation is shown in the format of effect size followed by p-value. If only one is performed, then only the performed method’s result is shown.</p>
-<div class="quarto-layout-panel" data-layout-ncol="3" data-layout-align="center">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="analysis_ui_shots/both_annot.png" class="img-fluid"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="analysis_ui_shots/stats_annot.png" class="img-fluid"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="analysis_ui_shots/effect_size_annot.png" class="img-fluid"></p>
-</div>
-</div>
-</div>
+<section id="comparison-annotation" class="level2" data-number="15.10">
+<h2 data-number="15.10" class="anchored" data-anchor-id="comparison-annotation"><span class="header-section-number">15.10</span> Comparison Annotation</h2>
+<p>Eligible comparisons are annotated with brackets above the points and existing annotations. The annotation combines the numeric effect size with significance asterisks when both are available; it does not display a numeric p-value. For example:</p>
+<ul>
+<li><code>1.23**</code> shows an effect size of 1.23 with <span class="math inline">\(p \leq 0.01\)</span>.</li>
+<li><code>**</code> shows significance when only a statistical test is selected.</li>
+<li><code>Δ=1.23</code> shows an effect size without significance asterisks, including when the selected test has <span class="math inline">\(p &gt; 0.05\)</span>.</li>
+</ul>
 
 
 </section>
@@ -1139,18 +1248,50 @@ s_{\tilde{p}}
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./data_analysis_config.html" class="pagination-link" aria-label="Configuration">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Configuration</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Configuration</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./feature_histogram.html" class="pagination-link" aria-label="Feature Histogram">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/feature_comparison.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/feature_comparison.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>

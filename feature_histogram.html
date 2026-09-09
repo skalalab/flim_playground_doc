@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>15&nbsp; Feature Histogram – FLIM Playground</title>
+<title>16&nbsp; Feature Histogram – FLIM Playground</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -56,7 +56,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./fov_comparison.html" rel="next">
+<link href="./feature_distribution.html" rel="next">
 <link href="./feature_comparison.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -72,6 +72,9 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-37a0ccb6f5b9899fcb884e11bb6f7458.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -303,7 +306,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_comparison.html">Univariate Analysis</a></li><li class="breadcrumb-item"><a href="./feature_histogram.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Histogram</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_comparison.html">Univariate Analysis</a></li><li class="breadcrumb-item"><a href="./feature_histogram.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -373,38 +376,44 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./irf_calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IRF Calibration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./lifetime_fit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lifetime_fit_free.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_morphology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_texture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./derived_feature.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./categorical_feature_extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
   </div>
 </li>
       </ul>
@@ -421,13 +430,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
   </div>
 </li>
       </ul>
@@ -444,19 +453,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_histogram.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fov_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Field of View Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
   </div>
 </li>
       </ul>
@@ -473,13 +476,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_distribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feature Distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./phasor_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Plot</span></span></a>
   </div>
 </li>
       </ul>
@@ -523,14 +526,15 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#shared-interface-components" id="toc-shared-interface-components" class="nav-link active" data-scroll-target="#shared-interface-components"><span class="header-section-number">15.1</span> Shared Interface Components</a></li>
-  <li><a href="#histogram-mode" id="toc-histogram-mode" class="nav-link" data-scroll-target="#histogram-mode"><span class="header-section-number">15.2</span> Histogram Mode</a></li>
-  <li><a href="#gaussian-mixture-model-mode" id="toc-gaussian-mixture-model-mode" class="nav-link" data-scroll-target="#gaussian-mixture-model-mode"><span class="header-section-number">15.3</span> Gaussian Mixture Model Mode</a>
+  <li><a href="#shared-interface-components" id="toc-shared-interface-components" class="nav-link active" data-scroll-target="#shared-interface-components"><span class="header-section-number">16.1</span> Shared Interface Components</a></li>
+  <li><a href="#histogram-mode" id="toc-histogram-mode" class="nav-link" data-scroll-target="#histogram-mode"><span class="header-section-number">16.2</span> Histogram Mode</a></li>
+  <li><a href="#separate-by" id="toc-separate-by" class="nav-link" data-scroll-target="#separate-by"><span class="header-section-number">16.3</span> Separate by</a></li>
+  <li><a href="#gaussian-mixture-model-mode" id="toc-gaussian-mixture-model-mode" class="nav-link" data-scroll-target="#gaussian-mixture-model-mode"><span class="header-section-number">16.4</span> Gaussian Mixture Model Mode</a>
   <ul class="collapse">
-  <li><a href="#fit-gaussian-mixture-models" id="toc-fit-gaussian-mixture-models" class="nav-link" data-scroll-target="#fit-gaussian-mixture-models"><span class="header-section-number">15.3.1</span> Fit Gaussian Mixture Models</a></li>
-  <li><a href="#heterogeneity-index" id="toc-heterogeneity-index" class="nav-link" data-scroll-target="#heterogeneity-index"><span class="header-section-number">15.3.2</span> Heterogeneity index</a></li>
-  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification"><span class="header-section-number">15.3.3</span> Classification</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">15.3.4</span> Example</a></li>
+  <li><a href="#fit-gaussian-mixture-models" id="toc-fit-gaussian-mixture-models" class="nav-link" data-scroll-target="#fit-gaussian-mixture-models"><span class="header-section-number">16.4.1</span> Fit Gaussian Mixture Models</a></li>
+  <li><a href="#heterogeneity-index" id="toc-heterogeneity-index" class="nav-link" data-scroll-target="#heterogeneity-index"><span class="header-section-number">16.4.2</span> Heterogeneity index</a></li>
+  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification"><span class="header-section-number">16.4.3</span> Classification</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">16.4.4</span> Example</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/feature_histogram.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -539,9 +543,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_comparison.html">Univariate Analysis</a></li><li class="breadcrumb-item"><a href="./feature_histogram.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Histogram</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_comparison.html">Univariate Analysis</a></li><li class="breadcrumb-item"><a href="./feature_histogram.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-feature-histogram" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></h1>
+<h1 class="title"><span id="sec-feature-histogram" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></h1>
 </div>
 
 
@@ -559,36 +563,33 @@ window.Quarto = {
 
 
 <p>Feature histograms give an instant readout of each group’s center, spread, skew and any multi-peaked shape that raw tables hide. FLIM Playground plots a histogram for each group based on the selected numerical feature. Additionally, the <a href="#gaussian-mixture-model-mode">Gaussian Mixture Model</a> mode can help find subcomponents of each histogram in an unsupervised way. To quantify the distribution heterogeneity, normalized <a href="#heterogeneity-index">H-index</a> is calculated for each group.</p>
+<div id="feature-histogram-img">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/feature_histogram.png" id="feature-histogram-img" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" data-fig-cap="Histogram Mode"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/feature_histogram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Histogram mode shows group counts and skewness alongside shared bin-width and GMM controls."><img src="analysis_ui_shots/feature_histogram.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Feature Histogram page with a selected numerical feature, treatment groups, histogram count curves, legend counts and skewness, and controls for Log X, Gaussian mixture modeling, and Bin Width."></a></p>
 </figure>
 </div>
-<section id="shared-interface-components" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">15.1</span> Shared Interface Components</h2>
+<figcaption>Histogram mode shows group counts and skewness alongside shared bin-width and GMM controls.</figcaption>
+</figure>
+</div>
+</div>
+<section id="shared-interface-components" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">16.1</span> Shared Interface Components</h2>
 <ul>
 <li>On the left, users can use the <a href="./data_analysis.html#univariate-analysis">selection widgets</a> to select the numerical feature to see the histogram/GMM distribution. Exactly one feature can be selected from all feature groups.</li>
 <li>On the top right, users can use the <a href="./data_analysis.html#filter-widgets">filters</a> to subset the data to find the groups of interest.</li>
-<li>Below the filters, users can apply the <a href="./data_analysis.html#visual-channels-widgets">visual channels widgets</a> that allow users to <code>Color by</code> categorical features. <code>Opacity by</code> and <code>Shape by</code> are <em>not</em> supported because there are no points in the histogram/GMM plot.</li>
+<li>Below the filters, use <code>Color by</code> to define groups and <a href="#separate-by"><code>Separate by</code></a> to place categories in separate panels. Both histogram and GMM modes analyze individual observations within each category and color group.</li>
 <li>On the bottom right, users can change the plot style using the <a href="./data_analysis.html#plotting-configuration-widgets">plot styling widgets</a>.</li>
 </ul>
 </section>
-<section id="histogram-mode" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="histogram-mode"><span class="header-section-number">15.2</span> Histogram Mode</h2>
-<p>With a single click, users can switch between the <a href="#histogram-mode">histogram mode</a> and the <a href="#gaussian-mixture-model-mode">Gaussian Mixture Model mode</a>. When the checkbox is unchecked, the histogram mode is selected.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/gmm_switch.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-<p>A <strong>Log X</strong> toggle (next to the mode switch) replaces the selected feature with its base-10 logarithm <em>before anything else is computed</em>, so the transform propagates into both modes: in histogram mode the bins are placed on the log-transformed values, and in GMM mode the model is <strong>fit on the log-transformed feature</strong> — its components, BIC-based model selection, <a href="#classification">classification</a> thresholds, and <a href="#heterogeneity-index">H-index</a> are therefore all computed in log space. Negative values cannot be log-transformed, so a warning is shown if the selected feature contains any.</p>
-<p>Histogram mode plots a histogram of the selected numerical feature for each group. The histogram bin width is user-controllable, with the default bin width determined automatically as the minimum bin width between the ‘sturges’ and ‘fd’ estimators (see <a href="https://numpy.org/devdocs/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges">here</a> for more details). The maximum bin width is set to one-third of the range of the data. The step size is set to <span class="math inline">\(1/50\)</span> of the range.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/feature_histogram_mode.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%"></p>
-</figure>
-</div>
-<p>Additionally, the skewness of the distribution is computed and displayed<span class="citation" data-cites="scipy2020"><sup><a href="#ref-scipy2020" role="doc-biblioref">1</a></sup></span>.</p>
+<section id="histogram-mode" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="histogram-mode"><span class="header-section-number">16.2</span> Histogram Mode</h2>
+<p>Select <strong>Apply Gaussian Mixture Model</strong> to switch from histogram mode to <a href="#gaussian-mixture-model-mode">GMM mode</a>. Clear it to return to the histogram.</p>
+<p>A <strong>Log X</strong> checkbox next to the mode switch transforms the selected feature with <span class="math inline">\(\log_{10}(x + 10^{-6})\)</span> before computing either analysis. Histogram bins and skewness then describe transformed values; the GMM components, model selection, <a href="#classification">classification</a> thresholds, and <a href="#heterogeneity-index">H-index</a> are also computed in log space. The small offset allows zero values. If negative values are present, the app reports an error and keeps the original scale.</p>
+<p>Histogram mode plots observation counts for each group. Use <strong>Bin Width</strong> to adjust the shared bins. The default uses NumPy’s automatic choice between the Sturges and Freedman–Diaconis estimators, capped at one-third of the data range (see <a href="https://numpy.org/devdocs/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges">NumPy’s bin estimators</a>). The maximum width is one-third of the range and the step is <span class="math inline">\(1/50\)</span> of the range. The app keeps separate width choices for each feature’s raw and logarithmic scales. A constant or very small dataset may have a single bin and no width control.</p>
+<p>The legend reports each group’s bias-corrected skewness. It displays <code>undefined</code> for fewer than three observations or a constant group. Enable <strong>Show group counts (n) in legend</strong> under <strong>Plot Styling</strong> to include the number of observations in each group.</p>
 <p>A rule of thumb categorization of skewness is as follows:</p>
 <ul>
 <li>Strongly left-skewed: &lt; -1</li>
@@ -598,48 +599,84 @@ window.Quarto = {
 <li>Moderately right-skewed: 0.5 to 1</li>
 <li>Strongly right-skewed: &gt; 1</li>
 </ul>
-<p>However, the skewness is just one way to quantify the distribution shape. In the example above, the <span style="color: orange;">orange</span> distribution was clearly bimodal, but the skewness alone could not capture this. In applications where the distribution is multi-modal, and each mode can represent certain subpopulations (e.g.&nbsp;a cell type, a cell state, a cell cycle phase, etc.), users can use the <a href="#gaussian-mixture-model-mode">Gaussian Mixture Model mode</a> to find subcomponents of each distribution in an unsupervised way.</p>
+<p>Skewness alone cannot describe every distribution shape: a symmetric distribution can still have several peaks. When these peaks might represent subpopulations, such as cell types, states, or cell-cycle phases, use <a href="#gaussian-mixture-model-mode">Gaussian Mixture Model mode</a> to explore possible components.</p>
 </section>
-<section id="gaussian-mixture-model-mode" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="gaussian-mixture-model-mode"><span class="header-section-number">15.3</span> Gaussian Mixture Model Mode</h2>
+<section id="separate-by" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="separate-by"><span class="header-section-number">16.3</span> Separate by</h2>
+<p>Choose one categorical column in <strong>Separate by</strong> to stack one full-width histogram or GMM panel per category. The same color represents the same <code>Color by</code> group in every panel. The separation column is removed from the available <code>Color by</code> choices.</p>
+<p>For the <a href="https://github.com/skalalab/flim_playground/blob/main/example_data/Data_Analysis/inhibitors.csv">inhibitor dataset</a>, select <strong>a1</strong> under <strong>Lifetime fit_nadh</strong>, set <strong>Separate by → cell_line</strong>, and set <strong>Color by → treatment</strong>. Keep the categorical filters at <strong>All</strong> and <strong>Apply Gaussian Mixture Model</strong> cleared. The result is exactly two stacked histograms: <strong>Panc1</strong> above <strong>MCF7</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/gmm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/histogram_separate_cell_line.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Separate by cell_line produces two stacked histograms for the inhibitor dataset, with the same treatment colors in both panels."><img src="analysis_ui_shots/histogram_separate_cell_line.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Separate by is cell_line and Color by is treatment. NADH a1 percentage histograms are stacked in two panels, Panc1 above MCF7, with shared axes and bin edges and a separate treatment and skewness legend in each panel."></a></p>
+</figure>
+</div>
+<figcaption>Separate by cell_line produces two stacked histograms for the inhibitor dataset, with the same treatment colors in both panels.</figcaption>
+</figure>
+</div>
+<p>All panels share axis ranges and, in histogram mode, the same bin edges. Histogram legends report local skewness; both modes can display local counts. GMM fits are calculated separately within each category and color group; their component tables and any fitting notices appear below the plots. Changing <code>Separate by</code> therefore changes the populations being modeled. This method always uses individual observations; averaging by category is available in <a href="./feature_comparison.html#collapse-by">Feature Comparison</a> and <a href="./feature_distribution.html#collapse-by">2D Feature Distribution</a>.</p>
+</section>
+<section id="gaussian-mixture-model-mode" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="gaussian-mixture-model-mode"><span class="header-section-number">16.4</span> Gaussian Mixture Model Mode</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/gmm.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="A fitted mixture density is shown with its individual Gaussian components."><img src="analysis_ui_shots/gmm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="One-dimensional GMM density plot for the control treatment, showing the combined mixture curve and two component curves."></a></p>
+</figure>
+</div>
+<figcaption>A fitted mixture density is shown with its individual Gaussian components.</figcaption>
 </figure>
 </div>
 <p>A Gaussian Mixture Model (GMM) represents a dataset as a weighted sum of multiple Gaussian (normal) distributions, each defined by its own mean (<span class="math inline">\(\mu\)</span>) and (co)variance (<span class="math inline">\(\sigma^2\)</span>). By estimating the component parameters and their weights (mixing coefficients) from the data—commonly using the Expectation-Maximization (EM) algorithm—GMMs can capture complex, multimodal distributions that a single Gaussian cannot.</p>
-<section id="fit-gaussian-mixture-models" class="level3" data-number="15.3.1">
-<h3 data-number="15.3.1" class="anchored" data-anchor-id="fit-gaussian-mixture-models"><span class="header-section-number">15.3.1</span> Fit Gaussian Mixture Models</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/gmm_config.png" class="img-fluid figure-img" style="width:95.0%"></p>
-<figcaption>Gaussian Mixture Model Configuration</figcaption>
-</figure>
-</div>
+<section id="fit-gaussian-mixture-models" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="fit-gaussian-mixture-models"><span class="header-section-number">16.4.1</span> Fit Gaussian Mixture Models</h3>
 <ul>
-<li>Fits GMMs on the selected numerical feature up to <code>Max Components</code> components, each of which has its component weights (<span class="math inline">\(w_i\)</span>), means (<span class="math inline">\(\mu_i\)</span>) and variances (<span class="math inline">\(\sigma_i^2\)</span>).</li>
-<li>Retains only <em>valid</em> models in which every component has weight at least <code>Min Weight Threshold</code> (the weights of all components add to 1).</li>
+<li>Fits candidate GMMs directly to the selected numerical values, starting with one component and continuing up to <code>Max Components</code>. The maximum can be set from 2 to 5; its default is 3. Each component has a weight (<span class="math inline">\(w_i\)</span>), mean (<span class="math inline">\(\mu_i\)</span>), and variance (<span class="math inline">\(\sigma_i^2\)</span>).</li>
+<li>Retains only <em>valid</em> models in which every component has weight at least <code>Min Weight Threshold</code> (default 0.1, or 10%; the weights of all components add to 1).</li>
 <li>FLIM Playground will choose the valid model with the lowest BIC score that penalizes the model complexity to avoid overfitting.</li>
 </ul>
+<p>The plot shows the fitted mixture density and, for a model with multiple components, its component curves. Tables below the plot report <strong>Mean ± SD</strong>, <strong>Weight</strong>, and the group’s H-index. These are fitted component parameters based on soft membership probabilities; the mean, SD, and fraction of rows assigned to a component by a hard rule can differ. A group needs at least two distinct observations for fitting. Groups with insufficient data or no valid model receive a notice without preventing the other groups from being analyzed.</p>
 </section>
-<section id="heterogeneity-index" class="level3" data-number="15.3.2">
-<h3 data-number="15.3.2" class="anchored" data-anchor-id="heterogeneity-index"><span class="header-section-number">15.3.2</span> Heterogeneity index</h3>
-<p>To quantify the subpopulation structure, based on the GMM fit, FLIM Playground computes an “H‑index” for each group as a weighted entropy‑distance: each component contributes according to its weight’s uncertainty (<span class="math inline">\(-w_i \log w_i\)</span>)<span class="citation" data-cites="shannon1948"><sup><a href="#ref-shannon1948" role="doc-biblioref">2</a></sup></span> scaled by how far its mean <span class="math inline">\(\mu_i\)</span> sits from the overall mixture mean <span class="math inline">\(\bar\mu = \sum_{i=1}^k w_i\,\mu_i\)</span>, normalized by the standard deviation of <span class="math inline">\(\mu_i\)</span>s.<br>
+<section id="heterogeneity-index" class="level3" data-number="16.4.2">
+<h3 data-number="16.4.2" class="anchored" data-anchor-id="heterogeneity-index"><span class="header-section-number">16.4.2</span> Heterogeneity index</h3>
+<p>To quantify the subpopulation structure, based on the GMM fit, FLIM Playground computes an “H‑index” for each group as a weighted entropy‑distance: each component contributes according to its weight’s uncertainty (<span class="math inline">\(-w_i \log w_i\)</span>)<span class="citation" data-cites="shannon1948"><sup><a href="#ref-shannon1948" role="doc-biblioref">1</a></sup></span> scaled by how far its mean <span class="math inline">\(\mu_i\)</span> sits from the overall mixture mean <span class="math inline">\(\bar\mu = \sum_{i=1}^k w_i\,\mu_i\)</span>, normalized by the standard deviation of <span class="math inline">\(\mu_i\)</span>s.<br>
 <span class="math display">\[
 H =\sum_{i=1}^{k}\bigl(-w_i \log w_i\bigr)\,d_i, \qquad d_i \;=\;
 \frac{\lvert\mu_i - \bar{\mu}\rvert}{\sigma}
 \]</span></p>
 </section>
-<section id="classification" class="level3" data-number="15.3.3">
-<h3 data-number="15.3.3" class="anchored" data-anchor-id="classification"><span class="header-section-number">15.3.3</span> Classification</h3>
-<ul>
-<li>Users can choose to perform <a href="#intersection-thresholding">intersection thresholding</a> or <a href="#hard-assignment">hard assignment</a> to determine which GMM component each data point belongs to. It appends a new categorical feature column called <code>GMM_group</code> (recognizable by methods in Data Analysis as a categorical feature) to the filtered dataset, the values of which are <code>{color_group}_group1</code>, <code>{color_group}_group2</code>, etc., numbered in ascending order of the component means. In the example above, the color groups were created by <span style="color: blue;">0.5hr</span> and <span style="color: orange;">4.5hr</span> because the user colored the data by <code>hour</code>, so the resulting values are <code>0.5hr_group1</code>, <code>0.5hr_group2</code>, <code>4.5hr_group1</code>, and <code>4.5hr_group2</code>. The classification result can be saved by clicking:</li>
-</ul>
+<section id="classification" class="level3" data-number="16.4.3">
+<h3 data-number="16.4.3" class="anchored" data-anchor-id="classification"><span class="header-section-number">16.4.3</span> Classification</h3>
+<p>For fits with more than one component, the app assigns each observation to one subpopulation using <a href="#hard-assignment">hard assignment</a> by default. Select <strong>Use intersection as threshold</strong> to use <a href="#intersection-thresholding">intersection thresholding</a> instead. Components are numbered in ascending order of their fitted means under either rule. A one-component fit has H-index 0 and leaves its rows unassigned, as do groups with insufficient data or no valid fit.</p>
+<section id="export-labeled-data" class="level4">
+<h4 class="anchored" data-anchor-id="export-labeled-data">Export labeled data</h4>
+<p>Double-click a subpopulation’s <strong>Name</strong> in its component table to set the label used in the download. <strong>Exported column name</strong> defaults to <code>GMM_group</code>; if that column already exists, the app uses an available name such as <code>GMM_group_2</code>. Click <strong>Download GMM Grouped Data</strong> to save <code>gmm_grouped_data.csv</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/gmm_download.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/gmm_table.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Edit subpopulation names beside the fitted means, standard deviations, and weights."><img src="analysis_ui_shots/gmm_table.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Editable two-component GMM table with Name, Mean plus or minus SD, and Weight columns, and the group's H-index above it."></a></p>
 </figure>
 </div>
+<figcaption>Edit subpopulation names beside the fitted means, standard deviations, and weights.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/gmm_download.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Choose the exported label-column name before downloading the grouped data."><img src="analysis_ui_shots/gmm_download.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Exported column name field set to Control lifetime population beside the Download GMM Grouped Data button."></a></p>
+</figure>
+</div>
+<figcaption>Choose the exported label-column name before downloading the grouped data.</figcaption>
+</figure>
+</div>
+<p>Default values look like <code>0.5hr_group1</code> and <code>0.5hr_group2</code>. With <code>Separate by</code>, labels include the category, for example <code>{category}::{color_group}_group1</code>; without a color group they use <code>{category}_group1</code>. You can give multiple components the same exported name to combine their labels. Names must be nonempty, and the exported column name cannot overwrite another column. Naming changes affect the exported copy and script, while the fitted curves and parameters stay the same.</p>
+<p>The CSV contains the analyzed observations after filtering and removal of missing values in the selected feature. It retains their available columns, including the analyzed values when <strong>Log X</strong> is enabled, plus the new label column. Unassigned rows have an empty label. The download is available when at least one group has generated labels.</p>
+<p>On reupload, the label column follows the normal <a href="./data_analysis_config.html#id-config">column-role review</a>; its name has no special reserved role. Assign it <strong>Categorical</strong> to use its labels in filters and grouping. The <a href="./data_analysis.html#export-workflow-as-python-script">exported Python script</a> retains the naming choices; set <code>SAVE_DERIVED_DATA = True</code> in the script to also save the labeled CSV.</p>
+</section>
 <section id="intersection-thresholding" class="level4">
 <h4 class="anchored" data-anchor-id="intersection-thresholding">Intersection thresholding</h4>
 <ul>
@@ -648,7 +685,7 @@ H =\sum_{i=1}^{k}\bigl(-w_i \log w_i\bigr)\,d_i, \qquad d_i \;=\;
                       \;=\;
                       w_2\,\mathcal{N}(x;\mu_2,\sigma_2^2)
                       \]</span> where <span class="math inline">\(w_1, \mu_1, \sigma_1\)</span> are the mixture weight, mean, and standard deviation of the first Gaussian component, respectively, and <span class="math inline">\(w_2, \mu_2, \sigma_2\)</span> those of the second component.</li>
-<li>The above equation can be formed as a quadratic equation and solved for the unique root lying between <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>. In practice, we bracket this interval and apply a robust one‐dimensional root-finding routine (e.g.&nbsp;Brent’s method) to compute intersection points. Data points are then assigned to the class corresponding to the interval in which they fall.</li>
+<li>The app searches between adjacent component means with Brent’s root-finding method. When valid, increasing intersection thresholds are found, data points are assigned to the intervals they define. Weighted Gaussian components need not intersect between their means, so this rule is not always available.</li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -660,7 +697,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In rare cases when there is more than one intersection point, the data point is assigned using hard assignment rather than intersection thresholding.</p>
+<p>If valid, increasing intersection thresholds cannot be found for a group, the app reports this and uses hard assignment for that group.</p>
 </div>
 </div>
 </section>
@@ -673,34 +710,31 @@ Important
 <p><span class="math display">\[\text{where} \quad \gamma_i(x) = \frac{w_i \; \mathcal{N}\bigl(x \mid \mu_i, \sigma_i^2\bigr)}{\sum_{j=1}^K w_j \; \mathcal{N}\bigl(x \mid \mu_j, \sigma_j^2\bigr)}\]</span></p>
 </section>
 </section>
-<section id="example" class="level3" data-number="15.3.4">
-<h3 data-number="15.3.4" class="anchored" data-anchor-id="example"><span class="header-section-number">15.3.4</span> Example</h3>
-<p>Pham et al.<span class="citation" data-cites="Pham2026"><sup><a href="#ref-Pham2026" role="doc-biblioref">3</a></sup></span> used GMM with intersection thresholding to create gates using NAD(P)H <span class="math inline">\(a_1\)</span> and optical redox ratio. These gates were used to define metabolically stressed and fit cells in their study of the impact of cryopreservation on T cell metabolism.</p>
+<section id="example" class="level3" data-number="16.4.4">
+<h3 data-number="16.4.4" class="anchored" data-anchor-id="example"><span class="header-section-number">16.4.4</span> Example</h3>
+<p>Pham et al.<span class="citation" data-cites="Pham2026"><sup><a href="#ref-Pham2026" role="doc-biblioref">2</a></sup></span> used GMM with intersection thresholding to create gates using NAD(P)H <span class="math inline">\(a_1\)</span> and optical redox ratio. These gates were used to define metabolically stressed and fit cells in their study of the impact of cryopreservation on T cell metabolism.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><img src="analysis_ui_shots/gmm_hard1.svg" class="img-fluid" style="width:100.0%"></p>
+<p><a href="analysis_ui_shots/gmm_hard1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="analysis_ui_shots/gmm_hard1.svg" class="img-fluid" style="width:100.0%"></a></p>
 </div><div class="column" style="width:50%;">
-<p><img src="analysis_ui_shots/gmm_hard2.svg" class="img-fluid" style="width:100.0%"></p>
+<p><a href="analysis_ui_shots/gmm_hard2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="analysis_ui_shots/gmm_hard2.svg" class="img-fluid" style="width:100.0%"></a></p>
 </div>
 </div>
 <p>They compared the GMM-derived gate with cell viability by Trypan blue staining:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/gmm_example.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<p><a href="analysis_ui_shots/gmm_example.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="analysis_ui_shots/gmm_example.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 <p>It suggests that optical metabolic imaging (OMI) could serve as an early, non-destructive indicator of T cell viability post-thaw.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
-<div id="ref-scipy2020" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline"><span class="nocase">Virtanen, P. <em>et al.</em></span> <a href="https://doi.org/10.1038/s41592-019-0686-2"><span class="nocase"><span>SciPy</span> 1.0: Fundamental Algorithms for Scientific Computing in Python</span></a>. <em>Nature Methods</em> <strong>17</strong>, 261–272 (2020).</div>
-</div>
 <div id="ref-shannon1948" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Shannon, C. E. <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x">A mathematical theory of communication</a>. <em>The Bell System Technical Journal</em> <strong>27</strong>, 379–423 (1948).</div>
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Shannon, C. E. <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x">A mathematical theory of communication</a>. <em>The Bell System Technical Journal</em> <strong>27</strong>, 379–423 (1948).</div>
 </div>
 <div id="ref-Pham2026" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Pham, D. L. <em>et al.</em> <a href="https://doi.org/10.1016/j.omta.2026.201704">Autofluorescence imaging reveals the impact of cryopreservation on t cell metabolism and activation response</a>. <em>Molecular Therapy Advances</em> <strong>34</strong>, 201704 (2026).</div>
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Pham, D. L. <em>et al.</em> <a href="https://doi.org/10.1016/j.omta.2026.201704">Autofluorescence imaging reveals the impact of cryopreservation on t cell metabolism and activation response</a>. <em>Molecular Therapy Advances</em> <strong>34</strong>, 201704 (2026).</div>
 </div>
 </div>
 </section>
@@ -1125,18 +1159,50 @@ Important
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./feature_comparison.html" class="pagination-link" aria-label="Feature Comparison">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./fov_comparison.html" class="pagination-link" aria-label="Field of View Comparison">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Field of View Comparison</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./feature_distribution.html" class="pagination-link" aria-label="2D Feature Distribution">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/feature_histogram.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/feature_histogram.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>

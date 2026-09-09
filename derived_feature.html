@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Derived Features – FLIM Playground</title>
+<title>11&nbsp; Derived Features – FLIM Playground</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -52,6 +52,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-37a0ccb6f5b9899fcb884e11bb6f7458.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -254,7 +257,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./derived_feature.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./derived_feature.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -324,38 +327,44 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./irf_calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IRF Calibration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./lifetime_fit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lifetime_fit_free.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_morphology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_texture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./derived_feature.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./categorical_feature_extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
   </div>
 </li>
       </ul>
@@ -372,13 +381,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
   </div>
 </li>
       </ul>
@@ -395,19 +404,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_histogram.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fov_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Field of View Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
   </div>
 </li>
       </ul>
@@ -424,13 +427,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_distribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feature Distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./phasor_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Plot</span></span></a>
   </div>
 </li>
       </ul>
@@ -474,13 +477,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#build-derived-features" id="toc-build-derived-features" class="nav-link active" data-scroll-target="#build-derived-features"><span class="header-section-number">10.1</span> Build Derived Features</a>
+  <li><a href="#build-derived-features" id="toc-build-derived-features" class="nav-link active" data-scroll-target="#build-derived-features"><span class="header-section-number">11.1</span> Build Derived Features</a>
   <ul class="collapse">
-  <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates"><span class="header-section-number">10.1.1</span> Templates</a></li>
-  <li><a href="#custom-formulas" id="toc-custom-formulas" class="nav-link" data-scroll-target="#custom-formulas"><span class="header-section-number">10.1.2</span> Custom Formulas</a></li>
+  <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates"><span class="header-section-number">11.1.1</span> Templates</a></li>
+  <li><a href="#custom-formulas" id="toc-custom-formulas" class="nav-link" data-scroll-target="#custom-formulas"><span class="header-section-number">11.1.2</span> Custom Formulas</a></li>
   </ul></li>
-  <li><a href="#compute-derived-features" id="toc-compute-derived-features" class="nav-link" data-scroll-target="#compute-derived-features"><span class="header-section-number">10.2</span> Compute Derived Features</a></li>
-  <li><a href="#derived-feature-in-data-analysis" id="toc-derived-feature-in-data-analysis" class="nav-link" data-scroll-target="#derived-feature-in-data-analysis"><span class="header-section-number">10.3</span> Derived Feature In Data Analysis</a></li>
+  <li><a href="#compute-derived-features" id="toc-compute-derived-features" class="nav-link" data-scroll-target="#compute-derived-features"><span class="header-section-number">11.2</span> Compute Derived Features</a></li>
+  <li><a href="#derived-feature-in-data-analysis" id="toc-derived-feature-in-data-analysis" class="nav-link" data-scroll-target="#derived-feature-in-data-analysis"><span class="header-section-number">11.3</span> Derived Feature In Data Analysis</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/derived_feature.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -488,9 +491,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./derived_feature.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./derived_feature.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-derived-feature" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></span></h1>
+<h1 class="title"><span id="sec-derived-feature" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></span></h1>
 </div>
 
 
@@ -508,12 +511,17 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>FLIM Playground lets users compose new <strong>derived features</strong> by combining existing features, potentially from <em>different channels</em>. An example would be the normalized optical redox ratio, composed from the <code>intensity_sum</code> feature from each of the two channels: NAD(P)H / (NAD(P)H + FAD).</p>
-<section id="build-derived-features" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="build-derived-features"><span class="header-section-number">10.1</span> Build Derived Features</h2>
+<section id="build-derived-features" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="build-derived-features"><span class="header-section-number">11.1</span> Build Derived Features</h2>
 <p>The builder is revealed when the <code>Derived features</code> checkbox near the bottom of the <a href="data_extraction_config.html">Configuration</a> page is ticked.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="extraction_ui_shots/derived_features.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="extraction_ui_shots/derived_features.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="The builder previews a custom formula using the selected operands before adding it."><img src="extraction_ui_shots/derived_features.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="A saved redox_ratio definition above a custom background_corrected_nadh formula, A minus B times 256, using NADH intensity_sum and nadh_offset as operands."></a></p>
+</figure>
+</div>
+<figcaption>The builder previews a custom formula using the selected operands before adding it.</figcaption>
 </figure>
 </div>
 <p>Any derived features already defined for the current profile are listed at the top, each showing its name, its expanded formula, and a <code>🗑️</code> button to delete it. Below the list, a new feature is composed from:</p>
@@ -535,23 +543,20 @@ ul.task-list li input[type="checkbox"] {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The operands/features available for selection should span all channels. If no channel has a <a href="./data_extraction_config.html#feature-extractor">feature extractor</a> selected yet, the builder shows “Select feature extractors for your channels first — there are no features to derive from yet.” — configure the extractors first, then come back.</p>
-<p>Operands come only from the categorized numerical features. Raw bookkeeping columns — such as <code>amp1</code>, <code>offset</code>, <code>reduced_chi_square</code>, the centroid coordinates, and the <code>a2</code> / <code>a3</code> fit remainders — are intentionally excluded from the operand list and cannot be used as derived-feature inputs.</p>
+<p>The categorized numerical features come first. The raw bookkeeping columns — <code>amp1</code>, <code>offset</code>, <code>reduced_chi_square</code>, the centroid coordinates, and the <code>a2</code> / <code>a3</code> fit remainders — carry no extractor prefix, so they are listed <strong>after</strong> them, at the bottom of each operand dropdown. They are ordinary per-cell numbers and can be used like any other operand: a background-corrected intensity, for instance, is <code>Intensity texture_&lt;channel&gt;: intensity_sum</code> minus <code>&lt;channel&gt;_offset</code> times the number of time bins (typed as a plain number in <code>Custom…</code> mode, e.g.&nbsp;<code>A - B*256</code>).</p>
+<p>A pixel-prefitted (SPCImage) channel does no fit of its own, so it contributes only its <code>a2</code> / <code>a3</code> remainder — no <code>amp</code>, <code>offset</code> or <code>reduced_chi_square</code>.</p>
 </div>
 </div>
 </div>
 <p>Derived features are stored <strong>per profile</strong>, so each <a href="./data_extraction_config.html#extraction-profiles">extraction profile</a> keeps its own set.</p>
-<section id="templates" class="level3" data-number="10.1.1">
-<h3 data-number="10.1.1" class="anchored" data-anchor-id="templates"><span class="header-section-number">10.1.1</span> Templates</h3>
-<p>Choosing a <code>Template</code> other than <code>Custom…</code> fills in the formula for you and renders one searchable dropdown per operand slot (<code>A</code>, <code>B</code>, …). Four ready-made templates are provided:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="extraction_ui_shots/derived_feature_template.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
-</figure>
-</div>
+<p>When the preview is valid, click <code>➕ Add derived feature</code>. Adding and deleting definitions saves them immediately to the active profile.</p>
+<section id="templates" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="templates"><span class="header-section-number">11.1.1</span> Templates</h3>
+<p>Choosing a <code>Template</code> other than <code>Custom…</code> fills in the formula for you and renders one searchable dropdown per operand slot (<code>A</code>, <code>B</code>, …). Four ready-made templates are provided: normalized <code>A / (A + B)</code>, ratio <code>A / B</code>, difference <code>A - B</code>, and sum <code>A + B</code>.</p>
 <p>Each takes two operands: pick a feature for <code>A</code> and a feature for <code>B</code>, give the result a <code>Name</code>, and the live preview confirms it. The fifth option, <code>Custom…</code>, unlocks the free formula editor described next.</p>
 </section>
-<section id="custom-formulas" class="level3" data-number="10.1.2">
-<h3 data-number="10.1.2" class="anchored" data-anchor-id="custom-formulas"><span class="header-section-number">10.1.2</span> Custom Formulas</h3>
+<section id="custom-formulas" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="custom-formulas"><span class="header-section-number">11.1.2</span> Custom Formulas</h3>
 <p><code>Custom…</code> mode lets you compose an arbitrary formula. First pick the operands from the <code>Operands (each becomes A, B, C… in the order picked)</code> multiselect — the features you choose are aliased <code>A</code>, <code>B</code>, <code>C</code>, … in pick order, and a caption echoes the mapping (e.g.&nbsp;<code>A = Intensity texture_fad: intensity_sum,  B = …</code>). Then build the formula in the <code>Formula</code> box, typing directly or using the append buttons for the operators (<code>+ - * / ( )</code>) and for each alias.</p>
 <p>The formula language supports:</p>
 <ul>
@@ -563,19 +568,14 @@ ul.task-list li input[type="checkbox"] {
 <p>Division by zero yields <code>NaN</code> rather than raising an error or producing infinity. Anything outside this language — function calls, exponentiation (<code>**</code>), modulo (<code>%</code>), comparisons, or a bare operand with no operator — is rejected.</p>
 </section>
 </section>
-<section id="compute-derived-features" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="compute-derived-features"><span class="header-section-number">10.2</span> Compute Derived Features</h2>
-<p>Derived features are computed during <a href="numerical_feature_extraction.html">Numerical Feature Extraction</a>, right after each field of view’s base features are extracted and concatenated. The definitions are baked into the FOV metadata, so re-running extraction from a saved metadata file reproduces the same derived columns. Each definition adds one <code>Derived: &lt;name&gt;</code> column to the output dataset.</p>
+<section id="compute-derived-features" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="compute-derived-features"><span class="header-section-number">11.2</span> Compute Derived Features</h2>
+<p>Derived features are computed during <a href="numerical_feature_extraction.html">Numerical Feature Extraction</a>, after the successful FOV results have been concatenated. The definitions are baked into the FOV metadata, so re-running extraction from a saved metadata file reproduces the same derived columns. Each definition adds one <code>Derived: &lt;name&gt;</code> column to the output dataset.</p>
 <p>If any cell ends up with a <code>NaN</code> in a derived column (for instance from a divide-by-zero or a <code>NaN</code> operand), a single dataset-wide warning is shown for that feature — “Derived feature <strong>name</strong> has <strong>N</strong> NaN value(s) out of <em>M</em> cell(s) (e.g.&nbsp;from divide-by-zero or a NaN operand).” As with other features, cells with <code>NaN</code> are <strong>not</strong> dropped from the output.</p>
 </section>
-<section id="derived-feature-in-data-analysis" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="derived-feature-in-data-analysis"><span class="header-section-number">10.3</span> Derived Feature In Data Analysis</h2>
+<section id="derived-feature-in-data-analysis" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="derived-feature-in-data-analysis"><span class="header-section-number">11.3</span> Derived Feature In Data Analysis</h2>
 <p>On the <a href="data_analysis.html">Data Analysis</a> page, all derived features are collected into one <code>Derived Features</code> group in the <a href="./data_analysis.html#numerical-selection-widgets">numerical selection widgets</a>, alongside the per channel-extractor groups. A derived feature is labeled by its plain name (e.g.&nbsp;<code>redox_ratio</code>); unlike extracted lifetime or intensity features, it carries no unit or symbol, since its meaning is entirely user-defined.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/derived_analysis.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
-</figure>
-</div>
 
 
 </section>
@@ -999,18 +999,50 @@ ul.task-list li input[type="checkbox"] {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./intensity_texture.html" class="pagination-link" aria-label="Textural Features">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Textural Features</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Textural Features</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./categorical_feature_extraction.html" class="pagination-link" aria-label="Categorical Feature Extraction">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/derived_feature.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/derived_feature.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>

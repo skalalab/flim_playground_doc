@@ -52,6 +52,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-37a0ccb6f5b9899fcb884e11bb6f7458.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -353,38 +356,44 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./irf_calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IRF Calibration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./lifetime_fit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lifetime_fit_free.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_morphology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_texture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./derived_feature.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./categorical_feature_extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
   </div>
 </li>
       </ul>
@@ -401,13 +410,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
   </div>
 </li>
       </ul>
@@ -424,19 +433,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_histogram.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fov_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Field of View Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
   </div>
 </li>
       </ul>
@@ -453,13 +456,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_distribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feature Distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./phasor_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Plot</span></span></a>
   </div>
 </li>
       </ul>
@@ -513,6 +516,7 @@ window.Quarto = {
   <li><a href="#roc-curve" id="toc-roc-curve" class="nav-link" data-scroll-target="#roc-curve"><span class="header-section-number">20.2.5</span> ROC Curve</a></li>
   <li><a href="#feature-importance" id="toc-feature-importance" class="nav-link" data-scroll-target="#feature-importance"><span class="header-section-number">20.2.6</span> Feature Importance</a></li>
   </ul></li>
+  <li><a href="#export-the-analysis" id="toc-export-the-analysis" class="nav-link" data-scroll-target="#export-the-analysis"><span class="header-section-number">20.3</span> Export the analysis</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/classification.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -540,34 +544,41 @@ window.Quarto = {
 
 
 <p>A machine learning classifier learns patterns from categorized data and then predicts the category of new, unseen data. This module provides a set of machine learning classifiers and interactive widgets to help users perform classification.</p>
-<p>All the classifiers are implemented using <code>scikit-learn</code>. The confusion matrix and the ROC curve come from <code>sklearn.metrics</code>; the remaining <a href="#performance-metrics">performance metrics</a> are computed directly from that confusion matrix using the standard formulas given below, which avoids re-scanning the predictions once per metric and covers quantities such as specificity and Youden’s J that <code>sklearn.metrics</code> does not provide. A fixed random seed (42) is used for all the classifiers to ensure reproducibility.</p>
-<p><img src="analysis_ui_shots/classification.png" class="img-fluid quarto-figure quarto-figure-center" style="width:100.0%"> The performance metric plots are cut off in the screenshot. See the <a href="#performance-metrics">performance metrics section</a> for the complete view.</p>
+<p>All classifiers use <code>scikit-learn</code>, with a fixed random seed of 42 for reproducibility. The app evaluates predictions on a held-out test set and reports <a href="#performance-metrics">performance metrics</a>, a <a href="#confusion-matrix">confusion matrix</a>, and <a href="#roc-curve">ROC curves</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/classification.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Choose features, a classifier, and target classes, then inspect results on the held-out test set."><img src="analysis_ui_shots/classification.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Classification interface with feature pickers and Random Forest settings on the left, and filters, target-class controls, and performance metrics on the right."></a></p>
+</figure>
+</div>
+<figcaption>Choose features, a classifier, and target classes, then inspect results on the held-out test set.</figcaption>
+</figure>
+</div>
 <p>An overview of the pipeline:</p>
 <ul>
-<li>Choose the numerical features on the left.
-<ul>
-<li>The z-score normalization is applied to the features before training if the chosen classifier is <code>SVM</code> or <code>Logistic Regression</code>, because they are sensitive to feature magnitudes, while <code>Random Forest</code> and <code>Gradient Boosting</code> are not.</li>
-</ul></li>
-<li>Choose the classifier and train-test split.</li>
+<li>Choose one or more numerical features on the left.</li>
+<li>Choose the classifier, train-test split, and <a href="#classifier-hyperparameters">hyperparameters</a>.</li>
 <li>Filter the dataset.</li>
 <li>Choose categorical features to form classes.</li>
 <li>Choose any of the methods to handle <a href="#class-imbalance-handling">class imbalance</a>.</li>
 <li>Choose the classes to be classified.</li>
 <li>Look at the <a href="#performance-metrics">performance metrics</a>, <a href="#confusion-matrix">confusion matrix</a>, and <a href="#roc-curve">ROC curve</a>.</li>
-<li>Iterate over the previous options to improve the performance with regard to the metrics you care about.</li>
+<li>Compare the results using the metrics that matter for your classification task, then <a href="#export-the-analysis">export the analysis</a> to reproduce it.</li>
 </ul>
+<p>SVM and Logistic Regression standardize features with a z-score within their training pipeline; test observations use that training-fitted transformation. Random Forest and Gradient Boosting use the original feature scale. Classification does not automatically remove rows with missing selected measurements, so a classifier that cannot accept them reports an error. Clean those measurements or use the <a href="./data_analysis.html#numerical-filters">numerical filters</a> to select complete observations.</p>
 <section id="shared-interface-components" class="level2" data-number="20.1">
 <h2 data-number="20.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">20.1</span> Shared Interface Components</h2>
 <ul>
 <li>On the left, users can use the <a href="./data_analysis.html#multivariate-analysis">selection widgets</a> to select numerical features for the classifier. Multiple features can be selected from each feature group.</li>
 <li>On the top right, users can use the <a href="./data_analysis.html#filter-widgets">filters</a> to subset the data to find the groups of interest.</li>
-<li>Above the performance metrics plots, users can change the plot style using the <a href="./data_analysis.html#plotting-configuration-widgets">plot styling widgets</a>.</li>
+<li>Font-size controls appear between the performance metric tables and the ROC/confusion-matrix plots. They use the shared <a href="./data_analysis.html#plotting-configuration-widgets">plot styling settings</a>.</li>
 </ul>
 </section>
 <section id="method-specific-components" class="level2" data-number="20.2">
 <h2 data-number="20.2" class="anchored" data-anchor-id="method-specific-components"><span class="header-section-number">20.2</span> Method-specific Components</h2>
 <ul>
-<li>Choose the classifier and train-test split: the slider controls the proportion of the data used to train the classifier and the rest is used as unseen data to test its generalizability. The following classifiers are available:
+<li>Choose a <strong>Classifier</strong> and <strong>Train size (proportion of training data)</strong> on the left. The slider ranges from 0.5 to 0.9 in steps of 0.1, with a default of 0.7. The remaining observations form the held-out test set. Available classifiers are:
 <ul>
 <li><a href="https://mlu-explain.github.io/random-forest/"><code>Random Forest</code></a></li>
 <li><code>Gradient Boosting</code></li>
@@ -575,7 +586,7 @@ window.Quarto = {
 <li><a href="https://mlu-explain.github.io/logistic-regression/"><code>Logistic Regression</code></a></li>
 </ul></li>
 </ul>
-<p>The <a href="https://mlu-explain.github.io/train-test-validation/">train-test split</a> is used to evaluate the generalizability of the classifier. The Validation set is used in hyperparameter tuning. Since the classifiers above do not have a lot of hyperparameters to tune, it does not partition a separate validation set. However, k-fold cross-validation is used in <a href="#threshold-tuning">tuning the threshold</a>.</p>
+<p>The <a href="https://mlu-explain.github.io/train-test-validation/">train-test split</a> is stratified to preserve class proportions. The app does not create a separate validation set for choosing model hyperparameters; those are set with the controls below the classifier. Optional <a href="#threshold-tuning">threshold tuning</a> uses cross-validation within the training data.</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="The split is by row, not by field of view">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -590,35 +601,29 @@ window.Quarto = {
 <p>Cells from one image are usually more similar to each other than to cells from a different image, because they share a field of view, an acquisition session, and often a well. When such cells appear on both sides of the split, the reported metrics can look better than the classifier’s true performance on a genuinely new image. Keep this in mind when interpreting the <a href="#performance-metrics">performance metrics</a>, particularly when the dataset contains many cells drawn from relatively few fields of view.</p>
 </div>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/classifier_config.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div>
 <ul>
-<li><code>Classify by</code>: The <code>Color by</code> from the <a href="./data_analysis.html#visual-channels-widgets">visual channels widgets</a> is renamed to <code>Classify by</code> and it is used to form classes based on (a combination of) selected categorical features. Other visual channels are not supported in this method.</li>
+<li><p><strong>Classify by</strong> forms target classes from one or more categorical columns. With multiple columns, each distinct combination becomes a class, with values joined by underscores. Classification requires at least one categorical column with two distinct values after filtering. The designated field-of-view column in extraction data is excluded from this picker; a user-table field-of-view column is an ordinary categorical column.</p></li>
+<li><p><strong>Select a way to classify</strong> chooses the classes included in a run. With two classes, the app offers their binary comparison. With more classes, it offers combinations of two or more classes, including the full multiclass problem, and a <code>class VS the rest</code> option for each class. A one-versus-rest choice combines all other classes into <code>the rest</code>. If the number of combinations is too large, the app asks you to narrow the categories or filters.</p></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/classify_by.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-<ul>
-<li>Choose the classes to be classified: classes are formed based on the combinations of categories of the selected categorical features. In general, it supports binary classification and in general n-way classification where n is the number of classes. If one categorical feature is selected and after filtering has 3 categories, then all possible ways to classify are produced including the three-way classification. Additionally, the <code>class x vs the rest</code> option is provided for each class.</li>
-</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/classifier_options.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
+<p><a href="analysis_ui_shots/classify_by.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Target and class-imbalance controls define the classification task."><img src="analysis_ui_shots/classify_by.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Classify by is treatment, all five treatment classes are selected, and Sampling method, Class weight, and Threshold tuning based on are set to None."></a></p>
+</figure>
+</div>
+<figcaption>Target and class-imbalance controls define the classification task.</figcaption>
 </figure>
 </div>
 <section id="classifier-hyperparameters" class="level3" data-number="20.2.1">
 <h3 data-number="20.2.1" class="anchored" data-anchor-id="classifier-hyperparameters"><span class="header-section-number">20.2.1</span> Classifier Hyperparameters</h3>
-<p>The classifier hyperparameter panel is organized per classifier with three roles:</p>
+<p>The main hyperparameters appear below the classifier; open <strong>Advanced settings</strong> for additional controls. The tables below describe parameters using three roles:</p>
 <ul>
 <li><code>Model-Form/Capacity</code>: defines the hypothesis family or expressive power.</li>
 <li><code>Regularization</code>: constrains model complexity to reduce overfitting.</li>
 <li><code>Optimization</code>: affects training convergence and runtime behavior.</li>
 </ul>
+<p>For Random Forest, <strong>max_depth (0=None)</strong> uses <code>0</code> for an unrestricted depth. SVM shows <strong>degree</strong> only for the polynomial kernel and <strong>coef0</strong> for polynomial or sigmoid kernels. Logistic Regression updates its regularization choices when the solver changes and shows <strong>l1_ratio</strong> for <code>saga</code> with <code>elasticnet</code>.</p>
 <section id="random-forest" class="level4">
 <h4 class="anchored" data-anchor-id="random-forest">Random Forest</h4>
 <div class="callout callout-style-default callout-note callout-titled" title="Parameter table">
@@ -850,7 +855,7 @@ window.Quarto = {
 <tr class="odd">
 <td><code>regularization</code></td>
 <td>Regularization</td>
-<td>Selects regularization type; available options depend on <code>solver</code> (see table below). Maps to <code>l1_ratio</code> internally.</td>
+<td>Selects regularization type; available options depend on <code>solver</code> (see table below).</td>
 <td>High</td>
 </tr>
 <tr class="even">
@@ -941,13 +946,6 @@ window.Quarto = {
 <li><code>Undersampling</code>: All classes are downsampled to the size of the smallest class. It is implemented using <code>RandomUnderSampler</code> from <a href="https://imbalanced-learn.org/stable/"><code>imbalanced-learn</code></a>.</li>
 <li><code>Oversampling</code>: All classes are upsampled to the size of the largest class by randomly duplicating samples from minority classes. It is implemented using <code>RandomOverSampler</code> from <code>imbalanced-learn</code>.</li>
 </ul></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/sampling.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:25.0%"></p>
-</figure>
-</div>
-<ul>
 <li><strong>Class weights</strong>:
 <ul>
 <li><code>None</code>: no class weights.</li>
@@ -955,16 +953,11 @@ window.Quarto = {
 </ul></li>
 <li><strong>Threshold tuning</strong>: Whereas the previous two options influence the probability estimation part of the classifier, this option adjusts only the decision boundary used to convert predicted probabilities into class labels.
 <ul>
-<li><code>None</code>: no threshold tuning. The default decision is always the class that has the highest predicted probability (in binary, anything above 0.5; in multi-class, the class with the highest predicted probability).</li>
+<li><code>None</code>: uses the classifier’s default decision rule without tuning a threshold.</li>
 <li><code>Balanced Accuracy</code>: the threshold is set to maximize the balanced accuracy score, which is the unweighted average of each class’s recall (i.e., the minority class’s recall is as important as the majority class’s recall).</li>
 <li><code>F1 Score</code>: the threshold is set to maximize the unweighted average of each class’s F1 score.</li>
 </ul></li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/threshold_tuning.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
-</figure>
-</div>
 <div id="threshold-tuning" class="callout callout-style-default callout-note callout-titled" title="How does threshold tuning work?">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -978,7 +971,7 @@ window.Quarto = {
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>It treats threshold selection as a separate optimization problem from model training, allowing thresholds to be tuned independently of the underlying classifier’s probability estimates.</p>
-<p><strong>K-fold cross-validation for the probability model</strong>: The procedure begins by establishing a stratified <a href="https://mlu-explain.github.io/cross-validation/">k-fold cross-validation</a> scheme (default k=5): the dataset is divided into k mutually exclusive subsets, and for each fold, one subset serves as the validation set while the remaining k-1 subsets form the training set.</p>
+<p><strong>K-fold cross-validation for the probability model</strong>: The procedure uses a stratified <a href="https://mlu-explain.github.io/cross-validation/">k-fold cross-validation</a> scheme (default k=5) within the training data, after any selected resampling. That training data is divided into k mutually exclusive subsets; for each fold, one subset serves as validation while the other k-1 subsets train the probability model. The held-out test set is not used to choose the thresholds.</p>
 <p>The probability models are trained separately for each cross-validation fold. This process yields k distinct probability models, each trained on a different subset of the data, along with their corresponding validation set probability predictions that collectively cover all samples exactly once.</p>
 <p><strong>Threshold optimization</strong>: A single threshold optimization procedure is performed once using all cross-validation folds. The threshold optimization process differs for binary and multi-class classification problems. For binary classification, a single threshold parameter <span class="math inline">\(\theta \in [0, 1]\)</span> is optimized, where class 1 is predicted when <span class="math inline">\(P(\text{class } 1 \mid x) \geq \theta\)</span>, and class 0 otherwise. For multi-class problems, a threshold vector <span class="math inline">\(\theta = [\theta_1, \theta_2, \ldots, \theta_k]\)</span> is optimized simultaneously for all <span class="math inline">\(k\)</span> classes, where thresholds are applied through a normalized probability scheme: predictions are made by selecting the class with the highest normalized probability <span class="math inline">\(P(\text{class } i \mid x) / (\theta_i + \epsilon)\)</span>, where <span class="math inline">\(\epsilon = 10^{-10}\)</span> prevents division by zero.</p>
 <p>The optimization objective function evaluates candidate thresholds by: (1) applying the same threshold(s) on top of the fold-specific probability models to generate prediction classes for the fold-specific validation set, (2) computing the specified evaluation metric (e.g., balanced accuracy, F1-score) between predicted and true labels for each fold, and (3) returning the negative mean cross-validated score across all folds (for minimization using the Nelder-Mead simplex algorithm).</p>
@@ -986,75 +979,27 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Threshold Tuning Example">
+<div class="callout callout-style-default callout-note callout-titled" title="Interpreting class-imbalance settings">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Threshold Tuning Example
+<span class="screen-reader-only">Note</span>Interpreting class-imbalance settings
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Before threshold tuning:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/threshold_tuning_before.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-<p>After threshold tuning based on the balanced accuracy metric:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/threshold_tuning_after.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-<p>Things to <strong>highlight</strong>:</p>
-<ul>
-<li>The two ROC curves are the same, because the underlying probability models are the same.</li>
-<li>The annotated operating point in <span style="color:red;">red</span> is “better” <em>after</em> the threshold tuning because it achieves higher Recall (TPR) + Specificity (TNR), as can be seen in the metrics table (the optimized metrics are highlighted in <span style="color:red;">red</span>). The threshold before was 0.5, the default value, and after tuning it was optimized to 0.19. The reduction in thresholds means that the classifier is tuned to be more “confident” at predicting the positive class (2DG), which is the minority class. The effect of this threshold optimization is also visible in the confusion matrix.</li>
-<li>However, all of the above come at the cost of other metrics, such as the overall accuracy (0.89 to 0.82) and average precision (0.82 to 0.74). <strong>Select the class imbalance methods/options that maximize the metrics most important to you.</strong></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Sampling Example">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Sampling Example
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Before sampling:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/sampling_before.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-<p>After sampling (undersampling was used in this case):</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="analysis_ui_shots/sampling_after.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-<p>Things to <strong>highlight</strong>:</p>
-<ul>
-<li>The ROC curve is different, because the underlying probability models are different.</li>
-<li>The thresholds before and after are the same (the default value of 0.5), but the operating points are at different locations and their associated confusion matrices are different.</li>
-</ul>
+<p>Keep the features, classifier, hyperparameters, and train size fixed when comparing class-imbalance settings. Sampling and class weights change model training, so they can change the predicted probabilities and ROC curve. Changing only the decision threshold preserves the probabilities and ROC curve, but can move the operating point and change the confusion matrix.</p>
+<p>Lowering a binary class’s probability threshold makes it easier to assign that class. Compare recall, specificity, precision, and accuracy to understand the trade-off. Thresholds are optimized within the training data; improvement on the held-out test set is not guaranteed. Choose the settings according to the metrics most important to the task.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="confusion-matrix" class="level3" data-number="20.2.3">
 <h3 data-number="20.2.3" class="anchored" data-anchor-id="confusion-matrix"><span class="header-section-number">20.2.3</span> Confusion Matrix</h3>
-<p>FLIM Playground evaluates the trained classifier on the held-out test set by converting the predicted probabilities into hard labels using the chosen threshold or by selecting the class with the highest predicted probability. The predictions are then summarized using sklearn.metrics.confusion_matrix. In the binary case, it is represented as:</p>
+<p>FLIM Playground evaluates the trained classifier on the held-out test set using its default decision rule or the tuned probability thresholds. The resulting predicted labels are summarized with <code>sklearn.metrics.confusion_matrix</code>. In the binary case, it is represented as:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 19%">
@@ -1084,7 +1029,8 @@ window.Quarto = {
 </section>
 <section id="performance-metrics" class="level3" data-number="20.2.4">
 <h3 data-number="20.2.4" class="anchored" data-anchor-id="performance-metrics"><span class="header-section-number">20.2.4</span> Performance Metrics</h3>
-<p>The overall accuracy is calculated as the ratio of the sum of the true positives and true negatives to the sum of all the elements in the confusion matrix (the sum of the diagonal over the sum of all the elements).</p>
+<p>The <strong>Overall Metrics</strong> table reports accuracy and <strong>N</strong>, the number of held-out test observations. <strong>Per-Class Metrics</strong> reports each class’s test-set support and the measures below, with an unweighted average across classes. Recall is highlighted when threshold tuning uses Balanced Accuracy, and F1 Score is highlighted when it uses F1 Score.</p>
+<p>Overall accuracy is the number of correct predictions divided by the number of test observations: the sum of the confusion matrix’s diagonal divided by the sum of all its entries. For binary classification, this is:</p>
 <ul>
 <li>Accuracy: <span class="math inline">\(\frac{TP + TN}{TP + FP + TN + FN}\)</span></li>
 </ul>
@@ -1098,7 +1044,12 @@ window.Quarto = {
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/performance_metrics.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/performance_metrics.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Overall and per-class metrics summarize predictions on the held-out observations."><img src="analysis_ui_shots/performance_metrics.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Overall Metrics table with accuracy and N, followed by Per-Class Metrics for the five treatment classes and their average."></a></p>
+</figure>
+</div>
+<figcaption>Overall and per-class metrics summarize predictions on the held-out observations.</figcaption>
 </figure>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Performance Metrics Example">
@@ -1118,17 +1069,33 @@ window.Quarto = {
 <section id="roc-curve" class="level3" data-number="20.2.5">
 <h3 data-number="20.2.5" class="anchored" data-anchor-id="roc-curve"><span class="header-section-number">20.2.5</span> ROC Curve</h3>
 <p>Another way to look at the performance of the classifier is to plot the Receiver Operating Characteristic (ROC) curve and its Area Under the Curve (AUC).</p>
-<p>Confusion matrix looks at the performance of the classifier at a single threshold, while ROC curve looks at the performance of the classifier at all thresholds (i.e., from 0 to 1).</p>
-<p>At the origin (0, 0), the threshold is 1, so the classifier predicts all samples as negative, making the false positive rate <span class="math inline">\(\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}} = 0\)</span> and the true positive rate <span class="math inline">\(\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}} = 0\)</span>, i.e.&nbsp;the origin. At the point (1, 1), the threshold is 0, so the classifier predicts all samples as positive, making the false positive rate 1 and the true positive rate 1, i.e.&nbsp;the point (1, 1).</p>
-<p>AUC summarizes the ROC curve by integrating it from 0 to 1, so it is threshold-free and has a nice interpretation: it is the probability that the classifier assigns a higher score to a randomly chosen positive sample <span class="math inline">\(X^+\)</span> than to a randomly chosen negative sample <span class="math inline">\(X^-\)</span>.</p>
+<p>The confusion matrix summarizes one decision rule, while the ROC curve shows how true-positive and false-positive rates change as the probability threshold varies.</p>
+<p>At a threshold above the highest predicted probability, every observation is classified as negative, so the false-positive rate <span class="math inline">\(\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}}\)</span> and true-positive rate <span class="math inline">\(\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}}\)</span> are both 0. At a threshold of 0, every observation is classified as positive, giving the endpoint (1, 1).</p>
+<p>AUC summarizes the area under the ROC curve. It is the probability that a randomly chosen positive observation receives a higher score than a randomly chosen negative observation, with tied scores contributing one-half.</p>
 <p>The ROC curve displays the operating point (FPR, TPR) associated with the confusion matrix on the right.</p>
+<p>In a binary problem, the curve’s legend names the class treated as positive. Read the displayed threshold in terms of that class’s probability; the app converts it to match the class shown on the curve.</p>
 <p>For a visual explanation, see <a href="https://mlu-explain.github.io/roc-auc/">here</a>.</p>
 <section id="multi-class-roc-curve" class="level4">
 <h4 class="anchored" data-anchor-id="multi-class-roc-curve">Multi-class ROC Curve</h4>
 <p>In multi-class classification, each class’s ROC curve is computed as a one-vs-rest binary classification problem. The operating point (FPR, TPR) associated with the confusion matrix is displayed for each class.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/roc_multiclass.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/roc_multiclass.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="One-versus-rest ROC curves show each treatment’s discrimination and operating point."><img src="analysis_ui_shots/roc_multiclass.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="ROC curves for five treatment classes, with AUC values, square operating points, and a dashed random-chance diagonal."></a></p>
+</figure>
+</div>
+<figcaption>One-versus-rest ROC curves show each treatment’s discrimination and operating point.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/confusion_matrix.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="The confusion matrix compares true and predicted labels for the same test observations."><img src="analysis_ui_shots/confusion_matrix.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Five-class confusion matrix with counts for the held-out treatment predictions."></a></p>
+</figure>
+</div>
+<figcaption>The confusion matrix compares true and predicted labels for the same test observations.</figcaption>
 </figure>
 </div>
 </section>
@@ -1138,12 +1105,22 @@ window.Quarto = {
 <p><code>Random Forest</code> and <code>Gradient Boosting</code> classifiers provide feature importance scores.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/feature_importance.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/feature_importance.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="The fitted Random Forest assigns an importance score to each selected numerical feature."><img src="analysis_ui_shots/feature_importance.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Horizontal bar chart of feature importance scores from the Random Forest classifier."></a></p>
 </figure>
 </div>
-
-
+<figcaption>The fitted Random Forest assigns an importance score to each selected numerical feature.</figcaption>
+</figure>
+</div>
 </section>
+</section>
+<section id="export-the-analysis" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="export-the-analysis"><span class="header-section-number">20.3</span> Export the analysis</h2>
+<p>Click <strong>Export the entire analysis as a Python script</strong> below the results to retain the selected features, filters, target classes, classifier, hyperparameters, train size, sampling, class weights, threshold tuning, and font sizes. The script runs the classification workflow from the original input table, prints the metrics, and saves <code>roc_curve.svg</code> and <code>confusion_matrix.svg</code>. Random Forest and Gradient Boosting also save <code>feature_importance.svg</code>.</p>
+<p>Follow the <a href="./data_analysis.html#export-workflow-as-python-script">shared script workflow</a> to run it or change its settings. The script repeats the row-based split and classification decisions used in the app.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -1575,8 +1552,40 @@ window.Quarto = {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/classification.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/classification.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>

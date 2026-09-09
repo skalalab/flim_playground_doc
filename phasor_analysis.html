@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>18&nbsp; Phasor Analysis – FLIM Playground</title>
+<title>18&nbsp; Phasor Plot – FLIM Playground</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -52,6 +52,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-37a0ccb6f5b9899fcb884e11bb6f7458.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -80,35 +83,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -283,7 +257,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_distribution.html">Bivariate Analysis</a></li><li class="breadcrumb-item"><a href="./phasor_analysis.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_distribution.html">Bivariate Analysis</a></li><li class="breadcrumb-item"><a href="./phasor_analysis.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Plot</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -353,38 +327,44 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./irf_calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IRF Calibration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./lifetime_fit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lifetime_fit_free.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_morphology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_texture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./derived_feature.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./categorical_feature_extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
   </div>
 </li>
       </ul>
@@ -401,13 +381,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
   </div>
 </li>
       </ul>
@@ -424,19 +404,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_histogram.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fov_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Field of View Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
   </div>
 </li>
       </ul>
@@ -453,13 +427,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_distribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feature Distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./phasor_analysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Plot</span></span></a>
   </div>
 </li>
       </ul>
@@ -505,10 +479,8 @@ window.Quarto = {
   <ul>
   <li><a href="#shared-interface-components" id="toc-shared-interface-components" class="nav-link active" data-scroll-target="#shared-interface-components"><span class="header-section-number">18.1</span> Shared Interface Components</a></li>
   <li><a href="#select-phasor-coordinate" id="toc-select-phasor-coordinate" class="nav-link" data-scroll-target="#select-phasor-coordinate"><span class="header-section-number">18.2</span> Select Phasor Coordinate</a></li>
-  <li><a href="#k-means-clustering" id="toc-k-means-clustering" class="nav-link" data-scroll-target="#k-means-clustering"><span class="header-section-number">18.3</span> K-means Clustering</a>
-  <ul class="collapse">
-  <li><a href="#export-clustered-dataset" id="toc-export-clustered-dataset" class="nav-link" data-scroll-target="#export-clustered-dataset"><span class="header-section-number">18.3.1</span> Export Clustered Dataset</a></li>
-  </ul></li>
+  <li><a href="#separate-by" id="toc-separate-by" class="nav-link" data-scroll-target="#separate-by"><span class="header-section-number">18.3</span> Separate by</a></li>
+  <li><a href="#export-the-plot" id="toc-export-the-plot" class="nav-link" data-scroll-target="#export-the-plot"><span class="header-section-number">18.4</span> Export the plot</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/phasor_analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -516,9 +488,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_distribution.html">Bivariate Analysis</a></li><li class="breadcrumb-item"><a href="./phasor_analysis.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./feature_distribution.html">Bivariate Analysis</a></li><li class="breadcrumb-item"><a href="./phasor_analysis.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Plot</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-phasor-analysis" class="quarto-section-identifier"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></span></h1>
+<h1 class="title"><span id="sec-phasor-analysis" class="quarto-section-identifier"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Plot</span></span></h1>
 </div>
 
 
@@ -535,64 +507,85 @@ window.Quarto = {
 </header>
 
 
-<p>This method focuses on visualizing the distribution of the 1st harmonic or 2nd harmonic phasor coordinates, extracted by the <a href="lifetime_fit_free.html">Lifetime fit free</a> extractor, and performs optional clustering to highlight subpopulations or structural patterns.</p>
+<p><strong>Phasor Plot</strong> displays a matching pair of first- or second-harmonic phasor coordinates against the universal semicircle. Use it to compare the positions and spread of groups measured with the <a href="lifetime_fit_free.html">Lifetime fit free</a> extractor, or from a user table with the expected coordinate names.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Phasor Plot appears only for datasets with phasor coordinates">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Phasor Plot appears only for datasets with phasor coordinates
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>After a dataset is loaded, <strong>Phasor Plot is hidden from the Bivariate method selector if the dataset has no recognized, complete G/S coordinate pair</strong>. A pair must belong to the same channel and harmonic, and both columns must be numerical. See <a href="#select-phasor-coordinate">coordinate names and column roles</a> below.</p>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/phasor_analysis.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/phasor_analysis.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="The complete Phasor Plot screen, with cell-line selection and treatment colors."><img src="analysis_ui_shots/phasor_analysis.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Full Phasor Plot interface with dataset upload, NADH channel and first harmonic, filters, Separate by cell_line, Color by treatment, the selected cell-line category, and the phasor chart."></a></p>
+</figure>
+</div>
+<figcaption>The complete Phasor Plot screen, with cell-line selection and treatment colors.</figcaption>
 </figure>
 </div>
 <section id="shared-interface-components" class="level2" data-number="18.1">
 <h2 data-number="18.1" class="anchored" data-anchor-id="shared-interface-components"><span class="header-section-number">18.1</span> Shared Interface Components</h2>
 <ul>
 <li>On the top right, users can use the <a href="./data_analysis.html#filter-widgets">filters</a> to subset the data to find the groups of interest.</li>
-<li>Below the filters, users can apply the <a href="./data_analysis.html#visual-channels-widgets">visual channels widgets</a> that allow users to <code>Color by</code>, <code>Opacity by</code>, and <code>Shape by</code> categorical features.</li>
+<li>Below the filters, use <code>Color by</code>, <code>Opacity by</code>, and <code>Shape by</code> to encode categorical features. <a href="#separate-by"><code>Separate by</code></a> adds a category selector above the plot.</li>
 <li>On the bottom right, users can change the plot style using the <a href="./data_analysis.html#plotting-configuration-widgets">plot styling widgets</a>.</li>
 </ul>
 </section>
 <section id="select-phasor-coordinate" class="level2" data-number="18.2">
 <h2 data-number="18.2" class="anchored" data-anchor-id="select-phasor-coordinate"><span class="header-section-number">18.2</span> Select Phasor Coordinate</h2>
-<p>Instead of using the <a href="./data_analysis.html#bivariate-analysis">bivariate selection widgets</a> that select two generic numerical features, this method renders a dropdown menu to select the channel and another to select the harmonic.</p>
+<p>On the left, select <strong>Channel</strong> when more than one channel is present, then choose its <strong>harmonic No.</strong> Only harmonics with both G and S coordinates are offered. A table containing just one complete harmonic pair can still use Phasor Plot.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/phasor_coordinate_select.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:15.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/phasor_coordinate_select.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Select the channel and harmonic for the matching G/S coordinate pair."><img src="analysis_ui_shots/phasor_coordinate_select.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Channel set to nadh and nadh harmonic No. set to 1."></a></p>
 </figure>
 </div>
+<figcaption>Select the channel and harmonic for the matching G/S coordinate pair.</figcaption>
+</figure>
+</div>
+<p>The method recognizes numerical columns named <code>Lifetime fit free_{channel}: G(1st)</code> and <code>Lifetime fit free_{channel}: S(1st)</code>, or their <code>G(2nd)</code> and <code>S(2nd)</code> counterparts. For example, a first-harmonic NADH pair is <code>Lifetime fit free_nadh: G(1st)</code> and <code>Lifetime fit free_nadh: S(1st)</code>. In a user-table review, assign both columns <strong>Numerical</strong>; they may belong to different feature groups. After upload, Phasor Plot is available only if the table contains a complete pair.</p>
+<p>Set <strong>Laser repetition rate (GHz)</strong> to the acquisition’s base repetition rate, for example <code>0.08</code> for 80 MHz. This controls the lifetime reference markers; it does not recalculate or calibrate the uploaded coordinates. The app removes rows missing either coordinate from the displayed plot.</p>
 <p>The plot is drawn against the universal semicircle, with markers along it for lifetimes from 0.5 to 10 ns to read your points against. Switching to the 2nd harmonic moves those markers, because the transform is evaluated at twice the frequency and a given lifetime lands somewhere else. The frequency printed inside the plot tells you which view you are reading — <code>f = 160 MHz (2 × 80 MHz)</code> for the 2nd harmonic of an 80 MHz system — so check it before comparing a point against a marker. The semicircle itself is the same for both harmonics.</p>
 </section>
-<section id="k-means-clustering" class="level2" data-number="18.3">
-<h2 data-number="18.3" class="anchored" data-anchor-id="k-means-clustering"><span class="header-section-number">18.3</span> K-means Clustering</h2>
-<p>Phasor coordinates of single-cell ROIs from the selected channel and harmonic are plotted in the phasor space. K-means clustering can be performed for each color group (created by <a href="./data_analysis.html#color-by"><code>Color by</code></a>). If <code>Perform K-means Clustering</code> is checked, users can specify the number of clusters to be created based on their prior knowledge. In the future, automatic tuning for this parameter, akin to selecting the number of components of <a href="./feature_histogram.html#fit-gaussian-mixture-models">GMM</a>, using silhouette analysis will be added.</p>
+<section id="separate-by" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="separate-by"><span class="header-section-number">18.3</span> Separate by</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/kmeans_config.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-<p>K-means clustering is performed given the number of clusters specified for each color group. Mathematically, it is an iterative algorithm that finds the best cluster assignment with regard to what cluster each point belongs to and what centroid the cluster has. The <em>best</em> is defined as the one that minimizes the sum of the squared distances between each point and the center of the cluster it belongs to.</p>
-<p><span class="math display">\[
-\min_{\{C_k\}_{k=1}^K}\;\sum_{k=1}^K\sum_{x_i\in C_k}\bigl\lVert x_i-\mu(C_k)\bigr\rVert_2^2,
-\qquad
-\mu(C_k)=\frac{1}{|C_k|}\sum_{x_i\in C_k} x_i.
-\]</span></p>
-<p>First, FLIM Playground standardizes the phasor coordinates because <span class="math inline">\(g\)</span> (real part) and <span class="math inline">\(s\)</span> (imaginary) are not necessarily on the same scale.</p>
-<p>Then, it performs k-means clustering using the <code>sklearn.cluster.KMeans</code> function. All the other hyperparameters control the optimization process (e.g.&nbsp;<code>init</code> controls the initialization of the centroids), and they are set to their <a href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html">default values</a>. <code>42</code> is used as the random seed to ensure reproducibility.</p>
-<p>To visualize the result of clustering, FLIM Playground draws a polygon (convex hull) that contains all the points of each cluster, the color of which is determined by the color group the cluster belongs to. It uses the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.ConvexHull.html"><code>scipy.spatial.ConvexHull</code></a> function to calculate the convex hull. The center of each cluster is marked as a black bordered cross and users can hover over it to see its coordinates.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/phasor_plot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+<p><a href="analysis_ui_shots/phasor_encodings.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Separate by adds a category selector while color, opacity, and shape remain independent controls."><img src="analysis_ui_shots/phasor_encodings.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Separate by is cell_line, Color by is treatment, and the category selector switches between Panc1 and MCF7; opacity and shape have no selection."></a></p>
 </figure>
 </div>
-<section id="export-clustered-dataset" class="level3" data-number="18.3.1">
-<h3 data-number="18.3.1" class="anchored" data-anchor-id="export-clustered-dataset"><span class="header-section-number">18.3.1</span> Export Clustered Dataset</h3>
-<p>Users can download the clustered dataset by clicking:</p>
+<figcaption>Separate by adds a category selector while color, opacity, and shape remain independent controls.</figcaption>
+</figure>
+</div>
+<p>Choose <code>cell_line</code> in <strong>Separate by</strong> and <code>treatment</code> in <strong>Color by</strong>, then select a cell line above the plot. For example, select <code>Panc1</code> to highlight its treatments while keeping <code>MCF7</code> observations in gray for context. The selected category keeps its color, opacity, and shape encodings; observations from other categories remain visible as faint gray context points. The full-size axes and lifetime references remain the same as you switch categories.</p>
+<p>The separation column cannot also be used for <code>Color by</code>. Point colors stay consistent across categories, and <strong>Show group counts (n) in legend</strong> counts only the selected category’s complete G/S observations. Gray context points do not contribute to those counts or provide individual hover labels.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_ui_shots/k_means_download.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/phasor_plot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Treatments in the selected cell line appear in color against gray observations from the other cell line."><img src="analysis_ui_shots/phasor_plot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="First-harmonic NADH phasor plot with Panc1 observations colored by treatment, faint gray context points, and lifetime markers along the universal semicircle."></a></p>
 </figure>
 </div>
-<p>The downloaded dataset keeps all the features plus the new categorical feature column (<code>k_means_cluster</code>), which is recognized by any method in Data Analysis as a categorical feature like others. The rows that pass the <a href="./data_analysis.html#filter-widgets">filters</a> are included.</p>
-
-
+<figcaption>Treatments in the selected cell line appear in color against gray observations from the other cell line.</figcaption>
+</figure>
+</div>
 </section>
+<section id="export-the-plot" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="export-the-plot"><span class="header-section-number">18.4</span> Export the plot</h2>
+<p>Click <strong>Export the entire analysis as a Python script</strong> below <strong>Plot Styling</strong> to reproduce the current channel, harmonic, repetition rate, filters, encodings, and selected category. Follow the <a href="./data_analysis.html#export-workflow-as-python-script">shared script workflow</a> to generate an SVG figure from the original table.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -1013,8 +1006,8 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./feature_distribution.html" class="pagination-link" aria-label="Feature Distribution">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feature Distribution</span></span>
+      <a href="./feature_distribution.html" class="pagination-link" aria-label="2D Feature Distribution">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1024,8 +1017,40 @@ window.Quarto = {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/phasor_analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/phasor_analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>

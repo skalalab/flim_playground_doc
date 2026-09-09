@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Categorical Feature Extraction – FLIM Playground</title>
+<title>12&nbsp; Categorical Feature Extraction – FLIM Playground</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -52,6 +52,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-37a0ccb6f5b9899fcb884e11bb6f7458.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -254,7 +257,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./categorical_feature_extraction.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./categorical_feature_extraction.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -324,38 +327,44 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./irf_calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IRF Calibration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./lifetime_fit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lifetime_fit_free.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_morphology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Morphological Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intensity_texture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Textural Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./derived_feature.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./categorical_feature_extraction.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
   </div>
 </li>
       </ul>
@@ -372,13 +381,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
   </div>
 </li>
       </ul>
@@ -395,19 +404,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_histogram.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fov_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Field of View Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
   </div>
 </li>
       </ul>
@@ -424,13 +427,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_distribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feature Distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./phasor_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Plot</span></span></a>
   </div>
 </li>
       </ul>
@@ -474,8 +477,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#merging-datasets" id="toc-merging-datasets" class="nav-link active" data-scroll-target="#merging-datasets"><span class="header-section-number">11.1</span> Merging Datasets</a></li>
-  <li><a href="#assigning-categorical-features" id="toc-assigning-categorical-features" class="nav-link" data-scroll-target="#assigning-categorical-features"><span class="header-section-number">11.2</span> Assigning Categorical Features</a></li>
+  <li><a href="#merging-datasets" id="toc-merging-datasets" class="nav-link active" data-scroll-target="#merging-datasets"><span class="header-section-number">12.1</span> Merging Datasets</a></li>
+  <li><a href="#assigning-categorical-features" id="toc-assigning-categorical-features" class="nav-link" data-scroll-target="#assigning-categorical-features"><span class="header-section-number">12.2</span> Assigning Categorical Features</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/categorical_feature_extraction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -483,9 +486,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./categorical_feature_extraction.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./categorical_feature_extraction.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-categorical-feature-extraction" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></h1>
+<h1 class="title"><span id="sec-categorical-feature-extraction" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></h1>
 </div>
 
 
@@ -509,12 +512,17 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="extraction_ui_shots/cat.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="extraction_ui_shots/cat.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="This category-mapping example uses a table of 1,572 cells from 12 FOVs."><img src="extraction_ui_shots/cat.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Categorical Feature Extraction with a local dataset folder, underscore delimiter, category selections, slot mappings, and a preview of the assigned labels."></a></p>
 </figure>
 </div>
-<section id="merging-datasets" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="merging-datasets"><span class="header-section-number">11.1</span> Merging Datasets</h2>
-<p>It scans the specified folder path and finds all CSV files. It uses the <a href="./data_extraction_config.html#cell-identifier">cell identifier column</a> to check for duplicates both within each dataset and across all datasets.</p>
+<figcaption>This category-mapping example uses a table of 1,572 cells from 12 FOVs.</figcaption>
+</figure>
+</div>
+<section id="merging-datasets" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="merging-datasets"><span class="header-section-number">12.1</span> Merging Datasets</h2>
+<p>Enter the full path to the folder containing your saved <a href="./numerical_feature_extraction.html#save-results">numerical feature CSV files</a>. The folder is scanned recursively for CSV files. Each usable dataset must contain the configured <a href="./data_extraction_config.html#identifiers">cell and FOV identifiers</a>. Cell identifiers must be nonmissing and unique within the file and across the accepted files; a file containing overlapping identifiers is skipped.</p>
 <div id="fov-id-categorical" class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -529,36 +537,21 @@ Important
 </div>
 </div>
 <p>Therefore, it checks if all field-of-view names include the same number of segments to determine the eligibility of <a href="#assigning-categorical-features">categorical feature assignment</a>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="extraction_ui_shots/cat_merge.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-<p>It merges the datasets that pass the checks by finding common columns and vertically concatenating them.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="extraction_ui_shots/cat_merge_result.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div>
+<p>Before merging, all-empty columns are removed. The remaining datasets are stacked using only their common columns, and the page reports columns discarded during merging.</p>
 </section>
-<section id="assigning-categorical-features" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="assigning-categorical-features"><span class="header-section-number">11.2</span> Assigning Categorical Features</h2>
-<p>Available categorical features to be assigned are drawn from the <a href="./data_extraction_config.html#categorical-features">user-specified configuration</a>.</p>
+<section id="assigning-categorical-features" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="assigning-categorical-features"><span class="header-section-number">12.2</span> Assigning Categorical Features</h2>
+<p>Available categories are the <a href="./data_extraction_config.html#categorical-features">configured categorical names</a> that are not already columns in the merged dataset.</p>
+<p>Set <code>Field of View Name Delimiter</code> to the separator used in the <a href="#fov-id-categorical">FOV names</a>. Leaving it empty treats each complete name as one slot. For each chosen category, select one or more slots; their values are joined in the selected order.</p>
+<p>The live preview shows one row from each of the first five FOVs. Check the assigned values before exporting.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="extraction_ui_shots/cat_features.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:25.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="extraction_ui_shots/cat_slot_assign.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Map FOV-name slots to categories and check the preview before exporting."><img src="extraction_ui_shots/cat_slot_assign.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The MCF7, 2DG, and dish2 slots map to cell_line, treatment, and dish; a five-FOV preview appears above Confirm category mapping &amp; export the combined dataset."></a></p>
 </figure>
 </div>
-<p>Based on the <a href="#fov-id-categorical">assumptions</a>, it breaks down the FOV identifier into individual fields and facilitates the assignment.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="extraction_ui_shots/cat_slots.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
-</figure>
-</div>
-<p>A live preview of the assignment is displayed.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="extraction_ui_shots/cat_slot_assign.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figcaption>Map FOV-name slots to categories and check the preview before exporting.</figcaption>
 </figure>
 </div>
 <p>Clicking <code>Confirm category mapping &amp; export the combined dataset</code> then writes the merged dataset with the categorical features as a timestamped CSV (<code>{timestamp}_combined.csv</code>) into the same folder as the input dataset. Note that this is a direct file write rather than a browser download, so the file is saved on the machine running FLIM Playground. When using the <a href="https://flim-playground.streamlit.app/">hosted demo</a>, the file is written to the server and does not reach your computer, which is one reason Data Extraction is intended to be run on a local installation.</p>
@@ -985,18 +978,50 @@ Important
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./derived_feature.html" class="pagination-link" aria-label="Derived Features">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Derived Features</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./data_analysis.html" class="pagination-link" aria-label="Overview">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Overview</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/categorical_feature_extraction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/categorical_feature_extraction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>
