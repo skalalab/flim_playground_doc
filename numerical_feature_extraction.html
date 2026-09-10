@@ -506,8 +506,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>FLIM Playground extracts <em>single-cell</em> numerical features from <strong>multiple channels and imaging modalities in the same workflow</strong>. Configure each channel independently: give it a name, choose FLIM or intensity-only imaging, and select the <a href="./data_extraction_config.html#feature-extractor">feature extractors</a> needed for that channel. For example, a FLIM channel can provide lifetime and phasor features while an intensity-only channel provides morphology and texture. All channels can also be intensity-only. FLIM channels share the <a href="./data_extraction_config.html#decay-types">FLIM input format</a>, but their feature selections can differ.</p>
-<p><strong>An IRF shift is required for raw FLIM channels using <code>Lifetime fit</code>, and for channels using <code>Lifetime fit free</code> with <code>IRF</code> calibration.</strong> Complete <a href="./irf_calibration.html#sec-irf-calibration">IRF Calibration</a> for those channels or load metadata with saved shifts. Calibration with a fluorescence lifetime standard (calibration dye) is applied during phasor extraction. All-intensity workflows proceed directly to extraction.</p>
+<p>FLIM Playground extracts <em>single-cell</em> numerical features from <strong>multiple channels and imaging modalities in the same workflow</strong>. Configure each channel independently: give it a name, choose the imaging modality, and select the <a href="./data_extraction_config.html#feature-extractor">feature extractors</a> needed for that channel. For example, a FLIM channel can provide lifetime and phasor features while an intensity-only channel provides morphology and texture.</p>
+<p>It is divided into two steps:</p>
+<ol type="1">
+<li><p>The optional calibration step. For example, <strong>an <a href="irf_calibration.html">IRF calibration</a> for shift is required for raw FLIM channels</strong>.</p></li>
+<li><p>The feature extraction step that applies the selected feature extractors to each channel and saves the results to a CSV file.</p></li>
+</ol>
 <p>The available feature extractors are:</p>
 <ul>
 <li><a href="lifetime_fit.html">Lifetime fit</a>: fit exponential models to raw decay curves to estimate lifetimes and their fractional contributions, or read existing fitted values from pre-fitted FLIM input.</li>

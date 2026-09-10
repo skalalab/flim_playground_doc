@@ -227,7 +227,7 @@
     "href": "numerical_feature_extraction.html",
     "title": "5  Numerical Feature Extraction",
     "section": "",
-    "text": "5.1 Input\nFLIM Playground extracts single-cell numerical features from multiple channels and imaging modalities in the same workflow. Configure each channel independently: give it a name, choose FLIM or intensity-only imaging, and select the feature extractors needed for that channel. For example, a FLIM channel can provide lifetime and phasor features while an intensity-only channel provides morphology and texture. All channels can also be intensity-only. FLIM channels share the FLIM input format, but their feature selections can differ.\nAn IRF shift is required for raw FLIM channels using Lifetime fit, and for channels using Lifetime fit free with IRF calibration. Complete IRF Calibration for those channels or load metadata with saved shifts. Calibration with a fluorescence lifetime standard (calibration dye) is applied during phasor extraction. All-intensity workflows proceed directly to extraction.\nThe available feature extractors are:\nA CSV file extracted in the fov metadata extraction step that contains the metadata of the FOVs including:\nUse the cached metadata just exported in FOV Metadata Extraction, or upload a previously saved metadata CSV. Cached metadata takes precedence; refresh the page to clear it and upload a different file.",
+    "text": "5.1 Input\nFLIM Playground extracts single-cell numerical features from multiple channels and imaging modalities in the same workflow. Configure each channel independently: give it a name, choose the imaging modality, and select the feature extractors needed for that channel. For example, a FLIM channel can provide lifetime and phasor features while an intensity-only channel provides morphology and texture.\nIt is divided into two steps:\nThe available feature extractors are:\nA CSV file extracted in the fov metadata extraction step that contains the metadata of the FOVs including:\nUse the cached metadata just exported in FOV Metadata Extraction, or upload a previously saved metadata CSV. Cached metadata takes precedence; refresh the page to clear it and upload a different file.",
     "crumbs": [
       "Data Extraction",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Numerical Feature Extraction</span>"
@@ -546,7 +546,7 @@
     "href": "data_analysis.html",
     "title": "13  Overview",
     "section": "",
-    "text": "13.1 General Workflow\nData Analysis lets you explore a table of measurements with interactive plots, statistical comparisons, and machine learning. Use a table from Data Extraction or upload your own measurements and review their column roles.\nThe plots and results update as you change the controls. Reopening a user table’s column review hides analysis until you save or cancel; the current analysis settings are retained. See reviewing an applied profile.",
+    "text": "13.1 General Workflow\nData Analysis lets you explore a table of measurements with interactive plots, statistical comparisons, and machine learning. Use a table from Data Extraction or upload your own measurements and review their column roles.\nThe plots and results update as you change the controls.",
     "crumbs": [
       "Data Analysis",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Overview</span>"
