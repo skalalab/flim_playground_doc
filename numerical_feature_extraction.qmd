@@ -1,7 +1,11 @@
 # Numerical Feature Extraction {#sec-numerical-feature-extraction}
-FLIM Playground extracts *single-cell* numerical features from **multiple channels and imaging modalities in the same workflow**. Configure each channel independently: give it a name, choose FLIM or intensity-only imaging, and select the [feature extractors](data_extraction_config.qmd#feature-extractor) needed for that channel. For example, a FLIM channel can provide lifetime and phasor features while an intensity-only channel provides morphology and texture. All channels can also be intensity-only. FLIM channels share the [FLIM input format](data_extraction_config.qmd#decay-types), but their feature selections can differ.
+FLIM Playground extracts *single-cell* numerical features from **multiple channels and imaging modalities in the same workflow**. Configure each channel independently: give it a name, choose the imaging modality, and select the [feature extractors](data_extraction_config.qmd#feature-extractor) needed for that channel. For example, a FLIM channel can provide lifetime and phasor features while an intensity-only channel provides morphology and texture. 
 
-**An IRF shift is required for raw FLIM channels using `Lifetime fit`, and for channels using `Lifetime fit free` with `IRF` calibration.** Complete [IRF Calibration](irf_calibration.qmd#sec-irf-calibration) for those channels or load metadata with saved shifts. Calibration with a fluorescence lifetime standard (calibration dye) is applied during phasor extraction. All-intensity workflows proceed directly to extraction.
+It is divided into two steps: 
+
+1. The optional calibration step. For example, **an [IRF calibration](#sec-irf-calibration) for shift is required for raw FLIM channels**.
+
+2. The feature extraction step that applies the selected feature extractors to each channel and saves the results to a CSV file.
 
 The available feature extractors are:
 

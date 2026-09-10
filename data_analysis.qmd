@@ -11,7 +11,7 @@ Data Analysis lets you explore a table of measurements with interactive plots, s
 5. Adjust the method-specific controls, [plot style](#plotting-configuration-widgets), and [hover over points](#unique-id-hover) to inspect observations.
 6. [Export the analysis as a Python script](#export-workflow-as-python-script) to reproduce or customize it. GMM analyses also offer labeled CSV downloads.
 
-The plots and results update as you change the controls. Reopening a user table's column review hides analysis until you save or cancel; the current analysis settings are retained. See [reviewing an applied profile](data_analysis_config.qmd).
+The plots and results update as you change the controls.
 
 ## Methods
 
