@@ -16,7 +16,7 @@ Users can [configure](#sec-data-extraction-config) the system once and apply it 
     - [IRF Calibration](irf_calibration.qmd#sec-irf-calibration)
         - [Fit Calibration](irf_calibration.qmd#fit-calibration)
         - [Fit-Free IRF Calibration](irf_calibration.qmd#fit-free-calibration)
-    - [Fluorescence lifetime standard](lifetime_fit_free.qmd#fluorescence-lifetime-standard): calibrates phasors with a reference dye during extraction.
+    - [Fluorescence lifetime standard](lifetime_fit_free.qmd#fit-free-standard-calibration): calibrates phasors with a reference dye during extraction.
     - Per-channel feature extraction includes:
         - [Lifetime fitting features](#sec-lifetime-fit): fit an exponential decay curve to the measured decay and extract lifetime features per cell ROI. 
         - [Phasor features](#sec-lifetime-fit-free): calculate the phasor features such as the phasor coordinates. It also provides [phasor analysis](#sec-phasor-analysis). 
@@ -50,10 +50,11 @@ For an example, see [here](data_extraction_config.qmd#file-suffix).
 - `.tiff`/`.tif`: a 2D array with background labeled as `0` and each cell ROI region labeled as a unique positive integer. That integer will be part of the [unique cell identifier](data_extraction_config.qmd#cell-identifier).
 
 ### IRF 
-IRF must be a 1D array. Currently, the supported formats are (extendable to more formats in the future):
+The IRF is used as a 1D reference curve, with one value per decay time bin. Supported formats are:
 
 - `.txt`: it uses `np.loadtxt` to parse a txt file. It returns a 1D array if the IRF numbers are in one row or in one column.  
 - `.csv`: comma-separated IRF values. The resulting IRF must contain one value per decay time bin.
+- `.ptu`: single-channel T3 imaging data. All pixels and repeated frames are summed into one reference curve. The acquisition timing must match the sample; see [calibration reference validation](fov_metadata.qmd#calibration-references).
 
 ### SPCImage t1
 If the decay type is [3D/4D pixel pre-fit](data_extraction_config.qmd#three-d4d-pixel-pre-fit), users can provide pixel pre-fit lifetime feature files. 
@@ -65,6 +66,7 @@ If the decay type is [3D/4D pixel pre-fit](data_extraction_config.qmd#three-d4d-
 If the fluorescence lifetime standard-based calibration is chosen, users are expected to provide the fluorescence lifetime standard file. 
 
 - `.tiff`/`.tif`: a 3D array, with one dimension representing the time axis. 
+- `.ptu`: single-channel T3 imaging data. All pixels and repeated frames are summed into one reference curve. The acquisition timing must match the sample; see [calibration reference validation](fov_metadata.qmd#calibration-references).
 
 ### Intensity (2D)
 

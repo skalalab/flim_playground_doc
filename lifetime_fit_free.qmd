@@ -13,55 +13,74 @@ Two preprocessing steps are then applied, and they are independent of each other
 - **Offset subtraction** is applied to every decay curve, regardless of the chosen [calibration method](data_extraction_config.qmd#calibration-method). For each cell, the offset is estimated as the mean of the last 10% of the time bins of that cell's own decay curve, subtracted from the curve, and any resulting negative values are clipped to zero. Note that this per-cell baseline is unrelated to the `offset` parameter fitted during [lifetime fitting](lifetime_fit.qmd).
 - **IRF shifting** is applied only when the chosen calibration method is IRF shift calibration. The IRF is shifted using the shift values as described in the [Shift IRF step](irf_calibration.qmd#shift-irf). Under fluorescence lifetime standard calibration, no IRF shift is applied.
 
-## Fluorescence lifetime standard
+## Calibration method
 
-A calibration dye with a known lifetime provides phasor calibration without an IRF shift. In [Home → Configuration](data_extraction_config.qmd#calibration-method), select **Fluorescence Lifetime Standard**, enter its known lifetime, and set each channel's reference-file suffix. The app applies this calibration during `Lifetime fit free` extraction, after [offset subtraction](#preprocessing).
+In [Home → Configuration](data_extraction_config.qmd#calibration-method), choose **IRF** or **Fluorescence Lifetime Standard** for `Lifetime fit free` extraction. This choice determines the reference and the correction applied in [Step 2](#step-2-calibrated-phasor-coordinates). Both methods use the same [offset subtraction](#preprocessing) for each cell decay.
 
-The reference's measured phasor and known lifetime determine the correction applied to each cell's coordinates, using `phasorpy`'s [`lifetime.phasor_calibrate`](https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate). The [calibrated-coordinate equations](#step-2-calibrated-phasor-coordinates) below show both calibration methods.
+### IRF
 
-Selecting raw `Lifetime fit` as well still requires [IRF shift calibration for fitting](irf_calibration.qmd#fit-calibration); the dye calibrates the phasor features.
+Provide an IRF for each channel that uses this method, then complete [fit-free IRF calibration](irf_calibration.qmd#fit-free-calibration). The app shifts the IRF using the selected shift values and calculates its first- and second-harmonic phasors. It divides each cell's raw phasor by the shifted IRF phasor at the same harmonic.
+
+### Fluorescence lifetime standard {#fit-free-standard-calibration}
+
+```{=html}
+<span id="fluorescence-lifetime-standard"></span>
+```
+
+Provide a calibration dye with a known lifetime, enter that lifetime in **nanoseconds**, and set each channel's standard-file suffix. This method does not apply an IRF shift to the phasor calculation.
+
+The app calculates the standard's measured phasor separately at each harmonic. PhasorPy's [`lifetime.phasor_calibrate`](https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate) uses those measurements and the known lifetime to correct each cell's phasor at the matching harmonic.
+
+Selecting raw `Lifetime fit` as well still requires [IRF shift calibration for fitting](irf_calibration.qmd#fit-calibration); the standard only calibrates the phasor features.
 
 ## Phasor features
 
+The steps below describe **default phases**, followed by IRF or lifetime-standard calibration and lifetime conversion. FLIM Playground uses this workflow when the supplied time window matches one laser period. Its [explicit-phase calculation for other windows](#using-explicit-sample-phases) is described in the collapsible note at the end.
+
 ### Step 1: raw phasor coordinates
 
-The reference implementation from [phasorpy](https://www.phasorpy.org/) assumes the decay curve comes from one period and time bins are evenly spaced (untruncated). So, their calculation is frequency ($f$) and time ($T$) independent. However, there are cases when the decay curve is truncated due to the deadtime of the system. For example, when the laser frequency is $f = 0.08$ GHz, the theoretical period is $T = 12.5$ ns, but in practice the time window is truncated to $T = 10$ ns. FLIM Playground applies a custom implementation to the truncated decay curve. (The `sample_phase` option can be used to account for the truncation but it does not handle the second or higher harmonics)
+#### Default phases {#assuming-one-full-laser-period}
 
-#### Untruncated decay curve
+Let $T$ be the supplied window's `duration` in ns and $K$ its number of bins. PhasorPy's [`phasor_from_signal`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal) assigns phases $2\pi hk/K$, where $h$ is the harmonic and $k=0,\ldots,K-1$ is the bin index. **The raw transform uses bin positions and count; neither `duration` nor `laser_rate` is passed to it.** The stored bins and photon counts are unchanged.
 
-It uses the [`phasor_from_signal`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal) function from the [phasorpy](https://www.phasorpy.org/) package to calculate the uncalibrated phasor coordinates `g_raw` and `s_raw`, `g_raw_2nd` and `s_raw_2nd`, the first and second harmonics' real and imaginary parts, from the cell decay curve.
-
-Either `g_irf`, `s_irf`, `g_irf_2nd`, and `s_irf_2nd` from the IRF, or `ref_mean`, `ref_real`, `ref_imag` from the fluorescence lifetime standard, depending on the chosen [calibration method](data_extraction_config.qmd#calibration-method), are calculated using the same function.
-
-Mathematically, the raw phasor coordinates are calculated as (copied from the [phasorpy](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal) documentation):
+For bin times $t_k=kT/K$, these default phases correspond to an **analysis frequency of $1/T$**. In the matching-window case described here, that equals the laser frequency (`laser_rate`, in GHz), which is used in the calibration and lifetime equations below. For a decay $F_k$:
 
 $$
-F_{\mathrm{DC}}=\frac{1}{K}\sum_{k=0}^{K-1}F_k,\quad
-g_{\mathrm{raw}}=\frac{1}{F_{\mathrm{DC}}}\frac{1}{K}\sum_{k=0}^{K-1}F_k\cos\!\left(2\pi h \frac{k}{K}\right),\quad
-s_{\mathrm{raw}}=\frac{1}{F_{\mathrm{DC}}}\frac{1}{K}\sum_{k=0}^{K-1}F_k\sin\!\left(2\pi h \frac{k}{K}\right)
-$$
-where $K$ is the number of time bins, $F_k$ is the decay curve, and $h$ is the harmonic number.
-
-#### Truncated decay curve
-
-The phasor coordinates of the IRF and the decay curves of both harmonics are calculated using the time axis $t_k = k\,(T/K)\;\;(k=0,\ldots,K-1)$ and the angular frequency $\omega = 2\pi\,hf$:
-
-$$
-g_{\mathrm{raw}}
-=\frac{\sum_{k=0}^{K-1} F_k \cos\!\big(\omega\, t_k\big)}
-        {\sum_{k=0}^{K-1} F_k},\quad
-s_{\mathrm{raw}}
-=\frac{\sum_{k=0}^{K-1} F_k \sin\!\big(\omega\, t_k\big)}
-        {\sum_{k=0}^{K-1} F_k}
+\begin{aligned}
+g_{\mathrm{raw}}^{(h)} &=
+\frac{\sum_{k=0}^{K-1}F_k\cos\!\left(2\pi h k/K\right)}
+     {\sum_{k=0}^{K-1}F_k},\\
+s_{\mathrm{raw}}^{(h)} &=
+\frac{\sum_{k=0}^{K-1}F_k\sin\!\left(2\pi h k/K\right)}
+     {\sum_{k=0}^{K-1}F_k}.
+\end{aligned}
 $$
 
-This formula is equivalent to the untruncated formula when $fT = 1$.
+In this default-phase workflow, the app calls `phasor_from_signal` with `harmonic=1` and `harmonic=2` for each cell decay to obtain `g_raw`, `s_raw`, `g_raw_2nd`, and `s_raw_2nd`.
 
-For the fluorescence lifetime standard, the phasor coordinates are calculated using `phasorpy`'s `phasor_from_signal` and the `sample_phase` option is set to $\omega t_k$.
+With **IRF calibration**, it makes the same two calls for the shifted IRF, obtaining `g_irf`, `s_irf`, `g_irf_2nd`, and `s_irf_2nd`.
+
+With **fluorescence lifetime standard calibration**, it calculates the reference values separately for each harmonic as shown below. `reference_image` is the loaded standard decay array, and `reference_time_axis` is its zero-based time-bin axis (for example, `2` for an array shaped `(height, width, time_bins)`).
+
+```python
+from phasorpy import phasor
+
+ref_mean, ref_real, ref_imag = phasor.phasor_from_signal(
+    reference_image, axis=reference_time_axis, harmonic=1,
+)
+ref_mean_2nd, ref_real_2nd, ref_imag_2nd = phasor.phasor_from_signal(
+    reference_image, axis=reference_time_axis, harmonic=2,
+)
+```
 
 ### Step 2: calibrated phasor coordinates
 
-To get the calibrated phasor coordinates `g`, `s`, `g_2nd`, and `s_2nd`, FLIM Playground uses either
+Apply the selected calibration using the reference phasor at the matching harmonic.
+
+#### IRF calibration
+
+FLIM Playground divides each raw cell phasor by the shifted IRF phasor at the same harmonic to obtain `g`, `s`, `g_2nd`, and `s_2nd`:
+
 ```python
 from phasorpy import phasor
 g, s = phasor.phasor_divide(g_raw, s_raw, g_irf, s_irf)
@@ -69,23 +88,29 @@ g_2nd, s_2nd = phasor.phasor_divide(
     g_raw_2nd, s_raw_2nd, g_irf_2nd, s_irf_2nd
 )
 ```
-or 
+
+#### Fluorescence lifetime standard calibration
+
+FLIM Playground uses the known lifetime and the standard's measured reference values for each harmonic calculated in [Step 1](#step-1-raw-phasor-coordinates):
+
 ```python
 from phasorpy import lifetime
+
 g, s = lifetime.phasor_calibrate(
     g_raw, s_raw, ref_mean, ref_real, ref_imag,
-    frequency=laser_rate,
+    frequency=laser_rate * 1000,
     lifetime=reference_dye_lifetime,
 )
 g_2nd, s_2nd = lifetime.phasor_calibrate(
-    g_raw_2nd, s_raw_2nd, ref_mean, ref_real, ref_imag,
-    frequency=laser_rate,
+    g_raw_2nd, s_raw_2nd,
+    ref_mean_2nd, ref_real_2nd, ref_imag_2nd,
+    frequency=laser_rate * 1000,
     lifetime=reference_dye_lifetime,
     harmonic=2,
 )
 ```
 
-The `laser_rate` is specified during the [fov metadata extraction](fov_metadata.qmd#laser-frequency) and the [configuration interface](data_extraction_config.qmd#laser-frequency). 
+The `laser_rate` is entered in **GHz** in [FOV metadata](fov_metadata.qmd#laser-frequency) or [Configuration](data_extraction_config.qmd#laser-frequency). PhasorPy expects **MHz**, so both calls multiply by 1000: `0.08` GHz becomes `80` MHz. The `reference_dye_lifetime` remains in **nanoseconds**. Using `harmonic=2` calibrates the second-harmonic coordinates at twice the laser frequency.
 
 ### Step 3: phasor-derived lifetime
 
@@ -105,3 +130,46 @@ $$
 $$
 
 Because $\omega$ is derived from the laser rate in GHz, `Tau_phase` and `Tau_mod` are expressed in **nanoseconds**. Note that this differs from the [Lifetime fit](#sec-lifetime-fit) extractor, whose lifetime columns are exported in picoseconds.
+
+::: {#using-explicit-sample-phases .callout-note collapse="true" title="Explicit sample phases"}
+FLIM Playground uses explicit phases when the supplied time window differs from one laser period by more than a small rounding tolerance. It then calculates phasors at the **laser frequency**, using both `duration` and `laser_rate` to place each bin within the laser cycle. A shortened acquisition window or a small difference caused by PTU bin rounding can select this branch; it is not a test for whether the acquisition was complete.
+
+For example, a 10 ns window with a 12.5 ns laser period covers 80% of a laser cycle. Let $f$ be `laser_rate`, $P=1/f$ the laser period, and $T$ the supplied window's duration. The bin times are $t_k=kT/K$, with first-harmonic phases $\phi_k=2\pi t_k/P=2\pi f t_k$. At harmonic $h$:
+
+$$
+\begin{aligned}
+g_{\mathrm{raw}}^{(h)} &=
+\frac{\sum_{k=0}^{K-1} F_k \cos(h\phi_k)}
+     {\sum_{k=0}^{K-1} F_k},\\
+s_{\mathrm{raw}}^{(h)} &=
+\frac{\sum_{k=0}^{K-1} F_k \sin(h\phi_k)}
+     {\sum_{k=0}^{K-1} F_k}.
+\end{aligned}
+$$
+
+For **cell decays** and the **shifted IRF**, the app evaluates these sums directly. For a **fluorescence lifetime standard**, it supplies the same phases through PhasorPy's `sample_phase` argument. The standard must have the same bin count and spacing as the sample:
+
+```python
+import numpy as np
+from phasorpy import phasor
+
+time_bins = reference_image.shape[reference_time_axis]
+time_axis = np.arange(time_bins) * (duration / time_bins)  # ns
+phi = 2 * np.pi * laser_rate * time_axis
+
+ref_mean, ref_real, ref_imag = phasor.phasor_from_signal(
+    reference_image, axis=reference_time_axis,
+    sample_phase=phi, harmonic=1, use_fft=False,
+)
+ref_mean_2nd, ref_real_2nd, ref_imag_2nd = phasor.phasor_from_signal(
+    reference_image, axis=reference_time_axis,
+    sample_phase=2 * phi, harmonic=1, use_fft=False,
+)
+```
+
+Use `harmonic=1` and `use_fft=False` with `sample_phase`. The doubled phases select the second harmonic; `harmonic=2` with `sample_phase` would raise an error. The resulting coordinates enter the calibration and lifetime calculations in Steps 2 and 3.
+
+**Explicit phases preserve bin timing but do not recover missing fluorescence.** For a substantially truncated window, the usual calibration and lifetime equations can remain biased; a standard measured over the same window does not generally remove that bias.
+
+Using default phases over the 10 ns window would instead mean analysis at **100 MHz**, requiring that frequency in calibration and lifetime conversion. This is a different approach with its own limitations for real IRFs and mixtures. Release 1.13.1 retains the **80 MHz laser frequency** in this example and uses explicit phases. See the [analysis of truncation and phasor calibration](https://pmc.ncbi.nlm.nih.gov/articles/PMC7990508/) for these distinctions.
+:::

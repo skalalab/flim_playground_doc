@@ -43,7 +43,11 @@ A 2D decay CSV must be headerless, with only numeric time bins. Do not include a
 
 #### 3D/4D Decay {#three-d4d-decay}
 
-In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g. `.sdt`, `.ptu`). In addition to the spatial dimensions and the time dimension (`XYT`), the channel dimension may also be present, making it 4-dimensional (`CXYT`). **FLIM Playground currently supports both `.sdt` and `.ptu` files up to those 4 dimensions.** It reads the `duration` and the number of `time bins` from the decay file metadata. Some systems can also record a time stack, which is not supported yet.
+In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g. `.sdt`, `.ptu`). In addition to the spatial dimensions and the time dimension (`XYT`), the channel dimension may also be present, making it 4-dimensional (`CXYT`). **FLIM Playground currently supports both `.sdt` and `.ptu` files as 3D/4D decay images.** Here, `T` is the photon-arrival time axis within a laser pulse interval.
+
+It reads the `duration` and the number of `time bins` from the decay file's acquisition metadata. For PTU files, the bin count is the laser period divided by the TCSPC resolution, rounded down to a whole number of bins. The duration is **bin count × TCSPC resolution**, expressed in nanoseconds. This preserves the recorded bin width and can make the duration slightly shorter than the nominal laser period. The bin count may not necessary be the last time bin that happened to receive a photon.
+
+Repeated frames in a PTU file are summed into one decay image per FOV, and the [FOV metadata step](fov_metadata.qmd#decay-info-1) warns when frames have been combined. For actual time-lapse acquisitions, split the data into one file per time point before extraction so that the time points remain separate.
 
 #### 3D/4D pixel pre-fit {#three-d4d-pixel-pre-fit}
 
@@ -75,7 +79,7 @@ Since the [2D decay](#two-d-decay) file does not provide the `duration` and the 
 When `Lifetime fit free` is selected, choose between two calibration methods:
 
 - `IRF`: [shift-based calibration](irf_calibration.qmd#irf-shift).
-- `Fluorescence Lifetime Standard`: [reference-based calibration](lifetime_fit_free.qmd#fluorescence-lifetime-standard).
+- `Fluorescence Lifetime Standard`: [reference-based calibration](lifetime_fit_free.qmd#fit-free-standard-calibration).
 
 Since the instrumental response function (IRF) or the fluorescence lifetime standard is measured for each channel, they are set in the [per-channel configurations](#per-channel-configurations). The fluorescence lifetime standard's lifetime is channel-agnostic. 
 

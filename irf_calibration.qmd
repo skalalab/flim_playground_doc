@@ -13,7 +13,7 @@ The instrument response function (IRF) describes the detection system's response
 
 The app evaluates these conditions separately for each channel. Estimate shifts for the channels that meet them, or reuse shifts already saved in the metadata. Then continue to [Numerical Feature Extraction](numerical_feature_extraction.qmd#feature-extraction).
 
-A calibration dye is a **Fluorescence Lifetime Standard**: its reference-based phasor calibration runs during [fit-free feature extraction](lifetime_fit_free.qmd#fluorescence-lifetime-standard). It does not trigger this IRF shift stage. A workflow with only intensity-only channels also proceeds directly to extraction.
+A calibration dye is a **Fluorescence Lifetime Standard**: its reference-based phasor calibration runs during [fit-free feature extraction](lifetime_fit_free.qmd#fit-free-standard-calibration). It does not trigger this IRF shift stage. A workflow with only intensity-only channels also proceeds directly to extraction.
 
 ## Input
 
@@ -142,7 +142,7 @@ During shift estimation, `Fitting Mode` offers **Hybrid** only. After all requir
 
 ## Fit-Free IRF Calibration {#fit-free-calibration}
 
-This shift calibration applies to channels with `Lifetime fit free` selected and [calibration method](data_extraction_config.qmd#calibration-method) set to `IRF`, including pre-fitted FLIM channels when phasor features are requested. The [fluorescence lifetime standard](lifetime_fit_free.qmd#fluorescence-lifetime-standard) method instead calibrates phasors during extraction.
+This shift calibration applies to channels with `Lifetime fit free` selected and [calibration method](data_extraction_config.qmd#calibration-method) set to `IRF`, including pre-fitted FLIM channels when phasor features are requested. The [fluorescence lifetime standard](lifetime_fit_free.qmd#fit-free-standard-calibration) method instead calibrates phasors during extraction.
 
 Before calculating phasors, the app subtracts the mean signal in the final 10% of each cell's decay and clips negative values to zero. See [fit-free preprocessing](lifetime_fit_free.qmd#preprocessing).
 

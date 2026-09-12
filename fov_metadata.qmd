@@ -52,7 +52,7 @@ Finally, users can specify the folder path that contains all the required input 
 
 The first step is to find the fields of view:
 
-- It finds all the files recursively in the folder path that ends with the 1st file suffix of the 1st channel.
+- It finds files recursively in the folder path using the first per-FOV file suffix, skipping calibration suffixes.
 - The prefix of all the matched files is considered to be the field of view name. 
     - FOV name = file name - 1st file suffix
 
@@ -60,7 +60,7 @@ Then, it uses the found FOV names to find all other files:
 
 - The file name to search = FOV name + other file suffixes for each file suffix
 
-The only exceptions are the calibration files, because they are not FOV-specific. They will be searched for based on their file suffixes only. 
+Calibration files are shared across FOVs and are searched for by suffix alone, independently of the FOV name. For example, the same `standard.ptu` or `irf.ptu` will be used for every FOV in the folder. Files matching configured IRF or fluorescence lifetime standard suffixes are excluded from FOV discovery, even when they share the sample's `.ptu` extension. This also applies to configured references for an inactive calibration method; those files are excluded if present but are not required.
 
 Each FOV card reports whether the required inputs were found:
 
@@ -83,11 +83,25 @@ If the decay file associated with the channel found by the previous step is a 4D
 
 Picking the right channel number is easy to get wrong when one file holds several non-empty channels, so when there is a choice to make, a preview of the first field of view appears under the dropdown: one thumbnail per candidate channel, with a ✅ on the one currently selected. Glance at it to confirm the channel you picked looks like the fluorophore you expect. 
 
-#### Fluorescence Lifetime Standard
+::: {#calibration-references}
 
-After finding the [fluorescence lifetime standard](#fluorescence-lifetime-standard), FLIM Playground checks that it is a 3D TIFF and that exactly one dimension matches the decay's time-bin count. A missing or ambiguous time axis prevents metadata export.
+#### IRF {#irf-reference-validation}
 
-Once the time axis is matched, the file path to the fluorescence lifetime standard, the fluorescence lifetime standard's lifetime, and the time axis will be recorded. 
+For channels that require IRF calibration, the metadata records the IRF file path. IRFs are checked when numerical extraction begins. The requirements depend on the [IRF format](data_extraction.qmd#irf):
+
+- **TXT/CSV:** the loaded curve must contain one value per sample time bin.
+- **PTU:** the file must contain non-empty, single-channel T3 imaging data. All pixels and repeated frames are summed into one IRF curve. Its time-bin count and bin width must match the sample's; its laser frequency must also match when a sample laser frequency is specified. The sample bin width is `duration / time_bins`. Small numerical rounding differences are tolerated, but the IRF is **not resampled** to fit a different acquisition grid.
+
+#### Fluorescence Lifetime Standard {#standard-reference-validation}
+
+When fluorescence lifetime standard calibration is selected, the standard is checked before metadata export. The requirements depend on the [standard format](data_extraction.qmd#fluorescence-lifetime-standard):
+
+- **TIFF:** the image must be 3D, with exactly one dimension matching the sample's time-bin count so that the time axis can be identified. A missing or ambiguous time axis prevents metadata export.
+- **PTU:** the file must contain non-empty, single-channel T3 imaging data. All pixels and repeated frames are summed into one standard reference curve. Its time-bin count and bin width must match the sample's; its laser frequency must also match when a sample laser frequency is specified. The sample bin width is `duration / time_bins`. Small numerical rounding differences are tolerated, but the standard is **not resampled** to fit a different acquisition grid.
+
+The metadata records the standard's file path, known lifetime, and time axis. For a PTU standard, the app supplies the time axis automatically from the integrated reference curve.
+
+:::
 
 ### Result Preview and Export
 
