@@ -558,7 +558,7 @@ div.csl-indent {
 <li><a href="./irf_calibration.html#fit-calibration">Fit Calibration</a></li>
 <li><a href="./irf_calibration.html#fit-free-calibration">Fit-Free IRF Calibration</a></li>
 </ul></li>
-<li><a href="./lifetime_fit_free.html#fluorescence-lifetime-standard">Fluorescence lifetime standard</a>: calibrates phasors with a reference dye during extraction.</li>
+<li><a href="./lifetime_fit_free.html#fit-free-standard-calibration">Fluorescence lifetime standard</a>: calibrates phasors with a reference dye during extraction.</li>
 <li>Per-channel feature extraction includes:
 <ul>
 <li><a href="lifetime_fit.html">Lifetime fitting features</a>: fit an exponential decay curve to the measured decay and extract lifetime features per cell ROI.</li>
@@ -601,11 +601,12 @@ div.csl-indent {
 </section>
 <section id="irf" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="irf"><span class="header-section-number">2.2.3</span> IRF</h3>
-<p>IRF must be a 1D array. Currently, the supported formats are (extendable to more formats in the future):</p>
+<p>The IRF is used as a 1D reference curve, with one value per decay time bin. Supported formats are:</p>
 <ul>
 <li><code>.txt</code>: it uses <code>np.loadtxt</code> to parse a txt file. It returns a 1D array if the IRF numbers are in one row or in one column.<br>
 </li>
 <li><code>.csv</code>: comma-separated IRF values. The resulting IRF must contain one value per decay time bin.</li>
+<li><code>.ptu</code>: single-channel T3 imaging data. All pixels and repeated frames are summed into one reference curve. The acquisition timing must match the sample; see <a href="./fov_metadata.html#calibration-references">calibration reference validation</a>.</li>
 </ul>
 </section>
 <section id="spcimage-t1" class="level3" data-number="2.2.4">
@@ -621,6 +622,7 @@ div.csl-indent {
 <p>If the fluorescence lifetime standard-based calibration is chosen, users are expected to provide the fluorescence lifetime standard file.</p>
 <ul>
 <li><code>.tiff</code>/<code>.tif</code>: a 3D array, with one dimension representing the time axis.</li>
+<li><code>.ptu</code>: single-channel T3 imaging data. All pixels and repeated frames are summed into one reference curve. The acquisition timing must match the sample; see <a href="./fov_metadata.html#calibration-references">calibration reference validation</a>.</li>
 </ul>
 </section>
 <section id="intensity-2d" class="level3" data-number="2.2.6">

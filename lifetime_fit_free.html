@@ -559,7 +559,11 @@ window.Quarto = {
    
   <ul>
   <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link active" data-scroll-target="#preprocessing"><span class="header-section-number">8.1</span> Preprocessing</a></li>
-  <li><a href="#fluorescence-lifetime-standard" id="toc-fluorescence-lifetime-standard" class="nav-link" data-scroll-target="#fluorescence-lifetime-standard"><span class="header-section-number">8.2</span> Fluorescence lifetime standard</a></li>
+  <li><a href="#calibration-method" id="toc-calibration-method" class="nav-link" data-scroll-target="#calibration-method"><span class="header-section-number">8.2</span> Calibration method</a>
+  <ul class="collapse">
+  <li><a href="#irf" id="toc-irf" class="nav-link" data-scroll-target="#irf"><span class="header-section-number">8.2.1</span> IRF</a></li>
+  <li><a href="#fit-free-standard-calibration" id="toc-fit-free-standard-calibration" class="nav-link" data-scroll-target="#fit-free-standard-calibration"><span class="header-section-number">8.2.2</span> Fluorescence lifetime standard</a></li>
+  </ul></li>
   <li><a href="#phasor-features" id="toc-phasor-features" class="nav-link" data-scroll-target="#phasor-features"><span class="header-section-number">8.3</span> Phasor features</a>
   <ul class="collapse">
   <li><a href="#step-1-raw-phasor-coordinates" id="toc-step-1-raw-phasor-coordinates" class="nav-link" data-scroll-target="#step-1-raw-phasor-coordinates"><span class="header-section-number">8.3.1</span> Step 1: raw phasor coordinates</a></li>
@@ -603,79 +607,144 @@ window.Quarto = {
 <li><strong>IRF shifting</strong> is applied only when the chosen calibration method is IRF shift calibration. The IRF is shifted using the shift values as described in the <a href="./irf_calibration.html#shift-irf">Shift IRF step</a>. Under fluorescence lifetime standard calibration, no IRF shift is applied.</li>
 </ul>
 </section>
-<section id="fluorescence-lifetime-standard" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="fluorescence-lifetime-standard"><span class="header-section-number">8.2</span> Fluorescence lifetime standard</h2>
-<p>A calibration dye with a known lifetime provides phasor calibration without an IRF shift. In <a href="./data_extraction_config.html#calibration-method">Home → Configuration</a>, select <strong>Fluorescence Lifetime Standard</strong>, enter its known lifetime, and set each channel’s reference-file suffix. The app applies this calibration during <code>Lifetime fit free</code> extraction, after <a href="#preprocessing">offset subtraction</a>.</p>
-<p>The reference’s measured phasor and known lifetime determine the correction applied to each cell’s coordinates, using <code>phasorpy</code>’s <a href="https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate"><code>lifetime.phasor_calibrate</code></a>. The <a href="#step-2-calibrated-phasor-coordinates">calibrated-coordinate equations</a> below show both calibration methods.</p>
-<p>Selecting raw <code>Lifetime fit</code> as well still requires <a href="./irf_calibration.html#fit-calibration">IRF shift calibration for fitting</a>; the dye calibrates the phasor features.</p>
+<section id="calibration-method" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="calibration-method"><span class="header-section-number">8.2</span> Calibration method</h2>
+<p>In <a href="./data_extraction_config.html#calibration-method">Home → Configuration</a>, choose <strong>IRF</strong> or <strong>Fluorescence Lifetime Standard</strong> for <code>Lifetime fit free</code> extraction. This choice determines the reference and the correction applied in <a href="#step-2-calibrated-phasor-coordinates">Step 2</a>. Both methods use the same <a href="#preprocessing">offset subtraction</a> for each cell decay.</p>
+<section id="irf" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="irf"><span class="header-section-number">8.2.1</span> IRF</h3>
+<p>Provide an IRF for each channel that uses this method, then complete <a href="./irf_calibration.html#fit-free-calibration">fit-free IRF calibration</a>. The app shifts the IRF using the selected shift values and calculates its first- and second-harmonic phasors. It divides each cell’s raw phasor by the shifted IRF phasor at the same harmonic.</p>
+</section>
+<section id="fit-free-standard-calibration" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="fit-free-standard-calibration"><span class="header-section-number">8.2.2</span> Fluorescence lifetime standard</h3>
+<span id="fluorescence-lifetime-standard"></span>
+<p>Provide a calibration dye with a known lifetime, enter that lifetime in <strong>nanoseconds</strong>, and set each channel’s standard-file suffix. This method does not apply an IRF shift to the phasor calculation.</p>
+<p>The app calculates the standard’s measured phasor separately at each harmonic. PhasorPy’s <a href="https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate"><code>lifetime.phasor_calibrate</code></a> uses those measurements and the known lifetime to correct each cell’s phasor at the matching harmonic.</p>
+<p>Selecting raw <code>Lifetime fit</code> as well still requires <a href="./irf_calibration.html#fit-calibration">IRF shift calibration for fitting</a>; the standard only calibrates the phasor features.</p>
+</section>
 </section>
 <section id="phasor-features" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="phasor-features"><span class="header-section-number">8.3</span> Phasor features</h2>
+<p>The steps below describe <strong>default phases</strong>, followed by IRF or lifetime-standard calibration and lifetime conversion. FLIM Playground uses this workflow when the supplied time window matches one laser period. Its <a href="#using-explicit-sample-phases">explicit-phase calculation for other windows</a> is described in the collapsible note at the end.</p>
 <section id="step-1-raw-phasor-coordinates" class="level3" data-number="8.3.1">
 <h3 data-number="8.3.1" class="anchored" data-anchor-id="step-1-raw-phasor-coordinates"><span class="header-section-number">8.3.1</span> Step 1: raw phasor coordinates</h3>
-<p>The reference implementation from <a href="https://www.phasorpy.org/">phasorpy</a> assumes the decay curve comes from one period and time bins are evenly spaced (untruncated). So, their calculation is frequency (<span class="math inline">\(f\)</span>) and time (<span class="math inline">\(T\)</span>) independent. However, there are cases when the decay curve is truncated due to the deadtime of the system. For example, when the laser frequency is <span class="math inline">\(f = 0.08\)</span> GHz, the theoretical period is <span class="math inline">\(T = 12.5\)</span> ns, but in practice the time window is truncated to <span class="math inline">\(T = 10\)</span> ns. FLIM Playground applies a custom implementation to the truncated decay curve. (The <code>sample_phase</code> option can be used to account for the truncation but it does not handle the second or higher harmonics)</p>
-<section id="untruncated-decay-curve" class="level4">
-<h4 class="anchored" data-anchor-id="untruncated-decay-curve">Untruncated decay curve</h4>
-<p>It uses the <a href="https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal"><code>phasor_from_signal</code></a> function from the <a href="https://www.phasorpy.org/">phasorpy</a> package to calculate the uncalibrated phasor coordinates <code>g_raw</code> and <code>s_raw</code>, <code>g_raw_2nd</code> and <code>s_raw_2nd</code>, the first and second harmonics’ real and imaginary parts, from the cell decay curve.</p>
-<p>Either <code>g_irf</code>, <code>s_irf</code>, <code>g_irf_2nd</code>, and <code>s_irf_2nd</code> from the IRF, or <code>ref_mean</code>, <code>ref_real</code>, <code>ref_imag</code> from the fluorescence lifetime standard, depending on the chosen <a href="./data_extraction_config.html#calibration-method">calibration method</a>, are calculated using the same function.</p>
-<p>Mathematically, the raw phasor coordinates are calculated as (copied from the <a href="https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal">phasorpy</a> documentation):</p>
+<section id="assuming-one-full-laser-period" class="level4">
+<h4 class="anchored" data-anchor-id="assuming-one-full-laser-period">Default phases</h4>
+<p>Let <span class="math inline">\(T\)</span> be the supplied window’s <code>duration</code> in ns and <span class="math inline">\(K\)</span> its number of bins. PhasorPy’s <a href="https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal"><code>phasor_from_signal</code></a> assigns phases <span class="math inline">\(2\pi hk/K\)</span>, where <span class="math inline">\(h\)</span> is the harmonic and <span class="math inline">\(k=0,\ldots,K-1\)</span> is the bin index. <strong>The raw transform uses bin positions and count; neither <code>duration</code> nor <code>laser_rate</code> is passed to it.</strong> The stored bins and photon counts are unchanged.</p>
+<p>For bin times <span class="math inline">\(t_k=kT/K\)</span>, these default phases correspond to an <strong>analysis frequency of <span class="math inline">\(1/T\)</span></strong>. In the matching-window case described here, that equals the laser frequency (<code>laser_rate</code>, in GHz), which is used in the calibration and lifetime equations below. For a decay <span class="math inline">\(F_k\)</span>:</p>
 <p><span class="math display">\[
-F_{\mathrm{DC}}=\frac{1}{K}\sum_{k=0}^{K-1}F_k,\quad
-g_{\mathrm{raw}}=\frac{1}{F_{\mathrm{DC}}}\frac{1}{K}\sum_{k=0}^{K-1}F_k\cos\!\left(2\pi h \frac{k}{K}\right),\quad
-s_{\mathrm{raw}}=\frac{1}{F_{\mathrm{DC}}}\frac{1}{K}\sum_{k=0}^{K-1}F_k\sin\!\left(2\pi h \frac{k}{K}\right)
-\]</span> where <span class="math inline">\(K\)</span> is the number of time bins, <span class="math inline">\(F_k\)</span> is the decay curve, and <span class="math inline">\(h\)</span> is the harmonic number.</p>
-</section>
-<section id="truncated-decay-curve" class="level4">
-<h4 class="anchored" data-anchor-id="truncated-decay-curve">Truncated decay curve</h4>
-<p>The phasor coordinates of the IRF and the decay curves of both harmonics are calculated using the time axis <span class="math inline">\(t_k = k\,(T/K)\;\;(k=0,\ldots,K-1)\)</span> and the angular frequency <span class="math inline">\(\omega = 2\pi\,hf\)</span>:</p>
-<p><span class="math display">\[
-g_{\mathrm{raw}}
-=\frac{\sum_{k=0}^{K-1} F_k \cos\!\big(\omega\, t_k\big)}
-        {\sum_{k=0}^{K-1} F_k},\quad
-s_{\mathrm{raw}}
-=\frac{\sum_{k=0}^{K-1} F_k \sin\!\big(\omega\, t_k\big)}
-        {\sum_{k=0}^{K-1} F_k}
+\begin{aligned}
+g_{\mathrm{raw}}^{(h)} &amp;=
+\frac{\sum_{k=0}^{K-1}F_k\cos\!\left(2\pi h k/K\right)}
+     {\sum_{k=0}^{K-1}F_k},\\
+s_{\mathrm{raw}}^{(h)} &amp;=
+\frac{\sum_{k=0}^{K-1}F_k\sin\!\left(2\pi h k/K\right)}
+     {\sum_{k=0}^{K-1}F_k}.
+\end{aligned}
 \]</span></p>
-<p>This formula is equivalent to the untruncated formula when <span class="math inline">\(fT = 1\)</span>.</p>
-<p>For the fluorescence lifetime standard, the phasor coordinates are calculated using <code>phasorpy</code>’s <code>phasor_from_signal</code> and the <code>sample_phase</code> option is set to <span class="math inline">\(\omega t_k\)</span>.</p>
+<p>In this default-phase workflow, the app calls <code>phasor_from_signal</code> with <code>harmonic=1</code> and <code>harmonic=2</code> for each cell decay to obtain <code>g_raw</code>, <code>s_raw</code>, <code>g_raw_2nd</code>, and <code>s_raw_2nd</code>.</p>
+<p>With <strong>IRF calibration</strong>, it makes the same two calls for the shifted IRF, obtaining <code>g_irf</code>, <code>s_irf</code>, <code>g_irf_2nd</code>, and <code>s_irf_2nd</code>.</p>
+<p>With <strong>fluorescence lifetime standard calibration</strong>, it calculates the reference values separately for each harmonic as shown below. <code>reference_image</code> is the loaded standard decay array, and <code>reference_time_axis</code> is its zero-based time-bin axis (for example, <code>2</code> for an array shaped <code>(height, width, time_bins)</code>).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasorpy <span class="im">import</span> phasor</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ref_mean, ref_real, ref_imag <span class="op">=</span> phasor.phasor_from_signal(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    reference_image, axis<span class="op">=</span>reference_time_axis, harmonic<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ref_mean_2nd, ref_real_2nd, ref_imag_2nd <span class="op">=</span> phasor.phasor_from_signal(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    reference_image, axis<span class="op">=</span>reference_time_axis, harmonic<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="step-2-calibrated-phasor-coordinates" class="level3" data-number="8.3.2">
 <h3 data-number="8.3.2" class="anchored" data-anchor-id="step-2-calibrated-phasor-coordinates"><span class="header-section-number">8.3.2</span> Step 2: calibrated phasor coordinates</h3>
-<p>To get the calibrated phasor coordinates <code>g</code>, <code>s</code>, <code>g_2nd</code>, and <code>s_2nd</code>, FLIM Playground uses either</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasorpy <span class="im">import</span> phasor</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>g, s <span class="op">=</span> phasor.phasor_divide(g_raw, s_raw, g_irf, s_irf)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>g_2nd, s_2nd <span class="op">=</span> phasor.phasor_divide(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    g_raw_2nd, s_raw_2nd, g_irf_2nd, s_irf_2nd</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>or</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasorpy <span class="im">import</span> lifetime</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>g, s <span class="op">=</span> lifetime.phasor_calibrate(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    g_raw, s_raw, ref_mean, ref_real, ref_imag,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    frequency<span class="op">=</span>laser_rate,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    lifetime<span class="op">=</span>reference_dye_lifetime,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>g_2nd, s_2nd <span class="op">=</span> lifetime.phasor_calibrate(</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    g_raw_2nd, s_raw_2nd, ref_mean, ref_real, ref_imag,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    frequency<span class="op">=</span>laser_rate,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    lifetime<span class="op">=</span>reference_dye_lifetime,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    harmonic<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The <code>laser_rate</code> is specified during the <a href="./fov_metadata.html#laser-frequency">fov metadata extraction</a> and the <a href="./data_extraction_config.html#laser-frequency">configuration interface</a>.</p>
+<p>Apply the selected calibration using the reference phasor at the matching harmonic.</p>
+<section id="irf-calibration" class="level4">
+<h4 class="anchored" data-anchor-id="irf-calibration">IRF calibration</h4>
+<p>FLIM Playground divides each raw cell phasor by the shifted IRF phasor at the same harmonic to obtain <code>g</code>, <code>s</code>, <code>g_2nd</code>, and <code>s_2nd</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasorpy <span class="im">import</span> phasor</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>g, s <span class="op">=</span> phasor.phasor_divide(g_raw, s_raw, g_irf, s_irf)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>g_2nd, s_2nd <span class="op">=</span> phasor.phasor_divide(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    g_raw_2nd, s_raw_2nd, g_irf_2nd, s_irf_2nd</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="fluorescence-lifetime-standard-calibration" class="level4">
+<h4 class="anchored" data-anchor-id="fluorescence-lifetime-standard-calibration">Fluorescence lifetime standard calibration</h4>
+<p>FLIM Playground uses the known lifetime and the standard’s measured reference values for each harmonic calculated in <a href="#step-1-raw-phasor-coordinates">Step 1</a>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasorpy <span class="im">import</span> lifetime</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>g, s <span class="op">=</span> lifetime.phasor_calibrate(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    g_raw, s_raw, ref_mean, ref_real, ref_imag,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    frequency<span class="op">=</span>laser_rate <span class="op">*</span> <span class="dv">1000</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    lifetime<span class="op">=</span>reference_dye_lifetime,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>g_2nd, s_2nd <span class="op">=</span> lifetime.phasor_calibrate(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    g_raw_2nd, s_raw_2nd,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    ref_mean_2nd, ref_real_2nd, ref_imag_2nd,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    frequency<span class="op">=</span>laser_rate <span class="op">*</span> <span class="dv">1000</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    lifetime<span class="op">=</span>reference_dye_lifetime,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    harmonic<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>laser_rate</code> is entered in <strong>GHz</strong> in <a href="./fov_metadata.html#laser-frequency">FOV metadata</a> or <a href="./data_extraction_config.html#laser-frequency">Configuration</a>. PhasorPy expects <strong>MHz</strong>, so both calls multiply by 1000: <code>0.08</code> GHz becomes <code>80</code> MHz. The <code>reference_dye_lifetime</code> remains in <strong>nanoseconds</strong>. Using <code>harmonic=2</code> calibrates the second-harmonic coordinates at twice the laser frequency.</p>
+</section>
 </section>
 <section id="step-3-phasor-derived-lifetime" class="level3" data-number="8.3.3">
 <h3 data-number="8.3.3" class="anchored" data-anchor-id="step-3-phasor-derived-lifetime"><span class="header-section-number">8.3.3</span> Step 3: phasor-derived lifetime</h3>
 <p><code>Tau_phase</code> and <code>Tau_mod</code> are calculated using the first harmonic’s phasor coordinates <code>g</code> and <code>s</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> laser_rate</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> np.arctan2(s, g) </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> np.sqrt(g<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> s<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>tau_phase <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>w <span class="op">*</span> np.tan(phi)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>tau_mod <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>w <span class="op">*</span> np.sqrt(<span class="dv">1</span><span class="op">/</span>mod<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> laser_rate</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> np.arctan2(s, g) </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> np.sqrt(g<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> s<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>tau_phase <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>w <span class="op">*</span> np.tan(phi)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>tau_mod <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>w <span class="op">*</span> np.sqrt(<span class="dv">1</span><span class="op">/</span>mod<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="math display">\[
 \phi = \operatorname{atan2}(s,\,g), \mathrm{mod} = \sqrt{g^{2}+s^{2}}, \tau_{\phi} = \frac{\tan \phi}{\omega}, \tau_{\mathrm{mod}} = \frac{1}{\omega}\sqrt{\frac{1}{\mathrm{mod}^{2}}-1}
 \]</span></p>
 <p>Because <span class="math inline">\(\omega\)</span> is derived from the laser rate in GHz, <code>Tau_phase</code> and <code>Tau_mod</code> are expressed in <strong>nanoseconds</strong>. Note that this differs from the <a href="lifetime_fit.html">Lifetime fit</a> extractor, whose lifetime columns are exported in picoseconds.</p>
+<div id="using-explicit-sample-phases" class="callout callout-style-default callout-note callout-titled" title="Explicit sample phases">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Explicit sample phases
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>FLIM Playground uses explicit phases when the supplied time window differs from one laser period by more than a small rounding tolerance. It then calculates phasors at the <strong>laser frequency</strong>, using both <code>duration</code> and <code>laser_rate</code> to place each bin within the laser cycle. A shortened acquisition window or a small difference caused by PTU bin rounding can select this branch; it is not a test for whether the acquisition was complete.</p>
+<p>For example, a 10 ns window with a 12.5 ns laser period covers 80% of a laser cycle. Let <span class="math inline">\(f\)</span> be <code>laser_rate</code>, <span class="math inline">\(P=1/f\)</span> the laser period, and <span class="math inline">\(T\)</span> the supplied window’s duration. The bin times are <span class="math inline">\(t_k=kT/K\)</span>, with first-harmonic phases <span class="math inline">\(\phi_k=2\pi t_k/P=2\pi f t_k\)</span>. At harmonic <span class="math inline">\(h\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+g_{\mathrm{raw}}^{(h)} &amp;=
+\frac{\sum_{k=0}^{K-1} F_k \cos(h\phi_k)}
+     {\sum_{k=0}^{K-1} F_k},\\
+s_{\mathrm{raw}}^{(h)} &amp;=
+\frac{\sum_{k=0}^{K-1} F_k \sin(h\phi_k)}
+     {\sum_{k=0}^{K-1} F_k}.
+\end{aligned}
+\]</span></p>
+<p>For <strong>cell decays</strong> and the <strong>shifted IRF</strong>, the app evaluates these sums directly. For a <strong>fluorescence lifetime standard</strong>, it supplies the same phases through PhasorPy’s <code>sample_phase</code> argument. The standard must have the same bin count and spacing as the sample:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasorpy <span class="im">import</span> phasor</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>time_bins <span class="op">=</span> reference_image.shape[reference_time_axis]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>time_axis <span class="op">=</span> np.arange(time_bins) <span class="op">*</span> (duration <span class="op">/</span> time_bins)  <span class="co"># ns</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> laser_rate <span class="op">*</span> time_axis</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ref_mean, ref_real, ref_imag <span class="op">=</span> phasor.phasor_from_signal(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    reference_image, axis<span class="op">=</span>reference_time_axis,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    sample_phase<span class="op">=</span>phi, harmonic<span class="op">=</span><span class="dv">1</span>, use_fft<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ref_mean_2nd, ref_real_2nd, ref_imag_2nd <span class="op">=</span> phasor.phasor_from_signal(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    reference_image, axis<span class="op">=</span>reference_time_axis,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    sample_phase<span class="op">=</span><span class="dv">2</span> <span class="op">*</span> phi, harmonic<span class="op">=</span><span class="dv">1</span>, use_fft<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use <code>harmonic=1</code> and <code>use_fft=False</code> with <code>sample_phase</code>. The doubled phases select the second harmonic; <code>harmonic=2</code> with <code>sample_phase</code> would raise an error. The resulting coordinates enter the calibration and lifetime calculations in Steps 2 and 3.</p>
+<p><strong>Explicit phases preserve bin timing but do not recover missing fluorescence.</strong> For a substantially truncated window, the usual calibration and lifetime equations can remain biased; a standard measured over the same window does not generally remove that bias.</p>
+<p>Using default phases over the 10 ns window would instead mean analysis at <strong>100 MHz</strong>, requiring that frequency in calibration and lifetime conversion. This is a different approach with its own limitations for real IRFs and mixtures. Release 1.13.1 retains the <strong>80 MHz laser frequency</strong> in this example and uses explicit phases. See the <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7990508/">analysis of truncation and phasor calibration</a> for these distinctions.</p>
+</div>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">

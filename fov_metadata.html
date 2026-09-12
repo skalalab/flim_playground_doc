@@ -589,7 +589,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="fov-file-paths"><span class="header-section-number">4.2.1</span> FOV File Paths</h3>
 <p>The first step is to find the fields of view:</p>
 <ul>
-<li>It finds all the files recursively in the folder path that ends with the 1st file suffix of the 1st channel.</li>
+<li>It finds files recursively in the folder path using the first per-FOV file suffix, skipping calibration suffixes.</li>
 <li>The prefix of all the matched files is considered to be the field of view name.
 <ul>
 <li>FOV name = file name - 1st file suffix</li>
@@ -599,7 +599,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>The file name to search = FOV name + other file suffixes for each file suffix</li>
 </ul>
-<p>The only exceptions are the calibration files, because they are not FOV-specific. They will be searched for based on their file suffixes only.</p>
+<p>Calibration files are shared across FOVs and are searched for by suffix alone, independently of the FOV name. For example, the same <code>standard.ptu</code> or <code>irf.ptu</code> will be used for every FOV in the folder. Files matching configured IRF or fluorescence lifetime standard suffixes are excluded from FOV discovery, even when they share the sample’s <code>.ptu</code> extension. This also applies to configured references for an inactive calibration method; those files are excluded if present but are not required.</p>
 <p>Each FOV card reports whether the required inputs were found:</p>
 <ul>
 <li><strong>Missing:</strong> no file matches the expected FOV name plus suffix, or no calibration file matches its suffix.</li>
@@ -628,11 +628,25 @@ Tip
 <p>If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channels to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there are any.</p>
 <p>Picking the right channel number is easy to get wrong when one file holds several non-empty channels, so when there is a choice to make, a preview of the first field of view appears under the dropdown: one thumbnail per candidate channel, with a ✅ on the one currently selected. Glance at it to confirm the channel you picked looks like the fluorophore you expect.</p>
 </section>
-<section id="fluorescence-lifetime-standard-1" class="level4">
-<h4 class="anchored" data-anchor-id="fluorescence-lifetime-standard-1">Fluorescence Lifetime Standard</h4>
-<p>After finding the <a href="#fluorescence-lifetime-standard">fluorescence lifetime standard</a>, FLIM Playground checks that it is a 3D TIFF and that exactly one dimension matches the decay’s time-bin count. A missing or ambiguous time axis prevents metadata export.</p>
-<p>Once the time axis is matched, the file path to the fluorescence lifetime standard, the fluorescence lifetime standard’s lifetime, and the time axis will be recorded.</p>
+<div id="calibration-references">
+<section id="irf-reference-validation" class="level4">
+<h4 class="anchored" data-anchor-id="irf-reference-validation">IRF</h4>
+<p>For channels that require IRF calibration, the metadata records the IRF file path. IRFs are checked when numerical extraction begins. The requirements depend on the <a href="./data_extraction.html#irf">IRF format</a>:</p>
+<ul>
+<li><strong>TXT/CSV:</strong> the loaded curve must contain one value per sample time bin.</li>
+<li><strong>PTU:</strong> the file must contain non-empty, single-channel T3 imaging data. All pixels and repeated frames are summed into one IRF curve. Its time-bin count and bin width must match the sample’s; its laser frequency must also match when a sample laser frequency is specified. The sample bin width is <code>duration / time_bins</code>. Small numerical rounding differences are tolerated, but the IRF is <strong>not resampled</strong> to fit a different acquisition grid.</li>
+</ul>
 </section>
+<section id="standard-reference-validation" class="level4">
+<h4 class="anchored" data-anchor-id="standard-reference-validation">Fluorescence Lifetime Standard</h4>
+<p>When fluorescence lifetime standard calibration is selected, the standard is checked before metadata export. The requirements depend on the <a href="./data_extraction.html#fluorescence-lifetime-standard">standard format</a>:</p>
+<ul>
+<li><strong>TIFF:</strong> the image must be 3D, with exactly one dimension matching the sample’s time-bin count so that the time axis can be identified. A missing or ambiguous time axis prevents metadata export.</li>
+<li><strong>PTU:</strong> the file must contain non-empty, single-channel T3 imaging data. All pixels and repeated frames are summed into one standard reference curve. Its time-bin count and bin width must match the sample’s; its laser frequency must also match when a sample laser frequency is specified. The sample bin width is <code>duration / time_bins</code>. Small numerical rounding differences are tolerated, but the standard is <strong>not resampled</strong> to fit a different acquisition grid.</li>
+</ul>
+<p>The metadata records the standard’s file path, known lifetime, and time axis. For a PTU standard, the app supplies the time axis automatically from the integrated reference curve.</p>
+</section>
+</div>
 </section>
 <section id="result-preview-and-export" class="level3" data-number="4.2.3">
 <h3 data-number="4.2.3" class="anchored" data-anchor-id="result-preview-and-export"><span class="header-section-number">4.2.3</span> Result Preview and Export</h3>

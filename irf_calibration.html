@@ -587,7 +587,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>The app evaluates these conditions separately for each channel. Estimate shifts for the channels that meet them, or reuse shifts already saved in the metadata. Then continue to <a href="./numerical_feature_extraction.html#feature-extraction">Numerical Feature Extraction</a>.</p>
-<p>A calibration dye is a <strong>Fluorescence Lifetime Standard</strong>: its reference-based phasor calibration runs during <a href="./lifetime_fit_free.html#fluorescence-lifetime-standard">fit-free feature extraction</a>. It does not trigger this IRF shift stage. A workflow with only intensity-only channels also proceeds directly to extraction.</p>
+<p>A calibration dye is a <strong>Fluorescence Lifetime Standard</strong>: its reference-based phasor calibration runs during <a href="./lifetime_fit_free.html#fit-free-standard-calibration">fit-free feature extraction</a>. It does not trigger this IRF shift stage. A workflow with only intensity-only channels also proceeds directly to extraction.</p>
 </section>
 <section id="input" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="input"><span class="header-section-number">6.2</span> Input</h2>
@@ -749,7 +749,7 @@ Note
 </section>
 <section id="fit-free-calibration" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="fit-free-calibration"><span class="header-section-number">6.4</span> Fit-Free IRF Calibration</h2>
-<p>This shift calibration applies to channels with <code>Lifetime fit free</code> selected and <a href="./data_extraction_config.html#calibration-method">calibration method</a> set to <code>IRF</code>, including pre-fitted FLIM channels when phasor features are requested. The <a href="./lifetime_fit_free.html#fluorescence-lifetime-standard">fluorescence lifetime standard</a> method instead calibrates phasors during extraction.</p>
+<p>This shift calibration applies to channels with <code>Lifetime fit free</code> selected and <a href="./data_extraction_config.html#calibration-method">calibration method</a> set to <code>IRF</code>, including pre-fitted FLIM channels when phasor features are requested. The <a href="./lifetime_fit_free.html#fit-free-standard-calibration">fluorescence lifetime standard</a> method instead calibrates phasors during extraction.</p>
 <p>Before calculating phasors, the app subtracts the mean signal in the final 10% of each cell’s decay and clips negative values to zero. See <a href="./lifetime_fit_free.html#preprocessing">fit-free preprocessing</a>.</p>
 <section id="shift-irf" class="level3" data-number="6.4.1">
 <h3 data-number="6.4.1" class="anchored" data-anchor-id="shift-irf"><span class="header-section-number">6.4.1</span> Shift IRF</h3>

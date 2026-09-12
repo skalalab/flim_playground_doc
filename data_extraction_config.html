@@ -618,7 +618,9 @@ Note
 </section>
 <section id="three-d4d-decay" class="level4">
 <h4 class="anchored" data-anchor-id="three-d4d-decay">3D/4D Decay</h4>
-<p>In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g.&nbsp;<code>.sdt</code>, <code>.ptu</code>). In addition to the spatial dimensions and the time dimension (<code>XYT</code>), the channel dimension may also be present, making it 4-dimensional (<code>CXYT</code>). <strong>FLIM Playground currently supports both <code>.sdt</code> and <code>.ptu</code> files up to those 4 dimensions.</strong> It reads the <code>duration</code> and the number of <code>time bins</code> from the decay file metadata. Some systems can also record a time stack, which is not supported yet.</p>
+<p>In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g.&nbsp;<code>.sdt</code>, <code>.ptu</code>). In addition to the spatial dimensions and the time dimension (<code>XYT</code>), the channel dimension may also be present, making it 4-dimensional (<code>CXYT</code>). <strong>FLIM Playground currently supports both <code>.sdt</code> and <code>.ptu</code> files as 3D/4D decay images.</strong> Here, <code>T</code> is the photon-arrival time axis within a laser pulse interval.</p>
+<p>It reads the <code>duration</code> and the number of <code>time bins</code> from the decay file’s acquisition metadata. For PTU files, the bin count is the laser period divided by the TCSPC resolution, rounded down to a whole number of bins. The duration is <strong>bin count × TCSPC resolution</strong>, expressed in nanoseconds. This preserves the recorded bin width and can make the duration slightly shorter than the nominal laser period. The bin count may not necessary be the last time bin that happened to receive a photon.</p>
+<p>Repeated frames in a PTU file are summed into one decay image per FOV, and the <a href="./fov_metadata.html#decay-info-1">FOV metadata step</a> warns when frames have been combined. For actual time-lapse acquisitions, split the data into one file per time point before extraction so that the time points remain separate.</p>
 </section>
 <section id="three-d4d-pixel-pre-fit" class="level4">
 <h4 class="anchored" data-anchor-id="three-d4d-pixel-pre-fit">3D/4D pixel pre-fit</h4>
@@ -662,7 +664,7 @@ Note
 <p>When <code>Lifetime fit free</code> is selected, choose between two calibration methods:</p>
 <ul>
 <li><code>IRF</code>: <a href="./irf_calibration.html#irf-shift">shift-based calibration</a>.</li>
-<li><code>Fluorescence Lifetime Standard</code>: <a href="./lifetime_fit_free.html#fluorescence-lifetime-standard">reference-based calibration</a>.</li>
+<li><code>Fluorescence Lifetime Standard</code>: <a href="./lifetime_fit_free.html#fit-free-standard-calibration">reference-based calibration</a>.</li>
 </ul>
 <p>Since the instrumental response function (IRF) or the fluorescence lifetime standard is measured for each channel, they are set in the <a href="#per-channel-configurations">per-channel configurations</a>. The fluorescence lifetime standard’s lifetime is channel-agnostic.</p>
 <div class="quarto-figure quarto-figure-center">
