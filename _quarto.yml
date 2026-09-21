@@ -29,13 +29,16 @@ format:
     footnotes-hover: true
     include-after-body: giscus.html
     reference-location: document
-  pdf:
-    documentclass: scrreprt
-    pdf-engine: lualatex
-    latex-min-runs: 3
-    top-level-division: chapter
-    shift-headings: -1
-    title: "FLIM Playground Supplemental Manual"
-    author: []
-    date: ""
-    include-in-header: pdf-title.tex
+  # PDF output is disabled for now: LaTeX graphicx cannot read the .gif
+  # screenshots (extraction_ui_shots/cat.gif, logo.gif). Re-enable by
+  # uncommenting, and supply still images for the animated figures.
+  # pdf:
+  #   documentclass: scrreprt
+  #   pdf-engine: lualatex
+  #   latex-min-runs: 3
+  #   top-level-division: chapter
+  #   shift-headings: -1
+  #   title: "FLIM Playground Supplemental Manual"
+  #   author: []
+  #   date: ""
+  #   include-in-header: pdf-title.tex
