@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Lifetime Features (Fit-Free) – FLIM Playground</title>
+<title>11&nbsp; Quantitative Phase Imaging – FLIM Playground</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,62 +26,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -91,8 +36,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intensity_morphology.html" rel="next">
-<link href="./lifetime_fit.html" rel="prev">
+<link href="./derived_feature.html" rel="next">
+<link href="./intensity_texture.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -107,6 +52,9 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-37a0ccb6f5b9899fcb884e11bb6f7458.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -338,7 +286,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./lifetime_fit_free.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./qpi.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quantitative Phase Imaging</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -420,7 +368,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lifetime_fit_free.html" class="sidebar-item-text sidebar-link active">
+  <a href="./lifetime_fit_free.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></a>
   </div>
 </li>
@@ -438,7 +386,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qpi.html" class="sidebar-item-text sidebar-link">
+  <a href="./qpi.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quantitative Phase Imaging</span></span></a>
   </div>
 </li>
@@ -564,28 +512,27 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link active" data-scroll-target="#preprocessing"><span class="header-section-number">8.1</span> Preprocessing</a></li>
-  <li><a href="#calibration-method" id="toc-calibration-method" class="nav-link" data-scroll-target="#calibration-method"><span class="header-section-number">8.2</span> Calibration method</a>
+  <li><a href="#inputs-and-configuration" id="toc-inputs-and-configuration" class="nav-link active" data-scroll-target="#inputs-and-configuration"><span class="header-section-number">11.1</span> QPI-specific inputs</a></li>
+  <li><a href="#background-correction" id="toc-background-correction" class="nav-link" data-scroll-target="#background-correction"><span class="header-section-number">11.2</span> Background Correction</a>
   <ul class="collapse">
-  <li><a href="#irf" id="toc-irf" class="nav-link" data-scroll-target="#irf"><span class="header-section-number">8.2.1</span> IRF</a></li>
-  <li><a href="#fit-free-standard-calibration" id="toc-fit-free-standard-calibration" class="nav-link" data-scroll-target="#fit-free-standard-calibration"><span class="header-section-number">8.2.2</span> Fluorescence lifetime standard</a></li>
+  <li><a href="#inspect-the-correction" id="toc-inspect-the-correction" class="nav-link" data-scroll-target="#inspect-the-correction"><span class="header-section-number">11.2.1</span> Inspect the correction</a></li>
   </ul></li>
-  <li><a href="#phasor-features" id="toc-phasor-features" class="nav-link" data-scroll-target="#phasor-features"><span class="header-section-number">8.3</span> Phasor features</a>
+  <li><a href="#output-features" id="toc-output-features" class="nav-link" data-scroll-target="#output-features"><span class="header-section-number">11.3</span> Output Features</a>
   <ul class="collapse">
-  <li><a href="#step-1-raw-phasor-coordinates" id="toc-step-1-raw-phasor-coordinates" class="nav-link" data-scroll-target="#step-1-raw-phasor-coordinates"><span class="header-section-number">8.3.1</span> Step 1: raw phasor coordinates</a></li>
-  <li><a href="#step-2-calibrated-phasor-coordinates" id="toc-step-2-calibrated-phasor-coordinates" class="nav-link" data-scroll-target="#step-2-calibrated-phasor-coordinates"><span class="header-section-number">8.3.2</span> Step 2: calibrated phasor coordinates</a></li>
-  <li><a href="#step-3-phasor-derived-lifetime" id="toc-step-3-phasor-derived-lifetime" class="nav-link" data-scroll-target="#step-3-phasor-derived-lifetime"><span class="header-section-number">8.3.3</span> Step 3: phasor-derived lifetime</a></li>
+  <li><a href="#dry-mass-statistics" id="toc-dry-mass-statistics" class="nav-link" data-scroll-target="#dry-mass-statistics"><span class="header-section-number">11.3.1</span> Dry-mass statistics</a></li>
+  <li><a href="#spatial-texture" id="toc-spatial-texture" class="nav-link" data-scroll-target="#spatial-texture"><span class="header-section-number">11.3.2</span> Spatial texture</a></li>
+  <li><a href="#morphology-and-analysis" id="toc-morphology-and-analysis" class="nav-link" data-scroll-target="#morphology-and-analysis"><span class="header-section-number">11.3.3</span> Morphology and analysis</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/lifetime_fit_free.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/qpi.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./lifetime_fit_free.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./qpi.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quantitative Phase Imaging</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-lifetime-fit-free" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit-Free)</span></span></h1>
+<h1 class="title"><span id="sec-qpi" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quantitative Phase Imaging</span></span></h1>
 </div>
 
 
@@ -602,161 +549,173 @@ window.Quarto = {
 </header>
 
 
-<p>Phasor analysis provides a fast, model-free view of lifetimes by transforming fluorescence decays into phasor coordinates through a Fourier transform. This approach is considered “fit-free” because it does not require iterative curve fitting or predefined decay models—each decay is mapped directly to a point on the <a href="phasor_analysis.html">phasor plot</a>. It has the nice property that mono-exponential decays fall on the universal semicircle while mixtures lie inside as linear combinations, so clusters reveal distinct species and their fractional contributions. FLIM Playground currently extracts cell-level phasor features: <code>G(1st)</code>, <code>S(1st)</code>, <code>Tau_phase</code>, <code>Tau_mod</code>, <code>G(2nd)</code>, and <code>S(2nd)</code>. (Datasets extracted before this feature was renamed use <code>Tau_m</code>, which Data Analysis still recognizes.)</p>
-<p>Fit-free features in the final dataset are prefixed by the combination of the feature extractor name (i.e.&nbsp;<code>Lifetime fit free</code>) and the channel name, allowing <a href="data_analysis.html">Data Analysis</a> to group the features. For example, <code>Lifetime fit free_nadh: G(1st)</code> means the <span class="math inline">\(g\)</span> coordinate for this cell in the NAD(P)H channel.</p>
-<section id="preprocessing" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="preprocessing"><span class="header-section-number">8.1</span> Preprocessing</h2>
-<p>For image inputs, the app sums the pixel decays within each cell ROI labeled by the ROI <a href="./data_extraction_config.html#mask">mask</a> to obtain one cell decay<span class="citation" data-cites="Samimi2025"><sup><a href="#ref-Samimi2025" role="doc-biblioref">1</a></sup></span>. For <a href="./data_extraction_config.html#two-d-decay">2D decay inputs</a>, each CSV row already supplies a cell decay, so no mask is needed. Phasor features are calculated from each cell decay.</p>
-<p>Two preprocessing steps are then applied, and they are independent of each other:</p>
+<p>The <strong>QPI</strong> imaging modality extracts single-cell dry-mass measurements and spatial texture from a 2D optical path difference (OPD) image and a labeled cell mask. It can be used alone or alongside image-based FLIM and intensity-only channels in the <a href="./numerical_feature_extraction.html">Numerical workflow</a>.</p>
+<section id="inputs-and-configuration" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="inputs-and-configuration"><span class="header-section-number">11.1</span> QPI-specific inputs</h2>
+<p>Set the channel to <strong>QPI</strong> on the <a href="./data_extraction_config.html#imaging-modality">Configuration</a> page. That page is the source of truth for the QPI file formats, extractors, physical constants, mask, and file suffixes.</p>
+<p>For each FOV, pair a 2D OPD image with a matching <a href="./data_extraction_config.html#mask">label mask</a>; the two files must have identical dimensions. QPI dimensions must be consistent across QPI FOVs, but the QPI grid may differ from a FLIM grid. Cells are joined across modalities by FOV name and mask label, so the same label must identify the same cell.</p>
+<p>The input must already represent optical path difference. Phase-angle conversion, reconstruction, unwrapping, registration, and rescaling happen before extraction.</p>
+</section>
+<section id="background-correction" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="background-correction"><span class="header-section-number">11.2</span> Background Correction</h2>
+<p>Selecting <strong>Dry-mass statistics</strong> or <strong>Spatial texture</strong> requires a confirmed background recipe for each QPI channel. Click <strong>Start calibration</strong> to review it. A QPI-only calibration opens directly; a mixed workflow may first require <strong>Calibrate channels</strong> to estimate its FLIM shifts. A QPI channel selecting only <strong>Intensity morphology</strong> uses its mask and does not require background calibration.</p>
+<p>Each required channel has an open <strong>background correction</strong> expander. Its recipe is applied to every FOV in that channel; other channels can use different recipes.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Background choice</th>
+<th>Operation and controls</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>already corrected</strong></td>
+<td>Subtracts no additional background. Use it for an OPD image whose background has already been corrected.</td>
+</tr>
+<tr class="even">
+<td><strong>polynomial surface</strong></td>
+<td>Fits a smooth surface to background pixels outside the excluded cell region, then subtracts it. Choose degree <code>2</code>, <code>4</code>, or <code>6</code>. The fit iteratively rejects residuals beyond <code>2.5 × (1.4826 × MAD)</code> on either side of the median, over the full fit region, for at most 10 rounds.</td>
+</tr>
+<tr class="odd">
+<td><strong>inpainting</strong></td>
+<td>Fills the excluded cell region from its surroundings using biharmonic inpainting, smooths the resulting surface with a Gaussian filter, then subtracts it.</td>
+</tr>
+</tbody>
+</table>
+<p>The initial recipe uses a degree-4 polynomial and <strong>Cell exclusion (+% area)</strong> of <code>15</code>. For polynomial and inpainting correction, this control expands the combined cell-mask region by the requested percentage of its area before estimating the background; it is not a distance in pixels. Higher polynomial degrees can follow more curved backgrounds but need more background pixels. If the fit reports too few usable pixels, reduce the degree or exclusion expansion.</p>
+<section id="inspect-the-correction" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="inspect-the-correction"><span class="header-section-number">11.2.1</span> Inspect the correction</h3>
+<p>The background plot summarizes each FOV’s corrected background in <strong>nanometres</strong>, showing its 5th, 25th, 50th, 75th, and 95th percentiles. Click a FOV’s median point to inspect that field of view.</p>
 <ul>
-<li><strong>Offset subtraction</strong> is applied to every decay curve, regardless of the chosen <a href="./data_extraction_config.html#calibration-method">calibration method</a>. For each cell, the offset is estimated as the mean of the last 10% of the time bins of that cell’s own decay curve, subtracted from the curve, and any resulting negative values are clipped to zero. Note that this per-cell baseline is unrelated to the <code>offset</code> parameter fitted during <a href="./lifetime_fit.html">lifetime fitting</a>.</li>
-<li><strong>IRF shifting</strong> is applied only when the chosen calibration method is IRF shift calibration. The IRF is shifted using the shift values as described in the <a href="./irf_calibration.html#shift-irf">Shift IRF step</a>. Under fluorescence lifetime standard calibration, no IRF shift is applied.</li>
+<li><strong>Fit kept</strong> appears for polynomial correction and reports the fraction of background pixels retained by the fit. Below 85%, the app warns that the surface may be too low and masses may be inflated.</li>
+<li><strong>Negative pixels inside cells</strong> reports the fraction below zero after eroding each cell mask by two pixels. Use it with the line scan to assess whether the estimated surface is above the cell signal.</li>
+<li><strong>Cell for the line scan</strong> selects a cell, initially the largest ROI. <strong>Cell dry mass</strong> shows its signed mass in picograms using the configured pixel size, OPD unit, and α.</li>
+<li>The major-axis line scan compares <strong>raw</strong>, <strong>surface</strong>, and <strong>corrected</strong> OPD in nanometres. Dashed vertical lines mark the selected cell’s mask boundaries along the scan.</li>
 </ul>
-</section>
-<section id="calibration-method" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="calibration-method"><span class="header-section-number">8.2</span> Calibration method</h2>
-<p>In <a href="./data_extraction_config.html#calibration-method">Home → Configuration</a>, choose <strong>IRF</strong> or <strong>Fluorescence Lifetime Standard</strong> for <code>Lifetime fit free</code> extraction. This choice determines the reference and the correction applied in <a href="#step-2-calibrated-phasor-coordinates">Step 2</a>. Both methods use the same <a href="#preprocessing">offset subtraction</a> for each cell decay.</p>
-<section id="irf" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="irf"><span class="header-section-number">8.2.1</span> IRF</h3>
-<p>Provide an IRF for each channel that uses this method, then complete <a href="./irf_calibration.html#fit-free-calibration">fit-free IRF calibration</a>. The app shifts the IRF using the selected shift values and calculates its first- and second-harmonic phasors. It divides each cell’s raw phasor by the shifted IRF phasor at the same harmonic.</p>
-</section>
-<section id="fit-free-standard-calibration" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="fit-free-standard-calibration"><span class="header-section-number">8.2.2</span> Fluorescence lifetime standard</h3>
-<span id="fluorescence-lifetime-standard"></span>
-<p>Provide a calibration dye with a known lifetime, enter that lifetime in <strong>nanoseconds</strong>, and set each channel’s standard-file suffix. This method does not apply an IRF shift to the phasor calculation.</p>
-<p>The app calculates the standard’s measured phasor separately at each harmonic. PhasorPy’s <a href="https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate"><code>lifetime.phasor_calibrate</code></a> uses those measurements and the known lifetime to correct each cell’s phasor at the matching harmonic.</p>
-<p>Selecting raw <code>Lifetime fit</code> as well still requires <a href="./irf_calibration.html#fit-calibration">IRF shift calibration for fitting</a>; the standard only calibrates the phasor features.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="extraction_ui_shots/qpi_calibration.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Compare corrected backgrounds across FOVs and inspect a selected cell’s line scan."><img src="extraction_ui_shots/qpi_calibration.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="QPI background-correction expander with method controls, per-FOV background summaries, diagnostic readouts, cell selection, dry mass, and a line scan of raw, surface, and corrected OPD."></a></p>
+</figure>
+</div>
+<figcaption>Compare corrected backgrounds across FOVs and inspect a selected cell’s line scan.</figcaption>
+</figure>
+</div>
+<p>Review every required channel, then click <strong>Confirm calibration for each channel</strong>. The app records the chosen method, degree, and exclusion percentage in <code>{channel}_bg_method</code>, <code>{channel}_bg_degree</code>, and <code>{channel}_bg_expand_pct</code> in the automatically saved metadata. These are settings; calibration does not write a corrected image file. Extraction applies the confirmed recipe through the same correction used for the preview.</p>
 </section>
 </section>
-<section id="phasor-features" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="phasor-features"><span class="header-section-number">8.3</span> Phasor features</h2>
-<p>The steps below describe <strong>default phases</strong>, followed by IRF or lifetime-standard calibration and lifetime conversion. FLIM Playground uses this workflow when the supplied time window matches one laser period. Its <a href="#using-explicit-sample-phases">explicit-phase calculation for other windows</a> is described in the collapsible note at the end.</p>
-<section id="step-1-raw-phasor-coordinates" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="step-1-raw-phasor-coordinates"><span class="header-section-number">8.3.1</span> Step 1: raw phasor coordinates</h3>
-<section id="assuming-one-full-laser-period" class="level4">
-<h4 class="anchored" data-anchor-id="assuming-one-full-laser-period">Default phases</h4>
-<p>Let <span class="math inline">\(T\)</span> be the supplied window’s <code>duration</code> in ns and <span class="math inline">\(K\)</span> its number of bins. PhasorPy’s <a href="https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_from_signal"><code>phasor_from_signal</code></a> assigns phases <span class="math inline">\(2\pi hk/K\)</span>, where <span class="math inline">\(h\)</span> is the harmonic and <span class="math inline">\(k=0,\ldots,K-1\)</span> is the bin index. <strong>The raw transform uses bin positions and count; neither <code>duration</code> nor <code>laser_rate</code> is passed to it.</strong> The stored bins and photon counts are unchanged.</p>
-<p>For bin times <span class="math inline">\(t_k=kT/K\)</span>, these default phases correspond to an <strong>analysis frequency of <span class="math inline">\(1/T\)</span></strong>. In the matching-window case described here, that equals the laser frequency (<code>laser_rate</code>, in GHz), which is used in the calibration and lifetime equations below. For a decay <span class="math inline">\(F_k\)</span>:</p>
+<section id="output-features" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="output-features"><span class="header-section-number">11.3</span> Output Features</h2>
+<p>Click <strong>Start extraction</strong> after confirmation. OPD values are converted to micrometres, and each corrected pixel contributes</p>
 <p><span class="math display">\[
-\begin{aligned}
-g_{\mathrm{raw}}^{(h)} &amp;=
-\frac{\sum_{k=0}^{K-1}F_k\cos\!\left(2\pi h k/K\right)}
-     {\sum_{k=0}^{K-1}F_k},\\
-s_{\mathrm{raw}}^{(h)} &amp;=
-\frac{\sum_{k=0}^{K-1}F_k\sin\!\left(2\pi h k/K\right)}
-     {\sum_{k=0}^{K-1}F_k}.
-\end{aligned}
+m_i = \frac{\mathrm{OPD}_{i,\mu\mathrm{m}}\,p^2}{\alpha},
 \]</span></p>
-<p>In this default-phase workflow, the app calls <code>phasor_from_signal</code> with <code>harmonic=1</code> and <code>harmonic=2</code> for each cell decay to obtain <code>g_raw</code>, <code>s_raw</code>, <code>g_raw_2nd</code>, and <code>s_raw_2nd</code>.</p>
-<p>With <strong>IRF calibration</strong>, it makes the same two calls for the shifted IRF, obtaining <code>g_irf</code>, <code>s_irf</code>, <code>g_irf_2nd</code>, and <code>s_irf_2nd</code>.</p>
-<p>With <strong>fluorescence lifetime standard calibration</strong>, it calculates the reference values separately for each harmonic as shown below. <code>reference_image</code> is the loaded standard decay array, and <code>reference_time_axis</code> is its zero-based time-bin axis (for example, <code>2</code> for an array shaped <code>(height, width, time_bins)</code>).</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasorpy <span class="im">import</span> phasor</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ref_mean, ref_real, ref_imag <span class="op">=</span> phasor.phasor_from_signal(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    reference_image, axis<span class="op">=</span>reference_time_axis, harmonic<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ref_mean_2nd, ref_real_2nd, ref_imag_2nd <span class="op">=</span> phasor.phasor_from_signal(</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    reference_image, axis<span class="op">=</span>reference_time_axis, harmonic<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="step-2-calibrated-phasor-coordinates" class="level3" data-number="8.3.2">
-<h3 data-number="8.3.2" class="anchored" data-anchor-id="step-2-calibrated-phasor-coordinates"><span class="header-section-number">8.3.2</span> Step 2: calibrated phasor coordinates</h3>
-<p>Apply the selected calibration using the reference phasor at the matching harmonic.</p>
-<section id="irf-calibration" class="level4">
-<h4 class="anchored" data-anchor-id="irf-calibration">IRF calibration</h4>
-<p>FLIM Playground divides each raw cell phasor by the shifted IRF phasor at the same harmonic to obtain <code>g</code>, <code>s</code>, <code>g_2nd</code>, and <code>s_2nd</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasorpy <span class="im">import</span> phasor</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>g, s <span class="op">=</span> phasor.phasor_divide(g_raw, s_raw, g_irf, s_irf)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>g_2nd, s_2nd <span class="op">=</span> phasor.phasor_divide(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    g_raw_2nd, s_raw_2nd, g_irf_2nd, s_irf_2nd</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="fluorescence-lifetime-standard-calibration" class="level4">
-<h4 class="anchored" data-anchor-id="fluorescence-lifetime-standard-calibration">Fluorescence lifetime standard calibration</h4>
-<p>FLIM Playground uses the known lifetime and the standard’s measured reference values for each harmonic calculated in <a href="#step-1-raw-phasor-coordinates">Step 1</a>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasorpy <span class="im">import</span> lifetime</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>g, s <span class="op">=</span> lifetime.phasor_calibrate(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    g_raw, s_raw, ref_mean, ref_real, ref_imag,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    frequency<span class="op">=</span>laser_rate <span class="op">*</span> <span class="dv">1000</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    lifetime<span class="op">=</span>reference_dye_lifetime,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>g_2nd, s_2nd <span class="op">=</span> lifetime.phasor_calibrate(</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    g_raw_2nd, s_raw_2nd,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    ref_mean_2nd, ref_real_2nd, ref_imag_2nd,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    frequency<span class="op">=</span>laser_rate <span class="op">*</span> <span class="dv">1000</span>,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    lifetime<span class="op">=</span>reference_dye_lifetime,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    harmonic<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The laser rate is entered in <strong>MHz</strong> in <a href="./fov_metadata.html#metadata-decay-info">Numerical source settings</a> or <a href="./data_extraction_config.html#laser-frequency">Configuration</a>, then stored internally as <code>laser_rate</code> in <strong>GHz</strong>. PhasorPy expects <strong>MHz</strong>, so both calls multiply the stored value by 1000: an entered <code>80</code> MHz is stored as <code>0.08</code> GHz and passed to PhasorPy as <code>80</code> MHz. The <code>reference_dye_lifetime</code> remains in <strong>nanoseconds</strong>. Using <code>harmonic=2</code> calibrates the second-harmonic coordinates at twice the laser frequency.</p>
-</section>
-</section>
-<section id="step-3-phasor-derived-lifetime" class="level3" data-number="8.3.3">
-<h3 data-number="8.3.3" class="anchored" data-anchor-id="step-3-phasor-derived-lifetime"><span class="header-section-number">8.3.3</span> Step 3: phasor-derived lifetime</h3>
-<p><code>Tau_phase</code> and <code>Tau_mod</code> are calculated using the first harmonic’s phasor coordinates <code>g</code> and <code>s</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> laser_rate</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> np.arctan2(s, g) </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> np.sqrt(g<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> s<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>tau_phase <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>w <span class="op">*</span> np.tan(phi)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>tau_mod <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>w <span class="op">*</span> np.sqrt(<span class="dv">1</span><span class="op">/</span>mod<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>where <span class="math inline">\(p\)</span> is the pixel size in micrometres, <span class="math inline">\(\alpha\)</span> is in µm³/pg, and <span class="math inline">\(m_i\)</span> is the pixel dry mass in picograms. The units reduce to pg because µm × µm² / (µm³/pg) = pg. For a cell with <span class="math inline">\(N\)</span> labeled pixels,</p>
 <p><span class="math display">\[
-\phi = \operatorname{atan2}(s,\,g), \mathrm{mod} = \sqrt{g^{2}+s^{2}}, \tau_{\phi} = \frac{\tan \phi}{\omega}, \tau_{\mathrm{mod}} = \frac{1}{\omega}\sqrt{\frac{1}{\mathrm{mod}^{2}}-1}
+M = \sum_{i=1}^{N} m_i,
+\qquad
+\rho = \frac{M}{N p^2},
 \]</span></p>
-<p>Because <span class="math inline">\(\omega\)</span> is derived from the laser rate in GHz, <code>Tau_phase</code> and <code>Tau_mod</code> are expressed in <strong>nanoseconds</strong>. Note that this differs from the <a href="lifetime_fit.html">Lifetime fit</a> extractor, whose lifetime columns are exported in picoseconds.</p>
-<div id="using-explicit-sample-phases" class="callout callout-style-default callout-note callout-titled" title="Explicit sample phases">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>where <span class="math inline">\(M\)</span> is the signed dry mass in pg and <span class="math inline">\(\rho\)</span> is <code>mass_density_pg_per_um2</code> in pg/µm². Negative corrected values are retained in both <span class="math inline">\(M\)</span> and <span class="math inline">\(\rho\)</span>.</p>
+<section id="dry-mass-statistics" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="dry-mass-statistics"><span class="header-section-number">11.3.1</span> Dry-mass statistics</h3>
+<p>Columns use the prefix <code>Dry-mass statistics_{channel}:</code>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature suffix</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>dry_mass_pg</code></td>
+<td>Sum of signed pixel masses, in pg.</td>
+</tr>
+<tr class="even">
+<td><code>mass_density_pg_per_um2</code></td>
+<td>Total dry mass divided by the ROI area in µm².</td>
+</tr>
+<tr class="odd">
+<td><code>dry_mass_variance</code></td>
+<td>Sample variance of pixel masses, in pg² (<code>ddof = 1</code>).</td>
+</tr>
+<tr class="even">
+<td><code>dry_mass_skewness</code></td>
+<td>Bias-corrected skewness of pixel masses.</td>
+</tr>
+<tr class="odd">
+<td><code>dry_mass_kurtosis</code></td>
+<td>Bias-corrected excess kurtosis of pixel masses.</td>
+</tr>
+<tr class="even">
+<td><code>dry_mass_entropy</code></td>
+<td>Shannon entropy of the normalized nonnegative pixel masses, using natural logarithms.</td>
+</tr>
+<tr class="odd">
+<td><code>dry_mass_evenness</code></td>
+<td>Entropy divided by the logarithm of the number of ROI pixels.</td>
+</tr>
+</tbody>
+</table>
+<p>Entropy and evenness clip negative pixel masses to zero because they require a nonnegative distribution. With <span class="math inline">\(q_i = \max(m_i, 0) / \sum_j \max(m_j, 0)\)</span>, entropy is <span class="math inline">\(-\sum_i q_i \ln q_i\)</span> and evenness is entropy divided by <span class="math inline">\(\ln N\)</span>. This does not change the signed total mass. Variance, skewness, and kurtosis are undefined for fewer than 2, 3, and 4 ROI pixels, respectively; entropy and evenness are undefined without at least two pixels and positive clipped mass. Undefined statistics are <code>NaN</code>.</p>
+</section>
+<section id="spatial-texture" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="spatial-texture"><span class="header-section-number">11.3.2</span> Spatial texture</h3>
+<p>Columns use the prefix <code>Spatial texture_{channel}:</code>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature suffix</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>avg_dm_gradient_mag</code></td>
+<td>Mean Scharr gradient magnitude of the pixel-mass image inside the ROI, displayed in pg/px.</td>
+</tr>
+<tr class="even">
+<td><code>radial_mass_index</code></td>
+<td>Mean nonnegative pixel mass in the core divided by that in the periphery. Distances are measured from the geometric centroid and normalized by the furthest ROI pixel; the core is at most 0.33 and the periphery at least 0.66 of that distance.</td>
+</tr>
+<tr class="odd">
+<td><code>polar_gradient_index</code></td>
+<td>Distance between the geometric and corrected-OPD-weighted centroids, divided by the equivalent-area diameter.</td>
+</tr>
+</tbody>
+</table>
+<p>The radial index is <code>NaN</code> when either region is absent or the peripheral mean is not positive. The polar index is <code>NaN</code> when total signed mass is not positive.</p>
+</section>
+<section id="morphology-and-analysis" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="morphology-and-analysis"><span class="header-section-number">11.3.3</span> Morphology and analysis</h3>
+<p>The optional <a href="./intensity_morphology.html">Intensity morphology</a> extractor supplies the same mask-based features as it does for other modalities. Its area and lengths remain in pixels; the QPI pixel-size setting is used for dry mass and density. If channels request morphology from the same mask file, those features are emitted once under the first such channel.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="extraction_ui_shots/qpi_results.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="QPI extraction saves the selected measurement groups in the cell-feature table."><img src="extraction_ui_shots/qpi_results.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Completed QPI numerical extraction with a preview of the selected QPI feature columns and the automatically saved CSV path."></a></p>
+</figure>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Explicit sample phases
+<figcaption>QPI extraction saves the selected measurement groups in the cell-feature table.</figcaption>
+</figure>
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>FLIM Playground uses explicit phases when the supplied time window differs from one laser period by more than a small rounding tolerance. It then calculates phasors at the <strong>laser frequency</strong>, using both <code>duration</code> and <code>laser_rate</code> to place each bin within the laser cycle. A shortened acquisition window or a small difference caused by PTU bin rounding can select this branch; it is not a test for whether the acquisition was complete.</p>
-<p>For example, a 10 ns window with a 12.5 ns laser period covers 80% of a laser cycle. Let <span class="math inline">\(f\)</span> be <code>laser_rate</code>, <span class="math inline">\(P=1/f\)</span> the laser period, and <span class="math inline">\(T\)</span> the supplied window’s duration. The bin times are <span class="math inline">\(t_k=kT/K\)</span>, with first-harmonic phases <span class="math inline">\(\phi_k=2\pi t_k/P=2\pi f t_k\)</span>. At harmonic <span class="math inline">\(h\)</span>:</p>
-<p><span class="math display">\[
-\begin{aligned}
-g_{\mathrm{raw}}^{(h)} &amp;=
-\frac{\sum_{k=0}^{K-1} F_k \cos(h\phi_k)}
-     {\sum_{k=0}^{K-1} F_k},\\
-s_{\mathrm{raw}}^{(h)} &amp;=
-\frac{\sum_{k=0}^{K-1} F_k \sin(h\phi_k)}
-     {\sum_{k=0}^{K-1} F_k}.
-\end{aligned}
-\]</span></p>
-<p>For <strong>cell decays</strong> and the <strong>shifted IRF</strong>, the app evaluates these sums directly. For a <strong>fluorescence lifetime standard</strong>, it supplies the same phases through PhasorPy’s <code>sample_phase</code> argument. The standard must have the same bin count and spacing as the sample:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasorpy <span class="im">import</span> phasor</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>time_bins <span class="op">=</span> reference_image.shape[reference_time_axis]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>time_axis <span class="op">=</span> np.arange(time_bins) <span class="op">*</span> (duration <span class="op">/</span> time_bins)  <span class="co"># ns</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> laser_rate <span class="op">*</span> time_axis</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ref_mean, ref_real, ref_imag <span class="op">=</span> phasor.phasor_from_signal(</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    reference_image, axis<span class="op">=</span>reference_time_axis,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    sample_phase<span class="op">=</span>phi, harmonic<span class="op">=</span><span class="dv">1</span>, use_fft<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ref_mean_2nd, ref_real_2nd, ref_imag_2nd <span class="op">=</span> phasor.phasor_from_signal(</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    reference_image, axis<span class="op">=</span>reference_time_axis,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    sample_phase<span class="op">=</span><span class="dv">2</span> <span class="op">*</span> phi, harmonic<span class="op">=</span><span class="dv">1</span>, use_fft<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Use <code>harmonic=1</code> and <code>use_fft=False</code> with <code>sample_phase</code>. The doubled phases select the second harmonic; <code>harmonic=2</code> with <code>sample_phase</code> would raise an error. The resulting coordinates enter the calibration and lifetime calculations in Steps 2 and 3.</p>
-<p><strong>Explicit phases preserve bin timing but do not recover missing fluorescence.</strong> For a substantially truncated window, the usual calibration and lifetime equations can remain biased; a standard measured over the same window does not generally remove that bias.</p>
-</div>
-</div>
-</div>
+<p>The table is automatically saved in the source folder, as described in <a href="./numerical_feature_extraction.html#save-results">Save Results</a>. In the local app, open <strong>Data Analysis</strong> with <strong>Use a table from another source</strong> off; in the hosted app, upload the CSV with that option on. Numerical pickers group the QPI columns by extractor and channel. QPI measurements are also available as operands in <a href="./derived_feature.html">derived features</a>, including formulas combining channels.</p>
 
 
-<div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
-<div id="ref-Samimi2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Samimi, K. <em>et al.</em> Segmentation-guided photon pooling enables robust single cell analysis and fast fluorescence lifetime imaging microscopy. <em>bioRxiv</em> <a href="https://doi.org/10.1101/2025.09.30.679660">https://doi.org/10.1101/2025.09.30.679660</a> (2025) doi:<a href="https://doi.org/10.1101/2025.09.30.679660">10.1101/2025.09.30.679660</a>.</div>
-</div>
-</div>
 </section>
 </section>
 
@@ -1178,19 +1137,51 @@ s_{\mathrm{raw}}^{(h)} &amp;=
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./lifetime_fit.html" class="pagination-link" aria-label="Lifetime Features (Fit)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lifetime Features (Fit)</span></span>
+      <a href="./intensity_texture.html" class="pagination-link" aria-label="Textural Features">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Textural Features</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intensity_morphology.html" class="pagination-link" aria-label="Morphological Features">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Morphological Features</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./derived_feature.html" class="pagination-link" aria-label="Derived Features">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Derived Features</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/qpi.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/lifetime_fit_free.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>

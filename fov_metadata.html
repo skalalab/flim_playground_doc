@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Field of View Metadata – FLIM Playground</title>
+<title>5&nbsp; Field of View Metadata – FLIM Playground</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./numerical_feature_extraction.html" rel="next">
-<link href="./data_extraction_config.html" rel="prev">
+<link href="./irf_calibration.html" rel="next">
+<link href="./numerical_feature_extraction.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -257,7 +257,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./fov_metadata.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./fov_metadata.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -315,14 +315,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./fov_metadata.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></span></a>
+  <a href="./numerical_feature_extraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Feature Extraction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./numerical_feature_extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Numerical Feature Extraction</span></span></a>
+  <a href="./fov_metadata.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -357,14 +357,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./qpi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quantitative Phase Imaging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./derived_feature.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./categorical_feature_extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
   </div>
 </li>
       </ul>
@@ -381,13 +387,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
   </div>
 </li>
       </ul>
@@ -404,13 +410,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_histogram.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
   </div>
 </li>
       </ul>
@@ -427,13 +433,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_distribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./phasor_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Plot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Phasor Plot</span></span></a>
   </div>
 </li>
       </ul>
@@ -450,13 +456,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dimension_reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Classification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Classification</span></span></a>
   </div>
 </li>
       </ul>
@@ -464,7 +470,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./common_qa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Common Q &amp; A</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Common Q &amp; A</span></span></a>
   </div>
 </li>
     </ul>
@@ -477,21 +483,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#metadata" id="toc-metadata" class="nav-link active" data-scroll-target="#metadata"><span class="header-section-number">4.1</span> Metadata</a>
+  <li><a href="#source-settings" id="toc-source-settings" class="nav-link active" data-scroll-target="#source-settings"><span class="header-section-number">5.1</span> Source settings</a>
   <ul class="collapse">
-  <li><a href="#decay-type" id="toc-decay-type" class="nav-link" data-scroll-target="#decay-type"><span class="header-section-number">4.1.1</span> Decay Type</a></li>
-  <li><a href="#channel-names" id="toc-channel-names" class="nav-link" data-scroll-target="#channel-names"><span class="header-section-number">4.1.2</span> Channel Names</a></li>
-  <li><a href="#feature-extractors" id="toc-feature-extractors" class="nav-link" data-scroll-target="#feature-extractors"><span class="header-section-number">4.1.3</span> Feature Extractors</a></li>
-  <li><a href="#decay-info" id="toc-decay-info" class="nav-link" data-scroll-target="#decay-info"><span class="header-section-number">4.1.4</span> Decay Info</a></li>
-  <li><a href="#file-suffix" id="toc-file-suffix" class="nav-link" data-scroll-target="#file-suffix"><span class="header-section-number">4.1.5</span> File Suffix</a></li>
-  <li><a href="#fluorescence-lifetime-standard" id="toc-fluorescence-lifetime-standard" class="nav-link" data-scroll-target="#fluorescence-lifetime-standard"><span class="header-section-number">4.1.6</span> Fluorescence Lifetime Standard</a></li>
-  <li><a href="#folder-path" id="toc-folder-path" class="nav-link" data-scroll-target="#folder-path"><span class="header-section-number">4.1.7</span> Folder Path</a></li>
+  <li><a href="#folder-path" id="toc-folder-path" class="nav-link" data-scroll-target="#folder-path"><span class="header-section-number">5.1.1</span> Folder Path</a></li>
   </ul></li>
-  <li><a href="#metadata-extraction" id="toc-metadata-extraction" class="nav-link" data-scroll-target="#metadata-extraction"><span class="header-section-number">4.2</span> Metadata Extraction</a>
+  <li><a href="#metadata-extraction" id="toc-metadata-extraction" class="nav-link" data-scroll-target="#metadata-extraction"><span class="header-section-number">5.2</span> Metadata Extraction</a>
   <ul class="collapse">
-  <li><a href="#fov-file-paths" id="toc-fov-file-paths" class="nav-link" data-scroll-target="#fov-file-paths"><span class="header-section-number">4.2.1</span> FOV File Paths</a></li>
-  <li><a href="#decay-info-1" id="toc-decay-info-1" class="nav-link" data-scroll-target="#decay-info-1"><span class="header-section-number">4.2.2</span> Decay Info</a></li>
-  <li><a href="#result-preview-and-export" id="toc-result-preview-and-export" class="nav-link" data-scroll-target="#result-preview-and-export"><span class="header-section-number">4.2.3</span> Result Preview and Export</a></li>
+  <li><a href="#fov-file-paths" id="toc-fov-file-paths" class="nav-link" data-scroll-target="#fov-file-paths"><span class="header-section-number">5.2.1</span> FOV File Paths</a></li>
+  <li><a href="#metadata-decay-info" id="toc-metadata-decay-info" class="nav-link" data-scroll-target="#metadata-decay-info"><span class="header-section-number">5.2.2</span> Decay Info</a></li>
+  <li><a href="#result-preview-and-automatic-save" id="toc-result-preview-and-automatic-save" class="nav-link" data-scroll-target="#result-preview-and-automatic-save"><span class="header-section-number">5.2.3</span> Result preview and automatic save</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/fov_metadata.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -500,9 +500,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./fov_metadata.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_extraction.html">Data Extraction</a></li><li class="breadcrumb-item"><a href="./fov_metadata.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-fov-metadata" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></span></h1>
+<h1 class="title"><span id="sec-fov-metadata" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></span></h1>
 </div>
 
 
@@ -519,74 +519,32 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>It is the first step in the <a href="data_extraction.html">Data Extraction</a> workflow. It organizes the metadata of each field of view (FOV)—including file paths for all required inputs and decay information—into a single metadata file. This file is then used for <a href="numerical_feature_extraction.html">numerical feature extraction</a>, as well as for users’ own bookkeeping and troubleshooting.</p>
+<p>FOV metadata are prepared within <strong>Data Extraction → Numerical</strong>. It includes each field of view’s file paths, acquisition information, and channel settings such as calibration configuration and features to be extracted. The metadata record is maintained behind the scenes and automatically saved.</p>
 <div id="fov-metadata">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="extraction_ui_shots/fov.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Metadata settings appear beside the file checks and metadata preview."><img src="extraction_ui_shots/fov.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="FOV Metadata Extraction with channel and folder settings on the left, and a successful field-of-view check, metadata table, and export button on the right."></a></p>
+<p><a href="extraction_ui_shots/fov.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Source settings appear beside the file checks and metadata preview in Numerical."><img src="extraction_ui_shots/fov.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Numerical source preparation with channel and folder settings on the left and field-of-view checks and a metadata preview on the right."></a></p>
 </figure>
 </div>
-<figcaption>Metadata settings appear beside the file checks and metadata preview.</figcaption>
+<figcaption>Source settings appear beside the file checks and metadata preview in Numerical.</figcaption>
 </figure>
 </div>
 </div>
-<p>It is divided into two sections:</p>
-<ul>
-<li>The left 1/3 of the screen is the metadata configuration panel, inherited from the <a href="data_extraction_config.html">Data Extraction Configuration</a> step.</li>
-<li>The right 2/3 shows the extraction status for all FOVs.</li>
-</ul>
-<section id="metadata" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="metadata"><span class="header-section-number">4.1</span> Metadata</h2>
-<p>Metadata are configured earlier in the <a href="data_extraction_config.html">Data Extraction Configuration</a> step and copied here. Some fields remain editable for flexibility, while others are fixed to ensure usability. Non-editable fields can be modified in the Data Extraction Configuration step. After saving your modifications, return to this page and refresh it to see the changes.</p>
-<section id="decay-type" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="decay-type"><span class="header-section-number">4.1.1</span> Decay Type</h3>
-<p>See <a href="./data_extraction_config.html#decay-types">decay types</a> for more details. The decay type is not editable here.</p>
-</section>
-<section id="channel-names" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="channel-names"><span class="header-section-number">4.1.2</span> Channel Names</h3>
-<p>See <a href="./data_extraction_config.html#channel-name">channel name config</a> for more details. The names are not editable here, though users can choose which channel to include.</p>
-</section>
-<section id="feature-extractors" class="level3" data-number="4.1.3">
-<h3 data-number="4.1.3" class="anchored" data-anchor-id="feature-extractors"><span class="header-section-number">4.1.3</span> Feature Extractors</h3>
-<p>See <a href="./data_extraction_config.html#feature-extractor">feature extractor config</a> for more details. The feature extractors for each channel are shown but not editable here.</p>
-</section>
-<section id="decay-info" class="level3" data-number="4.1.4">
-<h3 data-number="4.1.4" class="anchored" data-anchor-id="decay-info"><span class="header-section-number">4.1.4</span> Decay Info</h3>
-<p>The <a href="./data_extraction_config.html#decay-info">decay settings</a> start from the active profile. <span id="laser-frequency">Laser rate</span> is editable when <code>Lifetime fit free</code> is selected; 2D inputs also show duration and time-bin controls.</p>
-<section id="d-decay-specific" class="level4">
-<h4 class="anchored" data-anchor-id="d-decay-specific">2D Decay-specific</h4>
-<p>Since the <a href="./data_extraction_config.html#two-d-decay">2D decay</a> file does not provide the <code>duration</code> and the number of <code>time bins</code> per laser pulse interval, users need to specify them.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="extraction_ui_shots/fov_decay_2d.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Review the timing values used to interpret a 2D decay table."><img src="extraction_ui_shots/fov_decay_2d.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Decay (2D) metadata controls with the NADH channel included, duration 12.5 ns, 200 time bins, and laser rate 0.08 GHz."></a></p>
-</figure>
-</div>
-<figcaption>Review the timing values used to interpret a 2D decay table.</figcaption>
-</figure>
-</div>
+<p>The left side contains source settings inherited from <a href="./data_extraction_config.html">Configuration</a>; the right side shows file validation, any required channel assignments, and the metadata preview. After preparation, the source settings remain available in the collapsed <strong>Metadata settings</strong> expander.</p>
+<section id="source-settings" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="source-settings"><span class="header-section-number">5.1</span> Source settings</h2>
+<p>Settings are inherited from the active <a href="./data_extraction_config.html#extraction-profiles">extraction profile</a>. Source edits, a rescan, or a profile change invalidate an already prepared workflow, so the app repeats preparation before extraction. If another browser tab changed Configuration, follow the reload notice to use its new settings.</p>
+<section id="folder-path" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="folder-path"><span class="header-section-number">5.1.1</span> Folder Path</h3>
+<p>Enter the folder path that contains the required input files. The scan includes subfolders; after correcting files or changing the path, click <strong>Rescan folder</strong>.</p>
 </section>
 </section>
-<section id="file-suffix" class="level3" data-number="4.1.5">
-<h3 data-number="4.1.5" class="anchored" data-anchor-id="file-suffix"><span class="header-section-number">4.1.5</span> File Suffix</h3>
-<p>Copied from the <a href="./data_extraction_config.html#file-suffix">file suffix config</a>. Users can edit the file suffixes here.</p>
-</section>
-<section id="fluorescence-lifetime-standard" class="level3" data-number="4.1.6">
-<h3 data-number="4.1.6" class="anchored" data-anchor-id="fluorescence-lifetime-standard"><span class="header-section-number">4.1.6</span> Fluorescence Lifetime Standard</h3>
-<p>When <a href="./data_extraction_config.html#calibration-method">Fluorescence Lifetime Standard</a> calibration is selected, specify the standard’s filename suffix for each fit-free channel under <code>File suffixes</code>, and its shared lifetime in nanoseconds. These values start from the active configuration. The folder scan finds each standard by suffix, independently of the FOV name.</p>
-</section>
-<section id="folder-path" class="level3" data-number="4.1.7">
-<h3 data-number="4.1.7" class="anchored" data-anchor-id="folder-path"><span class="header-section-number">4.1.7</span> Folder Path</h3>
-<p>Finally, users can specify the folder path that contains all the required input files.</p>
-</section>
-</section>
-<section id="metadata-extraction" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="metadata-extraction"><span class="header-section-number">4.2</span> Metadata Extraction</h2>
-<section id="fov-file-paths" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="fov-file-paths"><span class="header-section-number">4.2.1</span> FOV File Paths</h3>
+<section id="metadata-extraction" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="metadata-extraction"><span class="header-section-number">5.2</span> Metadata Extraction</h2>
+<section id="fov-file-paths" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="fov-file-paths"><span class="header-section-number">5.2.1</span> FOV File Paths</h3>
 <p>The first step is to find the fields of view:</p>
 <ul>
 <li>It finds files recursively in the folder path using the first per-FOV file suffix, skipping calibration suffixes.</li>
@@ -620,56 +578,39 @@ Tip
 </div>
 </div>
 </section>
-<section id="decay-info-1" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="decay-info-1"><span class="header-section-number">4.2.2</span> Decay Info</h3>
+<section id="metadata-decay-info" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="metadata-decay-info"><span class="header-section-number">5.2.2</span> Decay Info</h3>
 <p>If the decay type is <a href="./data_extraction_config.html#three-d4d-decay">3D/4D decay</a>, FLIM Playground will try to infer the <code>duration</code> and the number of <code>time bins</code> per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files.</p>
 <section id="channel-assignment" class="level4">
 <h4 class="anchored" data-anchor-id="channel-assignment">Channel Assignment</h4>
-<p>If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channels to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It will also check for inconsistencies across all decay files about their dimensions and complain if there are any.</p>
+<p>If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channels to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It also checks dimensions across FOVs and channels within each imaging modality. FLIM, intensity-only, and QPI modalities can have different spatial grids, provided each image matches its own mask; corresponding cells are joined by label.</p>
 <p>Picking the right channel number is easy to get wrong when one file holds several non-empty channels, so when there is a choice to make, a preview of the first field of view appears under the dropdown: one thumbnail per candidate channel, with a ✅ on the one currently selected. Glance at it to confirm the channel you picked looks like the fluorophore you expect.</p>
-</section>
-<div id="calibration-references">
-<section id="irf-reference-validation" class="level4">
-<h4 class="anchored" data-anchor-id="irf-reference-validation">IRF</h4>
-<p>For channels that require IRF calibration, the metadata records the IRF file path. IRFs are checked when numerical extraction begins. The requirements depend on the <a href="./data_extraction.html#irf">IRF format</a>:</p>
-<ul>
-<li><strong>TXT/CSV:</strong> the loaded curve must contain one value per sample time bin.</li>
-<li><strong>PTU:</strong> the file must contain non-empty, single-channel T3 imaging data. All pixels and repeated frames are summed into one IRF curve. Its time-bin count and bin width must match the sample’s; its laser frequency must also match when a sample laser frequency is specified. The sample bin width is <code>duration / time_bins</code>. Small numerical rounding differences are tolerated, but the IRF is <strong>not resampled</strong> to fit a different acquisition grid.</li>
-</ul>
-</section>
-<section id="standard-reference-validation" class="level4">
-<h4 class="anchored" data-anchor-id="standard-reference-validation">Fluorescence Lifetime Standard</h4>
-<p>When fluorescence lifetime standard calibration is selected, the standard is checked before metadata export. The requirements depend on the <a href="./data_extraction.html#fluorescence-lifetime-standard">standard format</a>:</p>
-<ul>
-<li><strong>TIFF:</strong> the image must be 3D, with exactly one dimension matching the sample’s time-bin count so that the time axis can be identified. A missing or ambiguous time axis prevents metadata export.</li>
-<li><strong>PTU:</strong> the file must contain non-empty, single-channel T3 imaging data. All pixels and repeated frames are summed into one standard reference curve. Its time-bin count and bin width must match the sample’s; its laser frequency must also match when a sample laser frequency is specified. The sample bin width is <code>duration / time_bins</code>. Small numerical rounding differences are tolerated, but the standard is <strong>not resampled</strong> to fit a different acquisition grid.</li>
-</ul>
 <p>The metadata records the standard’s file path, known lifetime, and time axis. For a PTU standard, the app supplies the time axis automatically from the integrated reference curve.</p>
 </section>
-</div>
 </section>
-<section id="result-preview-and-export" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="result-preview-and-export"><span class="header-section-number">4.2.3</span> Result Preview and Export</h3>
-<p>If there is a non-zero number of FOVs with ✅ and channel assignment and fluorescence lifetime standard checks (if applicable) are passed, a preview of the metadata data sheet will be shown for users to check.</p>
+<section id="result-preview-and-automatic-save" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="result-preview-and-automatic-save"><span class="header-section-number">5.2.3</span> Result preview and automatic save</h3>
+<p>When at least one FOV has valid inputs and the applicable acquisition and reference checks pass, inspect the metadata preview. Click <strong>Start calibration</strong> if any selected channel needs IRF shift or QPI background calibration; otherwise click <strong>Start extraction</strong> to begin extracting immediately. Both actions automatically save the metadata in the source folder.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="extraction_ui_shots/fov_export.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Check the recorded file paths before exporting the FOV metadata."><img src="extraction_ui_shots/fov_export.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="A field of view reports All files found above the metadata preview and Export FOV Metadata as CSV button."></a></p>
+<p><a href="extraction_ui_shots/fov_export.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Check the recorded file paths before starting calibration or extraction."><img src="extraction_ui_shots/fov_export.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Numerical source validation with field-of-view status, a metadata preview, and the next workflow action."></a></p>
 </figure>
 </div>
-<figcaption>Check the recorded file paths before exporting the FOV metadata.</figcaption>
+<figcaption>Check the recorded file paths before starting calibration or extraction.</figcaption>
 </figure>
 </div>
 <p>As an example, the following metadata are extracted:</p>
 <ul>
 <li><code>image_name</code>: The <code>image_name</code> column is the name of each FOV, which is specified in the <a href="./data_extraction_config.html#fov-identifier">fov identifier config</a>.</li>
 <li><code>nadh_Mask</code>, <code>nadh_Decay</code>, <code>nadh_IRF</code>, <code>fad_Mask</code>, <code>fad_Decay</code>, <code>fad_IRF</code>: the <a href="#fov-file-paths">file paths</a> of the mask, decay, and IRF files for the <code>nadh</code> and <code>fad</code> channels.</li>
-<li><code>nadh_input_type</code>, <code>nadh_imaging_modality</code>, <code>fad_input_type</code>, <code>fad_imaging_modality</code>: the <a href="./data_extraction_config.html#imaging-modality">imaging modality</a> and the corresponding input type for each channel. These are two distinct values. For a channel whose modality is <code>FLIM</code>, the input type is one of the <a href="./data_extraction_config.html#decay-types">decay types</a>; for a channel whose modality is <code>Intensity-only</code>, the input type is <code>Intensity (2D)</code>. Channels that share the same imaging modality share the same input type.</li>
-<li><code>nadh_Lifetime fit free</code>, <code>nadh_Intensity morphology</code>, <code>nadh_Lifetime fit</code>, <code>fad_Intensity morphology</code>, <code>fad_Intensity texture</code>, <code>fad_Lifetime fit</code>: <a href="#feature-extractors">feature extractors</a> for each channel.</li>
-<li><code>nadh_channel</code>, <code>duration</code>, <code>fad_channel</code>, <code>time_bins</code>, <code>laser_rate</code>: the <a href="#decay-info">decay info</a> for each channel and info shared by all channels.</li>
+<li><code>nadh_input_type</code>, <code>nadh_imaging_modality</code>, <code>fad_input_type</code>, <code>fad_imaging_modality</code>: the <a href="./data_extraction_config.html#imaging-modality">imaging modality</a> and the corresponding input type for each channel. These are two distinct values. For a channel whose modality is <code>FLIM</code>, the input type is one of the <a href="./data_extraction_config.html#decay-types">decay types</a>; for a channel whose modality is <code>Intensity-only</code>, the input type is <code>Intensity (2D)</code>; for <code>QPI</code>, it is <code>QPI (2D)</code>. Channels that share the same imaging modality share the same input type.</li>
+<li><code>nadh_Lifetime fit free</code>, <code>nadh_Intensity morphology</code>, <code>nadh_Lifetime fit</code>, <code>fad_Intensity morphology</code>, <code>fad_Intensity texture</code>, <code>fad_Lifetime fit</code>: <a href="./data_extraction_config.html#feature-extractor">feature extractors</a> for each channel.</li>
+<li><code>nadh_channel</code>, <code>duration</code>, <code>fad_channel</code>, <code>time_bins</code>, <code>laser_rate</code>: the <a href="#metadata-decay-info">recorded decay info</a> for each channel and information shared by all channels.</li>
 </ul>
-<p><code>Export FOV Metadata as CSV</code> writes <code>fov_metadata_&lt;timestamp&gt;.csv</code> into the selected folder and caches it for the numerical extraction step.</p>
+<p>For <a href="./qpi.html">QPI</a> channels, the record also includes the OPD-image and mask paths, physical constants (<code>pixel_size_um</code>, <code>opd_unit</code>, and <code>alpha_um3_per_pg</code> with the channel prefix), and the confirmed background recipe. Spatial dimensions are recorded separately for each modality.</p>
+<p>Preparation writes <code>fov_metadata_&lt;timestamp&gt;.csv</code> into the source folder. Confirming calibration and changing the confirmed fitting mode automatically update the same file. A failed metadata write shows <strong>Retry saving metadata</strong> and prevents feature extraction until saving succeeds. This CSV records the run for bookkeeping and troubleshooting; new runs begin from the source folder in <a href="./numerical_feature_extraction.html#sec-numerical-feature-extraction">Numerical</a>.</p>
 
 
 </section>
@@ -1093,13 +1034,13 @@ Tip
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./data_extraction_config.html" class="pagination-link" aria-label="Configuration">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Configuration</span></span>
+      <a href="./numerical_feature_extraction.html" class="pagination-link" aria-label="Numerical Feature Extraction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Feature Extraction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./numerical_feature_extraction.html" class="pagination-link" aria-label="Numerical Feature Extraction">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Numerical Feature Extraction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./irf_calibration.html" class="pagination-link" aria-label="IRF Calibration">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IRF Calibration</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

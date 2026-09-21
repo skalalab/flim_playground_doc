@@ -26,27 +26,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -56,7 +36,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./fov_metadata.html" rel="next">
+<link href="./numerical_feature_extraction.html" rel="next">
 <link href="./data_extraction.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -335,14 +315,14 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./fov_metadata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></span></a>
+  <a href="./numerical_feature_extraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Feature Extraction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./numerical_feature_extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Numerical Feature Extraction</span></span></a>
+  <a href="./fov_metadata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -377,14 +357,20 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./qpi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quantitative Phase Imaging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./derived_feature.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Derived Features</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./categorical_feature_extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Categorical Feature Extraction</span></span></a>
   </div>
 </li>
       </ul>
@@ -401,13 +387,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_analysis_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Configuration</span></span></a>
   </div>
 </li>
       </ul>
@@ -424,13 +410,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_comparison.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Comparison</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_histogram.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feature Histogram</span></span></a>
   </div>
 </li>
       </ul>
@@ -447,13 +433,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./feature_distribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">2D Feature Distribution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./phasor_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Phasor Plot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Phasor Plot</span></span></a>
   </div>
 </li>
       </ul>
@@ -470,13 +456,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dimension_reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Classification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Classification</span></span></a>
   </div>
 </li>
       </ul>
@@ -484,7 +470,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./common_qa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Common Q &amp; A</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Common Q &amp; A</span></span></a>
   </div>
 </li>
     </ul>
@@ -497,27 +483,23 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#extraction-profiles" id="toc-extraction-profiles" class="nav-link active" data-scroll-target="#extraction-profiles"><span class="header-section-number">3.1</span> Extraction Profiles</a></li>
-  <li><a href="#cross-channel-configurations" id="toc-cross-channel-configurations" class="nav-link" data-scroll-target="#cross-channel-configurations"><span class="header-section-number">3.2</span> Cross-Channel Configurations</a>
+  <li><a href="#shared-settings" id="toc-shared-settings" class="nav-link active" data-scroll-target="#shared-settings"><span class="header-section-number">3.1</span> Shared settings</a>
   <ul class="collapse">
-  <li><a href="#categorical-features" id="toc-categorical-features" class="nav-link" data-scroll-target="#categorical-features"><span class="header-section-number">3.2.1</span> Categorical Features</a></li>
-  <li><a href="#decay-types" id="toc-decay-types" class="nav-link" data-scroll-target="#decay-types"><span class="header-section-number">3.2.2</span> Decay Types</a></li>
-  <li><a href="#identifiers" id="toc-identifiers" class="nav-link" data-scroll-target="#identifiers"><span class="header-section-number">3.2.3</span> Identifiers</a></li>
-  <li><a href="#decay-info" id="toc-decay-info" class="nav-link" data-scroll-target="#decay-info"><span class="header-section-number">3.2.4</span> Decay Info</a></li>
-  <li><a href="#calibration-method" id="toc-calibration-method" class="nav-link" data-scroll-target="#calibration-method"><span class="header-section-number">3.2.5</span> Calibration Method</a></li>
-  <li><a href="#number-of-channels" id="toc-number-of-channels" class="nav-link" data-scroll-target="#number-of-channels"><span class="header-section-number">3.2.6</span> Number of Channels</a></li>
+  <li><a href="#extraction-profiles" id="toc-extraction-profiles" class="nav-link" data-scroll-target="#extraction-profiles"><span class="header-section-number">3.1.1</span> Extraction Profiles</a></li>
+  <li><a href="#categorical-features" id="toc-categorical-features" class="nav-link" data-scroll-target="#categorical-features"><span class="header-section-number">3.1.2</span> Categorical Features</a></li>
+  <li><a href="#number-of-channels" id="toc-number-of-channels" class="nav-link" data-scroll-target="#number-of-channels"><span class="header-section-number">3.1.3</span> Number of Channels</a></li>
+  <li><a href="#identifiers" id="toc-identifiers" class="nav-link" data-scroll-target="#identifiers"><span class="header-section-number">3.1.4</span> Identifiers</a></li>
   </ul></li>
-  <li><a href="#per-channel-configurations" id="toc-per-channel-configurations" class="nav-link" data-scroll-target="#per-channel-configurations"><span class="header-section-number">3.3</span> Per-Channel Configurations</a>
+  <li><a href="#configure-each-channel" id="toc-configure-each-channel" class="nav-link" data-scroll-target="#configure-each-channel"><span class="header-section-number">3.2</span> Configure each channel</a>
   <ul class="collapse">
-  <li><a href="#channel-name" id="toc-channel-name" class="nav-link" data-scroll-target="#channel-name"><span class="header-section-number">3.3.1</span> Channel Name</a></li>
-  <li><a href="#imaging-modality" id="toc-imaging-modality" class="nav-link" data-scroll-target="#imaging-modality"><span class="header-section-number">3.3.2</span> Imaging Modality</a></li>
-  <li><a href="#feature-extractor" id="toc-feature-extractor" class="nav-link" data-scroll-target="#feature-extractor"><span class="header-section-number">3.3.3</span> Feature Extractor</a></li>
-  <li><a href="#number-of-components" id="toc-number-of-components" class="nav-link" data-scroll-target="#number-of-components"><span class="header-section-number">3.3.4</span> Number of Components</a></li>
-  <li><a href="#fixed-lifetimes" id="toc-fixed-lifetimes" class="nav-link" data-scroll-target="#fixed-lifetimes"><span class="header-section-number">3.3.5</span> Fixed Lifetimes</a></li>
-  <li><a href="#file-suffix" id="toc-file-suffix" class="nav-link" data-scroll-target="#file-suffix"><span class="header-section-number">3.3.6</span> File Suffix</a></li>
+  <li><a href="#channel-name" id="toc-channel-name" class="nav-link" data-scroll-target="#channel-name"><span class="header-section-number">3.2.1</span> Channel Name</a></li>
+  <li><a href="#imaging-modality" id="toc-imaging-modality" class="nav-link" data-scroll-target="#imaging-modality"><span class="header-section-number">3.2.2</span> Imaging Modality</a></li>
+  <li><a href="#feature-extractor" id="toc-feature-extractor" class="nav-link" data-scroll-target="#feature-extractor"><span class="header-section-number">3.2.3</span> Feature Extractor</a></li>
+  <li><a href="#mask" id="toc-mask" class="nav-link" data-scroll-target="#mask"><span class="header-section-number">3.2.4</span> ROI Mask</a></li>
+  <li><a href="#file-suffix" id="toc-file-suffix" class="nav-link" data-scroll-target="#file-suffix"><span class="header-section-number">3.2.5</span> File Suffix</a></li>
   </ul></li>
-  <li><a href="#derived-features" id="toc-derived-features" class="nav-link" data-scroll-target="#derived-features"><span class="header-section-number">3.4</span> Derived Features</a></li>
-  <li><a href="#save" id="toc-save" class="nav-link" data-scroll-target="#save"><span class="header-section-number">3.5</span> Save</a></li>
+  <li><a href="#derived-features" id="toc-derived-features" class="nav-link" data-scroll-target="#derived-features"><span class="header-section-number">3.3</span> Derived Features</a></li>
+  <li><a href="#save" id="toc-save" class="nav-link" data-scroll-target="#save"><span class="header-section-number">3.4</span> Save</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/data_extraction_config.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -554,24 +536,14 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Configure FLIM Playground once and it is applied to all future data. You can also keep multiple named <strong>configuration profiles</strong> and switch between them — see <a href="#extraction-profiles">Extraction Profiles</a>.</p>
+<p>Configure FLIM Playground once and it is applied to future data. You can keep up to 10 named <strong>configuration profiles</strong> and switch between them for different experiments.</p>
 </div>
 </div>
-<p>Constructing a framework that balances flexibility and usability is about choosing the right abstraction level. FLIM Playground chooses acquisition <em>channel</em> from <a href="./index.html#data-levels">data levels</a> as the focus and adopts the <strong>channel-centric framework</strong>. Settings are divided into two categories: <a href="#cross-channel-configurations">cross-channel configurations</a> and <a href="#per-channel-configurations">per-channel configurations</a>.</p>
-<p>The page begins with the active profile, channel count, and identifier names. <code>Channels</code> contains channel names and imaging modalities. <code>Shared FLIM settings</code> appears when at least one channel uses FLIM, followed by per-channel <code>Extraction settings</code>. Categorical columns and the derived-feature builder are near the bottom.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="extraction_ui_shots/config.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Configuration starts with the active profile, identifiers, channels, and shared FLIM settings."><img src="extraction_ui_shots/config.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Configuration page showing profile controls, two FLIM channels, identifier names, and shared FLIM settings."></a></p>
-</figure>
-</div>
-<figcaption>Configuration starts with the active profile, identifiers, channels, and shared FLIM settings.</figcaption>
-</figure>
-</div>
-<section id="extraction-profiles" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="extraction-profiles"><span class="header-section-number">3.1</span> Extraction Profiles</h2>
-<p>Keep up to <strong>10 extraction profiles</strong>, each storing the settings for an experiment or dataset.</p>
+<p>Configuration has two levels: settings shared by the experiment and settings chosen for each channel. For a mixed-modality experiment, assign a modality to every channel first, then complete the input and extractor settings for each channel.</p>
+<section id="shared-settings" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="shared-settings"><span class="header-section-number">3.1</span> Shared settings</h2>
+<section id="extraction-profiles" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="extraction-profiles"><span class="header-section-number">3.1.1</span> Extraction Profiles</h3>
 <p>On the <strong>Configuration</strong> page:</p>
 <ul>
 <li>Select an existing profile from the <code>Profile</code> dropdown to load it.</li>
@@ -582,236 +554,264 @@ Note
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="extraction_ui_shots/config_profile.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Switch, create, or delete extraction profiles from Configuration."><img src="extraction_ui_shots/config_profile.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Profile dropdown beside a New profile field, Create button, and Delete button."></a></p>
+<p><a href="extraction_ui_shots/config_profile.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Switch, create, or delete extraction profiles from Configuration."><img src="extraction_ui_shots/config_profile.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Profile dropdown beside a New profile field, Create button, and Delete button."></a></p>
 </figure>
 </div>
 <figcaption>Switch, create, or delete extraction profiles from Configuration.</figcaption>
 </figure>
 </div>
-<p>A newly created profile starts blank. Fill in the settings described below and click <code>Update Configuration</code> to save it. Everything described below pertains to the current profile.</p>
+<p>A newly created profile starts blank. Complete the settings below and click <code>Update Configuration</code> to save it. Everything described below pertains to the current profile.</p>
 </section>
-<section id="cross-channel-configurations" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="cross-channel-configurations"><span class="header-section-number">3.2</span> Cross-Channel Configurations</h2>
-<section id="categorical-features" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="categorical-features"><span class="header-section-number">3.2.1</span> Categorical Features</h3>
-<p>Categorical features organize observations into groups in <a href="data_analysis.html">Data Analysis</a>. Use <code>Categorical columns (type to add more)</code> to choose names for the <a href="categorical_feature_extraction.html">Categorical Feature Extraction</a> step; type a new name to add it.</p>
+<section id="categorical-features" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="categorical-features"><span class="header-section-number">3.1.2</span> Categorical Features</h3>
+<p>Categorical features organize observations into groups in <a href="./data_analysis.html">Data Analysis</a>. Use <code>Categorical columns (type to add more)</code> to add categories to be extracted in the <a href="./categorical_feature_extraction.html">Categorical Feature Extraction</a> step.</p>
 </section>
-<section id="decay-types" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="decay-types"><span class="header-section-number">3.2.2</span> Decay Types</h3>
-<p>Choose <code>FLIM input format</code> under <code>Shared FLIM settings</code>: 2D decay, 3D/4D decay, or 3D/4D pixel pre-fit input.</p>
-<section id="two-d-decay" class="level4">
-<h4 class="anchored" data-anchor-id="two-d-decay">2D Decay</h4>
-<p>In the system developed by Samimi et al.<span class="citation" data-cites="Samimi2024"><sup><a href="#ref-Samimi2024" role="doc-biblioref">1</a></sup></span>, single cells flow through and a decay curve is acquired for each cell by aggregating all the photon arrival time delays deemed to be from the same cell. In exchange for spatial distribution, the acquisition speed is increased enormously. The output of the system is a tabular data sheet with each row representing a cell and each column representing a time bin. <strong>FLIM Playground currently supports 2D decay in the CSV format.</strong></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="number-of-channels" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="number-of-channels"><span class="header-section-number">3.1.3</span> Number of Channels</h3>
+<p>Each FOV is expected to have the same number of channels. The configuration creates one set of per-channel controls for each channel, up to a maximum of 8.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="extraction_ui_shots/config.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Configuration starts with the active profile, identifiers, and number of channels."><img src="extraction_ui_shots/config.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Configuration page showing profile controls, identifier names, and number of channels."></a></p>
+</figure>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A 2D decay CSV must be headerless, with only numeric time bins. Do not include a header, cell-label column, or annotation column. Non-numeric columns are rejected because every column must represent a time bin.</p>
-</div>
+<figcaption>Configuration starts with the active profile, identifiers, and number of channels.</figcaption>
+</figure>
 </div>
 </section>
-<section id="three-d4d-decay" class="level4">
-<h4 class="anchored" data-anchor-id="three-d4d-decay">3D/4D Decay</h4>
-<p>In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g.&nbsp;<code>.sdt</code>, <code>.ptu</code>). In addition to the spatial dimensions and the time dimension (<code>XYT</code>), the channel dimension may also be present, making it 4-dimensional (<code>CXYT</code>). <strong>FLIM Playground currently supports both <code>.sdt</code> and <code>.ptu</code> files as 3D/4D decay images.</strong> Here, <code>T</code> is the photon-arrival time axis within a laser pulse interval.</p>
-<p>It reads the <code>duration</code> and the number of <code>time bins</code> from the decay file’s acquisition metadata. For PTU files, the bin count is the laser period divided by the TCSPC resolution, rounded down to a whole number of bins. The duration is <strong>bin count × TCSPC resolution</strong>, expressed in nanoseconds. This preserves the recorded bin width and can make the duration slightly shorter than the nominal laser period. The bin count may not necessary be the last time bin that happened to receive a photon.</p>
-<p>Repeated frames in a PTU file are summed into one decay image per FOV, and the <a href="./fov_metadata.html#decay-info-1">FOV metadata step</a> warns when frames have been combined. For actual time-lapse acquisitions, split the data into one file per time point before extraction so that the time points remain separate.</p>
-</section>
-<section id="three-d4d-pixel-pre-fit" class="level4">
-<h4 class="anchored" data-anchor-id="three-d4d-pixel-pre-fit">3D/4D pixel pre-fit</h4>
-<p>Since FLIM Playground currently does <strong>not</strong> support pixel-fitting, users have the option to provide pixel pre-fit outputs from <a href="https://www.becker-hickl.com/products/spcimage/">SPCImage</a> in the format of <code>.asc</code>. See <a href="./lifetime_fit.html#pixel-pre-fit">here</a> for how FLIM Playground processes SPCImage outputs to obtain cell-level lifetime fitting features.</p>
-</section>
-</section>
-<section id="identifiers" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="identifiers"><span class="header-section-number">3.2.3</span> Identifiers</h3>
+<section id="identifiers" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="identifiers"><span class="header-section-number">3.1.4</span> Identifiers</h3>
 <section id="cell-identifier" class="level4">
 <h4 class="anchored" data-anchor-id="cell-identifier">Cell Identifier</h4>
-<p>Users can specify the column name for the unique identifier of the cell to be stored in the output dataset. The cell identifier is constructed as <code>{FOV Identifier}_{cell_label}</code>, where the <code>cell_label</code> is the unique integer label in the mask or the row number if the decay type is <a href="#two-d-decay">2D decay</a>.</p>
+<p>Choose the output column name for the unique identifier of each cell. For example, if the <code>cell_id</code> is chosen the extracted dataset will contain a column named <code>cell_id</code> with unique values for each cell.</p>
 </section>
 <section id="fov-identifier" class="level4">
 <h4 class="anchored" data-anchor-id="fov-identifier">FOV Identifier</h4>
-<p>Users can specify the column name for the field of view identifier. If the decay type is <a href="#two-d-decay">2D decay</a>, users may want to specify the column name as <code>exp_name</code>, because the FOV is not an image.</p>
+<p>Choose the output column name for the field-of-view identifier. Together with the cell identifier, it uniquely identifies each cell.</p>
 </section>
 </section>
-<section id="decay-info" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="decay-info"><span class="header-section-number">3.2.4</span> Decay Info</h3>
-<section id="laser-frequency" class="level4">
-<h4 class="anchored" data-anchor-id="laser-frequency">Laser frequency</h4>
-<p>Enter the laser frequency in GHz, up to 1 GHz; for example, 0.08 GHz equals 80 MHz. This control appears when at least one FLIM channel selects <code>Lifetime fit free</code>, and the value is used for phasor extraction and <a href="phasor_analysis.html">analysis</a>.</p>
 </section>
-<section id="d-decay-specific" class="level4">
-<h4 class="anchored" data-anchor-id="d-decay-specific">2D Decay-specific</h4>
-<p>Since the <a href="#two-d-decay">2D decay</a> file does not provide the <code>duration</code> and the number of <code>time bins</code> per laser pulse interval, users need to specify them.</p>
+<section id="configure-each-channel" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="configure-each-channel"><span class="header-section-number">3.2</span> Configure each channel</h2>
+<section id="channel-name" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="channel-name"><span class="header-section-number">3.2.1</span> Channel Name</h3>
+<p>Customize each channel name, for example with the fluorophore name.</p>
+</section>
+<section id="imaging-modality" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="imaging-modality"><span class="header-section-number">3.2.2</span> Imaging Modality</h3>
+<p>Choose one modality for each channel:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Modality</th>
+<th>Use it for</th>
+<th>Input formats</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>FLIM</code></td>
+<td>Time-resolved signals</td>
+<td><a href="#two-d-decay">2D decay</a> (<code>.csv</code>), <a href="#three-d4d-decay">3D/4D decay</a> (<code>.sdt</code>, <code>.ptu</code>), or <a href="#three-d4d-pixel-pre-fit">3D/4D pixel pre-fit</a> (<code>.asc</code>)</td>
+</tr>
+<tr class="even">
+<td><code>Intensity-only</code></td>
+<td>2D intensity images without a time axis</td>
+<td><code>.tiff</code>, <code>.tif</code>, <code>.asc</code></td>
+</tr>
+<tr class="odd">
+<td><code>QPI</code></td>
+<td>2D optical path difference images</td>
+<td><code>.tiff</code>, <code>.tif</code>, <code>.asc</code></td>
+</tr>
+</tbody>
+</table>
+<section id="decay-types" class="level4">
+<h4 class="anchored" data-anchor-id="decay-types">FLIM input format</h4>
+<p><a id="flim-input-requirements"></a></p>
+<p>Choose one format for the FLIM channels in this profile. The detailed file description is grouped below so that you can open only the format you use.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">2D Decay</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">3D/4D Decay</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">3D/4D Pixel Pre-fit</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><a id="two-d-decay"></a></p>
+<p>A 2D decay CSV contains one cell per row and one time bin per column. It must be headerless and numeric. Do not include identifier or annotation columns. Because each row already represents a cell, no mask is required.</p>
+<p>A profile using 2D decay CSVs cannot include QPI or intensity-only image channels. Use an image-based FLIM input format for a mixed-modality workflow.</p>
+<p><a id="decay-info"></a></p>
+<details>
+<summary>
+2D decay settings
+</summary>
+<p>Because a 2D decay CSV does not provide acquisition timing, enter its <code>duration</code> and number of <code>time bins</code> per laser pulse interval.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="extraction_ui_shots/config_2d_setting.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="For 2D decay input, enter the acquisition duration and time-bin count."><img src="extraction_ui_shots/config_2d_setting.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Shared FLIM settings set to Decay (2D), with a 12.5 ns duration, 200 time bins, a 0.08 GHz laser rate, and IRF calibration."></a></p>
+<p><a href="extraction_ui_shots/config_2d_setting.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="For 2D decay input, enter the acquisition duration and time-bin count."><img src="extraction_ui_shots/config_2d_setting.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Shared FLIM settings set to Decay (2D), with a 12.5 ns duration, 200 time bins, an 80 MHz laser rate, and IRF calibration."></a></p>
 </figure>
 </div>
 <figcaption>For 2D decay input, enter the acquisition duration and time-bin count.</figcaption>
 </figure>
 </div>
-</section>
-</section>
-<section id="calibration-method" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="calibration-method"><span class="header-section-number">3.2.5</span> Calibration Method</h3>
-<p>When <code>Lifetime fit free</code> is selected, choose between two calibration methods:</p>
+</details>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><a id="three-d4d-decay"></a></p>
+<p>3D/4D decay stores spatial dimensions and a time dimension; an optional additional dimension represents acquisition channels.</p>
 <ul>
-<li><code>IRF</code>: <a href="./irf_calibration.html#irf-shift">shift-based calibration</a>.</li>
-<li><code>Fluorescence Lifetime Standard</code>: <a href="./lifetime_fit_free.html#fit-free-standard-calibration">reference-based calibration</a>.</li>
+<li><code>.sdt</code>: Becker &amp; Hickl</li>
+<li><code>.ptu</code>: PicoQuant/Leica</li>
 </ul>
-<p>Since the instrumental response function (IRF) or the fluorescence lifetime standard is measured for each channel, they are set in the <a href="#per-channel-configurations">per-channel configurations</a>. The fluorescence lifetime standard’s lifetime is channel-agnostic.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="extraction_ui_shots/config_calibration.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Standard-based phasor calibration uses a shared reference lifetime."><img src="extraction_ui_shots/config_calibration.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Shared FLIM settings with Fluorescence Lifetime Standard selected for calibration and its lifetime set to 1 ns."></a></p>
-</figure>
+<p>The app reads duration and time-bin information from the acquisition metadata. Repeated PTU frames are summed into one decay image per FOV. For a time-lapse acquisition, split the data into one file per time point before extraction.</p>
 </div>
-<figcaption>Standard-based phasor calibration uses a shared reference lifetime.</figcaption>
-</figure>
-</div>
-</section>
-<section id="number-of-channels" class="level3" data-number="3.2.6">
-<h3 data-number="3.2.6" class="anchored" data-anchor-id="number-of-channels"><span class="header-section-number">3.2.6</span> Number of Channels</h3>
-<p>Each FOV is assumed to have the same number of channels. The configuration will dynamically adjust the <a href="#per-channel-configurations">per-channel configurations</a> based on the specified number of channels. Currently, the maximum number of channels is 8. When more than four channels are configured, the first four fold into a collapsed <code>Channels 1–4</code> group while the newer channels (5 and up) stay expanded, so the ones you just added remain in view.</p>
-</section>
-</section>
-<section id="per-channel-configurations" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="per-channel-configurations"><span class="header-section-number">3.3</span> Per-Channel Configurations</h2>
-<section id="channel-name" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="channel-name"><span class="header-section-number">3.3.1</span> Channel Name</h3>
-<p>Users can customize the channel name based on, for example, the name of the fluorophore.</p>
-</section>
-<section id="imaging-modality" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="imaging-modality"><span class="header-section-number">3.3.2</span> Imaging Modality</h3>
-<p>Users can specify the imaging modality for each channel. Currently, two modalities are supported:</p>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p><a id="three-d4d-pixel-pre-fit"></a></p>
+<p>Use pixel pre-fit inputs when lifetime fitting was performed in <a href="https://www.becker-hickl.com/products/spcimage/">SPCImage</a>. FLIM Playground aggregates the pixel features inside each cell mask.</p>
 <ul>
-<li><code>FLIM</code>: The signal is time-resolved, i.e., has a time dimension, and is expected to be from one of the <a href="./data_extraction_config.html#decay-types">decay types</a>.</li>
-<li><code>Intensity-only</code>: The signal is a spatial map of intensity values (2 spatial dimensions), i.e., has no time dimension. <strong>Currently, the only supported signal type is a 2D intensity image in the format of <code>.tiff/.tif</code>.</strong></li>
+<li><code>.asc</code>: a 2D spatial array containing one lifetime feature value per pixel, such as <code>t1</code>.</li>
+<li>Additional component and fraction files are inferred from the <code>t1</code> filename by replacing <code>t1</code> with <code>t2</code>, <code>t3</code>, <code>a1[%]</code>, and so on.</li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>The mask is required for cell aggregation. Fixed-lifetime controls are not shown because the lifetimes are read from the pre-fit files.</p>
 </div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This setup allows users to image some channels in FLIM mode, and others in non-FLIM mode. It also allows users to extract and analyze their data if they image in non-FLIM microscopic systems such as epifluorescence, confocal, brightfield, etc. by selecting <code>Intensity-only</code> for all channels.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A configuration cannot mix <a href="#two-d-decay">2D decay</a> FLIM channels with intensity-only channels. Select a 3D/4D format or change the channel modalities.</p>
 </div>
 </div>
 </section>
-<section id="feature-extractor" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="feature-extractor"><span class="header-section-number">3.3.3</span> Feature Extractor</h3>
-<p>Four types of feature extractors are available if the <a href="#imaging-modality">imaging modality</a> is <code>FLIM</code>:</p>
-<ul>
-<li><a href="lifetime_fit.html">Lifetime fit</a></li>
-<li><a href="lifetime_fit_free.html">Lifetime fit free</a></li>
-<li><a href="intensity_morphology.html">Intensity Morphology</a></li>
-<li><a href="intensity_texture.html">Intensity Texture</a></li>
-</ul>
+</section>
+<section id="feature-extractor" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="feature-extractor"><span class="header-section-number">3.2.3</span> Feature Extractor</h3>
+<p>Choose extractors according to the measurements you need:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Measurement goal</th>
+<th>Extractor</th>
+<th>Applies to</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fit lifetime components and fractions</td>
+<td><a href="./lifetime_fit.html">Lifetime fit</a></td>
+<td>FLIM raw decay or pixel pre-fit</td>
+</tr>
+<tr class="even">
+<td>Phasor coordinates and fit-free lifetimes</td>
+<td><a href="./lifetime_fit_free.html">Lifetime fit free</a></td>
+<td>FLIM decay</td>
+</tr>
+<tr class="odd">
+<td>Cell shape measurements</td>
+<td><a href="./intensity_morphology.html">Intensity Morphology</a></td>
+<td>Image-based FLIM, intensity-only, or QPI</td>
+</tr>
+<tr class="even">
+<td>Intensity texture</td>
+<td><a href="./intensity_texture.html">Intensity Texture</a></td>
+<td>Image-based FLIM or intensity-only</td>
+</tr>
+<tr class="odd">
+<td>Dry mass and mass-distribution statistics</td>
+<td><a href="./qpi.html#dry-mass-statistics">Dry-mass statistics</a></td>
+<td>QPI</td>
+</tr>
+<tr class="even">
+<td>QPI spatial texture</td>
+<td><a href="./qpi.html#spatial-texture">Spatial texture</a></td>
+<td>QPI</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>
+Lifetime fit settings
+</summary>
+<p><a id="number-of-components"></a></p>
+<p>When <code>Lifetime fit</code> is selected, choose the number of lifetime components to fit.</p>
+<p>Raw FLIM inputs also require an IRF and a confirmed <a href="./irf_calibration.html#fit-calibration">IRF shift calibration</a> before fitting. Pixel pre-fit inputs do not require this fitting-based calibration because their lifetime values are already provided.</p>
+<p>Provide one IRF per channel in <code>.txt</code>, <code>.csv</code>, or <code>.ptu</code> format.</p>
+<p><a id="fixed-lifetimes"></a></p>
+<p>When the number of components is greater than one, open <code>Advanced: fixed lifetimes</code> to set known component lifetimes in nanoseconds. Set a component to <code>0</code> to leave it free for optimization. These values become defaults for the <a href="./irf_calibration.html#fixed-lifetimes">interactive fitting phase</a> and are unavailable for pixel pre-fit inputs.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="extraction_ui_shots/config_feature_extractor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Choose extractors and lifetime component counts independently for each channel."><img src="extraction_ui_shots/config_feature_extractor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="NADH and FAD extraction settings with lifetime fitting, fit-free, morphology, and texture extractors selected, two lifetime components, and fixed-lifetime expanders."></a></p>
+<p><a href="extraction_ui_shots/config_feature_extractor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Choose extractors and lifetime component counts independently for each channel."><img src="extraction_ui_shots/config_feature_extractor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="NADH and FAD extraction settings with lifetime fitting, fit-free, morphology, and texture extractors selected, two lifetime components, and fixed-lifetime expanders."></a></p>
 </figure>
 </div>
 <figcaption>Choose extractors and lifetime component counts independently for each channel.</figcaption>
 </figure>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If the decay type is <a href="#two-d-decay">2D decay</a>, the <a href="intensity_morphology.html">Intensity Morphology</a> feature extractor is <strong>not</strong> applicable, because there is no ROI mask to measure. The <a href="intensity_texture.html">Intensity Texture</a> extractor <em>is</em> available, but a 2D decay CSV has no intensity image, so it produces only the single <code>intensity_sum</code> feature (the sum of each cell’s decay curve).</p>
-</div>
-</div>
-<p>The <a href="intensity_morphology.html">Intensity Morphology</a> and <a href="intensity_texture.html">Intensity Texture</a> feature extractors are available if the <a href="#imaging-modality">imaging modality</a> is <code>Intensity-only</code>.</p>
-<p>Each channel can be assigned its own set of feature extractors. For example, if users do not intend to do lifetime extraction, they can de-select the <code>Lifetime fit</code> and <code>Lifetime fit free</code> options.</p>
-</section>
-<section id="number-of-components" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="number-of-components"><span class="header-section-number">3.3.4</span> Number of Components</h3>
-<p>If users select the <code>Lifetime fit</code> under this channel, they can specify the number of components to fit.</p>
-</section>
-<section id="fixed-lifetimes" class="level3" data-number="3.3.5">
-<h3 data-number="3.3.5" class="anchored" data-anchor-id="fixed-lifetimes"><span class="header-section-number">3.3.5</span> Fixed Lifetimes</h3>
-<p>When the number of components is greater than one, open <code>Advanced: fixed lifetimes</code> to set a known component lifetime in nanoseconds, using controls such as <code>Fix τ1 (ns)</code> and <code>Fix τ2 (ns)</code>. Set a component to <code>0</code> to leave it free for optimization. Positive values become defaults for the <a href="./irf_calibration.html#fixed-lifetimes">interactive fitting phase</a>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Fixed lifetimes apply only to channels that FLIM Playground fits. For <a href="#three-d4d-pixel-pre-fit">pre-fit</a> inputs (SPCImage <code>.asc</code>), whose lifetimes are read rather than fit, the fixed-lifetime controls are not shown.</p>
-</div>
-</div>
-</section>
-<section id="file-suffix" class="level3" data-number="3.3.6">
-<h3 data-number="3.3.6" class="anchored" data-anchor-id="file-suffix"><span class="header-section-number">3.3.6</span> File Suffix</h3>
-<p>The <a href="fov_metadata.html">FOV Metadata Extraction</a> step finds inputs using file suffixes. The selected <a href="#decay-types">decay type</a>, <a href="#calibration-method">calibration method</a>, and <a href="#feature-extractor">extractors</a> determine the required file types. Enter a filename suffix for each. Additional SPCImage component suffixes are inferred from the <code>t1</code> suffix.</p>
+</details>
+<details>
+<summary>
+Lifetime fit free settings
+</summary>
+<p><a id="calibration-method"></a> <a id="laser-frequency"></a></p>
+<p>When <code>Lifetime fit free</code> is selected, set the laser frequency in <strong>MHz</strong> and choose a calibration method:</p>
+<ul>
+<li><code>IRF</code>: use a per-channel IRF and complete <a href="./irf_calibration.html#fit-free-calibration">IRF shift calibration</a>.</li>
+<li><code>Fluorescence Lifetime Standard</code>: use a per-channel standard file and enter the shared standard lifetime in nanoseconds.</li>
+</ul>
+<p>For Fluorescence Lifetime Standard calibration, provide a <code>.tiff</code>, <code>.tif</code>, or <code>.ptu</code> reference file.</p>
+<p>See the <a href="./lifetime_fit_free.html#calibration-method">fit-free calibration settings</a> for the correction applied by each method.</p>
+</details>
+<details>
+<summary>
+QPI settings
+</summary>
+<p>When <code>QPI</code> is selected, set these physical constants for the channel:</p>
+<ul>
+<li><strong>Pixel size (µm)</strong>: the specimen distance represented by one image pixel after binning. It must be positive; there is no default. The app uses its square as the pixel area.</li>
+<li><strong>OPD unit in file</strong>: choose <code>m</code>, <code>um</code>, or <code>nm</code>. The file must already contain optical path difference, rather than an unconverted phase angle. This choice is required; there is no default.</li>
+<li><strong>α (µm³/pg)</strong>: the specific refractive increment used for dry-mass conversion. It defaults to <code>0.181818</code> µm³/pg and must be finite and greater than zero.</li>
+</ul>
+<p>Selecting <code>Dry-mass statistics</code> or <code>Spatial texture</code> also requires a confirmed <a href="./qpi.html#background-correction">background correction</a>. The QPI channel’s image and mask suffixes are set in <a href="#file-suffix">File Suffix</a>, and the mask requirements are described in <a href="#mask">ROI Mask</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="extraction_ui_shots/config_file_suffix.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="File suffixes identify each channel’s decay, calibration, and mask inputs."><img src="extraction_ui_shots/config_file_suffix.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Separate NADH and FAD decay and IRF suffixes, with the same cell-mask suffix used for both channels."></a></p>
+<p><a href="extraction_ui_shots/qpi_config.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Configure a QPI channel with its extractors, physical constants, and input suffixes."><img src="extraction_ui_shots/qpi_config.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="QPI channel configuration showing extractor selection, pixel size, OPD unit, specific refractive increment, and image and mask suffixes."></a></p>
 </figure>
 </div>
-<figcaption>File suffixes identify each channel’s decay, calibration, and mask inputs.</figcaption>
+<figcaption>Configure a QPI channel with its extractors, physical constants, and input suffixes.</figcaption>
 </figure>
 </div>
-<p>The two-channel example uses separate NAD(P)H and FAD decay and IRF suffixes. Both channels use the same mask suffix to measure the same cell ROIs. Choose suffixes that unambiguously identify each input in the folder you will scan.</p>
-<p>For detailed information on what file formats are supported for each file type (Mask, IRF, etc.), see <a href="./data_extraction.html#input-file-types">input file types</a>.</p>
-<p>For detailed information on how the file suffixes are used, and what each file type (e.g.&nbsp;<code>IRF</code>, <code>Mask</code>, etc.) is, see the <a href="fov_metadata.html">FOV Metadata Extraction</a> page.</p>
+</details>
+</section>
+<section id="mask" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="mask"><span class="header-section-number">3.2.4</span> ROI Mask</h3>
+<p>All image-based channels require a cell-level ROI mask: FLIM (3D/4D decay or pixel pre-fit), intensity-only, and QPI. Channels can share a mask or use different masks; when masks differ, the integer label for the same cell must match across them. Each image must match its own mask dimensions.</p>
+<ul>
+<li><code>.tiff</code>/<code>.tif</code>: a 2D array with background labeled <code>0</code> and each cell ROI labeled with a unique positive integer. The label becomes part of the <a href="#cell-identifier">cell identifier</a>.</li>
+</ul>
+<p>Every pixel carrying the same integer forms one cell, even when those pixels are in separate regions. If one label covers two cells, their pixels are treated as one cell for feature extraction; relabel the mask when they should be measured separately.</p>
+</section>
+<section id="file-suffix" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="file-suffix"><span class="header-section-number">3.2.5</span> File Suffix</h3>
+<p>Source preparation in <a href="./numerical_feature_extraction.html#sec-numerical-feature-extraction">Numerical</a> finds files using the configured suffixes. The selected modality, decay type, calibration method, and extractors determine which suffixes are required. Additional SPCImage component suffixes are inferred from the <code>t1</code> suffix.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="extraction_ui_shots/config_file_suffix.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="File suffixes identify each channel’s inputs, calibration, and mask."><img src="extraction_ui_shots/config_file_suffix.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Separate NADH and FAD decay and IRF suffixes, with the same cell-mask suffix used for both channels."></a></p>
+</figure>
+</div>
+<figcaption>File suffixes identify each channel’s inputs, calibration, and mask.</figcaption>
+</figure>
+</div>
+<p>Choose suffixes that identify each input unambiguously in the folder you will scan. A shared mask suffix can be used when channels measure the same cell ROIs. The <a href="./fov_metadata.html">FOV Metadata reference</a> explains how suffixes are matched to FOVs and calibration references.</p>
 </section>
 </section>
-<section id="derived-features" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="derived-features"><span class="header-section-number">3.4</span> Derived Features</h2>
-<p>The Configuration page also hosts the <code>Derived features</code> builder, which composes new single-cell features by arithmetic over the features you already extract — optionally combining operands from different channels (for example, an optical redox ratio). Definitions are saved with the <a href="#extraction-profiles">current profile</a> and computed later, during <a href="numerical_feature_extraction.html">Numerical Feature Extraction</a>. See <a href="derived_feature.html">Derived Features</a> for the full walkthrough.</p>
+<section id="derived-features" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="derived-features"><span class="header-section-number">3.3</span> Derived Features</h2>
+<p>The <code>Derived features</code> builder composes new single-cell features by arithmetic over the features you extract, optionally combining operands from different channels. Definitions are saved with the <a href="#extraction-profiles">current profile</a> and computed during <a href="./numerical_feature_extraction.html">Numerical Feature Extraction</a>.</p>
 </section>
-<section id="save" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="save"><span class="header-section-number">3.5</span> Save</h2>
-<p>Finally, users can save the configuration into the <strong>current profile</strong> for future use by clicking the <code>Update Configuration</code> button.</p>
-<p>If you keep FLIM Playground open in more than one browser tab, saving here does not reach the others on its own. Any tab already showing Data Extraction will notice and post a small notice asking you to reload it, so you can finish what you are in the middle of first and pick up the new settings when it suits you.</p>
+<section id="save" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="save"><span class="header-section-number">3.4</span> Save</h2>
+<p>Click <code>Update Configuration</code> to save the current profile. If FLIM Playground is open in more than one browser tab, another tab showing Data Extraction will display a notice asking you to reload before using the new settings.</p>
 
 
-<div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
-<div id="ref-Samimi2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Samimi, K. <em>et al.</em> <a href="https://doi.org/10.1002/cyto.a.24883">Autofluorescence lifetime flow cytometry with time-correlated single photon counting</a>. <em>Cytometry Part A</em> <strong>105</strong>, 607–620 (2024).</div>
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->
@@ -1237,8 +1237,8 @@ Note
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./fov_metadata.html" class="pagination-link" aria-label="Field of View Metadata">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Field of View Metadata</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./numerical_feature_extraction.html" class="pagination-link" aria-label="Numerical Feature Extraction">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Feature Extraction</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
