@@ -1,45 +1,58 @@
 # Numerical Feature Extraction {#sec-numerical-feature-extraction}
-FLIM Playground extracts *single-cell* numerical features from **multiple channels and imaging modalities in the same workflow**. Configure each channel independently: give it a name, choose the imaging modality, and select the [feature extractors](data_extraction_config.qmd#feature-extractor) needed for that channel. For example, a FLIM channel can provide lifetime and phasor features while an intensity-only channel provides morphology and texture. 
 
-It is divided into two steps: 
+Open **Data Extraction → Numerical** in a [local installation](index.qmd#installation) to turn a folder of input files into a single-cell feature table. This one workflow checks the inputs, prepares the FOV metadata, calibrates the channels that need it, and extracts and saves the numerical features based on configured per-channel feature extractors.
 
-1. The optional calibration step. For example, **an [IRF calibration](#sec-irf-calibration) for shift is required for raw FLIM channels**.
+## Field of View Metadata
 
-2. The feature extraction step that applies the selected feature extractors to each channel and saves the results to a CSV file.
+See [Field of View Metadata](fov_metadata.qmd#sec-fov-metadata) for FOV search by scanning a user-provided folder, file validation, channel assignment, acquisition checks, and the automatically saved metadata record.
 
-The available feature extractors are:
+## Calibration interface {#calibration-interface}
 
-- [Lifetime fit](#sec-lifetime-fit): fit exponential models to raw decay curves to estimate lifetimes and their fractional contributions, or read existing fitted values from pre-fitted FLIM input.
-- [Lifetime fit free](#sec-lifetime-fit-free): transform decay curves to phasor space using Fourier transform to obtain phasor coordinates. 
-- [Intensity Morphology](#sec-intensity-morphology): morphological features of single-cell ROI masks
-- [Intensity Texture](#sec-intensity-texture): texture features of single-cell ROI intensity images (or, for 2D decay input, just the per-cell decay-curve sum, `intensity_sum`)
+Interactive calibration is needed only for some use cases. See [IRF Calibration](irf_calibration.qmd#sec-irf-calibration) for FLIM shift calibration and [QPI Background Correction](qpi.qmd#background-correction) for QPI calibration.
 
-## Input 
+After the folder is scanned, the next button reflects whether the selected extractors need interactive calibration:
 
-A CSV file extracted in the [fov metadata extraction](#sec-fov-metadata) step that contains the metadata of the FOVs including: 
+- **Start calibration** prepares channels that need an IRF shift or QPI background correction.
+- **Start extraction** prepares and immediately extracts when no interactive calibration is needed, for example an intensity-only workflow.
 
-- [required file paths](fov_metadata.qmd#fov-file-paths)
-- [decay type](fov_metadata.qmd#decay-type)
-- [decay info](fov_metadata.qmd#decay-info)
-- [selected feature extractors](fov_metadata.qmd#feature-extractors) for each channel
-- [fit free calibration method](data_extraction_config.qmd#calibration-method) (if fit free calibration is required)
+### Review each channel that needs calibration
 
-Use the cached metadata just exported in [FOV Metadata Extraction](#sec-fov-metadata), or upload a previously saved metadata CSV. Cached metadata takes precedence; refresh the page to clear it and upload a different file.
+| Channel and selected extractor | Calibration to review |
+|---|---|
+| Raw FLIM with `Lifetime fit` | [Reconvolution fitting and IRF shift](irf_calibration.qmd#fit-calibration), including fitting options and time gates |
+| FLIM with `Lifetime fit free` and `IRF` calibration | [IRF shift](irf_calibration.qmd#fit-free-calibration); a raw lifetime fit supplies its fitted shift when both extractors are selected |
+| QPI with `Dry-mass statistics` or `Spatial texture` | [Background correction](qpi.qmd#background-correction) for that channel |
+
+For FLIM shift calibration, review the left-hand settings and click **Optimize for Shifts**. In a workflow that also requires QPI correction, this button is **Calibrate channels**. QPI-only background calibration opens directly after **Start calibration**.
+
+Fluorescence lifetime standard calibration is applied during [phasor extraction](lifetime_fit_free.qmd#fit-free-standard-calibration). It does not require an interactive IRF shift unless that channel also performs raw lifetime fitting. A QPI channel selecting only morphology does not require background calibration.
+
+When every required channel is ready, click **Confirm calibration for each channel**. Confirmation automatically updates the same metadata record with the chosen settings.
 
 ## Feature Extraction
 
-Click **Confirm and Start** to extract the selected features. For channels that need an IRF shift, first [confirm calibration](irf_calibration.qmd#confirm-calibration) or load metadata with saved shifts. For raw FLIM channels using `Lifetime fit`, choose the fitting mode before starting.
+After confirming calibration, choose **Hybrid** or **Local** fitting for raw FLIM channels using `Lifetime fit`, then click **Start extraction**. To revisit calibration, use **Go back and find shift**, **Go back and correct background**, or **Go back and recalibrate**, as appropriate for the channels.
 
-The right side of the screen lists the fields of view and their extraction status. Each FOV has a progress bar while it is being processed; completed FOVs show their result badges. Keep this view open to follow the batch.
+The selected extractors provide:
 
-![Full extraction screen: Mosaic01–03 are complete while Mosaic07 is processing.](extraction_ui_shots/numerical_feature_extraction.png){width=100% fig-align=center fig-alt="Full Numeric Feature Extraction screen with the workflow and Local fitting controls on the left, successful Mosaic01–03 badges, and an active NADH extraction progress bar for 40 cells in Mosaic07 on the right."}
+- [Lifetime fit](lifetime_fit.qmd): fitted lifetime components, fractions, and fit statistics, or cell-level aggregation of pre-fitted pixel values.
+- [Lifetime fit free](lifetime_fit_free.qmd): phasor coordinates and corresponding lifetimes.
+- [Intensity morphology](intensity_morphology.qmd): shape measurements from ROI masks.
+- [Intensity texture](intensity_texture.qmd): intensity-image texture, or only the per-cell decay sum for 2D decay input.
+- [QPI dry-mass statistics and spatial texture](qpi.qmd#output-features): measurements from background-corrected optical path difference.
 
-![This numerical extraction example produces 185 cell rows and 70 columns from one FOV.](extraction_ui_shots/feature_export.png){width=100% fig-align=center fig-alt="Successful extraction for MCF7_2DG_dish2_04, a preview of the first five cell rows, and the Download single cell features as CSV button."}
+Configured [derived features](derived_feature.qmd) are calculated after the successful FOV results are combined.
 
-The completed result above includes a preview of the extracted cell table.
+The right side lists FOVs and their extraction status. Progress bars appear during processing, and completed FOVs show their result badges. Keep the page open while the batch runs and check any errors or warnings before using the output.
 
-Warnings are displayed if cells have `NaN` values for some features. They are *not* excluded from the final CSV file. 
+![Follow per-FOV progress and results during numerical extraction.](extraction_ui_shots/numerical_feature_extraction.png){width=100% fig-align=center fig-alt="Numerical workflow showing fitting controls and per-field-of-view extraction progress and result badges."}
+
+Cells with missing feature values (`NaN`) remain in the exported table; the app reports warnings about those values.
 
 ## Save Results
 
-Once the feature extraction is finished, the results are saved to a CSV file. How this happens depends on how the metadata reached this step. If the cached metadata file from the [fov metadata extraction](#sec-fov-metadata) step was used, the CSV is written automatically into the same folder as that metadata file, and no button is shown. If the metadata file was uploaded manually, FLIM Playground cannot know where to write it, so a `Download single cell features as CSV` button appears at the bottom of the page instead.
+The completed table is automatically written as `single_cell_features_<timestamp>.csv` in the source folder. The page shows a preview and the saved path.
+
+![Inspect the extracted table and its automatically saved CSV path.](extraction_ui_shots/feature_export.png){width=100% fig-align=center fig-alt="Completed numerical extraction with a cell-feature table preview and a successful export message showing the local CSV path."}
+
+If saving the features fails, correct the reported problem and click **Retry exporting features**. This saves the already calculated table without rerunning extraction. The metadata CSV remains a record of the input files, extraction settings, and confirmed calibration; the workflow starts from a source folder on each new run.

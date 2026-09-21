@@ -1,78 +1,18 @@
 # Overview {#sec-data-extraction}
 
-FLIM Playground transforms raw FLIM data into single-cell numerical and categorical features, ensuring smooth integration with [downstream analysis](#sec-data-analysis). All steps are seamlessly connected through interactive widgets, with built-in error checking and reporting to ensure correctness.
+FLIM Playground transforms FLIM, intensity-only, and [quantitative phase imaging (QPI)](qpi.qmd) inputs into single-cell numerical features, then combines numerical tables and assigns categorical labels for [downstream analysis](#sec-data-analysis).
 
-A high-level overview of the data extraction process is shown below.
-![](Fig2.svg){width=100% fig-align=center}
+## Stages
 
-## Stages 
+[Configure](#sec-data-extraction-config) a profile for the channels, input types, file suffixes, and extractors in your experiment. Then open **Data Extraction** in a [local installation](index.qmd#installation). The hosted app provides Data Analysis only.
 
-Users can [configure](#sec-data-extraction-config) the system once and apply it to future data. After configuration, users can extract features from raw data using the following steps, inspired by the [categorization](index.qmd#feature-classes):
+![Numerical prepares the source, calibrates channels, and extracts features; Categorical combines and labels tables.](extraction_ui_shots/extraction_steps.png){width=80% fig-align=center fig-alt="Data Extraction workflow selector with Numerical and Categorical choices."}
 
-![Choose the extraction stage from the workflow selector.](extraction_ui_shots/extraction_steps.png){width=80% fig-align=center fig-alt="FOV Metadata Extraction is selected above Numeric Feature Extraction and Categorical Feature Extraction."}
-
-1. [FOV Metadata Extraction (A)](#sec-fov-metadata): each experiment session consists of multiple fields of view (FOVs). This step helps users organize the metadata of the FOVs.
-2. [Numeric Feature Extraction (B)](#sec-numerical-feature-extraction): extracts single-cell numerical features, with IRF shift calibration first for the channels that require it.
-    - [IRF Calibration](irf_calibration.qmd#sec-irf-calibration)
-        - [Fit Calibration](irf_calibration.qmd#fit-calibration)
-        - [Fit-Free IRF Calibration](irf_calibration.qmd#fit-free-calibration)
-    - [Fluorescence lifetime standard](lifetime_fit_free.qmd#fit-free-standard-calibration): calibrates phasors with a reference dye during extraction.
-    - Per-channel feature extraction includes:
-        - [Lifetime fitting features](#sec-lifetime-fit): fit an exponential decay curve to the measured decay and extract lifetime features per cell ROI. 
-        - [Phasor features](#sec-lifetime-fit-free): calculate the phasor features such as the phasor coordinates. It also provides [phasor analysis](#sec-phasor-analysis). 
-        - [Morphology features](#sec-intensity-morphology): calculate morphology features based on the ROI mask. 
-        - [Texture features](#sec-intensity-texture): calculate texture features based on the intensity image and the ROI mask. 
-3. [Categorical Feature Extraction (C)](#sec-categorical-feature-extraction): extract the categorical features such as the treatment, time point, etc. based on the FOV name.
-
-- Users can then upload the extracted datasets to perform [Data Analysis](#sec-data-analysis). 
-
-
-## Input File Types
-
-### Decay
-
-See [decay types](data_extraction_config.qmd#decay-types) for more details. 
-
-- 2D decay: 
-    - `.csv`: a headerless numeric table with one cell per row and one time bin per column. Do not include identifier or annotation columns.
-- 3D/4D decay: besides the spatial dimensions and the time dimension, the additional dimension in the 4D array represents acquisition channels.
-    - `.sdt`: Becker & Hickl
-    - `.ptu`: PicoQuant
-
-### Mask
-
-Image-based inputs need a cell-level mask for each channel. Channels can share a mask or use different masks; when masks differ, the integer label for the same cell must match across them. A 2D decay table does not need a mask: its rows identify the cells.
-
-The cell-level mask can focus on different parts of the cell region, such as the whole cell, the cytoplasm, the nucleus, or the stain part. 
-
-For an example, see [here](data_extraction_config.qmd#file-suffix). 
-
-- `.tiff`/`.tif`: a 2D array with background labeled as `0` and each cell ROI region labeled as a unique positive integer. That integer will be part of the [unique cell identifier](data_extraction_config.qmd#cell-identifier).
-
-### IRF 
-The IRF is used as a 1D reference curve, with one value per decay time bin. Supported formats are:
-
-- `.txt`: it uses `np.loadtxt` to parse a txt file. It returns a 1D array if the IRF numbers are in one row or in one column.  
-- `.csv`: comma-separated IRF values. The resulting IRF must contain one value per decay time bin.
-- `.ptu`: single-channel T3 imaging data. All pixels and repeated frames are summed into one reference curve. The acquisition timing must match the sample; see [calibration reference validation](fov_metadata.qmd#calibration-references).
-
-### SPCImage t1
-If the decay type is [3D/4D pixel pre-fit](data_extraction_config.qmd#three-d4d-pixel-pre-fit), users can provide pixel pre-fit lifetime feature files. 
-
-- `.asc`: a 2D array in spatial dimensions outputted by [SPCImage](https://www.becker-hickl.com/products/spcimage/), with each (row, column) containing the value of the lifetime feature (e.g. `t1`: the first component's lifetime) of that pixel.
-- Depending on the chosen number of lifetime components, the other pixel pre-fit feature files are included and their names are inferred from the `t1` file, by replacing `t1` in the file name with `t2`, `t3`, `a1[%]`, etc. 
-
-### Fluorescence Lifetime Standard
-If the fluorescence lifetime standard-based calibration is chosen, users are expected to provide the fluorescence lifetime standard file. 
-
-- `.tiff`/`.tif`: a 3D array, with one dimension representing the time axis. 
-- `.ptu`: single-channel T3 imaging data. All pixels and repeated frames are summed into one reference curve. The acquisition timing must match the sample; see [calibration reference validation](fov_metadata.qmd#calibration-references).
-
-### Intensity (2D)
-
-If the channel's [imaging modality](data_extraction_config.qmd#imaging-modality) is `Intensity-only`, users are expected to provide a 2D intensity image in:
-
-- `.tiff`/`.tif`: a 2D array. 
+1. **[Numerical](#sec-numerical-feature-extraction)** includes:
+   - [Field of View (FOV) metadata preparation](#sec-fov-metadata) scans a source folder, checks files and acquisition settings, and automatically records the metadata.
+   - Interactive calibration (if needed): some channels may require [IRF shifts](irf_calibration.qmd) or [QPI background correction](qpi.qmd#background-correction) that need human inputs
+   - Per-channel extraction: after calibration, each channel is processed independently to extract its features. Some example extractors are [fitted lifetimes](lifetime_fit.qmd), [phasors](lifetime_fit_free.qmd), [morphology](intensity_morphology.qmd), [intensity texture](intensity_texture.qmd), and [QPI dry-mass statistics and spatial texture](qpi.qmd#output-features).
+2. **[Categorical](#sec-categorical-feature-extraction)** combines numerical datasets and assigns labels such as treatment and time point from the FOV names.
 
 ## Limitations
 

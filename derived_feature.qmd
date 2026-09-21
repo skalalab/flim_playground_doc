@@ -48,7 +48,7 @@ Division by zero yields `NaN` rather than raising an error or producing infinity
 
 ## Compute Derived Features
 
-Derived features are computed during [Numerical Feature Extraction](#sec-numerical-feature-extraction), after the successful FOV results have been concatenated. The definitions are baked into the FOV metadata, so re-running extraction from a saved metadata file reproduces the same derived columns. Each definition adds one `Derived: <name>` column to the output dataset.
+Derived features are computed during [Numerical Feature Extraction](#sec-numerical-feature-extraction), after the successful FOV results have been concatenated. The definitions from the active extraction profile are recorded in the automatically saved FOV metadata alongside the extraction settings. Each definition adds one `Derived: <name>` column to the output dataset.
 
 If any cell ends up with a `NaN` in a derived column (for instance from a divide-by-zero or a `NaN` operand), a single dataset-wide warning is shown for that feature — "Derived feature **name** has **N** NaN value(s) out of _M_ cell(s) (e.g. from divide-by-zero or a NaN operand)." As with other features, cells with `NaN` are **not** dropped from the output.
 

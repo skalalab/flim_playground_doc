@@ -1,17 +1,14 @@
 # Configuration {#sec-data-extraction-config}
+
 ::: {.callout-note}
-Configure FLIM Playground once and it is applied to all future data. You can also keep multiple named **configuration profiles** and switch between them — see [Extraction Profiles](#extraction-profiles).
+Configure FLIM Playground once and it is applied to future data. You can keep up to 10 named **configuration profiles** and switch between them for different experiments.
 :::
 
-Constructing a framework that balances flexibility and usability is about choosing the right abstraction level. FLIM Playground chooses acquisition *channel* from [data levels](index.qmd#data-levels) as the focus and adopts the **channel-centric framework**. Settings are divided into two categories: [cross-channel configurations](#cross-channel-configurations) and [per-channel configurations](#per-channel-configurations).
+Configuration has two levels: settings shared by the experiment and settings chosen for each channel. For a mixed-modality experiment, assign a modality to every channel first, then complete the input and extractor settings for each channel.
 
-The page begins with the active profile, channel count, and identifier names. `Channels` contains channel names and imaging modalities. `Shared FLIM settings` appears when at least one channel uses FLIM, followed by per-channel `Extraction settings`. Categorical columns and the derived-feature builder are near the bottom.
+## Shared settings
 
-![Configuration starts with the active profile, identifiers, channels, and shared FLIM settings.](extraction_ui_shots/config.png){width=100% fig-align=center fig-alt="Configuration page showing profile controls, two FLIM channels, identifier names, and shared FLIM settings."}
-
-## Extraction Profiles
-
-Keep up to **10 extraction profiles**, each storing the settings for an experiment or dataset.
+### Extraction Profiles
 
 On the **Configuration** page:
 
@@ -21,143 +18,180 @@ On the **Configuration** page:
 
 ![Switch, create, or delete extraction profiles from Configuration.](extraction_ui_shots/config_profile.png){width=100% fig-align=center fig-alt="Profile dropdown beside a New profile field, Create button, and Delete button."}
 
-A newly created profile starts blank. Fill in the settings described below and click `Update Configuration` to save it. Everything described below pertains to the current profile.
-
-## Cross-Channel Configurations
+A newly created profile starts blank. Complete the settings below and click `Update Configuration` to save it. Everything described below pertains to the current profile.
 
 ### Categorical Features
 
-Categorical features organize observations into groups in [Data Analysis](#sec-data-analysis). Use `Categorical columns (type to add more)` to choose names for the [Categorical Feature Extraction](#sec-categorical-feature-extraction) step; type a new name to add it.
-
-### Decay Types 
-
-Choose `FLIM input format` under `Shared FLIM settings`: 2D decay, 3D/4D decay, or 3D/4D pixel pre-fit input.
-
-#### 2D Decay {#two-d-decay}
-
-In the system developed by Samimi et al. [@Samimi2024], single cells flow through and a decay curve is acquired for each cell by aggregating all the photon arrival time delays deemed to be from the same cell. In exchange for spatial distribution, the acquisition speed is increased enormously. The output of the system is a tabular data sheet with each row representing a cell and each column representing a time bin. **FLIM Playground currently supports 2D decay in the CSV format.** 
-
-::: {.callout-note}
-A 2D decay CSV must be headerless, with only numeric time bins. Do not include a header, cell-label column, or annotation column. Non-numeric columns are rejected because every column must represent a time bin.
-:::
-
-#### 3D/4D Decay {#three-d4d-decay}
-
-In TCSPC-based FLIM, the data is stored in a 3D/4D array and in special format (e.g. `.sdt`, `.ptu`). In addition to the spatial dimensions and the time dimension (`XYT`), the channel dimension may also be present, making it 4-dimensional (`CXYT`). **FLIM Playground currently supports both `.sdt` and `.ptu` files as 3D/4D decay images.** Here, `T` is the photon-arrival time axis within a laser pulse interval.
-
-It reads the `duration` and the number of `time bins` from the decay file's acquisition metadata. For PTU files, the bin count is the laser period divided by the TCSPC resolution, rounded down to a whole number of bins. The duration is **bin count × TCSPC resolution**, expressed in nanoseconds. This preserves the recorded bin width and can make the duration slightly shorter than the nominal laser period. The bin count may not necessary be the last time bin that happened to receive a photon.
-
-Repeated frames in a PTU file are summed into one decay image per FOV, and the [FOV metadata step](fov_metadata.qmd#decay-info-1) warns when frames have been combined. For actual time-lapse acquisitions, split the data into one file per time point before extraction so that the time points remain separate.
-
-#### 3D/4D pixel pre-fit {#three-d4d-pixel-pre-fit}
-
-Since FLIM Playground currently does **not** support pixel-fitting, users have the option to provide pixel pre-fit outputs from [SPCImage](https://www.becker-hickl.com/products/spcimage/) in the format of `.asc`. See [here](lifetime_fit.qmd#pixel-pre-fit) for how FLIM Playground processes SPCImage outputs to obtain cell-level lifetime fitting features. 
-
-### Identifiers
-
-#### Cell Identifier
-
-Users can specify the column name for the unique identifier of the cell to be stored in the output dataset. The cell identifier is constructed as `{FOV Identifier}_{cell_label}`, where the `cell_label` is the unique integer label in the mask or the row number if the decay type is [2D decay](#two-d-decay). 
-
-#### FOV Identifier
-
-Users can specify the column name for the field of view identifier. If the decay type is [2D decay](#two-d-decay), users may want to specify the column name as `exp_name`, because the FOV is not an image.
-
-### Decay Info
-
-#### Laser frequency
-
-Enter the laser frequency in GHz, up to 1 GHz; for example, 0.08 GHz equals 80 MHz. This control appears when at least one FLIM channel selects `Lifetime fit free`, and the value is used for phasor extraction and [analysis](#sec-phasor-analysis).
-
-#### 2D Decay-specific
-Since the [2D decay](#two-d-decay) file does not provide the `duration` and the number of `time bins` per laser pulse interval, users need to specify them. 
-
-![For 2D decay input, enter the acquisition duration and time-bin count.](extraction_ui_shots/config_2d_setting.png){width=100% fig-align=center fig-alt="Shared FLIM settings set to Decay (2D), with a 12.5 ns duration, 200 time bins, a 0.08 GHz laser rate, and IRF calibration."}
-
-### Calibration Method
-
-When `Lifetime fit free` is selected, choose between two calibration methods:
-
-- `IRF`: [shift-based calibration](irf_calibration.qmd#irf-shift).
-- `Fluorescence Lifetime Standard`: [reference-based calibration](lifetime_fit_free.qmd#fit-free-standard-calibration).
-
-Since the instrumental response function (IRF) or the fluorescence lifetime standard is measured for each channel, they are set in the [per-channel configurations](#per-channel-configurations). The fluorescence lifetime standard's lifetime is channel-agnostic. 
-
-![Standard-based phasor calibration uses a shared reference lifetime.](extraction_ui_shots/config_calibration.png){width=100% fig-align=center fig-alt="Shared FLIM settings with Fluorescence Lifetime Standard selected for calibration and its lifetime set to 1 ns."}
+Categorical features organize observations into groups in [Data Analysis](data_analysis.qmd). Use `Categorical columns (type to add more)` to add categories to be extracted in the [Categorical Feature Extraction](categorical_feature_extraction.qmd) step.
 
 ### Number of Channels
 
-Each FOV is assumed to have the same number of channels. The configuration will dynamically adjust the [per-channel configurations](#per-channel-configurations) based on the specified number of channels. Currently, the maximum number of channels is 8. When more than four channels are configured, the first four fold into a collapsed `Channels 1–4` group while the newer channels (5 and up) stay expanded, so the ones you just added remain in view.
+Each FOV is expected to have the same number of channels. The configuration creates one set of per-channel controls for each channel, up to a maximum of 8.
 
-## Per-Channel Configurations
+![Configuration starts with the active profile, identifiers, and number of channels.](extraction_ui_shots/config.png){width=100% fig-align=center fig-alt="Configuration page showing profile controls, identifier names, and number of channels."}
+
+### Identifiers
+
+#### Cell Identifier {#cell-identifier}
+
+Choose the output column name for the unique identifier of each cell. For example, if the `cell_id` is chosen the extracted dataset will contain a column named `cell_id` with unique values for each cell.
+
+#### FOV Identifier {#fov-identifier}
+
+Choose the output column name for the field-of-view identifier. Together with the cell identifier, it uniquely identifies each cell.
+
+## Configure each channel
 
 ### Channel Name
 
-Users can customize the channel name based on, for example, the name of the fluorophore. 
+Customize each channel name, for example with the fluorophore name.
 
-### Imaging Modality
+### Imaging Modality {#imaging-modality}
 
-Users can specify the imaging modality for each channel. Currently, two modalities are supported: 
+Choose one modality for each channel:
 
-- `FLIM`: The signal is time-resolved, i.e., has a time dimension, and is expected to be from one of the [decay types](data_extraction_config.qmd#decay-types).
-- `Intensity-only`: The signal is a spatial map of intensity values (2 spatial dimensions), i.e., has no time dimension. **Currently, the only supported signal type is a 2D intensity image in the format of `.tiff/.tif`.**
+| Modality | Use it for | Input formats |
+|---|---|---|
+| `FLIM` | Time-resolved signals | [2D decay](#two-d-decay) (`.csv`), [3D/4D decay](#three-d4d-decay) (`.sdt`, `.ptu`), or [3D/4D pixel pre-fit](#three-d4d-pixel-pre-fit) (`.asc`) |
+| `Intensity-only` | 2D intensity images without a time axis | `.tiff`, `.tif`, `.asc` |
+| `QPI` | 2D optical path difference images | `.tiff`, `.tif`, `.asc` |
 
-::: {.callout-tip}
-This setup allows users to image some channels in FLIM mode, and others in non-FLIM mode. It also allows users to extract and analyze their data if they image in non-FLIM microscopic systems such as epifluorescence, confocal, brightfield, etc. by selecting `Intensity-only` for all channels.
+#### FLIM input format {#decay-types}
+
+<a id="flim-input-requirements"></a>
+
+Choose one format for the FLIM channels in this profile. The detailed file description is grouped below so that you can open only the format you use.
+
+::: {.panel-tabset}
+
+##### 2D Decay {#two-d-decay}
+
+<a id="two-d-decay"></a>
+
+A 2D decay CSV contains one cell per row and one time bin per column. It must be headerless and numeric. Do not include identifier or annotation columns. Because each row already represents a cell, no mask is required.
+
+A profile using 2D decay CSVs cannot include QPI or intensity-only image channels. Use an image-based FLIM input format for a mixed-modality workflow.
+
+<a id="decay-info"></a>
+
+<details>
+<summary>2D decay settings</summary>
+
+Because a 2D decay CSV does not provide acquisition timing, enter its `duration` and number of `time bins` per laser pulse interval.
+
+![For 2D decay input, enter the acquisition duration and time-bin count.](extraction_ui_shots/config_2d_setting.png){width=100% fig-align=center fig-alt="Shared FLIM settings set to Decay (2D), with a 12.5 ns duration, 200 time bins, an 80 MHz laser rate, and IRF calibration."}
+
+</details>
+
+##### 3D/4D Decay {#three-d4d-decay}
+
+<a id="three-d4d-decay"></a>
+
+3D/4D decay stores spatial dimensions and a time dimension; an optional additional dimension represents acquisition channels.
+
+- `.sdt`: Becker & Hickl
+- `.ptu`: PicoQuant/Leica
+
+The app reads duration and time-bin information from the acquisition metadata. Repeated PTU frames are summed into one decay image per FOV. For a time-lapse acquisition, split the data into one file per time point before extraction.
+
+##### 3D/4D Pixel Pre-fit {#three-d4d-pixel-pre-fit}
+
+<a id="three-d4d-pixel-pre-fit"></a>
+
+Use pixel pre-fit inputs when lifetime fitting was performed in [SPCImage](https://www.becker-hickl.com/products/spcimage/). FLIM Playground aggregates the pixel features inside each cell mask.
+
+- `.asc`: a 2D spatial array containing one lifetime feature value per pixel, such as `t1`.
+- Additional component and fraction files are inferred from the `t1` filename by replacing `t1` with `t2`, `t3`, `a1[%]`, and so on.
+
+The mask is required for cell aggregation. Fixed-lifetime controls are not shown because the lifetimes are read from the pre-fit files.
+
 :::
 
-::: {.callout-note}
-A configuration cannot mix [2D decay](#two-d-decay) FLIM channels with intensity-only channels. Select a 3D/4D format or change the channel modalities.
-:::
+### Feature Extractor {#feature-extractor}
 
-### Feature Extractor
+Choose extractors according to the measurements you need:
 
-Four types of feature extractors are available if the [imaging modality](#imaging-modality) is `FLIM`:
+| Measurement goal | Extractor | Applies to |
+|---|---|---|
+| Fit lifetime components and fractions | [Lifetime fit](lifetime_fit.qmd) | FLIM raw decay or pixel pre-fit |
+| Phasor coordinates and fit-free lifetimes | [Lifetime fit free](lifetime_fit_free.qmd) | FLIM decay |
+| Cell shape measurements | [Intensity Morphology](intensity_morphology.qmd) | Image-based FLIM, intensity-only, or QPI |
+| Intensity texture | [Intensity Texture](intensity_texture.qmd) | Image-based FLIM or intensity-only |
+| Dry mass and mass-distribution statistics | [Dry-mass statistics](qpi.qmd#dry-mass-statistics) | QPI |
+| QPI spatial texture | [Spatial texture](qpi.qmd#spatial-texture) | QPI |
 
-- [Lifetime fit](#sec-lifetime-fit)
-- [Lifetime fit free](#sec-lifetime-fit-free)
-- [Intensity Morphology](#sec-intensity-morphology)
-- [Intensity Texture](#sec-intensity-texture)
+<details>
+<summary>Lifetime fit settings</summary>
+
+<a id="number-of-components"></a>
+
+When `Lifetime fit` is selected, choose the number of lifetime components to fit.
+
+Raw FLIM inputs also require an IRF and a confirmed [IRF shift calibration](irf_calibration.qmd#fit-calibration) before fitting. Pixel pre-fit inputs do not require this fitting-based calibration because their lifetime values are already provided.
+
+Provide one IRF per channel in `.txt`, `.csv`, or `.ptu` format.
+
+<a id="fixed-lifetimes"></a>
+
+When the number of components is greater than one, open `Advanced: fixed lifetimes` to set known component lifetimes in nanoseconds. Set a component to `0` to leave it free for optimization. These values become defaults for the [interactive fitting phase](irf_calibration.qmd#fixed-lifetimes) and are unavailable for pixel pre-fit inputs.
 
 ![Choose extractors and lifetime component counts independently for each channel.](extraction_ui_shots/config_feature_extractor.png){width=100% fig-align=center fig-alt="NADH and FAD extraction settings with lifetime fitting, fit-free, morphology, and texture extractors selected, two lifetime components, and fixed-lifetime expanders."}
 
-::: {.callout-note}
-If the decay type is [2D decay](#two-d-decay), the [Intensity Morphology](#sec-intensity-morphology) feature extractor is **not** applicable, because there is no ROI mask to measure. The [Intensity Texture](#sec-intensity-texture) extractor *is* available, but a 2D decay CSV has no intensity image, so it produces only the single `intensity_sum` feature (the sum of each cell's decay curve).
-:::
+</details>
 
-The [Intensity Morphology](#sec-intensity-morphology) and [Intensity Texture](#sec-intensity-texture) feature extractors are available if the [imaging modality](#imaging-modality) is `Intensity-only`.
+<details>
+<summary>Lifetime fit free settings</summary>
 
-Each channel can be assigned its own set of feature extractors. For example, if users do not intend to do lifetime extraction, they can de-select the `Lifetime fit` and `Lifetime fit free` options. 
+<a id="calibration-method"></a>
+<a id="laser-frequency"></a>
 
-### Number of Components
+When `Lifetime fit free` is selected, set the laser frequency in **MHz** and choose a calibration method:
 
-If users select the `Lifetime fit` under this channel, they can specify the number of components to fit. 
+- `IRF`: use a per-channel IRF and complete [IRF shift calibration](irf_calibration.qmd#fit-free-calibration).
+- `Fluorescence Lifetime Standard`: use a per-channel standard file and enter the shared standard lifetime in nanoseconds.
 
-### Fixed Lifetimes
+For Fluorescence Lifetime Standard calibration, provide a `.tiff`, `.tif`, or `.ptu` reference file.
 
-When the number of components is greater than one, open `Advanced: fixed lifetimes` to set a known component lifetime in nanoseconds, using controls such as `Fix τ1 (ns)` and `Fix τ2 (ns)`. Set a component to `0` to leave it free for optimization. Positive values become defaults for the [interactive fitting phase](irf_calibration.qmd#fixed-lifetimes).
+See the [fit-free calibration settings](lifetime_fit_free.qmd#calibration-method) for the correction applied by each method.
 
-::: {.callout-note}
-Fixed lifetimes apply only to channels that FLIM Playground fits. For [pre-fit](#three-d4d-pixel-pre-fit) inputs (SPCImage `.asc`), whose lifetimes are read rather than fit, the fixed-lifetime controls are not shown.
-:::
+</details>
 
-### File Suffix
+<details>
+<summary>QPI settings</summary>
 
-The [FOV Metadata Extraction](#sec-fov-metadata) step finds inputs using file suffixes. The selected [decay type](#decay-types), [calibration method](#calibration-method), and [extractors](#feature-extractor) determine the required file types. Enter a filename suffix for each. Additional SPCImage component suffixes are inferred from the `t1` suffix.
+When `QPI` is selected, set these physical constants for the channel:
 
-![File suffixes identify each channel's decay, calibration, and mask inputs.](extraction_ui_shots/config_file_suffix.png){width=100% fig-align=center fig-alt="Separate NADH and FAD decay and IRF suffixes, with the same cell-mask suffix used for both channels."}
+- **Pixel size (µm)**: the specimen distance represented by one image pixel after binning. It must be positive; there is no default. The app uses its square as the pixel area.
+- **OPD unit in file**: choose `m`, `um`, or `nm`. The file must already contain optical path difference, rather than an unconverted phase angle. This choice is required; there is no default.
+- **α (µm³/pg)**: the specific refractive increment used for dry-mass conversion. It defaults to `0.181818` µm³/pg and must be finite and greater than zero.
 
-The two-channel example uses separate NAD(P)H and FAD decay and IRF suffixes. Both channels use the same mask suffix to measure the same cell ROIs. Choose suffixes that unambiguously identify each input in the folder you will scan.
+Selecting `Dry-mass statistics` or `Spatial texture` also requires a confirmed [background correction](qpi.qmd#background-correction). The QPI channel's image and mask suffixes are set in [File Suffix](#file-suffix), and the mask requirements are described in [ROI Mask](#mask).
 
-For detailed information on what file formats are supported for each file type (Mask, IRF, etc.), see [input file types](data_extraction.qmd#input-file-types). 
+![Configure a QPI channel with its extractors, physical constants, and input suffixes.](extraction_ui_shots/qpi_config.png){width=100% fig-align=center fig-alt="QPI channel configuration showing extractor selection, pixel size, OPD unit, specific refractive increment, and image and mask suffixes."}
 
-For detailed information on how the file suffixes are used, and what each file type (e.g. `IRF`, `Mask`, etc.) is, see the [FOV Metadata Extraction](#sec-fov-metadata) page. 
+</details>
+
+
+### ROI Mask {#mask}
+
+All image-based channels require a cell-level ROI mask: FLIM (3D/4D decay or pixel pre-fit), intensity-only, and QPI. Channels can share a mask or use different masks; when masks differ, the integer label for the same cell must match across them. Each image must match its own mask dimensions.
+
+- `.tiff`/`.tif`: a 2D array with background labeled `0` and each cell ROI labeled with a unique positive integer. The label becomes part of the [cell identifier](#cell-identifier).
+
+Every pixel carrying the same integer forms one cell, even when those pixels are in separate regions. If one label covers two cells, their pixels are treated as one cell for feature extraction; relabel the mask when they should be measured separately.
+
+### File Suffix {#file-suffix}
+
+Source preparation in [Numerical](numerical_feature_extraction.qmd#sec-numerical-feature-extraction) finds files using the configured suffixes. The selected modality, decay type, calibration method, and extractors determine which suffixes are required. Additional SPCImage component suffixes are inferred from the `t1` suffix.
+
+![File suffixes identify each channel's inputs, calibration, and mask.](extraction_ui_shots/config_file_suffix.png){width=100% fig-align=center fig-alt="Separate NADH and FAD decay and IRF suffixes, with the same cell-mask suffix used for both channels."}
+
+Choose suffixes that identify each input unambiguously in the folder you will scan. A shared mask suffix can be used when channels measure the same cell ROIs. The [FOV Metadata reference](fov_metadata.qmd) explains how suffixes are matched to FOVs and calibration references.
 
 ## Derived Features
 
-The Configuration page also hosts the `Derived features` builder, which composes new single-cell features by arithmetic over the features you already extract — optionally combining operands from different channels (for example, an optical redox ratio). Definitions are saved with the [current profile](#extraction-profiles) and computed later, during [Numerical Feature Extraction](#sec-numerical-feature-extraction). See [Derived Features](#sec-derived-feature) for the full walkthrough.
+The `Derived features` builder composes new single-cell features by arithmetic over the features you extract, optionally combining operands from different channels. Definitions are saved with the [current profile](#extraction-profiles) and computed during [Numerical Feature Extraction](numerical_feature_extraction.qmd).
 
 ## Save
-Finally, users can save the configuration into the **current profile** for future use by clicking the `Update Configuration` button.
 
-If you keep FLIM Playground open in more than one browser tab, saving here does not reach the others on its own. Any tab already showing Data Extraction will notice and post a small notice asking you to reload it, so you can finish what you are in the middle of first and pick up the new settings when it suits you.
+Click `Update Configuration` to save the current profile. If FLIM Playground is open in more than one browser tab, another tab showing Data Extraction will display a notice asking you to reload before using the new settings.

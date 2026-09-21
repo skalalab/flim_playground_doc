@@ -12,21 +12,22 @@ For a user table, assign **Categorical** in its [profile review](data_analysis_c
 
 No. Leave **Row ID** unassigned to use generated row numbers. An assigned ID must be nonmissing and unique. Generated numbers follow input row order and are regenerated for each upload; provide your own ID if it must remain stable when rows are reordered. See [identifiers](data_analysis_config.qmd#identifiers-config).
 
-**Why did a different profile open, or why am I asked to review columns?**
 
-The uploaded file selects its analysis profile by exact column headers, including ignored columns. A single valid exact match can apply automatically. Otherwise, choose a candidate or start a new profile and review the columns. Header order does not matter; case, spaces, and punctuation do. See [profile matching](data_analysis_config.qmd).
+**What should I do if an extraction file could not be saved?**
 
-**How do I average observations by a category, such as dish or patient?**
+Correct the folder or permission issue reported by the app, then use **Retry saving metadata** or **Retry exporting features**. A metadata-save failure blocks extraction. Retrying a feature export saves the already calculated table without calculating it again. Both files are saved in the source folder; see [Save Results](numerical_feature_extraction.qmd#save-results).
 
-Use [Collapse by](feature_comparison.qmd#collapse-by) with that categorical column. The app calculates one mean per category within each displayed group. Statistics then use those category means. The [SuperPlot overlay](feature_comparison.qmd#superplot) can show original observations behind them without changing the analysis unit.
+**Which checkbox setting should I use for Data Analysis?**
 
-**Can I reuse a calibration and choose Local fitting?**
+Leave **Use a table from another source** off for FLIM Playground extraction output. Turn it on for your own table to review its column roles and groups. The hosted app offers Data Analysis only and defaults this checkbox to on.
 
-Yes. Save the [updated metadata after calibration](irf_calibration.qmd#confirm-calibration), then upload it on a later run. Confirmed or saved shifts enable the choice between **Hybrid** and **Local** for cell-level fitting. Shift estimation itself uses Hybrid.
+**Why do two cells appear as one in the extraction output?**
+
+A [mask](data_extraction_config.qmd#mask) label defines the cell, so all pixels carrying that integer become one cell even when they lie in separate regions. Their pixel decays are summed into one curve, and morphology and texture are measured over the combined region. The app does not check that a label's pixels are connected, because a binary mask, where one label covers several objects, is valid input. Relabel the mask in the segmentation software when separate cells should be measured separately.
 
 **Where are exported files saved?**
 
-Browser download buttons use your browser's download location. Extraction workflows can also save directly into the selected local folder; the page reports the path. For example, categorical merging writes a timestamped combined CSV to its input folder. Run extraction on a [local installation](index.qmd#installation) so these folders are available. The [analysis Python export](data_analysis.qmd#export-workflow-as-python-script) reproduces the current view and saves SVG figures when run.
+ Numerical extraction automatically saves the metadata and single-cell feature CSVs into the source folder; the page reports their paths. Categorical merging writes a timestamped combined CSV to its input folder. Run extraction on a [local installation](index.qmd#installation) so these folders are available. Any download button you click will save the file to your browser's default download location. For example, the [analysis Python export](data_analysis.qmd#export-workflow-as-python-script).
 
 **How do I use a light or dark theme?**
 

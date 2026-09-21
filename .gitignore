@@ -1,6 +1,7 @@
 .quarto/
 _book/
 /.quarto/
+.playwright-mcp/
 .DS_Store
 *.aux
 *.toc
@@ -18,3 +19,4 @@ _book/
 !table1.svg
 *.tex
 !pdf-title.tex
+!docs-release.svg

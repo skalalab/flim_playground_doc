@@ -1,6 +1,6 @@
 # IRF Calibration {#sec-irf-calibration}
 
-The instrument response function (IRF) describes the detection system's response to an ultrashort light pulse. Its timing relative to a measured decay affects reconvolution fitting and IRF-based phasor calibration. This chapter covers estimating and confirming that shift in **Data Extraction → Numeric Feature Extraction**.
+The instrument response function (IRF) describes the detection system's response to an ultrashort light pulse. Its timing relative to a measured decay affects reconvolution fitting and IRF-based phasor calibration. This chapter covers estimating and confirming that shift in **Data Extraction → Numerical**.
 
 ## When this stage is needed {#calibration}
 
@@ -11,17 +11,17 @@ The instrument response function (IRF) describes the detection system's response
 | Raw FLIM with `Lifetime fit` selected | [Fit calibration](#fit-calibration) optimizes the shift during reconvolution fitting. This is required even when phasor features use a calibration dye. |
 | Raw or pre-fitted FLIM with `Lifetime fit free` selected and calibration method set to `IRF` | [Fit-free IRF calibration](#fit-free-calibration) estimates the shift by cross-correlation. If raw lifetime fitting is also selected, its fitted shift is reused. |
 
-The app evaluates these conditions separately for each channel. Estimate shifts for the channels that meet them, or reuse shifts already saved in the metadata. Then continue to [Numerical Feature Extraction](numerical_feature_extraction.qmd#feature-extraction).
+The app evaluates these conditions separately for each channel. Estimate and confirm shifts for the channels that meet them. Each required channel appears in its own initially open **shift calibration** expander, which can be collapsed after inspection. Then continue to [Numerical Feature Extraction](numerical_feature_extraction.qmd#feature-extraction).
 
-A calibration dye is a **Fluorescence Lifetime Standard**: its reference-based phasor calibration runs during [fit-free feature extraction](lifetime_fit_free.qmd#fit-free-standard-calibration). It does not trigger this IRF shift stage. A workflow with only intensity-only channels also proceeds directly to extraction.
+A calibration dye is a **Fluorescence Lifetime Standard**: its reference-based phasor calibration runs during [fit-free feature extraction](lifetime_fit_free.qmd#fit-free-standard-calibration). It does not trigger this IRF shift stage. A workflow with only intensity-only channels also proceeds directly to extraction. [QPI background correction](qpi.qmd#background-correction) has its own per-channel calibration in the same Numerical workflow.
 
 ## Input
 
-Open **Data Extraction → Numeric Feature Extraction**. Use the cached metadata exported by [FOV Metadata Extraction](fov_metadata.qmd#sec-fov-metadata), or upload a saved metadata CSV. The metadata records each channel's input files, modality, selected extractors, and calibration method. Cached metadata takes precedence; refresh the page to clear it before uploading a different file.
+Open **Data Extraction → Numerical**, select the source folder, and review its [file and acquisition checks](fov_metadata.qmd). Click **Start calibration**. The app automatically saves the metadata, then presents the calibration controls. For FLIM channels, review the fitting options and click **Optimize for Shifts**; this button reads **Calibrate channels** when QPI background correction is also required.
 
 ## Fit Calibration
 
-The IRF can shift relative to the measured decay between experiments. For a **raw FLIM channel with `Lifetime fit` selected**, estimate its IRF shift before reconvolution fitting, or reuse a shift already saved in the metadata. Pre-fitted lifetime values are read directly and do not enter this fitting-based shift search.
+The IRF can shift relative to the measured decay between experiments. For a **raw FLIM channel with `Lifetime fit` selected**, estimate and confirm its IRF shift before reconvolution fitting. Pre-fitted lifetime values are read directly and do not enter this fitting-based shift search.
 
 It is performed in two steps:
 
@@ -36,7 +36,7 @@ The distribution of the shift values is displayed as an interactive scatter plot
 
 ### Gather High SNR Decay Curves
 
-The high-SNR curves are gathered according to the [decay type](data_extraction_config.qmd#decay-types). For [2D input](data_extraction_config.qmd#two-d-decay), the selection targets approximately 30 curves, with at least one per FOV (one CSV file). It prefers the brightest curves below `100000` photons; if a FOV has none below that threshold, it uses its brightest curves without the cap. For [3D/4D input](data_extraction_config.qmd#three-d4d-decay), one curve per image sums the pixels inside its [ROI mask](data_extraction.qmd#mask).
+The high-SNR curves are gathered according to the [decay type](data_extraction_config.qmd#decay-types). For [2D input](data_extraction_config.qmd#two-d-decay), the selection targets approximately 30 curves, with at least one per FOV (one CSV file). It prefers the brightest curves below `100000` photons; if a FOV has none below that threshold, it uses its brightest curves without the cap. For [3D/4D input](data_extraction_config.qmd#three-d4d-decay), one curve per image sums the pixels inside its [ROI mask](data_extraction_config.qmd#mask).
 
 ### Reconvolution Fitting
 
@@ -64,7 +64,7 @@ $$
 I(\mathbf{t})=\sum_{i=1}^{n} A_i\, e^{-\mathbf{t}/\tau_i}, \qquad \tau_i>0
 $$
 
-Therefore, $n$ determines the parameters to be fitted: the amplitudes $A_i$ and the lifetimes $\tau_i$. $\mathbf{t}$ is the time axis of the decay curve calculated by the `duration` and `time bins` from the [decay info](fov_metadata.qmd#decay-info):
+Therefore, $n$ determines the parameters to be fitted: the amplitudes $A_i$ and the lifetimes $\tau_i$. $\mathbf{t}$ is the time axis of the decay curve calculated by the `duration` and `time bins` from the [decay info](fov_metadata.qmd#metadata-decay-info):
 $$\mathbf{t}=\bigl[0,\ \Delta t,\ 2\Delta t,\ \ldots,\ (N-1)\Delta t\bigr],
 \quad \text{where }\Delta t=\frac{T}{N}.
 $$
@@ -105,7 +105,7 @@ To adjust the gates in the `3d_decay_1channel` example:
 1. Select a point in the [shift distribution](#irf-shift) to inspect its measured and fitted decay. Expand the decay plot if needed, then hover over measured points to read their bin numbers.
 2. Change **NADH Start (T1)** from `0` to `20` and **NADH End (T2)** from `256` to `240`. This example fits bins `20–239`, trimming both ends while retaining the decay peak. Choose the limits from the decay in your own dataset.
 3. Click **Optimize for Shifts** and select `Mosaic16` again to inspect the updated fit. The plot still displays the full decay; only bins inside the gates contribute to the fitting objective and reported fit statistics.
-4. When satisfied, click **Confirm Time Gates (if applicable) and Shift for each channel**. Use **Download updated metadata** after confirmation to retain these settings for later extraction.
+4. When satisfied, click **Confirm calibration for each channel**. Confirmation automatically updates the metadata file with the gates and shifts.
 
 ![Change the NADH gates to T1 = 20 and T2 = 240, then optimize the shifts.](extraction_ui_shots/time_gate_choose.png){width=65% fig-align=center fig-alt="NADH fitting controls show MLE, Hybrid mode, two components, Start T1 set to 20, End T2 set to 240, and Optimize for Shifts."}
 
@@ -135,7 +135,7 @@ This weighting is Pearson's $\chi^2$ — the per-bin variance is taken from the 
 
 The fitting mode selects the optimization strategy. It is a trade-off between speed and the effort to avoid local minima.
 
-During shift estimation, `Fitting Mode` offers **Hybrid** only. After all required shifts have been confirmed or loaded from saved metadata, the fitting workflow offers both **Hybrid** and **Local** for the subsequent cell-level fits. Choose the mode before clicking `Confirm and Start`.
+During shift estimation, `Fitting Mode` offers **Hybrid** only. After all required calibration has been confirmed, the fitting workflow offers both **Hybrid** and **Local** for the subsequent cell-level fits. Choose the mode before clicking `Start extraction`.
 
 - `Local`: Each cell is fit with a single local optimizer — `leastsq` (least squares with Levenberg-Marquardt) if the chosen metric is `WLS`, otherwise `nelder` (Nelder-Mead). To give those per-cell fits a good starting point, a one-time **warm start** is performed first: the `differential evolution` global optimizer is run once on the *mean* decay of all ROIs in the batch, and the resulting lifetimes (and the constant offset) seed the initial values for every per-cell fit. The mean is used rather than the sum so the seed stays at single-cell scale, keeping a cell's result independent of how many cells share its batch. This warm start runs once, up front, before the per-cell fits are [parallelized across CPU cores](#reconvolution-fitting); because the global search runs once for the whole batch instead of once per cell, `Local` is substantially faster than `Hybrid`.
 - `Hybrid`: The slower but more accurate option. For **each cell**, it runs the `differential evolution` algorithm to obtain a good initial guess for all parameters, followed by the `Local` optimizer to refine the solution.
@@ -158,11 +158,10 @@ The signals of the shifted IRF are deconvolved from the offset-subtracted decay 
 
 ## Confirm Calibration
 
-Once users are satisfied with the calibration settings ([fitting options](#fitting-options) and shift values), they can click the `Confirm Time Gates (if applicable) and Shift for each channel` button at the bottom of the [page](#irf-shift).
+Once satisfied with the [fitting options](#fitting-options), time gates, and shift values for every required channel, click **Confirm calibration for each channel** below the channel expanders. The same control confirms QPI background settings when that calibration is included.
 
-After confirmation, choose the fitting mode for raw FLIM channels using `Lifetime fit`, then click `Confirm and Start`, or use `Go back and find shift` to repeat calibration. `Download updated metadata` preserves the shifts, time gates, fitting options, component counts, and fixed lifetimes. For metadata exported in the current session, this updates its existing file; for uploaded metadata, it downloads a new CSV. Loading that calibrated CSV later lets you reuse its shifts.
+After confirmation, the app automatically updates the existing metadata file with the shifts, time gates, fitting options, component counts, and fixed lifetimes. Choose the fitting mode for raw FLIM channels using `Lifetime fit`, then click **Start extraction**, or use **Go back and find shift** to repeat calibration (**Go back and recalibrate** for a mixed FLIM/QPI workflow). A metadata-save error must be resolved with **Retry saving metadata** before extraction can run. See the [Numerical workflow](numerical_feature_extraction.qmd#calibration-interface) for source changes and automatic saving.
 
 ::: {#calibration-done}
-![After calibration, choose the fitting mode and start extraction or save updated metadata.](extraction_ui_shots/calibration_done.png){width=80% fig-align=center fig-alt="Confirmed extraction settings with Local fitting mode and buttons for Confirm and Start, Go back and find shift, and Download updated metadata."}
+![After confirming calibration, choose the fitting mode and start extraction.](extraction_ui_shots/calibration_done.png){width=80% fig-align=center fig-alt="Confirmed calibration with a fitting-mode selector and buttons to start extraction or return to shift calibration."}
 :::
-

@@ -22,7 +22,7 @@ On the left, select **Channel** when more than one channel is present, then choo
 
 The method recognizes numerical columns named `Lifetime fit free_{channel}: G(1st)` and `Lifetime fit free_{channel}: S(1st)`, or their `G(2nd)` and `S(2nd)` counterparts. For example, a first-harmonic NADH pair is `Lifetime fit free_nadh: G(1st)` and `Lifetime fit free_nadh: S(1st)`. In a user-table review, assign both columns **Numerical**; they may belong to different feature groups. After upload, Phasor Plot is available only if the table contains a complete pair.
 
-Set **Laser repetition rate (GHz)** to the acquisition's base repetition rate, for example `0.08` for 80 MHz. This controls the lifetime reference markers; it does not recalculate or calibrate the uploaded coordinates. The app removes rows missing either coordinate from the displayed plot.
+Set **Laser repetition rate (MHz)** to the acquisition's base repetition rate, for example `80` for 80 MHz. This controls the lifetime reference markers; it does not recalculate or calibrate the uploaded coordinates. The app removes rows missing either coordinate from the displayed plot.
 
 The plot is drawn against the universal semicircle, with markers along it for lifetimes from 0.5 to 10 ns to read your points against. Switching to the 2nd harmonic moves those markers, because the transform is evaluated at twice the frequency and a given lifetime lands somewhere else. The frequency printed inside the plot tells you which view you are reading — `f = 160 MHz (2 × 80 MHz)` for the 2nd harmonic of an 80 MHz system — so check it before comparing a point against a marker. The semicircle itself is the same for both harmonics.
 

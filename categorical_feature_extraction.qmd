@@ -1,11 +1,11 @@
 # Categorical Feature Extraction {#sec-categorical-feature-extraction}
 
-Based on the datasets extracted in the [numerical feature extraction](#sec-numerical-feature-extraction) step, FLIM Playground:
+Open **Data Extraction → Categorical** in a [local installation](index.qmd#installation). Using the CSV tables saved by [Numerical](#sec-numerical-feature-extraction), FLIM Playground:
 
 - [merges the datasets](#merging-datasets) into a single dataset
 - [assigns categorical features](#assigning-categorical-features) to each cell in the merged dataset
 
-![This category-mapping example uses a table of 1,572 cells from 12 FOVs.](extraction_ui_shots/cat.png){width=100% fig-align=center fig-alt="Categorical Feature Extraction with a local dataset folder, underscore delimiter, category selections, slot mappings, and a preview of the assigned labels."}
+![Combine numerical datasets and map FOV-name segments to categorical features.](extraction_ui_shots/cat.gif){width=100% fig-align=center fig-alt="Categorical Feature Extraction with a local dataset folder, underscore delimiter, category selections, slot mappings, and a preview of the assigned labels."}
 
 ## Merging Datasets
 
@@ -27,6 +27,6 @@ Set `Field of View Name Delimiter` to the separator used in the [FOV names](#fov
 
 The live preview shows one row from each of the first five FOVs. Check the assigned values before exporting.
 
-![Map FOV-name slots to categories and check the preview before exporting.](extraction_ui_shots/cat_slot_assign.png){width=100% fig-align=center fig-alt="The MCF7, 2DG, and dish2 slots map to cell_line, treatment, and dish; a five-FOV preview appears above Confirm category mapping & export the combined dataset."}
+![Map FOV-name slots to categories and check the preview before exporting.](extraction_ui_shots/cat_slot_assign.png){width=100% fig-align=center fig-alt="FOV-name slots map to categorical columns, with a preview above Confirm category mapping & export the combined dataset."}
 
-Clicking `Confirm category mapping & export the combined dataset` then writes the merged dataset with the categorical features as a timestamped CSV (`{timestamp}_combined.csv`) into the same folder as the input dataset. Note that this is a direct file write rather than a browser download, so the file is saved on the machine running FLIM Playground. When using the [hosted demo](https://flim-playground.streamlit.app/), the file is written to the server and does not reach your computer, which is one reason Data Extraction is intended to be run on a local installation.
+Clicking `Confirm category mapping & export the combined dataset` then writes the merged dataset with the categorical features as a timestamped CSV (`{timestamp}_combined.csv`) into the same folder as the input dataset. Note that this is a direct file write rather than a browser download, so the file is saved on the machine running FLIM Playground. The hosted app provides Data Analysis only, so upload the combined CSV there with **Use a table from another source** on; in a local app, upload extraction output with the checkbox off.

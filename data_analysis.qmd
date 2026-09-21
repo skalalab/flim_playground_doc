@@ -27,11 +27,11 @@ The plots and results update as you change the controls.
 **Phasor Plot** is available after upload only when the table contains a complete G/S pair with the [expected phasor column names](phasor_analysis.qmd#select-phasor-coordinate). All methods use the shared controls below, with additional controls described in their chapters.
 
 ## Input
-Use **Use Dataset from Data Extraction** for a table produced by [Data Extraction](#sec-data-extraction). For your own table, clear that checkbox and **upload first**, then review its column roles and feature groups in the [interactive configuration walkthrough](data_analysis_config.qmd). The uploader accepts CSV, TSV/TXT with tab, semicolon, or pipe separators, Excel `.xlsx`/`.xlsm`, and OpenDocument `.ods`. Spreadsheet uploads use the first sheet.
+Leave **Use a table from another source** off for a table produced by [Data Extraction](#sec-data-extraction). Turn it on for your own table, **upload first**, then review its column roles and feature groups in the [interactive configuration walkthrough](data_analysis_config.qmd). It defaults to off in a local installation and on in the hosted app, which provides Data Analysis only. The uploader accepts CSV, TSV/TXT with tab, semicolon, or pipe separators, Excel `.xlsx`/`.xlsm`, and OpenDocument `.ods`. Spreadsheet uploads use the first sheet.
 
 ### Requirements
 
-Use a plain table with column headers on the first row, one observation per row, and at least one usable numerical measurement. For a user-provided table, categorical columns, a unique row identifier, and a field-of-view column are optional. With **Use Dataset from Data Extraction** checked, the table must contain the identifier named in its extraction configuration.
+Use a plain table with column headers on the first row, one observation per row, and at least one usable numerical measurement. For a user-provided table, categorical columns, a unique row identifier, and a field-of-view column are optional. With **Use a table from another source** off, the table must contain the identifier named in its extraction configuration.
 
 ### Column roles {#column-roles}
 
@@ -158,8 +158,8 @@ Feature Comparison shares one column picker between **Opacity**, **Subcolor**, a
 
 - [Feature Comparison](feature_comparison.qmd#separate-by) places categories in sections on one x-axis.
 - [Feature Histogram](feature_histogram.qmd#separate-by) stacks one histogram or GMM panel per category.
-- [2D Feature Distribution](feature_distribution.qmd#separate-by) and [Phasor Plot](phasor_analysis.qmd#separate-by) show one category at a time with the others in gray for context.
-- [Dimension Reduction](dimension_reduction.qmd#separate-by) adds category highlight maps beside a shared overview.
+- [2D Feature Distribution](feature_distribution.qmd#separate-by) and [Dimension Reduction](dimension_reduction.qmd#separate-by) show a full-data overview beside one highlight panel per category.
+- [Phasor Plot](phasor_analysis.qmd#separate-by) shows one category at a time with the others in gray for context.
 
 For the first four methods, the separation column cannot also be used for `Color by`. Dimension Reduction permits the same column for both because separation highlights parts of one shared embedding.
 
@@ -181,7 +181,7 @@ With `Collapse by`, the hover identifies the category and the number of observat
 
 Under **Plot Styling**, adjust `Point Size` for point plots, `Axis Label Font Size`, `Legend Font Size`, and `Color Map` when color groups are present. Available palettes include `tab10`, `tab20`, `colorblind`, `Set1`–`Set3`, `Pastel1`, `Pastel2`, `Accent`, `viridis`, `plasma`, `inferno`, `magma`, and `cividis`.
 
-`Show group counts (n) in legend` adds counts where supported. Counts refer to the points used in the analysis: individual observations, or category means when `Collapse by` is active. When `Separate by` is active, Phasor and 2D views count only points from the selected separation category. Histogram panels report their own group counts; Dimension Reduction's shared legend reports counts for the full embedding.
+`Show group counts (n) in legend` adds counts where supported. Counts refer to the points used in the analysis: individual observations, or category means when `Collapse by` is active. When `Separate by` is active, Phasor counts only points from the selected separation category, while 2D Feature Distribution keeps one shared legend whose counts come from the full filtered table. Histogram panels report their own group counts; Dimension Reduction's shared legend reports counts for the full embedding.
 
 Classification places its font-size controls between the metric tables and the ROC/confusion-matrix plots.
 
@@ -191,7 +191,7 @@ Numerical features extracted by [Data Extraction](#sec-data-extraction) are auto
 
 ### Export Workflow as Python Script
 
-Click **Export the entire analysis as a Python script** below the results and styling controls. The script records the selected features, filters, grouping, point encodings, plot style, and method settings, including collapse, category separation, and GMM export names where applicable.
+Click **Export the entire analysis as a Python script** below the results and styling controls. The script records the selected features, filters, grouping, point encodings, plot style, and method settings, including collapse, category separation, GMM export names, and the promoted facet where applicable.
 
 ![Download a Python script that records the current analysis settings.](analysis_ui_shots/analysis_export.png){width=80% fig-align=center fig-alt="Export the entire analysis as a Python script download button."}
 

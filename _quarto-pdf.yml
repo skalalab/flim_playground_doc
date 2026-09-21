@@ -9,13 +9,14 @@ book:
       chapters:
         - data_extraction.qmd
         - data_extraction_config.qmd
-        - fov_metadata.qmd
         - numerical_feature_extraction.qmd
+        - fov_metadata.qmd
         - irf_calibration.qmd
         - lifetime_fit.qmd
         - lifetime_fit_free.qmd
         - intensity_morphology.qmd
         - intensity_texture.qmd
+        - qpi.qmd
         - derived_feature.qmd
         - categorical_feature_extraction.qmd
     - part: "Data Analysis"

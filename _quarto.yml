@@ -1,5 +1,6 @@
 project:
   type: book
+  pre-render: scripts/update_docs_badge.py
 
 profile:
   group:

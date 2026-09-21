@@ -6,11 +6,11 @@ This walkthrough uses [iris.csv](analysis_ui_shots/iris.csv), a table of **150 f
 
 ## 1. Upload Iris {.unnumbered}
 
-Open **Data Analysis** and select **Univariate → Feature Comparison** for the view shown here. Clear **Use Dataset from Data Extraction**, then upload `iris.csv`.
+Turn on **Use a table from another source**, then upload `iris.csv`. This checkbox is on by default in the hosted app.
 
 If **Which profile describes this file?** appears, choose **Auto-detect — start a new profile**. This fills the column review with suggested roles and groups. If a saved profile already matches this table, analysis may open directly; use the summary pencil described in Step 5 to inspect it.
 
-![Clear the extraction checkbox before uploading your own table.](analysis_ui_shots/config_upload.png){width=65% fig-align=center fig-pos="H" fig-alt="Use Dataset from Data Extraction is unchecked above the Upload your table area and Browse files button."}
+![](analysis_ui_shots/config_upload.png){width=65% fig-align=center fig-pos="H" fig-alt="Use a table from another source is checked above the Upload your table area and Browse files button."}
 
 ::: {.content-visible when-format="html"}
 [Open the full-resolution upload screenshot](analysis_ui_shots/config_upload_full.png).

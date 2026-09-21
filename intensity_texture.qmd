@@ -1,6 +1,8 @@
 # Textural Features {#sec-intensity-texture}
 FLIM Playground extracts single-cell texture features based on the intensity image and the ROI mask from each acquisition *channel*. For an example application, refer to this [paper](https://pubmed.ncbi.nlm.nih.gov/31081599/) that used CellProfiler to extract the texture features. 
 
+For QPI channels, use the separate [Spatial texture extractor](qpi.qmd#spatial-texture), which measures the corrected OPD-derived mass distribution.
+
 The first step is to create a single-cell intensity image for each cell based on the ROI mask and the intensity image. Then a list of texture features (the list may be extended in the future) is calculated:  
 
 ## Granularity

@@ -6,7 +6,7 @@ Fit-free features in the final dataset are prefixed by the combination of the fe
 
 ## Preprocessing
 
-For image inputs, the app sums the pixel decays within each cell ROI labeled by the ROI [mask](data_extraction.qmd#mask) to obtain one cell decay [@Samimi2025]. For [2D decay inputs](data_extraction_config.qmd#two-d-decay), each CSV row already supplies a cell decay, so no mask is needed. Phasor features are calculated from each cell decay.
+For image inputs, the app sums the pixel decays within each cell ROI labeled by the ROI [mask](data_extraction_config.qmd#mask) to obtain one cell decay [@Samimi2025]. For [2D decay inputs](data_extraction_config.qmd#two-d-decay), each CSV row already supplies a cell decay, so no mask is needed. Phasor features are calculated from each cell decay.
 
 Two preprocessing steps are then applied, and they are independent of each other:
 
@@ -110,7 +110,7 @@ g_2nd, s_2nd = lifetime.phasor_calibrate(
 )
 ```
 
-The `laser_rate` is entered in **GHz** in [FOV metadata](fov_metadata.qmd#laser-frequency) or [Configuration](data_extraction_config.qmd#laser-frequency). PhasorPy expects **MHz**, so both calls multiply by 1000: `0.08` GHz becomes `80` MHz. The `reference_dye_lifetime` remains in **nanoseconds**. Using `harmonic=2` calibrates the second-harmonic coordinates at twice the laser frequency.
+The laser rate is entered in **MHz** in [Numerical source settings](fov_metadata.qmd#metadata-decay-info) or [Configuration](data_extraction_config.qmd#laser-frequency), then stored internally as `laser_rate` in **GHz**. PhasorPy expects **MHz**, so both calls multiply the stored value by 1000: an entered `80` MHz is stored as `0.08` GHz and passed to PhasorPy as `80` MHz. The `reference_dye_lifetime` remains in **nanoseconds**. Using `harmonic=2` calibrates the second-harmonic coordinates at twice the laser frequency.
 
 ### Step 3: phasor-derived lifetime
 
@@ -170,6 +170,4 @@ ref_mean_2nd, ref_real_2nd, ref_imag_2nd = phasor.phasor_from_signal(
 Use `harmonic=1` and `use_fft=False` with `sample_phase`. The doubled phases select the second harmonic; `harmonic=2` with `sample_phase` would raise an error. The resulting coordinates enter the calibration and lifetime calculations in Steps 2 and 3.
 
 **Explicit phases preserve bin timing but do not recover missing fluorescence.** For a substantially truncated window, the usual calibration and lifetime equations can remain biased; a standard measured over the same window does not generally remove that bias.
-
-Using default phases over the 10 ns window would instead mean analysis at **100 MHz**, requiring that frequency in calibration and lifetime conversion. This is a different approach with its own limitations for real IRFs and mixtures. Release 1.13.1 retains the **80 MHz laser frequency** in this example and uses explicit phases. See the [analysis of truncation and phasor calibration](https://pmc.ncbi.nlm.nih.gov/articles/PMC7990508/) for these distinctions.
 :::

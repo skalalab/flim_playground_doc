@@ -19,11 +19,9 @@
 
 # Quick Start
 
-[![](docs-release.svg){height=20px fig-alt="Docs synced with release 1.13.1" lightbox=false}](https://github.com/skalalab/flim_playground/releases/tag/1.13.1 "View FLIM Playground release 1.13.1")
+[![](docs-release.svg){height=20px fig-alt="Last updated" lightbox=false}](https://github.com/skalalab/flim_playground/tree/9b83bd9 "View the documented FLIM Playground source revision")
 
-Welcome to the FLIM Playground 🥳🎉🥂! This is an interactive graphical user interface (GUI) that allows you to extract single-cell^[in general, any region of interest works, including the whole field of view] features from fluorescence lifetime imaging microscopy (FLIM) raw data ([Data Extraction](#sec-data-extraction)) and analyze extracted features or your own datasets using a built-in repertoire of methods ([Data Analysis](#sec-data-analysis)). 
-
-To quickly try out different analysis methods, download this [sample dataset](https://github.com/skalalab/flim_playground/blob/main/example_data/Data_Analysis/inhibitors.csv) and try the [online demo](https://flim-playground.streamlit.app/). If you prefer to use your own datasets, read [this chapter on data analysis configuration](#sec-data-analysis-config) to learn how to configure the system.
+Welcome to the FLIM Playground 🥳🎉🥂! This is an interactive graphical user interface (GUI) that allows you to extract single-cell^[in general, any region of interest works, including the whole field of view] features from fluorescence lifetime imaging microscopy (FLIM), intensity-only, and [QPI](qpi.qmd) inputs ([Data Extraction](#sec-data-extraction)) and analyze extracted features or *any* tabular dataset using a built-in repertoire of methods ([Data Analysis](#sec-data-analysis)).
 
 Several talks have been given about FLIM Playground:
 
@@ -32,7 +30,7 @@ Several talks have been given about FLIM Playground:
 
 ## Try Data Analysis
 
-1. **Load the sample.** In the online demo, open **Data Analysis → Univariate → Feature Comparison**. Keep **Use Dataset from Data Extraction** checked and upload `inhibitors.csv` from the sample link above. For your own table, clear the checkbox and follow the [column review walkthrough](data_analysis_config.qmd#sec-data-analysis-config).
+1. **Load the sample.** In the [online demo](https://flim-playground.streamlit.app/), select **Univariate → Feature Comparison**. Turn off **Use a table from another source** and upload this [sample dataset](https://github.com/skalalab/flim_playground/blob/main/example_data/Data_Analysis/inhibitors.csv). The hosted app starts with this checkbox on; for your own table, leave it on and follow the [column review walkthrough](data_analysis_config.qmd#sec-data-analysis-config).
 
 2. **Compare groups.** Select **tm** under **Lifetime fit_nadh**, set **Color by** to `treatment`, and **Separate by** to `cell_line`. Change a [filter](data_analysis.qmd#filter-widgets) or select another measurement to explore the [Feature Comparison](feature_comparison.qmd#sec-feature-comparison) plot.
 
@@ -41,6 +39,8 @@ Several talks have been given about FLIM Playground:
 3. **Save the workflow.** Below **Plot Styling**, click **Export the entire analysis as a Python script**. Keep the original CSV and follow the [script workflow](data_analysis.qmd#export-workflow-as-python-script) to reproduce the plot.
 
    ![Download a Python script containing the current analysis settings.](analysis_ui_shots/analysis_export.png){width=80% fig-align=center fig-alt="Export the entire analysis as a Python script button below the plot styling controls."}
+
+- prefer a video walkthrough? See the [Data Analysis demo](data_analysis_demo.mp4).
 
 ## Try Data Extraction locally
 
@@ -60,7 +60,7 @@ Use a [local installation](#installation) for Data Extraction so the app can rea
    | FLIM input format | `Decay (3/4D)` |
    | Extract feature types from NADH | `Lifetime fit` and `Lifetime fit free` |
    | Number of components | `2` |
-   | Laser rate | `0.08` GHz |
+   | Laser rate | `80` MHz |
    | Fit free calibration method | `IRF` |
    | Decay suffix | `.sdt` |
    | Mask suffix | `_Ch2_summed_cellpose.tiff` |
@@ -69,15 +69,17 @@ Use a [local installation](#installation) for Data Extraction so the app can rea
 
    The app reads the image dimensions and timing from the SDT files: `512 × 512` pixels, `256` time bins, and a `12.5` ns decay period. See [configuration](data_extraction_config.qmd#sec-data-extraction-config) when adapting this setup to your own inputs.
 
-3. **Check the folder.** Open **Data Extraction → FOV Metadata Extraction** and enter the full path to the extracted `3d_decay_1channel` folder. Confirm that `Mosaic01`–`Mosaic25` report **All files found**, inspect a decay and mask preview, then click **Export FOV Metadata as CSV**. See the [metadata walkthrough](fov_metadata.qmd#sec-fov-metadata) if a file is missing or duplicated.
+3. **Check the folder.** Open **Data Extraction → Numerical** and enter the full path to the extracted `3d_decay_1channel` folder. Confirm that `Mosaic01`–`Mosaic25` report **All files found**, review any channel assignment and the metadata preview, then click **Start calibration**. The app automatically saves the metadata in the source folder. See the [FOV Metadata reference](fov_metadata.qmd#sec-fov-metadata) if a file is missing or duplicated.
 
-4. **Calibrate and extract.** Switch to **Numeric Feature Extraction** to use the cached metadata. Keep **MLE**, **Hybrid**, two components, **Fix the Shift** selected, and the initial **Start (T1) = 0**, **End (T2) = 256** gates. Click **Optimize for Shifts**, then select `Mosaic16` in the shift plot to inspect its decay and fitted curve.
+4. **Calibrate and extract.** Continue in **Numerical**. Keep **MLE**, **Hybrid**, two components, **Fix the Shift** selected, and the initial **Start (T1) = 0**, **End (T2) = 256** gates. Click **Optimize for Shifts**, then inspect the NADH channel expander. Select `Mosaic16` in the shift plot to inspect its decay and fitted curve.
 
    ![Inspect Mosaic16 in the 25-FOV shift distribution before starting cell-level extraction.](extraction_ui_shots/irf_shift.png){width=100% fig-align=center fig-alt="The Mosaic example's 25 NADH shift estimates, with Mosaic16 selected beside its measured and fitted decay, fit statistics, and editable common shift."}
 
-   Follow [IRF Calibration](irf_calibration.qmd#sec-irf-calibration) to review the shifts; the [time-gate example](irf_calibration.qmd#time-gates) shows how to adjust the fitting interval. Click **Confirm Time Gates (if applicable) and Shift for each channel**, choose **Local** for faster cell-level fitting or keep **Hybrid**, then click **Confirm and Start**. Use **Download updated metadata** to save the calibration for another run. The app saves the cell-feature CSV beside the metadata; see [Save Results](numerical_feature_extraction.qmd#save-results).
+   Follow [IRF Calibration](irf_calibration.qmd#sec-irf-calibration) to review the shifts; the [time-gate example](irf_calibration.qmd#time-gates) shows how to adjust the fitting interval. Click **Confirm calibration for each channel**, choose **Local** for faster cell-level fitting or keep **Hybrid**, then click **Start extraction**. Confirmation automatically records the calibration, and the app saves the cell-feature CSV in the source folder; see [Save Results](numerical_feature_extraction.qmd#save-results).
 
-5. **Analyze the cells.** Upload the saved cell-feature CSV in **Data Analysis** with **Use Dataset from Data Extraction** checked. Select **tm** under **Lifetime fit_NADH** in **Feature Comparison**, or open **Bivariate → Phasor Plot** to view the NADH coordinates. Use **Color by → image_name** to compare fields of view. For experiments whose FOV names encode labels such as treatment, follow [Categorical Feature Extraction](categorical_feature_extraction.qmd#sec-categorical-feature-extraction) before analysis.
+5. For experiments whose FOV names encode labels such as treatment, follow [Categorical Feature Extraction](categorical_feature_extraction.qmd#sec-categorical-feature-extraction) before analysis. Then use the **Data Analysis** section to visualize and model the extracted features.
+
+For a multi-channel, multi-modal, multi-experiment example, see the [Data Extraction demo](data_extraction_demo.mp4)
 
 ## Installation
 
@@ -99,13 +101,11 @@ To acquire FLIM data, a light source—typically a pulsed laser for time-domain 
 In frequency-domain FLIM, the phase shift and modulation depth of the emission relative to the excitation are determined. 
 :::
 
-## Challenges
+:::: {#data-levels .callout-note collapse="true" title="Data levels"}
 
 A diverse set of [tools](https://www.phasorpy.org/docs/stable/phasor_approach/#software) — both open-source and commercial, ranging from libraries to code-free graphical user interfaces (GUIs) — is available to extract and analyze FLIM data, providing alternative methods and therefore flexibility to FLIM researchers. Examples include [PhasorPy](https://www.phasorpy.org/) [@phasorpy25], an open-source library for analyzing fluorescence lifetime using the phasor approach; [FLUTE](https://github.com/LaboratoryOpticsBiosciences/FLUTE) [@flute23], an open-source GUI for interactive phasor analysis; [FLIMPA](https://github.com/SofiaKapsiani/FLIMPA) [@flimpa2025], an open-source phasor analysis GUI enabling batch processing, ROI-based quantification, and experiment-level comparison through manual assignment; [FLIMLib](https://flimlib.github.io/), an open-source generic curve fitting library that can be used to fit fluorescence lifetime decay data; [SPCImage](https://www.becker-hickl.com/products/spcimage/) [@becker2021], a commercial software for fitting and phasor features.
 
 However, while some tools offer code-free interfaces, users still need to write custom code—either to prepare data in the proper format as input, or to further process their outputs for downstream analysis. The fragmentation between tools arises because each focuses on only a subset of **data levels**: pixel, cell ROI, channel, field of view, and experiment. 
-
-:::: {#data-levels .callout-note collapse="true" title="Data Levels"}
 
 ::: {.content-visible when-format="html"}
 - <span style="color: #1f77b4;">**Pixel**</span>: 
@@ -186,11 +186,11 @@ FLIM Playground has two independent sections:
 
 #### Data Extraction
 
-[Data Extraction](#sec-data-extraction) extracts single-cell features from the raw data. It adopts a [framework](data_extraction_config.qmd#sec-data-extraction-config) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for users. Following the above [categorization](#feature-classes), it is divided into the following steps:
+[Data Extraction](#sec-data-extraction) extracts single-cell features from the raw data. It adopts a [framework](data_extraction_config.qmd#sec-data-extraction-config) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for users. The diagram below the Design heading summarizes conceptual components, following the [feature classes](#feature-classes). In the current interface, metadata preparation, calibration, and numerical extraction run together under **Numerical**; **Categorical** combines and labels the resulting tables:
 
 ::: {.content-visible when-format="html"}
 - [Data Extraction Configuration (A)](#sec-data-extraction-config): allows users to choose among alternative input types and extraction methods (extractors).
-- [Metadata organization (B)](#sec-fov-metadata): extracts the field of view <span style="color: #C94146;">identifiers</span> and their configurations
+- [Metadata organization (B)](#sec-fov-metadata), within Numerical: records the field of view <span style="color: #C94146;">identifiers</span> and their configurations
 - [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell <span style="color: #D3AE4A;">numerical features</span> based on user-selected extractors. More extractors can be integrated in the future.
   - [IRF Calibration (C)](irf_calibration.qmd#sec-irf-calibration): estimate shifts for raw lifetime fitting or IRF-based phasor extraction; [dye-based calibration](lifetime_fit_free.qmd#fit-free-standard-calibration) is applied during phasor extraction
   - Lifetime extractors (D): 
@@ -199,13 +199,14 @@ FLIM Playground has two independent sections:
   - Intensity-based extractors (D):
     - [Morphology](#sec-intensity-morphology)
     - [Texture](#sec-intensity-texture)
+  - [QPI dry-mass statistics and spatial texture](qpi.qmd#output-features), with per-channel [background correction](qpi.qmd#background-correction)
   - [Derived features](#sec-derived-feature)
 - [Categorical feature extraction (E)](#sec-categorical-feature-extraction): extracts single-cell <span style="color: #4880D4;">categorical features</span> and combines experiment-level datasets.
 :::
 
 ::: {.content-visible when-format="pdf"}
 - [Data Extraction Configuration (A)](#sec-data-extraction-config): allows users to choose among alternative input types and extraction methods (extractors).
-- [Metadata organization (B)](#sec-fov-metadata): extracts the field of view \textcolor[HTML]{C94146}{identifiers} and their configurations
+- [Metadata organization (B)](#sec-fov-metadata), within Numerical: records the field of view \textcolor[HTML]{C94146}{identifiers} and their configurations
 - [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell \textcolor[HTML]{D3AE4A}{numerical features} based on user-selected extractors. More extractors can be integrated in the future.
   - [IRF Calibration (C)](irf_calibration.qmd#sec-irf-calibration): estimate shifts for raw lifetime fitting or IRF-based phasor extraction; [dye-based calibration](lifetime_fit_free.qmd#fit-free-standard-calibration) is applied during phasor extraction
   - Lifetime extractors (D): 
@@ -214,6 +215,7 @@ FLIM Playground has two independent sections:
   - Intensity-based extractors (D):
     - [Morphology](#sec-intensity-morphology)
     - [Texture](#sec-intensity-texture)
+  - [QPI dry-mass statistics and spatial texture](qpi.qmd#output-features), with per-channel [background correction](qpi.qmd#background-correction)
   - [Derived features](#sec-derived-feature)
 - [Categorical feature extraction (E)](#sec-categorical-feature-extraction): extracts single-cell \textcolor[HTML]{4880D4}{categorical features} and combines experiment-level datasets.
 :::
@@ -250,11 +252,11 @@ Here is the list of analysis methods incorporated into FLIM Playground, grouped 
   - [Classification](#sec-classification)
 :::
 
-Both sections are built in Python and as self-contained apps ready to run on major operating systems and in browsers (**H**).
+Both sections are built in Python and available in the local app on major operating systems, using a browser interface (**H**). The hosted app provides Data Analysis only; Data Extraction uses a local installation to read and save files on your computer.
 
 ### Summary
 
-**FLIM Playground** resolves these [challenges](#challenges) with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and has a built-in repertoire of analytical methods with interactive widgets that encourage hypothesis-driven, iterative exploration of large datasets. It is built on a modular architecture that enables incorporation of new algorithms in the future.
+**FLIM Playground** resolves these [challenges](#data-levels) with an interactive code-free graphical user interface (GUI) that spans the full pipeline. It integrates validation checks that guide users at every step, and has a built-in repertoire of analytical methods with interactive widgets that encourage hypothesis-driven, iterative exploration of large datasets. It is built on a modular architecture that enables incorporation of new algorithms in the future.
 
 ### Citation
 
