@@ -87,7 +87,7 @@ FLIM Playground is built entirely in Python and is open-source.
 
 For the complete, always-current instructions — per-platform download links, install steps, **upgrading**, and building from source — see the project README, kept as the single source of truth:
 
-👉 **[Installation & upgrade guide](https://github.com/skalalab/flim_playground#install)**
+👉 **[Installation & upgrade guide](https://github.com/skalalab/flim_playground#installation)**
 
 ## Introduction
 
