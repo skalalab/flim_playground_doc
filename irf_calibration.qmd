@@ -52,7 +52,7 @@ Each decay curve is fitted independently. **Fit calibration** (one optimization 
 The fitting-options panel appears when a channel uses raw `Lifetime fit` and shifts still need estimation.
 
 ::: {#fitting-options}
-![Fitting controls combine the objective, optimization mode, and per-channel model settings.](extraction_ui_shots/fitting_option.png){width=80% fig-align=center fig-alt="MLE metric and Hybrid fitting mode, two components per channel, start and end time gates, fixed-lifetime expanders, Fix the Shift, and Optimize for Shifts."}
+![Fitting controls combine the objective and per-channel model settings.](extraction_ui_shots/fitting_option.png){width=80% fig-align=center fig-alt="MLE metric, two components per channel, start and end time gates, fixed-lifetime expanders, Fix the Shift, and Optimize for Shifts."}
 :::
 
 Let's break down the fitting options one by one.
@@ -107,7 +107,7 @@ To adjust the gates in the `3d_decay_1channel` example:
 3. Click **Optimize for Shifts** and select `Mosaic16` again to inspect the updated fit. The plot still displays the full decay; only bins inside the gates contribute to the fitting objective and reported fit statistics.
 4. When satisfied, click **Confirm calibration for each channel**. Confirmation automatically updates the metadata file with the gates and shifts.
 
-![Change the NADH gates to T1 = 20 and T2 = 240, then optimize the shifts.](extraction_ui_shots/time_gate_choose.png){width=65% fig-align=center fig-alt="NADH fitting controls show MLE, Hybrid mode, two components, Start T1 set to 20, End T2 set to 240, and Optimize for Shifts."}
+![Change the NADH gates to T1 = 20 and T2 = 240, then optimize the shifts.](extraction_ui_shots/time_gate_choose.png){width=65% fig-align=center fig-alt="NADH fitting controls show two components, Start T1 set to 20, End T2 set to 240, Fix the Shift, and Optimize for Shifts."}
 
 ![The same `Mosaic16` decay after fitting with the 20–240 time gate. The full curve remains visible for inspection.](extraction_ui_shots/time_gate.png){width=100% fig-align=center fig-alt="Updated NADH shift distribution and the measured and fitted Mosaic16 decay after changing the time gates, with recalculated fit statistics."}
 
@@ -131,15 +131,6 @@ $$
 
 This weighting is Pearson's $\chi^2$ — the per-bin variance is taken from the model $\hat{y}(t_n)$ rather than the noisy measured count — which keeps the high-count bins near the decay peak from dominating the fit; the $\max(\cdot, 1)$ floor avoids division by zero where the model is near zero. The reported [reduced chi-square](lifetime_fit.qmd#goodness-of-fit) also uses model-based variance, but divides by positive model values without the WLS floor and adjusts for the number of free parameters.
 
-#### Fitting Mode
-
-The fitting mode selects the optimization strategy. It is a trade-off between speed and the effort to avoid local minima.
-
-During shift estimation, `Fitting Mode` offers **Hybrid** only. After all required calibration has been confirmed, the fitting workflow offers both **Hybrid** and **Local** for the subsequent cell-level fits. Choose the mode before clicking `Start extraction`.
-
-- `Local`: Each cell is fit with a single local optimizer — `leastsq` (least squares with Levenberg-Marquardt) if the chosen metric is `WLS`, otherwise `nelder` (Nelder-Mead). To give those per-cell fits a good starting point, a one-time **warm start** is performed first: the `differential evolution` global optimizer is run once on the *mean* decay of all ROIs in the batch, and the resulting lifetimes (and the constant offset) seed the initial values for every per-cell fit. The mean is used rather than the sum so the seed stays at single-cell scale, keeping a cell's result independent of how many cells share its batch. This warm start runs once, up front, before the per-cell fits are [parallelized across CPU cores](#reconvolution-fitting); because the global search runs once for the whole batch instead of once per cell, `Local` is substantially faster than `Hybrid`.
-- `Hybrid`: The slower but more accurate option. For **each cell**, it runs the `differential evolution` algorithm to obtain a good initial guess for all parameters, followed by the `Local` optimizer to refine the solution.
-
 ## Fit-Free IRF Calibration {#fit-free-calibration}
 
 This shift calibration applies to channels with `Lifetime fit free` selected and [calibration method](data_extraction_config.qmd#calibration-method) set to `IRF`, including pre-fitted FLIM channels when phasor features are requested. The [fluorescence lifetime standard](lifetime_fit_free.qmd#fit-free-standard-calibration) method instead calibrates phasors during extraction.
@@ -160,8 +151,4 @@ The signals of the shifted IRF are deconvolved from the offset-subtracted decay 
 
 Once satisfied with the [fitting options](#fitting-options), time gates, and shift values for every required channel, click **Confirm calibration for each channel** below the channel expanders. The same control confirms QPI background settings when that calibration is included.
 
-After confirmation, the app automatically updates the existing metadata file with the shifts, time gates, fitting options, component counts, and fixed lifetimes. Choose the fitting mode for raw FLIM channels using `Lifetime fit`, then click **Start extraction**, or use **Go back and find shift** to repeat calibration (**Go back and recalibrate** for a mixed FLIM/QPI workflow). A metadata-save error must be resolved with **Retry saving metadata** before extraction can run. See the [Numerical workflow](numerical_feature_extraction.qmd#calibration-interface) for source changes and automatic saving.
-
-::: {#calibration-done}
-![After confirming calibration, choose the fitting mode and start extraction.](extraction_ui_shots/calibration_done.png){width=80% fig-align=center fig-alt="Confirmed calibration with a fitting-mode selector and buttons to start extraction or return to shift calibration."}
-:::
+After confirmation, the app automatically updates the existing metadata file with the shifts, time gates, fitting options, component counts, and fixed lifetimes. A metadata-save error must be resolved with **Retry saving metadata** before extraction can run. Continue to the [Numerical workflow](numerical_feature_extraction.qmd#feature-extraction) for extraction and automatic saving.

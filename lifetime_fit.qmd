@@ -8,7 +8,34 @@ $$I(t) = \sum_{i=1}^n A_i \, e^{-t/\tau_i}$$
 
 ## Fitting
 
-If the decays have not been pre-fit, FLIM Playground applies the confirmed fitting options ([number of components](irf_calibration.qmd#number-of-components), [fixed lifetimes](irf_calibration.qmd#fixed-lifetimes), [time gates](irf_calibration.qmd#time-gates), [metric](irf_calibration.qmd#metric), and [fitting mode](irf_calibration.qmd#fitting-mode)) to the [reconvolution fitting process](irf_calibration.qmd#reconvolution-fitting). The IRF shift is fixed at the confirmed value for the channel or FOV. Shift calibration uses **Hybrid**; subsequent cell-level fits can use **Hybrid** or **Local**, selected after confirming calibration in the [Numerical workflow](numerical_feature_extraction.qmd#feature-extraction). These per-cell fits are [parallelized across CPU cores](irf_calibration.qmd#reconvolution-fitting). Reconvolution fitting minimizes the selected cost metric between the measured decay and a multi-exponential model convolved with the IRF.
+If the decays have not been pre-fit, FLIM Playground applies the confirmed fitting options ([number of components](irf_calibration.qmd#number-of-components), [fixed lifetimes](irf_calibration.qmd#fixed-lifetimes), [time gates](irf_calibration.qmd#time-gates), [metric](irf_calibration.qmd#metric), and [fitting mode](#hybrid-over-local)) to the [reconvolution fitting process](irf_calibration.qmd#reconvolution-fitting). The IRF shift is fixed at the confirmed value for the channel or FOV. After confirmation, cell-level fitting defaults to **Local**; see [When to choose Hybrid over Local](#hybrid-over-local) for the mode behavior and trade-offs. These per-cell fits are [parallelized across CPU cores](irf_calibration.qmd#reconvolution-fitting). Reconvolution fitting minimizes the selected cost metric between the measured decay and a multi-exponential model convolved with the IRF.
+
+:::: {#hybrid-over-local .callout-note collapse="true" title="When to choose Hybrid over Local"}
+
+**Local is the recommended default** for cell-level fits after shift calibration. It performs a one-time differential-evolution warm start on the mean decay, then fits each cell with a local optimizer (`leastsq` for WLS or `nelder` otherwise). **Hybrid** runs differential evolution separately for each cell before the same local refinement, so it usually takes longer.
+
+The benchmark below simulated mono-, bi-, and tri-exponential decays with a fixed, correctly calibrated IRF, Poisson noise, 2% background, and 20-cell batches at 1,000–300,000 photons. The error is median per-cell lifetime MAPE; lower is better.
+
+| Model | Accuracy result |
+|---|---|
+| Mono-exponential | Accuracy was indistinguishable |
+| Bi-exponential | Accuracy was indistinguishable |
+| Tri-exponential | Local was equal or better overall; at 1,000 photons, MLE was 30.8% for Local vs. 33.0% for Hybrid, and WLS was 13.7% vs. 36.1% |
+
+A separate production-path timing used 342 real T-cell decays with a bi-exponential model, a fixed measured IRF, `fit_shift=False`, and eight physical worker processes. The complete batch was fit in:
+
+| Fit metric | Local | Hybrid | Hybrid/Local |
+|---|---:|---:|---:|
+| MLE | 5.7 s | 45.7 s | 8.0× |
+| WLS | 7.2 s | 47.6 s | 6.6× |
+
+This larger batch exposes the cost of the per-cell global searches that multiprocessing can hide in a small 20-cell benchmark.
+
+Choose Hybrid when Local produces a suspicious fit, such as a lifetime at a parameter boundary, a weak or merged component, failed convergence, or a visibly poor residual. It can also help with difficult real data whose model or IRF differs from the warm-start assumptions. If Local produces a valid fit with good residuals, Hybrid is unlikely to improve the lifetime estimate.
+
+These results support Local as the default; they do not show that Hybrid is never useful for model mismatch or very low-count tri-exponential decays.
+
+::::
 
 [Otherwise](#pixel-pre-fit), FLIM Playground uses the [pre-fit values](data_extraction_config.qmd#three-d4d-pixel-pre-fit) to calculate the fitting features.
 

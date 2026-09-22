@@ -71,11 +71,11 @@ Use a [local installation](#installation) for Data Extraction so the app can rea
 
 3. **Check the folder.** Open **Data Extraction → Numerical** and enter the full path to the extracted `3d_decay_1channel` folder. Confirm that `Mosaic01`–`Mosaic25` report **All files found**, review any channel assignment and the metadata preview, then click **Start calibration**. The app automatically saves the metadata in the source folder. See the [FOV Metadata reference](fov_metadata.qmd#sec-fov-metadata) if a file is missing or duplicated.
 
-4. **Calibrate and extract.** Continue in **Numerical**. Keep **MLE**, **Hybrid**, two components, **Fix the Shift** selected, and the initial **Start (T1) = 0**, **End (T2) = 256** gates. Click **Optimize for Shifts**, then inspect the NADH channel expander. Select `Mosaic16` in the shift plot to inspect its decay and fitted curve.
+4. **Calibrate and extract.** Continue in **Numerical**. Keep **MLE**, two components, **Fix the Shift** selected, and the initial **Start (T1) = 0**, **End (T2) = 256** gates. Click **Optimize for Shifts**, then inspect the NADH channel expander. Select `Mosaic16` in the shift plot to inspect its decay and fitted curve.
 
    ![Inspect Mosaic16 in the 25-FOV shift distribution before starting cell-level extraction. The fit is not so good now.](extraction_ui_shots/irf_shift.png){width=100% fig-align=center fig-alt="The Mosaic example's 25 NADH shift estimates, with Mosaic16 selected beside its measured and fitted decay, fit statistics, and editable common shift."}
 
-   Review the shifts and [adjust the time gates](irf_calibration.qmd#time-gates). Click **Confirm calibration for each channel**, choose **Local** for faster cell-level fitting or keep **Hybrid**, then click **Start extraction**. Confirmation automatically records the calibration, and the app saves the cell-feature CSV in the source folder; see [Save Results](numerical_feature_extraction.qmd#save-results).
+   Review the shifts and [adjust the time gates](irf_calibration.qmd#time-gates). Click **Confirm calibration for each channel**, leave **Local** selected by default for faster cell-level fitting or change the mode using [the mode guidance](lifetime_fit.qmd#hybrid-over-local), then click **Start extraction**. Confirmation automatically records the calibration, and the app saves the cell-feature CSV in the source folder; see [Save Results](numerical_feature_extraction.qmd#save-results).
 
 5. For experiments whose FOV names encode labels such as treatment, follow [Categorical Feature Extraction](categorical_feature_extraction.qmd#sec-categorical-feature-extraction) before analysis. Then use the **Data Analysis** section to visualize and model the extracted features.
 

@@ -31,7 +31,9 @@ When every required channel is ready, click **Confirm calibration for each chann
 
 ## Feature Extraction
 
-After confirming calibration, choose **Hybrid** or **Local** fitting for raw FLIM channels using `Lifetime fit`, then click **Start extraction**. To revisit calibration, use **Go back and find shift**, **Go back and correct background**, or **Go back and recalibrate**, as appropriate for the channels.
+After confirming calibration, raw FLIM channels using `Lifetime fit` default to **Local** fitting. Leave it selected for faster cell-level fitting or change the mode using [the mode guidance](lifetime_fit.qmd#hybrid-over-local), then click **Start extraction**. To revisit calibration, use **Go back and find shift**, **Go back and correct background**, or **Go back and recalibrate**, as appropriate for the channels.
+
+![After confirming calibration, choose the fitting mode and start extraction.](extraction_ui_shots/calibration_done.png){width=80% fig-align=center fig-alt="Confirmed calibration with Fitting Mode set to Local by default and buttons to start extraction or return to shift calibration."}
 
 The selected extractors provide:
 
@@ -45,7 +47,7 @@ Configured [derived features](derived_feature.qmd) are calculated after the succ
 
 The right side lists FOVs and their extraction status. Progress bars appear during processing, and completed FOVs show their result badges. Keep the page open while the batch runs and check any errors or warnings before using the output.
 
-![Follow per-FOV progress and results during numerical extraction.](extraction_ui_shots/numerical_feature_extraction.png){width=100% fig-align=center fig-alt="Numerical workflow showing fitting controls and per-field-of-view extraction progress and result badges."}
+![Follow per-FOV progress and results during numerical extraction.](extraction_ui_shots/numerical_feature_extraction.png){width=100% fig-align=center fig-alt="Numerical workflow showing Fitting Mode set to Local by default, per-field-of-view extraction progress, and result badges."}
 
 Cells with missing feature values (`NaN`) remain in the exported table; the app reports warnings about those values.
 
