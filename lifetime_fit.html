@@ -569,7 +569,78 @@ window.Quarto = {
 <p><span class="math display">\[I(t) = \sum_{i=1}^n A_i \, e^{-t/\tau_i}\]</span></p>
 <section id="fitting" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="fitting"><span class="header-section-number">7.1</span> Fitting</h2>
-<p>If the decays have not been pre-fit, FLIM Playground applies the confirmed fitting options (<a href="./irf_calibration.html#number-of-components">number of components</a>, <a href="./irf_calibration.html#fixed-lifetimes">fixed lifetimes</a>, <a href="./irf_calibration.html#time-gates">time gates</a>, <a href="./irf_calibration.html#metric">metric</a>, and <a href="./irf_calibration.html#fitting-mode">fitting mode</a>) to the <a href="./irf_calibration.html#reconvolution-fitting">reconvolution fitting process</a>. The IRF shift is fixed at the confirmed value for the channel or FOV. Shift calibration uses <strong>Hybrid</strong>; subsequent cell-level fits can use <strong>Hybrid</strong> or <strong>Local</strong>, selected after confirming calibration in the <a href="./numerical_feature_extraction.html#feature-extraction">Numerical workflow</a>. These per-cell fits are <a href="./irf_calibration.html#reconvolution-fitting">parallelized across CPU cores</a>. Reconvolution fitting minimizes the selected cost metric between the measured decay and a multi-exponential model convolved with the IRF.</p>
+<p>If the decays have not been pre-fit, FLIM Playground applies the confirmed fitting options (<a href="./irf_calibration.html#number-of-components">number of components</a>, <a href="./irf_calibration.html#fixed-lifetimes">fixed lifetimes</a>, <a href="./irf_calibration.html#time-gates">time gates</a>, <a href="./irf_calibration.html#metric">metric</a>, and <a href="#hybrid-over-local">fitting mode</a>) to the <a href="./irf_calibration.html#reconvolution-fitting">reconvolution fitting process</a>. The IRF shift is fixed at the confirmed value for the channel or FOV. After confirmation, cell-level fitting defaults to <strong>Local</strong>; see <a href="#hybrid-over-local">When to choose Hybrid over Local</a> for the mode behavior and trade-offs. These per-cell fits are <a href="./irf_calibration.html#reconvolution-fitting">parallelized across CPU cores</a>. Reconvolution fitting minimizes the selected cost metric between the measured decay and a multi-exponential model convolved with the IRF.</p>
+<div id="hybrid-over-local" class="callout callout-style-default callout-note callout-titled" title="When to choose Hybrid over Local">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>When to choose Hybrid over Local
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Local is the recommended default</strong> for cell-level fits after shift calibration. It performs a one-time differential-evolution warm start on the mean decay, then fits each cell with a local optimizer (<code>leastsq</code> for WLS or <code>nelder</code> otherwise). <strong>Hybrid</strong> runs differential evolution separately for each cell before the same local refinement, so it usually takes longer.</p>
+<p>The benchmark below simulated mono-, bi-, and tri-exponential decays with a fixed, correctly calibrated IRF, Poisson noise, 2% background, and 20-cell batches at 1,000–300,000 photons. The error is median per-cell lifetime MAPE; lower is better.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Accuracy result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mono-exponential</td>
+<td>Accuracy was indistinguishable</td>
+</tr>
+<tr class="even">
+<td>Bi-exponential</td>
+<td>Accuracy was indistinguishable</td>
+</tr>
+<tr class="odd">
+<td>Tri-exponential</td>
+<td>Local was equal or better overall; at 1,000 photons, MLE was 30.8% for Local vs.&nbsp;33.0% for Hybrid, and WLS was 13.7% vs.&nbsp;36.1%</td>
+</tr>
+</tbody>
+</table>
+<p>A separate production-path timing used 342 real T-cell decays with a bi-exponential model, a fixed measured IRF, <code>fit_shift=False</code>, and eight physical worker processes. The complete batch was fit in:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Fit metric</th>
+<th style="text-align: right;">Local</th>
+<th style="text-align: right;">Hybrid</th>
+<th style="text-align: right;">Hybrid/Local</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MLE</td>
+<td style="text-align: right;">5.7 s</td>
+<td style="text-align: right;">45.7 s</td>
+<td style="text-align: right;">8.0×</td>
+</tr>
+<tr class="even">
+<td>WLS</td>
+<td style="text-align: right;">7.2 s</td>
+<td style="text-align: right;">47.6 s</td>
+<td style="text-align: right;">6.6×</td>
+</tr>
+</tbody>
+</table>
+<p>This larger batch exposes the cost of the per-cell global searches that multiprocessing can hide in a small 20-cell benchmark.</p>
+<p>Choose Hybrid when Local produces a suspicious fit, such as a lifetime at a parameter boundary, a weak or merged component, failed convergence, or a visibly poor residual. It can also help with difficult real data whose model or IRF differs from the warm-start assumptions. If Local produces a valid fit with good residuals, Hybrid is unlikely to improve the lifetime estimate.</p>
+<p>These results support Local as the default; they do not show that Hybrid is never useful for model mismatch or very low-count tri-exponential decays.</p>
+</div>
+</div>
+</div>
 <p><a href="#pixel-pre-fit">Otherwise</a>, FLIM Playground uses the <a href="./data_extraction_config.html#three-d4d-pixel-pre-fit">pre-fit values</a> to calculate the fitting features.</p>
 <p>In the final dataset, the primary fitting features are prefixed by the combination of the feature extractor name (i.e.&nbsp;<code>Lifetime fit</code>) and the channel name, allowing <a href="data_analysis.html">Data Analysis</a> to group the features. For example, <code>Lifetime fit_nadh: a1</code> means the fraction of the first lifetime component for the NAD(P)H channel.</p>
 <p>Not every column produced by this extractor carries that prefix. The lifetimes (<span class="math inline">\(\tau_i\)</span>, <span class="math inline">\(\tau_{mean}\)</span>, <span class="math inline">\(\tau_{m,iw}\)</span>) and the leading fractions do, but the raw amplitudes (<span class="math inline">\(A_i\)</span>), the constant offset, the reduced chi-square, and the final fraction (which is derived as the remainder of the others) are written with only the channel name, e.g.&nbsp;<code>nadh_reduced_chi_square</code>. These are treated as bookkeeping values, so Data Analysis places them in the <strong>Uncategorized Features</strong> group rather than under <code>Lifetime fit_nadh</code>.</p>

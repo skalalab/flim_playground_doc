@@ -639,10 +639,10 @@ window.Quarto = {
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="extraction_ui_shots/fitting_option.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Fitting controls combine the objective, optimization mode, and per-channel model settings."><img src="extraction_ui_shots/fitting_option.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="MLE metric and Hybrid fitting mode, two components per channel, start and end time gates, fixed-lifetime expanders, Fix the Shift, and Optimize for Shifts."></a></p>
+<p><a href="extraction_ui_shots/fitting_option.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Fitting controls combine the objective and per-channel model settings."><img src="extraction_ui_shots/fitting_option.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="MLE metric, two components per channel, start and end time gates, fixed-lifetime expanders, Fix the Shift, and Optimize for Shifts."></a></p>
 </figure>
 </div>
-<figcaption>Fitting controls combine the objective, optimization mode, and per-channel model settings.</figcaption>
+<figcaption>Fitting controls combine the objective and per-channel model settings.</figcaption>
 </figure>
 </div>
 </div>
@@ -710,7 +710,7 @@ Note
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="extraction_ui_shots/time_gate_choose.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Change the NADH gates to T1 = 20 and T2 = 240, then optimize the shifts."><img src="extraction_ui_shots/time_gate_choose.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%" alt="NADH fitting controls show MLE, Hybrid mode, two components, Start T1 set to 20, End T2 set to 240, and Optimize for Shifts."></a></p>
+<p><a href="extraction_ui_shots/time_gate_choose.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Change the NADH gates to T1 = 20 and T2 = 240, then optimize the shifts."><img src="extraction_ui_shots/time_gate_choose.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%" alt="NADH fitting controls show two components, Start T1 set to 20, End T2 set to 240, Fix the Shift, and Optimize for Shifts."></a></p>
 </figure>
 </div>
 <figcaption>Change the NADH gates to T1 = 20 and T2 = 240, then optimize the shifts.</figcaption>
@@ -742,15 +742,6 @@ Note
 \]</span></p>
 <p>This weighting is Pearson’s <span class="math inline">\(\chi^2\)</span> — the per-bin variance is taken from the model <span class="math inline">\(\hat{y}(t_n)\)</span> rather than the noisy measured count — which keeps the high-count bins near the decay peak from dominating the fit; the <span class="math inline">\(\max(\cdot, 1)\)</span> floor avoids division by zero where the model is near zero. The reported <a href="./lifetime_fit.html#goodness-of-fit">reduced chi-square</a> also uses model-based variance, but divides by positive model values without the WLS floor and adjusts for the number of free parameters.</p>
 </section>
-<section id="fitting-mode" class="level4">
-<h4 class="anchored" data-anchor-id="fitting-mode">Fitting Mode</h4>
-<p>The fitting mode selects the optimization strategy. It is a trade-off between speed and the effort to avoid local minima.</p>
-<p>During shift estimation, <code>Fitting Mode</code> offers <strong>Hybrid</strong> only. After all required calibration has been confirmed, the fitting workflow offers both <strong>Hybrid</strong> and <strong>Local</strong> for the subsequent cell-level fits. Choose the mode before clicking <code>Start extraction</code>.</p>
-<ul>
-<li><code>Local</code>: Each cell is fit with a single local optimizer — <code>leastsq</code> (least squares with Levenberg-Marquardt) if the chosen metric is <code>WLS</code>, otherwise <code>nelder</code> (Nelder-Mead). To give those per-cell fits a good starting point, a one-time <strong>warm start</strong> is performed first: the <code>differential evolution</code> global optimizer is run once on the <em>mean</em> decay of all ROIs in the batch, and the resulting lifetimes (and the constant offset) seed the initial values for every per-cell fit. The mean is used rather than the sum so the seed stays at single-cell scale, keeping a cell’s result independent of how many cells share its batch. This warm start runs once, up front, before the per-cell fits are <a href="#reconvolution-fitting">parallelized across CPU cores</a>; because the global search runs once for the whole batch instead of once per cell, <code>Local</code> is substantially faster than <code>Hybrid</code>.</li>
-<li><code>Hybrid</code>: The slower but more accurate option. For <strong>each cell</strong>, it runs the <code>differential evolution</code> algorithm to obtain a good initial guess for all parameters, followed by the <code>Local</code> optimizer to refine the solution.</li>
-</ul>
-</section>
 </section>
 </section>
 <section id="fit-free-calibration" class="level2" data-number="6.4">
@@ -779,19 +770,7 @@ Note
 <section id="confirm-calibration" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="confirm-calibration"><span class="header-section-number">6.5</span> Confirm Calibration</h2>
 <p>Once satisfied with the <a href="#fitting-options">fitting options</a>, time gates, and shift values for every required channel, click <strong>Confirm calibration for each channel</strong> below the channel expanders. The same control confirms QPI background settings when that calibration is included.</p>
-<p>After confirmation, the app automatically updates the existing metadata file with the shifts, time gates, fitting options, component counts, and fixed lifetimes. Choose the fitting mode for raw FLIM channels using <code>Lifetime fit</code>, then click <strong>Start extraction</strong>, or use <strong>Go back and find shift</strong> to repeat calibration (<strong>Go back and recalibrate</strong> for a mixed FLIM/QPI workflow). A metadata-save error must be resolved with <strong>Retry saving metadata</strong> before extraction can run. See the <a href="./numerical_feature_extraction.html#calibration-interface">Numerical workflow</a> for source changes and automatic saving.</p>
-<div id="calibration-done">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="extraction_ui_shots/calibration_done.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="After confirming calibration, choose the fitting mode and start extraction."><img src="extraction_ui_shots/calibration_done.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Confirmed calibration with a fitting-mode selector and buttons to start extraction or return to shift calibration."></a></p>
-</figure>
-</div>
-<figcaption>After confirming calibration, choose the fitting mode and start extraction.</figcaption>
-</figure>
-</div>
-</div>
+<p>After confirmation, the app automatically updates the existing metadata file with the shifts, time gates, fitting options, component counts, and fixed lifetimes. A metadata-save error must be resolved with <strong>Retry saving metadata</strong> before extraction can run. Continue to the <a href="./numerical_feature_extraction.html#feature-extraction">Numerical workflow</a> for extraction and automatic saving.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
