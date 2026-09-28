@@ -51,6 +51,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-37a0ccb6f5b9899fcb884e11bb6f7458.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -516,6 +519,23 @@ ul.task-list li input[type="checkbox"] {
 <p>Numerical extraction automatically saves the metadata and single-cell feature CSVs into the source folder; the page reports their paths. Categorical merging writes a timestamped combined CSV to its input folder. Run extraction on a <a href="./index.html#installation">local installation</a> so these folders are available. Any download button you click will save the file to your browser’s default download location. For example, the <a href="./data_analysis.html#export-workflow-as-python-script">analysis Python export</a>.</p>
 <p><strong>How do I use a light or dark theme?</strong></p>
 <p>The app follows its Streamlit theme setting, which can follow the system or select Light or Dark. Use the app’s <strong>Settings → Theme</strong> when available. The documentation examples use Light.</p>
+<p><strong>On Windows, how do I fix “The paging file is too small” or a Python DLL loading error?</strong></p>
+<p><strong>Check free disk space first. In the reported case, freeing disk space alone resolved the error; no paging-file settings needed to be changed.</strong></p>
+<p>FLIM Playground may display <strong>“Failed to execute script ‘launcher’”</strong> while importing <code>_fblas</code>, or <strong>“Failed to load Python DLL”</strong> for <code>python311.dll</code>, followed by <strong>“The paging file is too small for this operation to complete.”</strong> The paging file is disk space Windows uses to extend its memory capacity. A nearly full drive can prevent Windows from growing this file when more memory is needed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="common_qa_shots/windows_paging_file_error.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Windows DLL-loading errors caused by insufficient virtual memory. The personal directory prefix has been obscured."><img src="common_qa_shots/windows_paging_file_error.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Two Windows error dialogs report that the paging file is too small while loading _fblas and Flim-Playground's python311.dll. The directory prefix before Flim-Playground is blurred." width="593"></a></p>
+</figure>
+</div>
+<figcaption>Windows DLL-loading errors caused by insufficient virtual memory. The personal directory prefix has been obscured.</figcaption>
+</figure>
+</div>
+<ul>
+<li>Free up disk space</li>
+<li>if the error persists after freeing disk space, close other memory-heavy applications and restart Windows. If the error still occurs, check that Windows can manage the paging file: press <strong>Windows + R</strong>, enter <code>sysdm.cpl</code>, then go to <strong>Advanced → Performance: Settings → Advanced → Virtual memory: Change</strong>. Enable <strong>Automatically manage paging file size for all drives</strong> if it is disabled, click <strong>OK</strong>, and restart Windows after changing the setting. If it is already enabled, leave it enabled; manual sizing is not required for the disk-space fix described above.</li>
+</ul>
 
 
 
@@ -945,8 +965,40 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/common_qa.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/common_qa.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>
