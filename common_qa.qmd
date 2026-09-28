@@ -32,3 +32,15 @@ A [mask](data_extraction_config.qmd#mask) label defines the cell, so all pixels 
 **How do I use a light or dark theme?**
 
 The app follows its Streamlit theme setting, which can follow the system or select Light or Dark. Use the app's **Settings → Theme** when available. The documentation examples use Light.
+
+
+**On Windows, how do I fix “The paging file is too small” or a Python DLL loading error?**
+
+**Check free disk space first. In the reported case, freeing disk space alone resolved the error; no paging-file settings needed to be changed.**
+
+FLIM Playground may display **“Failed to execute script 'launcher'”** while importing `_fblas`, or **“Failed to load Python DLL”** for `python311.dll`, followed by **“The paging file is too small for this operation to complete.”** The paging file is disk space Windows uses to extend its memory capacity. A nearly full drive can prevent Windows from growing this file when more memory is needed.
+
+![Windows DLL-loading errors caused by insufficient virtual memory. The personal directory prefix has been obscured.](common_qa_shots/windows_paging_file_error.png){width=593px fig-align=center fig-alt="Two Windows error dialogs report that the paging file is too small while loading _fblas and Flim-Playground's python311.dll. The directory prefix before Flim-Playground is blurred."}
+
+- Free up disk space
+- if the error persists after freeing disk space, close other memory-heavy applications and restart Windows. If the error still occurs, check that Windows can manage the paging file: press **Windows + R**, enter `sysdm.cpl`, then go to **Advanced → Performance: Settings → Advanced → Virtual memory: Change**. Enable **Automatically manage paging file size for all drives** if it is disabled, click **OK**, and restart Windows after changing the setting. If it is already enabled, leave it enabled; manual sizing is not required for the disk-space fix described above.
