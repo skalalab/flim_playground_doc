@@ -195,6 +195,18 @@ Click **Export the entire analysis as a Python script** below the results and st
 
 ![Download a Python script that records the current analysis settings.](analysis_ui_shots/analysis_export.png){width=80% fig-align=center fig-alt="Export the entire analysis as a Python script download button."}
 
-Keep the original uploaded table beside the downloaded `.py` file and run the script from that directory, or edit its `DATA_PATH` to point to the table. The dataset is not embedded in the script. The script reproduces the analysis with matplotlib and saves SVG figures that you can edit or use in a publication.
+Keep the original uploaded table beside the downloaded `.py` file. The dataset is not embedded in the script. If you rename or move the table, edit `DATA_PATH` near the top of the script to match its filename or path.
+
+[Install uv](https://docs.astral.sh/uv/getting-started/installation/), open a terminal in the folder containing the script and table, and run:
+
+```bash
+uv run analysis.py
+```
+
+Replace `analysis.py` with the downloaded script's filename.
+
+Exported scripts declare Python 3.11 or newer and the packages needed for the selected analysis in [inline script metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/). `uv` downloads a compatible Python if needed, installs those packages in an isolated environment, and runs the analysis automatically. See the [uv script guide](https://docs.astral.sh/uv/guides/scripts/#declaring-script-dependencies) for how dependency installation works.
+
+The script reproduces the analysis with matplotlib and saves SVG figures in the working directory. You can edit these figures or use them in a publication.
 
 For [1D](feature_histogram.qmd#export-labeled-data) and [2D GMM](feature_distribution.qmd#export-labeled-data) analyses, the app also offers labeled CSV downloads. Those downloads contain the analyzed data, including any collapse or log transformation. In the Python script, set `SAVE_DERIVED_DATA = True` to write the corresponding labeled CSV alongside the figures.
