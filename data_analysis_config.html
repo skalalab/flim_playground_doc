@@ -490,9 +490,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#how-group-names-are-inferred" id="toc-how-group-names-are-inferred" class="nav-link" data-scroll-target="#how-group-names-are-inferred">How group names are inferred</a></li>
   <li><a href="#change-groups-in-bulk" id="toc-change-groups-in-bulk" class="nav-link" data-scroll-target="#change-groups-in-bulk">Change groups in bulk</a></li>
   </ul></li>
-  <li><a href="#save-as-iris" id="toc-save-as-iris" class="nav-link" data-scroll-target="#save-as-iris">4. Save as Iris</a></li>
-  <li><a href="#reopen-from-the-iris-summary" id="toc-reopen-from-the-iris-summary" class="nav-link" data-scroll-target="#reopen-from-the-iris-summary">5. Reopen from the Iris summary</a></li>
-  <li><a href="#manage-saved-profiles" id="toc-manage-saved-profiles" class="nav-link" data-scroll-target="#manage-saved-profiles">6. Manage saved profiles</a></li>
+  <li><a href="#use-or-save-your-choices" id="toc-use-or-save-your-choices" class="nav-link" data-scroll-target="#use-or-save-your-choices">4. Use or save your choices</a></li>
+  <li><a href="#reopen-the-column-editor" id="toc-reopen-the-column-editor" class="nav-link" data-scroll-target="#reopen-the-column-editor">5. Reopen the column editor</a></li>
+  <li><a href="#reuse-and-manage-saved-profiles" id="toc-reuse-and-manage-saved-profiles" class="nav-link" data-scroll-target="#reuse-and-manage-saved-profiles">6. Reuse and manage saved profiles</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skalalab/flim_playground_doc/edit/main/data_analysis_config.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skalalab/flim_playground_doc/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -519,51 +519,44 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>For a table you prepared yourself, configuration starts after upload on <strong>Data Analysis</strong>. Review how each column will be used, organize measurements into feature groups, and save those choices as an analysis profile. The app can reuse a profile for later tables with matching headers.</p>
-<p>This walkthrough uses <a href="analysis_ui_shots/iris.csv">iris.csv</a>, a table of <strong>150 flowers and six columns</strong>. Download it to follow the screenshots. Each step includes a detail view; the web version also links to each full screenshot.</p>
+<p>Every upload, including a Data Extraction table, uses the same column editor. Analysis opens immediately when detected or saved column choices are valid. Review is optional; apply changes to one upload or save them as a reusable profile.</p>
+<p>This walkthrough uses <a href="analysis_ui_shots/iris.csv">iris.csv</a>, a table of <strong>150 flowers and six columns</strong>.</p>
 <section id="upload-iris" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="upload-iris">1. Upload Iris</h2>
-<p>Turn on <strong>Use a table from another source</strong>, then upload <code>iris.csv</code>. This checkbox is on by default in the hosted app.</p>
-<p>If <strong>Which profile describes this file?</strong> appears, choose <strong>Auto-detect — start a new profile</strong>. This fills the column review with suggested roles and groups. If a saved profile already matches this table, analysis may open directly; use the summary pencil described in Step 5 to inspect it.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="analysis_ui_shots/config_upload.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="analysis_ui_shots/config_upload.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%" data-fig-pos="H" alt="Use a table from another source is checked above the Upload your table area and Browse files button."></a></p>
-</figure>
-</div>
-<p><a href="analysis_ui_shots/config_upload_full.png">Open the full-resolution upload screenshot</a>.</p>
-<p>For your own data, use a plain grid with column names on the first row and one observation per row. The uploader also accepts TSV/TXT with tab, semicolon, or pipe separators, Excel <code>.xlsx</code>/<code>.xlsm</code>, and OpenDocument <code>.ods</code>. Put a spreadsheet’s intended table on its <strong>first sheet</strong>.</p>
+<p>Upload <code>iris.csv</code> on <strong>Data Analysis</strong>. The app reuses a saved profile if exactly one matches the complete header set; otherwise, it detects roles and groups automatically.</p>
+<p>Click <strong>✏️</strong> beside the upload summary to open the column editor. The summary shows <strong>Auto-detected</strong> or the applied profile’s name. If a column needs attention, such as an assigned ID with repeated values, the editor opens automatically.</p>
+<p>For your own data, use column names on the first row and one observation per row. The uploader accepts CSV, TSV/TXT with tab, semicolon, or pipe separators, Excel <code>.xlsx</code>/<code>.xlsm</code>, and OpenDocument <code>.ods</code>. Put a spreadsheet’s table on its <strong>first sheet</strong>.</p>
 </section>
 <section id="id-config" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="id-config">2. Review column roles</h2>
-<p>The review reports <strong>6 columns × 150 rows</strong>. Each column has one <strong>Role</strong>: <strong>Row ID</strong> identifies an observation, <strong>Categorical</strong> supplies labels for filtering or grouping observations, <strong>Numerical</strong> supplies measurements, and <strong>Ignore</strong> excludes a column. See <a href="./data_analysis.html#column-roles">Column roles in the Data Analysis overview</a> for their uses and requirements.</p>
-<p>For Iris, keep the four length and width columns <strong>Numerical</strong>, <code>species</code> <strong>Categorical</strong>, and <code>flower_id</code> <strong>Row ID</strong>:</p>
+<p>The editor reports <strong>6 columns × 150 rows</strong>. Each column has one <strong>Role</strong>: <strong>Row ID</strong>, <strong>Categorical</strong>, <strong>Numerical</strong>, or <strong>Ignore</strong>. See <a href="./data_analysis.html#column-roles">Column roles</a> for their uses and requirements.</p>
+<p>For Iris, keep the four length and width columns <strong>Numerical</strong>, set <code>species</code> to <strong>Categorical</strong>, and assign <code>flower_id</code> as <strong>Row ID</strong>:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="analysis_ui_shots/config_columns.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="The six Iris columns and their suggested roles."><img src="analysis_ui_shots/config_columns.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" data-fig-pos="H" alt="Role dropdowns assign sepal_length, sepal_width, petal_length, and petal_width to Numerical, species to Categorical, and flower_id to Row ID."></a></p>
+<p><a href="analysis_ui_shots/config_columns.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="The six Iris columns with flower_id assigned as Row ID."><img src="analysis_ui_shots/config_columns.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Role dropdowns assign sepal_length, sepal_width, petal_length, and petal_width to Numerical, species to Categorical, and flower_id to Row ID."></a></p>
 </figure>
 </div>
-<figcaption>The six Iris columns and their suggested roles.</figcaption>
+<figcaption>The six Iris columns with flower_id assigned as Row ID.</figcaption>
 </figure>
 </div>
-<p><a href="analysis_ui_shots/config_columns_full.png">Open the full-resolution column-review screenshot</a>.</p>
-<p><strong>To change a role</strong>, open that column’s <strong>Role</strong> dropdown and choose its intended use. For example, change a numeric treatment code from Numerical to Categorical so it appears as a category filter. Check the preview values before deciding: a unique integer measurement can be guessed as Row ID. A change away from Numerical removes the column’s feature-group assignment; changing it back enables its <strong>Group</strong> dropdown so you can assign it again. Save the profile to apply role changes to analysis.</p>
+<p>Use each column’s <strong>Role</strong> dropdown to change its use. For example, a numeric treatment code can be Categorical so it appears in filters. Changing a column away from Numerical removes its feature-group assignment.</p>
 <div id="identifiers-config">
-<p>A <strong>Row ID is optional</strong>. Auto-detection first tries the leftmost column containing distinct, nonmissing whole numbers or text labels. If no column has the Row ID role, the app automatically adds <strong>Row number</strong> to the analysis table, populated with <code>1</code> through <code>150</code> for Iris (or <code>1</code> through the number of input rows). These labels follow the uploaded row order and identify points in hover text. They are regenerated for each upload, so use your own identifier when identity must remain stable across reordered files. If <code>Row number</code> already exists, the generated column uses <code>Row number.1</code>, then <code>.2</code>, and so on as needed.</p>
-<p>To use generated numbers for Iris, change <code>flower_id</code> from Row ID to <strong>Ignore</strong>; choose Categorical or Numerical instead if you need that column for another purpose. The review then says <strong>Rows will be identified by row number.</strong> Only one column can be Row ID. Assigning it to another column automatically changes the previous holder to Numerical if it contains numbers, or Categorical otherwise; check that reassignment. Missing or repeated values in an assigned ID block saving, so correct the values, choose another identifier, or remove the role.</p>
+<p>A <strong>Row ID is optional</strong>. Automatic suggestions use exact identifier names from extraction profiles, such as <code>cell_id</code>; you can assign another column manually. Only one column can be Row ID, and its values must be nonmissing and unique. Assigning a new ID returns the previous ID column to Numerical or Categorical according to its values.</p>
+<p>With no assigned ID, the app adds <strong>Row number</strong>, populated with <code>1</code> through the number of input rows. If that header already exists, it uses <code>Row number.1</code>, then <code>.2</code>, and so on. These labels follow input row order, so use your own identifier when identity must remain stable across reordered files. For Iris, change <code>flower_id</code> to <strong>Ignore</strong> to use generated row numbers.</p>
 </div>
 <div id="categorical-feature-config">
-<p>At least one <strong>Numerical</strong> column must contain usable numbers. Categorical labels are stored as text. If every nonmissing value in a numeric category column is a whole number, labels use <code>1</code> rather than <code>1.0</code>; missing values become <code>N/A</code>.</p>
+<p>At least one <strong>Numerical</strong> column must contain usable numbers. Field-of-view columns such as <code>image_name</code> use the <strong>Categorical</strong> role in every upload. Categories are stored as text; whole-number labels use <code>1</code> rather than <code>1.0</code>, and missing values become <code>N/A</code>.</p>
 </div>
-<p>Profile matching uses <strong>exact headers</strong>. Case, spaces, and punctuation matter; <code>IL-18</code> and <code>IL_18</code> are different names. Reordering columns does not change the match.</p>
 </section>
 <section id="feature-group-management" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="feature-group-management">3. Feature group management</h2>
-<p><strong>Feature group management</strong>, above <strong>Column preview</strong>, organizes Numerical columns into shorter lists. Each group becomes a dropdown in the analysis feature pickers, making related measurements easier to find in a wide table. Groups are optional: unassigned measurements remain available under <strong>Uncategorized Features</strong>. Feature groups organize columns; categorical features such as <code>species</code> group or filter observations. Changing a feature group does not change measurement values.</p>
+<p><strong>Feature group management</strong>, above <strong>Column preview</strong>, organizes Numerical columns into shorter picker lists without changing their values. Unassigned measurements appear under <strong>Uncategorized Features</strong>. Feature groups organize measurements; categorical columns group or filter observations.</p>
 <section id="how-group-names-are-inferred" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="how-group-names-are-inferred">How group names are inferred</h3>
-<p>For a new profile, the app takes the prefix before the earliest <code>_</code>, <code>.</code>, or <code>:</code> (a colon followed by a space) in each Numerical column’s header. At least two new Numerical columns must share that prefix to create a suggested group:</p>
+<p>Recognized extraction headers form groups by extractor and channel, such as <strong>Lifetime fit_nadh</strong>. Columns beginning with <code>Derived:</code> form <strong>Derived Features</strong>. These rules apply to any uploaded table.</p>
+<p>For other headers, at least two new Numerical columns must share the prefix before the earliest <code>_</code>, <code>.</code>, or <code>:</code> (colon and space) to form a new group:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -590,81 +583,61 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>Hyphens remain part of a name: <code>anti-PD1_mean</code> and <code>anti-PD1_std</code> form <strong>anti-PD1</strong>. A header without a supported prefix, or a lone prefix in a new profile, stays ungrouped. Saved assignments are preserved when reusing a profile. A new column can follow existing columns with the same prefix into their saved group, including a renamed group; otherwise it can join an existing group whose name matches its prefix.</p>
+<p>Hyphens stay within names: <code>anti-PD1_mean</code> and <code>anti-PD1_std</code> form <strong>anti-PD1</strong>. Saved assignments are preserved, including renamed groups and ungrouped columns. New columns can follow matching saved columns into their group or join an existing group with the matching name.</p>
 </section>
 <section id="change-groups-in-bulk" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="change-groups-in-bulk">Change groups in bulk</h3>
-<p>Keep the suggested <strong>sepal</strong> and <strong>petal</strong> groups, or combine their four measurements into <strong>Flower size</strong> as shown here:</p>
+<p>Keep the suggested <strong>sepal</strong> and <strong>petal</strong> groups, or combine the four measurements into <strong>Flower size</strong>:</p>
 <ol type="1">
-<li>In <strong>Feature group management</strong>, type <code>Flower size</code> in the <strong>Group name</strong> box and click <strong>➕ Add</strong>. This creates and selects an empty destination group.</li>
-<li>Tick the checkboxes beside the Numerical columns you want to move. For Iris, click <strong>Select all</strong> to tick all four measurements; this button becomes <strong>Clear</strong> to deselect them.</li>
-<li>Select <strong>Flower size</strong> in the group dropdown above the table, then click <strong>Apply to 4</strong>. The number on <strong>Apply to N</strong> counts the ticked columns. Their <strong>Group</strong> values change together.</li>
+<li>Type <code>Flower size</code> in <strong>Group name</strong> and click <strong>➕ Add</strong>.</li>
+<li>Tick the Numerical columns to move. For Iris, <strong>Select all</strong> selects all four measurements.</li>
+<li>Choose <strong>Flower size</strong> in the group dropdown, then click <strong>Apply to 4</strong>.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="analysis_ui_shots/config_num_group.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Four Numerical columns selected for bulk assignment to Flower size."><img src="analysis_ui_shots/config_num_group.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" data-fig-pos="H" alt="Feature group management has Flower size selected and Apply to 4 enabled. Checkboxes beside all four Iris measurements are ticked; their current Group values are sepal or petal."></a></p>
+<p><a href="analysis_ui_shots/config_num_group.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Four Numerical columns selected for bulk assignment to Flower size."><img src="analysis_ui_shots/config_num_group.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Feature group management has Flower size selected and Apply to 4 enabled. All four Iris measurements are ticked; their current groups are sepal or petal."></a></p>
 </figure>
 </div>
 <figcaption>Four Numerical columns selected for bulk assignment to Flower size.</figcaption>
 </figure>
 </div>
-<p><a href="analysis_ui_shots/config_num_group_full.png">Open the full-resolution grouping screenshot</a>.</p>
-<p>Only Numerical columns have enabled selection checkboxes and <strong>Group</strong> dropdowns. For a single feature, change its row’s Group directly. To remove several assignments together, tick those columns, choose <strong>Uncategorized</strong> as the destination, and click <strong>Apply to N</strong>.</p>
-<p>To <strong>rename an entire group</strong>, select it in Feature group management, type the replacement name in <strong>Group name</strong>, and click <strong>✏️</strong>. Every member follows the new name; entering another existing group’s name <strong>merges</strong> the groups. To <strong>delete a group</strong>, select it and click <strong>🗑️</strong>; its columns remain available as Uncategorized Features. Save the profile to retain any group changes.</p>
+<p>For one feature, change its row’s <strong>Group</strong> directly. To remove assignments, choose <strong>Uncategorized</strong>. To rename a group, select it, enter a new <strong>Group name</strong>, and click <strong>✏️</strong>; using an existing name merges the groups. <strong>🗑️</strong> deletes the group and leaves its measurements uncategorized.</p>
 </section>
 </section>
-<section id="save-as-iris" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="save-as-iris">4. Save as Iris</h2>
-<p>For a new profile, type <code>Iris</code> in the profile-name box beside <strong>💾 Save profile as</strong>, then click the button. Initial review requires a save before analysis can begin. Saving applies the reviewed roles and groups to this upload and stores them for future uploads; editing the review alone does not update a saved profile. An existing profile instead offers <strong>💾 Save to {profile} &amp; use</strong>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="analysis_ui_shots/config_save.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Save the reviewed roles and groups as Iris."><img src="analysis_ui_shots/config_save.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" data-fig-pos="H" alt="The Save profile as button is beside a profile-name field containing Iris."></a></p>
-</figure>
-</div>
-<figcaption>Save the reviewed roles and groups as Iris.</figcaption>
-</figure>
-</div>
-<p><a href="analysis_ui_shots/config_save_full.png">Open the full-resolution save screenshot</a>.</p>
-<p>If <code>Iris</code> already exists, the first click requests confirmation. <strong>⚠️ Replace profile</strong> overwrites that profile’s roles and groups; enter a different name to keep both configurations.</p>
+<section id="use-or-save-your-choices" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="use-or-save-your-choices">4. Use or save your choices</h2>
+<ul>
+<li><strong>Use for this upload</strong> applies the reviewed roles and groups without changing saved profiles.</li>
+<li><strong>💾 Save profile as</strong> stores a new profile and resumes analysis. When starting from detected columns, enter <code>Iris</code> beside this button to reuse these choices later.</li>
+<li><strong>💾 Save to {profile} &amp; use</strong> appears when a saved profile is applied. It updates that profile and resumes analysis.</li>
+</ul>
+<p>If the name entered beside <strong>Save profile as</strong> already exists, confirm with <strong>⚠️ Replace profile</strong> or enter another name. Column edits take effect only when you choose Use or Save.</p>
 </section>
-<section id="reopen-from-the-iris-summary" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="reopen-from-the-iris-summary">5. Reopen from the Iris summary</h2>
-<p>After saving, select <strong>sepal_length</strong> from <strong>Flower size</strong> to begin analysis. If you kept the automatic groups, select it from <strong>sepal</strong> instead.</p>
-<p>The applied-profile summary reads <strong>Iris: 1 Categorical · 4 Numerical</strong>. Its counts omit the optional Row ID. Click the small <strong>✏️</strong> beside this summary to review the columns again.</p>
+<section id="reopen-the-column-editor" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="reopen-the-column-editor">5. Reopen the column editor</h2>
+<p>Select <strong>sepal_length</strong> from <strong>Flower size</strong> to begin analysis, or from <strong>sepal</strong> if you kept the automatic groups.</p>
+<p>If you saved the example as Iris, the summary reads <strong>Iris: 1 Categorical · 4 Numerical</strong>; counts omit the optional Row ID. Click <strong>✏️</strong> beside it to reopen the editor.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="analysis_ui_shots/config_applied.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Use the pencil beside the Iris summary to reopen review."><img src="analysis_ui_shots/config_applied.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" data-fig-pos="H" alt="Iris: 1 Categorical · 4 Numerical appears beside a pencil button. The Flower size feature picker has sepal_length selected."></a></p>
+<p><a href="analysis_ui_shots/config_applied.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Use the pencil beside the summary to reopen review."><img src="analysis_ui_shots/config_applied.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Iris: 1 Categorical · 4 Numerical appears beside a pencil button. The Flower size picker has sepal_length selected."></a></p>
 </figure>
 </div>
-<figcaption>Use the pencil beside the Iris summary to reopen review.</figcaption>
+<figcaption>Use the pencil beside the summary to reopen review.</figcaption>
 </figure>
 </div>
-<p><a href="analysis_ui_shots/config_applied_full.png">Open the full-resolution applied-profile screenshot</a>.</p>
-<p>Reopening hides the analysis controls and plots while preserving their settings. <strong>💾 Save to Iris &amp; use</strong> saves your changes and resumes analysis. <strong>Cancel</strong> discards the current column and group edits, reloads the saved decisions, and resumes analysis. Cancel is available when reopening a saved decision.</p>
+<p>Temporary edits show <strong>This upload only</strong>, or <strong>{profile} · edited for this upload</strong> when based on a saved profile. Reopening hides the analysis controls and plots while preserving their settings.</p>
+<p>Choose <strong>Use for this upload</strong> or Save to apply further edits. <strong>Cancel</strong> restores the choices in use before reopening, including earlier upload-only edits, and resumes analysis.</p>
 </section>
-<section id="manage-saved-profiles" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="manage-saved-profiles">6. Manage saved profiles</h2>
-<p>While review is open, expand <strong>Manage saved profiles</strong> below the save controls. It lists every saved profile. To rename one, click its <strong>✏️</strong>, enter a name in <strong>Rename to</strong>, and click <strong>Rename</strong>. To delete one, click its <strong>🗑️</strong>, then choose <strong>Delete</strong> or <strong>Keep</strong>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="analysis_ui_shots/config_manage.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Save or cancel review edits; manage stored profiles below."><img src="analysis_ui_shots/config_manage.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" data-fig-pos="H" alt="Reopened review has Save to Iris &amp; use and Cancel buttons. The expanded Manage saved profiles section lists Iris with rename and delete controls."></a></p>
-</figure>
-</div>
-<figcaption>Save or cancel review edits; manage stored profiles below.</figcaption>
-</figure>
-</div>
-<p><a href="analysis_ui_shots/config_manage_full.png">Open the full-resolution reopened-review screenshot</a>.</p>
-<p>Renames and confirmed deletions take effect immediately; Cancel only discards column and group edits. Deleting the profile supplying this review clears its decisions and returns to the chooser. Deleting the last profile leaves no saved profiles. You can store <strong>20 profiles</strong>; at the limit, replace an existing profile or delete one before saving another.</p>
-<p>On later uploads, the app compares the <strong>complete header set</strong>, including columns marked Ignore. One exact match with valid stored roles applies automatically. Otherwise, the chooser offers profiles sharing at least one column and reports <strong>shared</strong>, <strong>missing</strong>, and <strong>new</strong> counts, followed by Auto-detect.</p>
-<p>Selecting a partial match keeps saved roles and groups for present columns and guesses new ones. Changing the chooser selection discards your current edits. <strong>Save to {profile} &amp; use</strong> replaces that profile with this file’s decisions: new columns are recorded and absent columns are removed. Review the match counts before updating a profile used by other tables.</p>
+<section id="reuse-and-manage-saved-profiles" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="reuse-and-manage-saved-profiles">6. Reuse and manage saved profiles</h2>
+<p>Automatic profile matching requires exactly one match to the <strong>complete header set</strong>, including columns marked Ignore. Case, spaces, and punctuation matter; column order does not. Otherwise, the app detects roles and groups.</p>
+<p>Inside the editor, <strong>Apply a saved profile (optional)</strong> lists related profiles with <strong>shared</strong>, <strong>missing</strong>, and <strong>new</strong> column counts. Applying one replaces the current draft and keeps the editor open. It preserves saved roles and groups for present columns and guesses new ones. Saving back to that profile records new columns and removes absent ones.</p>
+<p>Expand <strong>Manage saved profiles</strong> below the action buttons to rename (<strong>✏️</strong>) or delete (<strong>🗑️</strong>) any saved profile. These changes take effect immediately; Cancel only discards column and group edits. Deleting the profile supplying the draft resets it to automatic detection.</p>
+<p>You can store <strong>20 profiles</strong>. At the limit, replace an existing profile or delete one before saving another.</p>
 
 
 </section>

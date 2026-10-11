@@ -542,7 +542,7 @@ Important
 <p><strong>The FOV identifier uniquely identifies a field of view and is assumed to contain all information necessary to extract the categorical features (e.g., treatment, time point, etc.), by including segments separated by a certain delimiter (e.g., <code>_</code>). Categorical features are assigned from individual segments or their combinations.</strong> Example: The FOV <code>Panc1_Cyanide_dish1</code> denotes that it comes from the Panc1 cell line, under the Cyanide treatment, in the 1st dish.</p>
 </div>
 </div>
-<p>Therefore, it checks if all field-of-view names include the same number of segments to determine the eligibility of <a href="#assigning-categorical-features">categorical feature assignment</a>.</p>
+<p><a href="#assigning-categorical-features">Categorical feature assignment</a> is available only when all FOV names have the same number of segments.</p>
 <p>Before merging, all-empty columns are removed. The remaining datasets are stacked using only their common columns, and the page reports columns discarded during merging.</p>
 </section>
 <section id="assigning-categorical-features" class="level2" data-number="13.2">
@@ -560,7 +560,7 @@ Important
 <figcaption>Map FOV-name slots to categories and check the preview before exporting.</figcaption>
 </figure>
 </div>
-<p>Clicking <code>Confirm category mapping &amp; export the combined dataset</code> then writes the merged dataset with the categorical features as a timestamped CSV (<code>{timestamp}_combined.csv</code>) into the same folder as the input dataset. Note that this is a direct file write rather than a browser download, so the file is saved on the machine running FLIM Playground. The hosted app provides Data Analysis only, so upload the combined CSV there with <strong>Use a table from another source</strong> on; in a local app, upload extraction output with the checkbox off.</p>
+<p>Click <code>Confirm category mapping &amp; export the combined dataset</code> to save the merged table and assigned categories as <code>{timestamp}_combined.csv</code> in the input folder. Upload this CSV directly to <strong>Data Analysis</strong> in either the desktop or hosted app. Column roles and groups are detected automatically; use <strong>✏️</strong> beside the summary to adjust them.</p>
 
 
 </section>

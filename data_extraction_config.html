@@ -536,7 +536,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Configure FLIM Playground once and it is applied to future data. You can keep up to 10 named <strong>configuration profiles</strong> and switch between them for different experiments.</p>
+<p>Save your settings in a <strong>configuration profile</strong> to reuse them with future data. You can keep up to 10 named profiles and switch between them for different experiments.</p>
 </div>
 </div>
 <p>Configuration has two levels: settings shared by the experiment and settings chosen for each channel. For a mixed-modality experiment, assign a modality to every channel first, then complete the input and extractor settings for each channel.</p>
@@ -560,7 +560,7 @@ Note
 <figcaption>Switch, create, or delete extraction profiles from Configuration.</figcaption>
 </figure>
 </div>
-<p>A newly created profile starts blank. Complete the settings below and click <code>Update Configuration</code> to save it. Everything described below pertains to the current profile.</p>
+<p>A new profile starts blank. Complete the settings below and click <code>Update Configuration</code> to save it. All settings apply to the current profile.</p>
 </section>
 <section id="categorical-features" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="categorical-features"><span class="header-section-number">3.1.2</span> Categorical Features</h3>
@@ -584,7 +584,7 @@ Note
 <h3 data-number="3.1.4" class="anchored" data-anchor-id="identifiers"><span class="header-section-number">3.1.4</span> Identifiers</h3>
 <section id="cell-identifier" class="level4">
 <h4 class="anchored" data-anchor-id="cell-identifier">Cell Identifier</h4>
-<p>Choose the output column name for the unique identifier of each cell. For example, if the <code>cell_id</code> is chosen the extracted dataset will contain a column named <code>cell_id</code> with unique values for each cell.</p>
+<p>Choose the output column name for each cell’s unique identifier, for example <code>cell_id</code>.</p>
 </section>
 <section id="fov-identifier" class="level4">
 <h4 class="anchored" data-anchor-id="fov-identifier">FOV Identifier</h4>
@@ -630,7 +630,7 @@ Note
 <section id="decay-types" class="level4">
 <h4 class="anchored" data-anchor-id="decay-types">FLIM input format</h4>
 <p><a id="flim-input-requirements"></a></p>
-<p>Choose one format for the FLIM channels in this profile. The detailed file description is grouped below so that you can open only the format you use.</p>
+<p>Choose one format for the FLIM channels in this profile, then open its tab below for the input requirements.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">2D Decay</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">3D/4D Decay</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">3D/4D Pixel Pre-fit</a></li></ul>
 <div class="tab-content">
@@ -708,7 +708,7 @@ Note
 <tr class="even">
 <td>Intensity texture</td>
 <td><a href="./intensity_texture.html">Intensity Texture</a></td>
-<td>Image-based FLIM or intensity-only</td>
+<td>Image-based FLIM or intensity-only; 2D FLIM decay yields only <a href="./intensity_texture.html#intensity-sum"><code>intensity_sum</code></a></td>
 </tr>
 <tr class="odd">
 <td>Dry mass and mass-distribution statistics</td>
@@ -805,7 +805,7 @@ QPI settings
 </section>
 <section id="derived-features" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="derived-features"><span class="header-section-number">3.3</span> Derived Features</h2>
-<p>The <code>Derived features</code> builder composes new single-cell features by arithmetic over the features you extract, optionally combining operands from different channels. Definitions are saved with the <a href="#extraction-profiles">current profile</a> and computed during <a href="./numerical_feature_extraction.html">Numerical Feature Extraction</a>.</p>
+<p>Use the <a href="./derived_feature.html"><code>Derived features</code> builder</a> to combine extracted features with arithmetic, including features from different channels. Definitions are saved with the <a href="#extraction-profiles">current profile</a> and computed during <a href="./numerical_feature_extraction.html">Numerical Feature Extraction</a>.</p>
 </section>
 <section id="save" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="save"><span class="header-section-number">3.4</span> Save</h2>

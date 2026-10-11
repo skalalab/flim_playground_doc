@@ -558,7 +558,7 @@ window.Quarto = {
 </header>
 
 
-<p>This method allows users to compare the distributions of a single numerical feature across groups. It can help users spot overarching trends between distributions, identify within-distribution shape-related characteristics such as skewness or bimodality that might signal sub-populations, and diagnose potential outliers.</p>
+<p>Compare the distribution of one numerical feature across groups to spot shifts, skewness, multiple peaks that might signal subpopulations, and potential outliers.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
@@ -579,7 +579,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To keep the point-based visualization style that supports <a href="./data_analysis.html#unique-id-hover">interactive hover</a> while showing the violin-plot-like distribution, <a href="https://en.wikipedia.org/wiki/Sina_plot">Sina plot</a> is used: it uses <code>gaussian_kde</code> from <code>scipy.stats</code> to make sure the width of the point distribution is proportional to the kernel density.</p>
+<p>A <a href="https://en.wikipedia.org/wiki/Sina_plot">Sina plot</a> combines individual points that support <a href="./data_analysis.html#unique-id-hover">interactive hover</a> with a violin-like distribution shape. It uses <code>gaussian_kde</code> from <code>scipy.stats</code> to make the width proportional to the kernel density.</p>
 <p>The spread is computed per group on the x-axis, so <a href="./data_analysis.html#opacity-and-shape-by"><code>Shape by</code>, <code>Opacity by</code></a> and <a href="#subcolor-by"><code>Subcolor by</code></a> change how a point looks, not where it sits.</p>
 </div>
 </div>
@@ -635,7 +635,7 @@ Note
 </section>
 <section id="separate-by" class="level2" data-number="16.4">
 <h2 data-number="16.4" class="anchored" data-anchor-id="separate-by"><span class="header-section-number">16.4</span> Separate by</h2>
-<p><code>Separate by</code> takes effect before <a href="./data_analysis.html#color-by"><code>Color by</code></a>. <code>Separate by</code> divides the plot into sections separated by a dashed line, with each section labeled by one of the available categories of the selected categorical feature after <a href="./data_analysis.html#filter-widgets">filtering</a>. The selected feature of <code>Separate by</code> is automatically removed from available features in <code>Color by</code>. The section order is determined by the order of the categories which are sorted <a href="./data_analysis.html#nte-order">numeric-alphabetically</a>.</p>
+<p><code>Separate by</code> divides the plot into sections before <a href="./data_analysis.html#color-by"><code>Color by</code></a> defines groups within them. Each section represents one category remaining after <a href="./data_analysis.html#filter-widgets">filtering</a>, with dashed lines between sections. Sections follow <a href="./data_analysis.html#nte-order">numeric-alphabetical order</a>, and the separation column is removed from the available <code>Color by</code> choices.</p>
 <p>Point encodings and comparisons are then applied within each section. For example, select <code>cell_line</code> in <code>Separate by</code> and <code>treatment</code> in <code>Color by</code> to compare treatments separately for each cell line. Treatment colors stay consistent across sections. <a href="#effect-size">Effect sizes</a> are calculated within each section, with annotations limited by the selected pairs and <a href="#effect-size-threshold">effect size threshold</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -704,10 +704,10 @@ Important
 </section>
 <section id="comparison-widget" class="level2" data-number="16.7">
 <h2 data-number="16.7" class="anchored" data-anchor-id="comparison-widget"><span class="header-section-number">16.7</span> Comparison Widget</h2>
-<p>Statistical tests and effect size calculations are performed on the selected comparison pairs. FLIM Playground uses the groups on the x-axis populated by <a href="./data_analysis.html#color-by">Color by</a> — labeled <code>Group by</code> when <a href="#subcolor-by"><code>Subcolor by</code></a> is on — to create comparison groups, starting from the leftmost group. Pairs are formed after any <a href="#reorder-x-axis-groups">custom x-axis order</a> is applied. For example, if there are 5 groups, then <span class="math inline">\(\binom{5}{2} = 10\)</span> comparisons will be created. The number of groups can get combinatorially large and many of the comparisons are not meaningful. Therefore, two widgets are provided to filter the comparison groups:</p>
+<p>The comparison widget forms pairs from the x-axis groups defined by <a href="./data_analysis.html#color-by">Color by</a> — labeled <code>Group by</code> when <a href="#subcolor-by"><code>Subcolor by</code></a> is on. Pairs run left to right after any <a href="#reorder-x-axis-groups">custom x-axis order</a> is applied. Five groups produce <span class="math inline">\(\binom{5}{2} = 10\)</span> pairs, so the number of comparisons grows quickly. Use two widgets to keep the comparisons of interest:</p>
 <ul>
-<li><p>A selection widget that shows all possible comparisons by default and users can deselect groups they do not need.</p></li>
-<li><p>A threshold widget that filters out comparisons whose effect size falls below the threshold.</p></li>
+<li><p>A selection widget shows all possible pairs by default; deselect those you do not need.</p></li>
+<li><p>A threshold widget filters out comparisons whose effect size falls below the threshold.</p></li>
 </ul>
 <section id="effect-size-threshold" class="level3" data-number="16.7.1">
 <h3 data-number="16.7.1" class="anchored" data-anchor-id="effect-size-threshold"><span class="header-section-number">16.7.1</span> Effect Size Threshold</h3>
@@ -772,7 +772,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><span class="math inline">\(\operatorname{MAD}\)</span> stands for <a href="https://en.wikipedia.org/wiki/Median_absolute_deviation">median absolute deviation</a>. In order to make <span class="math inline">\(\operatorname{MAD}\)</span> asymptotically consistent with the standard deviation under normality, it is scaled by <span class="math inline">\(C = 1 / \Phi^{-1}(0.75) \approx 1.4826\)</span>. Implementation-wise, it uses <code>median_abs_deviation</code> from <code>scipy.stats</code>, and <code>scale</code> option is set to <code>"normal"</code> to account for the constant multiplier <span class="math inline">\(C\)</span>. THE MEDIAN FORM of both Glass’s Delta and Absolute Cohen’s d IS NOT REPORTED IN THE LITERATURE.</p>
+<p><span class="math inline">\(\operatorname{MAD}\)</span> stands for <a href="https://en.wikipedia.org/wiki/Median_absolute_deviation">median absolute deviation</a>. It is scaled by <span class="math inline">\(C = 1 / \Phi^{-1}(0.75) \approx 1.4826\)</span> to be asymptotically consistent with the standard deviation under normality. The app uses <code>scipy.stats.median_abs_deviation</code> with <code>scale="normal"</code> to apply this multiplier. <strong>The median forms of Glass’s Delta and Absolute Cohen’s d are not reported in the literature.</strong></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">

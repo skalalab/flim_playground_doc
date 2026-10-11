@@ -519,7 +519,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>FOV metadata are prepared within <strong>Data Extraction → Numerical</strong>. It includes each field of view’s file paths, acquisition information, and channel settings such as calibration configuration and features to be extracted. The metadata record is maintained behind the scenes and automatically saved.</p>
+<p>FOV metadata record each field of view’s file paths, acquisition information, calibration settings, and selected extractors. The <strong>Data Extraction → Numerical</strong> workflow prepares and automatically saves this record.</p>
 <div id="fov-metadata">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -532,30 +532,26 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </div>
-<p>The left side contains source settings inherited from <a href="./data_extraction_config.html">Configuration</a>; the right side shows file validation, any required channel assignments, and the metadata preview. After preparation, the source settings remain available in the collapsed <strong>Metadata settings</strong> expander.</p>
+<p>The left side contains source settings from the active <a href="./data_extraction_config.html#extraction-profiles">extraction profile</a>; the right side shows file validation, any required channel assignments, and the metadata preview. After preparation, the source settings remain available in the collapsed <strong>Metadata settings</strong> expander.</p>
 <section id="source-settings" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="source-settings"><span class="header-section-number">5.1</span> Source settings</h2>
-<p>Settings are inherited from the active <a href="./data_extraction_config.html#extraction-profiles">extraction profile</a>. Source edits, a rescan, or a profile change invalidate an already prepared workflow, so the app repeats preparation before extraction. If another browser tab changed Configuration, follow the reload notice to use its new settings.</p>
+<p>Source edits, a rescan, or a profile change invalidate an already prepared workflow, so the app repeats preparation before extraction. If another browser tab changed Configuration, follow the reload notice to use its new settings.</p>
 <section id="folder-path" class="level3" data-number="5.1.1">
 <h3 data-number="5.1.1" class="anchored" data-anchor-id="folder-path"><span class="header-section-number">5.1.1</span> Folder Path</h3>
-<p>Enter the folder path that contains the required input files. The scan includes subfolders; after correcting files or changing the path, click <strong>Rescan folder</strong>.</p>
+<p>Enter the path to the folder containing the required input files. The scan includes subfolders.</p>
 </section>
 </section>
 <section id="metadata-extraction" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="metadata-extraction"><span class="header-section-number">5.2</span> Metadata Extraction</h2>
 <section id="fov-file-paths" class="level3" data-number="5.2.1">
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="fov-file-paths"><span class="header-section-number">5.2.1</span> FOV File Paths</h3>
-<p>The first step is to find the fields of view:</p>
-<ul>
-<li>It finds files recursively in the folder path using the first per-FOV file suffix, skipping calibration suffixes.</li>
-<li>The prefix of all the matched files is considered to be the field of view name.
+<p>The app finds files matching the first configured per-FOV suffix, excluding calibration suffixes, then derives each FOV name:</p>
 <ul>
 <li>FOV name = file name - 1st file suffix</li>
-</ul></li>
 </ul>
-<p>Then, it uses the found FOV names to find all other files:</p>
+<p>It finds the remaining inputs using:</p>
 <ul>
-<li>The file name to search = FOV name + other file suffixes for each file suffix</li>
+<li>File name to search = FOV name + configured file suffix</li>
 </ul>
 <p>Calibration files are shared across FOVs and are searched for by suffix alone, independently of the FOV name. For example, the same <code>standard.ptu</code> or <code>irf.ptu</code> will be used for every FOV in the folder. Files matching configured IRF or fluorescence lifetime standard suffixes are excluded from FOV discovery, even when they share the sample’s <code>.ptu</code> extension. This also applies to configured references for an inactive calibration method; those files are excluded if present but are not required.</p>
 <p>Each FOV card reports whether the required inputs were found:</p>
@@ -574,18 +570,19 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>After correcting missing or duplicate filenames, click <code>Rescan folder</code> to repeat the scan.</p>
+<p>After correcting missing or duplicate filenames or changing the folder path, click <code>Rescan folder</code> to repeat the scan.</p>
 </div>
 </div>
 </section>
 <section id="metadata-decay-info" class="level3" data-number="5.2.2">
 <h3 data-number="5.2.2" class="anchored" data-anchor-id="metadata-decay-info"><span class="header-section-number">5.2.2</span> Decay Info</h3>
-<p>If the decay type is <a href="./data_extraction_config.html#three-d4d-decay">3D/4D decay</a>, FLIM Playground will try to infer the <code>duration</code> and the number of <code>time bins</code> per laser pulse interval from the decay file metadata. It will also check for inconsistencies across all decay files.</p>
+<p>For <a href="./data_extraction_config.html#three-d4d-decay">3D/4D decay</a>, FLIM Playground tries to infer the <code>duration</code> and number of <code>time bins</code> per laser pulse interval from the file metadata. It also checks for inconsistencies across decay files.</p>
 <section id="channel-assignment" class="level4">
 <h4 class="anchored" data-anchor-id="channel-assignment">Channel Assignment</h4>
-<p>If the decay file associated with the channel found by the previous step is a 4D array, then FLIM Playground will try to infer the channel number for that channel. For each channel name, it will list all non-empty channels as potential channels to be assigned. If there is only one, the assignment is automatic. If there are multiple, users need to select the channel intended. It also checks dimensions across FOVs and channels within each imaging modality. FLIM, intensity-only, and QPI modalities can have different spatial grids, provided each image matches its own mask; corresponding cells are joined by label.</p>
-<p>Intensity-only and QPI TIFFs can hold several channels too. They are assigned the same way. Channels that are empty in every field of view are not offered, a field of view whose channels are all empty is rejected, and a thumbnail shows each candidate. Z-stacks, time series, complex-valued images and files with more than one axis besides the image channels are rejected.</p>
-<p>Picking the right channel number is easy to get wrong when one file holds several non-empty channels, so when there is a choice to make, a preview of the first field of view appears under the dropdown: one thumbnail per candidate channel, with a ✅ on the one currently selected. Glance at it to confirm the channel you picked looks like the fluorophore you expect.</p>
+<p>For a 4D decay array, FLIM Playground lists the non-empty acquisition channels for each configured channel name. If only one is available, it is assigned automatically; otherwise, select the intended channel.</p>
+<p>The app also checks dimensions across FOVs and channels within each imaging modality. FLIM, intensity-only, and QPI modalities can have different spatial grids, provided each image matches its own mask; corresponding cells are joined by label.</p>
+<p>Intensity-only and QPI TIFFs can hold several channels too. They are assigned the same way. Channels that are empty in every field of view are not offered, and a field of view whose channels are all empty is rejected. Z-stacks, time series, complex-valued images and files with more than one axis besides the image channels are rejected.</p>
+<p>When several channels are available, a preview below the dropdown shows one thumbnail per candidate from the first FOV, with a ✅ on the selected channel. Check that it looks like the fluorophore you expect.</p>
 <p>The metadata records the standard’s file path, known lifetime, and time axis. For a PTU standard, the app supplies the time axis automatically from the integrated reference curve.</p>
 </section>
 </section>
@@ -602,9 +599,9 @@ Tip
 <figcaption>Check the recorded file paths before starting calibration or extraction.</figcaption>
 </figure>
 </div>
-<p>As an example, the following metadata are extracted:</p>
+<p>For example, a two-channel FLIM experiment records:</p>
 <ul>
-<li><code>image_name</code>: The <code>image_name</code> column is the name of each FOV, which is specified in the <a href="./data_extraction_config.html#fov-identifier">fov identifier config</a>.</li>
+<li><code>image_name</code>: each FOV’s name, when <code>image_name</code> is the configured <a href="./data_extraction_config.html#fov-identifier">FOV identifier</a>.</li>
 <li><code>nadh_Mask</code>, <code>nadh_Decay</code>, <code>nadh_IRF</code>, <code>fad_Mask</code>, <code>fad_Decay</code>, <code>fad_IRF</code>: the <a href="#fov-file-paths">file paths</a> of the mask, decay, and IRF files for the <code>nadh</code> and <code>fad</code> channels.</li>
 <li><code>nadh_input_type</code>, <code>nadh_imaging_modality</code>, <code>fad_input_type</code>, <code>fad_imaging_modality</code>: the <a href="./data_extraction_config.html#imaging-modality">imaging modality</a> and the corresponding input type for each channel. These are two distinct values. For a channel whose modality is <code>FLIM</code>, the input type is one of the <a href="./data_extraction_config.html#decay-types">decay types</a>; for a channel whose modality is <code>Intensity-only</code>, the input type is <code>Intensity (2D)</code>; for <code>QPI</code>, it is <code>QPI (2D)</code>. Channels that share the same imaging modality share the same input type.</li>
 <li><code>nadh_Lifetime fit free</code>, <code>nadh_Intensity morphology</code>, <code>nadh_Lifetime fit</code>, <code>fad_Intensity morphology</code>, <code>fad_Intensity texture</code>, <code>fad_Lifetime fit</code>: <a href="./data_extraction_config.html#feature-extractor">feature extractors</a> for each channel.</li>

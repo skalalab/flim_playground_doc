@@ -516,14 +516,13 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Open <strong>Data Extraction → Numerical</strong> in a <a href="./index.html#installation">local installation</a> to turn a folder of input files into a single-cell feature table. This one workflow checks the inputs, prepares the FOV metadata, calibrates the channels that need it, and extracts and saves the numerical features based on configured per-channel feature extractors.</p>
+<p>Open <strong>Data Extraction → Numerical</strong> in a <a href="./index.html#installation">local installation</a> to turn a folder of input files into a single-cell feature table. The workflow checks the inputs, prepares FOV metadata, calibrates channels as needed, and extracts and saves the numerical features using the configured per-channel extractors.</p>
 <section id="field-of-view-metadata" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="field-of-view-metadata"><span class="header-section-number">4.1</span> Field of View Metadata</h2>
-<p>See <a href="./fov_metadata.html#sec-fov-metadata">Field of View Metadata</a> for FOV search by scanning a user-provided folder, file validation, channel assignment, acquisition checks, and the automatically saved metadata record.</p>
+<p>See <a href="./fov_metadata.html#sec-fov-metadata">Field of View Metadata</a> for folder scanning, file validation, channel assignment, acquisition checks, and the automatically saved metadata record.</p>
 </section>
 <section id="calibration-interface" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="calibration-interface"><span class="header-section-number">4.2</span> Calibration interface</h2>
-<p>Interactive calibration is needed only for some use cases. See <a href="./irf_calibration.html#sec-irf-calibration">IRF Calibration</a> for FLIM shift calibration and <a href="./qpi.html#background-correction">QPI Background Correction</a> for QPI calibration.</p>
 <p>After the folder is scanned, the next button reflects whether the selected extractors need interactive calibration:</p>
 <ul>
 <li><strong>Start calibration</strong> prepares channels that need an IRF shift or QPI background correction.</li>
@@ -571,14 +570,7 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>After confirming calibration, choose the fitting mode and start extraction.</figcaption>
 </figure>
 </div>
-<p>The selected extractors provide:</p>
-<ul>
-<li><a href="./lifetime_fit.html">Lifetime fit</a>: fitted lifetime components, fractions, and fit statistics, or cell-level aggregation of pre-fitted pixel values.</li>
-<li><a href="./lifetime_fit_free.html">Lifetime fit free</a>: phasor coordinates and corresponding lifetimes.</li>
-<li><a href="./intensity_morphology.html">Intensity morphology</a>: shape measurements from ROI masks.</li>
-<li><a href="./intensity_texture.html">Intensity texture</a>: intensity-image texture, or only the per-cell decay sum for 2D decay input.</li>
-<li><a href="./qpi.html#output-features">QPI dry-mass statistics and spatial texture</a>: measurements from background-corrected optical path difference.</li>
-</ul>
+<p>The configured <a href="./data_extraction_config.html#feature-extractor">feature extractors</a> determine the output columns. For 2D decay input, <code>Intensity Texture</code> produces only the per-cell <a href="./intensity_texture.html#intensity-sum">decay sum</a>.</p>
 <p>Configured <a href="./derived_feature.html">derived features</a> are calculated after the successful FOV results are combined.</p>
 <p>The right side lists FOVs and their extraction status. Progress bars appear during processing, and completed FOVs show their result badges. Keep the page open while the batch runs and check any errors or warnings before using the output.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -606,7 +598,7 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Inspect the extracted table and its automatically saved CSV path.</figcaption>
 </figure>
 </div>
-<p>If saving the features fails, correct the reported problem and click <strong>Retry exporting features</strong>. This saves the already calculated table without rerunning extraction. The metadata CSV remains a record of the input files, extraction settings, and confirmed calibration; the workflow starts from a source folder on each new run.</p>
+<p>If saving the features fails, correct the reported problem and click <strong>Retry exporting features</strong>. This saves the calculated table without rerunning extraction. The <a href="./fov_metadata.html#result-preview-and-automatic-save">metadata CSV</a> records the input files, extraction settings, and confirmed calibration; new runs begin from a source folder.</p>
 
 
 </section>

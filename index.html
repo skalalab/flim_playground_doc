@@ -508,7 +508,11 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#try-data-analysis" id="toc-try-data-analysis" class="nav-link" data-scroll-target="#try-data-analysis"><span class="header-section-number">1.1</span> Try Data Analysis</a></li>
   <li><a href="#try-data-extraction-locally" id="toc-try-data-extraction-locally" class="nav-link" data-scroll-target="#try-data-extraction-locally"><span class="header-section-number">1.2</span> Try Data Extraction locally</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">1.3</span> Installation</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">1.3</span> Installation</a>
+  <ul class="collapse">
+  <li><a href="#updating-the-desktop-app" id="toc-updating-the-desktop-app" class="nav-link" data-scroll-target="#updating-the-desktop-app"><span class="header-section-number">1.3.1</span> Updating the desktop app</a></li>
+  <li><a href="#quitting-the-desktop-app" id="toc-quitting-the-desktop-app" class="nav-link" data-scroll-target="#quitting-the-desktop-app"><span class="header-section-number">1.3.2</span> Quitting the desktop app</a></li>
+  </ul></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">1.4</span> Introduction</a></li>
   <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method"><span class="header-section-number">1.5</span> Method</a>
   <ul class="collapse">
@@ -574,8 +578,8 @@ div.csl-indent {
 </p>
 <section id="quick-start" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Quick Start</h1>
-<p><a href="https://github.com/skalalab/flim_playground/tree/9b83bd9" title="View the documented FLIM Playground source revision"><img src="docs-release.svg" data-lightbox="false" alt="Last updated" height="20"></a></p>
-<p>Welcome to the FLIM Playground 🥳🎉🥂! This is an interactive graphical user interface (GUI) that allows you to extract single-cell<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> features from fluorescence lifetime imaging microscopy (FLIM), intensity-only, and <a href="./qpi.html">QPI</a> inputs (<a href="data_extraction.html">Data Extraction</a>) and analyze extracted features or <em>any</em> tabular dataset using a built-in repertoire of methods (<a href="data_analysis.html">Data Analysis</a>).</p>
+<p><a href="https://github.com/skalalab/flim_playground/tree/5adc84e" title="View the documented FLIM Playground source revision"><img src="docs-release.svg" data-lightbox="false" alt="Last updated" height="20"></a></p>
+<p>Welcome to the FLIM Playground 🥳🎉🥂! Use this interactive graphical user interface (GUI) to extract single-cell<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> features from fluorescence lifetime imaging microscopy (FLIM), intensity-only, and <a href="./qpi.html">QPI</a> inputs with <a href="data_extraction.html">Data Extraction</a>. Explore the extracted features—or <em>any</em> tabular dataset—with the built-in methods in <a href="data_analysis.html">Data Analysis</a>.</p>
 <p>Several talks have been given about FLIM Playground:</p>
 <ul>
 <li><a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/PC13856/PC138560G/FLIM-playground--an-interactive-end-to-end-graphical-user/10.1117/12.3079405.full">FLIM Playground @ SPIE 2026: 13 mins</a></li>
@@ -584,7 +588,7 @@ div.csl-indent {
 <section id="try-data-analysis" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="try-data-analysis"><span class="header-section-number">1.1</span> Try Data Analysis</h2>
 <ol type="1">
-<li><p><strong>Load the sample.</strong> In the <a href="https://flim-playground.streamlit.app/">online demo</a>, select <strong>Univariate → Feature Comparison</strong>. Turn off <strong>Use a table from another source</strong> and upload this <a href="https://github.com/skalalab/flim_playground/blob/main/example_data/Data_Analysis/inhibitors.csv">sample dataset</a>. The hosted app starts with this checkbox on; for your own table, leave it on and follow the <a href="./data_analysis_config.html#sec-data-analysis-config">column review walkthrough</a>.</p></li>
+<li><p><strong>Load the sample.</strong> In the <a href="https://flim-playground.streamlit.app/">online demo</a>, select <strong>Univariate → Feature Comparison</strong> and upload this <a href="https://github.com/skalalab/flim_playground/blob/main/example_data/Data_Analysis/inhibitors.csv">sample dataset</a>. Column roles and feature groups are detected automatically. Click <strong>✏️</strong> beside the summary to <a href="./data_analysis_config.html#sec-data-analysis-config">review the columns</a> if needed.</p></li>
 <li><p><strong>Compare groups.</strong> Select <strong>tm</strong> under <strong>Lifetime fit_nadh</strong>, set <strong>Color by</strong> to <code>treatment</code>, and <strong>Separate by</strong> to <code>cell_line</code>. Change a <a href="./data_analysis.html#filter-widgets">filter</a> or select another measurement to explore the <a href="./feature_comparison.html#sec-feature-comparison">Feature Comparison</a> plot.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -698,8 +702,38 @@ div.csl-indent {
 <section id="installation" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.3</span> Installation</h2>
 <p>FLIM Playground is built entirely in Python and is open-source.</p>
-<p>For the complete, always-current instructions — per-platform download links, install steps, <strong>upgrading</strong>, and building from source — see the project README, kept as the single source of truth:</p>
-<p>👉 <strong><a href="https://github.com/skalalab/flim_playground#installation">Installation &amp; upgrade guide</a></strong></p>
+<p>For the complete, always-current instructions — per-platform download links, install steps, and building from source:</p>
+<p>👉 <strong><a href="https://github.com/skalalab/flim_playground#installation">Installation guide</a></strong></p>
+<section id="updating-the-desktop-app" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="updating-the-desktop-app"><span class="header-section-number">1.3.1</span> Updating the desktop app</h3>
+<p>Click <strong>Update to v…</strong> in the desktop app’s top bar when a newer release is available. <strong>What’s new ↗</strong> opens the release notes; <strong>Update now</strong> downloads and installs the update.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="app_ui_shots/update_quit.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="The current version, update link, and power button in the desktop app’s top bar."><img src="app_ui_shots/update_quit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Desktop top bar showing v1.15.0, Update to v1.15.1, and the power button at the far right." width="400"></a></p>
+</figure>
+</div>
+<figcaption>The current version, update link, and power button in the desktop app’s top bar.</figcaption>
+</figure>
+</div>
+<p>Finish running tasks first: updating stops work in all tabs. The app reopens in a new tab with your saved settings.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="app_ui_shots/update.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="The desktop update screen. Version numbers vary by release."><img src="app_ui_shots/update.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="FLIM Playground update screen with What's new in the heading and Update now beside the bold reminder that running tasks in all tabs will stop." width="500"></a></p>
+</figure>
+</div>
+<figcaption>The desktop update screen. Version numbers vary by release.</figcaption>
+</figure>
+</div>
+<p>Versions 1.14.4 and earlier need one manual upgrade using the installation guide above.</p>
+</section>
+<section id="quitting-the-desktop-app" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="quitting-the-desktop-app"><span class="header-section-number">1.3.2</span> Quitting the desktop app</h3>
+<p>Click the <strong>power icon</strong> at the far right of the top bar to quit FLIM Playground, then close its browser tabs. Quitting stops running tasks in all tabs.</p>
+</section>
 </section>
 <section id="introduction" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.4</span> Introduction</h2>
@@ -774,15 +808,15 @@ div.csl-indent {
 <h3 data-number="1.5.1" class="anchored" data-anchor-id="feature-classes"><span class="header-section-number">1.5.1</span> Feature Classes</h3>
 <p>Tabular data columns can be categorized into three feature classes:</p>
 <ul>
-<li><span style="color: #C94146;">Identifiers</span>: an optional row identifier for tracking observations; the app supplies row numbers for user tables without one</li>
-<li><span style="color: #4880D4;">Categorical features</span>: conceptually help us group the rows (e.g., <code>treatment</code> will group the rows into different treatment groups)</li>
+<li><span style="color: #C94146;">Identifiers</span>: an optional row identifier for tracking observations; Data Analysis supplies row numbers when none is assigned</li>
+<li><span style="color: #4880D4;">Categorical features</span>: group rows, for example by <code>treatment</code></li>
 <li><span style="color: #D3AE4A;">Numerical features</span>: quantify the differences/similarities between data groups</li>
 </ul>
 <p><strong>Science, from the data perspective, is about closing the conceptual categorical gaps with quantitative measurements.</strong></p>
-<p>At <a href="#data-levels">data levels</a>, the data are processed to extract the feature classes in <a href="data_extraction.html">Data Extraction</a>, and the classes are used in the <a href="data_analysis.html">Data Analysis</a> section. A user table can also mark columns <strong>Ignore</strong>; field-of-view labels use the <strong>Categorical</strong> role. See <a href="./data_analysis.html#column-roles">column roles</a>.</p>
+<p>At <a href="#data-levels">data levels</a>, the data are processed to extract the feature classes in <a href="data_extraction.html">Data Extraction</a>, and the classes are used in the <a href="data_analysis.html">Data Analysis</a> section. Any analysis upload can also mark columns <strong>Ignore</strong>; field-of-view labels use the <strong>Categorical</strong> role. See <a href="./data_analysis.html#column-roles">column roles</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="table1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="table1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a></p>
+<p><a href="table1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="table1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </section>
@@ -791,16 +825,16 @@ div.csl-indent {
 <p>FLIM Playground has two independent sections:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="Fig1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="Fig1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a></p>
+<p><a href="Fig1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="Fig1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 <section id="data-extraction" class="level4">
 <h4 class="anchored" data-anchor-id="data-extraction">Data Extraction</h4>
 <p><a href="data_extraction.html">Data Extraction</a> extracts single-cell features from the raw data. It adopts a <a href="./data_extraction_config.html#sec-data-extraction-config">framework</a> that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for users. The diagram below the Design heading summarizes conceptual components, following the <a href="#feature-classes">feature classes</a>. In the current interface, metadata preparation, calibration, and numerical extraction run together under <strong>Numerical</strong>; <strong>Categorical</strong> combines and labels the resulting tables:</p>
 <ul>
-<li><a href="data_extraction_config.html">Data Extraction Configuration (A)</a>: allows users to choose among alternative input types and extraction methods (extractors).</li>
+<li><a href="data_extraction_config.html">Data Extraction Configuration (A)</a>: sets input types and extraction methods (extractors).</li>
 <li><a href="fov_metadata.html">Metadata organization (B)</a>, within Numerical: records the field of view <span style="color: #C94146;">identifiers</span> and their configurations</li>
-<li><a href="numerical_feature_extraction.html">Numerical Feature Extraction</a>: extracts single-cell <span style="color: #D3AE4A;">numerical features</span> based on user-selected extractors. More extractors can be integrated in the future.
+<li><a href="numerical_feature_extraction.html">Numerical Feature Extraction</a>: extracts single-cell <span style="color: #D3AE4A;">numerical features</span> using the selected extractors.
 <ul>
 <li><a href="./irf_calibration.html#sec-irf-calibration">IRF Calibration (C)</a>: estimate shifts for raw lifetime fitting or IRF-based phasor extraction; <a href="./lifetime_fit_free.html#fit-free-standard-calibration">dye-based calibration</a> is applied during phasor extraction</li>
 <li>Lifetime extractors (D):
@@ -822,9 +856,7 @@ div.csl-indent {
 <section id="data-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="data-analysis">Data Analysis</h4>
 <p><a href="data_analysis.html">Data Analysis</a> analyzes features—whether extracted through Data Extraction or by other methods—using visualizations and statistical modeling. It deploys a <a href="./data_analysis.html#shared-interactive-widgets">shared framework (F)</a> built to handle the <a href="#feature-classes">feature classes</a> across all analysis methods, enabling the same interactive and frictionless exploration experience and allowing new methods to be integrated in the future easily.</p>
-<ul>
-<li><a href="data_analysis.html">Data Analysis (G)</a> goes in-depth into how FLIM Playground handles the feature classes and <a href="data_analysis_config.html">Data Analysis Config</a> goes through how users can configure FLIM Playground to analyze datasets that are not extracted by <a href="data_extraction.html">Data Extraction</a>.</li>
-</ul>
+<p>See <a href="data_analysis.html">Data Analysis (G)</a> for how the app handles these feature classes and <a href="data_analysis_config.html">Data Analysis Config</a> for column roles and feature groups, including for datasets from other sources.</p>
 <p>Here is the list of analysis methods incorporated into FLIM Playground, grouped by the number of numerical features they take as inputs:</p>
 <ul>
 <li><a href="./data_analysis.html#univariate-analysis">Univariate analysis</a>

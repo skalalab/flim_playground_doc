@@ -539,18 +539,18 @@ window.Quarto = {
 </header>
 
 
-<p>FLIM Playground extracts single-cell texture features based on the intensity image and the ROI mask from each acquisition <em>channel</em>. For an example application, refer to this <a href="https://pubmed.ncbi.nlm.nih.gov/31081599/">paper</a> that used CellProfiler to extract the texture features.</p>
+<p>FLIM Playground extracts single-cell texture features from each channel’s intensity image and ROI mask. For an example application, see this <a href="https://pubmed.ncbi.nlm.nih.gov/31081599/">study using CellProfiler</a>.</p>
 <p>For QPI channels, use the separate <a href="./qpi.html#spatial-texture">Spatial texture extractor</a>, which measures the corrected OPD-derived mass distribution.</p>
 <p>The first step is to create a single-cell intensity image for each cell based on the ROI mask and the intensity image. Then a list of texture features (the list may be extended in the future) is calculated:</p>
 <section id="granularity" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="granularity"><span class="header-section-number">10.1</span> Granularity</h2>
 <p><span class="math inline">\(Granularity_n\)</span> is the percentage of intensity contributed by bright objects of <span class="math inline">\(n\)</span> pixels in radius. It is computed by performing a morphological opening with a disk of radius n on the cell intensity image and measuring the intensity lost as a percentage of the total intensity of the original cell ROI.</p>
 <p><span class="math inline">\(n = 1, 3, 5, 7\)</span> are computed.</p>
-<p>Semantically, higher granularity at smaller scales implies higher fragmentation.</p>
+<p>Higher granularity at smaller scales implies greater fragmentation.</p>
 </section>
 <section id="radial-distribution" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="radial-distribution"><span class="header-section-number">10.2</span> Radial Distribution</h2>
-<p>To calculate the radial distribution, each cell intensity image is partitioned into <span class="math inline">\(4\)</span> concentric rings, and the intensity fraction over the total intensity for each ring is calculated. For example, a higher fraction in ring 1 implies that signals are more concentrated at the center of the cell, whereas a higher fraction in ring 4 implies that signals are more concentrated at the cell edge.</p>
+<p>Each cell intensity image is divided into <span class="math inline">\(4\)</span> concentric rings, and each ring’s fraction of the total intensity is calculated. A higher fraction in ring 1 indicates more signal at the cell center; a higher fraction in ring 4 indicates more at the edge.</p>
 </section>
 <section id="mass-displacement" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="mass-displacement"><span class="header-section-number">10.3</span> Mass Displacement</h2>

@@ -567,7 +567,7 @@ window.Quarto = {
 <li>Choose the classifier, train-test split, and <a href="#classifier-hyperparameters">hyperparameters</a>.</li>
 <li>Filter the dataset.</li>
 <li>Choose categorical features to form classes.</li>
-<li>Choose any of the methods to handle <a href="#class-imbalance-handling">class imbalance</a>.</li>
+<li>Choose how to handle <a href="#class-imbalance-handling">class imbalance</a>.</li>
 <li>Choose the classes to be classified.</li>
 <li>Look at the <a href="#performance-metrics">performance metrics</a>, <a href="#confusion-matrix">confusion matrix</a>, and <a href="#roc-curve">ROC curve</a>.</li>
 <li>Compare the results using the metrics that matter for your classification task, then <a href="#export-the-analysis">export the analysis</a> to reproduce it.</li>
@@ -608,8 +608,8 @@ window.Quarto = {
 </div>
 </div>
 <ul>
-<li><p><strong>Classify by</strong> forms target classes from one or more categorical columns. With multiple columns, each distinct combination becomes a class, with values joined by underscores. Classification requires at least one categorical column with two distinct values after filtering. The designated field-of-view column in extraction data is excluded from this picker; a user-table field-of-view column is an ordinary categorical column.</p></li>
-<li><p><strong>Select a way to classify</strong> chooses the classes included in a run. With two classes, the app offers their binary comparison. With more classes, it offers combinations of two or more classes, including the full multiclass problem, and a <code>class VS the rest</code> option for each class. A one-versus-rest choice combines all other classes into <code>the rest</code>. If the number of combinations is too large, the app asks you to narrow the categories or filters.</p></li>
+<li><strong>Classify by</strong> forms target classes from one or more categorical columns. With multiple columns, each distinct combination becomes a class, with values joined by underscores. Classification requires at least one categorical column with two distinct values after filtering.</li>
+<li><strong>Select a way to classify</strong> chooses the classes included in a run. With two classes, the app offers their binary comparison. With more classes, it offers combinations of two or more classes, including the full multiclass problem, and a <code>class VS the rest</code> option for each class. A one-versus-rest choice combines all other classes into <code>the rest</code>. If the number of combinations is too large, the app asks you to narrow the categories or filters.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -944,7 +944,7 @@ window.Quarto = {
 </section>
 <section id="class-imbalance-handling" class="level3" data-number="21.2.2">
 <h3 data-number="21.2.2" class="anchored" data-anchor-id="class-imbalance-handling"><span class="header-section-number">21.2.2</span> Class Imbalance Handling</h3>
-<p>We provide three options for handling class imbalance (i.e., one or more classes in a dataset have significantly fewer samples than others, which would otherwise cause a classifier to bias toward the majority class). Note: to prevent data leakage, all the methods below are applied to the training set only.</p>
+<p>Class imbalance occurs when some classes have far fewer observations than others, which can bias a classifier toward the majority class. The app offers three ways to address it, all applied only to the training set to prevent data leakage.</p>
 <ul>
 <li><strong>Sampling methods</strong>:
 <ul>
@@ -957,7 +957,7 @@ window.Quarto = {
 <li><code>None</code>: no class weights.</li>
 <li><code>Balanced</code>: the class weights are inversely proportional to the class size (support). Note: Gradient Boosting does not support class weights in the scikit-learn implementation, and thus this option is not available for it.</li>
 </ul></li>
-<li><strong>Threshold tuning</strong>: Whereas the previous two options influence the probability estimation part of the classifier, this option adjusts only the decision boundary used to convert predicted probabilities into class labels.
+<li><strong>Threshold tuning</strong>: Adjusts the decision rule that converts predicted probabilities into class labels, while leaving the probability estimates unchanged.
 <ul>
 <li><code>None</code>: uses the classifier’s default decision rule without tuning a threshold.</li>
 <li><code>Balanced Accuracy</code>: the threshold is set to maximize the balanced accuracy score, which is the unweighted average of each class’s recall (i.e., the minority class’s recall is as important as the majority class’s recall).</li>
@@ -976,12 +976,10 @@ window.Quarto = {
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>It treats threshold selection as a separate optimization problem from model training, allowing thresholds to be tuned independently of the underlying classifier’s probability estimates.</p>
-<p><strong>K-fold cross-validation for the probability model</strong>: The procedure uses a stratified <a href="https://mlu-explain.github.io/cross-validation/">k-fold cross-validation</a> scheme (default k=5) within the training data, after any selected resampling. That training data is divided into k mutually exclusive subsets; for each fold, one subset serves as validation while the other k-1 subsets train the probability model. The held-out test set is not used to choose the thresholds.</p>
-<p>The probability models are trained separately for each cross-validation fold. This process yields k distinct probability models, each trained on a different subset of the data, along with their corresponding validation set probability predictions that collectively cover all samples exactly once.</p>
-<p><strong>Threshold optimization</strong>: A single threshold optimization procedure is performed once using all cross-validation folds. The threshold optimization process differs for binary and multi-class classification problems. For binary classification, a single threshold parameter <span class="math inline">\(\theta \in [0, 1]\)</span> is optimized, where class 1 is predicted when <span class="math inline">\(P(\text{class } 1 \mid x) \geq \theta\)</span>, and class 0 otherwise. For multi-class problems, a threshold vector <span class="math inline">\(\theta = [\theta_1, \theta_2, \ldots, \theta_k]\)</span> is optimized simultaneously for all <span class="math inline">\(k\)</span> classes, where thresholds are applied through a normalized probability scheme: predictions are made by selecting the class with the highest normalized probability <span class="math inline">\(P(\text{class } i \mid x) / (\theta_i + \epsilon)\)</span>, where <span class="math inline">\(\epsilon = 10^{-10}\)</span> prevents division by zero.</p>
-<p>The optimization objective function evaluates candidate thresholds by: (1) applying the same threshold(s) on top of the fold-specific probability models to generate prediction classes for the fold-specific validation set, (2) computing the specified evaluation metric (e.g., balanced accuracy, F1-score) between predicted and true labels for each fold, and (3) returning the negative mean cross-validated score across all folds (for minimization using the Nelder-Mead simplex algorithm).</p>
-<p>Finally, the optimized threshold(s) are applied on top of the probability model trained on the entire training set to the test set to generate the final predictions.</p>
+<p><strong>K-fold cross-validation for the probability model</strong>: After any selected resampling, stratified <a href="https://mlu-explain.github.io/cross-validation/">k-fold cross-validation</a> (default k=5) divides the training data into k subsets. Each fold trains a probability model on k-1 subsets and predicts the remaining subset. Together, the folds provide one validation prediction for each row used in cross-validation. The held-out test set is not used to choose thresholds.</p>
+<p><strong>Threshold optimization</strong>: A single threshold optimization procedure is performed once using all cross-validation folds. For binary classification, a single threshold parameter <span class="math inline">\(\theta \in [0, 1]\)</span> is optimized, where class 1 is predicted when <span class="math inline">\(P(\text{class } 1 \mid x) \geq \theta\)</span>, and class 0 otherwise. For multi-class problems, a threshold vector <span class="math inline">\(\theta = [\theta_1, \theta_2, \ldots, \theta_k]\)</span> is optimized simultaneously for all <span class="math inline">\(k\)</span> classes, where thresholds are applied through a normalized probability scheme: predictions are made by selecting the class with the highest normalized probability <span class="math inline">\(P(\text{class } i \mid x) / (\theta_i + \epsilon)\)</span>, where <span class="math inline">\(\epsilon = 10^{-10}\)</span> prevents division by zero.</p>
+<p>Each candidate threshold or threshold vector is applied to every fold’s validation probabilities. The app scores the resulting labels using the chosen metric, averages the scores across folds, and minimizes the negative mean score with the Nelder-Mead simplex algorithm.</p>
+<p>Finally, the app trains the probability model on the entire training set and applies the optimized thresholds to its test-set probabilities to produce the final predictions.</p>
 </div>
 </div>
 </div>
@@ -1068,19 +1066,18 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The reason that we need metrics in addition to accuracy is because <em>Accuracy is Not Enough</em>. For a visual explanation of metrics, see <a href="https://mlu-explain.github.io/precision-recall/">here</a>. In short, it is all about trade-off.</p>
+<p>Precision, recall, and specificity reveal trade-offs that accuracy alone can hide. See this <a href="https://mlu-explain.github.io/precision-recall/">visual explanation of precision and recall</a>.</p>
 </div>
 </div>
 </section>
 <section id="roc-curve" class="level3" data-number="21.2.5">
 <h3 data-number="21.2.5" class="anchored" data-anchor-id="roc-curve"><span class="header-section-number">21.2.5</span> ROC Curve</h3>
-<p>Another way to look at the performance of the classifier is to plot the Receiver Operating Characteristic (ROC) curve and its Area Under the Curve (AUC).</p>
-<p>The confusion matrix summarizes one decision rule, while the ROC curve shows how true-positive and false-positive rates change as the probability threshold varies.</p>
+<p>The Receiver Operating Characteristic (ROC) curve shows how true-positive and false-positive rates change as the probability threshold varies. The confusion matrix summarizes one decision rule; the ROC curve lets you explore the trade-offs across thresholds.</p>
 <p>At a threshold above the highest predicted probability, every observation is classified as negative, so the false-positive rate <span class="math inline">\(\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}}\)</span> and true-positive rate <span class="math inline">\(\text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}}\)</span> are both 0. At a threshold of 0, every observation is classified as positive, giving the endpoint (1, 1).</p>
-<p>AUC summarizes the area under the ROC curve. It is the probability that a randomly chosen positive observation receives a higher score than a randomly chosen negative observation, with tied scores contributing one-half.</p>
+<p>The area under the ROC curve (AUC) is the probability that a randomly chosen positive observation receives a higher score than a randomly chosen negative observation, with tied scores contributing one-half.</p>
 <p>The ROC curve displays the operating point (FPR, TPR) associated with the confusion matrix on the right.</p>
 <p>In a binary problem, the curve’s legend names the class treated as positive. Read the displayed threshold in terms of that class’s probability; the app converts it to match the class shown on the curve.</p>
-<p>For a visual explanation, see <a href="https://mlu-explain.github.io/roc-auc/">here</a>.</p>
+<p>See this <a href="https://mlu-explain.github.io/roc-auc/">visual explanation of ROC curves and AUC</a>.</p>
 <section id="multi-class-roc-curve" class="level4">
 <h4 class="anchored" data-anchor-id="multi-class-roc-curve">Multi-class ROC Curve</h4>
 <p>In multi-class classification, each class’s ROC curve is computed as a one-vs-rest binary classification problem. The operating point (FPR, TPR) associated with the confusion matrix is displayed for each class.</p>

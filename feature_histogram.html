@@ -594,9 +594,9 @@ window.Quarto = {
 <h2 data-number="17.2" class="anchored" data-anchor-id="histogram-mode"><span class="header-section-number">17.2</span> Histogram Mode</h2>
 <p>Select <strong>Apply Gaussian Mixture Model</strong> to switch from histogram mode to <a href="#gaussian-mixture-model-mode">GMM mode</a>. Clear it to return to the histogram.</p>
 <p>A <strong>Log X</strong> checkbox next to the mode switch transforms the selected feature with <span class="math inline">\(\log_{10}(x + 10^{-6})\)</span> before computing either analysis. Histogram bins and skewness then describe transformed values; the GMM components, model selection, <a href="#classification">classification</a> thresholds, and <a href="#heterogeneity-index">H-index</a> are also computed in log space. The small offset allows zero values. If negative values are present, the app reports an error and keeps the original scale.</p>
-<p>Histogram mode plots observation counts for each group. Use <strong>Bin Width</strong> to adjust the shared bins. The default uses NumPy’s automatic choice between the Sturges and Freedman–Diaconis estimators, capped at one-third of the data range (see <a href="https://numpy.org/devdocs/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges">NumPy’s bin estimators</a>). The maximum width is one-third of the range and the step is <span class="math inline">\(1/50\)</span> of the range. The app keeps separate width choices for each feature’s raw and logarithmic scales. A constant or very small dataset may have a single bin and no width control.</p>
+<p>Histogram mode plots observation counts for each group. Use <strong>Bin Width</strong> to adjust the shared bins. The default uses NumPy’s automatic choice between the Sturges and Freedman–Diaconis estimators (see <a href="https://numpy.org/devdocs/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges">NumPy’s bin estimators</a>). Widths are capped at one-third of the data range and adjusted in steps of <span class="math inline">\(1/50\)</span> of the range. The app keeps separate width choices for each feature’s raw and logarithmic scales. A constant or very small dataset may have a single bin and no width control.</p>
 <p>The legend reports each group’s bias-corrected skewness. It displays <code>undefined</code> for fewer than three observations or a constant group. Enable <strong>Show group counts (n) in legend</strong> under <strong>Plot Styling</strong> to include the number of observations in each group.</p>
-<p>A rule of thumb categorization of skewness is as follows:</p>
+<p>As a rule of thumb, interpret skewness as follows:</p>
 <ul>
 <li>Strongly left-skewed: &lt; -1</li>
 <li>Moderately left-skewed: -1 to -0.5</li>
@@ -621,7 +621,8 @@ window.Quarto = {
 <figcaption>Separate by cell_line produces two stacked histograms for the inhibitor dataset, with the same treatment colors in both panels.</figcaption>
 </figure>
 </div>
-<p>All panels share axis ranges and, in histogram mode, the same bin edges. Histogram legends report local skewness; both modes can display local counts. GMM fits are calculated separately within each category and color group; their component tables and any fitting notices appear below the plots. Each GMM table title combines the separation category and color group as <code>category × color group</code>, so the fitted population is unambiguous without a separate heading. Changing <code>Separate by</code> therefore changes the populations being modeled. This method always uses individual observations; averaging by category is available in <a href="./feature_comparison.html#collapse-by">Feature Comparison</a> and <a href="./feature_distribution.html#collapse-by">2D Feature Distribution</a>.</p>
+<p>All panels share axis ranges and, in histogram mode, bin edges. Histogram legends report local skewness; both modes can display local counts. GMMs are fitted separately within each category and color group. Their component tables and fitting notices appear below the plots, with table titles in <code>category × color group</code> form.</p>
+<p>Changing <code>Separate by</code> changes the populations being modeled. This method always uses individual observations; averaging by category is available in <a href="./feature_comparison.html#collapse-by">Feature Comparison</a> and <a href="./feature_distribution.html#collapse-by">2D Feature Distribution</a>.</p>
 </section>
 <section id="gaussian-mixture-model-mode" class="level2" data-number="17.4">
 <h2 data-number="17.4" class="anchored" data-anchor-id="gaussian-mixture-model-mode"><span class="header-section-number">17.4</span> Gaussian Mixture Model Mode</h2>
@@ -635,20 +636,19 @@ window.Quarto = {
 <figcaption>A fitted mixture density is shown with its individual Gaussian components.</figcaption>
 </figure>
 </div>
-<p>A Gaussian Mixture Model (GMM) represents a dataset as a weighted sum of multiple Gaussian (normal) distributions, each defined by its own mean (<span class="math inline">\(\mu\)</span>) and (co)variance (<span class="math inline">\(\sigma^2\)</span>). By estimating the component parameters and their weights (mixing coefficients) from the data—commonly using the Expectation-Maximization (EM) algorithm—GMMs can capture complex, multimodal distributions that a single Gaussian cannot.</p>
+<p>A Gaussian Mixture Model (GMM) represents a distribution as a weighted sum of Gaussian (normal) components, each with its own mean (<span class="math inline">\(\mu\)</span>) and variance (<span class="math inline">\(\sigma^2\)</span>). The fit estimates these parameters and the component weights, commonly using the Expectation-Maximization (EM) algorithm, to capture multiple peaks that a single Gaussian cannot.</p>
 <section id="fit-gaussian-mixture-models" class="level3" data-number="17.4.1">
 <h3 data-number="17.4.1" class="anchored" data-anchor-id="fit-gaussian-mixture-models"><span class="header-section-number">17.4.1</span> Fit Gaussian Mixture Models</h3>
 <ul>
 <li>Fits candidate GMMs directly to the selected numerical values, starting with one component and continuing up to <code>Max Components</code>. The maximum can be set from 2 to 5; its default is 3. Each component has a weight (<span class="math inline">\(w_i\)</span>), mean (<span class="math inline">\(\mu_i\)</span>), and variance (<span class="math inline">\(\sigma_i^2\)</span>).</li>
 <li>Retains only <em>valid</em> models in which every component has weight at least <code>Min Weight Threshold</code> (default 0.1, or 10%; the weights of all components add to 1).</li>
-<li>FLIM Playground will choose the valid model with the lowest BIC score that penalizes the model complexity to avoid overfitting.</li>
+<li>Chooses the valid model with the lowest BIC score, which penalizes complexity to discourage overfitting.</li>
 </ul>
 <p>The plot shows the fitted mixture density and, for a model with multiple components, its component curves. Tables below the plot report <strong>Mean ± SD</strong>, <strong>Weight</strong>, and the group’s H-index. These are fitted component parameters based on soft membership probabilities; the mean, SD, and fraction of rows assigned to a component by a hard rule can differ. A group needs at least two distinct observations for fitting. Groups with insufficient data or no valid model receive a notice without preventing the other groups from being analyzed.</p>
 </section>
 <section id="heterogeneity-index" class="level3" data-number="17.4.2">
 <h3 data-number="17.4.2" class="anchored" data-anchor-id="heterogeneity-index"><span class="header-section-number">17.4.2</span> Heterogeneity index</h3>
-<p>To quantify the subpopulation structure, based on the GMM fit, FLIM Playground computes an “H‑index” for each group as a weighted entropy‑distance: each component contributes according to its weight’s uncertainty (<span class="math inline">\(-w_i \log w_i\)</span>)<span class="citation" data-cites="shannon1948"><sup><a href="#ref-shannon1948" role="doc-biblioref">1</a></sup></span> scaled by how far its mean <span class="math inline">\(\mu_i\)</span> sits from the overall mixture mean <span class="math inline">\(\bar\mu = \sum_{i=1}^k w_i\,\mu_i\)</span>, normalized by the standard deviation of <span class="math inline">\(\mu_i\)</span>s.<br>
-<span class="math display">\[
+<p>The H-index summarizes subpopulation structure in each group’s fitted mixture. Each component contributes its weight’s entropy term, <span class="math inline">\(-w_i \log w_i\)</span><span class="citation" data-cites="shannon1948"><sup><a href="#ref-shannon1948" role="doc-biblioref">1</a></sup></span>, multiplied by the distance from its mean <span class="math inline">\(\mu_i\)</span> to the mixture mean <span class="math inline">\(\bar\mu = \sum_{i=1}^k w_i\,\mu_i\)</span>. That distance is normalized by the standard deviation of the component means. <span class="math display">\[
 H =\sum_{i=1}^{k}\bigl(-w_i \log w_i\bigr)\,d_i, \qquad d_i \;=\;
 \frac{\lvert\mu_i - \bar{\mu}\rvert}{\sigma}
 \]</span></p>
@@ -710,7 +710,7 @@ Important
 <section id="hard-assignment" class="level4">
 <h4 class="anchored" data-anchor-id="hard-assignment">Hard assignment</h4>
 <ul>
-<li>For each data point, it computes the posterior probability (responsibility) of each component, and assigns the data point to the component with the highest responsibility.</li>
+<li>The app assigns each data point to the component with the highest posterior probability (responsibility).</li>
 </ul>
 <p><span class="math display">\[\text{label}(x) = \arg\max_{i} \gamma_i(x)\]</span></p>
 <p><span class="math display">\[\text{where} \quad \gamma_i(x) = \frac{w_i \; \mathcal{N}\bigl(x \mid \mu_i, \sigma_i^2\bigr)}{\sum_{j=1}^K w_j \; \mathcal{N}\bigl(x \mid \mu_j, \sigma_j^2\bigr)}\]</span></p>

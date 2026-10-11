@@ -552,7 +552,7 @@ window.Quarto = {
 <p>The <strong>QPI</strong> imaging modality extracts single-cell dry-mass measurements and spatial texture from a 2D optical path difference (OPD) image and a labeled cell mask. It can be used alone or alongside image-based FLIM and intensity-only channels in the <a href="./numerical_feature_extraction.html">Numerical workflow</a>.</p>
 <section id="inputs-and-configuration" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="inputs-and-configuration"><span class="header-section-number">11.1</span> QPI-specific inputs</h2>
-<p>Set the channel to <strong>QPI</strong> on the <a href="./data_extraction_config.html#imaging-modality">Configuration</a> page. That page is the source of truth for the QPI file formats, extractors, physical constants, mask, and file suffixes.</p>
+<p>Set the channel to <strong>QPI</strong> on the <a href="./data_extraction_config.html#imaging-modality">Configuration</a> page, which describes the file formats, extractors, physical constants, masks, and suffixes.</p>
 <p>For each FOV, pair a 2D OPD image with a matching <a href="./data_extraction_config.html#mask">label mask</a>; the two files must have identical dimensions. QPI dimensions must be consistent across QPI FOVs, but the QPI grid may differ from a FLIM grid. Cells are joined across modalities by FOV name and mask label, so the same label must identify the same cell.</p>
 <p>The input must already represent optical path difference. Phase-angle conversion, reconstruction, unwrapping, registration, and rescaling happen before extraction.</p>
 </section>
@@ -713,7 +713,7 @@ M = \sum_{i=1}^{N} m_i,
 <figcaption>QPI extraction saves the selected measurement groups in the cell-feature table.</figcaption>
 </figure>
 </div>
-<p>The table is automatically saved in the source folder, as described in <a href="./numerical_feature_extraction.html#save-results">Save Results</a>. In the local app, open <strong>Data Analysis</strong> with <strong>Use a table from another source</strong> off; in the hosted app, upload the CSV with that option on. Numerical pickers group the QPI columns by extractor and channel. QPI measurements are also available as operands in <a href="./derived_feature.html">derived features</a>, including formulas combining channels.</p>
+<p>The table is automatically saved in the source folder, as described in <a href="./numerical_feature_extraction.html#save-results">Save Results</a>. Upload the CSV directly to <strong>Data Analysis</strong> in the desktop or hosted app. QPI columns are grouped by extractor and channel; use the summary’s <strong>✏️</strong> to adjust their roles or groups. QPI measurements are also available as operands in <a href="./derived_feature.html">derived features</a>, including formulas combining channels.</p>
 
 
 </section>

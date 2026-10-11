@@ -615,7 +615,7 @@ window.Quarto = {
 </section>
 <section id="calibration-method" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="calibration-method"><span class="header-section-number">8.2</span> Calibration method</h2>
-<p>In <a href="./data_extraction_config.html#calibration-method">Home → Configuration</a>, choose <strong>IRF</strong> or <strong>Fluorescence Lifetime Standard</strong> for <code>Lifetime fit free</code> extraction. This choice determines the reference and the correction applied in <a href="#step-2-calibrated-phasor-coordinates">Step 2</a>. Both methods use the same <a href="#preprocessing">offset subtraction</a> for each cell decay.</p>
+<p>In <a href="./data_extraction_config.html#calibration-method">Home → Configuration</a>, choose <strong>IRF</strong> or <strong>Fluorescence Lifetime Standard</strong> for <code>Lifetime fit free</code> extraction. This choice determines the reference and the correction applied in <a href="#step-2-calibrated-phasor-coordinates">Step 2</a>.</p>
 <section id="irf" class="level3" data-number="8.2.1">
 <h3 data-number="8.2.1" class="anchored" data-anchor-id="irf"><span class="header-section-number">8.2.1</span> IRF</h3>
 <p>Provide an IRF for each channel that uses this method, then complete <a href="./irf_calibration.html#fit-free-calibration">fit-free IRF calibration</a>. The app shifts the IRF using the selected shift values and calculates its first- and second-harmonic phasors. It divides each cell’s raw phasor by the shifted IRF phasor at the same harmonic.</p>
@@ -665,7 +665,7 @@ s_{\mathrm{raw}}^{(h)} &amp;=
 <p>Apply the selected calibration using the reference phasor at the matching harmonic.</p>
 <section id="irf-calibration" class="level4">
 <h4 class="anchored" data-anchor-id="irf-calibration">IRF calibration</h4>
-<p>FLIM Playground divides each raw cell phasor by the shifted IRF phasor at the same harmonic to obtain <code>g</code>, <code>s</code>, <code>g_2nd</code>, and <code>s_2nd</code>:</p>
+<p>FLIM Playground uses PhasorPy’s <a href="https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_divide"><code>phasor.phasor_divide</code></a> to divide each raw cell phasor by the shifted IRF phasor at the same harmonic, obtaining <code>g</code>, <code>s</code>, <code>g_2nd</code>, and <code>s_2nd</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasorpy <span class="im">import</span> phasor</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>g, s <span class="op">=</span> phasor.phasor_divide(g_raw, s_raw, g_irf, s_irf)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>g_2nd, s_2nd <span class="op">=</span> phasor.phasor_divide(</span>
@@ -674,7 +674,7 @@ s_{\mathrm{raw}}^{(h)} &amp;=
 </section>
 <section id="fluorescence-lifetime-standard-calibration" class="level4">
 <h4 class="anchored" data-anchor-id="fluorescence-lifetime-standard-calibration">Fluorescence lifetime standard calibration</h4>
-<p>FLIM Playground uses the known lifetime and the standard’s measured reference values for each harmonic calculated in <a href="#step-1-raw-phasor-coordinates">Step 1</a>:</p>
+<p>PhasorPy’s <a href="https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate"><code>lifetime.phasor_calibrate</code></a> corrects each cell’s phasor using the known lifetime and the standard’s measured reference values at the matching harmonic from <a href="#step-1-raw-phasor-coordinates">Step 1</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasorpy <span class="im">import</span> lifetime</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>g, s <span class="op">=</span> lifetime.phasor_calibrate(</span>
