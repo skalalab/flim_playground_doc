@@ -1,7 +1,7 @@
 # Configuration {#sec-data-extraction-config}
 
 ::: {.callout-note}
-Configure FLIM Playground once and it is applied to future data. You can keep up to 10 named **configuration profiles** and switch between them for different experiments.
+Save your settings in a **configuration profile** to reuse them with future data. You can keep up to 10 named profiles and switch between them for different experiments.
 :::
 
 Configuration has two levels: settings shared by the experiment and settings chosen for each channel. For a mixed-modality experiment, assign a modality to every channel first, then complete the input and extractor settings for each channel.
@@ -18,7 +18,7 @@ On the **Configuration** page:
 
 ![Switch, create, or delete extraction profiles from Configuration.](extraction_ui_shots/config_profile.png){width=100% fig-align=center fig-alt="Profile dropdown beside a New profile field, Create button, and Delete button."}
 
-A newly created profile starts blank. Complete the settings below and click `Update Configuration` to save it. Everything described below pertains to the current profile.
+A new profile starts blank. Complete the settings below and click `Update Configuration` to save it. All settings apply to the current profile.
 
 ### Categorical Features
 
@@ -34,7 +34,7 @@ Each FOV is expected to have the same number of channels. The configuration crea
 
 #### Cell Identifier {#cell-identifier}
 
-Choose the output column name for the unique identifier of each cell. For example, if the `cell_id` is chosen the extracted dataset will contain a column named `cell_id` with unique values for each cell.
+Choose the output column name for each cell's unique identifier, for example `cell_id`.
 
 #### FOV Identifier {#fov-identifier}
 
@@ -60,7 +60,7 @@ Choose one modality for each channel:
 
 <a id="flim-input-requirements"></a>
 
-Choose one format for the FLIM channels in this profile. The detailed file description is grouped below so that you can open only the format you use.
+Choose one format for the FLIM channels in this profile, then open its tab below for the input requirements.
 
 ::: {.panel-tabset}
 
@@ -116,7 +116,7 @@ Choose extractors according to the measurements you need:
 | Fit lifetime components and fractions | [Lifetime fit](lifetime_fit.qmd) | FLIM raw decay or pixel pre-fit |
 | Phasor coordinates and fit-free lifetimes | [Lifetime fit free](lifetime_fit_free.qmd) | FLIM decay |
 | Cell shape measurements | [Intensity Morphology](intensity_morphology.qmd) | Image-based FLIM, intensity-only, or QPI |
-| Intensity texture | [Intensity Texture](intensity_texture.qmd) | Image-based FLIM or intensity-only |
+| Intensity texture | [Intensity Texture](intensity_texture.qmd) | Image-based FLIM or intensity-only; 2D FLIM decay yields only [`intensity_sum`](intensity_texture.qmd#intensity-sum) |
 | Dry mass and mass-distribution statistics | [Dry-mass statistics](qpi.qmd#dry-mass-statistics) | QPI |
 | QPI spatial texture | [Spatial texture](qpi.qmd#spatial-texture) | QPI |
 
@@ -190,7 +190,7 @@ Choose suffixes that identify each input unambiguously in the folder you will sc
 
 ## Derived Features
 
-The `Derived features` builder composes new single-cell features by arithmetic over the features you extract, optionally combining operands from different channels. Definitions are saved with the [current profile](#extraction-profiles) and computed during [Numerical Feature Extraction](numerical_feature_extraction.qmd).
+Use the [`Derived features` builder](derived_feature.qmd) to combine extracted features with arithmetic, including features from different channels. Definitions are saved with the [current profile](#extraction-profiles) and computed during [Numerical Feature Extraction](numerical_feature_extraction.qmd).
 
 ## Save
 

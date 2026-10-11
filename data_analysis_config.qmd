@@ -1,6 +1,6 @@
 # Configuration {#sec-data-analysis-config}
 
-Every Data Analysis upload uses the same column editor, including tables from Data Extraction. Valid detected or saved column choices open analysis immediately. Review is optional, and changes can apply to one upload or be saved as a reusable profile.
+Every upload, including a Data Extraction table, uses the same column editor. Analysis opens immediately when detected or saved column choices are valid. Review is optional; apply changes to one upload or save them as a reusable profile.
 
 This walkthrough uses [iris.csv](analysis_ui_shots/iris.csv), a table of **150 flowers and six columns**.
 
@@ -34,7 +34,7 @@ At least one **Numerical** column must contain usable numbers. Field-of-view col
 
 ## 3. Feature group management {#feature-group-management .unnumbered}
 
-**Feature group management**, above **Column preview**, organizes Numerical columns into shorter feature-picker lists. Groups are optional: unassigned measurements appear under **Uncategorized Features**. Feature groups organize measurements; categorical columns group or filter observations. Changing a feature group leaves measurement values unchanged.
+**Feature group management**, above **Column preview**, organizes Numerical columns into shorter picker lists without changing their values. Unassigned measurements appear under **Uncategorized Features**. Feature groups organize measurements; categorical columns group or filter observations.
 
 ### How group names are inferred {.unnumbered}
 
@@ -85,7 +85,7 @@ Choose **Use for this upload** or Save to apply further edits. **Cancel** restor
 
 ## 6. Reuse and manage saved profiles {.unnumbered}
 
-Profile matching uses the **complete header set**, including columns marked Ignore. Case, spaces, and punctuation matter; column order does not. One exact match applies automatically. With no unique exact match, the app uses automatic detection.
+Automatic profile matching requires exactly one match to the **complete header set**, including columns marked Ignore. Case, spaces, and punctuation matter; column order does not. Otherwise, the app detects roles and groups.
 
 Inside the editor, **Apply a saved profile (optional)** lists related profiles with **shared**, **missing**, and **new** column counts. Applying one replaces the current draft and keeps the editor open. It preserves saved roles and groups for present columns and guesses new ones. Saving back to that profile records new columns and removes absent ones.
 

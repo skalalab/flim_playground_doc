@@ -1,14 +1,12 @@
 # Numerical Feature Extraction {#sec-numerical-feature-extraction}
 
-Open **Data Extraction → Numerical** in a [local installation](index.qmd#installation) to turn a folder of input files into a single-cell feature table. This one workflow checks the inputs, prepares the FOV metadata, calibrates the channels that need it, and extracts and saves the numerical features based on configured per-channel feature extractors.
+Open **Data Extraction → Numerical** in a [local installation](index.qmd#installation) to turn a folder of input files into a single-cell feature table. The workflow checks the inputs, prepares FOV metadata, calibrates channels as needed, and extracts and saves the numerical features using the configured per-channel extractors.
 
 ## Field of View Metadata
 
-See [Field of View Metadata](fov_metadata.qmd#sec-fov-metadata) for FOV search by scanning a user-provided folder, file validation, channel assignment, acquisition checks, and the automatically saved metadata record.
+See [Field of View Metadata](fov_metadata.qmd#sec-fov-metadata) for folder scanning, file validation, channel assignment, acquisition checks, and the automatically saved metadata record.
 
 ## Calibration interface {#calibration-interface}
-
-Interactive calibration is needed only for some use cases. See [IRF Calibration](irf_calibration.qmd#sec-irf-calibration) for FLIM shift calibration and [QPI Background Correction](qpi.qmd#background-correction) for QPI calibration.
 
 After the folder is scanned, the next button reflects whether the selected extractors need interactive calibration:
 
@@ -35,13 +33,7 @@ After confirming calibration, raw FLIM channels using `Lifetime fit` default to 
 
 ![After confirming calibration, choose the fitting mode and start extraction.](extraction_ui_shots/calibration_done.png){width=80% fig-align=center fig-alt="Confirmed calibration with Fitting Mode set to Local by default and buttons to start extraction or return to shift calibration."}
 
-The selected extractors provide:
-
-- [Lifetime fit](lifetime_fit.qmd): fitted lifetime components, fractions, and fit statistics, or cell-level aggregation of pre-fitted pixel values.
-- [Lifetime fit free](lifetime_fit_free.qmd): phasor coordinates and corresponding lifetimes.
-- [Intensity morphology](intensity_morphology.qmd): shape measurements from ROI masks.
-- [Intensity texture](intensity_texture.qmd): intensity-image texture, or only the per-cell decay sum for 2D decay input.
-- [QPI dry-mass statistics and spatial texture](qpi.qmd#output-features): measurements from background-corrected optical path difference.
+The configured [feature extractors](data_extraction_config.qmd#feature-extractor) determine the output columns. For 2D decay input, `Intensity Texture` produces only the per-cell [decay sum](intensity_texture.qmd#intensity-sum).
 
 Configured [derived features](derived_feature.qmd) are calculated after the successful FOV results are combined.
 
@@ -57,4 +49,4 @@ The completed table is automatically written as `single_cell_features_<timestamp
 
 ![Inspect the extracted table and its automatically saved CSV path.](extraction_ui_shots/feature_export.png){width=100% fig-align=center fig-alt="Completed numerical extraction with a cell-feature table preview and a successful export message showing the local CSV path."}
 
-If saving the features fails, correct the reported problem and click **Retry exporting features**. This saves the already calculated table without rerunning extraction. The metadata CSV remains a record of the input files, extraction settings, and confirmed calibration; the workflow starts from a source folder on each new run.
+If saving the features fails, correct the reported problem and click **Retry exporting features**. This saves the calculated table without rerunning extraction. The [metadata CSV](fov_metadata.qmd#result-preview-and-automatic-save) records the input files, extraction settings, and confirmed calibration; new runs begin from a source folder.

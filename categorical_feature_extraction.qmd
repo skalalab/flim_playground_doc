@@ -12,10 +12,10 @@ Open **Data Extraction → Categorical** in a [local installation](index.qmd#ins
 Enter the full path to the folder containing your saved [numerical feature CSV files](numerical_feature_extraction.qmd#save-results). The folder is scanned recursively for CSV files. Each usable dataset must contain the configured [cell and FOV identifiers](data_extraction_config.qmd#identifiers). Cell identifiers must be nonmissing and unique within the file and across the accepted files; a file containing overlapping identifiers is skipped.
 
 :::{.callout-important #fov-id-categorical}
-**The FOV identifier uniquely identifies a field of view and is assumed to contain all information necessary to extract the categorical features (e.g., treatment, time point, etc.), by including segments separated by a certain delimiter (e.g., `_`). Categorical features are assigned from individual segments or their combinations.** Example: The FOV `Panc1_Cyanide_dish1` denotes that it comes from the Panc1 cell line, under the Cyanide treatment, in the 1st dish.  
+**The FOV identifier uniquely identifies a field of view and is assumed to contain all information necessary to extract the categorical features (e.g., treatment, time point, etc.), by including segments separated by a certain delimiter (e.g., `_`). Categorical features are assigned from individual segments or their combinations.** Example: The FOV `Panc1_Cyanide_dish1` denotes that it comes from the Panc1 cell line, under the Cyanide treatment, in the 1st dish.
 :::
 
-Therefore, it checks if all field-of-view names include the same number of segments to determine the eligibility of [categorical feature assignment](#assigning-categorical-features). 
+[Categorical feature assignment](#assigning-categorical-features) is available only when all FOV names have the same number of segments.
 
 Before merging, all-empty columns are removed. The remaining datasets are stacked using only their common columns, and the page reports columns discarded during merging.
 
@@ -29,4 +29,4 @@ The live preview shows one row from each of the first five FOVs. Check the assig
 
 ![Map FOV-name slots to categories and check the preview before exporting.](extraction_ui_shots/cat_slot_assign.png){width=100% fig-align=center fig-alt="FOV-name slots map to categorical columns, with a preview above Confirm category mapping & export the combined dataset."}
 
-Clicking `Confirm category mapping & export the combined dataset` writes a timestamped CSV (`{timestamp}_combined.csv`) with the merged categorical features into the input folder. Upload this CSV directly to **Data Analysis** in either the desktop or hosted app. Column roles and groups are detected automatically; use **✏️** beside the summary to adjust them.
+Click `Confirm category mapping & export the combined dataset` to save the merged table and assigned categories as `{timestamp}_combined.csv` in the input folder. Upload this CSV directly to **Data Analysis** in either the desktop or hosted app. Column roles and groups are detected automatically; use **✏️** beside the summary to adjust them.

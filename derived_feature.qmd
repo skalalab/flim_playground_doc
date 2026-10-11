@@ -1,10 +1,10 @@
 # Derived Features {#sec-derived-feature}
 
-FLIM Playground lets users compose new **derived features** by combining existing features, potentially from *different channels*. An example would be the normalized optical redox ratio, composed from the `intensity_sum` feature from each of the two channels: NAD(P)H / (NAD(P)H + FAD).
+**Derived features** combine existing features, including features from different channels. For example, the normalized optical redox ratio uses the `intensity_sum` from two channels: NAD(P)H / (NAD(P)H + FAD).
 
 ## Build Derived Features
 
-The builder is revealed when the `Derived features` checkbox near the bottom of the [Configuration](#sec-data-extraction-config) page is ticked. 
+Select `Derived features` near the bottom of the [Configuration](#sec-data-extraction-config) page to open the builder.
 
 ![The builder previews a custom formula using the selected operands before adding it.](extraction_ui_shots/derived_features.png){width=100% fig-align=center fig-alt="A saved redox_ratio definition above a custom background_corrected_nadh formula, A minus B times 256, using NADH intensity_sum and nadh_offset as operands."}
 
@@ -16,22 +16,22 @@ Any derived features already defined for the current profile are listed at the t
 
 ::: {.callout-note collapse="true" }
 # Not finding the features you expect?
-The operands/features available for selection should span all channels. If no channel has a [feature extractor](data_extraction_config.qmd#feature-extractor) selected yet, the builder shows "Select feature extractors for your channels first — there are no features to derive from yet." — configure the extractors first, then come back.
+Operands are available from all channels. If none are listed, select [feature extractors](data_extraction_config.qmd#feature-extractor) for your channels first, then return to the builder.
 
-The categorized numerical features come first. The raw bookkeeping columns — `amp1`, `offset`, `reduced_chi_square`, the centroid coordinates, and the `a2` / `a3` fit remainders — carry no extractor prefix, so they are listed **after** them, at the bottom of each operand dropdown. They are ordinary per-cell numbers and can be used like any other operand: a background-corrected intensity, for instance, is `Intensity texture_<channel>: intensity_sum` minus `<channel>_offset` times the number of time bins (typed as a plain number in `Custom…` mode, e.g. `A - B*256`).
+Each operand dropdown lists categorized features first, followed by bookkeeping columns without an extractor prefix: `amp1`, `offset`, `reduced_chi_square`, centroid coordinates, and the `a2` / `a3` fit remainders. These are per-cell numbers and can be used like any other operand.
+
+For example, background-corrected intensity is `Intensity texture_<channel>: intensity_sum` minus `<channel>_offset` times the number of time bins. Enter the bin count as a number in `Custom…` mode, e.g. `A - B*256`.
 
 A pixel-prefitted (SPCImage) channel does no fit of its own, so it contributes only its `a2` / `a3` remainder — no `amp`, `offset` or `reduced_chi_square`.
 :::
 
-Derived features are stored **per profile**, so each [extraction profile](data_extraction_config.qmd#extraction-profiles) keeps its own set.
-
-When the preview is valid, click `➕ Add derived feature`. Adding and deleting definitions saves them immediately to the active profile.
+When the preview is valid, click `➕ Add derived feature`. Each [extraction profile](data_extraction_config.qmd#extraction-profiles) keeps its own definitions; adding or deleting them saves the change immediately.
 
 ### Templates
 
-Choosing a `Template` other than `Custom…` fills in the formula for you and renders one searchable dropdown per operand slot (`A`, `B`, …). Four ready-made templates are provided: normalized `A / (A + B)`, ratio `A / B`, difference `A - B`, and sum `A + B`.
+The `Template` dropdown offers four ready-made formulas: normalized `A / (A + B)`, ratio `A / B`, difference `A - B`, and sum `A + B`. Each fills in the formula and provides searchable dropdowns for operands `A` and `B`.
 
-Each takes two operands: pick a feature for `A` and a feature for `B`, give the result a `Name`, and the live preview confirms it. The fifth option, `Custom…`, unlocks the free formula editor described next.
+Pick both features and give the result a `Name`, then check the live preview. The fifth option, `Custom…`, opens the formula editor described next.
 
 ### Custom Formulas
 
@@ -50,7 +50,7 @@ Division by zero yields `NaN` rather than raising an error or producing infinity
 
 Derived features are computed during [Numerical Feature Extraction](#sec-numerical-feature-extraction), after the successful FOV results have been concatenated. The definitions from the active extraction profile are recorded in the automatically saved FOV metadata alongside the extraction settings. Each definition adds one `Derived: <name>` column to the output dataset.
 
-If any cell ends up with a `NaN` in a derived column (for instance from a divide-by-zero or a `NaN` operand), a single dataset-wide warning is shown for that feature — "Derived feature **name** has **N** NaN value(s) out of _M_ cell(s) (e.g. from divide-by-zero or a NaN operand)." As with other features, cells with `NaN` are **not** dropped from the output.
+If any cell has `NaN` in a derived column, for example after division by zero or use of a `NaN` operand, a single dataset-wide warning reports the affected cell count for that feature. These cells remain in the output.
 
 ## Derived Feature In Data Analysis
 

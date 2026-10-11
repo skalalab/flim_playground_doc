@@ -4,7 +4,7 @@ The **QPI** imaging modality extracts single-cell dry-mass measurements and spat
 
 ## QPI-specific inputs {#inputs-and-configuration}
 
-Set the channel to **QPI** on the [Configuration](data_extraction_config.qmd#imaging-modality) page. That page is the source of truth for the QPI file formats, extractors, physical constants, mask, and file suffixes.
+Set the channel to **QPI** on the [Configuration](data_extraction_config.qmd#imaging-modality) page, which describes the file formats, extractors, physical constants, masks, and suffixes.
 
 For each FOV, pair a 2D OPD image with a matching [label mask](data_extraction_config.qmd#mask); the two files must have identical dimensions. QPI dimensions must be consistent across QPI FOVs, but the QPI grid may differ from a FLIM grid. Cells are joined across modalities by FOV name and mask label, so the same label must identify the same cell.
 

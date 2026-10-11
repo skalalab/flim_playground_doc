@@ -1,10 +1,10 @@
 # Dimension Reduction {#sec-dimension-reduction}
 
-To represent and visualize high-dimensional data in a meaningful way and help users interpret the data, dimension reduction methods project the data into a lower-dimensional space. Three popular dimension reduction methods are often used: UMAP, PCA, and t-SNE. 
+To represent and visualize high-dimensional data in a meaningful way and help users interpret the data, dimension reduction methods project the data into a lower-dimensional space. Three popular dimension reduction methods are often used: UMAP, PCA, and t-SNE.
 
-Principal Component Analysis (PCA) is a linear dimension reduction method that projects the data onto the directions of the largest variance. It is fast, deterministic, and easier to interpret (the percentage of variance explained by each principal component is reported on the axis labels), but it is limited by the linear nature of the projection. For a detailed discussion of PCA, please refer to [this post](https://github.com/skalalab/dimension_reduction/blob/main/pca.ipynb). 
+Principal Component Analysis (PCA) is a linear dimension reduction method that projects the data onto the directions of the largest variance. It is fast, deterministic, and easier to interpret (the percentage of variance explained by each principal component is reported on the axis labels), but it is limited by the linear nature of the projection. For a detailed discussion of PCA, please refer to [this post](https://github.com/skalalab/dimension_reduction/blob/main/pca.ipynb).
 
-Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochastic Neighbor Embedding (t-SNE) are non-linear dimension reduction methods that can capture more complex patterns in the data. They are more flexible and can handle non-linear relationships between features, but they are more computationally expensive, less interpretable, not deterministic (FLIM Playground uses the random seed `42` to ensure reproducibility), and dependent on the hyperparameters. Here is a [post](https://pair-code.github.io/understanding-umap/) that explains how UMAP and t-SNE work at a high level and the meaning of some of the hyperparameters. 
+Uniform Manifold Approximation and Projection (UMAP) and t-Distributed Stochastic Neighbor Embedding (t-SNE) are non-linear dimension reduction methods that can capture more complex patterns in the data. They are more flexible and can handle non-linear relationships between features, but they are more computationally expensive, less interpretable, not deterministic (FLIM Playground uses the random seed `42` to ensure reproducibility), and dependent on the hyperparameters. Here is a [post](https://pair-code.github.io/understanding-umap/) that explains how UMAP and t-SNE work at a high level and the meaning of some of the hyperparameters.
 
 Select at least two numerical features. The app removes rows missing any selected feature, standardizes each feature to a z-score, and fits one two-dimensional embedding to the remaining filtered observations.
 
@@ -25,7 +25,7 @@ Choose up to two categorical columns in **Separate by** to display a shared over
 
 Each small map highlights its category's observations with the same coordinates, colors, shapes, and opacities as the overview. Other observations appear in faint gray. All maps share axis ranges, so positions can be compared directly. A column may be selected in both `Separate by` and `Color by`.
 
-Click a category panel to promote it into the main plot. The panel then uses the main plot's larger space, while the previous overview moves into that panel's position and is marked **Main plot**. Click the promoted main plot to restore the overview. Promotion only rearranges already computed traces; changing features, filters, reduction method, or hyperparameters still refits the embedding.
+Click a category panel to promote it into the main plot. The panel then uses the main plot's larger space, while the previous overview moves into that panel's position and is marked **Main plot**. Click the promoted main plot to restore the overview.
 
 Changing these display controls does not refit the embedding. Changing the numerical features, filters, reduction method, or its hyperparameters does. The shared legend controls groups across the maps, and **Show group counts (n) in legend** reports counts from the full embedding, rather than separate counts for each small map.
 

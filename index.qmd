@@ -21,7 +21,7 @@
 
 [![](docs-release.svg){height=20px fig-alt="Last updated" lightbox=false}](https://github.com/skalalab/flim_playground/tree/5adc84e "View the documented FLIM Playground source revision")
 
-Welcome to the FLIM Playground 🥳🎉🥂! This is an interactive graphical user interface (GUI) that allows you to extract single-cell^[in general, any region of interest works, including the whole field of view] features from fluorescence lifetime imaging microscopy (FLIM), intensity-only, and [QPI](qpi.qmd) inputs ([Data Extraction](#sec-data-extraction)) and analyze extracted features or *any* tabular dataset using a built-in repertoire of methods ([Data Analysis](#sec-data-analysis)).
+Welcome to the FLIM Playground 🥳🎉🥂! Use this interactive graphical user interface (GUI) to extract single-cell^[in general, any region of interest works, including the whole field of view] features from fluorescence lifetime imaging microscopy (FLIM), intensity-only, and [QPI](qpi.qmd) inputs with [Data Extraction](#sec-data-extraction). Explore the extracted features—or *any* tabular dataset—with the built-in methods in [Data Analysis](#sec-data-analysis).
 
 Several talks have been given about FLIM Playground:
 
@@ -163,7 +163,7 @@ An integrated framework should take into account all data levels <span style="co
 An integrated framework should take into account all data levels \textcolor[HTML]{1f77b4}{■} \textcolor[HTML]{ff7f0e}{■} \textcolor[HTML]{2ca02c}{■} \textcolor[HTML]{d62728}{■} \textcolor[HTML]{9467bd}{■} (•) while maintaining the flexibility to handle various input types (◦). **It should provide a level of abstraction to address fragmentation from data levels and input types**.
 :::
 
-Additionally, the use of FLIM is rapidly evolving, and new methods are being developed all the time. An integrated framework should allow users to choose among alternative methods seamlessly, be the backbone of iterative explorations integral to research, and be ready to incorporate new methods: **The provided level of abstraction should address fragmentation from extraction and analysis methods**. 
+Additionally, the use of FLIM is rapidly evolving, and new methods are being developed all the time. An integrated framework should allow users to choose among alternative methods seamlessly, be the backbone of iterative explorations integral to research, and be ready to incorporate new methods: **The provided level of abstraction should address fragmentation from extraction and analysis methods**.
 
 Finally, many of the existing tools, including GUI-based software, are not cross-platform, which limits their accessibility. The [Installation](#installation) addresses this last challenge.
 
@@ -179,13 +179,13 @@ Tabular data columns can be categorized into three feature classes:
 
 ::: {.content-visible when-format="html"}
 - <span style="color: #C94146;">Identifiers</span>: an optional row identifier for tracking observations; Data Analysis supplies row numbers when none is assigned
-- <span style="color: #4880D4;">Categorical features</span>: conceptually help us group the rows (e.g., `treatment` will group the rows into different treatment groups)
+- <span style="color: #4880D4;">Categorical features</span>: group rows, for example by `treatment`
 - <span style="color: #D3AE4A;">Numerical features</span>: quantify the differences/similarities between data groups
 :::
 
 ::: {.content-visible when-format="pdf"}
 - \textcolor[HTML]{C94146}{Identifiers}: an optional row identifier for tracking observations; Data Analysis supplies row numbers when none is assigned
-- \textcolor[HTML]{4880D4}{Categorical features}: conceptually help us group the rows (e.g., `treatment` will group the rows into different treatment groups)
+- \textcolor[HTML]{4880D4}{Categorical features}: group rows, for example by `treatment`
 - \textcolor[HTML]{D3AE4A}{Numerical features}: quantify the differences/similarities between data groups
 :::
 
@@ -205,9 +205,9 @@ FLIM Playground has two independent sections:
 [Data Extraction](#sec-data-extraction) extracts single-cell features from the raw data. It adopts a [framework](data_extraction_config.qmd#sec-data-extraction-config) that offers channel-level flexibility in input types and extraction methods without incurring too much overhead for users. The diagram below the Design heading summarizes conceptual components, following the [feature classes](#feature-classes). In the current interface, metadata preparation, calibration, and numerical extraction run together under **Numerical**; **Categorical** combines and labels the resulting tables:
 
 ::: {.content-visible when-format="html"}
-- [Data Extraction Configuration (A)](#sec-data-extraction-config): allows users to choose among alternative input types and extraction methods (extractors).
+- [Data Extraction Configuration (A)](#sec-data-extraction-config): sets input types and extraction methods (extractors).
 - [Metadata organization (B)](#sec-fov-metadata), within Numerical: records the field of view <span style="color: #C94146;">identifiers</span> and their configurations
-- [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell <span style="color: #D3AE4A;">numerical features</span> based on user-selected extractors. More extractors can be integrated in the future.
+- [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell <span style="color: #D3AE4A;">numerical features</span> using the selected extractors.
   - [IRF Calibration (C)](irf_calibration.qmd#sec-irf-calibration): estimate shifts for raw lifetime fitting or IRF-based phasor extraction; [dye-based calibration](lifetime_fit_free.qmd#fit-free-standard-calibration) is applied during phasor extraction
   - Lifetime extractors (D): 
     - [Fitting](#sec-lifetime-fit)
@@ -221,9 +221,9 @@ FLIM Playground has two independent sections:
 :::
 
 ::: {.content-visible when-format="pdf"}
-- [Data Extraction Configuration (A)](#sec-data-extraction-config): allows users to choose among alternative input types and extraction methods (extractors).
+- [Data Extraction Configuration (A)](#sec-data-extraction-config): sets input types and extraction methods (extractors).
 - [Metadata organization (B)](#sec-fov-metadata), within Numerical: records the field of view \textcolor[HTML]{C94146}{identifiers} and their configurations
-- [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell \textcolor[HTML]{D3AE4A}{numerical features} based on user-selected extractors. More extractors can be integrated in the future.
+- [Numerical Feature Extraction](#sec-numerical-feature-extraction): extracts single-cell \textcolor[HTML]{D3AE4A}{numerical features} using the selected extractors.
   - [IRF Calibration (C)](irf_calibration.qmd#sec-irf-calibration): estimate shifts for raw lifetime fitting or IRF-based phasor extraction; [dye-based calibration](lifetime_fit_free.qmd#fit-free-standard-calibration) is applied during phasor extraction
   - Lifetime extractors (D): 
     - [Fitting](#sec-lifetime-fit)
@@ -240,7 +240,7 @@ FLIM Playground has two independent sections:
 
 [Data Analysis](#sec-data-analysis) analyzes features—whether extracted through Data Extraction or by other methods—using visualizations and statistical modeling. It deploys a [shared framework (F)](data_analysis.qmd#shared-interactive-widgets) built to handle the [feature classes](#feature-classes) across all analysis methods, enabling the same interactive and frictionless exploration experience and allowing new methods to be integrated in the future easily.
 
-- [Data Analysis (G)](#sec-data-analysis) goes in-depth into how FLIM Playground handles the feature classes and [Data Analysis Config](#sec-data-analysis-config) goes through how users can configure FLIM Playground to analyze datasets that are not extracted by [Data Extraction](#sec-data-extraction). 
+See [Data Analysis (G)](#sec-data-analysis) for how the app handles these feature classes and [Data Analysis Config](#sec-data-analysis-config) for column roles and feature groups, including for datasets from other sources.
 
 Here is the list of analysis methods incorporated into FLIM Playground, grouped by the number of numerical features they take as inputs:
 

@@ -22,7 +22,7 @@ A [mask](data_extraction_config.qmd#mask) label defines the cell, so all pixels 
 
 **Where are exported files saved?**
 
- Numerical extraction automatically saves the metadata and single-cell feature CSVs into the source folder; the page reports their paths. Categorical merging writes a timestamped combined CSV to its input folder. Run extraction on a [local installation](index.qmd#installation) so these folders are available. Any download button you click will save the file to your browser's default download location. For example, the [analysis Python export](data_analysis.qmd#export-workflow-as-python-script).
+Numerical extraction automatically saves the metadata and single-cell feature CSVs into the source folder; the page reports their paths. Categorical merging writes a timestamped combined CSV to its input folder. Run extraction on a [local installation](index.qmd#installation) so these folders are available. Download buttons, including the [analysis Python export](data_analysis.qmd#export-workflow-as-python-script), save files to your browser's default download location.
 
 **How do I use a light or dark theme?**
 

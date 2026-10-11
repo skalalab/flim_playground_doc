@@ -1,10 +1,10 @@
 # Feature Comparison {#sec-feature-comparison}
-This method allows users to compare the distributions of a single numerical feature across groups. It can help users spot overarching trends between distributions, identify within-distribution shape-related characteristics such as skewness or bimodality that might signal sub-populations, and diagnose potential outliers. 
+Compare the distribution of one numerical feature across groups to spot shifts, skewness, multiple peaks that might signal subpopulations, and potential outliers.
 
 ![Feature Comparison brings feature selection, filtering, grouping, and the comparison plot into one view.](analysis_ui_shots/feature_comparison.png){width=100% fig-align=center fig-alt="Feature Comparison page with numerical feature selection on the left and categorical filters, grouping controls, and treatment distributions separated by cell line on the right."}
 
 :::{.callout-note}
-To keep the point-based visualization style that supports [interactive hover](data_analysis.qmd#unique-id-hover) while showing the violin-plot-like distribution, [Sina plot](https://en.wikipedia.org/wiki/Sina_plot) is used: it uses `gaussian_kde` from `scipy.stats` to make sure the width of the point distribution is proportional to the kernel density.
+A [Sina plot](https://en.wikipedia.org/wiki/Sina_plot) combines individual points that support [interactive hover](data_analysis.qmd#unique-id-hover) with a violin-like distribution shape. It uses `gaussian_kde` from `scipy.stats` to make the width proportional to the kernel density.
 
 The spread is computed per group on the x-axis, so [`Shape by`, `Opacity by`](data_analysis.qmd#opacity-and-shape-by) and [`Subcolor by`](#subcolor-by) change how a point looks, not where it sits.
 :::
@@ -46,7 +46,7 @@ The original observations provide context while all comparisons continue to use 
 
 ## Separate by
 
-`Separate by` takes effect before [`Color by`](data_analysis.qmd#color-by). `Separate by` divides the plot into sections separated by a dashed line, with each section labeled by one of the available categories of the selected categorical feature after [filtering](data_analysis.qmd#filter-widgets). The selected feature of `Separate by` is automatically removed from available features in `Color by`. The section order is determined by the order of the categories which are sorted [numeric-alphabetically](data_analysis.qmd#nte-order). 
+`Separate by` divides the plot into sections before [`Color by`](data_analysis.qmd#color-by) defines groups within them. Each section represents one category remaining after [filtering](data_analysis.qmd#filter-widgets), with dashed lines between sections. Sections follow [numeric-alphabetical order](data_analysis.qmd#nte-order), and the separation column is removed from the available `Color by` choices.
 
 Point encodings and comparisons are then applied within each section. For example, select `cell_line` in `Separate by` and `treatment` in `Color by` to compare treatments separately for each cell line. Treatment colors stay consistent across sections. [Effect sizes](#effect-size) are calculated within each section, with annotations limited by the selected pairs and [effect size threshold](#effect-size-threshold).
 
@@ -88,11 +88,11 @@ The order is applied **before** [comparison pairs](#comparison-widget) are forme
 
 ## Comparison Widget
 
-Statistical tests and effect size calculations are performed on the selected comparison pairs. FLIM Playground uses the groups on the x-axis populated by [Color by](data_analysis.qmd#color-by) — labeled `Group by` when [`Subcolor by`](#subcolor-by) is on — to create comparison groups, starting from the leftmost group. Pairs are formed after any [custom x-axis order](#reorder-x-axis-groups) is applied. For example, if there are 5 groups, then $\binom{5}{2} = 10$ comparisons will be created. The number of groups can get combinatorially large and many of the comparisons are not meaningful. Therefore, two widgets are provided to filter the comparison groups:
+The comparison widget forms pairs from the x-axis groups defined by [Color by](data_analysis.qmd#color-by) — labeled `Group by` when [`Subcolor by`](#subcolor-by) is on. Pairs run left to right after any [custom x-axis order](#reorder-x-axis-groups) is applied. Five groups produce $\binom{5}{2} = 10$ pairs, so the number of comparisons grows quickly. Use two widgets to keep the comparisons of interest:
 
-- A selection widget that shows all possible comparisons by default and users can deselect groups they do not need.
+- A selection widget shows all possible pairs by default; deselect those you do not need.
 
-- A threshold widget that filters out comparisons whose effect size falls below the threshold.
+- A threshold widget filters out comparisons whose effect size falls below the threshold.
 
 ### Effect Size Threshold {#effect-size-threshold}
 
@@ -106,7 +106,7 @@ The threshold widget is rendered per effect size method, and the two do not shar
 A pair is kept when the **absolute** effect size is greater than or equal to the threshold, so a large negative [Glass's Delta](#glasss-delta) is not dropped for being negative; 0 keeps every selected pair. Each threshold is remembered per numerical feature. Under [`Separate by`](#separate-by), one threshold and one pair selection govern every section.
 
 ## Effect Size 
-Complementary to statistical tests, which address “is there a difference?”, effect size metrics answer “how large is the difference?”, enabling cross-study comparison. FLIM Playground offers two effect size calculation methods, Glass's Delta and Absolute Cohen's d, each can be in mean or median form. 
+Complementary to statistical tests, which address “is there a difference?”, effect size metrics answer “how large is the difference?”, enabling cross-study comparison. FLIM Playground offers two effect size calculation methods, Glass's Delta and Absolute Cohen's d, each can be in mean or median form.
 
 ### Glass's Delta
 
@@ -133,7 +133,7 @@ $$
 $$
 
 :::{.callout-note}
-$\operatorname{MAD}$ stands for [median absolute deviation](https://en.wikipedia.org/wiki/Median_absolute_deviation). In order to make $\operatorname{MAD}$ asymptotically consistent with the standard deviation under normality, it is scaled by $C = 1 / \Phi^{-1}(0.75) \approx 1.4826$. Implementation-wise, it uses `median_abs_deviation` from `scipy.stats`, and `scale` option is set to `"normal"` to account for the constant multiplier $C$. THE MEDIAN FORM of both Glass's Delta and Absolute Cohen's d IS NOT REPORTED IN THE LITERATURE. 
+$\operatorname{MAD}$ stands for [median absolute deviation](https://en.wikipedia.org/wiki/Median_absolute_deviation). It is scaled by $C = 1 / \Phi^{-1}(0.75) \approx 1.4826$ to be asymptotically consistent with the standard deviation under normality. The app uses `scipy.stats.median_abs_deviation` with `scale="normal"` to apply this multiplier. **The median forms of Glass's Delta and Absolute Cohen's d are not reported in the literature.**
 :::
 
 ::: {.callout-important}

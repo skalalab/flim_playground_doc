@@ -49,9 +49,6 @@ Use the column's **Role** dropdown to change how it is used, then click **Use fo
 ::: {.callout-tip #feature-recognition}
 If a **numerical feature** is missing from the feature pickers, including `Uncategorized Features`, first check that its Role is Numerical in the column review. Then inspect its values for stray text such as `--`. If non-numeric values account for **1% or less** of the column's non-empty values, the app converts the column to numeric, replaces those cells with NaN, and reports their count. Above that threshold, the column remains text and cannot be used as a numerical feature until those values are cleaned, even if most values are numbers.
 
-
-**Categorical features** follow the roles applied to this upload. Use the pencil to change them for any table.
-
 :::
 
 ### Warning Messages
@@ -70,7 +67,7 @@ Feature selection is on the left; filters, grouping controls, plots, and exports
 Numerical features use the groups detected or applied in the [column review](data_analysis_config.qmd#feature-group-management). Recognized extraction headers are grouped by extractor and channel; other headers can form groups from shared prefixes. Ungrouped measurements appear under `Uncategorized Features`. Each group has its own picker.
 
 #### Univariate Analysis
-One single-select widget is rendered per group; choosing a feature in any group clears the selections and resets the others to `Select`.
+Choose one feature across all groups. Selecting it resets the other pickers to `Select`.
 
 
 #### Bivariate Analysis
@@ -78,7 +75,7 @@ For 2D Feature Distribution, choose an X feature and a different Y feature from 
 
 
 #### Multivariate Analysis
-One set of selection widgets, each can select multiple features from a feature group, is rendered. A special value `All` is introduced so that users can conveniently select all features under the feature group. If users select `All`, all the other options will be cleared, and vice versa.
+Each feature group has a picker that accepts multiple selections. Choose `All` to include every feature in that group.
 
 `Except:` selects every feature in a group except the ones you name. For example, select `Except:` together with `intensity_sum` to exclude that measurement while keeping the other features. Selecting `All` clears everything else, while selecting a feature clears `All` but keeps `Except:`, so you can add exclusions as you click.
 
@@ -90,7 +87,7 @@ One set of selection widgets, each can select multiple features from a feature g
 #### Categorical Filters
 ![Categorical filters select the observations included in the analysis.](analysis_ui_shots/filter.png){width=100% fig-align=center fig-alt="Categorical filter row with selections for the treatment, cell line, dish, and image categories."}
 
-For complex datasets that are collected over multiple days, experiments, treatments, etc., it is useful to filter the data to focus on a subset of the data (data of interest). One filter widget is rendered for each categorical feature so that users have the flexibility to filter the data based on combinations of categorical features. `All` is a special option that include all categories of the selected categorical feature. Once it is selected, all the other options are cleared, and vice versa.
+Use categorical filters to select observations by treatment, day, or other labels. Each categorical feature has a filter. Selecting `All` includes every category and clears individual selections; selecting a category clears `All`.
 
 Use `Except:` when it is easier to name the categories to leave out. For example, select `Except:` and one value in an `image_name` filter to keep every other field of view. The exclusion is evaluated against the current data, so categories added by widening another filter are included unless you excluded them explicitly.
 
@@ -98,22 +95,19 @@ The filters work as a set rather than in sequence: each one offers only the cate
 
 One consequence is worth knowing about. Tightening one filter can deselect a choice you made elsewhere. Say you have fields of view picked out under `image_name` and then narrow `cell_line` to `Panc1`: every MCF7 field of view among them is left with no rows. Rather than hand you an empty plot, FLIM Playground deselects those fields of view and tells you which selection ruled them out.
 
-
-A filter therefore never quietly stops matching what you asked for. 
-
 #### Numerical Filters
 
-Users can further filter the data based on numerical features. Each row specifies a condition to filter the data: 
+Each numerical filter row specifies a condition:
 
 - `Feature`: the numerical feature to filter on
 - `Operator`: `>` or `<=`
-- `Threshold`: the range of values to filter on, dynamically updated based on previous filters, is displayed for reference. The entered value should be within the range.
+- `Threshold`: enter a value within the displayed range, which updates based on earlier filters.
 - `Add another`: show the next condition. Clear it to stop applying later rows; choose `None` in a feature picker to stop at that row.
 
-After the two sets of filters are applied, the final filtered data is used for visualization and analysis.
+Plots and analyses use the data remaining after both sets of filters.
 
 ::: {.callout-important}
-Make sure you clearly state all numerical filters used.
+Report all numerical filters used in your analysis.
 :::
 
 
@@ -163,7 +157,7 @@ Feature Comparison shares one column picker between **Opacity**, **Subcolor**, a
 - [2D Feature Distribution](feature_distribution.qmd#separate-by) and [Dimension Reduction](dimension_reduction.qmd#separate-by) show a full-data overview beside one highlight panel per category.
 - [Phasor Plot](phasor_analysis.qmd#separate-by) shows one category at a time with the others in gray for context.
 
-For the first four methods, the separation column cannot also be used for `Color by`. Dimension Reduction permits the same column for both because separation highlights parts of one shared embedding.
+The separation column cannot also be used for `Color by`, except in Dimension Reduction, where separation highlights parts of one shared embedding.
 
 #### Collapse by
 
@@ -193,9 +187,7 @@ Numerical features extracted by [Data Extraction](#sec-data-extraction) are auto
 
 ### Export Workflow as Python Script
 
-Click **Export the entire analysis as a Python script** below the results and styling controls. The script records the selected features, filters, grouping, point encodings, plot style, and method settings, including collapse, category separation, GMM export names, and the promoted facet where applicable.
-
-The script also uses the column choices applied to this upload, including changes made with **Use for this upload**.
+Click **Export the entire analysis as a Python script** below the results and styling controls. The script records the selected features, filters, grouping, point encodings, plot style, and method settings, including collapse, category separation, GMM export names, and any promoted category panel. It also records the upload's column choices, including temporary edits applied with **Use for this upload**.
 
 ![Download a Python script that records the current analysis settings.](analysis_ui_shots/analysis_export.png){width=80% fig-align=center fig-alt="Export the entire analysis as a Python script download button."}
 
@@ -209,7 +201,7 @@ uv run analysis.py
 
 Replace `analysis.py` with the downloaded script's filename.
 
-Exported scripts declare Python 3.11 or newer and the packages needed for the selected analysis in [inline script metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/). `uv` downloads a compatible Python if needed, installs those packages in an isolated environment, and runs the analysis automatically. See the [uv script guide](https://docs.astral.sh/uv/guides/scripts/#declaring-script-dependencies) for how dependency installation works.
+Scripts declare Python 3.11 or newer and the required packages in [inline metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/). `uv` downloads a compatible Python if needed, [installs the packages in an isolated environment](https://docs.astral.sh/uv/guides/scripts/#declaring-script-dependencies), and runs the analysis.
 
 The script reproduces the analysis with matplotlib and saves SVG figures in the working directory. You can edit these figures or use them in a publication.
 

@@ -20,17 +20,17 @@ On the left, select **Channel** when more than one channel is present, then choo
 
 ![Select the channel and harmonic for the matching G/S coordinate pair.](analysis_ui_shots/phasor_coordinate_select.png){width=80% fig-align=center fig-alt="Channel set to nadh and nadh harmonic No. set to 1."}
 
-The method recognizes numerical columns named `Lifetime fit free_{channel}: G(1st)` and `Lifetime fit free_{channel}: S(1st)`, or their `G(2nd)` and `S(2nd)` counterparts. For example, a first-harmonic NADH pair is `Lifetime fit free_nadh: G(1st)` and `Lifetime fit free_nadh: S(1st)`. Both columns must have the **Numerical** role in the column review; they may belong to different feature groups. After upload, Phasor Plot is available only if the table contains a complete pair.
+The method recognizes numerical columns named `Lifetime fit free_{channel}: G(1st)` and `Lifetime fit free_{channel}: S(1st)`, or their `G(2nd)` and `S(2nd)` counterparts. For example, a first-harmonic NADH pair is `Lifetime fit free_nadh: G(1st)` and `Lifetime fit free_nadh: S(1st)`. Both columns must have the **Numerical** role in the column review; they may belong to different feature groups.
 
 Set **Laser repetition rate (MHz)** to the acquisition's base repetition rate, for example `80` for 80 MHz. This controls the lifetime reference markers; it does not recalculate or calibrate the uploaded coordinates. The app removes rows missing either coordinate from the displayed plot.
 
-The plot is drawn against the universal semicircle, with markers along it for lifetimes from 0.5 to 10 ns to read your points against. Switching to the 2nd harmonic moves those markers, because the transform is evaluated at twice the frequency and a given lifetime lands somewhere else. The frequency printed inside the plot tells you which view you are reading — `f = 160 MHz (2 × 80 MHz)` for the 2nd harmonic of an 80 MHz system — so check it before comparing a point against a marker. The semicircle itself is the same for both harmonics.
+The universal semicircle has lifetime markers from 0.5 to 10 ns. Switching to the 2nd harmonic moves the markers because the transform uses twice the frequency; the semicircle stays the same. Check the frequency printed inside the plot before comparing a point against a marker: `f = 160 MHz (2 × 80 MHz)` identifies the 2nd harmonic of an 80 MHz system.
 
 ## Separate by
 
 ![Separate by adds a category selector while color, opacity, and shape remain independent controls.](analysis_ui_shots/phasor_encodings.png){width=100% fig-align=center fig-alt="Separate by is cell_line, Color by is treatment, and the category selector switches between Panc1 and MCF7; opacity and shape have no selection."}
 
-Choose `cell_line` in **Separate by** and `treatment` in **Color by**, then select a cell line above the plot. For example, select `Panc1` to highlight its treatments while keeping `MCF7` observations in gray for context. The selected category keeps its color, opacity, and shape encodings; observations from other categories remain visible as faint gray context points. The full-size axes and lifetime references remain the same as you switch categories.
+Choose `cell_line` in **Separate by** and `treatment` in **Color by**, then select a cell line above the plot. For example, selecting `Panc1` keeps its color, opacity, and shape encodings while showing `MCF7` observations in faint gray for context. The axes and lifetime references remain the same as you switch categories.
 
 The separation column cannot also be used for `Color by`. Point colors stay consistent across categories, and **Show group counts (n) in legend** counts only the selected category's complete G/S observations. Gray context points do not contribute to those counts or provide individual hover labels.
 

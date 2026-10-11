@@ -2,13 +2,15 @@
 
 Biological samples often contain mixtures of fluorescent species, each with its own characteristic lifetime. By modeling the decay as a sum of exponentials, the analysis can separate and quantify these different contributions. For example, NADH in cells exists in both free (short lifetime, ~0.4 ns) and protein-bound (longer lifetime, ~2–3 ns) states; by fitting the fluorescence decay with a bi-exponential model, one can estimate the fraction of each state, which provides direct insight into cellular metabolism and energy production pathways.
 
-FLIM Playground extracts cell-level lifetime fitting features in this feature extractor, including the fraction of each lifetime component ($\alpha_i$), their lifetimes ($\tau_i$), mean lifetime ($\tau_{mean}$), intensity-weighted mean lifetime ($\tau_{m,iw}$), and the reduced chi-square ($\chi^2_r$) goodness-of-fit metric. (See [here](irf_calibration.qmd#number-of-components) for the definition of the equation below)
+This extractor calculates cell-level component fractions ($\alpha_i$), lifetimes ($\tau_i$), mean lifetime ($\tau_{mean}$), intensity-weighted mean lifetime ($\tau_{m,iw}$), and the reduced chi-square ($\chi^2_r$) goodness-of-fit metric. The [decay model](irf_calibration.qmd#number-of-components) is:
 
 $$I(t) = \sum_{i=1}^n A_i \, e^{-t/\tau_i}$$
 
 ## Fitting
 
-If the decays have not been pre-fit, FLIM Playground applies the confirmed fitting options ([number of components](irf_calibration.qmd#number-of-components), [fixed lifetimes](irf_calibration.qmd#fixed-lifetimes), [time gates](irf_calibration.qmd#time-gates), [metric](irf_calibration.qmd#metric), and [fitting mode](#hybrid-over-local)) to the [reconvolution fitting process](irf_calibration.qmd#reconvolution-fitting). The IRF shift is fixed at the confirmed value for the channel or FOV. After confirmation, cell-level fitting defaults to **Local**; see [When to choose Hybrid over Local](#hybrid-over-local) for the mode behavior and trade-offs. These per-cell fits are [parallelized across CPU cores](irf_calibration.qmd#reconvolution-fitting). Reconvolution fitting minimizes the selected cost metric between the measured decay and a multi-exponential model convolved with the IRF.
+For raw decays, FLIM Playground uses [reconvolution fitting](irf_calibration.qmd#reconvolution-fitting) with the confirmed [number of components](irf_calibration.qmd#number-of-components), [fixed lifetimes](irf_calibration.qmd#fixed-lifetimes), [time gates](irf_calibration.qmd#time-gates), and [metric](irf_calibration.qmd#metric). The IRF shift is fixed at the confirmed channel or FOV value. Cell-level fitting defaults to **Local**; see [When to choose Hybrid over Local](#hybrid-over-local) for the mode behavior and trade-offs.
+
+For [pixel pre-fit inputs](#pixel-pre-fit), the app calculates fitting features from the [supplied values](data_extraction_config.qmd#three-d4d-pixel-pre-fit).
 
 :::: {#hybrid-over-local .callout-note collapse="true" title="When to choose Hybrid over Local"}
 
@@ -37,8 +39,6 @@ These results support Local as the default; they do not show that Hybrid is neve
 
 ::::
 
-[Otherwise](#pixel-pre-fit), FLIM Playground uses the [pre-fit values](data_extraction_config.qmd#three-d4d-pixel-pre-fit) to calculate the fitting features.
-
 In the final dataset, the primary fitting features are prefixed by the combination of the feature extractor name (i.e. `Lifetime fit`) and the channel name, allowing [Data Analysis](#sec-data-analysis) to group the features. For example, `Lifetime fit_nadh: a1` means the fraction of the first lifetime component for the NAD(P)H channel.
 
 Not every column produced by this extractor carries that prefix. The lifetimes ($\tau_i$, $\tau_{mean}$, $\tau_{m,iw}$) and the leading fractions do, but the raw amplitudes ($A_i$), the constant offset, the reduced chi-square, and the final fraction (which is derived as the remainder of the others) are written with only the channel name, e.g. `nadh_reduced_chi_square`. These are treated as bookkeeping values, so Data Analysis places them in the **Uncategorized Features** group rather than under `Lifetime fit_nadh`.
@@ -53,9 +53,9 @@ The extracted CSV mixes three units, so check the column before using a value in
 
 ### Preprocessing
 
-It sums up all the pixel decays belonging to the same cell ROI labeled by the ROI [mask](data_extraction_config.qmd#mask) as one decay curve [@Samimi2025]. The ROI summing reduces variability and bias and allows for short integration times at acquisition in exchange for sub-cellular resolution (i.e., pixel-level). Users do not need to specify the bin factor (each pixel sums up the surrounding pixels' decay curves) to account for insufficient photon counts. ROI-level aggregation also keeps the workload manageable; independent ROI fits are then [run in parallel across CPU cores](irf_calibration.qmd#reconvolution-fitting).
+For image inputs, FLIM Playground sums pixel decays within each cell ROI [mask](data_extraction_config.qmd#mask) into one curve [@Samimi2025]. This reduces variability and bias and allows shorter acquisition times at the cost of subcellular resolution. Users do not need to specify the bin factor (each pixel sums up the surrounding pixels' decay curves) to account for insufficient photon counts. ROI-level aggregation also keeps the workload manageable.
 
-It also shifts the IRF using the shift values from the [IRF shift calibration](irf_calibration.qmd#fit-calibration) step. To shift an IRF, FLIM Playground upsamples the IRF 10 times using linear interpolation to fill the gaps. Then it shifts the IRF by the shift values $\times 10$ and downsamples the IRF back to the original size.
+The app also applies the confirmed [IRF shift](irf_calibration.qmd#fit-calibration): it upsamples the IRF 10 times using linear interpolation, shifts it by the shift value $\times 10$, then downsamples it to the original size.
 
 ### Fraction of components
 
@@ -88,6 +88,4 @@ $$\chi^2_r = \frac{1}{N - p}\sum_{n} \frac{\bigl(y_n - \hat{y}_n\bigr)^2}{\hat{y
 where the sum runs over the time bins within the [time gates](irf_calibration.qmd#time-gates) that have a positive model value ($\hat{y}_n > 0$), $y_n$ is the measured count, $\hat{y}_n$ is the fitted value, $N$ is the number of those bins, and $p$ is the number of free parameters (amplitudes, lifetimes, and the offset, minus any [fixed lifetimes](irf_calibration.qmd#fixed-lifetimes)). Values near 1 indicate a good fit.
 
 ## Pixel pre-fit {#pixel-pre-fit}
-Currently, FLIM Playground supports pixel pre-fit lifetime features from [SPCImage](https://www.becker-hickl.com/products/spcimage/). The pixel-level lifetime fitting features are expected to be stored in [2D arrays](data_extraction_config.qmd#three-d4d-pixel-pre-fit) in spatial dimensions, with each row and column having the value of a lifetime feature outputted from SPCImage. SPCImage assigns `0` for pixels that are not fitted (e.g. thresholded out). To avoid them biasing the results, FLIM Playground uses `np.ma.masked_array` to create a masked array and disregards them when calculating the averages using `np.ma.average`.
-
-Then it uses the ROI [mask](data_extraction_config.qmd#mask) to calculate the cell-level lifetime features by averaging the pixel-level features within each ROI.
+FLIM Playground accepts [SPCImage](https://www.becker-hickl.com/products/spcimage/) lifetime features as [2D spatial arrays](data_extraction_config.qmd#three-d4d-pixel-pre-fit), with one feature value per pixel. It averages pixel values within each cell ROI [mask](data_extraction_config.qmd#mask), excluding the `0` values SPCImage assigns to unfitted pixels, such as those below a threshold. It uses `np.ma.masked_array` and `np.ma.average` to exclude these values from the averages.

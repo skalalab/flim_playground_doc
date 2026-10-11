@@ -15,7 +15,7 @@ Two preprocessing steps are then applied, and they are independent of each other
 
 ## Calibration method
 
-In [Home → Configuration](data_extraction_config.qmd#calibration-method), choose **IRF** or **Fluorescence Lifetime Standard** for `Lifetime fit free` extraction. This choice determines the reference and the correction applied in [Step 2](#step-2-calibrated-phasor-coordinates). Both methods use the same [offset subtraction](#preprocessing) for each cell decay.
+In [Home → Configuration](data_extraction_config.qmd#calibration-method), choose **IRF** or **Fluorescence Lifetime Standard** for `Lifetime fit free` extraction. This choice determines the reference and the correction applied in [Step 2](#step-2-calibrated-phasor-coordinates).
 
 ### IRF
 
@@ -79,7 +79,7 @@ Apply the selected calibration using the reference phasor at the matching harmon
 
 #### IRF calibration
 
-FLIM Playground divides each raw cell phasor by the shifted IRF phasor at the same harmonic to obtain `g`, `s`, `g_2nd`, and `s_2nd`:
+FLIM Playground uses PhasorPy's [`phasor.phasor_divide`](https://www.phasorpy.org/docs/stable/api/phasor/#phasorpy.phasor.phasor_divide) to divide each raw cell phasor by the shifted IRF phasor at the same harmonic, obtaining `g`, `s`, `g_2nd`, and `s_2nd`:
 
 ```python
 from phasorpy import phasor
@@ -91,7 +91,7 @@ g_2nd, s_2nd = phasor.phasor_divide(
 
 #### Fluorescence lifetime standard calibration
 
-FLIM Playground uses the known lifetime and the standard's measured reference values for each harmonic calculated in [Step 1](#step-1-raw-phasor-coordinates):
+PhasorPy's [`lifetime.phasor_calibrate`](https://www.phasorpy.org/docs/stable/api/lifetime/#phasorpy.lifetime.phasor_calibrate) corrects each cell's phasor using the known lifetime and the standard's measured reference values at the matching harmonic from [Step 1](#step-1-raw-phasor-coordinates):
 
 ```python
 from phasorpy import lifetime

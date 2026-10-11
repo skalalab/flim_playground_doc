@@ -31,15 +31,15 @@ Choose a categorical column such as `dish`, `patient`, or `image_name` in **Coll
 
 Marginal distributions, Pearson correlation, regression, and GMM fitting then use these category means with equal weight. A column is unavailable for collapse if it already defines `Color by` or `Separate by`. Other categorical columns remain available for point encoding only when their values are constant within every collapsed group; the app explains when it must disable a varying encoding.
 
-![The same data plotted above collapsed by image_name, each dot is now the mean of all cells within each field of view](analysis_ui_shots/distribution_collapse_by.png){width=100% fig-align=center fig-alt="2D Feature Distribution with Collapse by dish, marginal boxplots, treatment colors, and a gray context cloud."}
+![With Collapse by, each point represents a category mean within its separation category and color group.](analysis_ui_shots/distribution_collapse_by.png){width=100% fig-align=center fig-alt="2D Feature Distribution with category means, marginal boxplots, treatment colors, and a gray context cloud."}
 
 A labeled GMM download after collapse contains one row per averaged group, with averaged numerical columns. It retains categorical metadata only when constant within every collapsed group. Clear `Collapse by` to return to individual observations.
 
 ## Marginal Distribution
 
-Marginal distributions (the distribution of a single feature) are plotted at the top and the right of the main scatter plot. Users can choose the plot type from the dropdown menu. The default is `None`, which leaves the scatter plot at full size.
+Marginal plots show each feature's distribution above and to the right of the main scatter plot. Choose a type from the dropdown; the default is `None`.
 
-- `None`: hides both marginal plots.
+- `None`: hides both marginal plots, leaving the scatter plot at full size.
 
 - `gaussian fit`: provides a kernel-density estimate using Gaussian kernels. It uses `gaussian_kde` from `scipy.stats` and sets all parameters to default values.
 - `boxplot`: summarizes each color group with a box and whiskers, which makes the median and spread easier to compare across groups than overlapping density curves.
@@ -49,7 +49,7 @@ Marginal distributions (the distribution of a single feature) are plotted at the
 
 Select **2D Gaussian Mixture Model** above the plot to fit a GMM to each color group, separately within every category when `Separate by` is active. As in the [1D GMM](feature_histogram.qmd#fit-gaussian-mixture-models), **Max Components** and **Min Weight Threshold** control candidate fits; the valid model with the lowest BIC is chosen.
 
-Ellipses that capture approximately 95% of the points in each subcomponent are drawn. The color of the ellipses is determined by the color group that the subcomponent belongs to. 
+Each subcomponent is shown by an ellipse that captures approximately 95% of its points and uses its group's color.
 
 ::: {.callout-note collapse="true"}
 # How ellipses are drawn
@@ -93,7 +93,7 @@ On reupload, review the label column and assign it **Categorical** to use it for
 
 ## Correlation coefficient
 
-**Pearson's correlation coefficient $r$ and its p-value are reported below the plot for each separation category and color group**. Scroll below the scatter plot to find the results. The coefficient ranges from $-1$ to $1$: its sign gives the direction of a linear association, and values near zero indicate a weak linear association.
+**Pearson's correlation coefficient $r$ and its p-value appear below the plot for each separation category and color group**. The coefficient ranges from $-1$ to $1$: its sign gives the direction of a linear association, and values near zero indicate a weak linear association.
 
 ![The output reports Pearson r and its p-value separately from the regression statistics.](analysis_ui_shots/distribution_correlation.png){width=100% fig-align=center fig-alt="Panc1 has Pearson r 0.08 with p 0.0212, and MCF7 has Pearson r 0.17 with p 7.96e-13; regression R squared, slope, and intercept appear alongside each correlation result."}
 
@@ -103,7 +103,7 @@ Correlation and regression use each separation category and color group after fi
 
 Select **Regression line** to add a linear fit and report its $R^2$, slope, and intercept alongside the correlation results.
 
-$R^{2}$ tells how much of the variability in $y$ is captured by the model, compared to just predicting the $\bar{y}$. 
+$R^{2}$ tells how much of the variability in $y$ the model captures compared with predicting the mean $\bar{y}$.
 
 ::: {.callout-note collapse="true"}
 # $R^{2}$
