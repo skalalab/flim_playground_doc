@@ -2,24 +2,19 @@
 
 **Why is a numerical feature missing from a picker?**
 
-For a user-provided table, reopen its [column review](data_analysis_config.qmd#id-config) and check that the column has the **Numerical** role. Look in `Uncategorized Features` if it has no feature group. A numerical picker needs usable numbers: the app tolerates stray text in up to **1%** of non-empty values, replacing those cells with NaN. Above that threshold the column remains text; clean the values and upload it again. See [feature recognition](data_analysis.qmd#feature-recognition).
+Reopen the [column review](data_analysis_config.qmd#id-config) and check that the column has the **Numerical** role. Look in `Uncategorized Features` if it has no feature group. A numerical picker needs usable numbers: the app tolerates stray text in up to **1%** of non-empty values, replacing those cells with NaN. Above that threshold the column remains text; clean the values and upload it again. See [feature recognition](data_analysis.qmd#feature-recognition).
 
 **Why is a categorical column missing?**
 
-For a user table, assign **Categorical** in its [profile review](data_analysis_config.qmd#id-config) and save. For an extraction table, check the active [extraction configuration](data_extraction_config.qmd#categorical-features). A filter or visual picker may omit a column with only one remaining value. Other choices can also narrow the options: for example, a column used for `Separate by` cannot also define the color groups, except in Dimension Reduction. See [shared controls](data_analysis.qmd#shared-interactive-widgets).
+Assign **Categorical** in the [column review](data_analysis_config.qmd#id-config), then click **Use for this upload** or save the profile. A filter or visual picker may omit a column with only one remaining value. Other choices can also narrow the options: for example, a column used for `Separate by` cannot also define the color groups, except in Dimension Reduction. See [shared controls](data_analysis.qmd#shared-interactive-widgets).
 
 **Do I need to add an ID column before uploading my table?**
 
 No. Leave **Row ID** unassigned to use generated row numbers. An assigned ID must be nonmissing and unique. Generated numbers follow input row order and are regenerated for each upload; provide your own ID if it must remain stable when rows are reordered. See [identifiers](data_analysis_config.qmd#identifiers-config).
 
-
 **What should I do if an extraction file could not be saved?**
 
 Correct the folder or permission issue reported by the app, then use **Retry saving metadata** or **Retry exporting features**. A metadata-save failure blocks extraction. Retrying a feature export saves the already calculated table without calculating it again. Both files are saved in the source folder; see [Save Results](numerical_feature_extraction.qmd#save-results).
-
-**Which checkbox setting should I use for Data Analysis?**
-
-Leave **Use a table from another source** off for FLIM Playground extraction output. Turn it on for your own table to review its column roles and groups. The hosted app offers Data Analysis only and defaults this checkbox to on.
 
 **Why do two cells appear as one in the extraction output?**
 

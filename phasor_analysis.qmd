@@ -20,7 +20,7 @@ On the left, select **Channel** when more than one channel is present, then choo
 
 ![Select the channel and harmonic for the matching G/S coordinate pair.](analysis_ui_shots/phasor_coordinate_select.png){width=80% fig-align=center fig-alt="Channel set to nadh and nadh harmonic No. set to 1."}
 
-The method recognizes numerical columns named `Lifetime fit free_{channel}: G(1st)` and `Lifetime fit free_{channel}: S(1st)`, or their `G(2nd)` and `S(2nd)` counterparts. For example, a first-harmonic NADH pair is `Lifetime fit free_nadh: G(1st)` and `Lifetime fit free_nadh: S(1st)`. In a user-table review, assign both columns **Numerical**; they may belong to different feature groups. After upload, Phasor Plot is available only if the table contains a complete pair.
+The method recognizes numerical columns named `Lifetime fit free_{channel}: G(1st)` and `Lifetime fit free_{channel}: S(1st)`, or their `G(2nd)` and `S(2nd)` counterparts. For example, a first-harmonic NADH pair is `Lifetime fit free_nadh: G(1st)` and `Lifetime fit free_nadh: S(1st)`. Both columns must have the **Numerical** role in the column review; they may belong to different feature groups. After upload, Phasor Plot is available only if the table contains a complete pair.
 
 Set **Laser repetition rate (MHz)** to the acquisition's base repetition rate, for example `80` for 80 MHz. This controls the lifetime reference markers; it does not recalculate or calibrate the uploaded coordinates. The app removes rows missing either coordinate from the displayed plot.
 

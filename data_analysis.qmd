@@ -1,10 +1,10 @@
 # Overview {#sec-data-analysis}
 
-Data Analysis lets you explore a table of measurements with interactive plots, statistical comparisons, and machine learning. Use a table from [Data Extraction](#sec-data-extraction) or upload your own measurements and [review their column roles](data_analysis_config.qmd).
+Data Analysis lets you explore a table of measurements with interactive plots, statistical comparisons, and machine learning. Upload a table from [Data Extraction](#sec-data-extraction) or any other source. The app detects column roles and feature groups; use the pencil beside the upload summary to [review or adjust them](data_analysis_config.qmd).
 
 ## General Workflow
 
-1. [Upload your table](#input). For a user-provided table, review and save its column roles and feature groups before analysis.
+1. [Upload your table](#input). Analysis opens automatically when the detected or saved column choices are valid. Review is optional unless a column needs attention.
 2. Choose an analysis type and method on the left, then select its [numerical features](#numerical-selection-widgets).
 3. Use the [categorical and numerical filters](#filter-widgets) to select the observations to analyze. Later controls operate on this filtered dataset.
 4. Choose [groups and visual encodings](#visual-channels-widgets). In Feature Comparison and 2D Feature Distribution, **Collapse by** can replace individual observations with one mean per category within each analysis group.
@@ -27,28 +27,30 @@ The plots and results update as you change the controls.
 **Phasor Plot** is available after upload only when the table contains a complete G/S pair with the [expected phasor column names](phasor_analysis.qmd#select-phasor-coordinate). All methods use the shared controls below, with additional controls described in their chapters.
 
 ## Input
-Leave **Use a table from another source** off for a table produced by [Data Extraction](#sec-data-extraction). Turn it on for your own table, **upload first**, then review its column roles and feature groups in the [interactive configuration walkthrough](data_analysis_config.qmd). It defaults to off in a local installation and on in the hosted app, which provides Data Analysis only. The uploader accepts CSV, TSV/TXT with tab, semicolon, or pipe separators, Excel `.xlsx`/`.xlsm`, and OpenDocument `.ods`. Spreadsheet uploads use the first sheet.
+The same uploader handles extraction results and tables from other sources, in both the desktop and hosted apps. It accepts CSV, TSV/TXT with tab, semicolon, or pipe separators, Excel `.xlsx`/`.xlsm`, and OpenDocument `.ods`. Spreadsheet uploads use the first sheet.
+
+One saved profile with exactly matching headers supplies the column roles and groups; otherwise, the app detects them automatically. Click **✏️** beside the summary to make changes, then choose **Use for this upload** or save a reusable profile. See the [configuration walkthrough](data_analysis_config.qmd).
 
 ### Requirements
 
-Use a plain table with column headers on the first row, one observation per row, and at least one usable numerical measurement. For a user-provided table, categorical columns, a unique row identifier, and a field-of-view column are optional. With **Use a table from another source** off, the table must contain the identifier named in its extraction configuration.
+Use a plain table with column headers on the first row, one observation per row, and at least one usable numerical measurement. Categorical columns, a unique row identifier, and a field-of-view column are optional for every upload.
 
 ### Column roles {#column-roles}
 
-Each column in a user-provided table has one role. The app suggests roles after upload; review them according to what the values mean.
+Each column has one role. The app suggests roles after upload; adjust them according to what the values mean.
 
 - **Row ID** identifies an individual observation in [hover text](#unique-id-hover), such as a cell or flower. This role is optional and can belong to at most one column. Its values must be nonmissing and unique after conversion to text. Without an assigned Row ID, the app creates row numbers from `1` through the number of input rows. See [automatic row numbering and changing identifiers](data_analysis_config.qmd#identifiers-config).
-- **Categorical** supplies labels for [filters](#categorical-filters) and visual grouping, such as species, treatment, day, or patient. Numeric codes can be categorical when they represent labels rather than quantities. For a user table, a field-of-view label also uses this role. Categories are stored as text. If every nonmissing value in a numeric category column is a whole number, labels use `1` rather than `1.0`; missing values become `N/A`.
+- **Categorical** supplies labels for [filters](#categorical-filters) and visual grouping, such as species, treatment, day, or patient. Numeric codes can be categorical when they represent labels rather than quantities. Field-of-view labels such as `image_name` also use this role. Categories are stored as text. If every nonmissing value in a numeric category column is a whole number, labels use `1` rather than `1.0`; missing values become `N/A`.
 - **Numerical** supplies measurements for plotting and analysis, such as length, intensity, or lifetime. At least one column with this role must contain usable numbers. Numerical columns can be organized into [feature groups](data_analysis_config.qmd#feature-group-management), each providing a dropdown in the feature pickers.
 - **Ignore** excludes a column from analysis while recording its header in the profile, so future uploads can still be matched to the complete table structure.
 
-Use the column's **Role** dropdown to correct a suggestion or change how it is used, then save the profile. For example, assigning Categorical to a numeric treatment code makes it available as a category filter. Changing a Numerical column to another role removes its feature-group assignment. The [column-review walkthrough](data_analysis_config.qmd#id-config) explains these changes and the checks before saving.
+Use the column's **Role** dropdown to change how it is used, then click **Use for this upload** or save the profile. For example, assigning Categorical to a numeric treatment code makes it available as a category filter. Changing a Numerical column to another role removes its feature-group assignment. See the [column-review walkthrough](data_analysis_config.qmd#id-config).
 
 ::: {.callout-tip #feature-recognition}
-If a **numerical feature** is missing from the feature pickers, including `Uncategorized Features`, first check that its Role is Numerical in a user-table review. Then inspect its values for stray text such as `--`. If non-numeric values account for **1% or less** of the column's non-empty values, the app converts the column to numeric, replaces those cells with NaN, and reports their count. Above that threshold, the column remains text and cannot be used as a numerical feature until those values are cleaned, even if most values are numbers.
+If a **numerical feature** is missing from the feature pickers, including `Uncategorized Features`, first check that its Role is Numerical in the column review. Then inspect its values for stray text such as `--`. If non-numeric values account for **1% or less** of the column's non-empty values, the app converts the column to numeric, replaces those cells with NaN, and reports their count. Above that threshold, the column remains text and cannot be used as a numerical feature until those values are cleaned, even if most values are numbers.
 
 
-FLIM Playground searches for **categorical features** in the uploaded dataset based on the [user-specified configuration](#sec-data-analysis-config) if the dataset is not extracted by [Data Extraction](#sec-data-extraction). Otherwise, it searches for categorical features specified in the [Data Extraction configuration](data_extraction_config.qmd#categorical-features). 
+**Categorical features** follow the roles applied to this upload. Use the pencil to change them for any table.
 
 :::
 
@@ -58,14 +60,14 @@ Warnings report cleanup such as dropping empty columns or converting a small num
 
 ### Error Messages
 
-Errors block saving or analysis until the input or roles are corrected. Examples include a malformed table, an assigned Row ID containing missing or duplicate values, or no usable Numerical column. Duplicate row identifiers are not silently removed. In a user-table review, correct the identifier, choose another column, or leave Row ID unassigned to use generated row numbers. For an extraction table, check the identifier and its extraction configuration.
+Errors block applying column choices or analysis until the input or roles are corrected. Examples include a malformed table, an assigned Row ID containing missing or duplicate values, or no usable Numerical column. Duplicate row identifiers are not silently removed. In the column review, correct the identifier, choose another column, or leave Row ID unassigned to use generated row numbers.
 
 ## Shared Interactive Widgets
 
 Feature selection is on the left; filters, grouping controls, plots, and exports are on the right. Only controls supported by the current method are shown.
 
 ### Numerical Selection Widgets 
-For extraction tables, numerical features are grouped by [extractor](data_extraction_config.qmd#feature-extractor) and channel. For user-provided tables, the [saved column review](data_analysis_config.qmd#feature-group-management) defines the numerical features and their groups. Ungrouped measurements appear under `Uncategorized Features`. Each group has its own picker.
+Numerical features use the groups detected or applied in the [column review](data_analysis_config.qmd#feature-group-management). Recognized extraction headers are grouped by extractor and channel; other headers can form groups from shared prefixes. Ungrouped measurements appear under `Uncategorized Features`. Each group has its own picker.
 
 #### Univariate Analysis
 One single-select widget is rendered per group; choosing a feature in any group clears the selections and resets the others to `Select`.
@@ -171,7 +173,7 @@ The resulting category means become the input to the method's summaries, statist
 
 ### Unique ID Hover
 
-Hover over a point to see its measurement values and identifier. Extraction tables label the identifier `Cell ID` and include the configured field-of-view column when present. User tables show the assigned Row ID column's name, or `ID` when the app generated row numbers. User-table field-of-view columns remain ordinary categories.
+Hover over a point to see its measurement values and identifier. The identifier uses the assigned Row ID column's name, or `ID` when the app generated row numbers. Field-of-view columns remain ordinary categories for filtering and grouping.
 
 With `Collapse by`, the hover identifies the category and the number of observations averaged into that point, such as `dish1 (n=1874)`. SuperPlot's smaller observation points retain their individual identifiers.
 
@@ -192,6 +194,8 @@ Numerical features extracted by [Data Extraction](#sec-data-extraction) are auto
 ### Export Workflow as Python Script
 
 Click **Export the entire analysis as a Python script** below the results and styling controls. The script records the selected features, filters, grouping, point encodings, plot style, and method settings, including collapse, category separation, GMM export names, and the promoted facet where applicable.
+
+The script also uses the column choices applied to this upload, including changes made with **Use for this upload**.
 
 ![Download a Python script that records the current analysis settings.](analysis_ui_shots/analysis_export.png){width=80% fig-align=center fig-alt="Export the entire analysis as a Python script download button."}
 
