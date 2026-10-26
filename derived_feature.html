@@ -576,7 +576,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="compute-derived-features" class="level2" data-number="12.2">
 <h2 data-number="12.2" class="anchored" data-anchor-id="compute-derived-features"><span class="header-section-number">12.2</span> Compute Derived Features</h2>
-<p>Derived features are computed during <a href="numerical_feature_extraction.html">Numerical Feature Extraction</a>, after the successful FOV results have been concatenated. The definitions from the active extraction profile are recorded in the automatically saved FOV metadata alongside the extraction settings. Each definition adds one <code>Derived: &lt;name&gt;</code> column to the output dataset.</p>
+<p>Derived features are computed during <a href="numerical_feature_extraction.html">Numerical Feature Extraction</a>, after all FOV results have been concatenated. The definitions from the active extraction profile are recorded in the automatically saved FOV metadata alongside the extraction settings. Each definition adds one <code>Derived: &lt;name&gt;</code> column to the output dataset.</p>
 <p>If any cell has <code>NaN</code> in a derived column, for example after division by zero or use of a <code>NaN</code> operand, a single dataset-wide warning reports the affected cell count for that feature. These cells remain in the output.</p>
 </section>
 <section id="derived-feature-in-data-analysis" class="level2" data-number="12.3">

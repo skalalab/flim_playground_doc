@@ -484,7 +484,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#upload-iris" id="toc-upload-iris" class="nav-link active" data-scroll-target="#upload-iris">1. Upload Iris</a></li>
-  <li><a href="#id-config" id="toc-id-config" class="nav-link" data-scroll-target="#id-config">2. Review column roles</a></li>
+  <li><a href="#id-config" id="toc-id-config" class="nav-link" data-scroll-target="#id-config">2. Review column roles</a>
+  <ul class="collapse">
+  <li><a href="#check-flagged-guesses" id="toc-check-flagged-guesses" class="nav-link" data-scroll-target="#check-flagged-guesses">Check flagged guesses</a></li>
+  </ul></li>
   <li><a href="#feature-group-management" id="toc-feature-group-management" class="nav-link" data-scroll-target="#feature-group-management">3. Feature group management</a>
   <ul class="collapse">
   <li><a href="#how-group-names-are-inferred" id="toc-how-group-names-are-inferred" class="nav-link" data-scroll-target="#how-group-names-are-inferred">How group names are inferred</a></li>
@@ -519,12 +522,21 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Every upload, including a Data Extraction table, uses the same column editor. Analysis opens immediately when detected or saved column choices are valid. Review is optional; apply changes to one upload or save them as a reusable profile.</p>
+<p>Every upload, including a Data Extraction table, uses the same column editor. It opens with guessed column roles and groups unless a saved profile matches the headers exactly. Check the guesses, then use them for this upload or save them as a reusable profile.</p>
 <p>This walkthrough uses <a href="analysis_ui_shots/iris.csv">iris.csv</a>, a table of <strong>150 flowers and six columns</strong>.</p>
 <section id="upload-iris" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="upload-iris">1. Upload Iris</h2>
-<p>Upload <code>iris.csv</code> on <strong>Data Analysis</strong>. The app reuses a saved profile if exactly one matches the complete header set; otherwise, it detects roles and groups automatically.</p>
-<p>Click <strong>✏️</strong> beside the upload summary to open the column editor. The summary shows <strong>Auto-detected</strong> or the applied profile’s name. If a column needs attention, such as an assigned ID with repeated values, the editor opens automatically.</p>
+<p>Upload <code>iris.csv</code> on <strong>Data Analysis</strong>. No saved profile matches it yet, so the column editor opens with each column’s role and group guessed from its name and values. Plots appear after you choose <strong>Use for this upload</strong> or save a profile. The guide at the top, <strong>How to customize Data Analysis for your data</strong>, summarizes the editor; click its title to fold it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/config_review.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="The column editor as it opens for iris.csv."><img src="analysis_ui_shots/config_review.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The column editor for iris.csv: an expanded guide, the Bulk Column Role Assignment and Feature Group Management controls, a table of the six columns with guessed roles and groups, and the Use for this upload and Save profile as buttons."></a></p>
+</figure>
+</div>
+<figcaption>The column editor as it opens for iris.csv.</figcaption>
+</figure>
+</div>
 <p>For your own data, use column names on the first row and one observation per row. The uploader accepts CSV, TSV/TXT with tab, semicolon, or pipe separators, Excel <code>.xlsx</code>/<code>.xlsm</code>, and OpenDocument <code>.ods</code>. Put a spreadsheet’s table on its <strong>first sheet</strong>.</p>
 </section>
 <section id="id-config" class="level2 unnumbered">
@@ -535,13 +547,28 @@ ul.task-list li input[type="checkbox"] {
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="analysis_ui_shots/config_columns.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="The six Iris columns with flower_id assigned as Row ID."><img src="analysis_ui_shots/config_columns.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Role dropdowns assign sepal_length, sepal_width, petal_length, and petal_width to Numerical, species to Categorical, and flower_id to Row ID."></a></p>
+<p><a href="analysis_ui_shots/config_columns.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="The six Iris columns with flower_id assigned as Row ID."><img src="analysis_ui_shots/config_columns.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Role dropdowns assign sepal_length, sepal_width, petal_length, and petal_width to Numerical, species to Categorical, and flower_id to Row ID."></a></p>
 </figure>
 </div>
 <figcaption>The six Iris columns with flower_id assigned as Row ID.</figcaption>
 </figure>
 </div>
 <p>Use each column’s <strong>Role</strong> dropdown to change its use. For example, a numeric treatment code can be Categorical so it appears in filters. Changing a column away from Numerical removes its feature-group assignment.</p>
+<p>To change several columns at once, use <strong>Bulk Column Role Assignment</strong>: tick their rows, choose a role beside <strong>Ticked columns are</strong>, and click the button that names the change, such as <strong>Make 2 Categorical</strong> or <strong>Ignore 2</strong>. <strong>Select all</strong> ticks every row except the Row ID, which shows a lock instead of a tick box; change it with its own Role dropdown.</p>
+<section id="check-flagged-guesses" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="check-flagged-guesses">Check flagged guesses</h3>
+<p>When a guess looks doubtful, <strong>⚠️ Check these guesses</strong> appears above the bulk controls. Each line explains the doubt and offers a one-click fix, and the column’s preview is marked ⚠️. Iris has none. In the sample <a href="https://github.com/skalalab/flim_playground/blob/main/example_data/Data_Analysis/wine_quality.csv">wine_quality.csv</a>, <code>quality</code> holds only six whole numbers, so it may be a group label rather than a measurement:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/config_doubts.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="A whole-number score flagged as a possible category."><img src="analysis_ui_shots/config_doubts.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Check these guesses (1): quality (Numerical): 6 whole-number values in 1,599 rows. If it labels groups such as day, well or plate, make it Categorical. A Make Categorical button sits at the right."></a></p>
+</figure>
+</div>
+<figcaption>A whole-number score flagged as a possible category.</figcaption>
+</figure>
+</div>
+<p>Other flags catch text columns with too many distinct values for a useful filter, and numbers stored as text, such as decimal commas, units, or placeholders like <code>below LOD</code>. Their fix is <strong>Ignore</strong>, or correct the file and upload it again. Applying a fix clears its flag; columns from a saved profile are never flagged.</p>
 <div id="identifiers-config">
 <p>A <strong>Row ID is optional</strong>. Automatic suggestions use exact identifier names from extraction profiles, such as <code>cell_id</code>; you can assign another column manually. Only one column can be Row ID, and its values must be nonmissing and unique. Assigning a new ID returns the previous ID column to Numerical or Categorical according to its values.</p>
 <p>With no assigned ID, the app adds <strong>Row number</strong>, populated with <code>1</code> through the number of input rows. If that header already exists, it uses <code>Row number.1</code>, then <code>.2</code>, and so on. These labels follow input row order, so use your own identifier when identity must remain stable across reordered files. For Iris, change <code>flower_id</code> to <strong>Ignore</strong> to use generated row numbers.</p>
@@ -550,9 +577,10 @@ ul.task-list li input[type="checkbox"] {
 <p>At least one <strong>Numerical</strong> column must contain usable numbers. Field-of-view columns such as <code>image_name</code> use the <strong>Categorical</strong> role in every upload. Categories are stored as text; whole-number labels use <code>1</code> rather than <code>1.0</code>, and missing values become <code>N/A</code>.</p>
 </div>
 </section>
+</section>
 <section id="feature-group-management" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="feature-group-management">3. Feature group management</h2>
-<p><strong>Feature group management</strong>, above <strong>Column preview</strong>, organizes Numerical columns into shorter picker lists without changing their values. Unassigned measurements appear under <strong>Uncategorized Features</strong>. Feature groups organize measurements; categorical columns group or filter observations.</p>
+<p>Feature groups split Numerical columns into shorter picker lists without changing their values. Unassigned measurements appear under <strong>Uncategorized Features</strong>. Feature groups organize measurements; categorical columns group or filter observations.</p>
 <section id="how-group-names-are-inferred" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="how-group-names-are-inferred">How group names are inferred</h3>
 <p>Recognized extraction headers form groups by extractor and channel, such as <strong>Lifetime fit_nadh</strong>. Columns beginning with <code>Derived:</code> form <strong>Derived Features</strong>. These rules apply to any uploaded table.</p>
@@ -589,28 +617,38 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="unnumbered anchored" data-anchor-id="change-groups-in-bulk">Change groups in bulk</h3>
 <p>Keep the suggested <strong>sepal</strong> and <strong>petal</strong> groups, or combine the four measurements into <strong>Flower size</strong>:</p>
 <ol type="1">
-<li>Type <code>Flower size</code> in <strong>Group name</strong> and click <strong>➕ Add</strong>.</li>
-<li>Tick the Numerical columns to move. For Iris, <strong>Select all</strong> selects all four measurements.</li>
-<li>Choose <strong>Flower size</strong> in the group dropdown, then click <strong>Apply to 4</strong>.</li>
+<li>Tick the four measurement rows.</li>
+<li>Click <strong>➕ New group</strong>, type <code>Flower size</code>, and click <strong>Create with 4</strong>.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="analysis_ui_shots/config_num_group.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Four Numerical columns selected for bulk assignment to Flower size."><img src="analysis_ui_shots/config_num_group.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Feature group management has Flower size selected and Apply to 4 enabled. All four Iris measurements are ticked; their current groups are sepal or petal."></a></p>
+<p><a href="analysis_ui_shots/config_num_group.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Four ticked measurements about to form the Flower size group."><img src="analysis_ui_shots/config_num_group.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="The four Iris measurements are ticked; their groups are still sepal or petal. The New group box holds the name Flower size and a Create with 4 button. flower_id, the Row ID, shows a lock instead of a tick box."></a></p>
 </figure>
 </div>
-<figcaption>Four Numerical columns selected for bulk assignment to Flower size.</figcaption>
+<figcaption>Four ticked measurements about to form the Flower size group.</figcaption>
 </figure>
 </div>
-<p>For one feature, change its row’s <strong>Group</strong> directly. To remove assignments, choose <strong>Uncategorized</strong>. To rename a group, select it, enter a new <strong>Group name</strong>, and click <strong>✏️</strong>; using an existing name merges the groups. <strong>🗑️</strong> deletes the group and leaves its measurements uncategorized.</p>
+<p>To move ticked measurements into an existing group, choose it beside <strong>Ticked Numerical go in group</strong> and click <strong>Move 4</strong>. Choose <strong>Uncategorized</strong> and click <strong>Ungroup 4</strong> to remove assignments. Ticked rows that are not Numerical are skipped. For one feature, change its row’s <strong>Group</strong> directly.</p>
+<p>To rename or delete a group, choose it in the same dropdown and click <strong>✏️</strong>. <strong>Rename</strong> carries its columns over; using an existing name merges the groups. <strong>🗑️ Delete group</strong> leaves its measurements uncategorized.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="analysis_ui_shots/config_group_edit.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="The ✏️ box acts on the group chosen beside it."><img src="analysis_ui_shots/config_group_edit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Flower size is chosen beside Ticked Numerical go in group. The open pencil box shows Rename to Flower size, a Rename button, and a Delete group button."></a></p>
+</figure>
+</div>
+<figcaption>The ✏️ box acts on the group chosen beside it.</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="use-or-save-your-choices" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="use-or-save-your-choices">4. Use or save your choices</h2>
 <ul>
 <li><strong>Use for this upload</strong> applies the reviewed roles and groups without changing saved profiles.</li>
-<li><strong>💾 Save profile as</strong> stores a new profile and resumes analysis. When starting from detected columns, enter <code>Iris</code> beside this button to reuse these choices later.</li>
+<li><strong>💾 Save profile as</strong> stores a new profile and resumes analysis. When starting from guessed roles, enter <code>Iris</code> beside this button to reuse these choices later.</li>
 <li><strong>💾 Save to {profile} &amp; use</strong> appears when a saved profile is applied. It updates that profile and resumes analysis.</li>
 </ul>
 <p>If the name entered beside <strong>Save profile as</strong> already exists, confirm with <strong>⚠️ Replace profile</strong> or enter another name. Column edits take effect only when you choose Use or Save.</p>
@@ -618,15 +656,15 @@ ul.task-list li input[type="checkbox"] {
 <section id="reopen-the-column-editor" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="reopen-the-column-editor">5. Reopen the column editor</h2>
 <p>Select <strong>sepal_length</strong> from <strong>Flower size</strong> to begin analysis, or from <strong>sepal</strong> if you kept the automatic groups.</p>
-<p>If you saved the example as Iris, the summary reads <strong>Iris: 1 Categorical · 4 Numerical</strong>; counts omit the optional Row ID. Click <strong>✏️</strong> beside it to reopen the editor.</p>
+<p>If you saved the example as Iris, the summary reads <strong>Iris: 1 Categorical · 4 Numerical</strong>; counts omit the optional Row ID. Click <strong>✏️ Fix Categorical &amp; Numerical features</strong> below it to reopen the editor.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="analysis_ui_shots/config_applied.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Use the pencil beside the summary to reopen review."><img src="analysis_ui_shots/config_applied.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Iris: 1 Categorical · 4 Numerical appears beside a pencil button. The Flower size picker has sepal_length selected."></a></p>
+<p><a href="analysis_ui_shots/config_applied.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Reopen the column editor from the button below the summary."><img src="analysis_ui_shots/config_applied.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Iris: 1 Categorical · 4 Numerical appears above a button labeled Fix Categorical &amp; Numerical features. The Flower size picker has sepal_length selected."></a></p>
 </figure>
 </div>
-<figcaption>Use the pencil beside the summary to reopen review.</figcaption>
+<figcaption>Reopen the column editor from the button below the summary.</figcaption>
 </figure>
 </div>
 <p>Temporary edits show <strong>This upload only</strong>, or <strong>{profile} · edited for this upload</strong> when based on a saved profile. Reopening hides the analysis controls and plots while preserving their settings.</p>
@@ -634,9 +672,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="reuse-and-manage-saved-profiles" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="reuse-and-manage-saved-profiles">6. Reuse and manage saved profiles</h2>
-<p>Automatic profile matching requires exactly one match to the <strong>complete header set</strong>, including columns marked Ignore. Case, spaces, and punctuation matter; column order does not. Otherwise, the app detects roles and groups.</p>
+<p>Automatic profile matching requires exactly one match to the <strong>complete header set</strong>, including columns marked Ignore. Case, spaces, and punctuation matter; column order does not. Otherwise, the editor opens with guessed roles and groups. A matched profile still opens the editor if a column needs attention, such as an assigned ID with repeated values.</p>
 <p>Inside the editor, <strong>Apply a saved profile (optional)</strong> lists related profiles with <strong>shared</strong>, <strong>missing</strong>, and <strong>new</strong> column counts. Applying one replaces the current draft and keeps the editor open. It preserves saved roles and groups for present columns and guesses new ones. Saving back to that profile records new columns and removes absent ones.</p>
-<p>Expand <strong>Manage saved profiles</strong> below the action buttons to rename (<strong>✏️</strong>) or delete (<strong>🗑️</strong>) any saved profile. These changes take effect immediately; Cancel only discards column and group edits. Deleting the profile supplying the draft resets it to automatic detection.</p>
+<p>Expand <strong>Manage saved profiles</strong> below the action buttons to rename (<strong>✏️</strong>) or delete (<strong>🗑️</strong>) any saved profile. These changes take effect immediately; Cancel only discards column and group edits. Deleting the profile supplying the draft resets it to the guessed roles.</p>
 <p>You can store <strong>20 profiles</strong>. At the limit, replace an existing profile or delete one before saving another.</p>
 
 

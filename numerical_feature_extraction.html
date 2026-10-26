@@ -571,8 +571,8 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>The configured <a href="./data_extraction_config.html#feature-extractor">feature extractors</a> determine the output columns. For 2D decay input, <code>Intensity Texture</code> produces only the per-cell <a href="./intensity_texture.html#intensity-sum">decay sum</a>.</p>
-<p>Configured <a href="./derived_feature.html">derived features</a> are calculated after the successful FOV results are combined.</p>
-<p>The right side lists FOVs and their extraction status. Progress bars appear during processing, and completed FOVs show their result badges. Keep the page open while the batch runs and check any errors or warnings before using the output.</p>
+<p>Configured <a href="./derived_feature.html">derived features</a> are calculated after all FOV results are combined.</p>
+<p>The right side lists FOVs and their extraction status. Progress bars appear during processing, and completed FOVs show their result badges. Keep the page open while the batch runs and check any errors or warnings before using the output. An error in any channel fails its FOV, and if any FOV fails, nothing is exported. The error lists each failed FOV and its cause; fix those files and start extraction again. Finished FOVs are reused, not recomputed.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">

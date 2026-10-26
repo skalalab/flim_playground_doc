@@ -528,7 +528,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="merging-datasets" class="level2" data-number="13.1">
 <h2 data-number="13.1" class="anchored" data-anchor-id="merging-datasets"><span class="header-section-number">13.1</span> Merging Datasets</h2>
-<p>Enter the full path to the folder containing your saved <a href="./numerical_feature_extraction.html#save-results">numerical feature CSV files</a>. The folder is scanned recursively for CSV files. Each usable dataset must contain the configured <a href="./data_extraction_config.html#identifiers">cell and FOV identifiers</a>. Cell identifiers must be nonmissing and unique within the file and across the accepted files; a file containing overlapping identifiers is skipped.</p>
+<p>Enter the full path to the folder containing your saved <a href="./numerical_feature_extraction.html#save-results">numerical feature CSV files</a>. The folder is scanned recursively for CSV files. Each usable dataset must contain the configured <a href="./data_extraction_config.html#identifiers">cell and FOV identifiers</a>. Cell identifiers must be nonmissing and unique within the file and across the accepted files; a file containing overlapping identifiers is skipped. If no file is usable, an error says why, such as no CSV files or none with both identifiers; warnings above it explain other skipped files.</p>
 <div id="fov-id-categorical" class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -560,7 +560,7 @@ Important
 <figcaption>Map FOV-name slots to categories and check the preview before exporting.</figcaption>
 </figure>
 </div>
-<p>Click <code>Confirm category mapping &amp; export the combined dataset</code> to save the merged table and assigned categories as <code>{timestamp}_combined.csv</code> in the input folder. Upload this CSV directly to <strong>Data Analysis</strong> in either the desktop or hosted app. Column roles and groups are detected automatically; use <strong>✏️</strong> beside the summary to adjust them.</p>
+<p>Click <code>Confirm category mapping &amp; export the combined dataset</code> to save the merged table and assigned categories as <code>{timestamp}_combined.csv</code> in the input folder. Upload this CSV directly to <strong>Data Analysis</strong> in either the desktop or hosted app. The <a href="./data_analysis_config.html">column editor</a> opens with guessed roles and groups; check them and click <strong>Use for this upload</strong>.</p>
 
 
 </section>

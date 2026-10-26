@@ -612,11 +612,11 @@ window.Quarto = {
 </header>
 
 
-<p>Data Analysis lets you explore a table of measurements with interactive plots, statistical comparisons, and machine learning. Upload a table from <a href="data_extraction.html">Data Extraction</a> or any other source. The app detects column roles and feature groups; use the pencil beside the upload summary to <a href="./data_analysis_config.html">review or adjust them</a>.</p>
+<p>Data Analysis lets you explore a table of measurements with interactive plots, statistical comparisons, and machine learning. Upload a table from <a href="data_extraction.html">Data Extraction</a> or any other source. The app guesses column roles and feature groups and opens a column editor so you can <a href="./data_analysis_config.html">check or adjust them</a> before plotting.</p>
 <section id="general-workflow" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="general-workflow"><span class="header-section-number">14.1</span> General Workflow</h2>
 <ol type="1">
-<li><a href="#input">Upload your table</a>. Analysis opens automatically when the detected or saved column choices are valid. Review is optional unless a column needs attention.</li>
+<li><a href="#input">Upload your table</a>, check the guessed column roles, and click <strong>Use for this upload</strong>. A saved profile that matches the headers exactly skips this check.</li>
 <li>Choose an analysis type and method on the left, then select its <a href="#numerical-selection-widgets">numerical features</a>.</li>
 <li>Use the <a href="#filter-widgets">categorical and numerical filters</a> to select the observations to analyze. Later controls operate on this filtered dataset.</li>
 <li>Choose <a href="#visual-channels-widgets">groups and visual encodings</a>. In Feature Comparison and 2D Feature Distribution, <strong>Collapse by</strong> can replace individual observations with one mean per category within each analysis group.</li>
@@ -673,7 +673,7 @@ window.Quarto = {
 <section id="input" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="input"><span class="header-section-number">14.3</span> Input</h2>
 <p>The same uploader handles extraction results and tables from other sources, in both the desktop and hosted apps. It accepts CSV, TSV/TXT with tab, semicolon, or pipe separators, Excel <code>.xlsx</code>/<code>.xlsm</code>, and OpenDocument <code>.ods</code>. Spreadsheet uploads use the first sheet.</p>
-<p>One saved profile with exactly matching headers supplies the column roles and groups; otherwise, the app detects them automatically. Click <strong>✏️</strong> beside the summary to make changes, then choose <strong>Use for this upload</strong> or save a reusable profile. See the <a href="./data_analysis_config.html">configuration walkthrough</a>.</p>
+<p>A saved profile whose headers match exactly supplies the column roles and groups, and analysis opens directly. Otherwise, the column editor opens with guessed roles and groups and flags doubtful guesses; choose <strong>Use for this upload</strong> or save a reusable profile. To change them later, click <strong>✏️ Fix Categorical &amp; Numerical features</strong> below the upload summary. See the <a href="./data_analysis_config.html">configuration walkthrough</a>.</p>
 <section id="requirements" class="level3" data-number="14.3.1">
 <h3 data-number="14.3.1" class="anchored" data-anchor-id="requirements"><span class="header-section-number">14.3.1</span> Requirements</h3>
 <p>Use a plain table with column headers on the first row, one observation per row, and at least one usable numerical measurement. Categorical columns, a unique row identifier, and a field-of-view column are optional for every upload.</p>
@@ -716,7 +716,7 @@ Tip
 <p>Feature selection is on the left; filters, grouping controls, plots, and exports are on the right. Only controls supported by the current method are shown.</p>
 <section id="numerical-selection-widgets" class="level3" data-number="14.4.1">
 <h3 data-number="14.4.1" class="anchored" data-anchor-id="numerical-selection-widgets"><span class="header-section-number">14.4.1</span> Numerical Selection Widgets</h3>
-<p>Numerical features use the groups detected or applied in the <a href="./data_analysis_config.html#feature-group-management">column review</a>. Recognized extraction headers are grouped by extractor and channel; other headers can form groups from shared prefixes. Ungrouped measurements appear under <code>Uncategorized Features</code>. Each group has its own picker.</p>
+<p>Numerical features use the groups guessed or applied in the <a href="./data_analysis_config.html#feature-group-management">column review</a>. Recognized extraction headers are grouped by extractor and channel; other headers can form groups from shared prefixes. Ungrouped measurements appear under <code>Uncategorized Features</code>. Each group has its own picker.</p>
 <section id="univariate-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="univariate-analysis">Univariate Analysis</h4>
 <p>Choose one feature across all groups. Selecting it resets the other pickers to <code>Select</code>.</p>
@@ -755,7 +755,7 @@ Tip
 <figcaption>Categorical filters select the observations included in the analysis.</figcaption>
 </figure>
 </div>
-<p>Use categorical filters to select observations by treatment, day, or other labels. Each categorical feature has a filter. Selecting <code>All</code> includes every category and clears individual selections; selecting a category clears <code>All</code>.</p>
+<p>Use categorical filters to select observations by treatment, day, or other labels. Each categorical feature has a filter, up to four per row. Selecting <code>All</code> includes every category and clears individual selections; selecting a category clears <code>All</code>.</p>
 <p>Use <code>Except:</code> when it is easier to name the categories to leave out. For example, select <code>Except:</code> and one value in an <code>image_name</code> filter to keep every other field of view. The exclusion is evaluated against the current data, so categories added by widening another filter are included unless you excluded them explicitly.</p>
 <p>The filters work as a set rather than in sequence: each one offers only the categories that still have data under everything else you have selected. That means you can approach a subset from whichever direction is natural — narrowing <code>treatment</code> first and then <code>day</code> leaves you the same options as doing it the other way around — and no combination is out of reach because of the order the categorical features happen to be listed in your configuration.</p>
 <p>One consequence is worth knowing about. Tightening one filter can deselect a choice you made elsewhere. Say you have fields of view picked out under <code>image_name</code> and then narrow <code>cell_line</code> to <code>Panc1</code>: every MCF7 field of view among them is left with no rows. Rather than hand you an empty plot, FLIM Playground deselects those fields of view and tells you which selection ruled them out.</p>
