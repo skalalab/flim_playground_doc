@@ -1,6 +1,6 @@
 # Data analysis screenshots
 
-The 2026-09-18 refresh replaced 21 screenshots; the remaining UI captures are retained from 2026-09-09. The refreshed views show the current table-source checkbox and MHz phasor controls. The 2D separation plot was refreshed on 2026-09-20 from the current exported facet layout, including a promoted panel and the **Main plot** marker.
+The 2026-09-18 refresh replaced 21 screenshots; the remaining UI captures are retained from 2026-09-09. The refreshed views show the MHz phasor controls. The 2D separation plot was refreshed on 2026-09-20 from the current exported facet layout, including a promoted panel and the **Main plot** marker. On 2026-10-22, the grouping views were refreshed and `config_group_edit.png` added for the column editor's bulk bar, and the five full-page overviews (`feature_comparison`, `feature_histogram`, `phasor_analysis`, `dimension_reduction`, `classification`) were recaptured in a 1440 px window without the removed table-source checkbox. On 2026-10-26 (v1.15.2), the linked column-editor views and the five overviews were recaptured for the editor that now opens on upload, and `config_review.png` and `config_doubts.png` (from the sample `wine_quality.csv`) were added. The `config_*_full.png` companions, `config_upload.png`, `config_save.png`, and `config_manage.png` predate this layout; no page links them.
 
 Keep analysis UI screenshots in this folder, using stable lowercase `snake_case.png` filenames. Refresh existing views in place, preserving their dimensions and conceptual content. Use `_full.png` for the full viewport companion to a focused crop. Standalone overview captures retain their established descriptive names, such as `feature_comparison.png` and `classification.png`. Link to assets using repository-relative paths and list them below; temporary capture files belong outside the documentation assets.
 
@@ -12,10 +12,13 @@ The configuration walkthrough uses [iris.csv](iris.csv). The scientific figures 
 |---|---|
 | 01 upload detail | [config_upload.png](config_upload.png) |
 | 01 upload full | [config_upload_full.png](config_upload_full.png) |
+| 01 editor on upload | [config_review.png](config_review.png) |
 | 02 review detail | [config_columns.png](config_columns.png) |
 | 02 review full | [config_columns_full.png](config_columns_full.png) |
+| 02 flagged guesses | [config_doubts.png](config_doubts.png) |
 | 03 grouping detail | [config_num_group.png](config_num_group.png) |
 | 03 grouping full | [config_num_group_full.png](config_num_group_full.png) |
+| 03 group edit detail | [config_group_edit.png](config_group_edit.png) |
 | 04 save detail | [config_save.png](config_save.png) |
 | 04 save full | [config_save_full.png](config_save_full.png) |
 | 05 applied detail | [config_applied.png](config_applied.png) |

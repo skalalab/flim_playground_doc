@@ -1,14 +1,14 @@
 # Configuration {#sec-data-analysis-config}
 
-Every upload, including a Data Extraction table, uses the same column editor. Analysis opens immediately when detected or saved column choices are valid. Review is optional; apply changes to one upload or save them as a reusable profile.
+Every upload, including a Data Extraction table, uses the same column editor. It opens with guessed column roles and groups unless a saved profile matches the headers exactly. Check the guesses, then use them for this upload or save them as a reusable profile.
 
 This walkthrough uses [iris.csv](analysis_ui_shots/iris.csv), a table of **150 flowers and six columns**.
 
 ## 1. Upload Iris {.unnumbered}
 
-Upload `iris.csv` on **Data Analysis**. The app reuses a saved profile if exactly one matches the complete header set; otherwise, it detects roles and groups automatically.
+Upload `iris.csv` on **Data Analysis**. No saved profile matches it yet, so the column editor opens with each column's role and group guessed from its name and values. Plots appear after you choose **Use for this upload** or save a profile. The guide at the top, **How to customize Data Analysis for your data**, summarizes the editor; click its title to fold it.
 
-Click **✏️** beside the upload summary to open the column editor. The summary shows **Auto-detected** or the applied profile's name. If a column needs attention, such as an assigned ID with repeated values, the editor opens automatically.
+![The column editor as it opens for iris.csv.](analysis_ui_shots/config_review.png){width=100% fig-align=center fig-alt="The column editor for iris.csv: an expanded guide, the Bulk Column Role Assignment and Feature Group Management controls, a table of the six columns with guessed roles and groups, and the Use for this upload and Save profile as buttons."}
 
 For your own data, use column names on the first row and one observation per row. The uploader accepts CSV, TSV/TXT with tab, semicolon, or pipe separators, Excel `.xlsx`/`.xlsm`, and OpenDocument `.ods`. Put a spreadsheet's table on its **first sheet**.
 
@@ -22,6 +22,16 @@ For Iris, keep the four length and width columns **Numerical**, set `species` to
 
 Use each column's **Role** dropdown to change its use. For example, a numeric treatment code can be Categorical so it appears in filters. Changing a column away from Numerical removes its feature-group assignment.
 
+To change several columns at once, use **Bulk Column Role Assignment**: tick their rows, choose a role beside **Ticked columns are**, and click the button that names the change, such as **Make 2 Categorical** or **Ignore 2**. **Select all** ticks every row except the Row ID, which shows a lock instead of a tick box; change it with its own Role dropdown.
+
+### Check flagged guesses {.unnumbered}
+
+When a guess looks doubtful, **⚠️ Check these guesses** appears above the bulk controls. Each line explains the doubt and offers a one-click fix, and the column's preview is marked ⚠️. Iris has none. In the sample [wine_quality.csv](https://github.com/skalalab/flim_playground/blob/main/example_data/Data_Analysis/wine_quality.csv), `quality` holds only six whole numbers, so it may be a group label rather than a measurement:
+
+![A whole-number score flagged as a possible category.](analysis_ui_shots/config_doubts.png){width=100% fig-align=center fig-alt="Check these guesses (1): quality (Numerical): 6 whole-number values in 1,599 rows. If it labels groups such as day, well or plate, make it Categorical. A Make Categorical button sits at the right."}
+
+Other flags catch text columns with too many distinct values for a useful filter, and numbers stored as text, such as decimal commas, units, or placeholders like `below LOD`. Their fix is **Ignore**, or correct the file and upload it again. Applying a fix clears its flag; columns from a saved profile are never flagged.
+
 ::: {#identifiers-config}
 A **Row ID is optional**. Automatic suggestions use exact identifier names from extraction profiles, such as `cell_id`; you can assign another column manually. Only one column can be Row ID, and its values must be nonmissing and unique. Assigning a new ID returns the previous ID column to Numerical or Categorical according to its values.
 
@@ -34,7 +44,7 @@ At least one **Numerical** column must contain usable numbers. Field-of-view col
 
 ## 3. Feature group management {#feature-group-management .unnumbered}
 
-**Feature group management**, above **Column preview**, organizes Numerical columns into shorter picker lists without changing their values. Unassigned measurements appear under **Uncategorized Features**. Feature groups organize measurements; categorical columns group or filter observations.
+Feature groups split Numerical columns into shorter picker lists without changing their values. Unassigned measurements appear under **Uncategorized Features**. Feature groups organize measurements; categorical columns group or filter observations.
 
 ### How group names are inferred {.unnumbered}
 
@@ -55,18 +65,21 @@ Hyphens stay within names: `anti-PD1_mean` and `anti-PD1_std` form **anti-PD1**.
 
 Keep the suggested **sepal** and **petal** groups, or combine the four measurements into **Flower size**:
 
-1. Type `Flower size` in **Group name** and click **➕ Add**.
-2. Tick the Numerical columns to move. For Iris, **Select all** selects all four measurements.
-3. Choose **Flower size** in the group dropdown, then click **Apply to 4**.
+1. Tick the four measurement rows.
+2. Click **➕ New group**, type `Flower size`, and click **Create with 4**.
 
-![Four Numerical columns selected for bulk assignment to Flower size.](analysis_ui_shots/config_num_group.png){width=100% fig-align=center fig-alt="Feature group management has Flower size selected and Apply to 4 enabled. All four Iris measurements are ticked; their current groups are sepal or petal."}
+![Four ticked measurements about to form the Flower size group.](analysis_ui_shots/config_num_group.png){width=100% fig-align=center fig-alt="The four Iris measurements are ticked; their groups are still sepal or petal. The New group box holds the name Flower size and a Create with 4 button. flower_id, the Row ID, shows a lock instead of a tick box."}
 
-For one feature, change its row's **Group** directly. To remove assignments, choose **Uncategorized**. To rename a group, select it, enter a new **Group name**, and click **✏️**; using an existing name merges the groups. **🗑️** deletes the group and leaves its measurements uncategorized.
+To move ticked measurements into an existing group, choose it beside **Ticked Numerical go in group** and click **Move 4**. Choose **Uncategorized** and click **Ungroup 4** to remove assignments. Ticked rows that are not Numerical are skipped. For one feature, change its row's **Group** directly.
+
+To rename or delete a group, choose it in the same dropdown and click **✏️**. **Rename** carries its columns over; using an existing name merges the groups. **🗑️ Delete group** leaves its measurements uncategorized.
+
+![The ✏️ box acts on the group chosen beside it.](analysis_ui_shots/config_group_edit.png){width=100% fig-align=center fig-alt="Flower size is chosen beside Ticked Numerical go in group. The open pencil box shows Rename to Flower size, a Rename button, and a Delete group button."}
 
 ## 4. Use or save your choices {.unnumbered}
 
 - **Use for this upload** applies the reviewed roles and groups without changing saved profiles.
-- **💾 Save profile as** stores a new profile and resumes analysis. When starting from detected columns, enter `Iris` beside this button to reuse these choices later.
+- **💾 Save profile as** stores a new profile and resumes analysis. When starting from guessed roles, enter `Iris` beside this button to reuse these choices later.
 - **💾 Save to {profile} & use** appears when a saved profile is applied. It updates that profile and resumes analysis.
 
 If the name entered beside **Save profile as** already exists, confirm with **⚠️ Replace profile** or enter another name. Column edits take effect only when you choose Use or Save.
@@ -75,9 +88,9 @@ If the name entered beside **Save profile as** already exists, confirm with **�
 
 Select **sepal_length** from **Flower size** to begin analysis, or from **sepal** if you kept the automatic groups.
 
-If you saved the example as Iris, the summary reads **Iris: 1 Categorical · 4 Numerical**; counts omit the optional Row ID. Click **✏️** beside it to reopen the editor.
+If you saved the example as Iris, the summary reads **Iris: 1 Categorical · 4 Numerical**; counts omit the optional Row ID. Click **✏️ Fix Categorical & Numerical features** below it to reopen the editor.
 
-![Use the pencil beside the summary to reopen review.](analysis_ui_shots/config_applied.png){width=70% fig-align=center fig-alt="Iris: 1 Categorical · 4 Numerical appears beside a pencil button. The Flower size picker has sepal_length selected."}
+![Reopen the column editor from the button below the summary.](analysis_ui_shots/config_applied.png){width=70% fig-align=center fig-alt="Iris: 1 Categorical · 4 Numerical appears above a button labeled Fix Categorical & Numerical features. The Flower size picker has sepal_length selected."}
 
 Temporary edits show **This upload only**, or **{profile} · edited for this upload** when based on a saved profile. Reopening hides the analysis controls and plots while preserving their settings.
 
@@ -85,10 +98,10 @@ Choose **Use for this upload** or Save to apply further edits. **Cancel** restor
 
 ## 6. Reuse and manage saved profiles {.unnumbered}
 
-Automatic profile matching requires exactly one match to the **complete header set**, including columns marked Ignore. Case, spaces, and punctuation matter; column order does not. Otherwise, the app detects roles and groups.
+Automatic profile matching requires exactly one match to the **complete header set**, including columns marked Ignore. Case, spaces, and punctuation matter; column order does not. Otherwise, the editor opens with guessed roles and groups. A matched profile still opens the editor if a column needs attention, such as an assigned ID with repeated values.
 
 Inside the editor, **Apply a saved profile (optional)** lists related profiles with **shared**, **missing**, and **new** column counts. Applying one replaces the current draft and keeps the editor open. It preserves saved roles and groups for present columns and guesses new ones. Saving back to that profile records new columns and removes absent ones.
 
-Expand **Manage saved profiles** below the action buttons to rename (**✏️**) or delete (**🗑️**) any saved profile. These changes take effect immediately; Cancel only discards column and group edits. Deleting the profile supplying the draft resets it to automatic detection.
+Expand **Manage saved profiles** below the action buttons to rename (**✏️**) or delete (**🗑️**) any saved profile. These changes take effect immediately; Cancel only discards column and group edits. Deleting the profile supplying the draft resets it to the guessed roles.
 
 You can store **20 profiles**. At the limit, replace an existing profile or delete one before saving another.

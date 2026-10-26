@@ -9,7 +9,7 @@ Open **Data Extraction → Categorical** in a [local installation](index.qmd#ins
 
 ## Merging Datasets
 
-Enter the full path to the folder containing your saved [numerical feature CSV files](numerical_feature_extraction.qmd#save-results). The folder is scanned recursively for CSV files. Each usable dataset must contain the configured [cell and FOV identifiers](data_extraction_config.qmd#identifiers). Cell identifiers must be nonmissing and unique within the file and across the accepted files; a file containing overlapping identifiers is skipped.
+Enter the full path to the folder containing your saved [numerical feature CSV files](numerical_feature_extraction.qmd#save-results). The folder is scanned recursively for CSV files. Each usable dataset must contain the configured [cell and FOV identifiers](data_extraction_config.qmd#identifiers). Cell identifiers must be nonmissing and unique within the file and across the accepted files; a file containing overlapping identifiers is skipped. If no file is usable, an error says why, such as no CSV files or none with both identifiers; warnings above it explain other skipped files.
 
 :::{.callout-important #fov-id-categorical}
 **The FOV identifier uniquely identifies a field of view and is assumed to contain all information necessary to extract the categorical features (e.g., treatment, time point, etc.), by including segments separated by a certain delimiter (e.g., `_`). Categorical features are assigned from individual segments or their combinations.** Example: The FOV `Panc1_Cyanide_dish1` denotes that it comes from the Panc1 cell line, under the Cyanide treatment, in the 1st dish.
@@ -29,4 +29,4 @@ The live preview shows one row from each of the first five FOVs. Check the assig
 
 ![Map FOV-name slots to categories and check the preview before exporting.](extraction_ui_shots/cat_slot_assign.png){width=100% fig-align=center fig-alt="FOV-name slots map to categorical columns, with a preview above Confirm category mapping & export the combined dataset."}
 
-Click `Confirm category mapping & export the combined dataset` to save the merged table and assigned categories as `{timestamp}_combined.csv` in the input folder. Upload this CSV directly to **Data Analysis** in either the desktop or hosted app. Column roles and groups are detected automatically; use **✏️** beside the summary to adjust them.
+Click `Confirm category mapping & export the combined dataset` to save the merged table and assigned categories as `{timestamp}_combined.csv` in the input folder. Upload this CSV directly to **Data Analysis** in either the desktop or hosted app. The [column editor](data_analysis_config.qmd) opens with guessed roles and groups; check them and click **Use for this upload**.

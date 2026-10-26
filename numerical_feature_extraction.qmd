@@ -35,9 +35,9 @@ After confirming calibration, raw FLIM channels using `Lifetime fit` default to 
 
 The configured [feature extractors](data_extraction_config.qmd#feature-extractor) determine the output columns. For 2D decay input, `Intensity Texture` produces only the per-cell [decay sum](intensity_texture.qmd#intensity-sum).
 
-Configured [derived features](derived_feature.qmd) are calculated after the successful FOV results are combined.
+Configured [derived features](derived_feature.qmd) are calculated after all FOV results are combined.
 
-The right side lists FOVs and their extraction status. Progress bars appear during processing, and completed FOVs show their result badges. Keep the page open while the batch runs and check any errors or warnings before using the output.
+The right side lists FOVs and their extraction status. Progress bars appear during processing, and completed FOVs show their result badges. Keep the page open while the batch runs and check any errors or warnings before using the output. An error in any channel fails its FOV, and if any FOV fails, nothing is exported. The error lists each failed FOV and its cause; fix those files and start extraction again. Finished FOVs are reused, not recomputed.
 
 ![Follow per-FOV progress and results during numerical extraction.](extraction_ui_shots/numerical_feature_extraction.png){width=100% fig-align=center fig-alt="Numerical workflow showing Fitting Mode set to Local by default, per-field-of-view extraction progress, and result badges."}
 

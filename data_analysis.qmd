@@ -1,10 +1,10 @@
 # Overview {#sec-data-analysis}
 
-Data Analysis lets you explore a table of measurements with interactive plots, statistical comparisons, and machine learning. Upload a table from [Data Extraction](#sec-data-extraction) or any other source. The app detects column roles and feature groups; use the pencil beside the upload summary to [review or adjust them](data_analysis_config.qmd).
+Data Analysis lets you explore a table of measurements with interactive plots, statistical comparisons, and machine learning. Upload a table from [Data Extraction](#sec-data-extraction) or any other source. The app guesses column roles and feature groups and opens a column editor so you can [check or adjust them](data_analysis_config.qmd) before plotting.
 
 ## General Workflow
 
-1. [Upload your table](#input). Analysis opens automatically when the detected or saved column choices are valid. Review is optional unless a column needs attention.
+1. [Upload your table](#input), check the guessed column roles, and click **Use for this upload**. A saved profile that matches the headers exactly skips this check.
 2. Choose an analysis type and method on the left, then select its [numerical features](#numerical-selection-widgets).
 3. Use the [categorical and numerical filters](#filter-widgets) to select the observations to analyze. Later controls operate on this filtered dataset.
 4. Choose [groups and visual encodings](#visual-channels-widgets). In Feature Comparison and 2D Feature Distribution, **Collapse by** can replace individual observations with one mean per category within each analysis group.
@@ -29,7 +29,7 @@ The plots and results update as you change the controls.
 ## Input
 The same uploader handles extraction results and tables from other sources, in both the desktop and hosted apps. It accepts CSV, TSV/TXT with tab, semicolon, or pipe separators, Excel `.xlsx`/`.xlsm`, and OpenDocument `.ods`. Spreadsheet uploads use the first sheet.
 
-One saved profile with exactly matching headers supplies the column roles and groups; otherwise, the app detects them automatically. Click **✏️** beside the summary to make changes, then choose **Use for this upload** or save a reusable profile. See the [configuration walkthrough](data_analysis_config.qmd).
+A saved profile whose headers match exactly supplies the column roles and groups, and analysis opens directly. Otherwise, the column editor opens with guessed roles and groups and flags doubtful guesses; choose **Use for this upload** or save a reusable profile. To change them later, click **✏️ Fix Categorical & Numerical features** below the upload summary. See the [configuration walkthrough](data_analysis_config.qmd).
 
 ### Requirements
 
@@ -64,7 +64,7 @@ Errors block applying column choices or analysis until the input or roles are co
 Feature selection is on the left; filters, grouping controls, plots, and exports are on the right. Only controls supported by the current method are shown.
 
 ### Numerical Selection Widgets 
-Numerical features use the groups detected or applied in the [column review](data_analysis_config.qmd#feature-group-management). Recognized extraction headers are grouped by extractor and channel; other headers can form groups from shared prefixes. Ungrouped measurements appear under `Uncategorized Features`. Each group has its own picker.
+Numerical features use the groups guessed or applied in the [column review](data_analysis_config.qmd#feature-group-management). Recognized extraction headers are grouped by extractor and channel; other headers can form groups from shared prefixes. Ungrouped measurements appear under `Uncategorized Features`. Each group has its own picker.
 
 #### Univariate Analysis
 Choose one feature across all groups. Selecting it resets the other pickers to `Select`.
@@ -87,7 +87,7 @@ Each feature group has a picker that accepts multiple selections. Choose `All` t
 #### Categorical Filters
 ![Categorical filters select the observations included in the analysis.](analysis_ui_shots/filter.png){width=100% fig-align=center fig-alt="Categorical filter row with selections for the treatment, cell line, dish, and image categories."}
 
-Use categorical filters to select observations by treatment, day, or other labels. Each categorical feature has a filter. Selecting `All` includes every category and clears individual selections; selecting a category clears `All`.
+Use categorical filters to select observations by treatment, day, or other labels. Each categorical feature has a filter, up to four per row. Selecting `All` includes every category and clears individual selections; selecting a category clears `All`.
 
 Use `Except:` when it is easier to name the categories to leave out. For example, select `Except:` and one value in an `image_name` filter to keep every other field of view. The exclusion is evaluated against the current data, so categories added by widening another filter are included unless you excluded them explicitly.
 
