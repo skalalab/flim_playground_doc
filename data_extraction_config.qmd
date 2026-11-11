@@ -79,7 +79,7 @@ A profile using 2D decay CSVs cannot include QPI or intensity-only image channel
 
 Because a 2D decay CSV does not provide acquisition timing, enter its `duration` and number of `time bins` per laser pulse interval.
 
-![For 2D decay input, enter the acquisition duration and time-bin count.](extraction_ui_shots/config_2d_setting.png){width=100% fig-align=center fig-alt="Shared FLIM settings set to Decay (2D), with a 12.5 ns duration, 200 time bins, an 80 MHz laser rate, and IRF calibration."}
+![For 2D decay input, enter the acquisition duration and time-bin count.](extraction_ui_shots/config_2d_setting.png){width=100% fig-align=center fig-alt="Shared FLIM settings set to Decay (2D), with a 12.5 ns duration, 200 time bins, an 80 MHz laser rate, IRF calibration, and Tail mean background subtraction."}
 
 </details>
 
@@ -153,6 +153,10 @@ When `Lifetime fit free` is selected, set the laser frequency in **MHz** and cho
 For Fluorescence Lifetime Standard calibration, provide a `.tiff`, `.tif`, or `.ptu` reference file.
 
 See the [fit-free calibration settings](lifetime_fit_free.qmd#calibration-method) for the correction applied by each method.
+
+<a id="fit-free-background"></a>
+
+**Fit free background subtraction method** chooses the offset subtracted from each cell's decay before the phasor is computed: `Tail mean` (default), `Pre-rise median`, or `No correction` for decays already offset-removed. See [offset subtraction](lifetime_fit_free.qmd#offset-subtraction) for how each is estimated.
 
 </details>
 

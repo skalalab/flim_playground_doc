@@ -46,11 +46,12 @@ Several talks have been given about FLIM Playground:
 
 Use a [local installation](#installation) for Data Extraction so the app can read input folders and save CSV files on your computer. The **Mosaic example** contains 25 NADH fields of view (`Mosaic01`–`Mosaic25`), with raw FLIM decays, cell masks, and an IRF. It is the same example used in the [IRF calibration and time-gate walkthrough](irf_calibration.qmd#time-gates).
 
-1. **Download the inputs.** Download [the Mosaic example ZIP](https://raw.githubusercontent.com/skalalab/flim_playground/main/example_data/Data_Extraction/3d_decay_1channel.zip) from the FLIM Playground repository and unzip it. Open the extracted `3d_decay_1channel` folder. It contains:
+1. **Download the inputs.** The inputs are in [the `3d_decay_1channel` folder](https://github.com/skalalab/flim_playground/tree/main/example_data/Data_Extraction/3d_decay_1channel) of the FLIM Playground repository. To get them, clone the repository or download it with **Code → Download ZIP** and unzip it, then open `example_data/Data_Extraction/3d_decay_1channel`. It contains:
 
    - 25 `.sdt` decay files, such as `Mosaic01.sdt`.
    - 25 matching cell masks, such as `Mosaic01_Ch2_summed_cellpose.tiff`.
    - `nadh_irf.txt`, shared by all 25 fields of view.
+   - `SPCImage_prefitted/`, SPCImage fits of the same fields of view for the [pixel pre-fit](data_extraction_config.qmd#three-d4d-pixel-pre-fit) input. This walkthrough does not use it.
 
 2. **Configure the example.** In **Home**, create a profile such as `Mosaic NADH example` and enter the settings below. Click **Update Configuration** to save.
 
@@ -69,7 +70,7 @@ Use a [local installation](#installation) for Data Extraction so the app can rea
 
    The app reads the image dimensions and timing from the SDT files: `512 × 512` pixels, `256` time bins, and a `12.5` ns decay period. See [configuration](data_extraction_config.qmd#sec-data-extraction-config) when adapting this setup to your own inputs.
 
-3. **Check the folder.** Open **Data Extraction → Numerical** and enter the full path to the extracted `3d_decay_1channel` folder. Confirm that `Mosaic01`–`Mosaic25` report **All files found**, review any channel assignment and the metadata preview, then click **Start calibration**. The app automatically saves the metadata in the source folder. See the [FOV Metadata reference](fov_metadata.qmd#sec-fov-metadata) if a file is missing or duplicated.
+3. **Check the folder.** Open **Data Extraction → Numerical** and enter the full path to the `3d_decay_1channel` folder. Confirm that `Mosaic01`–`Mosaic25` report **All files found**, review any channel assignment and the metadata preview, then click **Start calibration**. The app automatically saves the metadata in the source folder. See the [FOV Metadata reference](fov_metadata.qmd#sec-fov-metadata) if a file is missing or duplicated.
 
 4. **Calibrate and extract.** Continue in **Numerical**. Keep **MLE**, two components, **Fix the Shift** selected, and the initial **Start (T1) = 0**, **End (T2) = 256** gates. Click **Optimize for Shifts**, then inspect the NADH channel expander. Select `Mosaic16` in the shift plot to inspect its decay and fitted curve.
 

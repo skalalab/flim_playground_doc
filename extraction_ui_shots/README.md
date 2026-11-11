@@ -1,6 +1,6 @@
 # Data extraction screenshots
 
-The 2026-09-18 refresh replaced 31 screenshots and added the three QPI views. The derived-feature detail and full views remain from 2026-09-09. The current Numerical workflow combines metadata extraction, calibration, and numerical feature extraction in one step.
+The 2026-09-18 refresh replaced 31 screenshots and added the three QPI views. The derived-feature detail and full views remain from 2026-09-09. On 2026-11-11 (v1.15.3), `config_2d_setting.png` was recaptured at the same size to show the new **Fit free background subtraction method** control. The current Numerical workflow combines metadata extraction, calibration, and numerical feature extraction in one step.
 
 Keep extraction UI screenshots in this folder, using stable lowercase `snake_case.png` filenames. Refresh existing views in place, preserving their dimensions and conceptual content. Use `_full.png` for the full viewport companion to a focused crop. Standalone overview captures retain their descriptive names, such as `config.png`, `fov.png`, and the three `qpi_*.png` views. Link to assets using repository-relative paths and list them below; temporary capture files belong outside the documentation assets.
 

@@ -10,7 +10,14 @@ For image inputs, the app sums the pixel decays within each cell ROI labeled by 
 
 Two preprocessing steps are then applied, and they are independent of each other:
 
-- **Offset subtraction** is applied to every decay curve, regardless of the chosen [calibration method](data_extraction_config.qmd#calibration-method). For each cell, the offset is estimated as the mean of the last 10% of the time bins of that cell's own decay curve, subtracted from the curve, and any resulting negative values are clipped to zero. Note that this per-cell baseline is unrelated to the `offset` parameter fitted during [lifetime fitting](lifetime_fit.qmd).
+- **Offset subtraction** <a id="offset-subtraction"></a> works the same way for every FLIM input type and every [calibration method](data_extraction_config.qmd#calibration-method). The [Fit free background subtraction method](data_extraction_config.qmd#fit-free-background) setting chooses how the offset is estimated from each cell's own decay curve, or turns it off:
+  - `Tail mean` (default): the mean of the last 10% of the time bins is subtracted.
+  - `Pre-rise median`: the median of the bins before the rise, stopping 5 bins short of the peak, is subtracted. When the peak is in the first 10 bins, the last 30 bins are used instead. The estimate is never below zero. FLIMKit estimates background the same way.
+  - `No correction`: the curve is used as given.
+
+  Bins that go negative after subtraction are kept. In bins with little fluorescence, noise scatters around zero; setting the negative values to zero would add counts there and bias the phasor.
+
+  Both estimates assume the bins they read hold only background. At 80 MHz, fluorescence with lifetimes beyond about 2 ns has not died out when the next pulse arrives, so it is still in the tail and before the rise, and either estimate removes some of it. `Pre-rise median` subtracts nothing from low-count decays whose early bins are mostly zero, and when few bins precede the rise its region can include the rising edge, which makes the estimate too high. A curve left with no positive total gives empty phasor values. Use `No correction` for decays already offset-removed. The IRF and the fluorescence lifetime standard are used without offset subtraction. This per-cell baseline is unrelated to the `offset` parameter fitted during [lifetime fitting](lifetime_fit.qmd).
 - **IRF shifting** is applied only when the chosen calibration method is IRF shift calibration. The IRF is shifted using the shift values as described in the [Shift IRF step](irf_calibration.qmd#shift-irf). Under fluorescence lifetime standard calibration, no IRF shift is applied.
 
 ## Calibration method
