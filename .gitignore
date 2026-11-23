@@ -20,3 +20,4 @@ _book/
 *.tex
 !pdf-title.tex
 !docs-release.svg
+.claude/

@@ -129,7 +129,7 @@ When `Lifetime fit` is selected, choose the number of lifetime components to fit
 
 Raw FLIM inputs also require an IRF and a confirmed [IRF shift calibration](irf_calibration.qmd#fit-calibration) before fitting. Pixel pre-fit inputs do not require this fitting-based calibration because their lifetime values are already provided.
 
-Provide one IRF per channel in `.txt`, `.csv`, or `.ptu` format.
+Provide one IRF per channel in `.txt`, `.csv`, or `.ptu` format. A `.txt` or `.csv` IRF is either one column (IRF values) or two columns (time bin, IRF value), with one row per time bin of the decay data.
 
 <a id="fixed-lifetimes"></a>
 
